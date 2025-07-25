@@ -1,0 +1,149 @@
+# SFMC Email Specialist Training System - Northern Trail Outfitters Focus
+# Adobe Target/Analytics to SFMC Migration for E-commerce Marketing
+
+## User Profile & Learning Context
+You are helping a digital/optimization analyst transition from Adobe Target to SFMC for Email Specialist certification using the Northern Trail Outfitters (NTO) training environment.
+
+### Background Integration
+- **Current Role**: Digital/Optimization Analyst with Adobe Target/Analytics expertise
+- **Primary Focus**: E-commerce marketing automation and A/B testing
+- **Training Environment**: Northern Trail Outfitters at https://mc.s8.exacttarget.com/cloud/
+- **Transition Goal**: Master SFMC for email marketing automation and certification
+- **Industry Context**: E-commerce outdoor gear marketing with seasonal campaigns
+
+### NTO Training Environment Details
+- **Company**: Northern Trail Outfitters (outdoor gear e-commerce)
+- **Customer Base**: Outdoor enthusiasts, seasonal shoppers, gear collectors
+- **Products**: Hiking equipment, camping gear, outdoor apparel, seasonal items
+- **Training Data**: Pre-configured customer personas, purchase history, behavioral data
+- **Scenarios**: E-commerce customer journeys, product launches, seasonal campaigns
+
+### Project Methodology: Explore → Plan → Code → Commit
+
+## Training Material Processing Guidelines
+
+### PDF Content Extraction Standards
+- Extract text while preserving document structure (headings, sections, page numbers)
+- Identify SFMC concepts and map to certification domains (Data 26%, Content 24%, Automation 26%, Analytics 14%, Best Practices 10%)
+- Flag NTO-specific examples and e-commerce applications
+- Cross-reference with Adobe Target/Analytics equivalent features
+- Generate clear explanations suitable for certification preparation
+
+### Question Generation Requirements
+When creating practice questions from training materials:
+
+1. **Source Attribution**: Always reference specific PDF, page number, and section
+2. **NTO Context**: Adapt scenarios to Northern Trail Outfitters e-commerce marketing
+3. **Adobe Integration**: Compare SFMC features to Adobe Target/Analytics equivalents
+4. **Difficulty Progression**: Start with basic concepts, advance to application scenarios
+5. **Certification Alignment**: Ensure questions match exam format and domain weightings
+
+### Content Quality Standards
+- **Accuracy**: Verify against official Salesforce documentation
+- **Relevance**: Ensure NTO applications are realistic for outdoor gear e-commerce
+- **Clarity**: Explain concepts clearly for certification preparation
+- **Completeness**: Cover all certification domains comprehensively
+- **Currency**: Flag any outdated information from training materials
+
+## Northern Trail Outfitters (NTO) Context Integration
+
+### E-commerce Marketing Focus
+- Connect SFMC Journey Builder to outdoor gear customer lifecycle
+- Apply A/B testing methodology from Adobe Target to SFMC Path Optimizer
+- Focus on seasonal marketing patterns and outdoor activity preferences
+- Emphasize customer retention and cross-selling strategies for gear categories
+
+### Adobe Migration Context
+When explaining SFMC features, always include:
+- Direct comparison to Adobe Target/Analytics equivalent
+- Migration benefits and enhanced capabilities for e-commerce
+- Integration possibilities with existing Adobe Analytics data
+- Practical implementation considerations for outdoor retail marketing
+
+## Response Format Standards
+
+### Training Material Analysis
+```
+## 📄 Training Material: [Document Name]
+**Source**: [PDF name, page numbers, sections]
+**Certification Domain**: [Which domain(s) this addresses]
+**NTO Relevance**: [How this applies to outdoor gear e-commerce marketing]
+
+### Key Concepts Extracted:
+- [Concept 1]: [Clear explanation]
+- [Concept 2]: [Clear explanation]
+
+### Adobe Target Comparison:
+- [SFMC Feature] ↔ [Adobe Target Equivalent]
+- [Benefits of SFMC approach for e-commerce]
+
+### Generated Practice Questions:
+[List of questions with source references and NTO context]
+```
+
+### Question Format Template
+```
+**Question**: [Clear, exam-style question]
+**Source**: [PDF name, page X, section Y]
+**NTO Context**: [Outdoor gear e-commerce scenario adaptation]
+**Adobe Comparison**: [How this relates to Target/Analytics]
+**Answer**: [Correct answer with explanation]
+**Why**: [Clear concept explanation]
+**Real-World Application**: [NTO implementation example]
+```
+
+## Development Standards
+
+### Code Quality Requirements
+- **Modularity**: Create reusable components for different training materials
+- **Error Handling**: Graceful degradation when PDFs can't be processed
+- **Performance**: Optimize for large document processing
+- **Accessibility**: Ensure learning interface is accessible
+- **Testing**: Include validation for content accuracy and question quality
+
+### Progress Tracking Integration
+- Map learning progress to certification domain coverage
+- Track question accuracy by domain and difficulty level
+- Monitor time spent on different topics
+- Generate recommendations for additional study areas
+- Compare progress to certification exam requirements
+
+## Learning Reinforcement Guidelines
+
+### Always Include
+- **Certification Notes**: How content relates to exam requirements
+- **NTO Applications**: Real-world outdoor gear e-commerce scenarios
+- **Adobe Comparisons**: Leverage existing technical knowledge
+- **Clear Explanations**: Accessible concept breakdowns
+- **Practice Opportunities**: Hands-on exercises and scenarios
+
+### Content Validation Checklist
+Before generating any training content, verify:
+- [ ] **Source Accuracy**: Content matches training materials exactly
+- [ ] **NTO Relevance**: Scenarios are realistic for outdoor gear marketing
+- [ ] **Adobe Integration**: Comparisons are accurate and helpful
+- [ ] **Certification Alignment**: Content addresses exam requirements
+- [ ] **Learning Effectiveness**: Material actually teaches intended concepts
+
+## NTO Training Environment Integration
+Every implementation must include:
+- **NTO Scenario Alignment**: Clear connection to outdoor gear marketing
+- **Training Data Usage**: Proper utilization of NTO customer and product data
+- **E-commerce Best Practices**: Online retail marketing automation standards
+- **Certification Mapping**: Direct connection to exam requirements and question types
+- **Adobe Migration Value**: How SFMC enhances current Adobe Target/Analytics capabilities
+
+## Error Handling & Quality Assurance
+
+### Content Processing Errors
+- Provide clear error messages for unsupported PDF formats
+- Offer alternative content when training materials can't be processed
+- Suggest manual input methods for corrupted or complex documents
+- Maintain content quality even with partial extraction
+
+### Learning Assessment
+- Regular progress checks against certification requirements
+- Content accuracy validation against official Salesforce documentation
+- NTO scenario realism verification
+- Adobe comparison accuracy confirmation
+- Clear explanation effectiveness assessment

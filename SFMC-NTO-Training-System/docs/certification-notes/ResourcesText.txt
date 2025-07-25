@@ -1,0 +1,62 @@
+Working with the Email Sender Authentication Package
+https://help.salesforce.com/s/articleView?id=mktg.mc_es_sender_authentication_package.htm&type=5
+Enterprise 2.0 Overview
+https://help.salesforce.com/s/articleView?id=mktg.mc_es_enterprise_20_overview.htm&type=5
+Enterprise 2.0 Shared Items
+https://help.salesforce.com/s/articleView?id=mktg.mc_es_shared_items.htm&type=5
+Reply Mail Management for Marketing Cloud Email
+https://help.salesforce.com/articleView?id=mc_es_reply_mail_management.htm&type=5
+
+Salesforce Certified Marketing Cloud Email Specialist Exam Guide
+https://trailhead.salesforce.com/help?article=Salesforce-Certified-Marketing-Cloud-Email-Specialist-Exam-Guide
+
+Reply Mail Management for Email Studio
+https://help.salesforce.com/s/articleView?id=mktg.mc_es_reply_mail_management.htm&type=5
+Contact Builder in Marketing Cloud Engagement
+https://help.salesforce.com/s/articleView?id=mktg.mc_cab_contact_builder.htm&type=5
+Data Views
+https://help.salesforce.com/s/articleView?id=mktg.mc_as_data_views.htm&type=5
+SQL Reference
+https://help.salesforce.com/s/articleView?id=mktg.mc_as_sql_reference.htm&type=5
+marketing-content-creation
+https://trailhead.salesforce.com/content/learn/modules/marketing-content-creation
+Content Builder Support File Types
+https://help.salesforce.com/s/articleView?id=mktg.mc_ceb_supported_file_types.htm&type=5
+Personalization Strings in Email Studio
+https://help.salesforce.com/s/articleView?id=mktg.mc_es_available_personalization_strings.htm&type=5
+Email Client Support for Default Templates
+https://help.salesforce.com/s/articleView?id=mktg.mc_ceb_email_client_support.htm&type=5
+
+https://trailhead.salesforce.com/content/learn/modules/personalized-email-marketing?_ga=2.231306655.1073635036.1753417023-414030901.1753124695
+Email Deliverability Best Practices
+https://help.salesforce.com/s/articleView?id=mktg.mc_es_email_deliverability_best_practices.htm&type=5
+Bounce Mail Management
+https://help.salesforce.com/s/articleView?id=mktg.mc_es_bounce_mail_management.htm&type=5
+CAN-SPAM Requirements
+https://help.salesforce.com/s/articleView?id=mktg.mc_es_can_spam_requirements.htm&type=5
+Get Started with Content Builder Approvals
+https://help.salesforce.com/s/articleView?id=mktg.mc_ceb_get_started_with_approvals.htm&type=5
+Optimize Journey Builder Performance
+https://help.salesforce.com/s/articleView?id=mktg.mc_jb_optimize_sending_in_journey_builder.htm&type=5
+Automation Studio Activities
+https://help.salesforce.com/s/articleView?id=mktg.mc_as_using_automation_studio_activities.htm&type=5
+File Locations (includes information about Safehouse)
+https://help.salesforce.com/s/articleView?id=mktg.mc_overview_file_locations.htm&type=5
+Email Studio Reports in Analytics Builder
+https://help.salesforce.com/s/articleView?id=mktg.mc_re_email_studio_reports.htm&type=5
+Journey Builder Reports in Analytics Builder
+https://help.salesforce.com/s/articleView?id=mktg.mc_re_journey_builder_reports.htm&type=5
+Best Practices for Data Extensions and Query Activities
+https://help.salesforce.com/s/articleView?id=mktg.mc_as_optimize_the_query_activity.htm&type=5
+Optimize Journey Builder Performance
+https://help.salesforce.com/s/articleView?id=mktg.mc_jb_optimize_sending_in_journey_builder.htm&type=5
+Contact Builder Best Practices
+https://help.salesforce.com/s/articleView?id=mktg.mc_cab_contact_builder_best_practices.htm&type=5
+Access the Exam Guide
+https://trailhead.salesforce.com/help?article=Salesforce-Certified-Marketing-Cloud-Email-Specialist-Exam-Guide
+
+
+
+
+
+
