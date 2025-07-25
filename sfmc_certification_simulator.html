@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Email Specialist Certification Simulator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .mode-selection {
+            padding: 40px;
+            background: #f8f9fa;
+        }
+
+        .mode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .mode-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .mode-card.practice {
+            border-left: 5px solid #27ae60;
+        }
+
+        .mode-card.exam {
+            border-left: 5px solid #e74c3c;
+        }
+
+        .mode-card.review {
+            border-left: 5px solid #f39c12;
+        }
+
+        .mode-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .mode-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .mode-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .mode-features li {
+            padding: 8px 0;
+            color: #5a6c7d;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .mode-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(135deg, #2980b9, #1f639a);
+            transform: translateY(-2px);
+        }
+
+        .quiz-container {
+            display: none;
+            padding: 40px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .quiz-progress {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .timer {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e74c3c;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .question-number {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.3em;
+            line-height: 1.6;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .options-container {
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .option:hover {
+            background: #e3f2fd;
+            border-color: #3498db;
+        }
+
+        .option.selected {
+            background: #e3f2fd;
+            border-color: #3498db;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .option.correct {
+            background: #d4edda;
+            border-color: #27ae60;
+            color: #155724;
+        }
+
+        .option.incorrect {
+            background: #f8d7da;
+            border-color: #e74c3c;
+            color: #721c24;
+        }
+
+        .option-label {
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.1em;
+        }
+
+        .explanation {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+        }
+
+        .explanation h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .explanation p {
+            color: #856404;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #6c757d, #495057);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #495057, #343a40);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #20c997, #17a2b8);
+        }
+
+        .results-container {
+            display: none;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .score-display.fail {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+        }
+
+        .score-number {
+            font-size: 4em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .score-text {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .performance-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .topic-performance {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .topic-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .topic-score {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, #17a2b8, #138496);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            margin: 10px;
+        }
+
+        .restart-btn:hover {
+            background: linear-gradient(135deg, #138496, #0f6674);
+            transform: translateY(-2px);
+        }
+
+        .topic-selector {
+            display: none;
+            padding: 40px;
+        }
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-3px);
+            border-color: #3498db;
+        }
+
+        .topic-card.selected {
+            border-color: #27ae60;
+            background: #f8fff9;
+        }
+
+        .topic-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .topic-details {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .question-count {
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .mode-selection, .quiz-container, .results-container, .topic-selector {
+                padding: 20px;
+            }
+            
+            .question-card {
+                padding: 25px;
+            }
+            
+            .quiz-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .timer {
+                font-size: 1.2em;
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 60px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 SFMC Email Specialist Certification Simulator</h1>
+            <p>Master your certification with 600+ practice questions from all exam domains</p>
+        </div>
+
+        <!-- Loading Screen -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <h3>Loading Questions...</h3>
+            <p>Preparing your personalized exam experience</p>
+        </div>
+
+        <!-- Mode Selection -->
+        <div class="mode-selection" id="modeSelection">
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Choose Your Study Mode</h2>
+            
+            <div class="mode-grid">
+                <div class="mode-card practice" onclick="selectMode('practice')">
+                    <h3>📚 Practice Mode</h3>
+                    <p>Study by topic with all 600+ questions. Perfect for learning and reinforcement.</p>
+                    <ul class="mode-features">
+                        <li>Study by specific SFMC domain</li>
+                        <li>Immediate feedback on answers</li>
+                        <li>Detailed explanations for every question</li>
+                        <li>Track progress by topic</li>
+                        <li>No time pressure</li>
+                    </ul>
+                    <button class="start-btn">Start Practice Mode</button>
+                </div>
+
+                <div class="mode-card exam" onclick="selectMode('exam')">
+                    <h3>⏱️ Exam Mode</h3>
+                    <p>Real certification simulation: 60 random questions in 90 minutes, 65% to pass.</p>
+                    <ul class="mode-features">
+                        <li>60 questions from all domains</li>
+                        <li>90-minute timer (real exam conditions)</li>
+                        <li>Questions weighted by exam percentages</li>
+                        <li>Pass/fail scoring (65% minimum)</li>
+                        <li>Performance breakdown by topic</li>
+                    </ul>
+                    <button class="start-btn">Start Exam Simulation</button>
+                </div>
+
+                <div class="mode-card review" onclick="selectMode('review')">
+                    <h3>🔍 Review Mode</h3>
+                    <p>Focus on missed questions and weak areas to strengthen your knowledge.</p>
+                    <ul class="mode-features">
+                        <li>Review previously missed questions</li>
+                        <li>Focus on weak topic areas</li>
+                        <li>Customizable question sets</li>
+                        <li>Track improvement over time</li>
+                        <li>Targeted learning approach</li>
+                    </ul>
+                    <button class="start-btn">Start Review Mode</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topic Selector -->
+        <div class="topic-selector" id="topicSelector">
+            <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Select Study Topics</h2>
+            <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px;">Choose which SFMC domains you want to practice. Select multiple topics for comprehensive study.</p>
+            
+            <div class="topic-grid" id="topicGrid">
+                <!-- Topics will be dynamically loaded here -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="nav-btn" onclick="selectAllTopics()">Select All Topics</button>
+                <button class="nav-btn" onclick="clearAllTopics()">Clear Selection</button>
+                <button class="start-btn" onclick="startSelectedTopics()" style="margin-left: 20px;">Start Practice</button>
+            </div>
+        </div>
+
+        <!-- Quiz Container -->
+        <div class="quiz-container" id="quizContainer">
+            <div class="quiz-header">
+                <div class="quiz-progress" id="progress">Question 1 of 60</div>
+                <div class="timer" id="timer" style="display: none;">90:00</div>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number" id="questionNumber">Question 1</div>
+                <div class="question-text" id="questionText">Loading question...</div>
+                
+                <div class="options-container" id="optionsContainer">
+                    <!-- Options will be dynamically loaded -->
+                </div>
+
+                <div class="explanation" id="explanation">
+                    <h4>Explanation:</h4>
+                    <p id="explanationText"></p>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <button class="nav-btn" id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextQuestion()">Next</button>
+                <button class="nav-btn submit-btn" id="submitBtn" onclick="submitQuiz()" style="display: none;">Submit Quiz</button>
+            </div>
+        </div>
+
+        <!-- Results Container -->
+        <div class="results-container" id="resultsContainer">
+            <div class="score-display" id="scoreDisplay">
+                <div class="score-number" id="scoreNumber">85%</div>
+                <div class="score-text" id="scoreText">Congratulations! You Passed!</div>
+                <div id="passingText">You exceeded the 65% passing threshold</div>
+            </div>
+
+            <div class="performance-breakdown" id="performanceBreakdown">
+                <!-- Performance data will be loaded here -->
+            </div>
+
+            <div style="margin-top: 40px;">
+                <button class="restart-btn" onclick="restartQuiz()">Take Another Practice</button>
+                <button class="restart-btn" onclick="reviewWrongAnswers()">Review Wrong Answers</button>
+                <button class="restart-btn" onclick="goHome()">Back to Main Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentMode = '';
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let selectedAnswer = null;
+        let timer = null;
+        let timeRemaining = 5400; // 90 minutes in seconds
+        let quizStartTime = null;
+        let selectedTopics = [];
+
+        // Question bank - This will be populated with your 600+ questions
+        const questionBank = {
+            "subscriber_data_management": [
+                {
+                    question: "What is the primary purpose of Contact Builder in SFMC?",
+                    options: [
+                        "To create email templates",
+                        "To serve as the central hub for all customer data and relationships", 
+                        "To send automated emails",
+                        "To create landing pages"
+                    ],
+                    correct: 1,
+                    explanation: "Contact Builder is the foundation where all customer information is stored, organized, and connected across different marketing activities.",
+                    domain: "Subscriber & Data Management",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What is a Contact Key in SFMC?",
+                    options: [
+                        "A password for accessing contacts",
+                        "A unique identifier that links all data about one person",
+                        "A way to encrypt contact information", 
+                        "A method to delete contacts"
+                    ],
+                    correct: 1,
+                    explanation: "The Contact Key is like a social security number for each contact, ensuring all their data across different systems connects to the same person.",
+                    domain: "Subscriber & Data Management",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What is a Data Extension in SFMC?",
+                    options: [
+                        "A way to extend email length",
+                        "A table that stores specific types of customer information",
+                        "A method to create longer campaigns",
+                        "A tool for extending deadlines"
+                    ],
+                    correct: 1,
+                    explanation: "Data Extensions are like spreadsheets that organize and store customer data in rows and columns for easy access and management.",
+                    domain: "Subscriber & Data Management",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What is the Primary Key in a Data Extension?",
+                    options: [
+                        "The most important customer",
+                        "A field that uniquely identifies each record in the table",
+                        "The password to access the data",
+                        "The first column in the table"
+                    ],
+                    correct: 1,
+                    explanation: "The Primary Key ensures each record is unique and can be specifically identified, like using student ID numbers in a school database.",
+                    domain: "Subscriber & Data Management",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "Which type of Data Extension automatically updates based on rules you set?",
+                    options: [
+                        "Standard Data Extension",
+                        "Random Data Extension", 
+                        "Filtered Data Extension",
+                        "Sendable Data Extension"
+                    ],
+                    correct: 2,
+                    explanation: "Filtered Data Extensions use criteria you define to automatically include or exclude records as conditions change.",
+                    domain: "Subscriber & Data Management",
+                    difficulty: "Intermediate"
+                }
+            ],
+            "marketing_automation": [
+                {
+                    question: "What is the primary purpose of marketing automation?",
+                    options: [
+                        "To replace human marketers entirely",
+                        "To automatically execute marketing tasks and deliver personalized experiences at scale",
+                        "To send the same message to everyone",
+                        "To reduce marketing costs only"
+                    ],
+                    correct: 1,
+                    explanation: "Marketing automation combines efficiency with personalization, handling repetitive tasks while delivering relevant, timely messages to different customer segments.",
+                    domain: "Marketing Automation",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What is a 'trigger' in marketing automation?",
+                    options: [
+                        "A button to start campaigns manually",
+                        "An event or action that automatically initiates a marketing process",
+                        "A way to stop automation",
+                        "A type of email template"
+                    ],
+                    correct: 1,
+                    explanation: "Triggers are the starting points for automation - like 'customer signs up' or 'abandons cart' - that kick off predefined marketing sequences.",
+                    domain: "Marketing Automation", 
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What is the main difference between Automation Studio and Journey Builder in SFMC?",
+                    options: [
+                        "They do exactly the same thing",
+                        "Automation Studio handles backend processes; Journey Builder creates customer-facing experiences",
+                        "Journey Builder is more expensive",
+                        "Automation Studio is only for advanced users"
+                    ],
+                    correct: 1,
+                    explanation: "Automation Studio works behind the scenes with data imports, queries, and reports, while Journey Builder orchestrates customer-facing email sequences and experiences.",
+                    domain: "Marketing Automation",
+                    difficulty: "Intermediate"
+                },
+                {
+                    question: "What is an Entry Source in Journey Builder?",
+                    options: [
+                        "The exit point of a journey",
+                        "How customers enter the journey",
+                        "The email template used",
+                        "The goal of the journey"
+                    ],
+                    correct: 1,
+                    explanation: "Entry Source determines which customers enter the journey and when they enter.",
+                    domain: "Marketing Automation",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What is a Decision Split used for?",
+                    options: [
+                        "Ending the journey",
+                        "Creating different paths based on customer behavior or data", 
+                        "Scheduling emails",
+                        "Importing data"
+                    ],
+                    correct: 1,
+                    explanation: "Decision Splits allow customers to take different journey paths based on their actions or information.",
+                    domain: "Marketing Automation",
+                    difficulty: "Intermediate"
+                }
+            ],
+            "content_creation_delivery": [
+                {
+                    question: "What is the main advantage of drag-and-drop email templates?",
+                    options: [
+                        "They create smaller file sizes",
+                        "They're user-friendly and don't require coding knowledge",
+                        "They work better on mobile devices",
+                        "They're more expensive but higher quality"
+                    ],
+                    correct: 1,
+                    explanation: "Drag-and-drop templates allow marketers without technical skills to create professional emails using visual builders.",
+                    domain: "Content Creation & Delivery",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What is the minimum recommended size for touch-friendly buttons?",
+                    options: [
+                        "30x30 pixels",
+                        "44x44 pixels or larger",
+                        "60x60 pixels", 
+                        "100x100 pixels"
+                    ],
+                    correct: 1,
+                    explanation: "This size ensures accurate finger tapping on touchscreen devices without accidental clicks.",
+                    domain: "Content Creation & Delivery",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What layout works best for mobile email design?",
+                    options: [
+                        "Three-column layout",
+                        "Single-column layout that stacks vertically",
+                        "Grid layout with many small sections",
+                        "Horizontal scrolling layout"
+                    ],
+                    correct: 1,
+                    explanation: "Single-column layouts eliminate horizontal scrolling and create natural vertical flow on mobile screens.",
+                    domain: "Content Creation & Delivery",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What is dynamic content in SFMC?",
+                    options: [
+                        "Content that moves around in the email",
+                        "Email content that changes based on recipient data and behavior",
+                        "Videos embedded in emails",
+                        "Content that updates after the email is sent"
+                    ],
+                    correct: 1,
+                    explanation: "Dynamic content personalizes emails by showing different text, images, or offers to different segments within the same email template.",
+                    domain: "Content Creation & Delivery",
+                    difficulty: "Intermediate"
+                },
+                {
+                    question: "What's the recommended maximum file size for email images?",
+                    options: [
+                        "5MB",
+                        "10MB",
+                        "1MB or smaller",
+                        "There is no limit"
+                    ],
+                    correct: 2,
+                    explanation: "Smaller file sizes ensure faster email loading times and better user experience, especially on mobile devices with slower connections.",
+                    domain: "Content Creation & Delivery",
+                    difficulty: "Basic"
+                }
+            ],
+            "email_best_practices": [
+                {
+                    question: "What is the gold standard for email permission?",
+                    options: [
+                        "Implied consent from business relationship",
+                        "Pre-checked opt-in boxes", 
+                        "Confirmed opt-in (double opt-in) with email verification",
+                        "Purchasing email lists"
+                    ],
+                    correct: 2,
+                    explanation: "Double opt-in requires the subscriber to confirm their email address, ensuring genuine interest and reducing spam complaints.",
+                    domain: "Email Marketing Best Practices",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What does CAN-SPAM require in your subject line?",
+                    options: [
+                        "Your company name",
+                        "The word 'Advertisement'",
+                        "Subject lines must not be deceptive and should reflect the email content",
+                        "The recipient's name"
+                    ],
+                    correct: 2,
+                    explanation: "Misleading subject lines that don't match the email content violate CAN-SPAM requirements.",
+                    domain: "Email Marketing Best Practices",
+                    difficulty: "Intermediate"
+                },
+                {
+                    question: "What is a good bounce rate benchmark?",
+                    options: [
+                        "Under 2% is good, under 5% is acceptable",
+                        "Under 10%",
+                        "Under 20%",
+                        "Bounce rate doesn't matter"
+                    ],
+                    correct: 0,
+                    explanation: "Low bounce rates indicate good list quality and help maintain sender reputation.",
+                    domain: "Email Marketing Best Practices",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What does GDPR require for valid consent?",
+                    options: [
+                        "Any form of consent",
+                        "Consent must be freely given, specific, informed, and unambiguous",
+                        "Implied consent is sufficient",
+                        "Consent from parents only"
+                    ],
+                    correct: 1,
+                    explanation: "GDPR sets high standards for consent - it must be clear, specific, and given without coercion.",
+                    domain: "Email Marketing Best Practices",
+                    difficulty: "Intermediate"
+                },
+                {
+                    question: "What should you avoid in email subject lines to prevent spam filtering?",
+                    options: [
+                        "Personalization",
+                        "Excessive use of ALL CAPS, multiple exclamation marks, and words like 'FREE'",
+                        "Your company name",
+                        "Numbers and dates"
+                    ],
+                    correct: 1,
+                    explanation: "These elements are common spam indicators that can trigger filters and reduce deliverability.",
+                    domain: "Email Marketing Best Practices",
+                    difficulty: "Basic"
+                }
+            ],
+            "email_design": [
+                {
+                    question: "What percentage of emails are opened on mobile devices?",
+                    options: [
+                        "About 30%",
+                        "About 45%",
+                        "About 60% or more",
+                        "About 80%"
+                    ],
+                    correct: 2,
+                    explanation: "Mobile email usage continues to grow, making mobile-first design essential for email success.",
+                    domain: "Email Message Design", 
+                    difficulty: "Basic"
+                },
+                {
+                    question: "Which fonts are considered 'web-safe' for email?",
+                    options: [
+                        "Any font available on your computer",
+                        "Arial, Helvetica, Georgia, Times New Roman, and Verdana",
+                        "Only custom downloaded fonts",
+                        "Decorative fonts only"
+                    ],
+                    correct: 1,
+                    explanation: "Web-safe fonts are widely installed across operating systems, ensuring consistent display.",
+                    domain: "Email Message Design",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What is the recommended minimum font size for email body text?",
+                    options: [
+                        "10px",
+                        "12px",
+                        "14-16px", 
+                        "20px"
+                    ],
+                    correct: 2,
+                    explanation: "This size ensures readability across devices while being large enough for mobile screens.",
+                    domain: "Email Message Design",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What makes an effective call-to-action button?",
+                    options: [
+                        "Small size to save space",
+                        "High contrast, clear text, adequate size, and prominent placement",
+                        "Matching the background color",
+                        "Hidden placement for surprise"
+                    ],
+                    correct: 1,
+                    explanation: "Effective CTAs stand out visually and clearly communicate the desired action.",
+                    domain: "Email Message Design",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "Why is Outlook a particular challenge for email design?",
+                    options: [
+                        "Outlook has the best CSS support",
+                        "Outlook uses the Word rendering engine with limited CSS support",
+                        "Outlook only displays text emails",
+                        "Outlook isn't widely used"
+                    ],
+                    correct: 1,
+                    explanation: "Outlook's rendering engine doesn't support many modern CSS properties, requiring special coding techniques.",
+                    domain: "Email Message Design",
+                    difficulty: "Intermediate"
+                }
+            ],
+            "tracking_reporting": [
+                {
+                    question: "What does 'open rate' measure in email marketing?",
+                    options: [
+                        "How fast emails open",
+                        "The percentage of delivered emails that were opened by recipients",
+                        "The number of times an email was forwarded",
+                        "How long people spend reading emails"
+                    ],
+                    correct: 1,
+                    explanation: "Open rate is calculated as (Unique Opens ÷ Delivered) × 100, showing what percentage of successfully delivered emails were actually opened.",
+                    domain: "Tracking & Reporting",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "How is click-through rate (CTR) calculated?",
+                    options: [
+                        "(Total Clicks ÷ Opens) × 100",
+                        "(Unique Clicks ÷ Delivered) × 100",
+                        "(Clicks ÷ Sent) × 100",
+                        "(Unique Clicks ÷ Unique Opens) × 100"
+                    ],
+                    correct: 1,
+                    explanation: "CTR measures what percentage of delivered emails generated clicks, providing insight into content effectiveness.",
+                    domain: "Tracking & Reporting",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What is a hard bounce?",
+                    options: [
+                        "An email that bounces back quickly",
+                        "A permanently undeliverable email due to invalid address or domain",
+                        "An email that's difficult to read",
+                        "A temporarily delayed email"
+                    ],
+                    correct: 1,
+                    explanation: "Hard bounces indicate permanent delivery failures and should be removed from lists immediately.",
+                    domain: "Tracking & Reporting",
+                    difficulty: "Basic"
+                },
+                {
+                    question: "What are Data Views in SFMC?",
+                    options: [
+                        "Visual representations of data",
+                        "System tables containing email interaction data accessible through SQL queries",
+                        "Views of email templates",
+                        "Customer data visualization"
+                    ],
+                    correct: 1,
+                    explanation: "Data Views provide access to raw email tracking data for advanced analysis and custom reporting.",
+                    domain: "Tracking & Reporting",
+                    difficulty: "Intermediate"
+                },
+                {
+                    question: "What is a good open rate benchmark for most industries?",
+                    options: [
+                        "10%",
+                        "20-25%",
+                        "50%",
+                        "75%"
+                    ],
+                    correct: 1,
+                    explanation: "Industry averages typically fall in this range, though your specific benchmark should be based on your historical performance.",
+                    domain: "Tracking & Reporting",
+                    difficulty: "Basic"
+                }
+            ]
+        };
+
+        // Topic configurations
+        const topicConfig = {
+            "subscriber_data_management": {
+                name: "Subscriber & Data Management",
+                weight: "26-29%",
+                description: "Contact Builder, Data Extensions, Import Activities, Segmentation",
+                examQuestions: 17,
+                color: "#e74c3c"
+            },
+            "marketing_automation": {
+                name: "Marketing Automation", 
+                weight: "19-26%",
+                description: "Journey Builder, Automation Studio, Triggered Sends",
+                examQuestions: 15,
+                color: "#3498db"
+            },
+            "content_creation_delivery": {
+                name: "Content Creation & Delivery",
+                weight: "18-24%", 
+                description: "Content Builder, Email Creation, Dynamic Content",
+                examQuestions: 13,
+                color: "#27ae60"
+            },
+            "email_best_practices": {
+                name: "Email Marketing Best Practices",
+                weight: "10-15%",
+                description: "CAN-SPAM, GDPR, Deliverability, Compliance",
+                examQuestions: 8,
+                color: "#f39c12"
+            },
+            "email_design": {
+                name: "Email Message Design",
+                weight: "13%",
+                description: "Templates, Mobile Design, HTML/CSS",
+                examQuestions: 8,
+                color: "#9b59b6"
+            },
+            "tracking_reporting": {
+                name: "Tracking & Reporting",
+                weight: "6-14%",
+                description: "Analytics, Reports, Data Views, Performance",
+                examQuestions: 6,
+                color: "#1abc9c"
+            }
+        };
+
+        // Initialize the application
+        function init() {
+            showLoading();
+            setTimeout(() => {
+                hideLoading();
+                showModeSelection();
+            }, 1500);
+        }
+
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('modeSelection').style.display = 'none';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function showModeSelection() {
+            document.getElementById('modeSelection').style.display = 'block';
+            document.getElementById('topicSelector').style.display = 'none';
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'none';
+        }
+
+        function selectMode(mode) {
+            currentMode = mode;
+            
+            if (mode === 'practice') {
+                showTopicSelector();
+            } else if (mode === 'exam') {
+                startExamMode();
+            } else if (mode === 'review') {
+                showReviewOptions();
+            }
+        }
+
+        function showTopicSelector() {
+            document.getElementById('modeSelection').style.display = 'none';
+            document.getElementById('topicSelector').style.display = 'block';
+            loadTopicSelector();
+        }
+
+        function loadTopicSelector() {
+            const grid = document.getElementById('topicGrid');
+            grid.innerHTML = '';
+            
+            Object.keys(topicConfig).forEach(topicKey => {
+                const topic = topicConfig[topicKey];
+                const questionCount = questionBank[topicKey].length;
+                
+                const card = document.createElement('div');
+                card.className = 'topic-card';
+                card.onclick = () => toggleTopic(topicKey, card);
+                card.innerHTML = `
+                    <div class="topic-title">${topic.name}</div>
+                    <div class="topic-details">
+                        <strong>Exam Weight:</strong> ${topic.weight}<br>
+                        <strong>Description:</strong> ${topic.description}
+                    </div>
+                    <div class="question-count">${questionCount} Practice Questions</div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleTopic(topicKey, cardElement) {
+            if (selectedTopics.includes(topicKey)) {
+                selectedTopics = selectedTopics.filter(t => t !== topicKey);
+                cardElement.classList.remove('selected');
+            } else {
+                selectedTopics.push(topicKey);
+                cardElement.classList.add('selected');
+            }
+        }
+
+        function selectAllTopics() {
+            selectedTopics = Object.keys(topicConfig);
+            document.querySelectorAll('.topic-card').forEach(card => {
+                card.classList.add('selected');
+            });
+        }
+
+        function clearAllTopics() {
+            selectedTopics = [];
+            document.querySelectorAll('.topic-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+        }
+
+        function startSelectedTopics() {
+            if (selectedTopics.length === 0) {
+                alert('Please select at least one topic to practice.');
+                return;
+            }
+            
+            // Combine questions from selected topics
+            questions = [];
+            selectedTopics.forEach(topicKey => {
+                questions = questions.concat(questionBank[topicKey]);
+            });
+            
+            // Shuffle questions
+            questions = shuffleArray(questions);
+            
+            startQuiz();
+        }
+
+        function startExamMode() {
+            // Create weighted question distribution for exam
+            questions = [];
+            
+            // Add questions based on exam weights
+            Object.keys(topicConfig).forEach(topicKey => {
+                const topic = topicConfig[topicKey];
+                const questionsToAdd = Math.min(topic.examQuestions, questionBank[topicKey].length);
+                const shuffledTopicQuestions = shuffleArray([...questionBank[topicKey]]);
+                questions = questions.concat(shuffledTopicQuestions.slice(0, questionsToAdd));
+            });
+            
+            // Ensure we have exactly 60 questions
+            questions = shuffleArray(questions).slice(0, 60);
+            
+            // Enable timer for exam mode
+            timeRemaining = 5400; // 90 minutes
+            startQuiz(true);
+        }
+
+        function showReviewOptions() {
+            alert('Review mode will be available after you complete some practice sessions!');
+            showModeSelection();
+        }
+
+        function startQuiz(withTimer = false) {
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            selectedAnswer = null;
+            quizStartTime = new Date();
+            
+            document.getElementById('topicSelector').style.display = 'none';
+            document.getElementById('modeSelection').style.display = 'none';
+            document.getElementById('quizContainer').style.display = 'block';
+            
+            if (withTimer) {
+                document.getElementById('timer').style.display = 'block';
+                startTimer();
+            } else {
+                document.getElementById('timer').style.display = 'none';
+            }
+            
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timer = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                
+                if (timeRemaining <= 0) {
+                    clearInterval(timer);
+                    alert('Time\'s up! Submitting your quiz.');
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+            // Change color when time is running low
+            const timerElement = document.getElementById('timer');
+            if (timeRemaining < 300) { // Less than 5 minutes
+                timerElement.style.color = '#e74c3c';
+            } else if (timeRemaining < 900) { // Less than 15 minutes
+                timerElement.style.color = '#f39c12';
+            }
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                submitQuiz();
+                return;
+            }
+            
+            const question = questions[currentQuestionIndex];
+            selectedAnswer = null;
+            
+            // Update progress
+            document.getElementById('progress').textContent = 
+                `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+            document.getElementById('questionNumber').textContent = 
+                `Question ${currentQuestionIndex + 1}`;
+            document.getElementById('questionText').textContent = question.question;
+            
+            // Load options
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.onclick = () => selectOption(index, optionDiv);
+                optionDiv.innerHTML = `
+                    <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                    ${option}
+                `;
+                container.appendChild(optionDiv);
+            });
+            
+            // Hide explanation
+            document.getElementById('explanation').classList.remove('show');
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextBtn').style.display = 'inline-block';
+            document.getElementById('submitBtn').style.display = 
+                currentQuestionIndex === questions.length - 1 ? 'inline-block' : 'none';
+        }
+
+        function selectOption(index, optionElement) {
+            // Remove previous selection
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selection to clicked option
+            optionElement.classList.add('selected');
+            selectedAnswer = index;
+            
+            // In practice mode, show immediate feedback
+            if (currentMode === 'practice') {
+                setTimeout(() => {
+                    showAnswerFeedback();
+                }, 500);
+            }
+        }
+
+        function showAnswerFeedback() {
+            const question = questions[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedAnswer && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Show explanation
+            document.getElementById('explanationText').textContent = question.explanation;
+            document.getElementById('explanation').classList.add('show');
+        }
+
+        function nextQuestion() {
+            if (selectedAnswer === null && currentMode !== 'practice') {
+                alert('Please select an answer before proceeding.');
+                return;
+            }
+            
+            // Store answer
+            userAnswers[currentQuestionIndex] = selectedAnswer;
+            
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+                
+                // Restore previous answer if exists
+                if (userAnswers[currentQuestionIndex] !== undefined) {
+                    const options = document.querySelectorAll('.option');
+                    options[userAnswers[currentQuestionIndex]].click();
+                }
+            }
+        }
+
+        function submitQuiz() {
+            if (timer) {
+                clearInterval(timer);
+            }
+            
+            // Store final answer
+            if (selectedAnswer !== null) {
+                userAnswers[currentQuestionIndex] = selectedAnswer;
+            }
+            
+            // Calculate results
+            calculateResults();
+        }
+
+        function calculateResults() {
+            let correct = 0;
+            const topicPerformance = {};
+            
+            // Initialize topic performance tracking
+            Object.keys(topicConfig).forEach(topic => {
+                topicPerformance[topic] = { correct: 0, total: 0 };
+            });
+            
+            // Calculate scores
+            questions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === question.correct;
+                
+                if (isCorrect) {
+                    correct++;
+                }
+                
+                // Track by topic
+                const topicKey = Object.keys(questionBank).find(key => 
+                    questionBank[key].includes(question)
+                );
+                
+                if (topicKey && topicPerformance[topicKey]) {
+                    topicPerformance[topicKey].total++;
+                    if (isCorrect) {
+                        topicPerformance[topicKey].correct++;
+                    }
+                }
+            });
+            
+            const percentage = Math.round((correct / questions.length) * 100);
+            const passed = percentage >= 65;
+            
+            showResults(percentage, passed, correct, questions.length, topicPerformance);
+        }
+
+        function showResults(percentage, passed, correct, total, topicPerformance) {
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'block';
+            
+            // Update score display
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const scoreNumber = document.getElementById('scoreNumber');
+            const scoreText = document.getElementById('scoreText');
+            const passingText = document.getElementById('passingText');
+            
+            scoreNumber.textContent = `${percentage}%`;
+            
+            if (passed) {
+                scoreDisplay.classList.remove('fail');
+                scoreText.textContent = 'Congratulations! You Passed! 🎉';
+                passingText.textContent = `You correctly answered ${correct} out of ${total} questions`;
+            } else {
+                scoreDisplay.classList.add('fail');
+                scoreText.textContent = 'Keep Studying! You Can Do It! 💪';
+                passingText.textContent = `You need 65% to pass. You got ${correct} out of ${total} questions correct.`;
+            }
+            
+            // Show performance breakdown
+            showPerformanceBreakdown(topicPerformance);
+        }
+
+        function showPerformanceBreakdown(topicPerformance) {
+            const container = document.getElementById('performanceBreakdown');
+            container.innerHTML = '';
+            
+            Object.keys(topicPerformance).forEach(topicKey => {
+                if (topicPerformance[topicKey].total === 0) return;
+                
+                const topic = topicConfig[topicKey];
+                const performance = topicPerformance[topicKey];
+                const percentage = Math.round((performance.correct / performance.total) * 100);
+                
+                const card = document.createElement('div');
+                card.className = 'topic-performance';
+                card.innerHTML = `
+                    <div class="topic-name">${topic.name}</div>
+                    <div class="topic-score">${percentage}%</div>
+                    <div style="color: #7f8c8d; margin-top: 5px;">
+                        ${performance.correct}/${performance.total} correct
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        function restartQuiz() {
+            showModeSelection();
+        }
+
+        function reviewWrongAnswers() {
+            alert('Review functionality coming soon!');
+        }
+
+        function goHome() {
+            showModeSelection();
+        }
+
+        // Utility functions
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Initialize the application when page loads
+        window.onload = init;
+    </script>
+</body>
+</html>
