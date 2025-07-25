@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: Tracking & Reporting (6-14% of Exam) - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .quiz-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .progress-container {
+            background: #f0f0f0;
+            border-radius: 10px;
+            padding: 3px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            height: 20px;
+            border-radius: 8px;
+            transition: width 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(
+                -45deg,
+                rgba(255,255,255,.2) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255,255,255,.2) 50%,
+                rgba(255,255,255,.2) 75%,
+                transparent 75%,
+                transparent
+            );
+            background-size: 50px 50px;
+            animation: move 2s linear infinite;
+        }
+
+        @keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 50px 50px;
+            }
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .options {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+            color: #2e7d32;
+        }
+
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffeaea;
+            color: #c62828;
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #667eea;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feedback.correct {
+            background: #e8f5e8;
+            border: 2px solid #4CAF50;
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            background: #ffeaea;
+            border: 2px solid #f44336;
+            color: #c62828;
+        }
+
+        .feedback-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .prev-button {
+            background: #6c757d;
+            color: white;
+        }
+
+        .next-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .question-info {
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        .completion-screen.show {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .completion-title {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .score-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 20px 0;
+        }
+
+        .score-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .score-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .score-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .restart-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .restart-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .performance-message {
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .excellent { background: #e8f5e8; color: #2e7d32; border: 2px solid #4CAF50; }
+        .good { background: #e3f2fd; color: #1565c0; border: 2px solid #2196F3; }
+        .needs-improvement { background: #fff3e0; color: #ef6c00; border: 2px solid #ff9800; }
+        .poor { background: #ffeaea; color: #c62828; border: 2px solid #f44336; }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question {
+                font-size: 1.1rem;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .score-breakdown {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 Lesson 7: Tracking & Reporting (6-14% of Exam)</h1>
+            <p>Master SFMC analytics, reporting, and performance optimization!</p>
+        </div>
+
+        <div class="quiz-container">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-text" id="progressText">Question 1 of 100</div>
+            </div>
+
+            <div id="questionScreen">
+                <div class="question-container">
+                    <div class="question" id="questionText"></div>
+                    <div class="options" id="optionsContainer"></div>
+                    <div class="feedback" id="feedback">
+                        <div class="feedback-title" id="feedbackTitle"></div>
+                        <div id="feedbackText"></div>
+                    </div>
+                </div>
+
+                <div class="navigation">
+                    <button class="nav-button prev-button" id="prevButton" onclick="previousQuestion()">Previous</button>
+                    <div class="question-info">
+                        <span id="questionNumber">1</span> of <span id="totalQuestions">100</span>
+                    </div>
+                    <button class="nav-button next-button" id="nextButton" onclick="nextQuestion()" disabled>Next</button>
+                </div>
+            </div>
+
+            <div class="completion-screen" id="completionScreen">
+                <div class="completion-title">🎉 Quiz Complete!</div>
+                <div class="score-display" id="finalScore"></div>
+                <div class="performance-message" id="performanceMessage"></div>
+                <div class="score-breakdown">
+                    <div class="score-item">
+                        <div class="score-label">Correct Answers</div>
+                        <div class="score-value" id="correctCount"></div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-label">Incorrect Answers</div>
+                        <div class="score-value" id="incorrectCount"></div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-label">Accuracy Rate</div>
+                        <div class="score-value" id="accuracyRate"></div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-label">Questions Completed</div>
+                        <div class="score-value" id="questionsCompleted"></div>
+                    </div>
+                </div>
+                <button class="restart-button" onclick="restartQuiz()">Restart Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What does \"open rate\" measure in email marketing?",
+                options: [
+                    "How fast emails open",
+                    "The percentage of delivered emails that were opened by recipients",
+                    "The number of times an email was forwarded",
+                    "How long people spend reading emails"
+                ],
+                correct: 1,
+                explanation: "Open rate is calculated as (Unique Opens ÷ Delivered) × 100, showing what percentage of successfully delivered emails were actually opened."
+            },
+            {
+                question: "What is the difference between \"opens\" and \"unique opens\"?",
+                options: [
+                    "There is no difference",
+                    "Opens count every time an email is opened; unique opens count each subscriber only once",
+                    "Unique opens are more accurate",
+                    "Opens only count the first time someone opens an email"
+                ],
+                correct: 1,
+                explanation: "If one person opens the same email 3 times, that's 3 opens but only 1 unique open."
+            },
+            {
+                question: "How is click-through rate (CTR) calculated?",
+                options: [
+                    "(Total Clicks ÷ Opens) × 100",
+                    "(Unique Clicks ÷ Delivered) × 100",
+                    "(Clicks ÷ Sent) × 100",
+                    "(Unique Clicks ÷ Unique Opens) × 100"
+                ],
+                correct: 1,
+                explanation: "CTR measures what percentage of delivered emails generated clicks, providing insight into content effectiveness."
+            },
+            {
+                question: "What does click-to-open rate (CTOR) tell you?",
+                options: [
+                    "How fast people click after opening",
+                    "Of the people who opened your email, what percentage clicked a link",
+                    "The total number of clicks",
+                    "How many people opened and clicked simultaneously"
+                ],
+                correct: 1,
+                explanation: "CTOR measures content effectiveness among engaged subscribers who actually read the email."
+            },
+            {
+                question: "What is a hard bounce?",
+                options: [
+                    "An email that bounces back quickly",
+                    "A permanently undeliverable email due to invalid address or domain",
+                    "An email that's difficult to read",
+                    "A temporarily delayed email"
+                ],
+                correct: 1,
+                explanation: "Hard bounces indicate permanent delivery failures and should be removed from lists immediately."
+            },
+            {
+                question: "What causes a soft bounce?",
+                options: [
+                    "Invalid email addresses",
+                    "Temporary issues like full inbox or server problems",
+                    "Spam complaints",
+                    "Unsubscribe requests"
+                ],
+                correct: 1,
+                explanation: "Soft bounces are temporary delivery failures that may resolve themselves, but should be monitored."
+            },
+            {
+                question: "What is the industry benchmark for email bounce rates?",
+                options: [
+                    "Under 2% is good, under 5% is acceptable",
+                    "Under 10% is acceptable",
+                    "Bounce rate doesn't matter",
+                    "Under 20% is normal"
+                ],
+                correct: 0,
+                explanation: "Low bounce rates indicate good list quality and help maintain sender reputation."
+            },
+            {
+                question: "What does email deliverability measure?",
+                options: [
+                    "How fast emails are sent",
+                    "The percentage of emails that reach recipients' inboxes rather than spam folders",
+                    "The cost of email delivery",
+                    "How many emails can be sent per hour"
+                ],
+                correct: 1,
+                explanation: "Deliverability measures successful inbox placement, which is crucial for campaign effectiveness."
+            },
+            {
+                question: "What is a spam complaint rate?",
+                options: [
+                    "The rate at which spam emails are sent",
+                    "The percentage of recipients who marked your email as spam",
+                    "The rate of complaints about spam",
+                    "How often spam filters block emails"
+                ],
+                correct: 1,
+                explanation: "High spam complaint rates (above 0.1%) can severely damage sender reputation and deliverability."
+            },
+            {
+                question: "How does image blocking affect open tracking?",
+                options: [
+                    "It doesn't affect open tracking",
+                    "Open tracking relies on image loading, so blocked images may undercount opens",
+                    "It improves open tracking accuracy",
+                    "Image blocking only affects click tracking"
+                ],
+                correct: 1,
+                explanation: "Open tracking uses a 1x1 pixel image, so when images are blocked, opens may not be recorded."
+            },
+            {
+                question: "Where do you access email tracking reports in SFMC?",
+                options: [
+                    "Content Builder",
+                    "Email Studio > Tracking tab",
+                    "Automation Studio",
+                    "Journey Builder"
+                ],
+                correct: 1,
+                explanation: "The Tracking tab in Email Studio provides access to all standard email performance reports."
+            },
+            {
+                question: "What information does the Email Summary Report provide?",
+                options: [
+                    "Only open and click rates",
+                    "High-level campaign performance overview with key metrics",
+                    "Detailed subscriber information",
+                    "Only delivery statistics"
+                ],
+                correct: 1,
+                explanation: "Summary reports provide a quick overview of campaign performance with key metrics at a glance."
+            },
+            {
+                question: "What can you find in the Bounces Report?",
+                options: [
+                    "Only the number of bounces",
+                    "Detailed bounce analysis including categories, reasons, and error codes",
+                    "Only hard bounces",
+                    "Bounce rates compared to industry averages"
+                ],
+                correct: 1,
+                explanation: "Bounces reports provide detailed information to help understand and address delivery issues."
+            },
+            {
+                question: "What does the Clicks Report show you?",
+                options: [
+                    "Only the total number of clicks",
+                    "Individual link performance, click distribution, and timing patterns",
+                    "Only the click-through rate",
+                    "Which email clients were used for clicking"
+                ],
+                correct: 1,
+                explanation: "Clicks reports help identify which content resonates most with recipients and optimize link placement."
+            },
+            {
+                question: "What is the purpose of the Forwards Report?",
+                options: [
+                    "To track email forwarding speed",
+                    "To measure email virality and forward-generated engagement",
+                    "To forward reports to managers",
+                    "To track bounced forwards"
+                ],
+                correct: 1,
+                explanation: "Forwards reports show how often emails are shared and the additional engagement generated."
+            },
+            {
+                question: "What should you do if your Unsubscribes Report shows a sudden spike?",
+                options: [
+                    "Ignore it - unsubscribes are normal",
+                    "Investigate potential causes like content issues, frequency, or technical problems",
+                    "Send more emails to compensate",
+                    "Remove everyone who unsubscribed from all lists"
+                ],
+                correct: 1,
+                explanation: "Sudden spikes in unsubscribes indicate something may be wrong with your email program that needs attention."
+            },
+            {
+                question: "How can you export email report data from SFMC?",
+                options: [
+                    "You cannot export data",
+                    "Use the export functionality in reports to download CSV or Excel files",
+                    "Only through the API",
+                    "Reports can only be viewed online"
+                ],
+                correct: 1,
+                explanation: "SFMC provides export options to download report data for further analysis in external tools."
+            },
+            {
+                question: "What time period options are available for email reports?",
+                options: [
+                    "Only the last 30 days",
+                    "Various options including custom date ranges, last 7/30/90 days, and specific campaigns",
+                    "Only real-time data",
+                    "Only monthly reports"
+                ],
+                correct: 1,
+                explanation: "Flexible date range options allow for both recent performance analysis and historical trend tracking."
+            },
+            {
+                question: "What geographic information can email reports provide?",
+                options: [
+                    "No geographic information is available",
+                    "Country, state/region, and city-level performance data",
+                    "Only country-level data",
+                    "Geographic data is only available for paid accounts"
+                ],
+                correct: 1,
+                explanation: "Geographic reporting helps identify regional performance variations and optimize targeting."
+            },
+            {
+                question: "How often are email tracking reports updated?",
+                options: [
+                    "Once per day",
+                    "Near real-time for most metrics, with some having slight delays",
+                    "Once per week",
+                    "Only when manually refreshed"
+                ],
+                correct: 1,
+                explanation: "Most tracking data is updated frequently, though some complex calculations may have brief delays."
+            },
+            {
+                question: "What does \"Contacts Entered\" mean in Journey Builder analytics?",
+                options: [
+                    "The number of people who completed the journey",
+                    "The total number of people who started the journey",
+                    "The number of people currently active in the journey",
+                    "The number of people who achieved the goal"
+                ],
+                correct: 1,
+                explanation: "This metric shows how many contacts have entered the journey since it was activated."
+            },
+            {
+                question: "What is \"Goal Achievement\" in Journey Builder?",
+                options: [
+                    "The number of goals set for the journey",
+                    "The percentage of contacts who completed the defined objective",
+                    "The time it takes to reach goals",
+                    "The number of goals per contact"
+                ],
+                correct: 1,
+                explanation: "Goal achievement measures how successful the journey is at driving desired business outcomes."
+            },
+            {
+                question: "What can you learn from Journey Path Analysis?",
+                options: [
+                    "Only the total number of contacts",
+                    "Which journey paths perform best and where contacts drop off",
+                    "Only email performance within journeys",
+                    "The cost of running journeys"
+                ],
+                correct: 1,
+                explanation: "Path analysis helps identify optimization opportunities by showing where contacts succeed or exit."
+            },
+            {
+                question: "What does \"Time-to-Conversion\" measure in journeys?",
+                options: [
+                    "How long it takes to create a journey",
+                    "How long it takes contacts to achieve the journey goal after entering",
+                    "How fast emails are sent in the journey",
+                    "The time between journey steps"
+                ],
+                correct: 1,
+                explanation: "This metric helps optimize journey timing and identify whether goals are achieved quickly or require nurturing."
+            },
+            {
+                question: "How can you track individual email performance within a journey?",
+                options: [
+                    "Email performance isn't tracked in journeys",
+                    "Each email activity shows opens, clicks, bounces, and other metrics",
+                    "Only overall journey metrics are available",
+                    "You must create separate email campaigns"
+                ],
+                correct: 1,
+                explanation: "Journey Builder provides detailed performance data for each email activity within the journey."
+            },
+            {
+                question: "What does a Decision Split report show you?",
+                options: [
+                    "How to make decisions about journeys",
+                    "How contacts are distributed across different paths based on the split criteria",
+                    "The cost of different journey paths",
+                    "The speed of decision making"
+                ],
+                correct: 1,
+                explanation: "Decision Split reports show which percentage of contacts take each path, helping optimize targeting logic."
+            },
+            {
+                question: "What should you investigate if a journey has a high exit rate?",
+                options: [
+                    "Exit rates don't matter",
+                    "Potential issues with content, timing, targeting, or technical problems",
+                    "Whether contacts are receiving too many emails",
+                    "Only the journey goals"
+                ],
+                correct: 1,
+                explanation: "High exit rates may indicate problems that prevent contacts from progressing through the journey successfully."
+            },
+            {
+                question: "How can you measure journey ROI?",
+                options: [
+                    "Journey ROI can't be measured",
+                    "Compare revenue generated by journey contacts to the cost of running the journey",
+                    "Only by counting email opens",
+                    "ROI is automatically calculated"
+                ],
+                correct: 1,
+                explanation: "Journey ROI requires tracking business outcomes (sales, leads) and comparing to campaign costs."
+            },
+            {
+                question: "What is the benefit of comparing journey performance over time?",
+                options: [
+                    "There's no benefit to time comparisons",
+                    "Identify trends, seasonal patterns, and the impact of optimizations",
+                    "Time comparisons are only for compliance",
+                    "To track how long journeys take to build"
+                ],
+                correct: 1,
+                explanation: "Trend analysis helps understand what's working, what's changing, and how to improve performance."
+            },
+            {
+                question: "How can you optimize underperforming journey steps?",
+                options: [
+                    "Delete underperforming steps",
+                    "Analyze performance data to identify issues, then test improvements like new content, timing, or targeting",
+                    "Add more steps to the journey",
+                    "Restart the entire journey"
+                ],
+                correct: 1,
+                explanation: "Data-driven optimization based on performance analysis leads to better journey outcomes."
+            },
+            {
+                question: "What is Analytics Builder in SFMC?",
+                options: [
+                    "A tool for building analytics teams",
+                    "An advanced reporting platform for creating custom reports and dashboards",
+                    "A basic email reporting tool",
+                    "A tool for building automation"
+                ],
+                correct: 1,
+                explanation: "Analytics Builder provides advanced reporting capabilities beyond standard Email Studio reports."
+            },
+            {
+                question: "What types of data sources can Analytics Builder combine?",
+                options: [
+                    "Only email data",
+                    "Email, Journey, SMS, social, and external data sources",
+                    "Only journey data",
+                    "Data sources cannot be combined"
+                ],
+                correct: 1,
+                explanation: "Analytics Builder can integrate multiple data sources for comprehensive cross-channel analysis."
+            },
+            {
+                question: "What is the benefit of custom report creation?",
+                options: [
+                    "Custom reports are always more accurate",
+                    "Tailored analysis that answers specific business questions",
+                    "Custom reports are free",
+                    "They replace all standard reports"
+                ],
+                correct: 1,
+                explanation: "Custom reports allow you to focus on the metrics and dimensions most important to your business."
+            },
+            {
+                question: "How can you schedule automated report delivery?",
+                options: [
+                    "Reports cannot be automated",
+                    "Set up daily, weekly, or monthly automated delivery to stakeholders",
+                    "Only manual report generation is available",
+                    "Automation requires additional software"
+                ],
+                correct: 1,
+                explanation: "Scheduled reporting ensures stakeholders receive regular updates without manual intervention."
+            },
+            {
+                question: "What visualization options are available in Analytics Builder?",
+                options: [
+                    "Only tables",
+                    "Charts, graphs, tables, and interactive dashboards",
+                    "Only pie charts",
+                    "No visualization options"
+                ],
+                correct: 1,
+                explanation: "Multiple visualization options help present data in the most meaningful way for different audiences."
+            },
+            {
+                question: "What is cross-channel analysis?",
+                options: [
+                    "Analyzing different TV channels",
+                    "Tracking customer interactions across email, SMS, social, and other marketing channels",
+                    "Analyzing channel performance separately",
+                    "Only email channel analysis"
+                ],
+                correct: 1,
+                explanation: "Cross-channel analysis provides a unified view of customer engagement across all touchpoints."
+            },
+            {
+                question: "How can you share custom reports with team members?",
+                options: [
+                    "Custom reports cannot be shared",
+                    "Set viewing permissions and share dashboard links or schedule deliveries",
+                    "Only through email attachments",
+                    "Reports are automatically shared with everyone"
+                ],
+                correct: 1,
+                explanation: "Analytics Builder provides flexible sharing options with appropriate access controls."
+            },
+            {
+                question: "What is behavioral analysis in reporting?",
+                options: [
+                    "Analyzing employee behavior",
+                    "Tracking subscriber engagement patterns, lifecycle progression, and interaction trends",
+                    "Only analyzing email bounces",
+                    "Analyzing website behavior only"
+                ],
+                correct: 1,
+                explanation: "Behavioral analysis helps understand how customers interact with your marketing over time."
+            },
+            {
+                question: "What is cohort analysis?",
+                options: [
+                    "Analyzing groups of customers based on shared characteristics or experiences",
+                    "Analyzing email content",
+                    "Analyzing only VIP customers",
+                    "Analyzing competitor performance"
+                ],
+                correct: 0,
+                explanation: "Cohort analysis compares how different customer groups perform over time, revealing important insights."
+            },
+            {
+                question: "How can custom reports support business intelligence initiatives?",
+                options: [
+                    "They cannot support BI initiatives",
+                    "Export data to BI tools and create executive dashboards with key business metrics",
+                    "Only through manual data entry",
+                    "BI integration is not possible"
+                ],
+                correct: 1,
+                explanation: "Custom reports can feed into broader business intelligence systems for comprehensive business analysis."
+            },
+            {
+                question: "What are Data Views in SFMC?",
+                options: [
+                    "Visual representations of data",
+                    "System tables containing email interaction data accessible through SQL queries",
+                    "Views of email templates",
+                    "Customer data visualization"
+                ],
+                correct: 1,
+                explanation: "Data Views provide access to raw email tracking data for advanced analysis and custom reporting."
+            },
+            {
+                question: "Which Data View contains email open information?",
+                options: [
+                    "_Sent",
+                    "_Open",
+                    "_Click",
+                    "_Bounce"
+                ],
+                correct: 1,
+                explanation: "The _Open Data View contains all email open tracking data including timestamps and subscriber information."
+            },
+            {
+                question: "What information does the _Click Data View contain?",
+                options: [
+                    "Only click counts",
+                    "Detailed click data including URLs, timestamps, and subscriber information",
+                    "Only email addresses",
+                    "Click-through rates"
+                ],
+                correct: 1,
+                explanation: "_Click provides comprehensive click tracking data for detailed analysis of link performance."
+            },
+            {
+                question: "How would you query recent bounce data?",
+                options: [
+                    "SELECT * FROM _Bounce",
+                    "SELECT * FROM _Bounce WHERE EventDate >= DATEADD(DAY, -7, GETDATE())",
+                    "Bounces cannot be queried",
+                    "SELECT BounceRate FROM _Bounce"
+                ],
+                correct: 1,
+                explanation: "This query retrieves bounce data from the last 7 days using proper date filtering."
+            },
+            {
+                question: "What does the JobID represent in Data Views?",
+                options: [
+                    "Employee job identification",
+                    "Unique identifier for each email send/campaign",
+                    "Database job number",
+                    "Journey identification"
+                ],
+                correct: 1,
+                explanation: "JobID links tracking events to specific email campaigns, enabling campaign-level analysis."
+            },
+            {
+                question: "How can you calculate open rate using Data Views?",
+                options: [
+                    "Open rate is automatically calculated",
+                    "JOIN _Sent and _Open tables and calculate (Unique Opens ÷ Delivered) × 100",
+                    "Use only the _Open table",
+                    "Open rate cannot be calculated from Data Views"
+                ],
+                correct: 1,
+                explanation: "Combining sent and open data allows calculation of accurate open rates."
+            },
+            {
+                question: "What is the SubscriberKey in Data Views?",
+                options: [
+                    "A password for subscribers",
+                    "Unique identifier for each subscriber across the SFMC system",
+                    "Email address",
+                    "Subscriber's actual key"
+                ],
+                correct: 1,
+                explanation: "SubscriberKey is the unique identifier that links all subscriber activity across different campaigns."
+            },
+            {
+                question: "How can you identify unique opens vs. total opens in queries?",
+                options: [
+                    "All opens are unique",
+                    "Use the IsUnique field in the _Open Data View",
+                    "Count distinct subscribers",
+                    "Unique opens cannot be identified"
+                ],
+                correct: 1,
+                explanation: "The IsUnique field indicates whether this is the first time the subscriber opened this email."
+            },
+            {
+                question: "What does BounceCategory in the _Bounce Data View indicate?",
+                options: [
+                    "The category of bounced email",
+                    "Whether the bounce is hard, soft, or technical",
+                    "The bounce location",
+                    "The bounce speed"
+                ],
+                correct: 1,
+                explanation: "BounceCategory helps classify bounces for appropriate handling and list management."
+            },
+            {
+                question: "How can you track subscriber engagement over time using Data Views?",
+                options: [
+                    "Engagement cannot be tracked over time",
+                    "Query multiple Data Views with date ranges to analyze engagement patterns",
+                    "Use only the _Sent table",
+                    "Engagement tracking requires special software"
+                ],
+                correct: 1,
+                explanation: "Combining data from multiple views over time periods reveals engagement trends and patterns."
+            },
+            {
+                question: "What percentage of email opens typically occur on mobile devices?",
+                options: [
+                    "About 30%",
+                    "About 45%",
+                    "About 65-70%",
+                    "About 85%"
+                ],
+                correct: 2,
+                explanation: "Mobile email usage continues to grow, making mobile analytics crucial for understanding subscriber behavior."
+            },
+            {
+                question: "What is cross-device tracking in email analytics?",
+                options: [
+                    "Tracking email across different email devices",
+                    "Following customer interactions as they move between mobile, tablet, and desktop devices",
+                    "Tracking different email applications",
+                    "Tracking device preferences"
+                ],
+                correct: 1,
+                explanation: "Cross-device tracking provides a complete view of customer journeys across multiple devices."
+            },
+            {
+                question: "What challenge does cross-device attribution present?",
+                options: [
+                    "No challenges exist",
+                    "Difficulty in connecting actions on different devices to the same customer",
+                    "Cross-device tracking is always accurate",
+                    "Attribution only works on mobile"
+                ],
+                correct: 1,
+                explanation: "Customers may open emails on mobile but purchase on desktop, making attribution complex."
+            },
+            {
+                question: "What is first-touch attribution?",
+                options: [
+                    "The first time someone touches their device",
+                    "Giving full credit to the first marketing touchpoint in the customer journey",
+                    "Only tracking first-time customers",
+                    "The fastest touchpoint"
+                ],
+                correct: 1,
+                explanation: "First-touch attribution credits the initial interaction that started the customer journey."
+            },
+            {
+                question: "What is last-touch attribution?",
+                options: [
+                    "The last time someone touches their device",
+                    "Giving full credit to the final marketing touchpoint before conversion",
+                    "Only tracking last-minute purchases",
+                    "The slowest touchpoint"
+                ],
+                correct: 1,
+                explanation: "Last-touch attribution credits the final interaction that led directly to conversion."
+            },
+            {
+                question: "What is multi-touch attribution?",
+                options: [
+                    "Touching multiple devices",
+                    "Distributing conversion credit across multiple marketing touchpoints",
+                    "Only using touchscreen devices",
+                    "Attribution for multiple customers"
+                ],
+                correct: 1,
+                explanation: "Multi-touch attribution recognizes that multiple interactions contribute to customer conversion."
+            },
+            {
+                question: "How can mobile-specific metrics help optimize email campaigns?",
+                options: [
+                    "Mobile metrics aren't useful",
+                    "Understanding mobile behavior helps optimize timing, content, and design for mobile users",
+                    "Mobile metrics only show device types",
+                    "They only help with technical issues"
+                ],
+                correct: 1,
+                explanation: "Mobile analytics reveal when, how, and where mobile users engage, enabling better mobile optimization."
+            },
+            {
+                question: "What does \"mobile conversion rate\" typically measure?",
+                options: [
+                    "How fast mobile emails load",
+                    "The percentage of mobile email recipients who complete desired actions",
+                    "Mobile device sales",
+                    "App conversion rates"
+                ],
+                correct: 1,
+                explanation: "Mobile conversion rate shows how effectively emails drive actions on mobile devices."
+            },
+            {
+                question: "Why might mobile conversion rates be lower than desktop?",
+                options: [
+                    "Mobile devices don't work properly",
+                    "Mobile users often browse but prefer to complete purchases on larger screens",
+                    "Mobile conversion tracking is inaccurate",
+                    "Mobile users aren't interested in purchasing"
+                ],
+                correct: 1,
+                explanation: "Many users discover products on mobile but complete transactions on desktop for better experience."
+            },
+            {
+                question: "How can you improve mobile email analytics accuracy?",
+                options: [
+                    "Only send emails to desktop users",
+                    "Use responsive design, optimize for mobile experience, and implement cross-device tracking",
+                    "Ignore mobile analytics",
+                    "Send separate mobile-only campaigns"
+                ],
+                correct: 1,
+                explanation: "Better mobile experience and tracking provide more accurate insights into mobile user behavior."
+            },
+            {
+                question: "What is statistical significance in A/B testing?",
+                options: [
+                    "How important the test is",
+                    "The confidence level that results aren't due to random chance",
+                    "The significance to the business",
+                    "How many statistics are collected"
+                ],
+                correct: 1,
+                explanation: "Statistical significance ensures test results are reliable and not just random variation."
+            },
+            {
+                question: "What is the minimum confidence level typically required for A/B test results?",
+                options: [
+                    "80%",
+                    "95%",
+                    "99%",
+                    "50%"
+                ],
+                correct: 1,
+                explanation: "95% confidence level is the standard threshold for reliable A/B test results."
+            },
+            {
+                question: "What happens if you stop an A/B test too early?",
+                options: [
+                    "Results are always accurate",
+                    "You may get false results due to insufficient data",
+                    "The test automatically continues",
+                    "Early stopping improves accuracy"
+                ],
+                correct: 1,
+                explanation: "Premature test termination can lead to incorrect conclusions due to insufficient sample size."
+            },
+            {
+                question: "What should you test first in email A/B testing?",
+                options: [
+                    "Everything at once",
+                    "Elements with the highest potential impact, like subject lines",
+                    "Only images",
+                    "Only colors"
+                ],
+                correct: 1,
+                explanation: "Prioritizing high-impact elements like subject lines typically yields the most significant improvements."
+            },
+            {
+                question: "How do you determine the right sample size for A/B testing?",
+                options: [
+                    "Always use 100 people per variation",
+                    "Based on your audience size, current performance rates, and desired effect size",
+                    "Sample size doesn't matter",
+                    "Use your entire list every time"
+                ],
+                correct: 1,
+                explanation: "Sample size calculations consider multiple factors to ensure statistically valid results."
+            },
+            {
+                question: "What is a control group in A/B testing?",
+                options: [
+                    "The group that controls the test",
+                    "The baseline version you're testing against (current approach)",
+                    "The group of people who run the test",
+                    "The most important group"
+                ],
+                correct: 1,
+                explanation: "The control group receives the current/standard approach to provide a comparison baseline."
+            },
+            {
+                question: "What should you do with A/B test results?",
+                options: [
+                    "Ignore results that don't match expectations",
+                    "Document learnings and apply insights to future campaigns",
+                    "Only use positive results",
+                    "Keep results confidential"
+                ],
+                correct: 1,
+                explanation: "A/B testing's value comes from applying learnings to continuously improve performance."
+            },
+            {
+                question: "What is a multivariate test?",
+                options: [
+                    "Testing multiple variables simultaneously",
+                    "Testing with multiple people",
+                    "Testing multiple emails",
+                    "Testing multiple times"
+                ],
+                correct: 0,
+                explanation: "Multivariate testing examines how multiple elements work together, though it requires larger sample sizes."
+            },
+            {
+                question: "What metric is most important for CTA button A/B tests?",
+                options: [
+                    "Open rate",
+                    "Click-through rate and conversion rate",
+                    "Bounce rate",
+                    "Unsubscribe rate"
+                ],
+                correct: 1,
+                explanation: "CTA effectiveness is best measured by actions taken, not just email opens."
+            },
+            {
+                question: "How often should you A/B test email elements?",
+                options: [
+                    "Once per year",
+                    "Continuously as part of ongoing optimization",
+                    "Only when performance is poor",
+                    "A/B testing isn't necessary"
+                ],
+                correct: 1,
+                explanation: "Regular testing drives continuous improvement and adaptation to changing subscriber preferences."
+            },
+            {
+                question: "What is a good open rate benchmark for most industries?",
+                options: [
+                    "10%",
+                    "20-25%",
+                    "50%",
+                    "75%"
+                ],
+                correct: 1,
+                explanation: "Industry averages typically fall in this range, though your specific benchmark should be based on your historical performance."
+            },
+            {
+                question: "What is considered a good click-through rate?",
+                options: [
+                    "1%",
+                    "2-5%",
+                    "10%",
+                    "20%"
+                ],
+                correct: 1,
+                explanation: "CTR benchmarks vary by industry, but 2-5% is generally considered good performance."
+            },
+            {
+                question: "What should your email bounce rate be?",
+                options: [
+                    "Under 2% is good, under 5% is acceptable",
+                    "Under 10%",
+                    "Under 20%",
+                    "Bounce rate doesn't matter"
+                ],
+                correct: 0,
+                explanation: "Low bounce rates indicate good list quality and help maintain sender reputation."
+            },
+            {
+                question: "What is considered a dangerous spam complaint rate?",
+                options: [
+                    "Above 5%",
+                    "Above 1%",
+                    "Above 0.1%",
+                    "Spam complaints don't matter"
+                ],
+                correct: 2,
+                explanation: "Spam complaint rates above 0.1% can damage sender reputation; above 0.3% may result in blocking."
+            },
+            {
+                question: "How do seasonal variations affect email benchmarks?",
+                options: [
+                    "Seasonal variations don't exist",
+                    "Performance can vary significantly based on holidays, weather, and industry cycles",
+                    "Only retail businesses have seasonal variations",
+                    "Seasonal effects are minimal"
+                ],
+                correct: 1,
+                explanation: "Understanding seasonal patterns helps set appropriate expectations and optimize campaign timing."
+            },
+            {
+                question: "Why is mobile performance typically different from desktop?",
+                options: [
+                    "There's no difference",
+                    "Mobile users have different behaviors, screen limitations, and usage contexts",
+                    "Mobile performance is always better",
+                    "Desktop performance is always better"
+                ],
+                correct: 1,
+                explanation: "Mobile usage patterns, screen sizes, and contexts create different engagement and conversion patterns."
+            },
+            {
+                question: "What is revenue per email (RPE)?",
+                options: [
+                    "The cost per email sent",
+                    "Total revenue generated divided by total emails sent",
+                    "Revenue from email software",
+                    "Employee revenue per email"
+                ],
+                correct: 1,
+                explanation: "RPE measures the direct financial impact of email marketing campaigns."
+            },
+            {
+                question: "How should you benchmark your email performance?",
+                options: [
+                    "Only compare to industry averages",
+                    "Compare to your own historical performance, industry benchmarks, and business goals",
+                    "Only compare to competitors",
+                    "Benchmarking isn't necessary"
+                ],
+                correct: 1,
+                explanation: "Multiple comparison points provide the most comprehensive view of performance."
+            },
+            {
+                question: "What factors can affect email performance benchmarks?",
+                options: [
+                    "Only the content",
+                    "Industry, audience type, email frequency, seasonality, and list quality",
+                    "Only the send time",
+                    "Performance factors don't vary"
+                ],
+                correct: 1,
+                explanation: "Many factors influence email performance, making context important for benchmark interpretation."
+            },
+            {
+                question: "How often should you review your benchmark performance?",
+                options: [
+                    "Once per year",
+                    "Regularly - monthly for trends, quarterly for strategic review",
+                    "Only when performance is poor",
+                    "Benchmark reviews aren't necessary"
+                ],
+                correct: 1,
+                explanation: "Regular reviews help identify trends, opportunities, and areas needing attention."
+            },
+            {
+                question: "What makes a goal \"SMART\" in email marketing?",
+                options: [
+                    "Goals that are intelligent",
+                    "Specific, Measurable, Achievable, Relevant, and Time-bound",
+                    "Goals that use smart technology",
+                    "Simple goals only"
+                ],
+                correct: 1,
+                explanation: "SMART criteria ensure goals are well-defined and actionable."
+            },
+            {
+                question: "What is a Key Performance Indicator (KPI)?",
+                options: [
+                    "Any metric you track",
+                    "A measurable value that demonstrates progress toward business objectives",
+                    "Only financial metrics",
+                    "Key people in your organization"
+                ],
+                correct: 1,
+                explanation: "KPIs are specific metrics that directly relate to business success and strategic goals."
+            },
+            {
+                question: "What is the difference between leading and lagging indicators?",
+                options: [
+                    "Leading indicators are more important",
+                    "Leading indicators predict future performance; lagging indicators measure past results",
+                    "Lagging indicators are always better",
+                    "There is no difference"
+                ],
+                correct: 1,
+                explanation: "Leading indicators (like engagement) help predict future outcomes, while lagging indicators (like revenue) show results."
+            },
+            {
+                question: "What is Customer Lifetime Value (CLV) in email marketing?",
+                options: [
+                    "How long customers keep their email addresses",
+                    "The total revenue a customer generates throughout their relationship with your brand",
+                    "The value of customer service",
+                    "How much customers spend on email"
+                ],
+                correct: 1,
+                explanation: "CLV helps understand the long-term value of email subscribers and justify acquisition costs."
+            },
+            {
+                question: "What is Return on Investment (ROI) for email marketing?",
+                options: [
+                    "How much you invest in email",
+                    "(Revenue Generated - Email Marketing Costs) ÷ Email Marketing Costs × 100",
+                    "Only the revenue generated",
+                    "ROI cannot be calculated for email"
+                ],
+                correct: 1,
+                explanation: "ROI measures the efficiency of email marketing by comparing returns to investment."
+            },
+            {
+                question: "What should be your primary KPI for email marketing?",
+                options: [
+                    "Open rate",
+                    "Metrics that align with your business objectives (revenue, conversions, etc.)",
+                    "Click rate",
+                    "Number of emails sent"
+                ],
+                correct: 1,
+                explanation: "Primary KPIs should directly connect to business goals rather than just engagement metrics."
+            },
+            {
+                question: "How often should you review your email marketing KPIs?",
+                options: [
+                    "Once per year",
+                    "Regularly - weekly for tactical, monthly for strategic",
+                    "Only when there are problems",
+                    "KPI reviews aren't necessary"
+                ],
+                correct: 1,
+                explanation: "Regular KPI reviews enable quick course corrections and strategic planning."
+            },
+            {
+                question: "What is list growth rate?",
+                options: [
+                    "How fast your company is growing",
+                    "Net rate of new subscriptions minus unsubscribes over time",
+                    "How quickly emails are sent",
+                    "The growth rate of email content"
+                ],
+                correct: 1,
+                explanation: "List growth rate shows whether your email program is growing or shrinking over time."
+            },
+            {
+                question: "What goal should you set if your open rates are consistently low?",
+                options: [
+                    "Ignore open rates",
+                    "Set specific, measurable improvement targets and identify root causes",
+                    "Focus only on click rates",
+                    "Send more emails"
+                ],
+                correct: 1,
+                explanation: "Low open rates require systematic improvement efforts with clear targets and problem identification."
+            },
+            {
+                question: "How do you measure email marketing goal achievement?",
+                options: [
+                    "Goals can't be measured",
+                    "Compare actual performance against target metrics over the specified time period",
+                    "Only measure at year-end",
+                    "Use only qualitative assessment"
+                ],
+                correct: 1,
+                explanation: "Goal achievement requires comparing actual results to specific targets within defined timeframes."
+            },
+            {
+                question: "What is cohort analysis in email marketing?",
+                options: [
+                    "Analyzing groups of customers based on shared characteristics or time periods",
+                    "Analyzing email content themes",
+                    "Analyzing only new customers",
+                    "Analyzing competitor performance"
+                ],
+                correct: 0,
+                explanation: "Cohort analysis compares how different customer groups perform over time, revealing valuable insights."
+            },
+            {
+                question: "What is predictive analytics in email marketing?",
+                options: [
+                    "Predicting the weather for email timing",
+                    "Using historical data and algorithms to forecast future customer behavior",
+                    "Predicting which emails will have typos",
+                    "Guessing future performance"
+                ],
+                correct: 1,
+                explanation: "Predictive analytics uses data patterns to anticipate future customer actions and optimize campaigns."
+            },
+            {
+                question: "What is churn prediction?",
+                options: [
+                    "Predicting when email lists will churn",
+                    "Identifying customers likely to become inactive or unsubscribe",
+                    "Predicting employee turnover",
+                    "Forecasting seasonal changes"
+                ],
+                correct: 1,
+                explanation: "Churn prediction helps identify at-risk customers for proactive retention efforts."
+            },
+            {
+                question: "What is engagement scoring?",
+                options: [
+                    "Scoring how engaged employees are",
+                    "Assigning numerical values to customer interactions to measure overall engagement level",
+                    "Scoring email engagement activities",
+                    "Testing engagement rates"
+                ],
+                correct: 1,
+                explanation: "Engagement scoring creates composite metrics that help identify your most valuable subscribers."
+            },
+            {
+                question: "What is the purpose of attribution modeling?",
+                options: [
+                    "Attributing emails to specific authors",
+                    "Determining how much credit each marketing touchpoint deserves for conversions",
+                    "Giving credit to the marketing team",
+                    "Attribution is not relevant to email"
+                ],
+                correct: 1,
+                explanation: "Attribution modeling helps understand which interactions contribute most to business outcomes."
+            },
+            {
+                question: "What is real-time analytics?",
+                options: [
+                    "Analytics that show the current time",
+                    "Immediate access to performance data as it happens",
+                    "Analytics that are always accurate",
+                    "Time-based reporting only"
+                ],
+                correct: 1,
+                explanation: "Real-time analytics enable immediate response to campaign performance and optimization opportunities."
+            },
+            {
+                question: "What is data-driven optimization?",
+                options: [
+                    "Optimizing data storage",
+                    "Using performance data and insights to continuously improve email marketing results",
+                    "Optimizing only based on intuition",
+                    "Optimization without data"
+                ],
+                correct: 1,
+                explanation: "Data-driven optimization makes decisions based on evidence rather than assumptions."
+            },
+            {
+                question: "What is the purpose of heat mapping in email analytics?",
+                options: [
+                    "Showing email temperature",
+                    "Visualizing where subscribers click and engage within emails",
+                    "Mapping heated discussions",
+                    "Temperature-based email timing"
+                ],
+                correct: 1,
+                explanation: "Heat mapping shows which parts of emails get the most attention and interaction."
+            },
+            {
+                question: "What is machine learning's role in email analytics?",
+                options: [
+                    "Teaching machines to write emails",
+                    "Automatically identifying patterns and optimizing campaigns based on data",
+                    "Learning about email machines",
+                    "Machine learning isn't relevant to email"
+                ],
+                correct: 1,
+                explanation: "Machine learning can identify complex patterns and automatically optimize elements like send times and content."
+            },
+            {
+                question: "What is the future of email analytics?",
+                options: [
+                    "Analytics will become less important",
+                    "Increased automation, AI-powered insights, real-time optimization, and predictive personalization",
+                    "Only manual analysis will remain",
+                    "Email analytics will be replaced"
+                ],
+                correct: 1,
+                explanation: "Email analytics continues evolving toward more sophisticated, automated, and predictive capabilities."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let score = 0;
+
+        function initializeQuiz() {
+            currentQuestion = 0;
+            userAnswers = [];
+            score = 0;
+            document.getElementById('questionScreen').style.display = 'block';
+            document.getElementById('completionScreen').style.display = 'none';
+            document.getElementById('totalQuestions').textContent = questions.length;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById('questionText').textContent = question.question;
+            document.getElementById('questionNumber').textContent = currentQuestion + 1;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.innerHTML = `
+                    <span class="option-letter">${String.fromCharCode(65 + index)})</span>
+                    ${option}
+                `;
+                optionDiv.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            document.getElementById('feedback').classList.remove('show');
+            document.getElementById('nextButton').disabled = true;
+            document.getElementById('prevButton').disabled = currentQuestion === 0;
+            
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.classList.remove('selected');
+                option.classList.add('disabled');
+            });
+            
+            options[selectedIndex].classList.add('selected');
+            
+            const question = questions[currentQuestion];
+            const isCorrect = selectedIndex === question.correct;
+            
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            userAnswers[currentQuestion] = {
+                selected: selectedIndex,
+                correct: isCorrect
+            };
+            
+            if (isCorrect) {
+                score++;
+            }
+            
+            showFeedback(isCorrect, question.explanation);
+            document.getElementById('nextButton').disabled = false;
+        }
+
+        function showFeedback(isCorrect, explanation) {
+            const feedback = document.getElementById('feedback');
+            const feedbackTitle = document.getElementById('feedbackTitle');
+            const feedbackText = document.getElementById('feedbackText');
+            
+            feedbackTitle.textContent = isCorrect ? '✅ Correct!' : '❌ Incorrect';
+            feedbackText.textContent = explanation;
+            
+            feedback.className = `feedback show ${isCorrect ? 'correct' : 'incorrect'}`;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                showCompletion();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+                
+                // Restore previous answer if it exists
+                if (userAnswers[currentQuestion]) {
+                    const selectedIndex = userAnswers[currentQuestion].selected;
+                    const options = document.querySelectorAll('.option');
+                    selectOption(selectedIndex);
+                }
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${questions.length}`;
+        }
+
+        function showCompletion() {
+            document.getElementById('questionScreen').style.display = 'none';
+            document.getElementById('completionScreen').classList.add('show');
+            
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('finalScore').textContent = percentage + '%';
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('incorrectCount').textContent = questions.length - score;
+            document.getElementById('accuracyRate').textContent = percentage + '%';
+            document.getElementById('questionsCompleted').textContent = questions.length;
+            
+            // Performance message
+            const performanceMessage = document.getElementById('performanceMessage');
+            let message = '';
+            let className = '';
+            
+            if (percentage >= 90) {
+                message = '🏆 Outstanding! You have mastered SFMC Tracking & Reporting. You\'re ready for the certification exam!';
+                className = 'excellent';
+            } else if (percentage >= 80) {
+                message = '🎉 Great job! You have a solid understanding of SFMC analytics. Review the missed questions and you\'ll be ready!';
+                className = 'good';
+            } else if (percentage >= 70) {
+                message = '👍 Good progress! You understand most concepts. Focus on reviewing analytics fundamentals and reporting best practices.';
+                className = 'needs-improvement';
+            } else {
+                message = '📚 Keep studying! Review the study guide material on tracking metrics, Journey Builder analytics, and Data Views. You\'ve got this!';
+                className = 'poor';
+            }
+            
+            performanceMessage.textContent = message;
+            performanceMessage.className = `performance-message ${className}`;
+        }
+
+        function restartQuiz() {
+            initializeQuiz();
+        }
+
+        // Initialize the quiz when the page loads
+        window.onload = initializeQuiz;
+    </script>
+</body>
+</html>

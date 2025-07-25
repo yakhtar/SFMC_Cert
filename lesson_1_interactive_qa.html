@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 1: Subscriber & Data Management - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2a5298;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: #2a5298;
+            background: #f0f7ff;
+        }
+        
+        .option.selected {
+            border-color: #2a5298;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #2a5298;
+            min-width: 25px;
+        }
+        
+        .explanation {
+            background: #e8f5e8;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .completion-screen.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .score-needs-improvement {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 SFMC Certification Study</h1>
+            <p>Lesson 1: Subscriber & Data Management (26-29% of Exam)</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 100</div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+        
+        <div class="completion-screen" id="completionScreen">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the Subscriber & Data Management quiz!</p>
+            <div class="score-circle" id="scoreCircle">
+                <span id="finalScore">0%</span>
+            </div>
+            <p id="scoreMessage"></p>
+            <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the primary purpose of Contact Builder in SFMC?",
+                options: [
+                    "To create email templates",
+                    "To manage and organize all customer data and relationships",
+                    "To send emails to customers",
+                    "To create landing pages"
+                ],
+                correct: 1,
+                explanation: "Contact Builder is the central hub for managing all customer data and relationships in SFMC. It provides a unified view of customer information across all channels and touchpoints."
+            },
+            {
+                question: "What is a Data Extension in SFMC?",
+                options: [
+                    "A file format for importing data",
+                    "A table that stores customer information and data",
+                    "A type of email template",
+                    "A reporting tool"
+                ],
+                correct: 1,
+                explanation: "Data Extensions are tables in SFMC that store customer information, preferences, purchase history, and other data used for segmentation and personalization in marketing campaigns."
+            },
+            {
+                question: "Which import action should you use to add new records without changing existing ones?",
+                options: [
+                    "Update Only",
+                    "Add Only",
+                    "Overwrite",
+                    "Add and Update"
+                ],
+                correct: 1,
+                explanation: "Add Only import action will only add new records to your Data Extension without modifying any existing records, making it safe for adding new customers without affecting current data."
+            },
+            {
+                question: "What is the purpose of a Primary Key in a Data Extension?",
+                options: [
+                    "To encrypt the data",
+                    "To uniquely identify each record in the table",
+                    "To sort the data alphabetically",
+                    "To compress the data file"
+                ],
+                correct: 1,
+                explanation: "A Primary Key is a unique identifier for each record in a Data Extension, ensuring no duplicate records and enabling proper data relationships and updates."
+            },
+            {
+                question: "What does SQL stand for in the context of Query Activities?",
+                options: [
+                    "Simple Query Language",
+                    "Structured Query Language",
+                    "Standard Quality Logic",
+                    "Secure Question Library"
+                ],
+                correct: 1,
+                explanation: "SQL stands for Structured Query Language, which is used in Query Activities to select, filter, join, and manipulate data from Data Extensions using database query syntax."
+            },
+            {
+                question: "Which filter operator would you use to find customers who spent more than $500?",
+                options: [
+                    "Equals",
+                    "Greater Than",
+                    "Contains",
+                    "Is Between"
+                ],
+                correct: 1,
+                explanation: "The Greater Than operator (>) is used to find values that are higher than a specified amount, perfect for finding customers who spent more than $500."
+            },
+            {
+                question: "What is the difference between a Standard and Filtered Data Extension?",
+                options: [
+                    "Standard stores more data than Filtered",
+                    "Filtered Data Extensions automatically update based on rules, Standard ones don't",
+                    "Standard is faster than Filtered",
+                    "There is no difference"
+                ],
+                correct: 1,
+                explanation: "Filtered Data Extensions automatically update their contents based on predefined filter rules, while Standard Data Extensions require manual updates or import activities to change their data."
+            },
+            {
+                question: "What does 'Sendable' mean for a Data Extension?",
+                options: [
+                    "The data can be exported",
+                    "The Data Extension can be used directly as an audience for email sends",
+                    "The data can be encrypted",
+                    "The Data Extension can be deleted"
+                ],
+                correct: 1,
+                explanation: "A Sendable Data Extension contains subscriber information (including email addresses) and can be used directly as the audience for email campaigns without additional configuration."
+            },
+            {
+                question: "What is the purpose of Attribute Groups in Contact Builder?",
+                options: [
+                    "To organize related customer data fields into logical categories",
+                    "To group email templates",
+                    "To categorize campaign results",
+                    "To organize user permissions"
+                ],
+                correct: 0,
+                explanation: "Attribute Groups organize related customer data fields (like Demographics, Behavioral, Geographic) into logical categories, making it easier to manage and understand customer information."
+            },
+            {
+                question: "What is Contact Key in the Contact Model?",
+                options: [
+                    "A password for customer accounts",
+                    "A unique identifier that connects all data about a single contact",
+                    "An encryption key for data security",
+                    "A field that stores customer preferences"
+                ],
+                correct: 1,
+                explanation: "Contact Key is a unique identifier that connects all data about a single contact across different Data Extensions and systems, serving as the backbone of the Contact Model."
+            },
+            {
+                question: "When should you use 'Add and Update' import action?",
+                options: [
+                    "When you only want to add new records",
+                    "When you want to add new records and update existing ones in a single import",
+                    "When you only want to update existing records",
+                    "When you want to delete old records"
+                ],
+                correct: 1,
+                explanation: "Add and Update import action is ideal when your import file contains both new customer records and updates to existing customer information, handling both scenarios in one operation."
+            },
+            {
+                question: "What is the maximum number of fields allowed in a single Data Extension?",
+                options: [
+                    "50 fields",
+                    "100 fields",
+                    "4000 fields",
+                    "Unlimited fields"
+                ],
+                correct: 2,
+                explanation: "SFMC allows up to 4000 fields in a single Data Extension, providing flexibility for storing comprehensive customer information and attributes."
+            },
+            {
+                question: "What does FTP stand for in data import context?",
+                options: [
+                    "Fast Transfer Protocol",
+                    "File Transfer Protocol",
+                    "Flexible Template Processing",
+                    "Frequent Task Performance"
+                ],
+                correct: 1,
+                explanation: "FTP stands for File Transfer Protocol, which is used to automatically transfer data files from external servers to SFMC for automated data imports."
+            },
+            {
+                question: "What is the purpose of Enhanced FTP in SFMC?",
+                options: [
+                    "To transfer files faster",
+                    "To provide secure, encrypted file transfers with advanced features",
+                    "To compress files before transfer",
+                    "To transfer larger files"
+                ],
+                correct: 1,
+                explanation: "Enhanced FTP provides secure, encrypted file transfers with advanced features like PGP encryption, making it suitable for transferring sensitive customer data safely."
+            },
+            {
+                question: "Which SQL command is used to select data from a Data Extension?",
+                options: [
+                    "GET",
+                    "SELECT",
+                    "RETRIEVE",
+                    "FIND"
+                ],
+                correct: 1,
+                explanation: "SELECT is the SQL command used to retrieve data from Data Extensions, allowing you to specify which fields and records you want to extract based on your criteria."
+            },
+            {
+                question: "What is the purpose of the WHERE clause in SQL queries?",
+                options: [
+                    "To specify which table to query",
+                    "To filter records based on specific conditions",
+                    "To sort the results",
+                    "To count the records"
+                ],
+                correct: 1,
+                explanation: "The WHERE clause filters records based on specific conditions, allowing you to retrieve only the data that meets your criteria (like customers who made purchases in the last 30 days)."
+            },
+            {
+                question: "What does JOIN do in a SQL query?",
+                options: [
+                    "Combines data from multiple tables based on relationships",
+                    "Adds new records to a table",
+                    "Deletes unwanted records",
+                    "Sorts data in ascending order"
+                ],
+                correct: 0,
+                explanation: "JOIN combines data from multiple Data Extensions based on relationships between them, allowing you to create comprehensive customer views from different data sources."
+            },
+            {
+                question: "What is a Random Data Extension used for?",
+                options: [
+                    "To store random customer data",
+                    "To create random email content",
+                    "To create control groups for A/B testing",
+                    "To randomly delete records"
+                ],
+                correct: 2,
+                explanation: "Random Data Extensions are used to create statistically valid control groups and test audiences for A/B testing and campaign experiments."
+            },
+            {
+                question: "What does 'Overwrite' import action do?",
+                options: [
+                    "Adds new records only",
+                    "Updates existing records only",
+                    "Replaces all existing data with new imported data",
+                    "Combines old and new data"
+                ],
+                correct: 2,
+                explanation: "Overwrite import action replaces all existing data in the Data Extension with the new imported data, effectively clearing the old data and starting fresh."
+            },
+            {
+                question: "What is the purpose of Data Retention settings?",
+                options: [
+                    "To compress old data",
+                    "To automatically delete data after a specified time period",
+                    "To backup data regularly",
+                    "To encrypt stored data"
+                ],
+                correct: 1,
+                explanation: "Data Retention settings automatically delete data after a specified time period, helping with compliance requirements and database performance by removing outdated information."
+            },
+            {
+                question: "What is the difference between Population and Audience in SFMC?",
+                options: [
+                    "Population is larger than Audience",
+                    "Population defines the overall group structure; Audience is the specific subset for campaigns",
+                    "They are exactly the same thing",
+                    "Population is for email only; Audience is for all channels"
+                ],
+                correct: 1,
+                explanation: "Population defines the overall group structure and data model in Contact Builder, while Audience refers to the specific subset of contacts selected for particular campaigns or communications."
+            },
+            {
+                question: "What does API stand for in SFMC data integration?",
+                options: [
+                    "Automated Process Integration",
+                    "Application Programming Interface",
+                    "Advanced Personal Information",
+                    "Automatic Program Installation"
+                ],
+                correct: 1,
+                explanation: "API stands for Application Programming Interface, which allows external systems to integrate with SFMC for real-time data exchange and automation."
+            },
+            {
+                question: "What is the purpose of field mapping in import activities?",
+                options: [
+                    "To create visual maps of data",
+                    "To match source file columns with Data Extension fields",
+                    "To compress data files",
+                    "To encrypt sensitive information"
+                ],
+                correct: 1,
+                explanation: "Field mapping matches columns in your source file with the corresponding fields in your Data Extension, ensuring data is imported into the correct locations."
+            },
+            {
+                question: "What is a Data Filter in SFMC?",
+                options: [
+                    "A tool to find specific groups of customers based on criteria",
+                    "A way to clean dirty data",
+                    "A security feature to protect data",
+                    "A method to compress large files"
+                ],
+                correct: 0,
+                explanation: "Data Filters are tools that help you find and segment specific groups of customers based on criteria you define, useful for creating targeted audiences for campaigns."
+            },
+            {
+                question: "What does 'Profile Attribute' refer to in SFMC?",
+                options: [
+                    "System configuration settings",
+                    "Customer characteristics stored in Contact Builder",
+                    "Email template properties",
+                    "User account permissions"
+                ],
+                correct: 1,
+                explanation: "Profile Attributes are customer characteristics and information stored in Contact Builder, such as demographics, preferences, and behavioral data used for personalization."
+            },
+            {
+                question: "What is the purpose of Contact Delete functionality?",
+                options: [
+                    "To delete email templates",
+                    "To remove customer records from SFMC when requested or required",
+                    "To delete old campaigns",
+                    "To remove user accounts"
+                ],
+                correct: 1,
+                explanation: "Contact Delete functionality allows you to remove customer records from SFMC when requested by customers (right to be forgotten) or required for compliance reasons."
+            },
+            {
+                question: "What does 'Cardinality' mean in data relationships?",
+                options: [
+                    "The speed of data processing",
+                    "The numerical relationship between records in different tables",
+                    "The importance level of data fields",
+                    "The security level of data"
+                ],
+                correct: 1,
+                explanation: "Cardinality defines the numerical relationship between records in different tables, such as one-to-one (one customer to one profile) or one-to-many (one customer to many purchases)."
+            },
+            {
+                question: "What is Channel Connect in Contact Builder?",
+                options: [
+                    "A way to connect different communication channels",
+                    "A feature that links customer data across different marketing channels",
+                    "A tool for connecting to external channels",
+                    "A method to switch between channels"
+                ],
+                correct: 1,
+                explanation: "Channel Connect links customer data across different marketing channels (email, mobile, social, advertising) to create a unified customer view and enable cross-channel campaigns."
+            },
+            {
+                question: "What is the purpose of Data Validation in import processes?",
+                options: [
+                    "To encrypt imported data",
+                    "To check that imported data meets format and business rule requirements",
+                    "To compress data files",
+                    "To translate data languages"
+                ],
+                correct: 1,
+                explanation: "Data Validation ensures that imported data meets your specified format requirements and business rules (like valid email formats, required fields, etc.) before it's stored in Data Extensions."
+            },
+            {
+                question: "What is a Synchronized Data Extension?",
+                options: [
+                    "A Data Extension that updates simultaneously with Salesforce CRM data",
+                    "A Data Extension that syncs across multiple accounts",
+                    "A Data Extension that backs up automatically",
+                    "A Data Extension that syncs with email templates"
+                ],
+                correct: 0,
+                explanation: "Synchronized Data Extensions automatically stay synchronized with objects from your Salesforce CRM, ensuring that customer data is always current and consistent between systems."
+            },
+            {
+                question: "What does 'Data Residency' refer to?",
+                options: [
+                    "Where customers live",
+                    "The geographic location where your data is stored and processed",
+                    "How long data is stored",
+                    "Who owns the data"
+                ],
+                correct: 1,
+                explanation: "Data Residency refers to the geographic location where your customer data is physically stored and processed, which is important for compliance with local privacy laws and regulations."
+            },
+            {
+                question: "What is the purpose of Einstein Engagement Frequency?",
+                options: [
+                    "To count email sends",
+                    "To optimize email send frequency based on individual customer behavior",
+                    "To increase email frequency for all customers",
+                    "To track engagement metrics"
+                ],
+                correct: 1,
+                explanation: "Einstein Engagement Frequency uses AI to analyze individual customer behavior and determine the optimal email frequency for each customer, preventing over-communication and improving engagement."
+            },
+            {
+                question: "What is Data Classification in SFMC?",
+                options: [
+                    "Organizing data alphabetically",
+                    "Categorizing data based on sensitivity and compliance requirements",
+                    "Counting different types of data",
+                    "Sorting data by importance"
+                ],
+                correct: 1,
+                explanation: "Data Classification categorizes customer data based on sensitivity levels and compliance requirements, helping identify which data needs special protection (like PII) and what regulations apply."
+            },
+            {
+                question: "What does 'Data Lineage' track?",
+                options: [
+                    "Family relationships between customers",
+                    "The origin, movement, and transformation of data throughout its lifecycle",
+                    "The order data was created",
+                    "Data file sizes over time"
+                ],
+                correct: 1,
+                explanation: "Data Lineage tracks where data originated, how it moved through systems, and what transformations were applied, essential for troubleshooting, auditing, and compliance."
+            },
+            {
+                question: "What is a Calculated Insight in Contact Builder?",
+                options: [
+                    "A manual calculation performed by users",
+                    "An automatically computed metric based on customer data and behavior",
+                    "A mathematical formula in emails",
+                    "A reporting calculation"
+                ],
+                correct: 1,
+                explanation: "Calculated Insights are automatically computed metrics that use AI and algorithms to generate useful customer insights like lifetime value, engagement scores, and propensity models."
+            },
+            {
+                question: "What does 'Data Federation' allow you to do?",
+                options: [
+                    "Create data governments",
+                    "Access and query data from external sources without importing it into SFMC",
+                    "Speed up data imports",
+                    "Federate user access"
+                ],
+                correct: 1,
+                explanation: "Data Federation allows you to access and query data from external sources in real-time without physically importing it into SFMC, useful for working with large or frequently changing datasets."
+            },
+            {
+                question: "What is the Marketing Cloud Connector?",
+                options: [
+                    "A physical cable for Marketing Cloud",
+                    "An integration that connects Salesforce CRM with Marketing Cloud",
+                    "A tool for connecting email templates",
+                    "A network connection tool"
+                ],
+                correct: 1,
+                explanation: "The Marketing Cloud Connector is a native integration that connects Salesforce CRM with Marketing Cloud, enabling seamless data sharing and workflow automation between the two systems."
+            },
+            {
+                question: "What happens when you enable Contact Delete in the Marketing Cloud Connector?",
+                options: [
+                    "All contacts are automatically deleted",
+                    "When a contact is deleted in CRM, it's also removed from Marketing Cloud",
+                    "Contacts can never be deleted",
+                    "Only email addresses are deleted"
+                ],
+                correct: 1,
+                explanation: "Contact Delete synchronization ensures that when a contact is deleted in Salesforce CRM, it's automatically removed from Marketing Cloud as well, maintaining data consistency."
+            },
+            {
+                question: "What is the purpose of the REST API in SFMC data management?",
+                options: [
+                    "To make the system rest",
+                    "To enable real-time data exchange between SFMC and external systems",
+                    "To slow down data processing",
+                    "To create email templates"
+                ],
+                correct: 1,
+                explanation: "REST APIs enable real-time, two-way data exchange between SFMC and external systems, allowing for immediate data updates and integrations."
+            },
+            {
+                question: "What does 'Upsert' mean in API operations?",
+                options: [
+                    "To turn data upside down",
+                    "To update existing records or insert new ones if they don't exist",
+                    "To delete all records",
+                    "To sort records upward"
+                ],
+                correct: 1,
+                explanation: "Upsert is a combination of 'update' and 'insert' - it updates existing records if found, or creates new records if they don't exist, making it efficient for data synchronization."
+            },
+            {
+                question: "What is a Webhook in SFMC?",
+                options: [
+                    "A hook for hanging web pages",
+                    "A method for SFMC to send real-time notifications to external systems when events occur",
+                    "A fishing tool for data",
+                    "A way to delete web data"
+                ],
+                correct: 1,
+                explanation: "Webhooks allow SFMC to send real-time notifications to external systems when specific events occur (like email opens, clicks, or purchases), enabling immediate response to customer actions."
+            },
+            {
+                question: "What is PII (Personally Identifiable Information)?",
+                options: [
+                    "Public Internet Information",
+                    "Information that can be used to identify a specific individual",
+                    "Professional Industry Information",
+                    "Processed Internal Information"
+                ],
+                correct: 1,
+                explanation: "PII is any information that can be used to identify a specific individual, including names, email addresses, phone numbers, social security numbers, and other personal identifiers."
+            },
+            {
+                question: "What does 'Right to be Forgotten' mean under GDPR?",
+                options: [
+                    "Customers can forget their passwords",
+                    "Customers can request deletion of their personal data",
+                    "Companies can forget regulations",
+                    "Data automatically expires"
+                ],
+                correct: 1,
+                explanation: "The Right to be Forgotten gives individuals the right to request that companies delete their personal information under certain circumstances, as mandated by GDPR."
+            },
+            {
+                question: "What is the purpose of Consent Management in SFMC?",
+                options: [
+                    "To get agreement on marketing decisions",
+                    "To track and manage customer permissions for data use and communications",
+                    "To manage employee system access",
+                    "To approve software updates"
+                ],
+                correct: 1,
+                explanation: "Consent Management tracks and manages customer permissions for data use and marketing communications, ensuring compliance with privacy regulations and customer preferences."
+            },
+            {
+                question: "What does the 'Data Minimization' principle require?",
+                options: [
+                    "Making data files as small as possible",
+                    "Collecting and storing only the personal data necessary for your stated purpose",
+                    "Using minimal storage space",
+                    "Limiting employee data access"
+                ],
+                correct: 1,
+                explanation: "Data Minimization requires collecting and storing only the personal data that is necessary for your legitimate business purposes, reducing privacy risks and compliance obligations."
+            },
+            {
+                question: "What is a Data Processing Agreement (DPA)?",
+                options: [
+                    "An employee agreement about data processing",
+                    "A legal contract defining how third parties can process personal data on your behalf",
+                    "A technical agreement about processing speed",
+                    "A software purchase agreement"
+                ],
+                correct: 1,
+                explanation: "A DPA is a legal contract that defines how third-party vendors and partners can process personal data on your behalf, ensuring compliance with privacy regulations."
+            },
+            {
+                question: "What does 'Privacy by Design' mean?",
+                options: [
+                    "Designing private offices",
+                    "Building privacy protection into systems and processes from the beginning",
+                    "Creating private design documents",
+                    "Designing systems in secret"
+                ],
+                correct: 1,
+                explanation: "Privacy by Design means building data protection and privacy considerations into systems and processes from the very beginning, rather than adding them as an afterthought."
+            },
+            {
+                question: "What is the purpose of Data Encryption in SFMC?",
+                options: [
+                    "To make data files smaller",
+                    "To convert data into a coded format that can only be read with the proper key",
+                    "To speed up data processing",
+                    "To organize data alphabetically"
+                ],
+                correct: 1,
+                explanation: "Data Encryption converts sensitive information into a coded format that can only be read with the proper decryption key, protecting customer data from unauthorized access."
+            },
+            {
+                question: "What is the difference between Symmetric and Asymmetric encryption?",
+                options: [
+                    "Symmetric is faster, Asymmetric is more secure",
+                    "Symmetric uses one key, Asymmetric uses two keys (public and private)",
+                    "Symmetric works with numbers, Asymmetric works with text",
+                    "There is no difference"
+                ],
+                correct: 1,
+                explanation: "Symmetric encryption uses one shared key for both encryption and decryption, while Asymmetric encryption uses a pair of keys (public and private) for enhanced security."
+            },
+            {
+                question: "What is Tokenization in data security?",
+                options: [
+                    "Creating digital coins from data",
+                    "Replacing sensitive data with non-sensitive placeholder tokens",
+                    "Breaking data into small pieces",
+                    "Adding timestamps to data"
+                ],
+                correct: 1,
+                explanation: "Tokenization replaces sensitive data (like credit card numbers) with non-sensitive placeholder tokens, allowing you to use the data for processing while protecting the original information."
+            },
+            {
+                question: "What does CCPA stand for?",
+                options: [
+                    "California Consumer Privacy Act",
+                    "Canadian Customer Protection Agreement",
+                    "Corporate Compliance Privacy Association",
+                    "Customer Communication Privacy Act"
+                ],
+                correct: 0,
+                explanation: "CCPA stands for California Consumer Privacy Act, a privacy law that gives California residents rights over their personal information and how businesses collect and use it."
+            },
+            {
+                question: "What rights does CCPA give to consumers?",
+                options: [
+                    "Only the right to know what data is collected",
+                    "The right to know, delete, opt-out of sale, and non-discrimination",
+                    "Only the right to delete data",
+                    "Only the right to opt-out of emails"
+                ],
+                correct: 1,
+                explanation: "CCPA gives consumers the right to know what personal information is collected, delete their information, opt-out of the sale of their information, and receive equal service regardless of exercising these rights."
+            },
+            {
+                question: "How long should you retain customer data according to best practices?",
+                options: [
+                    "Forever",
+                    "As long as necessary for the stated business purpose and legal requirements",
+                    "Exactly one year",
+                    "Until the customer asks for deletion"
+                ],
+                correct: 1,
+                explanation: "Data should be retained only as long as necessary for the stated business purpose and to meet legal requirements, after which it should be securely deleted to minimize privacy risks."
+            },
+            {
+                question: "What is the purpose of conducting Data Audits?",
+                options: [
+                    "To count how much data you have",
+                    "To systematically review data practices, identify risks, and ensure compliance",
+                    "To delete old data",
+                    "To backup important data"
+                ],
+                correct: 1,
+                explanation: "Data Audits systematically review your data collection, storage, and processing practices to identify privacy risks, ensure compliance with regulations, and improve data governance."
+            },
+            {
+                question: "What should be included in a Privacy Notice?",
+                options: [
+                    "Only contact information",
+                    "What data is collected, how it's used, who it's shared with, and customer rights",
+                    "Only data collection methods",
+                    "Only legal disclaimers"
+                ],
+                correct: 1,
+                explanation: "Privacy Notices should clearly explain what personal data is collected, how it's used, who it's shared with, how long it's kept, and what rights customers have regarding their data."
+            },
+            {
+                question: "How often should you review and clean your customer data?",
+                options: [
+                    "Once per year",
+                    "Never - cleaning is automatic",
+                    "Regularly (weekly, monthly, or quarterly depending on volume)",
+                    "Only when problems occur"
+                ],
+                correct: 2,
+                explanation: "Regular data cleaning (weekly, monthly, or quarterly depending on data volume) prevents small issues from becoming big problems and keeps your database healthy, accurate, and compliant."
+            },
+            {
+                question: "What is an Audit Trail in data management?",
+                options: [
+                    "A hiking path for data",
+                    "A record of who made changes to data and when",
+                    "A way to delete old data",
+                    "A method to import new data"
+                ],
+                correct: 1,
+                explanation: "An Audit Trail maintains a record of who made changes to data and when, providing accountability, supporting compliance requirements, and helping with troubleshooting data issues."
+            },
+            {
+                question: "What does GDPR compliance require for customer data?",
+                options: [
+                    "Storing data forever",
+                    "Sharing data with everyone",
+                    "Obtaining proper consent and honoring deletion requests",
+                    "Using only email addresses"
+                ],
+                correct: 2,
+                explanation: "GDPR requires obtaining proper consent before collecting personal data, respecting customer preferences, and honoring requests for data deletion or access (Right to be Forgotten)."
+            },
+            {
+                question: "What is data validation?",
+                options: [
+                    "Checking that imported data meets format and business rule requirements",
+                    "Deleting all data",
+                    "Creating new data extensions",
+                    "Sending test emails"
+                ],
+                correct: 0,
+                explanation: "Data validation ensures that imported data meets your specified format requirements and business rules (like valid email formats, required fields completed, etc.) before being stored."
+            },
+            {
+                question: "Why should you monitor data freshness?",
+                options: [
+                    "To make data more expensive",
+                    "To ensure customer information is current and relevant for targeting",
+                    "To delete old customers",
+                    "To slow down campaigns"
+                ],
+                correct: 1,
+                explanation: "Monitoring data freshness ensures customer information remains current and relevant, leading to better campaign targeting, higher engagement rates, and improved customer experience."
+            },
+            {
+                question: "What is the purpose of a Data Dictionary?",
+                options: [
+                    "To translate data into different languages",
+                    "To document what each data field means and how it should be used",
+                    "To alphabetize data fields",
+                    "To delete unnecessary fields"
+                ],
+                correct: 1,
+                explanation: "A Data Dictionary documents the meaning, format, and proper usage of each data field, helping team members understand and correctly use customer data for campaigns and analysis."
+            },
+            {
+                question: "What is Customer 360 in SFMC?",
+                options: [
+                    "A circular dashboard design",
+                    "A comprehensive view of all customer interactions across all channels",
+                    "A 360-degree camera for customers",
+                    "A yearly customer report"
+                ],
+                correct: 1,
+                explanation: "Customer 360 provides a comprehensive, unified view of all customer interactions across all marketing channels (email, mobile, social, web, advertising), enabling better personalization and customer understanding."
+            },
+            {
+                question: "What is Data Stream in Salesforce Marketing Cloud?",
+                options: [
+                    "A way to delete data",
+                    "A real-time data ingestion service for high-volume, fast-moving data",
+                    "A method to back up data",
+                    "A tool for creating emails"
+                ],
+                correct: 1,
+                explanation: "Data Stream is a real-time data ingestion service designed to handle high-volume, fast-moving data like website interactions, app events, and purchase activities as they happen."
+            },
+            {
+                question: "What does 'Event-Driven Architecture' mean for data management?",
+                options: [
+                    "Planning data events on a calendar",
+                    "Automatically triggering data processes when specific events occur",
+                    "Organizing data by event names",
+                    "Manually managing all data events"
+                ],
+                correct: 1,
+                explanation: "Event-Driven Architecture automatically triggers data processes and marketing actions when specific customer events occur (like purchases, website visits, or email opens), enabling real-time personalization."
+            },
+            {
+                question: "What is the purpose of Custom Activities in Journey Builder?",
+                options: [
+                    "To create custom email templates",
+                    "To integrate third-party systems and custom logic into customer journeys",
+                    "To customize the Journey Builder interface",
+                    "To create custom reports"
+                ],
+                correct: 1,
+                explanation: "Custom Activities extend Journey Builder functionality by integrating third-party systems and custom business logic into customer journeys, enabling specialized interactions and processes."
+            },
+            {
+                question: "What does 'Real-Time Interaction Management' enable?",
+                options: [
+                    "Real-time video calls with customers",
+                    "Immediate personalized responses based on current customer behavior and context",
+                    "Real-time email delivery",
+                    "Real-time data backup"
+                ],
+                correct: 1,
+                explanation: "Real-Time Interaction Management enables immediate, personalized responses based on current customer behavior and context, delivering relevant experiences at the moment of interaction."
+            },
+            {
+                question: "What is the benefit of using Streaming APIs for data ingestion?",
+                options: [
+                    "They make data flow like water",
+                    "They enable continuous, real-time data updates as events happen",
+                    "They compress data streams",
+                    "They only work with video data"
+                ],
+                correct: 1,
+                explanation: "Streaming APIs provide continuous, real-time data updates as customer events happen, enabling immediate personalization and instant responses to customer behaviors and preferences."
+            },
+            {
+                question: "What does 'Data Mesh Architecture' represent?",
+                options: [
+                    "A fishing net for data",
+                    "A decentralized approach where different teams manage their own data domains",
+                    "A single centralized data storage",
+                    "A method to delete messy data"
+                ],
+                correct: 1,
+                explanation: "Data Mesh Architecture is a decentralized approach where different business teams manage their own data domains while following shared standards and governance, improving scalability and ownership."
+            },
+            {
+                question: "What is the role of Master Data Management (MDM)?",
+                options: [
+                    "To master all marketing data",
+                    "To create and maintain a single, authoritative source of critical business data",
+                    "To manage only customer master records",
+                    "To delete master data records"
+                ],
+                correct: 1,
+                explanation: "Master Data Management creates and maintains a single, authoritative source of critical business data (like customer information), ensuring consistency and accuracy across all systems and touchpoints."
+            },
+            {
+                question: "What does 'Data Governance' encompass?",
+                options: [
+                    "Government regulations only",
+                    "The overall management framework for data quality, privacy, security, and usage policies",
+                    "Data storage locations",
+                    "Database administration tasks"
+                ],
+                correct: 1,
+                explanation: "Data Governance encompasses the overall management framework that defines policies, procedures, and responsibilities for data quality, privacy, security, access, and usage across the organization."
+            },
+            {
+                question: "What is the purpose of Data Quality Scoring?",
+                options: [
+                    "To grade data like school tests",
+                    "To measure and track the accuracy, completeness, and reliability of customer data",
+                    "To score customer satisfaction",
+                    "To rate data processing speed"
+                ],
+                correct: 1,
+                explanation: "Data Quality Scoring measures and tracks the accuracy, completeness, consistency, and reliability of customer data, helping identify areas for improvement and ensuring high-quality marketing campaigns."
+            },
+            {
+                question: "What is Progressive Profiling in data collection?",
+                options: [
+                    "Taking progressive photos of customers",
+                    "Gradually collecting additional customer information over time through multiple interactions",
+                    "Making customer profiles more progressive",
+                    "Progressively deleting old profile data"
+                ],
+                correct: 1,
+                explanation: "Progressive Profiling gradually collects additional customer information over time through multiple touchpoints and interactions, building comprehensive profiles without overwhelming customers with long forms."
+            },
+            {
+                question: "What does 'Single Customer View' aim to achieve?",
+                options: [
+                    "Showing only one customer at a time",
+                    "Creating a unified, comprehensive profile of each customer across all touchpoints",
+                    "Limiting customer visibility",
+                    "Viewing customers individually"
+                ],
+                correct: 1,
+                explanation: "Single Customer View aims to create a unified, comprehensive profile of each customer that combines all their interactions, preferences, and data from across all touchpoints and channels."
+            },
+            {
+                question: "What is the importance of Data Lineage in compliance?",
+                options: [
+                    "It shows family trees of data",
+                    "It demonstrates where data came from and how it was processed for regulatory audits",
+                    "It organizes data in straight lines",
+                    "It tracks data creation dates only"
+                ],
+                correct: 1,
+                explanation: "Data Lineage is crucial for compliance as it demonstrates the complete journey of personal data - where it originated, how it was processed, and where it went - essential for regulatory audits and privacy regulations."
+            },
+            {
+                question: "What should be your first step when implementing a new data management process?",
+                options: [
+                    "Start collecting data immediately",
+                    "Define clear objectives, requirements, and compliance needs",
+                    "Purchase new data management software",
+                    "Train all employees first"
+                ],
+                correct: 1,
+                explanation: "Before implementing any new data management process, you should first define clear objectives, understand business requirements, identify compliance needs, and establish success criteria to ensure the process delivers value."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answersGiven = [];
+        let quizCompleted = false;
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showCompletionScreen();
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${questions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <ul class="options">
+                        ${question.options.map((option, index) => 
+                            `<li class="option" onclick="selectOption(${index})">
+                                <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                                <span>${option}</span>
+                            </li>`
+                        ).join('')}
+                    </ul>
+                    <div class="explanation" id="explanation">
+                        <h4>✅ Correct Answer: ${String.fromCharCode(65 + question.correct)})</h4>
+                        <p>${question.explanation}</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <div class="score-display">
+                        Score: ${score}/${currentQuestion} ${currentQuestion > 0 ? `(${Math.round(score/currentQuestion*100)}%)` : ''}
+                    </div>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        Next →
+                    </button>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = questions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Remove any previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark the selected option
+            options[selectedIndex].classList.add('selected');
+
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Record the answer
+            answersGiven[currentQuestion] = selectedIndex;
+
+            // Update score
+            if (selectedIndex === question.correct) {
+                if (answersGiven[currentQuestion] !== question.correct) {
+                    score++;
+                }
+            }
+
+            // Show explanation and enable next button
+            explanation.classList.add('show');
+            nextBtn.disabled = false;
+
+            // Update score display
+            document.querySelector('.score-display').innerHTML = 
+                `Score: ${score}/${currentQuestion + 1} (${Math.round(score/(currentQuestion + 1)*100)}%)`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${questions.length}`;
+        }
+
+        function showCompletionScreen() {
+            const container = document.getElementById('quizContainer');
+            const completionScreen = document.getElementById('completionScreen');
+            const finalScorePercent = Math.round((score / questions.length) * 100);
+            
+            container.style.display = 'none';
+            completionScreen.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = finalScorePercent + '%';
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (finalScorePercent >= 90) {
+                scoreCircle.className = 'score-circle score-excellent';
+                scoreMessage.textContent = '🌟 Outstanding! You have excellent knowledge of SFMC Subscriber & Data Management!';
+            } else if (finalScorePercent >= 75) {
+                scoreCircle.className = 'score-circle score-good';
+                scoreMessage.textContent = '👏 Great job! You have a solid understanding of the concepts.';
+            } else if (finalScorePercent >= 60) {
+                scoreCircle.className = 'score-circle score-needs-improvement';
+                scoreMessage.textContent = '📚 Good effort! Review the study guide and try again to improve your score.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                scoreMessage.textContent = '💪 Keep studying! Review the concepts and take the quiz again.';
+            }
+
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quiz Complete!';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            quizCompleted = false;
+            
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('completionScreen').classList.remove('show');
+            
+            loadQuestion();
+        }
+
+        // Initialize the quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 6: Email Marketing Best Practices - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2a5298;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: #2a5298;
+            background: #f0f7ff;
+        }
+        
+        .option.selected {
+            border-color: #2a5298;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #2a5298;
+            min-width: 25px;
+        }
+        
+        .explanation {
+            background: #e8f5e8;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .completion-screen.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .score-needs-improvement {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 SFMC Certification Study</h1>
+            <p>Lesson 6: Email Marketing Best Practices (10-15% of Exam)</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 100</div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+        
+        <div class="completion-screen" id="completionScreen">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the Email Marketing Best Practices quiz!</p>
+            <div class="score-circle" id="scoreCircle">
+                <span id="finalScore">0%</span>
+            </div>
+            <p id="scoreMessage"></p>
+            <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the gold standard for email permission?",
+                options: [
+                    "Implied consent from business relationship",
+                    "Pre-checked opt-in boxes",
+                    "Confirmed opt-in (double opt-in) with email verification",
+                    "Purchasing email lists"
+                ],
+                correct: 2,
+                explanation: "Double opt-in requires the subscriber to confirm their email address, ensuring genuine interest and reducing spam complaints."
+            },
+            {
+                question: "What information should you include when someone subscribes to your email list?",
+                options: [
+                    "Only your company name",
+                    "Clear explanation of what they'll receive, how often, and how to unsubscribe",
+                    "Just the signup confirmation",
+                    "Your entire privacy policy"
+                ],
+                correct: 1,
+                explanation: "Transparency in the signup process sets proper expectations and reduces future complaints or unsubscribes."
+            },
+            {
+                question: "What is the main risk of using pre-checked opt-in boxes?",
+                options: [
+                    "They're more expensive to implement",
+                    "Higher spam complaint rates and potential legal issues",
+                    "They slow down website loading",
+                    "They require more technical setup"
+                ],
+                correct: 1,
+                explanation: "Pre-checked boxes often capture people who didn't intend to subscribe, leading to complaints and poor engagement."
+            },
+            {
+                question: "How long should you keep records of email opt-ins?",
+                options: [
+                    "30 days",
+                    "1 year",
+                    "As long as the person remains subscribed, plus additional time as required by law",
+                    "Records aren't necessary"
+                ],
+                correct: 2,
+                explanation: "Consent records may be needed to prove permission and comply with various privacy regulations."
+            },
+            {
+                question: "What should you do if someone claims they never signed up for your emails?",
+                options: [
+                    "Ignore the complaint",
+                    "Continue sending them emails",
+                    "Check your opt-in records and remove them if you can't prove consent",
+                    "Add them to more email lists"
+                ],
+                correct: 2,
+                explanation: "Without clear proof of consent, it's best to remove the subscriber to avoid complaints and maintain good sender reputation."
+            },
+            {
+                question: "What is implicit opt-in?",
+                options: [
+                    "Assuming permission based on a business relationship or interaction",
+                    "Getting explicit permission through a checkbox",
+                    "Requiring email confirmation",
+                    "Purchasing permission from data brokers"
+                ],
+                correct: 0,
+                explanation: "Implicit opt-in infers consent from actions like making a purchase, but it's riskier than explicit permission."
+            },
+            {
+                question: "What should your email signup form clearly state?",
+                options: [
+                    "Only the email address field",
+                    "The types of emails, frequency, and value proposition",
+                    "Just your company name",
+                    "Your entire terms of service"
+                ],
+                correct: 1,
+                explanation: "Clear communication helps people make informed decisions and sets appropriate expectations for your email program."
+            },
+            {
+                question: "What is the benefit of a preference center?",
+                options: [
+                    "It's required by law",
+                    "It allows subscribers to customize their email experience instead of unsubscribing entirely",
+                    "It reduces email delivery costs",
+                    "It automatically improves open rates"
+                ],
+                correct: 1,
+                explanation: "Preference centers let people receive only the content they want, reducing unsubscribes while maintaining engagement."
+            },
+            {
+                question: "When should you send a welcome email?",
+                options: [
+                    "One month after signup",
+                    "Immediately after someone subscribes",
+                    "Only during business hours",
+                    "Welcome emails aren't necessary"
+                ],
+                correct: 1,
+                explanation: "Welcome emails have the highest open rates and help confirm the subscription while the signup intent is fresh."
+            },
+            {
+                question: "What should you include in a welcome email?",
+                options: [
+                    "Only promotional offers",
+                    "Confirmation of subscription, expectation setting, and initial value",
+                    "Your complete product catalog",
+                    "Detailed company history"
+                ],
+                correct: 1,
+                explanation: "Welcome emails should confirm the subscription, remind people what they signed up for, and provide immediate value."
+            },
+            {
+                question: "What is email deliverability?",
+                options: [
+                    "How fast emails are sent",
+                    "The ability of emails to reach recipients' inboxes rather than spam folders",
+                    "The number of emails you can send per hour",
+                    "The cost of sending emails"
+                ],
+                correct: 1,
+                explanation: "Deliverability measures whether your emails successfully reach the intended inbox, which is crucial for campaign effectiveness."
+            },
+            {
+                question: "What is sender reputation?",
+                options: [
+                    "How famous your company is",
+                    "ISPs' assessment of your email sending practices based on engagement and complaints",
+                    "Your company's credit score",
+                    "The reputation of your email marketing platform"
+                ],
+                correct: 1,
+                explanation: "Sender reputation is like a credit score for email - ISPs use it to decide whether to deliver your emails to inboxes or spam folders."
+            },
+            {
+                question: "What does SPF stand for and what does it do?",
+                options: [
+                    "Spam Protection Filter - blocks spam emails",
+                    "Sender Policy Framework - authorizes which servers can send email from your domain",
+                    "Special Priority Flag - marks important emails",
+                    "Secure Password Function - protects email accounts"
+                ],
+                correct: 1,
+                explanation: "SPF prevents spammers from forging your domain by specifying which servers are authorized to send email on your behalf."
+            },
+            {
+                question: "What is DKIM?",
+                options: [
+                    "A type of email template",
+                    "DomainKeys Identified Mail - cryptographic signature that proves email authenticity",
+                    "Direct Internet Marketing - a promotional strategy",
+                    "Data Integration and Key Management"
+                ],
+                correct: 1,
+                explanation: "DKIM adds a digital signature to emails that receiving servers can verify, proving the email hasn't been tampered with."
+            },
+            {
+                question: "What happens if your bounce rate is too high?",
+                options: [
+                    "Your emails load faster",
+                    "ISPs may block your emails or send them to spam folders",
+                    "You get more subscribers",
+                    "Your emails become more expensive"
+                ],
+                correct: 1,
+                explanation: "High bounce rates signal poor list quality to ISPs, which can damage your sender reputation and reduce deliverability."
+            },
+            {
+                question: "What is a good bounce rate benchmark?",
+                options: [
+                    "Under 2%",
+                    "Under 5%",
+                    "Under 10%",
+                    "Bounce rate doesn't matter"
+                ],
+                correct: 1,
+                explanation: "Bounce rates above 5% indicate list quality issues that can harm deliverability; under 2% is excellent."
+            },
+            {
+                question: "What should you do if your domain gets blacklisted?",
+                options: [
+                    "Start using a different domain immediately",
+                    "Investigate the cause, fix underlying issues, and request delisting",
+                    "Ignore it and continue sending",
+                    "Buy more IP addresses"
+                ],
+                correct: 1,
+                explanation: "Blacklisting happens for a reason; you must address the root cause (poor practices, compromised security) before requesting removal."
+            },
+            {
+                question: "What is IP warming?",
+                options: [
+                    "Heating up your email servers",
+                    "Gradually increasing email volume from a new IP address to build reputation",
+                    "Sending emails only during warm weather",
+                    "Using warmer colors in email design"
+                ],
+                correct: 1,
+                explanation: "New IP addresses have no reputation; gradually ramping up sending volume helps establish a positive reputation with ISPs."
+            },
+            {
+                question: "What type of content can trigger spam filters?",
+                options: [
+                    "Personalized content only",
+                    "Excessive promotional language, misleading subject lines, and poor HTML coding",
+                    "Any content with images",
+                    "Educational content"
+                ],
+                correct: 1,
+                explanation: "Spam filters analyze content patterns; too much promotional language, deceptive subjects, or messy code can trigger filtering."
+            },
+            {
+                question: "What is the ideal text-to-image ratio for good deliverability?",
+                options: [
+                    "Images only, no text",
+                    "Text only, no images",
+                    "Balanced mix with more text than images",
+                    "Ratio doesn't affect deliverability"
+                ],
+                correct: 2,
+                explanation: "Emails that are mostly images look suspicious to spam filters; a good balance of text and images appears more legitimate."
+            },
+            {
+                question: "What is a hard bounce?",
+                options: [
+                    "An email that bounces back quickly",
+                    "A permanently undeliverable email due to invalid address",
+                    "An email that's difficult to read",
+                    "A temporarily delayed email"
+                ],
+                correct: 1,
+                explanation: "Hard bounces occur when email addresses don't exist or domains are invalid; these should be removed immediately."
+            },
+            {
+                question: "What should you do with hard bounces?",
+                options: [
+                    "Keep trying to send to them",
+                    "Remove them immediately from your list",
+                    "Send them to a different email address",
+                    "Mark them as VIP subscribers"
+                ],
+                correct: 1,
+                explanation: "Continuing to send to hard bounces damages your sender reputation and wastes resources."
+            },
+            {
+                question: "What is a soft bounce?",
+                options: [
+                    "A gently delivered email",
+                    "A temporarily undeliverable email due to issues like full inbox or server problems",
+                    "An email with soft colors",
+                    "A partially delivered email"
+                ],
+                correct: 1,
+                explanation: "Soft bounces are temporary issues; monitor these addresses and remove them if bouncing persists over time."
+            },
+            {
+                question: "How often should you clean your email list?",
+                options: [
+                    "Once per year",
+                    "Monthly or quarterly, depending on list size and activity",
+                    "Never - larger lists are always better",
+                    "Only when forced by your email provider"
+                ],
+                correct: 1,
+                explanation: "Regular list cleaning maintains engagement rates and deliverability by removing inactive and invalid addresses."
+            },
+            {
+                question: "What defines an \"inactive\" subscriber?",
+                options: [
+                    "Someone who subscribed recently",
+                    "Someone who hasn't opened or clicked emails in 6+ months",
+                    "Someone who opens but doesn't click",
+                    "Someone who forwards your emails"
+                ],
+                correct: 1,
+                explanation: "Extended inactivity suggests lack of interest; these subscribers can hurt engagement metrics and deliverability."
+            },
+            {
+                question: "What should you do before removing inactive subscribers?",
+                options: [
+                    "Remove them immediately without warning",
+                    "Send a re-engagement campaign offering them a chance to stay subscribed",
+                    "Add them to more email lists",
+                    "Increase their email frequency"
+                ],
+                correct: 1,
+                explanation: "Re-engagement campaigns can win back interested subscribers and clearly identify who should be removed."
+            },
+            {
+                question: "What is list segmentation?",
+                options: [
+                    "Cutting your email list into equal pieces",
+                    "Dividing subscribers into targeted groups based on characteristics or behavior",
+                    "Organizing subscribers alphabetically",
+                    "Separating personal and business email addresses"
+                ],
+                correct: 1,
+                explanation: "Segmentation allows you to send more relevant, targeted content that resonates with specific audience groups."
+            },
+            {
+                question: "What is a suppression list?",
+                options: [
+                    "A list of your best customers",
+                    "A list of email addresses that should never receive your marketing emails",
+                    "A list of competitors",
+                    "A list of email templates"
+                ],
+                correct: 1,
+                explanation: "Suppression lists include unsubscribes, complaints, and other addresses you shouldn't email for legal or business reasons."
+            },
+            {
+                question: "What's a good spam complaint rate?",
+                options: [
+                    "Under 0.1%",
+                    "Under 1%",
+                    "Under 5%",
+                    "Complaint rate doesn't matter"
+                ],
+                correct: 0,
+                explanation: "Spam complaint rates above 0.1% can seriously damage sender reputation; rates above 0.3% may get you blocked."
+            },
+            {
+                question: "What causes high unsubscribe rates?",
+                options: [
+                    "Sending valuable content",
+                    "Too frequent emails, irrelevant content, or misleading signup expectations",
+                    "Including unsubscribe links",
+                    "Personalizing emails"
+                ],
+                correct: 1,
+                explanation: "People unsubscribe when emails don't meet their expectations or provide insufficient value for the frequency."
+            },
+            {
+                question: "What does CAN-SPAM stand for?",
+                options: [
+                    "Canada Anti-Spam Act",
+                    "Controlling the Assault of Non-Solicited Pornography And Marketing Act",
+                    "Computer Anti-Spam Protection",
+                    "Commercial Automated Network Spam Prevention"
+                ],
+                correct: 1,
+                explanation: "CAN-SPAM is the US federal law that sets rules for commercial email messages and gives recipients rights to stop emails."
+            },
+            {
+                question: "According to CAN-SPAM, what must be accurate in your emails?",
+                options: [
+                    "Only the subject line",
+                    "Header information including \"From,\" \"To,\" and \"Reply-To\" fields",
+                    "Only the unsubscribe link",
+                    "Only the physical address"
+                ],
+                correct: 1,
+                explanation: "All routing and header information must accurately identify the sender; false headers violate CAN-SPAM."
+            },
+            {
+                question: "What does CAN-SPAM require in your subject line?",
+                options: [
+                    "Your company name",
+                    "The word \"Advertisement\"",
+                    "Subject lines must not be deceptive and should reflect the email content",
+                    "The recipient's name"
+                ],
+                correct: 2,
+                explanation: "Misleading subject lines that don't match the email content violate CAN-SPAM requirements."
+            },
+            {
+                question: "What physical information must you include in commercial emails?",
+                options: [
+                    "Your home address",
+                    "Your valid physical postal address",
+                    "Your email server location",
+                    "Your website hosting address"
+                ],
+                correct: 1,
+                explanation: "CAN-SPAM requires a valid physical postal address where you can be contacted, which can be a street address or P.O. Box."
+            },
+            {
+                question: "How quickly must you process unsubscribe requests?",
+                options: [
+                    "Within 24 hours",
+                    "Within 10 business days",
+                    "Within 30 days",
+                    "There's no time requirement"
+                ],
+                correct: 1,
+                explanation: "CAN-SPAM allows up to 10 business days to process unsubscribe requests, though faster is better for customer experience."
+            },
+            {
+                question: "What should your unsubscribe process be like?",
+                options: [
+                    "Require subscribers to call your office",
+                    "Clear, conspicuous, and free for the recipient to use",
+                    "Hidden in fine print",
+                    "Require a written letter"
+                ],
+                correct: 1,
+                explanation: "Unsubscribe mechanisms must be easy to find and use, and you can't charge fees for processing opt-out requests."
+            },
+            {
+                question: "Can you continue emailing someone after they unsubscribe?",
+                options: [
+                    "Yes, for 30 days",
+                    "Yes, if you offer them discounts",
+                    "No, except for transactional or relationship messages",
+                    "Yes, from different email addresses"
+                ],
+                correct: 2,
+                explanation: "After unsubscribing from marketing emails, you can only send transactional messages (receipts, account updates)."
+            },
+            {
+                question: "Who is responsible for CAN-SPAM compliance?",
+                options: [
+                    "Only the email service provider",
+                    "Both the sender and any companies they hire to send emails",
+                    "Only the company whose products are promoted",
+                    "Only the person who writes the emails"
+                ],
+                correct: 1,
+                explanation: "You remain responsible for compliance even when using third-party email service providers or agencies."
+            },
+            {
+                question: "What are the penalties for violating CAN-SPAM?",
+                options: [
+                    "A warning letter",
+                    "Fines up to $51,744 per email",
+                    "Temporary account suspension",
+                    "There are no penalties"
+                ],
+                correct: 1,
+                explanation: "CAN-SPAM violations carry serious financial penalties, with fines that can reach over $50,000 per violating email."
+            },
+            {
+                question: "Does CAN-SPAM apply to B2B emails?",
+                options: [
+                    "No, only B2C emails",
+                    "Yes, it applies to all commercial emails",
+                    "Only if the business has fewer than 100 employees",
+                    "Only for retail businesses"
+                ],
+                correct: 1,
+                explanation: "CAN-SPAM covers all commercial messages regardless of whether they're sent to consumers or businesses."
+            },
+            {
+                question: "What does GDPR stand for?",
+                options: [
+                    "General Data Protection Regulation",
+                    "Global Data Privacy Rules",
+                    "German Data Protection Requirements",
+                    "General Database Protection Rights"
+                ],
+                correct: 0,
+                explanation: "GDPR is the European Union's comprehensive data protection regulation that gives individuals control over their personal data."
+            },
+            {
+                question: "Who does GDPR apply to?",
+                options: [
+                    "Only companies based in the EU",
+                    "Any organization that processes personal data of EU residents",
+                    "Only large corporations",
+                    "Only email marketing companies"
+                ],
+                correct: 1,
+                explanation: "GDPR has global reach - it applies to any organization that handles personal data of people in the EU, regardless of where the company is located."
+            },
+            {
+                question: "What is required for valid consent under GDPR?",
+                options: [
+                    "Any form of consent",
+                    "Consent must be freely given, specific, informed, and unambiguous",
+                    "Implied consent is sufficient",
+                    "Consent from parents only"
+                ],
+                correct: 1,
+                explanation: "GDPR sets high standards for consent - it must be clear, specific, and given without coercion."
+            },
+            {
+                question: "What is the \"Right to be Forgotten\" under GDPR?",
+                options: [
+                    "The right to forget your password",
+                    "The right to request deletion of personal data",
+                    "The right to be removed from marketing materials",
+                    "The right to anonymous browsing"
+                ],
+                correct: 1,
+                explanation: "GDPR gives individuals the right to request deletion of their personal data under certain circumstances."
+            },
+            {
+                question: "How long do you have to respond to a GDPR data subject request?",
+                options: [
+                    "30 days",
+                    "One month (30 calendar days)",
+                    "10 business days",
+                    "90 days"
+                ],
+                correct: 1,
+                explanation: "GDPR requires organizations to respond to data subject access requests within one month of receipt."
+            },
+            {
+                question: "What is \"Privacy by Design\"?",
+                options: [
+                    "Designing private offices",
+                    "Building privacy protection into systems and processes from the beginning",
+                    "Creating private social media accounts",
+                    "Designing privacy policies"
+                ],
+                correct: 1,
+                explanation: "Privacy by Design means considering data protection throughout the entire system development lifecycle, not as an afterthought."
+            },
+            {
+                question: "What is a Data Protection Impact Assessment (DPIA)?",
+                options: [
+                    "An assessment of data protection costs",
+                    "A process to identify and minimize privacy risks in projects involving personal data",
+                    "A test of data protection software",
+                    "An employee assessment of privacy knowledge"
+                ],
+                correct: 1,
+                explanation: "DPIAs help organizations identify and address privacy risks before implementing projects that process personal data."
+            },
+            {
+                question: "What are the potential penalties for GDPR violations?",
+                options: [
+                    "Warning letters only",
+                    "Up to €20 million or 4% of annual global turnover, whichever is higher",
+                    "Temporary business suspension",
+                    "Employee training requirements"
+                ],
+                correct: 1,
+                explanation: "GDPR has significant financial penalties designed to ensure organizations take data protection seriously."
+            },
+            {
+                question: "What is a lawful basis for processing under GDPR?",
+                options: [
+                    "Any business reason",
+                    "Legitimate grounds such as consent, contract performance, or legal obligation",
+                    "Company policies",
+                    "Industry standards"
+                ],
+                correct: 1,
+                explanation: "GDPR requires a specific lawful basis for processing personal data, such as consent, contractual necessity, or legal requirements."
+            },
+            {
+                question: "What should be included in a GDPR-compliant privacy policy?",
+                options: [
+                    "Only your company name",
+                    "Clear information about what data you collect, why, how it's used, and individual rights",
+                    "Just legal disclaimers",
+                    "Only contact information"
+                ],
+                correct: 1,
+                explanation: "GDPR requires transparent communication about data processing activities and individual rights in clear, plain language."
+            },
+            {
+                question: "What makes email content \"valuable\" to subscribers?",
+                options: [
+                    "Expensive-looking design",
+                    "Content that solves problems, educates, entertains, or provides exclusive benefits",
+                    "Long, detailed emails",
+                    "Frequent promotional offers"
+                ],
+                correct: 1,
+                explanation: "Valuable content serves the subscriber's needs and interests, not just the sender's promotional goals."
+            },
+            {
+                question: "What should you avoid in email subject lines to prevent spam filtering?",
+                options: [
+                    "Personalization",
+                    "Excessive use of ALL CAPS, multiple exclamation marks, and words like \"FREE\"",
+                    "Your company name",
+                    "Numbers and dates"
+                ],
+                correct: 1,
+                explanation: "These elements are common spam indicators that can trigger filters and reduce deliverability."
+            },
+            {
+                question: "What is the recommended text-to-image ratio in emails?",
+                options: [
+                    "Images only",
+                    "80% text, 20% images",
+                    "50% text, 50% images",
+                    "Text-to-image ratio doesn't matter"
+                ],
+                correct: 1,
+                explanation: "A higher proportion of text to images helps avoid spam filters and ensures accessibility."
+            },
+            {
+                question: "Why should you include alt text for images?",
+                options: [
+                    "It makes images load faster",
+                    "It provides descriptions when images don't load and improves accessibility",
+                    "It's required by email providers",
+                    "It makes emails more expensive"
+                ],
+                correct: 1,
+                explanation: "Alt text serves users when images are blocked and helps visually impaired users with screen readers."
+            },
+            {
+                question: "What should your email design prioritize?",
+                options: [
+                    "Complex graphics and animations",
+                    "Mobile-first, accessible design with clear hierarchy",
+                    "Matching your website exactly",
+                    "Using as many colors as possible"
+                ],
+                correct: 1,
+                explanation: "Most emails are read on mobile devices, so mobile-optimized, accessible design is essential for user experience."
+            },
+            {
+                question: "How should you handle links in your emails?",
+                options: [
+                    "Include as many links as possible",
+                    "Use clear, descriptive link text and ensure all links work correctly",
+                    "Hide links to make emails cleaner",
+                    "Only use image-based links"
+                ],
+                correct: 1,
+                explanation: "Clear link descriptions help users understand where they're going, and functional links are essential for user experience."
+            },
+            {
+                question: "What is the purpose of preheader text?",
+                options: [
+                    "To make emails longer",
+                    "To provide additional context and encourage opens alongside the subject line",
+                    "To hide content from spam filters",
+                    "To include technical information"
+                ],
+                correct: 1,
+                explanation: "Preheader text appears next to the subject line in many email clients, providing extra space to encourage opens."
+            },
+            {
+                question: "How long should email subject lines typically be?",
+                options: [
+                    "As long as possible",
+                    "30-50 characters to ensure they display fully on mobile devices",
+                    "Exactly 10 words",
+                    "Subject line length doesn't matter"
+                ],
+                correct: 1,
+                explanation: "Shorter subject lines display completely on mobile devices, where most emails are opened."
+            },
+            {
+                question: "What should you test before sending any email campaign?",
+                options: [
+                    "Only the subject line",
+                    "All links, rendering across email clients, mobile responsiveness, and personalization",
+                    "Only the images",
+                    "Testing isn't necessary"
+                ],
+                correct: 1,
+                explanation: "Comprehensive testing prevents errors and ensures a professional experience across all platforms."
+            },
+            {
+                question: "What is the benefit of consistent branding in emails?",
+                options: [
+                    "It's required by law",
+                    "It builds recognition and trust with subscribers",
+                    "It reduces development costs",
+                    "It improves deliverability"
+                ],
+                correct: 1,
+                explanation: "Consistent branding helps subscribers immediately recognize your emails and builds trust through professional, cohesive communication."
+            },
+            {
+                question: "What's the best day of the week to send marketing emails?",
+                options: [
+                    "Monday",
+                    "Friday",
+                    "Tuesday through Thursday typically perform best, but it varies by audience",
+                    "Sunday"
+                ],
+                correct: 2,
+                explanation: "While Tuesday-Thursday are general best practices, the optimal day depends on your specific audience behavior."
+            },
+            {
+                question: "What time of day generally sees the highest email engagement?",
+                options: [
+                    "Early morning (6-8 AM)",
+                    "Mid-morning to early afternoon (10 AM - 2 PM)",
+                    "Late evening (8-10 PM)",
+                    "Midnight"
+                ],
+                correct: 1,
+                explanation: "This timeframe typically captures people checking email during work hours, though optimal times vary by audience."
+            },
+            {
+                question: "How should you determine the right email frequency for your audience?",
+                options: [
+                    "Send daily emails to everyone",
+                    "Monitor engagement metrics and feedback to find the sweet spot for your audience",
+                    "Copy what competitors do",
+                    "Send weekly emails regardless of content"
+                ],
+                correct: 1,
+                explanation: "The right frequency varies by audience, content value, and industry - data and feedback guide optimal frequency."
+            },
+            {
+                question: "What typically happens when you email too frequently?",
+                options: [
+                    "Higher engagement rates",
+                    "Increased unsubscribes and spam complaints",
+                    "Better deliverability",
+                    "More new subscribers"
+                ],
+                correct: 1,
+                explanation: "Over-emailing leads to subscriber fatigue, causing people to opt out or mark emails as spam."
+            },
+            {
+                question: "What is email fatigue?",
+                options: [
+                    "Emails that load slowly",
+                    "When subscribers become overwhelmed by too many emails and start ignoring or unsubscribing",
+                    "Technical problems with email servers",
+                    "Outdated email designs"
+                ],
+                correct: 1,
+                explanation: "Email fatigue occurs when the volume or frequency of emails exceeds subscriber tolerance."
+            },
+            {
+                question: "How can you prevent email fatigue?",
+                options: [
+                    "Send more emails to re-engage people",
+                    "Provide valuable content, segment audiences, and offer frequency preferences",
+                    "Use more colorful designs",
+                    "Send emails only at night"
+                ],
+                correct: 1,
+                explanation: "Value, relevance, and subscriber control are key to preventing fatigue while maintaining engagement."
+            },
+            {
+                question: "What should you consider when emailing across different time zones?",
+                options: [
+                    "Always use your local time",
+                    "Segment by time zone and send at appropriate local times, or choose a time that works reasonably well for all zones",
+                    "Only email during one time zone's business hours",
+                    "Time zones don't affect email performance"
+                ],
+                correct: 1,
+                explanation: "Respecting subscribers' local times can improve engagement, though this requires more sophisticated scheduling."
+            },
+            {
+                question: "How do industry and audience type affect optimal email timing?",
+                options: [
+                    "They don't affect timing",
+                    "B2B emails often perform better during business hours; B2C during evenings/weekends",
+                    "All industries should use the same timing",
+                    "Only retail businesses need to consider timing"
+                ],
+                correct: 1,
+                explanation: "Professional audiences check email during work hours, while consumers often engage during personal time."
+            },
+            {
+                question: "What is send time optimization?",
+                options: [
+                    "Sending emails as fast as possible",
+                    "Using data and AI to determine the best individual send time for each subscriber",
+                    "Sending all emails at the same time",
+                    "Optimizing for your convenience"
+                ],
+                correct: 1,
+                explanation: "Advanced systems analyze individual behavior patterns to predict when each person is most likely to engage."
+            },
+            {
+                question: "How should you test email timing?",
+                options: [
+                    "Never test timing",
+                    "A/B test different send times with similar content and audience segments",
+                    "Only test once per year",
+                    "Copy successful companies' timing"
+                ],
+                correct: 1,
+                explanation: "Systematic testing with your specific audience provides data-driven insights about optimal timing."
+            },
+            {
+                question: "What is a good open rate benchmark for most industries?",
+                options: [
+                    "5%",
+                    "20-25%",
+                    "50%",
+                    "80%"
+                ],
+                correct: 1,
+                explanation: "Industry averages typically fall in this range, though your specific benchmark should be based on your historical performance."
+            },
+            {
+                question: "What is click-through rate (CTR)?",
+                options: [
+                    "The rate at which people click unsubscribe",
+                    "The percentage of delivered emails that received clicks",
+                    "How fast emails load",
+                    "The rate of email bounces"
+                ],
+                correct: 1,
+                explanation: "CTR measures engagement by showing what percentage of your email recipients clicked on links in your message."
+            },
+            {
+                question: "What does click-to-open rate tell you?",
+                options: [
+                    "How fast emails open",
+                    "Of the people who opened your email, what percentage clicked a link",
+                    "How many people clicked without opening",
+                    "The speed of your email server"
+                ],
+                correct: 1,
+                explanation: "Click-to-open rate measures the effectiveness of your email content among engaged subscribers who actually read it."
+            },
+            {
+                question: "What is list growth rate?",
+                options: [
+                    "How fast your company is growing",
+                    "The net rate of new subscriptions minus unsubscribes over time",
+                    "How quickly emails are delivered",
+                    "The rate of email opens"
+                ],
+                correct: 1,
+                explanation: "List growth rate shows whether your list is growing or shrinking, indicating the health of your email program."
+            },
+            {
+                question: "What should you do if your open rates are declining?",
+                options: [
+                    "Send more emails immediately",
+                    "Analyze factors like subject lines, send times, list hygiene, and sender reputation",
+                    "Change your email platform",
+                    "Stop sending emails"
+                ],
+                correct: 1,
+                explanation: "Declining opens can have multiple causes - systematic analysis helps identify and address the root issues."
+            },
+            {
+                question: "What does conversion rate measure in email marketing?",
+                options: [
+                    "How many emails were converted to text format",
+                    "The percentage of email recipients who completed a desired action (purchase, signup, download)",
+                    "How fast emails convert from draft to sent",
+                    "The rate of email format conversion"
+                ],
+                correct: 1,
+                explanation: "Conversion rate measures the ultimate business impact of your emails by tracking goal completions."
+            },
+            {
+                question: "What is revenue per email?",
+                options: [
+                    "How much you pay per email sent",
+                    "Total revenue generated divided by total emails sent",
+                    "The cost to create each email",
+                    "Revenue from email software sales"
+                ],
+                correct: 1,
+                explanation: "This metric helps quantify the financial value of your email marketing program."
+            },
+            {
+                question: "How often should you review email performance metrics?",
+                options: [
+                    "Once per year",
+                    "Regularly - weekly for active campaigns, monthly for overall trends",
+                    "Only when problems occur",
+                    "Performance reviews aren't necessary"
+                ],
+                correct: 1,
+                explanation: "Regular monitoring helps you identify trends, catch issues early, and optimize performance continuously."
+            },
+            {
+                question: "What should you do when you notice performance improvements?",
+                options: [
+                    "Ignore them and continue as usual",
+                    "Document what changed and try to replicate successful elements in future campaigns",
+                    "Immediately change everything else",
+                    "Assume it was luck"
+                ],
+                correct: 1,
+                explanation: "Learning from successes is as important as fixing failures - document wins to repeat them."
+            },
+            {
+                question: "What is subscriber lifetime value (LTV) in email marketing?",
+                options: [
+                    "How long subscribers keep their email addresses",
+                    "The total revenue a subscriber generates throughout their relationship with your brand",
+                    "The time subscribers spend reading emails",
+                    "The cost to acquire each subscriber"
+                ],
+                correct: 1,
+                explanation: "LTV helps you understand the long-term value of email subscribers and justify acquisition costs."
+            },
+            {
+                question: "What is behavioral segmentation?",
+                options: [
+                    "Segmenting by how people behave in meetings",
+                    "Dividing subscribers based on their actions, purchases, and engagement patterns",
+                    "Organizing by personality types",
+                    "Segmenting by complaint behavior"
+                ],
+                correct: 1,
+                explanation: "Behavioral segmentation uses actual customer actions to create relevant groups for targeted messaging."
+            },
+            {
+                question: "What is lifecycle email marketing?",
+                options: [
+                    "Emails about product lifecycles",
+                    "Creating email programs that adapt to different stages of the customer relationship",
+                    "Emails sent only to elderly customers",
+                    "Seasonal email campaigns"
+                ],
+                correct: 1,
+                explanation: "Lifecycle marketing recognizes that customers need different messages as they progress from prospect to loyal customer."
+            },
+            {
+                question: "What should a re-engagement campaign accomplish?",
+                options: [
+                    "Re-engage your employees",
+                    "Win back inactive subscribers or identify who should be removed from your list",
+                    "Increase email frequency for all subscribers",
+                    "Change your email design"
+                ],
+                correct: 1,
+                explanation: "Re-engagement campaigns give inactive subscribers one last chance to show interest before removal."
+            },
+            {
+                question: "What is progressive profiling?",
+                options: [
+                    "Creating professional-looking profiles",
+                    "Gradually collecting additional subscriber information over time through multiple interactions",
+                    "Profiling customers by profession",
+                    "Making profiles more progressive"
+                ],
+                correct: 1,
+                explanation: "Progressive profiling builds detailed customer profiles slowly rather than overwhelming people with long initial forms."
+            },
+            {
+                question: "What is cross-channel marketing integration?",
+                options: [
+                    "Crossing out unsuccessful marketing channels",
+                    "Coordinating consistent messaging across email, social media, web, and other touchpoints",
+                    "Only using multiple email platforms",
+                    "Eliminating traditional marketing channels"
+                ],
+                correct: 1,
+                explanation: "Integration ensures customers receive cohesive experiences regardless of how they interact with your brand."
+            },
+            {
+                question: "What is email accessibility?",
+                options: [
+                    "How easy it is to access your email account",
+                    "Designing emails that can be used by people with disabilities",
+                    "Making emails available on all devices",
+                    "Accessing emails from anywhere"
+                ],
+                correct: 1,
+                explanation: "Accessible design includes features like alt text, proper contrast, and screen reader compatibility."
+            },
+            {
+                question: "What is A/B testing best practice for email?",
+                options: [
+                    "Test everything at once",
+                    "Test one element at a time with statistically significant sample sizes",
+                    "Only test with VIP customers",
+                    "Testing isn't valuable for email"
+                ],
+                correct: 1,
+                explanation: "Isolated testing of single variables with adequate sample sizes provides clear, actionable insights."
+            },
+            {
+                question: "What is the purpose of email authentication beyond deliverability?",
+                options: [
+                    "Authentication only affects deliverability",
+                    "It also protects your brand from spoofing and builds subscriber trust",
+                    "Authentication makes emails more expensive",
+                    "It's only required by law"
+                ],
+                correct: 1,
+                explanation: "Authentication prevents criminals from impersonating your brand and helps subscribers trust your emails are legitimate."
+            },
+            {
+                question: "What should you consider when planning seasonal email campaigns?",
+                options: [
+                    "Only consider your local weather",
+                    "Audience location, cultural events, business cycles, and seasonal behavior patterns",
+                    "Just change the colors in your templates",
+                    "Seasonal campaigns aren't worth the effort"
+                ],
+                correct: 1,
+                explanation: "Effective seasonal campaigns consider various factors that affect how different audiences behave throughout the year."
+            },
+            {
+                question: "What is the future trend in email marketing best practices?",
+                options: [
+                    "Email marketing is becoming obsolete",
+                    "Increased personalization, AI optimization, privacy focus, and interactive content",
+                    "Going back to text-only emails",
+                    "Sending more emails to everyone"
+                ],
+                correct: 1,
+                explanation: "Email marketing continues evolving toward more sophisticated, personalized, and privacy-conscious approaches."
+            },
+            {
+                question: "What should be your first step when developing an email marketing strategy?",
+                options: [
+                    "Choose an email platform",
+                    "Define clear business objectives and understand your target audience",
+                    "Design email templates",
+                    "Start sending emails immediately"
+                ],
+                correct: 1,
+                explanation: "Strategy starts with understanding what you want to achieve and who you're trying to reach."
+            },
+            {
+                question: "How should you handle email marketing during crisis situations?",
+                options: [
+                    "Continue sending promotional emails as usual",
+                    "Pause or adjust messaging to be sensitive to the situation and focus on helpful content",
+                    "Increase email frequency to stay top of mind",
+                    "Crisis situations don't affect email marketing"
+                ],
+                correct: 1,
+                explanation: "Crisis situations require sensitivity and adaptability in your communication approach."
+            },
+            {
+                question: "What is the role of email in a multi-channel marketing strategy?",
+                options: [
+                    "Email should be the only channel used",
+                    "Email works with other channels to create cohesive customer experiences and nurture relationships",
+                    "Email is less important than other channels",
+                    "Email and other channels should never be coordinated"
+                ],
+                correct: 1,
+                explanation: "Email is most effective when integrated with other marketing channels to create seamless customer journeys."
+            },
+            {
+                question: "How should you measure email marketing ROI?",
+                options: [
+                    "Only count immediate sales",
+                    "Track revenue generated minus costs, including long-term customer value and indirect benefits",
+                    "ROI measurement isn't important for email",
+                    "Only measure cost per email sent"
+                ],
+                correct: 1,
+                explanation: "True ROI includes both direct sales and longer-term benefits like customer retention and lifetime value."
+            },
+            {
+                question: "What should you do when email performance plateaus?",
+                options: [
+                    "Accept that performance can't improve",
+                    "Refresh strategy, test new approaches, review audience needs, and consider new technologies",
+                    "Send more emails with the same approach",
+                    "Switch to a different marketing channel entirely"
+                ],
+                correct: 1,
+                explanation: "Plateaus are opportunities to innovate and find new ways to provide value to your audience."
+            },
+            {
+                question: "How should you handle email marketing for global audiences?",
+                options: [
+                    "Send the same emails to everyone",
+                    "Consider local languages, time zones, cultural differences, and regional regulations",
+                    "Only focus on your home country",
+                    "Global audiences don't need special consideration"
+                ],
+                correct: 1,
+                explanation: "Global audiences require localized approaches that respect cultural differences and legal requirements."
+            },
+            {
+                question: "What is the importance of email marketing documentation?",
+                options: [
+                    "Documentation is unnecessary overhead",
+                    "It ensures consistency, enables team collaboration, and preserves knowledge",
+                    "Only large companies need documentation",
+                    "Documentation slows down campaign creation"
+                ],
+                correct: 1,
+                explanation: "Good documentation helps maintain quality standards and enables effective teamwork."
+            },
+            {
+                question: "How should you approach email marketing automation?",
+                options: [
+                    "Automate everything immediately",
+                    "Start with simple, high-impact automations and gradually add complexity based on results",
+                    "Never use automation",
+                    "Only automate during busy periods"
+                ],
+                correct: 1,
+                explanation: "Successful automation grows from simple, proven workflows to more sophisticated systems over time."
+            },
+            {
+                question: "What role does customer feedback play in email best practices?",
+                options: [
+                    "Customer feedback isn't relevant to email marketing",
+                    "Feedback helps you understand subscriber needs and improve your email program",
+                    "Only positive feedback matters",
+                    "Feedback should be ignored if it's negative"
+                ],
+                correct: 1,
+                explanation: "Customer feedback provides valuable insights that can guide strategy and improve subscriber satisfaction."
+            },
+            {
+                question: "What is the most important principle underlying all email marketing best practices?",
+                options: [
+                    "Maximizing profit from each email",
+                    "Respecting subscribers and providing genuine value in every interaction",
+                    "Sending as many emails as possible",
+                    "Following competitors' strategies"
+                ],
+                correct: 1,
+                explanation: "All effective email marketing best practices stem from treating subscribers with respect and focusing on their needs and interests."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answersGiven = [];
+        let quizCompleted = false;
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showCompletionScreen();
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${questions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <ul class="options">
+                        ${question.options.map((option, index) => 
+                            `<li class="option" onclick="selectOption(${index})">
+                                <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                                <span>${option}</span>
+                            </li>`
+                        ).join('')}
+                    </ul>
+                    <div class="explanation" id="explanation">
+                        <h4>✅ Correct Answer: ${String.fromCharCode(65 + question.correct)})</h4>
+                        <p>${question.explanation}</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <div class="score-display">
+                        Score: ${score}/${currentQuestion} ${currentQuestion > 0 ? `(${Math.round(score/currentQuestion*100)}%)` : ''}
+                    </div>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        Next →
+                    </button>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = questions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Remove any previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark the selected option
+            options[selectedIndex].classList.add('selected');
+
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Record the answer
+            answersGiven[currentQuestion] = selectedIndex;
+
+            // Update score
+            if (selectedIndex === question.correct) {
+                if (answersGiven[currentQuestion] !== question.correct) {
+                    score++;
+                }
+            }
+
+            // Show explanation and enable next button
+            explanation.classList.add('show');
+            nextBtn.disabled = false;
+
+            // Update score display
+            document.querySelector('.score-display').innerHTML = 
+                `Score: ${score}/${currentQuestion + 1} (${Math.round(score/(currentQuestion + 1)*100)}%)`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${questions.length}`;
+        }
+
+        function showCompletionScreen() {
+            const container = document.getElementById('quizContainer');
+            const completionScreen = document.getElementById('completionScreen');
+            const finalScorePercent = Math.round((score / questions.length) * 100);
+            
+            container.style.display = 'none';
+            completionScreen.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = finalScorePercent + '%';
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (finalScorePercent >= 90) {
+                scoreCircle.className = 'score-circle score-excellent';
+                scoreMessage.textContent = '🌟 Outstanding! You have excellent knowledge of SFMC Email Marketing Best Practices!';
+            } else if (finalScorePercent >= 75) {
+                scoreCircle.className = 'score-circle score-good';
+                scoreMessage.textContent = '👏 Great job! You have a solid understanding of the concepts.';
+            } else if (finalScorePercent >= 60) {
+                scoreCircle.className = 'score-circle score-needs-improvement';
+                scoreMessage.textContent = '📚 Good effort! Review the study guide and try again to improve your score.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                scoreMessage.textContent = '💪 Keep studying! Review the concepts and take the quiz again.';
+            }
+
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quiz Complete!';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            quizCompleted = false;
+            
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('completionScreen').classList.remove('show');
+            
+            loadQuestion();
+        }
+
+        // Initialize the quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

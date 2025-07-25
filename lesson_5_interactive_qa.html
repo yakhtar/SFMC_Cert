@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 5: Automation & Journey Builder - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2a5298;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: #2a5298;
+            background: #f0f7ff;
+        }
+        
+        .option.selected {
+            border-color: #2a5298;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #2a5298;
+            min-width: 25px;
+        }
+        
+        .explanation {
+            background: #e8f5e8;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .completion-screen.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .score-needs-improvement {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 SFMC Certification Study</h1>
+            <p>Lesson 5: Automation & Journey Builder</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 100</div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+        
+        <div class="completion-screen" id="completionScreen">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the Automation & Journey Builder quiz!</p>
+            <div class="score-circle" id="scoreCircle">
+                <span id="finalScore">0%</span>
+            </div>
+            <p id="scoreMessage"></p>
+            <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What's the main difference between Automation Studio and Journey Builder?",
+                options: [
+                    "Automation Studio is for emails, Journey Builder is for data",
+                    "Automation Studio handles backend processes, Journey Builder manages customer experiences",
+                    "They do the same thing",
+                    "Journey Builder is more advanced"
+                ],
+                correct: 1,
+                explanation: "Automation Studio works behind the scenes with data processing, imports, and technical tasks, while Journey Builder creates customer-facing experiences and multi-step communications."
+            },
+            {
+                question: "What is marketing automation in SFMC?",
+                options: [
+                    "Manual email sending only",
+                    "Automated tasks that run without manual intervention based on triggers",
+                    "Only scheduled email campaigns",
+                    "Customer service responses"
+                ],
+                correct: 1,
+                explanation: "Marketing automation executes predefined actions (emails, data updates, decisions) automatically when specific conditions or triggers are met, reducing manual work and improving timing."
+            },
+            {
+                question: "Which SFMC application is primarily used for backend data processing?",
+                options: [
+                    "Journey Builder",
+                    "Content Builder",
+                    "Automation Studio",
+                    "Email Studio"
+                ],
+                correct: 2,
+                explanation: "Automation Studio handles behind-the-scenes data processing including imports, exports, queries, filters, and data transformations that support other SFMC applications."
+            },
+            {
+                question: "What types of activities can you include in Automation Studio workflows?",
+                options: [
+                    "Only email sends",
+                    "Import, Query, Filter, Data Copy, and File Transfer activities",
+                    "Only data exports",
+                    "Customer service tickets only"
+                ],
+                correct: 1,
+                explanation: "Automation Studio supports various activity types for data management including importing data, running SQL queries, filtering records, copying data between extensions, and transferring files."
+            },
+            {
+                question: "What is a triggered send in SFMC?",
+                options: [
+                    "Emails sent manually by clicking a button",
+                    "Automated emails sent when specific actions or conditions occur",
+                    "Emails sent only on weekends",
+                    "Bulk emails sent to all subscribers"
+                ],
+                correct: 1,
+                explanation: "Triggered sends are automated emails initiated by specific events (API calls, data changes, customer actions) that send personalized messages at precisely the right moment."
+            },
+            {
+                question: "How do you schedule automation workflows in Automation Studio?",
+                options: [
+                    "They run automatically without scheduling",
+                    "Set specific times, dates, or recurring schedules",
+                    "Only manual execution is possible",
+                    "Scheduling is handled by Journey Builder"
+                ],
+                correct: 1,
+                explanation: "Automation Studio allows flexible scheduling including one-time execution, daily/weekly/monthly recurring schedules, or trigger-based execution for different automation needs."
+            },
+            {
+                question: "What is the purpose of Import Activities in automation workflows?",
+                options: [
+                    "To export data from SFMC",
+                    "To bring external data into SFMC data extensions",
+                    "To delete old data",
+                    "To create email templates"
+                ],
+                correct: 1,
+                explanation: "Import Activities facilitate bringing customer data from external sources (FTP, Enhanced FTP, local files) into SFMC data extensions for segmentation and personalization."
+            },
+            {
+                question: "What happens when an automation workflow fails?",
+                options: [
+                    "All activities continue running normally",
+                    "The workflow stops and error notifications can be sent",
+                    "Only the failed activity is skipped",
+                    "The workflow automatically restarts"
+                ],
+                correct: 1,
+                explanation: "When automation workflows encounter errors, they typically halt execution and can send notification emails to administrators for troubleshooting and resolution."
+            },
+            {
+                question: "How do you test automation workflows before going live?",
+                options: [
+                    "Testing is not necessary for automation",
+                    "Use test data extensions and monitor results carefully",
+                    "Only test in production",
+                    "Wait for customer feedback"
+                ],
+                correct: 1,
+                explanation: "Test automation workflows with sample data, small data sets, and test data extensions to verify logic, timing, and results before deploying to production environments."
+            },
+            {
+                question: "What is the relationship between Automation Studio and Data Extensions?",
+                options: [
+                    "They are unrelated components",
+                    "Automation Studio can create, update, and manage Data Extension records",
+                    "Data Extensions replace Automation Studio",
+                    "Only Journey Builder can use Data Extensions"
+                ],
+                correct: 1,
+                explanation: "Automation Studio activities can import data into Data Extensions, update existing records, filter and segment data, and manage Data Extension content for other SFMC applications."
+            },
+            {
+                question: "What is a Query Activity's primary function?",
+                options: [
+                    "To ask customers survey questions",
+                    "To use SQL to select and manipulate data from Data Extensions",
+                    "To create email templates",
+                    "To schedule email sends"
+                ],
+                correct: 1,
+                explanation: "Query Activities execute SQL statements to select, filter, join, and transform data from Data Extensions, creating new datasets for segmentation and personalization."
+            },
+            {
+                question: "How do Filter Activities differ from Query Activities?",
+                options: [
+                    "They perform the same function",
+                    "Filter Activities use drag-and-drop rules; Query Activities use SQL",
+                    "Filter Activities are more powerful",
+                    "Query Activities are only for imports"
+                ],
+                correct: 1,
+                explanation: "Filter Activities provide a visual, no-code interface for creating data selection rules, while Query Activities require SQL knowledge but offer more flexibility and power."
+            },
+            {
+                question: "What is a Data Copy Activity used for?",
+                options: [
+                    "Creating backup copies of emails",
+                    "Moving data from one Data Extension to another",
+                    "Copying email templates",
+                    "Duplicating Journey Builder paths"
+                ],
+                correct: 1,
+                explanation: "Data Copy Activities transfer records from source Data Extensions to target Data Extensions, useful for data organization, archiving, and preparation for other processes."
+            },
+            {
+                question: "How do you handle dependencies between automation activities?",
+                options: [
+                    "All activities run simultaneously",
+                    "Use connectors to define execution order and dependencies",
+                    "Dependencies are not supported",
+                    "Manual coordination is required"
+                ],
+                correct: 1,
+                explanation: "Automation Studio uses visual connectors to define the sequence and dependencies between activities, ensuring proper execution order and conditional logic."
+            },
+            {
+                question: "What is the purpose of File Transfer Activities?",
+                options: [
+                    "To move files between SFMC and external systems",
+                    "To create new files within SFMC",
+                    "To delete unwanted files",
+                    "To edit file contents"
+                ],
+                correct: 0,
+                explanation: "File Transfer Activities handle secure file movement between SFMC and external FTP servers, Enhanced FTP, or other connected systems for data integration workflows."
+            },
+            {
+                question: "How do you monitor automation workflow performance?",
+                options: [
+                    "Performance monitoring is not available",
+                    "Review activity status, execution times, and error logs",
+                    "Only count successful runs",
+                    "Monitor only during business hours"
+                ],
+                correct: 1,
+                explanation: "Automation Studio provides detailed monitoring including activity status, execution duration, error messages, and historical performance data for workflow optimization."
+            },
+            {
+                question: "What happens to automation workflows when SFMC undergoes maintenance?",
+                options: [
+                    "They continue running normally",
+                    "Scheduled workflows may be delayed or rescheduled",
+                    "All workflows are permanently deleted",
+                    "Only manual workflows are affected"
+                ],
+                correct: 1,
+                explanation: "During planned maintenance windows, scheduled automation workflows may be delayed or rescheduled to ensure data integrity and system stability."
+            },
+            {
+                question: "How do you handle error notifications in automation workflows?",
+                options: [
+                    "Errors are never reported",
+                    "Configure notification emails for workflow failures and successes",
+                    "Errors only appear in system logs",
+                    "Manual checking is the only option"
+                ],
+                correct: 1,
+                explanation: "Automation Studio can send notification emails to administrators when workflows succeed, fail, or encounter specific conditions, enabling proactive monitoring and management."
+            },
+            {
+                question: "What is the maximum number of activities allowed in a single automation workflow?",
+                options: [
+                    "5 activities",
+                    "No limit exists",
+                    "Platform-dependent limits apply (typically 50-100)",
+                    "10 activities maximum"
+                ],
+                correct: 2,
+                explanation: "SFMC has practical limits on automation workflow complexity to ensure performance and manageability, though exact limits may vary by account configuration and platform version."
+            },
+            {
+                question: "How do you version control automation workflows?",
+                options: [
+                    "Version control is not supported",
+                    "Create copies with version numbers and documentation",
+                    "Automatic versioning handles everything",
+                    "Only the latest version is saved"
+                ],
+                correct: 1,
+                explanation: "Best practice involves creating named copies of automation workflows before major changes, maintaining documentation of changes, and using clear naming conventions for version management."
+            },
+            {
+                question: "What is an Entry Source in Journey Builder?",
+                options: [
+                    "The exit point of a journey",
+                    "How customers enter the journey",
+                    "The email template used",
+                    "The goal of the journey"
+                ],
+                correct: 1,
+                explanation: "Entry Source determines which customers enter the journey and when they enter, defining the starting conditions and data source for the customer experience."
+            },
+            {
+                question: "What types of Entry Sources are available in Journey Builder?",
+                options: [
+                    "Only Data Extensions",
+                    "Data Extensions, Salesforce Objects, API Events, and Audience Builder",
+                    "Only manual entry",
+                    "Email opens only"
+                ],
+                correct: 1,
+                explanation: "Journey Builder supports multiple entry sources including Data Extensions for batch processing, real-time API events, Salesforce CRM data, and Audience Builder segments."
+            },
+            {
+                question: "What should you do before activating a journey?",
+                options: [
+                    "Send it to all customers immediately",
+                    "Wait a week to think about it",
+                    "Validate and test the journey with small groups",
+                    "Only check the spelling"
+                ],
+                correct: 2,
+                explanation: "Always validate journey structure, test with sample data, verify email content, check timing, and use small test groups before full activation to prevent issues."
+            },
+            {
+                question: "What is a Decision Split used for?",
+                options: [
+                    "Ending the journey",
+                    "Creating different paths based on customer behavior or data",
+                    "Scheduling emails",
+                    "Importing data"
+                ],
+                correct: 1,
+                explanation: "Decision Splits create branching logic in journeys, allowing customers to take different paths based on their attributes, behaviors, or engagement with previous journey steps."
+            },
+            {
+                question: "What types of Decision Splits are available in Journey Builder?",
+                options: [
+                    "Only random splits",
+                    "Engagement Splits, Attribute Splits, and Random Splits",
+                    "Only demographic splits",
+                    "Time-based splits only"
+                ],
+                correct: 1,
+                explanation: "Journey Builder offers Engagement Splits (based on email interaction), Attribute Splits (based on customer data), and Random Splits (for A/B testing) to create personalized paths."
+            },
+            {
+                question: "How long should you wait between emails in a welcome series?",
+                options: [
+                    "Send all emails immediately",
+                    "Wait 2-3 days between emails",
+                    "Wait 1 month between emails",
+                    "Send randomly"
+                ],
+                correct: 1,
+                explanation: "This timing gives customers time to engage with content without being overwhelming, maintains interest, and allows for natural engagement patterns to develop."
+            },
+            {
+                question: "What is the purpose of a Wait Activity?",
+                options: [
+                    "To end the journey",
+                    "To pause customers for a specific time before the next step",
+                    "To send emails faster",
+                    "To collect customer data"
+                ],
+                correct: 1,
+                explanation: "Wait Activities create timing delays between journey steps, allowing for proper spacing of communications and giving customers time to take desired actions."
+            },
+            {
+                question: "What types of Wait Activities are available?",
+                options: [
+                    "Only duration-based waits",
+                    "Duration, Date/Time, and Attribute-based waits",
+                    "Only manual waits",
+                    "Random wait times only"
+                ],
+                correct: 1,
+                explanation: "Journey Builder supports Duration waits (specific time periods), Date/Time waits (until specific dates), and Attribute waits (until customer data changes)."
+            },
+            {
+                question: "What does \"No re-entry\" mean in Journey Settings?",
+                options: [
+                    "Customers can enter multiple times",
+                    "Customers can only go through the journey once",
+                    "No customers can enter",
+                    "Only new customers can enter"
+                ],
+                correct: 1,
+                explanation: "No re-entry prevents customers from going through the same journey multiple times, useful for one-time experiences like welcome series or specific promotions."
+            },
+            {
+                question: "What are Journey Goals and why are they important?",
+                options: [
+                    "Goals are not necessary in journeys",
+                    "Specific actions you want customers to complete; they measure success",
+                    "Only for internal reporting",
+                    "Goals automatically end journeys"
+                ],
+                correct: 1,
+                explanation: "Journey Goals define success metrics (purchases, downloads, registrations) and help measure journey effectiveness, providing insights for optimization and ROI calculation."
+            },
+            {
+                question: "How do you handle customers who meet journey goals?",
+                options: [
+                    "They automatically continue through all remaining steps",
+                    "Configure whether they continue or exit the journey after achieving goals",
+                    "They are removed from all future communications",
+                    "Goals have no impact on journey flow"
+                ],
+                correct: 1,
+                explanation: "Journey Builder allows configuration of post-goal behavior - customers can either exit the journey upon goal achievement or continue through remaining activities."
+            },
+            {
+                question: "What is the difference between Single Send and Multi-Step Journeys?",
+                options: [
+                    "There is no difference",
+                    "Single Send is one email to everyone; Multi-Step has multiple activities over time",
+                    "Single Send is only for VIP customers",
+                    "Multi-Step journeys are more expensive"
+                ],
+                correct: 1,
+                explanation: "Single Send Journeys deliver one message to the entire audience simultaneously, while Multi-Step Journeys create complex, personalized experiences with multiple touchpoints over time."
+            },
+            {
+                question: "How do you test Journey Builder paths with different customer scenarios?",
+                options: [
+                    "Testing is not possible in Journey Builder",
+                    "Use test data extensions with various customer profiles and monitor results",
+                    "Only test the first activity",
+                    "Wait for real customer feedback"
+                ],
+                correct: 1,
+                explanation: "Create test data extensions with different customer scenarios, attributes, and behaviors to validate all journey paths, decision logic, and personalization before activation."
+            },
+            {
+                question: "What information should you include in journey documentation?",
+                options: [
+                    "Only the journey name",
+                    "Purpose, target audience, success metrics, and business logic",
+                    "Just the email content",
+                    "Documentation is not necessary"
+                ],
+                correct: 1,
+                explanation: "Comprehensive journey documentation includes business objectives, target audience definitions, success metrics, decision logic, timing rationale, and maintenance instructions."
+            },
+            {
+                question: "How do you handle journey maintenance and updates?",
+                options: [
+                    "Journeys never need updates",
+                    "Create new versions, test changes, and document modifications",
+                    "Make changes directly to active journeys",
+                    "Delete and recreate journeys for changes"
+                ],
+                correct: 1,
+                explanation: "Best practice involves creating journey copies before major changes, testing updates thoroughly, documenting modifications, and following proper change management processes."
+            },
+            {
+                question: "What happens to customers already in a journey when you make changes?",
+                options: [
+                    "They automatically get the updated experience",
+                    "Active customers continue with the original version; new customers get updates",
+                    "All customers restart from the beginning",
+                    "Changes affect everyone immediately"
+                ],
+                correct: 1,
+                explanation: "Customers already progressing through a journey typically continue with the original configuration, while new entrants receive the updated version to maintain experience consistency."
+            },
+            {
+                question: "How do you analyze Journey Builder performance?",
+                options: [
+                    "Analytics are not available for journeys",
+                    "Review entry counts, goal achievement, path performance, and conversion rates",
+                    "Only count email opens",
+                    "Performance analysis is automatic"
+                ],
+                correct: 1,
+                explanation: "Journey analytics include customer entry/exit data, goal achievement rates, path performance comparisons, email engagement metrics, and overall conversion analysis."
+            },
+            {
+                question: "What is the purpose of journey exit criteria?",
+                options: [
+                    "Exit criteria are not configurable",
+                    "Define conditions that remove customers from the journey automatically",
+                    "Only for emergency stops",
+                    "Exit criteria end all journeys simultaneously"
+                ],
+                correct: 1,
+                explanation: "Exit criteria automatically remove customers from journeys based on specific conditions (unsubscribe, goal achievement, data changes) to maintain relevance and compliance."
+            },
+            {
+                question: "How do you manage journey capacity and performance?",
+                options: [
+                    "Capacity management is automatic",
+                    "Monitor entry volumes, processing times, and system resource usage",
+                    "Journeys have unlimited capacity",
+                    "Only technical teams can manage capacity"
+                ],
+                correct: 1,
+                explanation: "Journey capacity management involves monitoring customer entry rates, processing speeds, email sending volumes, and system performance to ensure optimal operation."
+            },
+            {
+                question: "What is the recommended approach for complex journey development?",
+                options: [
+                    "Build everything at once",
+                    "Start simple, test thoroughly, and add complexity gradually",
+                    "Copy existing journeys exactly",
+                    "Complex journeys are not recommended"
+                ],
+                correct: 1,
+                explanation: "Best practice involves starting with basic journey structure, validating core functionality, testing with small audiences, and incrementally adding complexity as confidence grows."
+            },
+            {
+                question: "What are Einstein Engagement Splits in Journey Builder?",
+                options: [
+                    "Manual decision splits only",
+                    "AI-powered splits that optimize send times for individual customers",
+                    "Random splits for A/B testing",
+                    "Splits based only on demographics"
+                ],
+                correct: 1,
+                explanation: "Einstein Engagement Splits use AI to determine the optimal send time for each individual customer based on their historical engagement patterns, improving open and click rates."
+            },
+            {
+                question: "How do you implement Einstein Send Time Optimization in journeys?",
+                options: [
+                    "It's automatically applied to all emails",
+                    "Configure Einstein Engagement Split with send time optimization enabled",
+                    "Only available for Single Send journeys",
+                    "Manual configuration of each customer's optimal time"
+                ],
+                correct: 1,
+                explanation: "Einstein Send Time Optimization is implemented through Einstein Engagement Splits, which analyze individual customer engagement patterns to determine and execute optimal send times."
+            },
+            {
+                question: "What is the purpose of Einstein Engagement Frequency splits?",
+                options: [
+                    "To limit all customers to one email per week",
+                    "To optimize email frequency for each customer based on their engagement tolerance",
+                    "To send more emails to everyone",
+                    "Only for VIP customer management"
+                ],
+                correct: 1,
+                explanation: "Einstein Engagement Frequency analyzes individual customer behavior to determine optimal email frequency, preventing over-communication and improving engagement by personalizing contact frequency."
+            },
+            {
+                question: "How do you configure A/B testing within Journey Builder?",
+                options: [
+                    "A/B testing is not supported in Journey Builder",
+                    "Use Random Splits to divide audience and compare performance of different paths",
+                    "Only available for subject line testing",
+                    "Requires separate automation workflows"
+                ],
+                correct: 1,
+                explanation: "Journey Builder supports A/B testing through Random Splits that divide the audience percentage-wise between different journey paths, allowing comparison of content, timing, or strategy variations."
+            },
+            {
+                question: "What are the best practices for A/B testing in journeys?",
+                options: [
+                    "Test everything simultaneously",
+                    "Test one variable at a time with statistically significant audiences",
+                    "Only test with VIP customers",
+                    "A/B testing results are not reliable"
+                ],
+                correct: 1,
+                explanation: "Effective journey A/B testing isolates single variables (subject lines, content, timing), uses adequate sample sizes for statistical significance, and runs tests long enough to gather meaningful data."
+            },
+            {
+                question: "How do you implement dynamic content in Journey Builder emails?",
+                options: [
+                    "Dynamic content is not supported",
+                    "Use AMPscript, personalization strings, and dynamic content blocks",
+                    "Only static content is allowed",
+                    "Dynamic content requires external systems"
+                ],
+                correct: 1,
+                explanation: "Journey Builder emails support dynamic content through AMPscript logic, personalization strings from data extensions, and dynamic content blocks that vary based on customer attributes."
+            },
+            {
+                question: "What is the role of Contact Builder in Journey Builder?",
+                options: [
+                    "They are completely separate systems",
+                    "Contact Builder provides unified customer profiles that Journey Builder uses for personalization",
+                    "Contact Builder replaces Journey Builder",
+                    "Only for technical integration"
+                ],
+                correct: 1,
+                explanation: "Contact Builder creates unified customer profiles from multiple data sources, which Journey Builder leverages for personalization, segmentation, and decision-making within customer journeys."
+            },
+            {
+                question: "How do you handle multi-channel communications in Journey Builder?",
+                options: [
+                    "Only email is supported",
+                    "Integrate with Mobile Studio for SMS, Social Studio for social, and other channels",
+                    "Multi-channel requires separate platforms",
+                    "Journey Builder is email-only"
+                ],
+                correct: 1,
+                explanation: "Journey Builder integrates with other SFMC Studios to create multi-channel customer experiences, combining email, SMS, push notifications, social media, and advertising in unified journeys."
+            },
+            {
+                question: "What are Journey Builder Custom Activities?",
+                options: [
+                    "Pre-built activities only",
+                    "Custom-developed activities that extend Journey Builder functionality",
+                    "Only for technical administrators",
+                    "Custom activities are not supported"
+                ],
+                correct: 1,
+                explanation: "Custom Activities are developer-created extensions that add specialized functionality to Journey Builder, such as integrations with external systems, custom logic, or unique business processes."
+            },
+            {
+                question: "How do you implement real-time personalization in journeys?",
+                options: [
+                    "Real-time personalization is not possible",
+                    "Use real-time data from APIs, triggered sends, and dynamic content",
+                    "Only batch processing is supported",
+                    "Personalization is only available at journey entry"
+                ],
+                correct: 1,
+                explanation: "Real-time personalization combines API-driven data updates, triggered sends based on immediate customer actions, and dynamic content that adapts based on current customer state and behaviors."
+            },
+            {
+                question: "What is the purpose of Journey Builder Canvas expansion?",
+                options: [
+                    "To make journeys visually larger",
+                    "To accommodate complex journeys with many activities and paths",
+                    "Only for aesthetic purposes",
+                    "Canvas size is fixed"
+                ],
+                correct: 1,
+                explanation: "Journey Builder Canvas can expand to accommodate complex customer experiences with multiple decision points, parallel paths, and extensive activity sequences while maintaining visual clarity."
+            },
+            {
+                question: "How do you handle international customers in Journey Builder?",
+                options: [
+                    "Create separate journeys for each country",
+                    "Use localization features, time zone handling, and regional content",
+                    "International customers are not supported",
+                    "Only English content is allowed"
+                ],
+                correct: 1,
+                explanation: "Journey Builder supports international customers through localized content, time zone-aware scheduling, regional compliance settings, and content personalization based on customer location and preferences."
+            },
+            {
+                question: "What are Journey Builder permissions and how do you manage them?",
+                options: [
+                    "All users have full access",
+                    "Role-based permissions control who can create, edit, activate, and view journeys",
+                    "Permissions are not configurable",
+                    "Only administrators can use Journey Builder"
+                ],
+                correct: 1,
+                explanation: "SFMC provides granular permission controls for Journey Builder, allowing administrators to define who can create journeys, edit existing ones, activate/deactivate, and view performance analytics."
+            },
+            {
+                question: "How do you implement lead scoring within Journey Builder?",
+                options: [
+                    "Lead scoring is not supported",
+                    "Use data extensions, query activities, and attribute updates to track and score engagement",
+                    "Only available with external systems",
+                    "Manual scoring only"
+                ],
+                correct: 1,
+                explanation: "Lead scoring in Journey Builder involves tracking customer interactions, updating score attributes in data extensions, and using decision splits to route customers based on their calculated scores."
+            },
+            {
+                question: "What is the role of Salesforce CRM integration in Journey Builder?",
+                options: [
+                    "No integration is possible",
+                    "Sync customer data, trigger journeys from CRM events, and update records based on journey outcomes",
+                    "Only one-way data flow",
+                    "Integration requires separate licensing"
+                ],
+                correct: 1,
+                explanation: "Salesforce CRM integration enables bi-directional data flow, allowing journeys to be triggered by CRM activities and journey outcomes to update CRM records for complete customer lifecycle management."
+            },
+            {
+                question: "How do you handle journey performance optimization?",
+                options: [
+                    "Performance optimization is automatic",
+                    "Monitor metrics, analyze bottlenecks, optimize decision logic, and refine targeting",
+                    "Performance cannot be improved",
+                    "Only technical teams can optimize"
+                ],
+                correct: 1,
+                explanation: "Journey optimization involves continuous monitoring of performance metrics, identifying conversion bottlenecks, refining decision criteria, improving content relevance, and optimizing timing and frequency."
+            },
+            {
+                question: "What are the data retention considerations for Journey Builder?",
+                options: [
+                    "Data is retained indefinitely",
+                    "Understand platform data retention policies and archive important journey data",
+                    "Data is deleted immediately after journey completion",
+                    "Data retention is not a concern"
+                ],
+                correct: 1,
+                explanation: "Journey Builder data retention follows SFMC platform policies, and organizations should understand these limitations, archive critical journey performance data, and plan for long-term reporting needs."
+            },
+            {
+                question: "How do you implement progressive profiling in Journey Builder?",
+                options: [
+                    "Progressive profiling is not supported",
+                    "Gradually collect customer data through journey interactions and preference centers",
+                    "Only at journey entry",
+                    "Requires external survey tools"
+                ],
+                correct: 1,
+                explanation: "Progressive profiling involves strategically collecting additional customer information throughout journey interactions, using preference centers, surveys, and behavioral tracking to build comprehensive profiles over time."
+            },
+            {
+                question: "What is the purpose of journey suppression logic?",
+                options: [
+                    "To suppress all communications",
+                    "To prevent customers from receiving inappropriate or excessive communications",
+                    "Only for legal compliance",
+                    "Suppression is not configurable"
+                ],
+                correct: 1,
+                explanation: "Journey suppression logic ensures customers don't receive inappropriate messages based on their current state, recent interactions, or business rules, maintaining relevance and preventing communication fatigue."
+            },
+            {
+                question: "How do you measure ROI for Journey Builder campaigns?",
+                options: [
+                    "ROI measurement is not possible",
+                    "Track revenue attribution, conversion rates, customer lifetime value, and engagement improvements",
+                    "Only count email opens",
+                    "ROI is automatically calculated"
+                ],
+                correct: 1,
+                explanation: "Journey ROI measurement involves tracking revenue generated through journey interactions, comparing conversion rates against control groups, measuring customer lifetime value improvements, and calculating overall engagement impact."
+            },
+            {
+                question: "What is SQL in the context of SFMC Query Activities?",
+                options: [
+                    "A programming language for web development",
+                    "Structured Query Language for selecting and manipulating data in Data Extensions",
+                    "Only for database administrators",
+                    "Not supported in SFMC"
+                ],
+                correct: 1,
+                explanation: "SQL (Structured Query Language) in SFMC Query Activities allows marketers to select, filter, join, and transform data from Data Extensions using standard database query syntax."
+            },
+            {
+                question: "What are the most commonly used SQL functions in SFMC Query Activities?",
+                options: [
+                    "Only SELECT statements",
+                    "SELECT, WHERE, JOIN, GROUP BY, ORDER BY, and date functions",
+                    "Only INSERT statements",
+                    "SQL functions are not supported"
+                ],
+                correct: 1,
+                explanation: "SFMC Query Activities support standard SQL functions including data selection (SELECT), filtering (WHERE), table joining (JOIN), grouping (GROUP BY), sorting (ORDER BY), and date manipulation functions."
+            },
+            {
+                question: "How do you handle data validation in automation workflows?",
+                options: [
+                    "Data validation is automatic",
+                    "Use Query Activities with conditional logic and error handling workflows",
+                    "Validation is not necessary",
+                    "Only manual validation is possible"
+                ],
+                correct: 1,
+                explanation: "Data validation involves using Query Activities to check data quality, completeness, and format, combined with conditional workflow paths that handle valid and invalid data scenarios appropriately."
+            },
+            {
+                question: "What is the purpose of Data Copy Activities vs. Query Activities?",
+                options: [
+                    "They perform identical functions",
+                    "Data Copy moves records as-is; Query Activities transform and filter data",
+                    "Data Copy is more powerful",
+                    "Query Activities are deprecated"
+                ],
+                correct: 1,
+                explanation: "Data Copy Activities transfer records without modification, while Query Activities can select specific fields, filter records, perform calculations, and transform data during the copy process."
+            },
+            {
+                question: "How do you implement error handling in Automation Studio workflows?",
+                options: [
+                    "Error handling is not supported",
+                    "Use conditional paths, notification activities, and alternative processing routes",
+                    "Errors automatically fix themselves",
+                    "Only manual intervention is possible"
+                ],
+                correct: 1,
+                explanation: "Automation Studio error handling involves creating conditional workflow paths that respond to success/failure states, sending notifications when errors occur, and providing alternative processing routes."
+            },
+            {
+                question: "What are the security considerations for automation workflows?",
+                options: [
+                    "Security is not a concern",
+                    "Protect sensitive data, use secure connections, limit user access, and audit activities",
+                    "Only for technical administrators",
+                    "Security is automatic"
+                ],
+                correct: 1,
+                explanation: "Automation security includes protecting PII data, using secure FTP connections, implementing role-based access controls, auditing workflow activities, and following data privacy regulations."
+            },
+            {
+                question: "How do you handle large datasets in Automation Studio?",
+                options: [
+                    "Large datasets cause system failures",
+                    "Use data chunking, optimize queries, schedule during off-peak times, and monitor performance",
+                    "Automation Studio cannot handle large data",
+                    "Large datasets are processed automatically"
+                ],
+                correct: 1,
+                explanation: "Large dataset processing involves breaking data into manageable chunks, optimizing SQL queries for performance, scheduling processing during low-usage periods, and monitoring system resources."
+            },
+            {
+                question: "What is the role of file naming conventions in automation workflows?",
+                options: [
+                    "File names don't matter",
+                    "Consistent naming helps organize files, enables pattern matching, and supports automation logic",
+                    "Only for visual organization",
+                    "File naming is automatic"
+                ],
+                correct: 1,
+                explanation: "Standardized file naming conventions facilitate automated file processing, enable pattern-based file selection, improve organization, and support audit trails and troubleshooting."
+            },
+            {
+                question: "How do you implement data archiving in automation workflows?",
+                options: [
+                    "Data archiving is not supported",
+                    "Use scheduled workflows to move old data to archive Data Extensions or external systems",
+                    "All data is automatically archived",
+                    "Manual archiving only"
+                ],
+                correct: 1,
+                explanation: "Data archiving involves creating scheduled automation workflows that identify old records based on date criteria and move them to archive Data Extensions or export them to external storage systems."
+            },
+            {
+                question: "What are the best practices for automation workflow documentation?",
+                options: [
+                    "Documentation is not necessary",
+                    "Document purpose, data sources, logic, schedules, and maintenance procedures",
+                    "Only document errors",
+                    "Documentation is automatic"
+                ],
+                correct: 1,
+                explanation: "Comprehensive automation documentation includes business purpose, data source descriptions, processing logic, scheduling rationale, error handling procedures, and maintenance instructions for team collaboration."
+            },
+            {
+                question: "How do you handle timezone considerations in automation workflows?",
+                options: [
+                    "Timezones are not relevant",
+                    "Configure appropriate timezone settings and consider global customer base timing needs",
+                    "All times are in UTC automatically",
+                    "Timezone handling is manual only"
+                ],
+                correct: 1,
+                explanation: "Automation timezone management involves setting appropriate timezone configurations for scheduling, considering customer time zones for communication timing, and handling daylight saving time changes."
+            },
+            {
+                question: "What is the purpose of automation workflow versioning?",
+                options: [
+                    "Versioning is not supported",
+                    "Track changes, maintain backups, enable rollback capabilities, and support collaboration",
+                    "Only for compliance purposes",
+                    "Versioning is automatic"
+                ],
+                correct: 1,
+                explanation: "Workflow versioning provides change tracking, backup copies for rollback scenarios, collaboration support for team environments, and audit trails for compliance and troubleshooting."
+            },
+            {
+                question: "How do you optimize automation workflow performance?",
+                options: [
+                    "Performance optimization is automatic",
+                    "Optimize SQL queries, schedule appropriately, minimize data movement, and monitor resource usage",
+                    "Performance cannot be improved",
+                    "Only technical teams can optimize"
+                ],
+                correct: 1,
+                explanation: "Performance optimization involves writing efficient SQL queries, scheduling workflows during optimal times, minimizing unnecessary data transfers, and monitoring system resource consumption."
+            },
+            {
+                question: "What are the compliance considerations for automation workflows?",
+                options: [
+                    "Compliance is not relevant to automation",
+                    "Ensure data privacy, audit trails, retention policies, and regulatory requirements are met",
+                    "Only for legal teams",
+                    "Compliance is automatic"
+                ],
+                correct: 1,
+                explanation: "Automation compliance involves protecting personal data, maintaining audit trails, implementing data retention policies, following regulations like GDPR/CCPA, and documenting data processing activities."
+            },
+            {
+                question: "How do you implement real-time automation in SFMC?",
+                options: [
+                    "Real-time automation is not possible",
+                    "Use API-triggered workflows, real-time data integration, and immediate processing capabilities",
+                    "Only batch processing is supported",
+                    "Real-time requires external systems"
+                ],
+                correct: 1,
+                explanation: "Real-time automation combines API-triggered workflows that respond immediately to external events, real-time data integration capabilities, and processing logic that executes without delays."
+            },
+            {
+                question: "What is the role of data relationships in automation workflows?",
+                options: [
+                    "Data relationships are not important",
+                    "Understand data relationships to create effective joins, maintain integrity, and enable accurate processing",
+                    "Only for database administrators",
+                    "Relationships are automatic"
+                ],
+                correct: 1,
+                explanation: "Data relationships guide how to join Data Extensions effectively, maintain referential integrity, ensure accurate data processing, and create meaningful customer segments for marketing automation."
+            },
+            {
+                question: "How do you handle automation workflow dependencies across multiple Business Units?",
+                options: [
+                    "Cross-Business Unit automation is not supported",
+                    "Plan carefully, coordinate schedules, and manage shared resources and data access",
+                    "Each Business Unit works independently only",
+                    "Dependencies are automatic"
+                ],
+                correct: 1,
+                explanation: "Multi-Business Unit automation requires careful planning of shared data access, coordinated scheduling to prevent conflicts, resource management, and clear communication between teams."
+            },
+            {
+                question: "What are the monitoring and alerting capabilities in Automation Studio?",
+                options: [
+                    "No monitoring is available",
+                    "Activity status tracking, email notifications, performance metrics, and error alerting",
+                    "Only manual monitoring is possible",
+                    "Monitoring is only for technical teams"
+                ],
+                correct: 1,
+                explanation: "Automation Studio provides comprehensive monitoring including real-time activity status, configurable email notifications, performance metrics tracking, and automated error alerting for proactive management."
+            },
+            {
+                question: "How do you implement data quality checks in automation workflows?",
+                options: [
+                    "Data quality is not manageable",
+                    "Use validation queries, conditional logic, data profiling, and cleansing activities",
+                    "Quality checks are automatic",
+                    "Only external tools can check quality"
+                ],
+                correct: 1,
+                explanation: "Data quality implementation involves validation Query Activities that check for completeness and accuracy, conditional workflow paths for handling quality issues, and data cleansing logic."
+            },
+            {
+                question: "What is the impact of automation workflows on system performance?",
+                options: [
+                    "Automation has no performance impact",
+                    "Monitor resource usage, optimize scheduling, and balance automation loads",
+                    "Automation always improves performance",
+                    "Performance impact is unpredictable"
+                ],
+                correct: 1,
+                explanation: "Automation workflows consume system resources, so monitoring CPU and memory usage, optimizing execution schedules, and balancing concurrent automation loads is essential for overall platform performance."
+            },
+            {
+                question: "What should you check in Journey Analytics?",
+                options: [
+                    "Only the number of emails sent",
+                    "Entry count, goal achievement, path performance, conversion rates, and engagement metrics",
+                    "Just the email design",
+                    "Only bounce rates"
+                ],
+                correct: 1,
+                explanation: "Comprehensive journey analytics include customer entry/exit data, goal achievement rates, decision split performance, conversion tracking, email engagement metrics, and overall customer experience effectiveness."
+            },
+            {
+                question: "What's the best practice for abandoned cart email timing?",
+                options: [
+                    "Send immediately only",
+                    "Send after 1 hour, 24 hours, 3 days, and 1 week",
+                    "Wait 1 month before sending",
+                    "Never send abandoned cart emails"
+                ],
+                correct: 1,
+                explanation: "This timing sequence catches customers at different stages of decision-making: immediate reconsideration (1 hour), short-term reminder (24 hours), and longer-term re-engagement (3 days, 1 week) without being overly aggressive."
+            },
+            {
+                question: "How do you implement customer lifecycle marketing with Journey Builder?",
+                options: [
+                    "Lifecycle marketing is not supported",
+                    "Create journeys for each lifecycle stage with appropriate content and timing",
+                    "Use only welcome journeys",
+                    "Lifecycle marketing requires external tools"
+                ],
+                correct: 1,
+                explanation: "Customer lifecycle marketing involves creating specific journeys for awareness, consideration, purchase, onboarding, retention, and win-back stages, each with tailored content and optimal timing."
+            },
+            {
+                question: "What is the recommended approach for journey content personalization?",
+                options: [
+                    "Use the same content for everyone",
+                    "Leverage customer data, behavioral triggers, and dynamic content for relevant messaging",
+                    "Only personalize subject lines",
+                    "Personalization is too complex"
+                ],
+                correct: 1,
+                explanation: "Effective personalization combines customer demographic data, purchase history, behavioral triggers, browsing patterns, and dynamic content blocks to create highly relevant and engaging experiences."
+            },
+            {
+                question: "How do you handle seasonal campaigns in automation and journeys?",
+                options: [
+                    "Seasonal campaigns require manual management only",
+                    "Create date-based decision splits, seasonal content variations, and time-sensitive offers",
+                    "Automation doesn't support seasonal content",
+                    "Only send seasonal content to VIP customers"
+                ],
+                correct: 1,
+                explanation: "Seasonal automation uses date-based decision splits to route customers to appropriate seasonal content, dynamic content blocks that change based on current date, and time-sensitive promotional offers."
+            },
+            {
+                question: "What are the best practices for mobile optimization in automated emails?",
+                options: [
+                    "Mobile optimization is not necessary",
+                    "Use responsive design, optimize images, ensure readable fonts, and test on multiple devices",
+                    "Only optimize for desktop",
+                    "Mobile optimization is automatic"
+                ],
+                correct: 1,
+                explanation: "Mobile optimization requires responsive email templates, optimized image sizes, readable font sizes, touch-friendly buttons, and thorough testing across various mobile devices and email clients."
+            },
+            {
+                question: "How do you implement cross-sell and upsell automation strategies?",
+                options: [
+                    "Cross-sell automation is not effective",
+                    "Use purchase history, browsing behavior, and predictive analytics to recommend relevant products",
+                    "Only recommend the most expensive products",
+                    "Random product recommendations work best"
+                ],
+                correct: 1,
+                explanation: "Effective cross-sell/upsell automation analyzes customer purchase history, browsing patterns, product affinity data, and uses predictive analytics to recommend complementary or upgraded products at optimal times."
+            },
+            {
+                question: "What is the role of customer feedback in automation optimization?",
+                options: [
+                    "Customer feedback is not relevant",
+                    "Use surveys, engagement metrics, and direct feedback to refine automation strategies",
+                    "Only use internal feedback",
+                    "Feedback collection is too complex"
+                ],
+                correct: 1,
+                explanation: "Customer feedback through surveys, preference centers, engagement metrics, and direct responses provides valuable insights for optimizing automation timing, content relevance, and overall customer experience."
+            },
+            {
+                question: "How do you handle automation for different customer segments?",
+                options: [
+                    "Use the same automation for all customers",
+                    "Create segment-specific journeys with tailored content, timing, and offers",
+                    "Segmentation is too complex for automation",
+                    "Only segment by demographics"
+                ],
+                correct: 1,
+                explanation: "Segment-specific automation involves creating distinct journeys for different customer groups (new vs. loyal, high-value vs. price-sensitive, etc.) with appropriate content, messaging frequency, and offers."
+            },
+            {
+                question: "What are the key performance indicators for automation success?",
+                options: [
+                    "Only email open rates",
+                    "Conversion rates, revenue attribution, engagement improvement, and customer lifetime value",
+                    "Just click-through rates",
+                    "Number of automations created"
+                ],
+                correct: 1,
+                explanation: "Automation success is measured through conversion rates (desired actions), revenue directly attributed to automation, engagement improvements over time, and impact on customer lifetime value."
+            },
+            {
+                question: "How do you implement win-back campaigns using automation?",
+                options: [
+                    "Win-back campaigns are not effective",
+                    "Identify inactive customers, create re-engagement sequences with compelling offers and content",
+                    "Only send discount offers",
+                    "Manual win-back campaigns are better"
+                ],
+                correct: 1,
+                explanation: "Win-back automation identifies customers who haven't engaged recently, creates progressive re-engagement sequences with valuable content, exclusive offers, and feedback requests to rekindle interest."
+            },
+            {
+                question: "What is the importance of testing in automation and journey development?",
+                options: [
+                    "Testing is not necessary for automation",
+                    "Testing prevents errors, validates logic, ensures proper customer experience, and optimizes performance",
+                    "Only test major changes",
+                    "Testing slows down development"
+                ],
+                correct: 1,
+                explanation: "Thorough testing prevents customer-facing errors, validates automation logic, ensures positive customer experiences, identifies optimization opportunities, and builds confidence in automation performance."
+            },
+            {
+                question: "How do you handle automation for different time zones and global customers?",
+                options: [
+                    "Use one time zone for all customers",
+                    "Implement timezone-aware scheduling and region-specific content and timing",
+                    "Global automation is too complex",
+                    "Send everything at the same time globally"
+                ],
+                correct: 1,
+                explanation: "Global automation requires timezone-aware scheduling to send messages at appropriate local times, region-specific content for cultural relevance, and consideration of local business hours and holidays."
+            },
+            {
+                question: "What are the data privacy considerations in marketing automation?",
+                options: [
+                    "Data privacy doesn't apply to automation",
+                    "Ensure consent management, data protection, audit trails, and compliance with regulations",
+                    "Only for European customers",
+                    "Data privacy is automatic"
+                ],
+                correct: 1,
+                explanation: "Marketing automation must include robust consent management, data protection measures, comprehensive audit trails, compliance with GDPR/CCPA and other regulations, and transparent data usage practices."
+            },
+            {
+                question: "How do you measure and improve automation ROI over time?",
+                options: [
+                    "ROI cannot be measured for automation",
+                    "Track revenue attribution, cost savings, efficiency gains, and continuously optimize based on data",
+                    "Only measure initial setup costs",
+                    "ROI measurement is too complex"
+                ],
+                correct: 1,
+                explanation: "Automation ROI measurement includes direct revenue attribution, operational cost savings, efficiency improvements, customer lifetime value increases, and continuous optimization based on performance data."
+            },
+            {
+                question: "What is the role of artificial intelligence in SFMC automation?",
+                options: [
+                    "AI is not available in SFMC",
+                    "Einstein features provide predictive analytics, send time optimization, and engagement scoring",
+                    "AI replaces all manual work",
+                    "AI is only for large enterprises"
+                ],
+                correct: 1,
+                explanation: "SFMC's Einstein AI capabilities include predictive analytics for customer behavior, send time optimization for individual customers, engagement scoring, and content recommendations to enhance automation effectiveness."
+            },
+            {
+                question: "How do you handle automation scaling as your business grows?",
+                options: [
+                    "Automation doesn't scale",
+                    "Plan for increased data volumes, optimize performance, and implement scalable architecture",
+                    "Rebuild automation from scratch when scaling",
+                    "Scaling is automatic"
+                ],
+                correct: 1,
+                explanation: "Automation scaling involves planning for larger data volumes, optimizing query performance, implementing modular and reusable automation components, and designing scalable data architecture."
+            },
+            {
+                question: "What are the integration possibilities between automation and other marketing channels?",
+                options: [
+                    "Automation works in isolation only",
+                    "Integrate with advertising, social media, website personalization, and offline channels",
+                    "Only email integration is possible",
+                    "Integration is too complex"
+                ],
+                correct: 1,
+                explanation: "Modern automation integrates with paid advertising for retargeting, social media for consistent messaging, website personalization for seamless experiences, and offline channels for omnichannel customer journeys."
+            },
+            {
+                question: "How do you ensure automation remains effective over time?",
+                options: [
+                    "Once set up, automation never needs changes",
+                    "Regular monitoring, performance analysis, content updates, and strategy refinement",
+                    "Only monitor during busy seasons",
+                    "Effectiveness is guaranteed"
+                ],
+                correct: 1,
+                explanation: "Maintaining automation effectiveness requires ongoing performance monitoring, regular analysis of metrics and customer feedback, periodic content updates, and strategic refinement based on changing business needs and customer preferences."
+            },
+            {
+                question: "What is the future of marketing automation in customer experience?",
+                options: [
+                    "Automation will be replaced by manual processes",
+                    "Increased AI integration, hyper-personalization, real-time optimization, and omnichannel orchestration",
+                    "Automation has reached its peak",
+                    "Future developments are unpredictable"
+                ],
+                correct: 1,
+                explanation: "The future of marketing automation includes deeper AI integration for predictive customer behavior, hyper-personalized experiences at scale, real-time optimization based on customer actions, and seamless omnichannel orchestration."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answersGiven = [];
+        let quizCompleted = false;
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showCompletionScreen();
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${questions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <ul class="options">
+                        ${question.options.map((option, index) => 
+                            `<li class="option" onclick="selectOption(${index})">
+                                <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                                <span>${option}</span>
+                            </li>`
+                        ).join('')}
+                    </ul>
+                    <div class="explanation" id="explanation">
+                        <h4>✅ Correct Answer: ${String.fromCharCode(65 + question.correct)})</h4>
+                        <p>${question.explanation}</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <div class="score-display">
+                        Score: ${score}/${currentQuestion} ${currentQuestion > 0 ? `(${Math.round(score/currentQuestion*100)}%)` : ''}
+                    </div>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        Next →
+                    </button>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = questions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Remove any previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark the selected option
+            options[selectedIndex].classList.add('selected');
+
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Record the answer
+            answersGiven[currentQuestion] = selectedIndex;
+
+            // Update score
+            if (selectedIndex === question.correct) {
+                if (answersGiven[currentQuestion] !== question.correct) {
+                    score++;
+                }
+            }
+
+            // Show explanation and enable next button
+            explanation.classList.add('show');
+            nextBtn.disabled = false;
+
+            // Update score display
+            document.querySelector('.score-display').innerHTML = 
+                `Score: ${score}/${currentQuestion + 1} (${Math.round(score/(currentQuestion + 1)*100)}%)`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${questions.length}`;
+        }
+
+        function showCompletionScreen() {
+            const container = document.getElementById('quizContainer');
+            const completionScreen = document.getElementById('completionScreen');
+            const finalScorePercent = Math.round((score / questions.length) * 100);
+            
+            container.style.display = 'none';
+            completionScreen.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = finalScorePercent + '%';
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (finalScorePercent >= 90) {
+                scoreCircle.className = 'score-circle score-excellent';
+                scoreMessage.textContent = '🌟 Outstanding! You have excellent knowledge of SFMC Automation & Journey Builder!';
+            } else if (finalScorePercent >= 75) {
+                scoreCircle.className = 'score-circle score-good';
+                scoreMessage.textContent = '👏 Great job! You have a solid understanding of the concepts.';
+            } else if (finalScorePercent >= 60) {
+                scoreCircle.className = 'score-circle score-needs-improvement';
+                scoreMessage.textContent = '📚 Good effort! Review the study guide and try again to improve your score.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                scoreMessage.textContent = '💪 Keep studying! Review the concepts and take the quiz again.';
+            }
+
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quiz Complete!';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            quizCompleted = false;
+            
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('completionScreen').classList.remove('show');
+            
+            loadQuestion();
+        }
+
+        // Initialize the quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

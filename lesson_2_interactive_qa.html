@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 2: Marketing Automation - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2a5298;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: #2a5298;
+            background: #f0f7ff;
+        }
+        
+        .option.selected {
+            border-color: #2a5298;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #2a5298;
+            min-width: 25px;
+        }
+        
+        .explanation {
+            background: #e8f5e8;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .completion-screen.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .score-needs-improvement {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SFMC Certification Study</h1>
+            <p>Lesson 2: Marketing Automation (19-26% of Exam)</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 100</div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+        
+        <div class="completion-screen" id="completionScreen">
+            <h2>Congratulations!</h2>
+            <p>You've completed the Marketing Automation quiz!</p>
+            <div class="score-circle" id="scoreCircle">
+                <span id="finalScore">0%</span>
+            </div>
+            <p id="scoreMessage"></p>
+            <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the primary purpose of marketing automation?",
+                options: [
+                    "To replace human marketers entirely",
+                    "To automatically execute marketing tasks and deliver personalized experiences at scale",
+                    "To send the same message to everyone",
+                    "To reduce marketing costs only"
+                ],
+                correct: 1,
+                explanation: "Marketing automation combines efficiency with personalization, handling repetitive tasks while delivering relevant, timely messages to different customer segments."
+            },
+            {
+                question: "What is a \"trigger\" in marketing automation?",
+                options: [
+                    "A button to start campaigns manually",
+                    "An event or action that automatically initiates a marketing process",
+                    "A way to stop automation",
+                    "A type of email template"
+                ],
+                correct: 1,
+                explanation: "Triggers are the starting points for automation - like \"customer signs up\" or \"abandons cart\" - that kick off predefined marketing sequences."
+            },
+            {
+                question: "Which of the following is NOT a common type of marketing automation trigger?",
+                options: [
+                    "Email opened",
+                    "Product purchased",
+                    "Weather forecast",
+                    "Form submitted"
+                ],
+                correct: 2,
+                explanation: "While weather can be used for seasonal campaigns, it's not a common automation trigger. Most triggers are based on customer actions or significant events."
+            },
+            {
+                question: "What is the difference between triggered emails and scheduled emails?",
+                options: [
+                    "Triggered emails are sent automatically based on customer actions; scheduled emails are sent at predetermined times",
+                    "There is no difference",
+                    "Triggered emails are more expensive",
+                    "Scheduled emails are more personalized"
+                ],
+                correct: 0,
+                explanation: "Triggered emails respond to what customers do (behavioral), while scheduled emails go out according to a calendar (time-based)."
+            },
+            {
+                question: "What is lead nurturing in marketing automation?",
+                options: [
+                    "Taking care of plants in the office",
+                    "The process of building relationships with prospects through targeted, timely communication",
+                    "Collecting as many email addresses as possible",
+                    "Sending daily promotional emails"
+                ],
+                correct: 1,
+                explanation: "Lead nurturing gradually builds trust and provides value to prospects over time, guiding them toward making a purchase decision."
+            },
+            {
+                question: "What does \"drip campaign\" mean?",
+                options: [
+                    "A campaign about water conservation",
+                    "A series of automated messages sent over time at predetermined intervals",
+                    "A campaign that sends messages all at once",
+                    "A failed campaign"
+                ],
+                correct: 1,
+                explanation: "Drip campaigns \"drip\" information to prospects slowly over time, like water dripping from a faucet, rather than overwhelming them with everything at once."
+            },
+            {
+                question: "What is the primary benefit of behavioral triggers over time-based triggers?",
+                options: [
+                    "They're easier to set up",
+                    "They respond to actual customer actions, making messages more relevant and timely",
+                    "They cost less to implement",
+                    "They require less maintenance"
+                ],
+                correct: 1,
+                explanation: "Behavioral triggers create more relevant experiences because they respond to what customers actually do, rather than arbitrary timing."
+            },
+            {
+                question: "What is lead scoring in marketing automation?",
+                options: [
+                    "Giving grades to your marketing team",
+                    "A point system that ranks prospects based on their likelihood to purchase",
+                    "Scoring how well your leads performed in school",
+                    "A way to count how many leads you have"
+                ],
+                correct: 1,
+                explanation: "Lead scoring assigns points for various actions (email clicks, website visits, downloads) to identify which prospects are most sales-ready."
+            },
+            {
+                question: "What should be the first step when planning a marketing automation campaign?",
+                options: [
+                    "Choose the technology platform",
+                    "Create email templates",
+                    "Define clear objectives and success metrics",
+                    "Import all customer data"
+                ],
+                correct: 2,
+                explanation: "Without clear goals, you can't design effective automation or measure success. Strategy comes before tactics and technology."
+            },
+            {
+                question: "What is the main difference between Automation Studio and Journey Builder in SFMC?",
+                options: [
+                    "They do exactly the same thing",
+                    "Automation Studio handles backend data processes; Journey Builder creates customer-facing experiences",
+                    "Journey Builder is more expensive",
+                    "Automation Studio is only for advanced users"
+                ],
+                correct: 1,
+                explanation: "Automation Studio works behind the scenes with data imports, queries, and reports, while Journey Builder orchestrates customer-facing email sequences and experiences."
+            },
+            {
+                question: "What is the primary purpose of Automation Studio in SFMC?",
+                options: [
+                    "To create email templates",
+                    "To handle behind-the-scenes data processing and workflow automation",
+                    "To design customer journeys",
+                    "To track email performance"
+                ],
+                correct: 1,
+                explanation: "Automation Studio is the engine room where data imports, queries, filters, and other technical processes run automatically."
+            },
+            {
+                question: "Which activity would you use in Automation Studio to bring customer data from an external FTP server?",
+                options: [
+                    "Query Activity",
+                    "Import Activity",
+                    "Filter Activity",
+                    "Send Email Activity"
+                ],
+                correct: 1,
+                explanation: "Import Activities are specifically designed to pull data from various sources (FTP, files, APIs) into SFMC Data Extensions."
+            },
+            {
+                question: "What does a Query Activity in Automation Studio do?",
+                options: [
+                    "Ask customers survey questions",
+                    "Use SQL to select, manipulate, and analyze data from Data Extensions",
+                    "Query external databases only",
+                    "Generate random customer lists"
+                ],
+                correct: 1,
+                explanation: "Query Activities use SQL commands to perform complex data operations like segmentation, calculations, and data transformation."
+            },
+            {
+                question: "When would you use a Data Copy Activity?",
+                options: [
+                    "To copy email templates",
+                    "To duplicate automation workflows",
+                    "To move or copy data between Data Extensions",
+                    "To backup the entire SFMC account"
+                ],
+                correct: 2,
+                explanation: "Data Copy Activities transfer records from one Data Extension to another, useful for creating backups or moving data for different purposes."
+            },
+            {
+                question: "What is the benefit of scheduling automations to run during off-peak hours?",
+                options: [
+                    "It's required by SFMC",
+                    "It reduces system load and improves performance for regular business activities",
+                    "It makes automations run faster",
+                    "It costs less money"
+                ],
+                correct: 1,
+                explanation: "Running resource-intensive processes during off-peak hours ensures better system performance when users are actively working."
+            },
+            {
+                question: "What does a Filter Activity create?",
+                options: [
+                    "Email templates",
+                    "Customer segments based on specified criteria",
+                    "Automation schedules",
+                    "Data visualizations"
+                ],
+                correct: 1,
+                explanation: "Filter Activities use rules and conditions to create specific audience segments from larger Data Extensions."
+            },
+            {
+                question: "How do you connect multiple activities in an Automation Studio workflow?",
+                options: [
+                    "They connect automatically",
+                    "By dragging connector arrows between activities",
+                    "By naming them the same",
+                    "They don't need to be connected"
+                ],
+                correct: 1,
+                explanation: "Workflows require logical connections between activities to define the order and flow of operations."
+            },
+            {
+                question: "What happens if one activity fails in an Automation Studio workflow?",
+                options: [
+                    "The entire automation stops",
+                    "It depends on the error handling settings you configure",
+                    "All activities restart from the beginning",
+                    "Only that activity fails, others continue regardless"
+                ],
+                correct: 1,
+                explanation: "You can configure how automations handle errors - stop entirely, skip failed activities, or continue with alternate paths."
+            },
+            {
+                question: "What is the purpose of the Report Activity in Automation Studio?",
+                options: [
+                    "To report bugs to Salesforce",
+                    "To automatically generate and distribute performance reports",
+                    "To report on employee activities",
+                    "To create customer service reports"
+                ],
+                correct: 1,
+                explanation: "Report Activities automatically create and send out analytics reports on schedule, eliminating manual reporting tasks."
+            },
+            {
+                question: "What does \"Run Once\" vs \"Scheduled\" mean for automations?",
+                options: [
+                    "Run Once costs more than Scheduled",
+                    "Run Once executes immediately and stops; Scheduled runs repeatedly on a defined schedule",
+                    "There's no difference in functionality",
+                    "Scheduled automations are more reliable"
+                ],
+                correct: 1,
+                explanation: "Run Once is for immediate, one-time execution, while Scheduled automations run automatically at regular intervals (daily, weekly, etc.)."
+            },
+            {
+                question: "What is the difference between a Single Send Journey and a Multi-Step Journey?",
+                options: [
+                    "Single Send is cheaper",
+                    "Single Send delivers one message to all recipients; Multi-Step creates personalized paths with multiple touchpoints",
+                    "Multi-Step is only for advanced users",
+                    "There is no difference"
+                ],
+                correct: 1,
+                explanation: "Single Sends are like broadcasts, while Multi-Step Journeys create customized experiences that adapt based on customer behavior."
+            },
+            {
+                question: "What does \"Contact Entry Settings\" control in Journey Builder?",
+                options: [
+                    "How much it costs per contact",
+                    "Whether contacts can enter the journey once, multiple times, or re-enter after exiting",
+                    "How fast contacts move through the journey",
+                    "Which emails contacts receive"
+                ],
+                correct: 1,
+                explanation: "Entry settings prevent duplicate experiences or allow customers to repeat journeys as appropriate for the campaign type."
+            },
+            {
+                question: "What is the purpose of a Decision Split in Journey Builder?",
+                options: [
+                    "To end the journey",
+                    "To create different paths based on contact data, behavior, or random assignment",
+                    "To split the cost between departments",
+                    "To divide emails into multiple parts"
+                ],
+                correct: 1,
+                explanation: "Decision Splits allow personalization by routing contacts down different paths based on their characteristics or actions."
+            },
+            {
+                question: "What does a Wait Activity accomplish?",
+                options: [
+                    "It slows down the system",
+                    "It pauses contacts for a specified time before the next activity",
+                    "It waits for manual approval",
+                    "It waits for more contacts to enter"
+                ],
+                correct: 1,
+                explanation: "Wait Activities create proper timing between journey steps, preventing customers from being overwhelmed with too many messages at once."
+            },
+            {
+                question: "What is a Goal in Journey Builder?",
+                options: [
+                    "The final destination of the journey",
+                    "A success metric that tracks whether contacts achieve desired outcomes",
+                    "A way to end journeys early",
+                    "A type of email template"
+                ],
+                correct: 1,
+                explanation: "Goals measure journey effectiveness by tracking how many contacts complete desired actions like purchases, downloads, or sign-ups."
+            },
+            {
+                question: "Which entry source would you use for real-time triggered journeys?",
+                options: [
+                    "Data Extension",
+                    "Salesforce Data",
+                    "API Event",
+                    "Audience Builder"
+                ],
+                correct: 2,
+                explanation: "API Events enable real-time journey triggers from websites, apps, or other systems the moment specific actions occur."
+            },
+            {
+                question: "What does \"High Volume Sending\" mode affect in Journey Builder?",
+                options: [
+                    "The cost of sending emails",
+                    "How quickly large numbers of contacts move through the journey",
+                    "The size of email images",
+                    "The number of activities allowed"
+                ],
+                correct: 1,
+                explanation: "High Volume Sending optimizes journey processing for campaigns with hundreds of thousands or millions of contacts."
+            },
+            {
+                question: "What happens to contacts who meet exit criteria in a journey?",
+                options: [
+                    "They get deleted from the system",
+                    "They immediately leave the journey and don't receive further messages from it",
+                    "They start the journey over",
+                    "They move to a different journey automatically"
+                ],
+                correct: 1,
+                explanation: "Exit criteria protect customers from receiving inappropriate messages, like continuing to get sale emails after they've already purchased."
+            },
+            {
+                question: "What is the benefit of using Journey Builder over traditional email blasts?",
+                options: [
+                    "Journey Builder is free",
+                    "It provides personalized, behavior-driven experiences instead of one-size-fits-all messaging",
+                    "It's easier to set up",
+                    "It requires less planning"
+                ],
+                correct: 1,
+                explanation: "Journey Builder creates relevant customer experiences by adapting to individual behaviors and preferences, unlike static email blasts."
+            },
+            {
+                question: "What should you always do before activating a journey?",
+                options: [
+                    "Wait 24 hours",
+                    "Validate the journey to check for errors and test with sample contacts",
+                    "Send it to all customers immediately",
+                    "Archive old journeys first"
+                ],
+                correct: 1,
+                explanation: "Journey validation catches configuration errors and testing ensures the customer experience works as intended before going live."
+            },
+            {
+                question: "What makes triggered emails more effective than scheduled emails?",
+                options: [
+                    "They cost less to send",
+                    "They're sent at the moment of customer interest or need, making them highly relevant",
+                    "They're easier to create",
+                    "They always have higher deliverability"
+                ],
+                correct: 1,
+                explanation: "Triggered emails respond to customer actions when interest is highest, leading to better open rates, click rates, and conversions."
+            },
+            {
+                question: "What is the most important element of an abandoned cart email sequence?",
+                options: [
+                    "Offering the biggest discount possible",
+                    "Timing the first email appropriately (usually 1-3 hours after abandonment)",
+                    "Including as many products as possible",
+                    "Making the email as long as possible"
+                ],
+                correct: 1,
+                explanation: "The first abandoned cart email should be sent while the customer still remembers their shopping session but after they've had time to complete the purchase naturally."
+            },
+            {
+                question: "Which type of trigger typically has the highest conversion rates?",
+                options: [
+                    "Newsletter signups",
+                    "Transactional triggers (purchase confirmations, shipping updates)",
+                    "Birthday emails",
+                    "General promotional emails"
+                ],
+                correct: 1,
+                explanation: "Transactional emails have the highest open and click rates because customers expect and want these service-related communications."
+            },
+            {
+                question: "What should be included in a welcome email series?",
+                options: [
+                    "Only promotional offers",
+                    "Company introduction, value proposition, and helpful information to set expectations",
+                    "Every product in your catalog",
+                    "Detailed company history"
+                ],
+                correct: 1,
+                explanation: "Welcome series should build relationships by introducing your brand, explaining what subscribers can expect, and providing immediate value."
+            },
+            {
+                question: "How long should a typical welcome email series last?",
+                options: [
+                    "1 day",
+                    "1-2 weeks with 3-5 emails",
+                    "6 months",
+                    "1 year"
+                ],
+                correct: 1,
+                explanation: "This timeframe provides enough touchpoints to build engagement without overwhelming new subscribers during their initial brand experience."
+            },
+            {
+                question: "What is browse abandonment email automation?",
+                options: [
+                    "Emails sent when customers leave negative reviews",
+                    "Emails triggered when customers view products but don't add them to cart",
+                    "Emails about browsing safety",
+                    "Emails sent when websites crash"
+                ],
+                correct: 1,
+                explanation: "Browse abandonment captures early purchase interest by following up with customers who showed interest in products but didn't take action."
+            },
+            {
+                question: "What is the recommended frequency for re-engagement campaigns?",
+                options: [
+                    "Daily until they respond",
+                    "Weekly for 6 months",
+                    "2-4 emails over 2-4 weeks, then suppress non-responders",
+                    "One email per year"
+                ],
+                correct: 2,
+                explanation: "This approach gives inactive subscribers multiple chances to re-engage without being overly aggressive or harming sender reputation."
+            },
+            {
+                question: "What should be the primary call-to-action in a product recommendation email?",
+                options: [
+                    "\"Unsubscribe from emails\"",
+                    "\"View recommended products\" or \"Shop now\"",
+                    "\"Update your preferences\"",
+                    "\"Forward to a friend\""
+                ],
+                correct: 1,
+                explanation: "Product recommendation emails should drive traffic to specific products or categories, making it easy for customers to explore and purchase."
+            },
+            {
+                question: "When should you send a post-purchase follow-up email?",
+                options: [
+                    "Immediately after purchase",
+                    "1-2 weeks after delivery to allow product experience",
+                    "6 months later",
+                    "Only if the customer complains"
+                ],
+                correct: 1,
+                explanation: "This timing allows customers to receive and use the product, making requests for reviews or feedback more meaningful and likely to be completed."
+            },
+            {
+                question: "What makes birthday and anniversary emails effective?",
+                options: [
+                    "They always include discounts",
+                    "They feel personal and create emotional connection with the brand",
+                    "They're sent to everyone on the same day",
+                    "They're the least expensive to send"
+                ],
+                correct: 1,
+                explanation: "Date-based personalization makes customers feel remembered and valued, strengthening brand loyalty even without promotional offers."
+            },
+            {
+                question: "What is the primary goal of lead nurturing?",
+                options: [
+                    "To send as many emails as possible",
+                    "To build relationships and guide prospects toward making a purchase decision",
+                    "To collect personal information",
+                    "To reduce marketing costs"
+                ],
+                correct: 1,
+                explanation: "Lead nurturing provides value and builds trust over time, gradually moving prospects from awareness to consideration to purchase readiness."
+            },
+            {
+                question: "What type of content should be included in early-stage nurturing emails?",
+                options: [
+                    "Pricing information and sales offers",
+                    "Educational content that addresses common problems and challenges",
+                    "Detailed product specifications",
+                    "Customer testimonials only"
+                ],
+                correct: 1,
+                explanation: "Early-stage prospects need education and problem identification before they're ready for product-specific or sales-focused content."
+            },
+            {
+                question: "How should lead scoring be integrated with nurturing campaigns?",
+                options: [
+                    "All leads should receive the same content regardless of score",
+                    "Higher-scoring leads should receive more sales-focused content and alerts to sales teams",
+                    "Lead scoring should only be used for paid advertising",
+                    "Lead scoring doesn't apply to email campaigns"
+                ],
+                correct: 1,
+                explanation: "Lead scoring helps tailor content appropriately - high-scoring leads are ready for sales conversations while low-scoring leads need more nurturing."
+            },
+            {
+                question: "What is the ideal frequency for B2B lead nurturing emails?",
+                options: [
+                    "Daily",
+                    "Weekly to bi-weekly",
+                    "Monthly",
+                    "Quarterly"
+                ],
+                correct: 1,
+                explanation: "This frequency maintains engagement without overwhelming busy B2B prospects, allowing time to consume and act on content between emails."
+            },
+            {
+                question: "What should happen to leads who don't engage with nurturing campaigns?",
+                options: [
+                    "Continue sending the same content indefinitely",
+                    "Gradually reduce frequency and eventually move to suppression list",
+                    "Immediately delete them from the database",
+                    "Send more aggressive sales messages"
+                ],
+                correct: 1,
+                explanation: "Non-engaged contacts hurt deliverability and aren't likely to convert, so it's better to reduce their impact while giving them final chances to re-engage."
+            },
+            {
+                question: "What is progressive profiling in lead nurturing?",
+                options: [
+                    "Taking professional photos of leads",
+                    "Gradually collecting additional lead information over time through multiple touchpoints",
+                    "Sharing company progress with leads",
+                    "Profiling leads on social media"
+                ],
+                correct: 1,
+                explanation: "Progressive profiling gathers lead intelligence slowly through various interactions rather than overwhelming prospects with long forms initially."
+            },
+            {
+                question: "How should you handle leads who download multiple pieces of content?",
+                options: [
+                    "Send them the same nurturing sequence repeatedly",
+                    "Increase their lead score and move them to more advanced nurturing tracks",
+                    "Remove them from all nurturing",
+                    "Only send them promotional offers"
+                ],
+                correct: 1,
+                explanation: "Multiple downloads indicate higher engagement and interest, warranting more advanced content and potentially sales team involvement."
+            },
+            {
+                question: "What is the difference between nurturing workflows for different buyer personas?",
+                options: [
+                    "There should be no difference",
+                    "Each persona should receive content tailored to their specific role, challenges, and decision-making process",
+                    "Only the subject lines should be different",
+                    "Different personas should only receive different product information"
+                ],
+                correct: 1,
+                explanation: "Different roles have different pain points, priorities, and decision-making authority, requiring customized messaging and content."
+            },
+            {
+                question: "What should be the final step in a lead nurturing sequence?",
+                options: [
+                    "Automatically unsubscribe the lead",
+                    "Clear call-to-action to speak with sales or make a purchase decision",
+                    "Send them back to the beginning of the sequence",
+                    "Move them to a general newsletter list"
+                ],
+                correct: 1,
+                explanation: "Successful nurturing should culminate in a clear next step that moves qualified leads into the sales process or purchasing flow."
+            },
+            {
+                question: "How do you measure the success of lead nurturing campaigns?",
+                options: [
+                    "Only by email open rates",
+                    "By progression through the sales funnel, lead quality scores, and ultimate conversion rates",
+                    "Only by the number of emails sent",
+                    "By how long the sequences are"
+                ],
+                correct: 1,
+                explanation: "Nurturing success should be measured by business outcomes - are leads becoming more qualified and eventually converting to customers?"
+            },
+            {
+                question: "What is behavioral segmentation in marketing automation?",
+                options: [
+                    "Grouping customers by their personality types",
+                    "Dividing customers based on their actions, interactions, and engagement patterns",
+                    "Segmenting by how customers behave in stores",
+                    "Organizing customers by their complaints"
+                ],
+                correct: 1,
+                explanation: "Behavioral segmentation uses actual customer actions (website visits, email clicks, purchases) to create relevant groups for targeted messaging."
+            },
+            {
+                question: "What does RFM analysis stand for and how is it used in automation?",
+                options: [
+                    "Rate, Frequency, Margin - used for pricing",
+                    "Recency, Frequency, Monetary - used to segment customers by purchase behavior",
+                    "Reach, Focus, Message - used for campaign planning",
+                    "Response, Follow-up, Metrics - used for tracking"
+                ],
+                correct: 1,
+                explanation: "RFM analyzes when customers last bought (Recency), how often they buy (Frequency), and how much they spend (Monetary) to identify customer value segments."
+            },
+            {
+                question: "What is predictive segmentation?",
+                options: [
+                    "Predicting the weather for campaign timing",
+                    "Using historical data and machine learning to predict future customer behavior and create segments",
+                    "Guessing which customers will complain",
+                    "Predicting which emails will have typos"
+                ],
+                correct: 1,
+                explanation: "Predictive segmentation uses AI to identify patterns in customer data and predict who is likely to churn, purchase, or engage in the future."
+            },
+            {
+                question: "What is dynamic content in email automation?",
+                options: [
+                    "Content that moves around in the email",
+                    "Email content that changes based on recipient data and behavior",
+                    "Videos embedded in emails",
+                    "Content that updates after the email is sent"
+                ],
+                correct: 1,
+                explanation: "Dynamic content personalizes emails by showing different text, images, or offers to different segments within the same email template."
+            },
+            {
+                question: "How should you segment customers for lifecycle marketing?",
+                options: [
+                    "Only by age groups",
+                    "By where they are in the customer journey (prospect, new customer, repeat customer, at-risk, etc.)",
+                    "Only by geographic location",
+                    "By the products they've never purchased"
+                ],
+                correct: 1,
+                explanation: "Lifecycle segmentation ensures customers receive appropriate messaging for their current relationship stage with your brand."
+            },
+            {
+                question: "What is geo-targeting in marketing automation?",
+                options: [
+                    "Targeting customers who work in geography",
+                    "Sending location-specific content, offers, or timing based on customer geographic data",
+                    "Only sending emails about travel",
+                    "Targeting customers who use GPS"
+                ],
+                correct: 1,
+                explanation: "Geo-targeting personalizes campaigns based on location-specific factors like weather, local events, store locations, or regional preferences."
+            },
+            {
+                question: "What does engagement-based segmentation help you identify?",
+                options: [
+                    "How much customers spend",
+                    "Which customers are actively interacting with your communications vs. those who are disengaged",
+                    "Customer service satisfaction scores",
+                    "Social media followers"
+                ],
+                correct: 1,
+                explanation: "Engagement segmentation identifies highly engaged customers (for advanced offers) and disengaged ones (for re-engagement campaigns)."
+            },
+            {
+                question: "What is the benefit of creating micro-segments?",
+                options: [
+                    "They're easier to manage",
+                    "Highly specific targeting allows for more relevant and effective messaging",
+                    "They cost less to create",
+                    "They require less data"
+                ],
+                correct: 1,
+                explanation: "Micro-segments combine multiple criteria (behavior + demographics + preferences) for laser-focused targeting, though they require more management."
+            },
+            {
+                question: "How should you handle customers who belong to multiple segments?",
+                options: [
+                    "Send them all relevant campaigns simultaneously",
+                    "Prioritize segments by business value and send the most important campaign",
+                    "Remove them from all segments",
+                    "Only use their demographic segment"
+                ],
+                correct: 1,
+                explanation: "Segment hierarchy prevents customers from being overwhelmed while ensuring they receive the most valuable or relevant messaging."
+            },
+            {
+                question: "What is lookalike modeling in customer segmentation?",
+                options: [
+                    "Finding customers who look similar in photos",
+                    "Using characteristics of your best customers to identify similar prospects in your database",
+                    "Copying competitor customer segments",
+                    "Creating customer avatars"
+                ],
+                correct: 1,
+                explanation: "Lookalike modeling identifies prospects who share traits with high-value customers, helping focus acquisition and nurturing efforts."
+            },
+            {
+                question: "What is cross-channel marketing automation?",
+                options: [
+                    "Automating TV and radio advertising",
+                    "Coordinating automated messages across email, SMS, push notifications, and other channels",
+                    "Only using multiple email service providers",
+                    "Automating social media posts only"
+                ],
+                correct: 1,
+                explanation: "Cross-channel automation creates cohesive customer experiences by coordinating messaging across all available communication channels."
+            },
+            {
+                question: "What is the primary benefit of cross-channel automation?",
+                options: [
+                    "It's less expensive than single-channel",
+                    "It creates consistent, integrated customer experiences and improves message effectiveness",
+                    "It's easier to set up",
+                    "It requires less planning"
+                ],
+                correct: 1,
+                explanation: "Cross-channel approaches reach customers through their preferred channels while reinforcing messages across touchpoints for better results."
+            },
+            {
+                question: "How should you coordinate timing between email and SMS in cross-channel campaigns?",
+                options: [
+                    "Send both simultaneously always",
+                    "Consider channel preferences, message urgency, and avoid overwhelming customers",
+                    "Always send SMS first",
+                    "Never send both on the same day"
+                ],
+                correct: 1,
+                explanation: "Different channels serve different purposes - SMS for urgent/immediate messages, email for detailed content - and timing should reflect this."
+            },
+            {
+                question: "What is message hierarchy in cross-channel campaigns?",
+                options: [
+                    "Who has authority to approve messages",
+                    "Determining which channels and messages take priority when customers receive multiple communications",
+                    "The order in which messages are created",
+                    "How much each message costs"
+                ],
+                correct: 1,
+                explanation: "Message hierarchy prevents communication overload by establishing rules for which messages are most important when multiple campaigns target the same customer."
+            },
+            {
+                question: "How should customer preferences affect cross-channel automation?",
+                options: [
+                    "Ignore preferences and use all channels available",
+                    "Respect channel preferences and use preference centers to let customers control their experience",
+                    "Only use the cheapest channels",
+                    "Use preferences only for demographics"
+                ],
+                correct: 1,
+                explanation: "Respecting preferences improves engagement and compliance while reducing opt-outs and complaints across all channels."
+            },
+            {
+                question: "What is the role of push notifications in cross-channel automation?",
+                options: [
+                    "To replace email entirely",
+                    "To provide immediate, attention-grabbing messages for time-sensitive communications",
+                    "To send detailed product information",
+                    "To collect customer feedback only"
+                ],
+                correct: 1,
+                explanation: "Push notifications excel at urgent, brief messages like flash sales, shipping updates, or breaking news that require immediate attention."
+            },
+            {
+                question: "How should you measure cross-channel campaign success?",
+                options: [
+                    "Only measure email performance",
+                    "Track overall customer journey conversion rather than individual channel metrics",
+                    "Only count the channel with highest open rates",
+                    "Measure each channel completely separately"
+                ],
+                correct: 1,
+                explanation: "Cross-channel success should be measured holistically - did the combined experience drive the desired customer action, regardless of which channel gets final credit?"
+            },
+            {
+                question: "What is channel fatigue and how do you prevent it?",
+                options: [
+                    "When marketing channels get tired",
+                    "When customers become overwhelmed by too many messages across channels",
+                    "When email servers slow down",
+                    "When channels become expensive"
+                ],
+                correct: 1,
+                explanation: "Channel fatigue occurs when customers receive too many communications, leading to decreased engagement and increased opt-outs across all channels."
+            },
+            {
+                question: "What is the purpose of a unified customer profile in cross-channel automation?",
+                options: [
+                    "To make customer profiles look identical",
+                    "To connect customer data across all channels for consistent, personalized experiences",
+                    "To reduce storage costs",
+                    "To speed up email delivery"
+                ],
+                correct: 1,
+                explanation: "Unified profiles ensure that customer preferences, behaviors, and history inform messaging across all channels, preventing contradictory experiences."
+            },
+            {
+                question: "How should retargeting ads integrate with email automation?",
+                options: [
+                    "They should promote completely different messages",
+                    "They should reinforce email messaging and target customers based on email engagement",
+                    "They should only target people who don't receive emails",
+                    "They have no relationship to email automation"
+                ],
+                correct: 1,
+                explanation: "Integrated retargeting extends email campaigns by reaching customers who didn't engage with emails and reinforcing messages across touchpoints."
+            },
+            {
+                question: "What is the most important metric for measuring automation ROI?",
+                options: [
+                    "Total emails sent",
+                    "Revenue generated compared to automation investment costs",
+                    "Number of automations created",
+                    "Email open rates only"
+                ],
+                correct: 1,
+                explanation: "ROI measures the business value of automation by comparing the revenue it generates against the costs of implementing and maintaining it."
+            },
+            {
+                question: "What does email deliverability mean in automation context?",
+                options: [
+                    "How fast emails are delivered",
+                    "The percentage of emails that successfully reach recipients' inboxes",
+                    "How many emails you can send per hour",
+                    "The size of email attachments"
+                ],
+                correct: 1,
+                explanation: "Deliverability is crucial for automation success - messages must reach inboxes to generate engagement and conversions."
+            },
+            {
+                question: "How can poor list hygiene affect automated campaigns?",
+                options: [
+                    "It makes emails more creative",
+                    "It increases bounce rates and damages sender reputation, reducing deliverability",
+                    "It makes campaigns more expensive",
+                    "It has no effect on automation"
+                ],
+                correct: 1,
+                explanation: "Bad email addresses and inactive subscribers hurt your sender reputation with ISPs, causing future emails to be blocked or sent to spam folders."
+            },
+            {
+                question: "What is send time optimization in marketing automation?",
+                options: [
+                    "Sending emails as fast as possible",
+                    "Using data and AI to determine the best time to send emails to each individual recipient",
+                    "Only sending emails during business hours",
+                    "Sending all emails at midnight"
+                ],
+                correct: 1,
+                explanation: "Send time optimization analyzes when individual customers are most likely to engage and schedules their emails accordingly."
+            },
+            {
+                question: "What should you do if an automated campaign has low open rates?",
+                options: [
+                    "Send more emails to the same audience",
+                    "Test subject lines, sender names, and review list quality",
+                    "Increase the email frequency",
+                    "Make emails longer"
+                ],
+                correct: 1,
+                explanation: "Low open rates indicate issues with email attractiveness (subject line, sender name) or deliverability (list quality, sender reputation)."
+            },
+            {
+                question: "How often should you review and optimize automation performance?",
+                options: [
+                    "Once per year",
+                    "Monthly for active campaigns, with deeper quarterly reviews",
+                    "Only when problems are reported",
+                    "Daily for all campaigns"
+                ],
+                correct: 1,
+                explanation: "Regular monitoring catches issues early while quarterly reviews allow for strategic optimization based on longer-term trends."
+            },
+            {
+                question: "What is A/B testing in automation context?",
+                options: [
+                    "Testing two different automation platforms",
+                    "Testing variations of email elements or workflows to determine which performs better",
+                    "Testing emails with customers named A vs. B",
+                    "Testing automation during A.M. vs. P.M. hours"
+                ],
+                correct: 1,
+                explanation: "A/B testing in automation helps optimize subject lines, content, timing, and even entire workflow sequences based on performance data."
+            },
+            {
+                question: "What does conversion rate optimization mean for email automation?",
+                options: [
+                    "Converting customers to competitors",
+                    "Improving the percentage of email recipients who complete desired actions",
+                    "Converting emails to different formats",
+                    "Optimizing currency conversion rates"
+                ],
+                correct: 1,
+                explanation: "Conversion rate optimization focuses on getting more email recipients to take the desired action, whether that's clicking, purchasing, or downloading."
+            },
+            {
+                question: "How should you handle customers who consistently don't engage with automated campaigns?",
+                options: [
+                    "Send them more frequent emails",
+                    "Gradually reduce frequency and eventually suppress them to protect deliverability",
+                    "Delete them immediately",
+                    "Send them only promotional offers"
+                ],
+                correct: 1,
+                explanation: "Non-engaging subscribers hurt deliverability metrics and are unlikely to convert, so gradual suppression protects your sender reputation."
+            },
+            {
+                question: "What is the purpose of automation reporting and analytics?",
+                options: [
+                    "To show how busy the marketing team is",
+                    "To measure performance, identify optimization opportunities, and demonstrate business value",
+                    "To comply with legal requirements only",
+                    "To create pretty charts for presentations"
+                ],
+                correct: 1,
+                explanation: "Analytics drive continuous improvement by showing what's working, what needs optimization, and how automation contributes to business goals."
+            },
+            {
+                question: "What is marketing automation orchestration?",
+                options: [
+                    "Playing music during campaigns",
+                    "Coordinating multiple automated campaigns and channels to create seamless customer experiences",
+                    "Organizing marketing team meetings",
+                    "Scheduling email send times"
+                ],
+                correct: 1,
+                explanation: "Orchestration ensures that all automated touchpoints work together harmoniously rather than competing or conflicting with each other."
+            },
+            {
+                question: "What is the customer lifetime value (CLV) impact of effective automation?",
+                options: [
+                    "Automation has no effect on CLV",
+                    "Good automation increases CLV by improving customer retention, increasing purchase frequency, and boosting average order values",
+                    "Automation always decreases CLV",
+                    "CLV only applies to new customers"
+                ],
+                correct: 1,
+                explanation: "Effective automation nurtures relationships, provides timely value, and encourages repeat purchases, all of which extend and increase customer lifetime value."
+            },
+            {
+                question: "How should seasonality affect your automation strategy?",
+                options: [
+                    "Automation should ignore seasonal factors",
+                    "Campaigns should adapt messaging, timing, and offers to align with seasonal customer behavior and needs",
+                    "Only run automation during peak seasons",
+                    "Seasonality only affects retail businesses"
+                ],
+                correct: 1,
+                explanation: "Seasonal adaptation makes automation more relevant and effective by acknowledging how customer needs and behaviors change throughout the year."
+            },
+            {
+                question: "What is permission-based marketing in automation?",
+                options: [
+                    "Getting permission from managers to send emails",
+                    "Only sending automated communications to customers who have explicitly consented to receive them",
+                    "Asking permission before each email",
+                    "Only marketing to customers with permits"
+                ],
+                correct: 1,
+                explanation: "Permission-based marketing ensures compliance with privacy laws and improves engagement by only communicating with people who want to hear from you."
+            },
+            {
+                question: "How should automation handle customer service integration?",
+                options: [
+                    "Automation should replace customer service",
+                    "Automation should complement service by providing timely information and escalating complex issues to humans",
+                    "Customer service and automation should never interact",
+                    "Only use automation for sales, never service"
+                ],
+                correct: 1,
+                explanation: "Smart automation handles routine communications and information delivery while ensuring human support is available when customers need personal assistance."
+            },
+            {
+                question: "What is the role of artificial intelligence in modern marketing automation?",
+                options: [
+                    "AI is not relevant to marketing automation",
+                    "AI enhances automation through predictive analytics, personalization, and optimization",
+                    "AI only works for large companies",
+                    "AI makes automation more expensive without benefits"
+                ],
+                correct: 1,
+                explanation: "AI improves automation by predicting customer behavior, personalizing content and timing, and automatically optimizing campaigns for better performance."
+            },
+            {
+                question: "How should you balance automation with human touch?",
+                options: [
+                    "Use 100% automation to reduce costs",
+                    "Strategic combination where automation handles routine tasks and humans provide personal attention for high-value interactions",
+                    "Never use automation, only human communication",
+                    "Randomly mix automated and personal messages"
+                ],
+                correct: 1,
+                explanation: "The most effective approach uses automation for efficiency and scale while reserving human interaction for complex needs, high-value customers, and relationship-building."
+            },
+            {
+                question: "What is automation governance?",
+                options: [
+                    "Government regulation of automation",
+                    "Policies and processes that ensure automation aligns with business objectives and maintains quality standards",
+                    "Voting on which automations to use",
+                    "Legal approval for each automated email"
+                ],
+                correct: 1,
+                explanation: "Governance establishes standards for automation quality, approval processes, brand consistency, and strategic alignment across the organization."
+            },
+            {
+                question: "How should automation evolve as companies grow?",
+                options: [
+                    "Keep the same automation regardless of growth",
+                    "Scale complexity and sophistication to match business needs, customer base size, and organizational capabilities",
+                    "Reduce automation as companies get bigger",
+                    "Only large companies should use automation"
+                ],
+                correct: 1,
+                explanation: "Automation should grow with the business, starting simple and adding complexity as needed to serve more customers and more sophisticated use cases."
+            },
+            {
+                question: "What is the future trend in marketing automation?",
+                options: [
+                    "Automation will become less important",
+                    "Increased AI integration, real-time personalization, and cross-channel orchestration",
+                    "Automation will only work for email",
+                    "Manual marketing will replace automation"
+                ],
+                correct: 1,
+                explanation: "Future automation will be more intelligent, responsive, and integrated across all customer touchpoints, providing increasingly personalized experiences."
+            },
+            {
+                question: "What should be your first step when implementing marketing automation?",
+                options: [
+                    "Buy the most expensive platform available",
+                    "Clearly define business objectives and map current customer journey",
+                    "Hire more marketing staff",
+                    "Start with the most complex campaigns"
+                ],
+                correct: 1,
+                explanation: "Understanding your goals and current customer experience provides the foundation for designing effective automation that addresses real business needs."
+            },
+            {
+                question: "What is the most common mistake when starting with marketing automation?",
+                options: [
+                    "Not spending enough money",
+                    "Trying to automate too much too quickly instead of starting with simple, high-impact campaigns",
+                    "Using too many email templates",
+                    "Not hiring enough staff"
+                ],
+                correct: 1,
+                explanation: "Automation success comes from starting simple, learning from results, and gradually building complexity rather than attempting everything at once."
+            },
+            {
+                question: "How should you handle automation failures and errors?",
+                options: [
+                    "Ignore them and hope they resolve themselves",
+                    "Have monitoring systems in place and documented procedures for quick resolution",
+                    "Delete all automations and start over",
+                    "Only run automations during business hours"
+                ],
+                correct: 1,
+                explanation: "Proactive monitoring and clear troubleshooting procedures minimize the impact of automation issues on customer experience and business results."
+            },
+            {
+                question: "What is the importance of data hygiene in automation success?",
+                options: [
+                    "Data quality doesn't affect automation",
+                    "Clean, accurate data is essential for proper automation triggering, personalization, and deliverability",
+                    "Only email addresses need to be clean",
+                    "Automation can fix bad data automatically"
+                ],
+                correct: 1,
+                explanation: "Automation relies on data to make decisions, personalize content, and determine timing - poor data quality leads to poor automation performance."
+            },
+            {
+                question: "How should you train team members on marketing automation?",
+                options: [
+                    "No training is needed",
+                    "Provide comprehensive training on platform capabilities, strategy, and best practices",
+                    "Only technical staff need training",
+                    "Training should focus only on button-clicking"
+                ],
+                correct: 1,
+                explanation: "Effective automation requires understanding both the technical capabilities and strategic thinking needed to create customer-centric campaigns."
+            },
+            {
+                question: "What is the role of testing in automation implementation?",
+                options: [
+                    "Testing is unnecessary for automation",
+                    "Thorough testing prevents errors, ensures proper functionality, and protects customer experience",
+                    "Only test if you have extra time",
+                    "Testing should only be done by developers"
+                ],
+                correct: 1,
+                explanation: "Testing automation workflows prevents embarrassing mistakes, ensures triggers work correctly, and validates that customers receive intended experiences."
+            },
+            {
+                question: "How should you document your automation workflows?",
+                options: [
+                    "Documentation isn't necessary",
+                    "Maintain detailed documentation of triggers, logic, content, and business rationale for team reference and troubleshooting",
+                    "Only document the most complex workflows",
+                    "Documentation should only include technical specifications"
+                ],
+                correct: 1,
+                explanation: "Good documentation enables team collaboration, facilitates troubleshooting, and preserves knowledge when team members change roles."
+            },
+            {
+                question: "What should you do when automation performance declines?",
+                options: [
+                    "Immediately shut down all automation",
+                    "Analyze data to identify root causes and systematically test solutions",
+                    "Increase email frequency to compensate",
+                    "Switch to manual campaigns permanently"
+                ],
+                correct: 1,
+                explanation: "Performance decline has specific causes (list quality, content relevance, timing, competition) that can be identified and addressed through systematic analysis."
+            },
+            {
+                question: "How should you scale automation across different product lines or business units?",
+                options: [
+                    "Use identical automation for all products",
+                    "Adapt automation strategy to each product's customer journey and business objectives while maintaining brand consistency",
+                    "Only automate the most profitable products",
+                    "Let each business unit create completely separate automation"
+                ],
+                correct: 1,
+                explanation: "Different products serve different customers with different needs, requiring customized automation while maintaining overall brand experience standards."
+            },
+            {
+                question: "What is the ultimate measure of marketing automation success?",
+                options: [
+                    "Number of emails sent",
+                    "Achievement of business objectives including revenue growth, customer retention, and operational efficiency",
+                    "How complex your workflows are",
+                    "How many automation tools you use"
+                ],
+                correct: 1,
+                explanation: "Automation success should be measured by business impact - does it help acquire customers, increase sales, retain customers, and operate more efficiently?"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answersGiven = [];
+        let quizCompleted = false;
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showCompletionScreen();
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${questions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <ul class="options">
+                        ${question.options.map((option, index) => 
+                            `<li class="option" onclick="selectOption(${index})">
+                                <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                                <span>${option}</span>
+                            </li>`
+                        ).join('')}
+                    </ul>
+                    <div class="explanation" id="explanation">
+                        <h4>✅ Correct Answer: ${String.fromCharCode(65 + question.correct)})</h4>
+                        <p>${question.explanation}</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <div class="score-display">
+                        Score: ${score}/${currentQuestion} ${currentQuestion > 0 ? `(${Math.round(score/currentQuestion*100)}%)` : ''}
+                    </div>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        Next →
+                    </button>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = questions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Remove any previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark the selected option
+            options[selectedIndex].classList.add('selected');
+
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Record the answer
+            answersGiven[currentQuestion] = selectedIndex;
+
+            // Update score
+            if (selectedIndex === question.correct) {
+                if (answersGiven[currentQuestion] !== question.correct) {
+                    score++;
+                }
+            }
+
+            // Show explanation and enable next button
+            explanation.classList.add('show');
+            nextBtn.disabled = false;
+
+            // Update score display
+            document.querySelector('.score-display').innerHTML = 
+                `Score: ${score}/${currentQuestion + 1} (${Math.round(score/(currentQuestion + 1)*100)}%)`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${questions.length}`;
+        }
+
+        function showCompletionScreen() {
+            const container = document.getElementById('quizContainer');
+            const completionScreen = document.getElementById('completionScreen');
+            const finalScorePercent = Math.round((score / questions.length) * 100);
+            
+            container.style.display = 'none';
+            completionScreen.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = finalScorePercent + '%';
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (finalScorePercent >= 90) {
+                scoreCircle.className = 'score-circle score-excellent';
+                scoreMessage.textContent = '🌟 Outstanding! You have excellent knowledge of SFMC Marketing Automation!';
+            } else if (finalScorePercent >= 75) {
+                scoreCircle.className = 'score-circle score-good';
+                scoreMessage.textContent = '👏 Great job! You have a solid understanding of the concepts.';
+            } else if (finalScorePercent >= 60) {
+                scoreCircle.className = 'score-circle score-needs-improvement';
+                scoreMessage.textContent = '📚 Good effort! Review the study guide and try again to improve your score.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                scoreMessage.textContent = '💪 Keep studying! Review the concepts and take the quiz again.';
+            }
+
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quiz Complete!';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            quizCompleted = false;
+            
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('completionScreen').classList.remove('show');
+            
+            loadQuestion();
+        }
+
+        // Initialize the quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

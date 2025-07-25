@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 3: Content Creation & Delivery - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2a5298;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: #2a5298;
+            background: #f0f7ff;
+        }
+        
+        .option.selected {
+            border-color: #2a5298;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #2a5298;
+            min-width: 25px;
+        }
+        
+        .explanation {
+            background: #e8f5e8;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .completion-screen.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .score-needs-improvement {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 SFMC Certification Study</h1>
+            <p>Lesson 3: Content Creation & Delivery (18-24% of Exam)</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 100</div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+        
+        <div class="completion-screen" id="completionScreen">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the Content Creation & Delivery quiz!</p>
+            <div class="score-circle" id="scoreCircle">
+                <span id="finalScore">0%</span>
+            </div>
+            <p id="scoreMessage"></p>
+            <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the primary purpose of Content Builder in SFMC?",
+                options: [
+                    "To build physical content for stores",
+                    "To serve as the central hub for creating, storing, and managing all marketing content",
+                    "To create customer databases",
+                    "To manage employee schedules"
+                ],
+                correct: 1,
+                explanation: "Content Builder is SFMC's comprehensive content management system where you create emails, store assets, and organize all marketing materials."
+            },
+            {
+                question: "What is the difference between \"My Content\" and \"Shared Content\" in Content Builder?",
+                options: [
+                    "My Content is more expensive than Shared Content",
+                    "My Content is accessible only to you; Shared Content is available to your entire team",
+                    "There is no difference between them",
+                    "My Content is for emails; Shared Content is for images only"
+                ],
+                correct: 1,
+                explanation: "This folder structure helps organize personal work items versus team assets that multiple people need to access."
+            },
+            {
+                question: "Which file types can you store in Content Builder?",
+                options: [
+                    "Only images",
+                    "Only HTML files",
+                    "Images, HTML files, documents, and other digital assets",
+                    "Only text files"
+                ],
+                correct: 2,
+                explanation: "Content Builder supports various file types including images (JPEG, PNG, GIF), HTML files, PDFs, documents, and other marketing assets."
+            },
+            {
+                question: "What is the recommended maximum file size for images in SFMC emails?",
+                options: [
+                    "5MB",
+                    "10MB",
+                    "1MB or smaller",
+                    "There is no limit"
+                ],
+                correct: 2,
+                explanation: "Smaller file sizes ensure faster email loading times and better user experience, especially on mobile devices with slower connections."
+            },
+            {
+                question: "How should you organize content in Content Builder for maximum efficiency?",
+                options: [
+                    "Put everything in one folder",
+                    "Use descriptive folder structures and naming conventions",
+                    "Organize by file type only",
+                    "Let SFMC organize it automatically"
+                ],
+                correct: 1,
+                explanation: "Organized folder structures and clear naming conventions make it easier to find, manage, and maintain content as your library grows."
+            },
+            {
+                question: "What is version control in Content Builder?",
+                options: [
+                    "Controlling which version of SFMC you use",
+                    "The ability to track changes and maintain history of content updates",
+                    "Controlling which team members can access content",
+                    "Managing different language versions only"
+                ],
+                correct: 1,
+                explanation: "Version control helps you track what changes were made, when, and by whom, which is crucial for team collaboration and troubleshooting."
+            },
+            {
+                question: "What are usage rights in Content Builder?",
+                options: [
+                    "Rights to use SFMC features",
+                    "Legal permissions to use images, fonts, and other creative assets",
+                    "User access permissions",
+                    "Rights to share content on social media"
+                ],
+                correct: 1,
+                explanation: "Usage rights ensure you have legal permission to use creative assets in your marketing, protecting your organization from copyright issues."
+            },
+            {
+                question: "What is the benefit of using shared folders in Content Builder?",
+                options: [
+                    "They cost less than personal folders",
+                    "They enable team collaboration and ensure brand consistency",
+                    "They have more storage space",
+                    "They automatically optimize content"
+                ],
+                correct: 1,
+                explanation: "Shared folders allow teams to collaborate on content while ensuring everyone uses approved, brand-compliant assets."
+            },
+            {
+                question: "How can you search for specific content in Content Builder?",
+                options: [
+                    "You can't search; you must browse folders",
+                    "Using search filters by name, type, date, and other attributes",
+                    "Only by file name",
+                    "Only by creation date"
+                ],
+                correct: 1,
+                explanation: "Content Builder's search functionality helps you quickly find specific assets using various criteria, saving time in large content libraries."
+            },
+            {
+                question: "What happens when you delete content from Content Builder?",
+                options: [
+                    "It's permanently deleted immediately",
+                    "It moves to a trash/recycle bin where it can be recovered",
+                    "It's automatically backed up to another location",
+                    "Nothing happens; content cannot be deleted"
+                ],
+                correct: 1,
+                explanation: "SFMC provides a safety net by moving deleted content to a recoverable trash area, preventing accidental permanent loss."
+            },
+            {
+                question: "What are the three main methods for creating emails in SFMC?",
+                options: [
+                    "Basic, Intermediate, Advanced",
+                    "HTML Email, Template-Based, Content Block Assembly",
+                    "Text only, Image only, Mixed content",
+                    "Simple, Complex, Custom"
+                ],
+                correct: 1,
+                explanation: "These three methods offer different levels of customization and technical requirements, from full HTML coding to drag-and-drop simplicity."
+            },
+            {
+                question: "When would you choose HTML email creation over template-based creation?",
+                options: [
+                    "When you want to save money",
+                    "When you need maximum design flexibility and have coding skills",
+                    "When you're in a hurry",
+                    "When you're new to email marketing"
+                ],
+                correct: 1,
+                explanation: "HTML creation allows complete design control but requires technical knowledge, while templates are more user-friendly but less flexible."
+            },
+            {
+                question: "What is the main advantage of template-based email creation?",
+                options: [
+                    "It's more expensive",
+                    "It's user-friendly and doesn't require coding knowledge",
+                    "It creates smaller file sizes",
+                    "It automatically personalizes content"
+                ],
+                correct: 1,
+                explanation: "Template-based creation uses drag-and-drop interfaces that make email creation accessible to marketers without technical skills."
+            },
+            {
+                question: "What are Content Blocks in email creation?",
+                options: [
+                    "Blocks that prevent content from loading",
+                    "Reusable modules of content that can be assembled into emails",
+                    "Physical blocks used in offices",
+                    "Blocked content that can't be used"
+                ],
+                correct: 1,
+                explanation: "Content Blocks are like LEGO pieces that can be mixed and matched to create different email designs while maintaining consistency."
+            },
+            {
+                question: "What is the benefit of using Content Block Assembly?",
+                options: [
+                    "It's the cheapest option",
+                    "It ensures brand consistency and speeds up email creation",
+                    "It automatically sends emails",
+                    "It requires no planning"
+                ],
+                correct: 1,
+                explanation: "Pre-built content blocks maintain visual and messaging consistency while allowing faster assembly of new emails from proven components."
+            },
+            {
+                question: "What should you consider when choosing an email creation method?",
+                options: [
+                    "Only the cost",
+                    "Team skills, design requirements, brand consistency needs, and time constraints",
+                    "Only the speed of creation",
+                    "Only the visual appearance"
+                ],
+                correct: 1,
+                explanation: "The best creation method depends on your team's capabilities, project requirements, and organizational constraints."
+            },
+            {
+                question: "What is a template in SFMC email creation?",
+                options: [
+                    "A temporary email",
+                    "A pre-designed layout structure that can be reused with different content",
+                    "A sample email address",
+                    "A type of subscriber list"
+                ],
+                correct: 1,
+                explanation: "Templates provide consistent design frameworks that can be populated with different content for various campaigns."
+            },
+            {
+                question: "What does \"responsive\" mean in email template design?",
+                options: [
+                    "The template responds to customer feedback",
+                    "The design adapts to different screen sizes and devices",
+                    "The template loads quickly",
+                    "The template includes interactive elements"
+                ],
+                correct: 1,
+                explanation: "Responsive design ensures emails look good and function properly whether viewed on phones, tablets, or desktop computers."
+            },
+            {
+                question: "What is the difference between a layout template and a content template?",
+                options: [
+                    "Layout templates are more expensive",
+                    "Layout templates define structure; content templates include specific messaging",
+                    "There is no difference",
+                    "Content templates are only for text"
+                ],
+                correct: 1,
+                explanation: "Layout templates provide the framework and design structure, while content templates include specific text, images, and messaging for particular campaigns."
+            },
+            {
+                question: "How can you ensure your email creation method supports your team's workflow?",
+                options: [
+                    "Choose the most complex method available",
+                    "Assess team skills, collaboration needs, and approval processes",
+                    "Use only the simplest method",
+                    "Change methods frequently"
+                ],
+                correct: 1,
+                explanation: "The best creation method aligns with your team's technical abilities, collaboration requirements, and organizational approval workflows."
+            },
+            {
+                question: "What is a Free Form Content Block?",
+                options: [
+                    "Content that doesn't cost anything",
+                    "A content block with no restrictions on HTML/CSS customization",
+                    "Content that can be freely shared",
+                    "A content block that loads freely"
+                ],
+                correct: 1,
+                explanation: "Free Form Content Blocks allow complete creative control with custom HTML and CSS, offering maximum design flexibility."
+            },
+            {
+                question: "What is a Layout-Based Content Block?",
+                options: [
+                    "A block that shows the layout of your office",
+                    "A structured template with predefined content areas and drag-and-drop functionality",
+                    "A block that only contains layout instructions",
+                    "A temporary layout solution"
+                ],
+                correct: 1,
+                explanation: "Layout-Based blocks provide structured frameworks with designated areas for content, making them user-friendly for non-technical users."
+            },
+            {
+                question: "What is the main benefit of modular content design?",
+                options: [
+                    "It costs less to implement",
+                    "It enables consistent branding and faster email creation through reusable components",
+                    "It requires less storage space",
+                    "It automatically optimizes for mobile"
+                ],
+                correct: 1,
+                explanation: "Modular design allows you to create libraries of approved, brand-consistent components that can be quickly assembled into new campaigns."
+            },
+            {
+                question: "How should you name your Content Blocks for maximum organization?",
+                options: [
+                    "Use random names",
+                    "Use descriptive, consistent naming conventions that indicate purpose and appearance",
+                    "Use only numbers",
+                    "Use the longest names possible"
+                ],
+                correct: 1,
+                explanation: "Clear naming conventions like \"Header_Logo_Blue\" or \"CTA_Shop_Red\" make it easy to find and use the right blocks quickly."
+            },
+            {
+                question: "What is dynamic content in Content Blocks?",
+                options: [
+                    "Content that moves around the screen",
+                    "Content that changes based on subscriber data and behavior",
+                    "Content that is created dynamically by AI",
+                    "Content that changes colors"
+                ],
+                correct: 1,
+                explanation: "Dynamic content personalizes the subscriber experience by showing different information based on their profile, location, or past actions."
+            },
+            {
+                question: "When should you create a new Content Block versus using an existing one?",
+                options: [
+                    "Always create new blocks",
+                    "When you have unique content needs that existing blocks don't serve",
+                    "Never create new blocks",
+                    "Only when the old blocks are broken"
+                ],
+                correct: 1,
+                explanation: "Create new blocks when you have genuinely new content requirements, but reuse existing blocks whenever possible for consistency and efficiency."
+            },
+            {
+                question: "What is the purpose of Content Block permissions?",
+                options: [
+                    "To charge for content usage",
+                    "To control who can view, edit, or use specific content blocks",
+                    "To speed up content loading",
+                    "To organize content by color"
+                ],
+                correct: 1,
+                explanation: "Permissions ensure that only authorized team members can modify approved content blocks, maintaining brand standards and preventing errors."
+            },
+            {
+                question: "How can you test Content Blocks before using them in campaigns?",
+                options: [
+                    "Content Blocks don't need testing",
+                    "Preview functionality and test emails to verify appearance and functionality",
+                    "Only test after the campaign is sent",
+                    "Testing is automatic"
+                ],
+                correct: 1,
+                explanation: "Testing blocks ensures they display correctly across different email clients and devices before incorporating them into live campaigns."
+            },
+            {
+                question: "What should you do when updating a widely-used Content Block?",
+                options: [
+                    "Update it immediately without notice",
+                    "Carefully consider impact, test thoroughly, and communicate changes to your team",
+                    "Delete the old version immediately",
+                    "Create a completely new block instead"
+                ],
+                correct: 1,
+                explanation: "Changes to shared blocks affect multiple campaigns, so careful planning, testing, and communication prevent disruptions to ongoing campaigns."
+            },
+            {
+                question: "What is the relationship between Content Blocks and email templates?",
+                options: [
+                    "They are completely unrelated",
+                    "Content Blocks can be used as building components within email templates",
+                    "Templates replace the need for Content Blocks",
+                    "Content Blocks are only for advanced users"
+                ],
+                correct: 1,
+                explanation: "Content Blocks serve as modular components that can be incorporated into templates, creating flexible, reusable email designs."
+            },
+            {
+                question: "What is the difference between personalization and dynamic content?",
+                options: [
+                    "There is no difference",
+                    "Personalization uses subscriber data to customize messages; dynamic content shows different content blocks based on rules",
+                    "Personalization is more expensive",
+                    "Dynamic content is only for advanced users"
+                ],
+                correct: 1,
+                explanation: "Personalization typically involves merge fields (like names), while dynamic content can show entirely different sections based on subscriber attributes."
+            },
+            {
+                question: "What is a personalization string in SFMC?",
+                options: [
+                    "A string of personalized beads",
+                    "A merge field that inserts subscriber-specific data into emails",
+                    "A personal message from the CEO",
+                    "A customized subject line only"
+                ],
+                correct: 1,
+                explanation: "Personalization strings like %%FirstName%% pull specific data from subscriber records to customize email content."
+            },
+            {
+                question: "What should you always include when using personalization strings?",
+                options: [
+                    "The subscriber's full address",
+                    "A default value in case the data field is empty",
+                    "The subscriber's purchase history",
+                    "Social media links"
+                ],
+                correct: 1,
+                explanation: "Default values prevent empty spaces or error messages when subscriber data is missing, ensuring professional-looking emails."
+            },
+            {
+                question: "What is a Dynamic Content Rule?",
+                options: [
+                    "A rule about dynamic pricing",
+                    "Criteria that determines which content variation a subscriber sees",
+                    "A rule for content creation speed",
+                    "A legal requirement for dynamic content"
+                ],
+                correct: 1,
+                explanation: "Dynamic Content Rules use subscriber attributes to determine which version of content (different text, images, offers) each person receives."
+            },
+            {
+                question: "What is the \"Default Rule\" in dynamic content?",
+                options: [
+                    "The most expensive content option",
+                    "The content that displays when no other rules apply to a subscriber",
+                    "The first rule created",
+                    "The rule that applies to VIP customers"
+                ],
+                correct: 1,
+                explanation: "The Default Rule ensures every subscriber sees appropriate content, even if they don't match any specific targeting criteria."
+            },
+            {
+                question: "Which of the following is an example of effective dynamic content?",
+                options: [
+                    "Showing winter coats to customers in Florida during summer",
+                    "Showing hiking gear to customers who recently purchased camping equipment",
+                    "Showing baby products to all customers regardless of life stage",
+                    "Showing the same content to everyone"
+                ],
+                correct: 1,
+                explanation: "This example shows relevant, related products based on recent customer behavior, increasing the likelihood of engagement and purchase."
+            },
+            {
+                question: "What data can be used to create dynamic content rules?",
+                options: [
+                    "Only customer names",
+                    "Demographics, behavior, purchase history, location, and preferences",
+                    "Only purchase history",
+                    "Only geographic location"
+                ],
+                correct: 1,
+                explanation: "Dynamic content can use any subscriber data you have to create more relevant, targeted experiences."
+            },
+            {
+                question: "What is real-time dynamic content?",
+                options: [
+                    "Content that moves in real-time",
+                    "Content that updates with current information when the email is opened",
+                    "Content created in real-time by AI",
+                    "Content that expires in real-time"
+                ],
+                correct: 1,
+                explanation: "Real-time content pulls current data (inventory levels, pricing, weather) at the moment of email opening, ensuring information is always current."
+            },
+            {
+                question: "What is the benefit of geographic personalization?",
+                options: [
+                    "It reduces email costs",
+                    "It makes content more relevant by considering location-specific factors",
+                    "It makes emails load faster",
+                    "It improves email security"
+                ],
+                correct: 1,
+                explanation: "Geographic personalization can reference local weather, store locations, events, or cultural preferences to increase relevance."
+            },
+            {
+                question: "What should you test when implementing dynamic content?",
+                options: [
+                    "Only the default version",
+                    "All content variations to ensure they display correctly for different audience segments",
+                    "Only the most complex variations",
+                    "Dynamic content doesn't need testing"
+                ],
+                correct: 1,
+                explanation: "Each content variation should be tested to ensure it appears correctly and makes sense for its intended audience segment."
+            },
+            {
+                question: "What percentage of emails are opened on mobile devices?",
+                options: [
+                    "About 20%",
+                    "About 40%",
+                    "About 60% or more",
+                    "About 80%"
+                ],
+                correct: 2,
+                explanation: "Mobile email usage continues to grow, making mobile optimization essential for email marketing success."
+            },
+            {
+                question: "What is the key principle of mobile-first design?",
+                options: [
+                    "Only design for mobile devices",
+                    "Design for the smallest screen first, then enhance for larger screens",
+                    "Make mobile emails smaller than desktop emails",
+                    "Use only text, no images on mobile"
+                ],
+                correct: 1,
+                explanation: "Mobile-first design ensures the core experience works on small screens, then adds enhancements for larger displays."
+            },
+            {
+                question: "What is the recommended minimum size for touch-friendly buttons in mobile emails?",
+                options: [
+                    "20x20 pixels",
+                    "30x30 pixels",
+                    "44x44 pixels or larger",
+                    "60x60 pixels"
+                ],
+                correct: 2,
+                explanation: "This size ensures buttons are large enough for accurate finger tapping on touchscreen devices."
+            },
+            {
+                question: "What is the recommended maximum width for mobile-optimized emails?",
+                options: [
+                    "400 pixels",
+                    "600-650 pixels",
+                    "800 pixels",
+                    "1000 pixels"
+                ],
+                correct: 1,
+                explanation: "This width works well across most devices and email clients while remaining readable on mobile screens."
+            },
+            {
+                question: "What is the minimum recommended font size for mobile email body text?",
+                options: [
+                    "10px",
+                    "12px",
+                    "14px or larger",
+                    "18px"
+                ],
+                correct: 2,
+                explanation: "Smaller text becomes difficult to read on mobile screens, leading to poor user experience and lower engagement."
+            },
+            {
+                question: "What layout works best for mobile email design?",
+                options: [
+                    "Multi-column layouts",
+                    "Single-column layouts",
+                    "Grid layouts with many small sections",
+                    "Horizontal scrolling layouts"
+                ],
+                correct: 1,
+                explanation: "Single-column layouts are easiest to read and navigate on narrow mobile screens, reducing user friction."
+            },
+            {
+                question: "How should images be optimized for mobile emails?",
+                options: [
+                    "Use the largest possible images",
+                    "Compress images for fast loading while maintaining quality",
+                    "Avoid images entirely on mobile",
+                    "Use only black and white images"
+                ],
+                correct: 1,
+                explanation: "Optimized images provide visual appeal while ensuring fast loading times on mobile connections."
+            },
+            {
+                question: "What is the purpose of alt text in mobile emails?",
+                options: [
+                    "To make emails longer",
+                    "To provide descriptions when images don't load and improve accessibility",
+                    "To replace images entirely",
+                    "To add extra keywords for SEO"
+                ],
+                correct: 1,
+                explanation: "Alt text serves users when images are blocked and helps visually impaired users understand email content."
+            },
+            {
+                question: "How should you test mobile email design?",
+                options: [
+                    "Only test on one mobile device",
+                    "Test across multiple devices, screen sizes, and email clients",
+                    "Mobile testing isn't necessary",
+                    "Only test on the latest iPhone"
+                ],
+                correct: 1,
+                explanation: "Different devices and email clients can display emails differently, so comprehensive testing ensures consistent experience."
+            },
+            {
+                question: "What is progressive enhancement in mobile email design?",
+                options: [
+                    "Making emails progressively more expensive",
+                    "Starting with a basic mobile experience and adding features for larger screens",
+                    "Progressively adding more images",
+                    "Making emails progressively longer"
+                ],
+                correct: 1,
+                explanation: "Progressive enhancement ensures core functionality works on all devices while providing enhanced features where supported."
+            },
+            {
+                question: "What are the most commonly supported image formats in email?",
+                options: [
+                    "Only JPEG",
+                    "JPEG, PNG, and GIF",
+                    "Only PNG",
+                    "All image formats are supported equally"
+                ],
+                correct: 1,
+                explanation: "These three formats have the widest support across email clients, though support for other formats may be limited."
+            },
+            {
+                question: "When should you use JPEG format for email images?",
+                options: [
+                    "Never use JPEG in emails",
+                    "For photographs and images with many colors or gradients",
+                    "Only for logos",
+                    "For all images regardless of type"
+                ],
+                correct: 1,
+                explanation: "JPEG compression works best for complex images with many colors, providing good quality at reasonable file sizes."
+            },
+            {
+                question: "When should you use PNG format for email images?",
+                options: [
+                    "Never use PNG in emails",
+                    "For graphics with transparency, logos, and images with few colors",
+                    "Only for photographs",
+                    "PNG should be avoided in all cases"
+                ],
+                correct: 1,
+                explanation: "PNG format supports transparency and provides better quality for graphics with solid colors and sharp edges."
+            },
+            {
+                question: "What is the recommended resolution for email images?",
+                options: [
+                    "300 DPI (print quality)",
+                    "150 DPI",
+                    "72 DPI (web quality)",
+                    "As high as possible"
+                ],
+                correct: 2,
+                explanation: "Higher resolutions are unnecessary for screen display and create larger file sizes that slow email loading."
+            },
+            {
+                question: "What should you include in image alt text?",
+                options: [
+                    "The filename of the image",
+                    "A meaningful description of the image content and purpose",
+                    "Random keywords for SEO",
+                    "The image dimensions"
+                ],
+                correct: 1,
+                explanation: "Descriptive alt text helps users understand image content when images don't load and improves accessibility for screen readers."
+            },
+            {
+                question: "How should you organize images in Content Builder?",
+                options: [
+                    "Put all images in one folder",
+                    "Use organized folder structures with descriptive names",
+                    "Let SFMC organize them automatically",
+                    "Organization doesn't matter"
+                ],
+                correct: 1,
+                explanation: "Good organization makes it easier to find, manage, and maintain your image library as it grows."
+            },
+            {
+                question: "What is image compression and why is it important for emails?",
+                options: [
+                    "Making images smaller in physical dimensions",
+                    "Reducing file size while maintaining acceptable quality for faster loading",
+                    "Compressing images into ZIP files",
+                    "Squashing images to fit in emails"
+                ],
+                correct: 1,
+                explanation: "Compressed images load faster, improving user experience and reducing the chance of recipients abandoning slow-loading emails."
+            },
+            {
+                question: "What happens if your email images are too large?",
+                options: [
+                    "They look better",
+                    "Emails load slowly, potentially causing recipients to abandon or delete them",
+                    "They automatically resize",
+                    "Nothing happens"
+                ],
+                correct: 1,
+                explanation: "Large images create poor user experience, especially on mobile devices with slower connections."
+            },
+            {
+                question: "What is the purpose of image hosting in SFMC?",
+                options: [
+                    "To make images more expensive",
+                    "To store images reliably and ensure they display consistently across email clients",
+                    "To hide images from competitors",
+                    "To automatically optimize all images"
+                ],
+                correct: 1,
+                explanation: "SFMC's image hosting ensures images are available when emails are opened and provides reliable delivery across different email systems."
+            },
+            {
+                question: "What should you consider regarding image rights and licensing?",
+                options: [
+                    "All images on the internet are free to use",
+                    "Ensure you have proper licensing and usage rights for all images used",
+                    "Only worry about licensing for paid images",
+                    "Image rights don't apply to email marketing"
+                ],
+                correct: 1,
+                explanation: "Using images without proper rights can lead to legal issues and copyright violations, so always verify usage permissions."
+            },
+            {
+                question: "What is the primary purpose of A/B testing in email content?",
+                options: [
+                    "To confuse subscribers",
+                    "To determine which version of content performs better with your audience",
+                    "To send more emails",
+                    "To make emails more complex"
+                ],
+                correct: 1,
+                explanation: "A/B testing provides data-driven insights about what content resonates best with your specific audience."
+            },
+            {
+                question: "What is the most important rule when conducting A/B tests?",
+                options: [
+                    "Test as many variables as possible at once",
+                    "Test only one variable at a time to isolate what caused performance differences",
+                    "Always test for at least 6 months",
+                    "Only test with VIP customers"
+                ],
+                correct: 1,
+                explanation: "Testing multiple variables simultaneously makes it impossible to determine which change caused the performance difference."
+            },
+            {
+                question: "What subject line elements are most valuable to A/B test?",
+                options: [
+                    "Only the length",
+                    "Length, personalization, urgency, tone, and emoji usage",
+                    "Only personalization",
+                    "Subject lines don't need testing"
+                ],
+                correct: 1,
+                explanation: "These elements significantly impact open rates and provide clear insights into subscriber preferences."
+            },
+            {
+                question: "What is statistical significance in A/B testing?",
+                options: [
+                    "How important the test is to your business",
+                    "Confidence that the results are not due to random chance",
+                    "The significance of the test to statistics",
+                    "How many statistics you collect"
+                ],
+                correct: 1,
+                explanation: "Statistical significance ensures that performance differences between versions are meaningful and not just random variation."
+            },
+            {
+                question: "What is the minimum sample size needed for reliable A/B testing?",
+                options: [
+                    "10 subscribers per variation",
+                    "It depends on your audience size and expected performance differences",
+                    "1000 subscribers always",
+                    "Sample size doesn't matter"
+                ],
+                correct: 1,
+                explanation: "Sample size requirements vary based on your list size, current performance rates, and the size of improvement you want to detect."
+            },
+            {
+                question: "How long should you run an A/B test?",
+                options: [
+                    "Always stop after 24 hours",
+                    "Run until you have statistical significance and adequate sample size",
+                    "Run for exactly one week",
+                    "Stop as soon as you see any difference"
+                ],
+                correct: 1,
+                explanation: "Stopping tests too early can lead to false conclusions; tests need sufficient time and data to produce reliable results."
+            },
+            {
+                question: "What should you do with A/B test results?",
+                options: [
+                    "Ignore them if you don't like the winner",
+                    "Document learnings and apply insights to future campaigns",
+                    "Only use results if they confirm your assumptions",
+                    "Keep results secret"
+                ],
+                correct: 1,
+                explanation: "A/B testing value comes from applying learnings to improve future campaigns, building a knowledge base of what works for your audience."
+            },
+            {
+                question: "What email elements beyond subject lines should you test?",
+                options: [
+                    "Nothing else needs testing",
+                    "Call-to-action buttons, images, content length, layout, and send times",
+                    "Only call-to-action buttons",
+                    "Only images"
+                ],
+                correct: 1,
+                explanation: "Many email elements impact performance, and systematic testing of different components helps optimize overall results."
+            },
+            {
+                question: "What is a control group in A/B testing?",
+                options: [
+                    "The group that controls the test",
+                    "The baseline version you're testing against (usually your current approach)",
+                    "The group of people who run the test",
+                    "The group that receives no emails"
+                ],
+                correct: 1,
+                explanation: "The control group receives your standard approach, providing a baseline to measure whether new variations perform better or worse."
+            },
+            {
+                question: "What should you NOT do when A/B testing email content?",
+                options: [
+                    "Test one variable at a time",
+                    "Make decisions based on incomplete data or personal preferences rather than results",
+                    "Document your results",
+                    "Test call-to-action buttons"
+                ],
+                correct: 1,
+                explanation: "A/B testing provides objective data; ignoring results in favor of assumptions defeats the purpose and wastes testing opportunities."
+            },
+            {
+                question: "What is send time optimization?",
+                options: [
+                    "Sending emails as fast as possible",
+                    "Using data to determine the best time to send emails to each individual subscriber",
+                    "Only sending emails during business hours",
+                    "Sending all emails at the same time"
+                ],
+                correct: 1,
+                explanation: "Send time optimization analyzes individual subscriber behavior to predict when they're most likely to engage with emails."
+            },
+            {
+                question: "What factors should influence your email send timing?",
+                options: [
+                    "Only your work schedule",
+                    "Audience behavior, time zones, industry benchmarks, and content type",
+                    "Only industry benchmarks",
+                    "Random selection"
+                ],
+                correct: 1,
+                explanation: "Optimal send timing depends on multiple factors specific to your audience and content, not just general best practices."
+            },
+            {
+                question: "What is frequency capping in email delivery?",
+                options: [
+                    "Limiting how many emails you can send total",
+                    "Setting maximum limits on how many emails subscribers receive in a given period",
+                    "Capping the frequency of your internet connection",
+                    "Limiting how often you check email performance"
+                ],
+                correct: 1,
+                explanation: "Frequency capping prevents subscriber fatigue by ensuring people don't receive too many emails in a short time period."
+            },
+            {
+                question: "What is engagement-based sending?",
+                options: [
+                    "Only sending to engaged employees",
+                    "Adjusting email frequency and content based on individual subscriber engagement levels",
+                    "Sending emails only during engagement parties",
+                    "Sending the same frequency to everyone"
+                ],
+                correct: 1,
+                explanation: "Engagement-based sending recognizes that highly engaged subscribers can receive more emails while less engaged ones need reduced frequency."
+            },
+            {
+                question: "What is the purpose of preference centers in content delivery?",
+                options: [
+                    "To show your personal preferences",
+                    "To let subscribers control what content they receive and how often",
+                    "To compare different email platforms",
+                    "To store customer preferences for products only"
+                ],
+                correct: 1,
+                explanation: "Preference centers empower subscribers to customize their email experience, reducing unsubscribes while improving engagement."
+            },
+            {
+                question: "What is deliverability and why does it matter for content?",
+                options: [
+                    "How fast emails are delivered",
+                    "The ability of emails to reach subscribers' inboxes rather than spam folders",
+                    "The delivery method used for emails",
+                    "How many emails you can deliver per hour"
+                ],
+                correct: 1,
+                explanation: "Even the best content is useless if it doesn't reach subscribers' inboxes; deliverability ensures your messages are seen."
+            },
+            {
+                question: "How can poor content affect email deliverability?",
+                options: [
+                    "Content doesn't affect deliverability",
+                    "Spam-like content, excessive images, or misleading subject lines can cause emails to be filtered as spam",
+                    "Only technical factors affect deliverability",
+                    "Good content always guarantees inbox placement"
+                ],
+                correct: 1,
+                explanation: "Content quality directly impacts deliverability as email filters analyze content patterns to identify potential spam."
+            },
+            {
+                question: "What is list hygiene and how does it relate to content delivery?",
+                options: [
+                    "Cleaning your physical mailing lists",
+                    "Regularly removing inactive and invalid email addresses to maintain good sender reputation",
+                    "Organizing your content lists",
+                    "Hygiene practices for email marketing teams"
+                ],
+                correct: 1,
+                explanation: "Clean lists improve deliverability rates, ensuring your content reaches active, interested subscribers."
+            },
+            {
+                question: "What role does sender authentication play in content delivery?",
+                options: [
+                    "It doesn't affect content delivery",
+                    "Proper authentication (SPF, DKIM, DMARC) helps emails reach inboxes and avoid spam filters",
+                    "Authentication only affects security, not delivery",
+                    "Authentication is only needed for large companies"
+                ],
+                correct: 1,
+                explanation: "Authentication protocols verify that you're authorized to send emails from your domain, improving deliverability and trust."
+            },
+            {
+                question: "What is the relationship between content relevance and delivery performance?",
+                options: [
+                    "There is no relationship",
+                    "More relevant content typically generates better engagement, which improves future deliverability",
+                    "Relevance only affects click rates",
+                    "Relevance makes delivery slower"
+                ],
+                correct: 1,
+                explanation: "High engagement rates (opens, clicks) signal to email providers that subscribers want your emails, improving future inbox placement."
+            },
+            {
+                question: "What is a brand style guide and why is it important for email content?",
+                options: [
+                    "A guide for styling hair",
+                    "A document that defines visual and messaging standards to ensure consistent brand representation",
+                    "A guide for email coding styles",
+                    "A guide for writing styles only"
+                ],
+                correct: 1,
+                explanation: "Style guides ensure all team members create content that aligns with your brand identity and provides consistent customer experiences."
+            },
+            {
+                question: "What visual elements should be standardized in email content?",
+                options: [
+                    "Only colors",
+                    "Logo usage, colors, fonts, image styles, and layout structures",
+                    "Only logos",
+                    "Visual elements don't need standardization"
+                ],
+                correct: 1,
+                explanation: "Consistent visual elements help customers recognize your brand instantly and build trust through professional, cohesive communications."
+            },
+            {
+                question: "What is brand voice and how should it be applied to email content?",
+                options: [
+                    "The volume level of brand communications",
+                    "The consistent personality and tone your brand uses in all communications",
+                    "Only the spokesperson's voice in videos",
+                    "The technical voice settings in email systems"
+                ],
+                correct: 1,
+                explanation: "Brand voice encompasses how your brand \"speaks\" - whether friendly, professional, playful, or authoritative - and should be consistent across all content."
+            },
+            {
+                question: "What is the purpose of template standardization?",
+                options: [
+                    "To make all emails look identical",
+                    "To ensure consistent layout structures while allowing content flexibility",
+                    "To reduce creativity",
+                    "To make templates more expensive"
+                ],
+                correct: 1,
+                explanation: "Standardized templates provide brand-consistent frameworks while still allowing creative content customization for different campaigns."
+            },
+            {
+                question: "What is an approval workflow in content creation?",
+                options: [
+                    "A workflow that automatically approves all content",
+                    "A structured process for reviewing and approving content before it's published",
+                    "A workflow for approving new employees",
+                    "A process for approving email addresses"
+                ],
+                correct: 1,
+                explanation: "Approval workflows ensure content meets brand standards, legal requirements, and quality expectations before reaching customers."
+            },
+            {
+                question: "Who should typically be involved in email content approval workflows?",
+                options: [
+                    "Only the marketing manager",
+                    "Marketing, legal/compliance, brand managers, and relevant stakeholders",
+                    "Only designers",
+                    "Only copywriters"
+                ],
+                correct: 1,
+                explanation: "Different perspectives ensure content is effective, compliant, on-brand, and appropriate for the intended audience."
+            },
+            {
+                question: "What is version control in content workflow?",
+                options: [
+                    "Controlling which version of software you use",
+                    "Tracking changes and maintaining history of content updates and revisions",
+                    "Controlling which team members can access content",
+                    "Managing different language versions only"
+                ],
+                correct: 1,
+                explanation: "Version control prevents confusion about which content version is current and allows teams to track changes and revert if needed."
+            },
+            {
+                question: "What should be included in a content creation checklist?",
+                options: [
+                    "Only spell-checking",
+                    "Brand compliance, proofreading, link testing, mobile optimization, legal review, and performance tracking setup",
+                    "Only design review",
+                    "Only technical testing"
+                ],
+                correct: 1,
+                explanation: "Comprehensive checklists ensure all important aspects of content quality and compliance are verified before launch."
+            },
+            {
+                question: "How should teams collaborate effectively on content creation?",
+                options: [
+                    "Work in complete isolation",
+                    "Use shared folders, clear permissions, communication tools, and defined roles and responsibilities",
+                    "Only communicate through email",
+                    "Let one person handle everything"
+                ],
+                correct: 1,
+                explanation: "Effective collaboration requires organized systems, clear communication, and well-defined roles to prevent conflicts and ensure quality."
+            },
+            {
+                question: "What is the benefit of documenting content creation processes?",
+                options: [
+                    "Documentation is unnecessary overhead",
+                    "It ensures consistency, enables training, and helps maintain quality standards",
+                    "It slows down content creation",
+                    "Only large companies need documentation"
+                ],
+                correct: 1,
+                explanation: "Documentation preserves knowledge, helps onboard new team members, and ensures consistent quality even as teams change."
+            },
+            {
+                question: "What is content lifecycle management?",
+                options: [
+                    "Managing the life cycles of content creators",
+                    "Planning, creating, using, updating, and retiring content in a systematic way",
+                    "Only managing how long content takes to create",
+                    "Managing content only during holidays"
+                ],
+                correct: 1,
+                explanation: "Content lifecycle management ensures content remains current, relevant, and effective throughout its useful life."
+            },
+            {
+                question: "What is the purpose of content performance analysis?",
+                options: [
+                    "To analyze how fast content loads",
+                    "To measure how well content achieves business objectives and identify optimization opportunities",
+                    "To count how much content you have",
+                    "To analyze competitor content only"
+                ],
+                correct: 1,
+                explanation: "Performance analysis helps you understand what content works best and why, enabling data-driven improvements to future content."
+            },
+            {
+                question: "How should seasonal considerations affect content planning?",
+                options: [
+                    "Ignore seasonal factors entirely",
+                    "Plan content themes, timing, and promotions around relevant seasonal events and customer behavior patterns",
+                    "Only create holiday-themed content",
+                    "Seasonal considerations only apply to retail businesses"
+                ],
+                correct: 1,
+                explanation: "Seasonal alignment makes content more relevant and timely, potentially improving engagement and business results."
+            },
+            {
+                question: "What is content personalization at scale?",
+                options: [
+                    "Creating individual content for each subscriber manually",
+                    "Using data and automation to customize content for different audience segments efficiently",
+                    "Personalizing only the subscriber's name",
+                    "Avoiding personalization to save time"
+                ],
+                correct: 1,
+                explanation: "Scalable personalization uses technology and data to deliver relevant experiences to large audiences without manual customization for each person."
+            },
+            {
+                question: "What is the role of user-generated content in email marketing?",
+                options: [
+                    "User-generated content should never be used",
+                    "Customer reviews, photos, and testimonials can provide authentic, engaging content that builds trust",
+                    "Only use user-generated content",
+                    "User-generated content is too risky to use"
+                ],
+                correct: 1,
+                explanation: "Authentic customer content often performs well because it provides social proof and genuine perspectives that resonate with other customers."
+            },
+            {
+                question: "How should accessibility considerations influence content creation?",
+                options: [
+                    "Accessibility doesn't apply to email content",
+                    "Design content that can be accessed and understood by users with disabilities, including proper alt text and color contrast",
+                    "Only worry about accessibility if required by law",
+                    "Accessibility only applies to websites"
+                ],
+                correct: 1,
+                explanation: "Accessible design ensures all customers can engage with your content, expanding your reach while demonstrating social responsibility."
+            },
+            {
+                question: "What is the importance of content consistency across channels?",
+                options: [
+                    "Content should be completely different across channels",
+                    "Consistent messaging and branding across email, social, web, and other channels creates cohesive customer experiences",
+                    "Only email content matters",
+                    "Consistency is only important within email"
+                ],
+                correct: 1,
+                explanation: "Cross-channel consistency reinforces your brand message and creates seamless experiences as customers interact with you through different touchpoints."
+            },
+            {
+                question: "What is content optimization based on customer journey stage?",
+                options: [
+                    "Optimizing content loading speed",
+                    "Tailoring content to match where customers are in their relationship with your brand (awareness, consideration, purchase, retention)",
+                    "Only optimizing content for new customers",
+                    "Using the same content for all customers"
+                ],
+                correct: 1,
+                explanation: "Different journey stages require different types of content - educational for new prospects, product-focused for consideration, loyalty-focused for existing customers."
+            },
+            {
+                question: "What is the future of email content creation?",
+                options: [
+                    "Content creation will become less important",
+                    "Increased automation, AI assistance, real-time personalization, and interactive elements",
+                    "All content will be text-only",
+                    "Human creativity will be completely replaced"
+                ],
+                correct: 1,
+                explanation: "Technology trends point toward more sophisticated, automated, and interactive content that adapts in real-time to customer preferences and behavior."
+            },
+            {
+                question: "What is the ultimate measure of content creation success?",
+                options: [
+                    "How pretty the content looks",
+                    "Achievement of business objectives including engagement, conversions, and customer satisfaction",
+                    "How many awards the content wins",
+                    "How quickly content can be created"
+                ],
+                correct: 1,
+                explanation: "Content success should be measured by business impact - does it help achieve your marketing goals and serve customer needs effectively?"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answersGiven = [];
+        let quizCompleted = false;
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showCompletionScreen();
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${questions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <ul class="options">
+                        ${question.options.map((option, index) => 
+                            `<li class="option" onclick="selectOption(${index})">
+                                <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                                <span>${option}</span>
+                            </li>`
+                        ).join('')}
+                    </ul>
+                    <div class="explanation" id="explanation">
+                        <h4>✅ Correct Answer: ${String.fromCharCode(65 + question.correct)})</h4>
+                        <p>${question.explanation}</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <div class="score-display">
+                        Score: ${score}/${currentQuestion} ${currentQuestion > 0 ? `(${Math.round(score/currentQuestion*100)}%)` : ''}
+                    </div>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        Next →
+                    </button>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = questions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Remove any previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark the selected option
+            options[selectedIndex].classList.add('selected');
+
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Record the answer
+            answersGiven[currentQuestion] = selectedIndex;
+
+            // Update score
+            if (selectedIndex === question.correct) {
+                if (answersGiven[currentQuestion] !== question.correct) {
+                    score++;
+                }
+            }
+
+            // Show explanation and enable next button
+            explanation.classList.add('show');
+            nextBtn.disabled = false;
+
+            // Update score display
+            document.querySelector('.score-display').innerHTML = 
+                `Score: ${score}/${currentQuestion + 1} (${Math.round(score/(currentQuestion + 1)*100)}%)`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${questions.length}`;
+        }
+
+        function showCompletionScreen() {
+            const container = document.getElementById('quizContainer');
+            const completionScreen = document.getElementById('completionScreen');
+            const finalScorePercent = Math.round((score / questions.length) * 100);
+            
+            container.style.display = 'none';
+            completionScreen.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = finalScorePercent + '%';
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (finalScorePercent >= 90) {
+                scoreCircle.className = 'score-circle score-excellent';
+                scoreMessage.textContent = '🌟 Outstanding! You have excellent knowledge of SFMC Content Creation & Delivery!';
+            } else if (finalScorePercent >= 75) {
+                scoreCircle.className = 'score-circle score-good';
+                scoreMessage.textContent = '👏 Great job! You have a solid understanding of the concepts.';
+            } else if (finalScorePercent >= 60) {
+                scoreCircle.className = 'score-circle score-needs-improvement';
+                scoreMessage.textContent = '📚 Good effort! Review the study guide and try again to improve your score.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                scoreMessage.textContent = '💪 Keep studying! Review the concepts and take the quiz again.';
+            }
+
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quiz Complete!';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            quizCompleted = false;
+            
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('completionScreen').classList.remove('show');
+            
+            loadQuestion();
+        }
+
+        // Initialize the quiz
+        loadQuestion();
+    </script>
+</body>
+</html>
