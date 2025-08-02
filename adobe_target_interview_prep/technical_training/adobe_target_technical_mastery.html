@@ -1,0 +1,2582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adobe Target Technical Mastery - Interview Preparation</title>
+    <meta name="description" content="Comprehensive Adobe Target technical training for Lead Adobe Target Specialist position at Panera Bread">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        accent: '#f59e0b',
+                        neutral: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .section-icon {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .demo-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-border {
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #2563eb, #f59e0b) border-box;
+            border: 2px solid transparent;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-white to-amber-50 min-h-screen font-sans">
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                    Adobe Target
+                    <span class="text-amber-300">Technical Mastery</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Comprehensive interview preparation for Lead Adobe Target Specialist position at Panera Bread
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="showSection('hands-on')" class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Start Learning
+                    </button>
+                    <button onclick="showSection('panera-bread')" class="bg-white/20 hover:bg-white/30 text-white border border-white/30 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 backdrop-blur-sm">
+                        Panera Case Study
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-2 py-4">
+                <button class="nav-item active bg-primary text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-blue-700" onclick="showSection('hands-on')">
+                    🎯 Hands-On Practice
+                </button>
+                <button class="nav-item bg-neutral-100 text-neutral-700 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showSection('targeting')">
+                    🎪 Targeting Rules
+                </button>
+                <button class="nav-item bg-neutral-100 text-neutral-700 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showSection('metrics')">
+                    📊 Success Metrics
+                </button>
+                <button class="nav-item bg-neutral-100 text-neutral-700 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showSection('qa-practice')">
+                    💬 Interview Q&A
+                </button>
+                <button class="nav-item bg-neutral-100 text-neutral-700 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showSection('integration')">
+                    🔗 Integration
+                </button>
+                <button class="nav-item bg-neutral-100 text-neutral-700 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showSection('advanced-target')">
+                    🚀 Advanced
+                </button>
+                <button class="nav-item bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:from-amber-600 hover:to-orange-600" onclick="showSection('panera-bread')">
+                    🥖 Panera Study
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Section 1: Hands-On Practice -->
+        <section id="hands-on" class="content-section active">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-neutral-900 mb-4">🎯 Hands-On Practice</h2>
+                <p class="text-lg text-neutral-600 leading-relaxed">
+                    Master Adobe Target through interactive exercises and real-world scenarios. Build confidence with practical implementation techniques.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                <button class="tab-button active bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300" onclick="showTab('tab1-1', this)">
+                    Activity Setup
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab1-2', this)">
+                    Experience Builder
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab1-3', this)">
+                    Targeting
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab1-4', this)">
+                    Goals
+                </button>
+            </div>
+
+            <!-- Tab Content 1-1: Activity Setup -->
+            <div id="tab1-1" class="tab-content">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">A/B Test Activity Setup</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-2">Activity Name</label>
+                                <input type="text" id="activityName" placeholder="Mobile Checkout Optimization" 
+                                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-2">Activity Type</label>
+                                <select id="activityType" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300">
+                                    <option>A/B Test</option>
+                                    <option>Multivariate Test</option>
+                                    <option>Experience Targeting</option>
+                                    <option>Auto-Allocate</option>
+                                    <option>Auto-Target</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-neutral-700 mb-2">URL</label>
+                                <input type="url" id="targetUrl" placeholder="https://www.panerabread.com/checkout" 
+                                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300">
+                            </div>
+                            
+                            <button onclick="validateActivitySetup()" 
+                                class="demo-button bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-700 w-full">
+                                Validate Setup
+                            </button>
+                        </div>
+                        
+                        <div class="bg-neutral-50 rounded-lg p-6">
+                            <h4 class="font-semibold text-neutral-900 mb-4">📋 Best Practices</h4>
+                            <ul class="space-y-3 text-neutral-700">
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span><strong>Clear naming:</strong> Include date, objective, and test type</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span><strong>Specific URLs:</strong> Target exact pages where changes occur</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span><strong>Test duration:</strong> Plan for statistical significance</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    <span><strong>Success metrics:</strong> Define primary and secondary goals</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div id="validationResult" class="mt-6"></div>
+                </div>
+            </div>
+
+            <!-- Tab Content 1-2: Experience Builder -->
+            <div id="tab1-2" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Visual Experience Composer (VEC)</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Common VEC Actions</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                                    <h5 class="font-medium text-neutral-900">Text Modification</h5>
+                                    <p class="text-sm text-neutral-600 mt-1">Change headlines, button text, or copy elements</p>
+                                    <code class="text-xs bg-neutral-100 px-2 py-1 rounded mt-2 block">Click element → Edit Text → Enter new content</code>
+                                </div>
+                                
+                                <div class="p-4 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                                    <h5 class="font-medium text-neutral-900">Image Replacement</h5>
+                                    <p class="text-sm text-neutral-600 mt-1">Swap images, logos, or visual elements</p>
+                                    <code class="text-xs bg-neutral-100 px-2 py-1 rounded mt-2 block">Click image → Replace Image → Upload/Select</code>
+                                </div>
+                                
+                                <div class="p-4 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                                    <h5 class="font-medium text-neutral-900">CSS Styling</h5>
+                                    <p class="text-sm text-neutral-600 mt-1">Modify colors, fonts, spacing, and layout</p>
+                                    <code class="text-xs bg-neutral-100 px-2 py-1 rounded mt-2 block">Click element → Modify → Styles</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Form-Based Composer</h4>
+                            <div class="bg-neutral-50 rounded-lg p-6">
+                                <pre class="text-sm text-neutral-700 overflow-x-auto"><code>{
+  "mbox": "homepage-hero",
+  "offer": {
+    "type": "html",
+    "content": "&lt;div class='hero-banner'&gt;...&lt;/div&gt;"
+  },
+  "profileParameters": {
+    "userType": "returning",
+    "loyaltyStatus": "gold"
+  }
+}</code></pre>
+                                <p class="text-sm text-neutral-600 mt-4">
+                                    <strong>Use when:</strong> VEC cannot load, single-page apps, or complex targeting
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 1-3: Targeting -->
+            <div id="tab1-3" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Audience Targeting</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Audience Creation</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-medium text-blue-900">Geographic Targeting</h5>
+                                    <ul class="text-sm text-blue-700 mt-2 space-y-1">
+                                        <li>• Country, region, city</li>
+                                        <li>• Latitude/longitude radius</li>
+                                        <li>• ISP and connection speed</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-medium text-green-900">Behavioral Targeting</h5>
+                                    <ul class="text-sm text-green-700 mt-2 space-y-1">
+                                        <li>• Pages visited</li>
+                                        <li>• Time on site</li>
+                                        <li>• Traffic source</li>
+                                        <li>• Previous purchases</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                                    <h5 class="font-medium text-amber-900">Device Targeting</h5>
+                                    <ul class="text-sm text-amber-700 mt-2 space-y-1">
+                                        <li>• Mobile vs Desktop</li>
+                                        <li>• Operating system</li>
+                                        <li>• Browser type</li>
+                                        <li>• Screen resolution</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Advanced Targeting</h4>
+                            <div class="bg-neutral-50 rounded-lg p-6">
+                                <h5 class="font-medium text-neutral-900 mb-3">Profile Script Example</h5>
+                                <pre class="text-sm text-neutral-700 bg-white p-4 rounded border overflow-x-auto"><code>// Loyalty tier determination
+if (user.totalSpent > 500) {
+    return 'gold';
+} else if (user.totalSpent > 200) {
+    return 'silver';
+} else {
+    return 'bronze';
+}</code></pre>
+                                
+                                <h5 class="font-medium text-neutral-900 mb-3 mt-6">Custom Audience Rules</h5>
+                                <div class="space-y-2 text-sm text-neutral-700">
+                                    <div class="flex items-center justify-between p-2 bg-white rounded border">
+                                        <span>Returning Customer</span>
+                                        <span class="text-primary font-medium">visits ≥ 2</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-white rounded border">
+                                        <span>High-Value Segment</span>
+                                        <span class="text-primary font-medium">cart_value > $75</span>
+                                    </div>
+                                    <div class="flex items-center justify-between p-2 bg-white rounded border">
+                                        <span>Mobile Users</span>
+                                        <span class="text-primary font-medium">device = mobile</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content 1-4: Goals -->
+            <div id="tab1-4" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Success Metrics & Goals</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="p-6 bg-blue-50 rounded-lg border border-blue-200">
+                            <h4 class="text-lg font-semibold text-blue-900 mb-4">Conversion Goals</h4>
+                            <ul class="space-y-3 text-blue-700">
+                                <li class="flex items-start">
+                                    <span class="text-blue-500 mr-2">📈</span>
+                                    <div>
+                                        <strong>Revenue per Visitor</strong>
+                                        <p class="text-sm">Total revenue ÷ unique visitors</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-500 mr-2">🎯</span>
+                                    <div>
+                                        <strong>Conversion Rate</strong>
+                                        <p class="text-sm">Completions ÷ total visitors</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-500 mr-2">💰</span>
+                                    <div>
+                                        <strong>Average Order Value</strong>
+                                        <p class="text-sm">Total revenue ÷ total orders</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-6 bg-green-50 rounded-lg border border-green-200">
+                            <h4 class="text-lg font-semibold text-green-900 mb-4">Engagement Goals</h4>
+                            <ul class="space-y-3 text-green-700">
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">⏱️</span>
+                                    <div>
+                                        <strong>Time on Page</strong>
+                                        <p class="text-sm">Average session duration</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">👆</span>
+                                    <div>
+                                        <strong>Click-through Rate</strong>
+                                        <p class="text-sm">Clicks ÷ impressions</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-500 mr-2">📱</span>
+                                    <div>
+                                        <strong>Mobile Engagement</strong>
+                                        <p class="text-sm">Mobile-specific interactions</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-6 bg-amber-50 rounded-lg border border-amber-200">
+                            <h4 class="text-lg font-semibold text-amber-900 mb-4">Custom Goals</h4>
+                            <div class="space-y-4">
+                                <div class="p-3 bg-white rounded border">
+                                    <h5 class="font-medium text-amber-900">Newsletter Signup</h5>
+                                    <code class="text-xs text-amber-700 block mt-1">mbox: 'newsletter-form'</code>
+                                </div>
+                                <div class="p-3 bg-white rounded border">
+                                    <h5 class="font-medium text-amber-900">Video Completion</h5>
+                                    <code class="text-xs text-amber-700 block mt-1">event: 'video-100-percent'</code>
+                                </div>
+                                <div class="p-3 bg-white rounded border">
+                                    <h5 class="font-medium text-amber-900">Cart Addition</h5>
+                                    <code class="text-xs text-amber-700 block mt-1">mbox: 'add-to-cart-success'</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 p-6 bg-neutral-50 rounded-lg">
+                        <h4 class="text-lg font-semibold text-neutral-900 mb-4">A4T Integration</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h5 class="font-medium text-neutral-900 mb-2">Analytics Setup</h5>
+                                <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Adobe Analytics integration
+s.tl(this, 'o', 'Target Activity View');
+s.eVar50 = 'Target: ' + activity.name;
+s.prop25 = experience.name;</code></pre>
+                            </div>
+                            <div>
+                                <h5 class="font-medium text-neutral-900 mb-2">Reporting Benefits</h5>
+                                <ul class="text-sm text-neutral-700 space-y-1">
+                                    <li>• Advanced segmentation in Analytics</li>
+                                    <li>• Custom conversion events</li>
+                                    <li>• Detailed visitor behavior</li>
+                                    <li>• Cross-activity analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Targeting Rules -->
+        <section id="targeting" class="content-section hidden">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-neutral-900 mb-4">🎪 Targeting Rules</h2>
+                <p class="text-lg text-neutral-600 leading-relaxed">
+                    Master audience segmentation and traffic allocation strategies to deliver personalized experiences that convert.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                <button class="tab-button active bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300" onclick="showTab('tab2-1', this)">
+                    Social Traffic
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab2-2', this)">
+                    Paid Traffic
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab2-3', this)">
+                    Organic Traffic
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab2-4', this)">
+                    Advanced Rules
+                </button>
+            </div>
+
+            <!-- Social Traffic Tab -->
+            <div id="tab2-1" class="tab-content">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Social Media Traffic Targeting</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Traffic Source Rules</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 border-l-4 border-blue-500 bg-blue-50">
+                                    <h5 class="font-medium text-blue-900">Facebook Traffic</h5>
+                                    <code class="text-sm text-blue-700 block mt-2">Referrer contains "facebook.com"</code>
+                                    <p class="text-sm text-blue-600 mt-1">Show social proof and user reviews</p>
+                                </div>
+                                
+                                <div class="p-4 border-l-4 border-pink-500 bg-pink-50">
+                                    <h5 class="font-medium text-pink-900">Instagram Traffic</h5>
+                                    <code class="text-sm text-pink-700 block mt-2">Referrer contains "instagram.com"</code>
+                                    <p class="text-sm text-pink-600 mt-1">Visual-first experience with lifestyle imagery</p>
+                                </div>
+                                
+                                <div class="p-4 border-l-4 border-blue-600 bg-blue-50">
+                                    <h5 class="font-medium text-blue-900">LinkedIn Traffic</h5>
+                                    <code class="text-sm text-blue-700 block mt-2">Referrer contains "linkedin.com"</code>
+                                    <p class="text-sm text-blue-600 mt-1">Professional messaging and B2B features</p>
+                                </div>
+                            </div>
+                            
+                            <button onclick="showSocialExample()" class="demo-button mt-6 bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-700">
+                                Show Implementation
+                            </button>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Campaign Parameters</h4>
+                            <div class="bg-neutral-50 rounded-lg p-6">
+                                <h5 class="font-medium text-neutral-900 mb-3">UTM Parameter Targeting</h5>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex justify-between items-center p-2 bg-white rounded border">
+                                        <span class="font-mono text-neutral-600">utm_source</span>
+                                        <span class="text-primary">facebook, instagram, twitter</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded border">
+                                        <span class="font-mono text-neutral-600">utm_medium</span>
+                                        <span class="text-primary">social, cpc, display</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-white rounded border">
+                                        <span class="font-mono text-neutral-600">utm_campaign</span>
+                                        <span class="text-primary">spring-menu-launch</span>
+                                    </div>
+                                </div>
+                                
+                                <h5 class="font-medium text-neutral-900 mb-3 mt-6">Dynamic Content Rules</h5>
+                                <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>if (utm_source === 'instagram') {
+    showContent({
+        hero: 'lifestyle-image.jpg',
+        cta: 'Share Your Moment',
+        social_proof: true
+    });
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional targeting tabs would go here with similar structure -->
+            <div id="tab2-2" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Paid Traffic Optimization</h3>
+                    <p class="text-neutral-600">Content for paid traffic targeting...</p>
+                </div>
+            </div>
+
+            <div id="tab2-3" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Organic Traffic Strategies</h3>
+                    <p class="text-neutral-600">Content for organic traffic targeting...</p>
+                </div>
+            </div>
+
+            <div id="tab2-4" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Advanced Targeting Rules</h3>
+                    <p class="text-neutral-600">Content for advanced targeting...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Success Metrics -->
+        <section id="metrics" class="content-section hidden">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-neutral-900 mb-4">📊 Success Metrics</h2>
+                <p class="text-lg text-neutral-600 leading-relaxed">
+                    Learn to define, measure, and optimize key performance indicators that drive meaningful business results.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                <button class="tab-button active bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300" onclick="showTab('tab3-1', this)">
+                    KPI Framework
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab3-2', this)">
+                    A4T Setup
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab3-3', this)">
+                    Statistical Power
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab3-4', this)">
+                    Reporting
+                </button>
+            </div>
+
+            <!-- Tab 3-1: KPI Framework -->
+            <div id="tab3-1" class="tab-content">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">KPI Framework & Measurement</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Primary Metrics</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+                                    <h5 class="font-medium text-green-900">Revenue Metrics</h5>
+                                    <ul class="text-sm text-green-700 mt-2 space-y-1">
+                                        <li>• Revenue per Visitor (RPV)</li>
+                                        <li>• Average Order Value (AOV)</li>
+                                        <li>• Customer Lifetime Value (CLV)</li>
+                                        <li>• Return on Ad Spend (ROAS)</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                                    <h5 class="font-medium text-blue-900">Conversion Metrics</h5>
+                                    <ul class="text-sm text-blue-700 mt-2 space-y-1">
+                                        <li>• Conversion Rate</li>
+                                        <li>• Cart Abandonment Rate</li>
+                                        <li>• Email Signup Rate</li>
+                                        <li>• App Download Rate</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                                    <h5 class="font-medium text-amber-900">Engagement Metrics</h5>
+                                    <ul class="text-sm text-amber-700 mt-2 space-y-1">
+                                        <li>• Time on Page</li>
+                                        <li>• Pages per Session</li>
+                                        <li>• Bounce Rate</li>
+                                        <li>• Click-through Rate</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Metric Calculation</h4>
+                            <div class="bg-neutral-50 rounded-lg p-6">
+                                <h5 class="font-medium text-neutral-900 mb-3">Revenue per Visitor Formula</h5>
+                                <div class="bg-white p-4 rounded border text-center">
+                                    <div class="text-lg font-mono text-primary">RPV = Total Revenue ÷ Unique Visitors</div>
+                                    <div class="text-sm text-neutral-600 mt-2">Example: $50,000 ÷ 10,000 = $5.00 RPV</div>
+                                </div>
+                                
+                                <h5 class="font-medium text-neutral-900 mb-3 mt-6">Conversion Rate Formula</h5>
+                                <div class="bg-white p-4 rounded border text-center">
+                                    <div class="text-lg font-mono text-primary">CR = Conversions ÷ Total Visitors × 100</div>
+                                    <div class="text-sm text-neutral-600 mt-2">Example: 250 ÷ 10,000 × 100 = 2.5% CR</div>
+                                </div>
+                                
+                                <h5 class="font-medium text-neutral-900 mb-3 mt-6">Lift Calculation</h5>
+                                <div class="bg-white p-4 rounded border text-center">
+                                    <div class="text-lg font-mono text-primary">Lift = (Variant - Control) ÷ Control × 100</div>
+                                    <div class="text-sm text-neutral-600 mt-2">Example: (2.8% - 2.5%) ÷ 2.5% × 100 = 12% Lift</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3-2: A4T Setup -->
+            <div id="tab3-2" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Analytics for Target (A4T) Implementation</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Setup Requirements</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 border border-neutral-200 rounded-lg">
+                                    <h5 class="font-medium text-neutral-900">Adobe Analytics Implementation</h5>
+                                    <pre class="text-xs bg-neutral-50 p-3 rounded mt-2 overflow-x-auto"><code>// Analytics.js setup
+s.visitor = Visitor.getInstance("YOUR_ORG_ID");
+s.trackingServer = "metrics.company.com";
+s.trackingServerSecure = "smetrics.company.com";</code></pre>
+                                </div>
+                                
+                                <div class="p-4 border border-neutral-200 rounded-lg">
+                                    <h5 class="font-medium text-neutral-900">Target Integration</h5>
+                                    <pre class="text-xs bg-neutral-50 p-3 rounded mt-2 overflow-x-auto"><code>// Target with A4T
+adobe.target.getOffers({
+    request: {
+        experienceCloud: {
+            analytics: {
+                logging: "server_side"
+            }
+        }
+    }
+});</code></pre>
+                                </div>
+                                
+                                <div class="p-4 border border-neutral-200 rounded-lg">
+                                    <h5 class="font-medium text-neutral-900">Experience Cloud ID Service</h5>
+                                    <pre class="text-xs bg-neutral-50 p-3 rounded mt-2 overflow-x-auto"><code>// Visitor ID Service
+var visitor = Visitor.getInstance("ORG_ID@AdobeOrg", {
+    trackingServer: "metrics.company.com",
+    trackingServerSecure: "smetrics.company.com"
+});</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">A4T Benefits</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-medium text-blue-900">Advanced Segmentation</h5>
+                                    <ul class="text-sm text-blue-700 mt-2 space-y-1">
+                                        <li>• Customer segments in Analytics</li>
+                                        <li>• Cross-visit attribution</li>
+                                        <li>• Multi-channel analysis</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-medium text-green-900">Enhanced Reporting</h5>
+                                    <ul class="text-sm text-green-700 mt-2 space-y-1">
+                                        <li>• Custom conversion events</li>
+                                        <li>• Calculated metrics</li>
+                                        <li>• Advanced workspace analysis</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                                    <h5 class="font-medium text-amber-900">Data Governance</h5>
+                                    <ul class="text-sm text-amber-700 mt-2 space-y-1">
+                                        <li>• Single source of truth</li>
+                                        <li>• Data retention policies</li>
+                                        <li>• Privacy compliance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3-3: Statistical Power -->
+            <div id="tab3-3" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Statistical Significance & Power</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Sample Size Calculator</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Baseline Conversion Rate (%)</label>
+                                    <input type="number" id="baselineRate" placeholder="2.5" step="0.1" 
+                                        class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Minimum Detectable Effect (%)</label>
+                                    <input type="number" id="mde" placeholder="10" step="1" 
+                                        class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Statistical Power (%)</label>
+                                    <select id="power" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                        <option value="80">80% (Standard)</option>
+                                        <option value="90">90% (High)</option>
+                                        <option value="95">95% (Very High)</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-neutral-700 mb-2">Significance Level</label>
+                                    <select id="significance" class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                        <option value="95">95% (α = 0.05)</option>
+                                        <option value="99">99% (α = 0.01)</option>
+                                    </select>
+                                </div>
+                                
+                                <button onclick="calculateSampleSize()" class="demo-button bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-700 w-full">
+                                    Calculate Sample Size
+                                </button>
+                            </div>
+                            
+                            <div id="sampleSizeResult" class="mt-6"></div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Key Concepts</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-medium text-blue-900">Type I Error (α)</h5>
+                                    <p class="text-sm text-blue-700 mt-1">False positive - detecting a difference when none exists</p>
+                                    <div class="text-xs text-blue-600 mt-2">Typically set to 5% (0.05)</div>
+                                </div>
+                                
+                                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-medium text-green-900">Type II Error (β)</h5>
+                                    <p class="text-sm text-green-700 mt-1">False negative - missing a real difference</p>
+                                    <div class="text-xs text-green-600 mt-2">Power = 1 - β (typically 80%)</div>
+                                </div>
+                                
+                                <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                                    <h5 class="font-medium text-amber-900">Effect Size</h5>
+                                    <p class="text-sm text-amber-700 mt-1">Magnitude of difference between variants</p>
+                                    <div class="text-xs text-amber-600 mt-2">Smaller effects need larger samples</div>
+                                </div>
+                                
+                                <div class="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h5 class="font-medium text-purple-900">Confidence Interval</h5>
+                                    <p class="text-sm text-purple-700 mt-1">Range of plausible values for the true effect</p>
+                                    <div class="text-xs text-purple-600 mt-2">95% CI means 95% contain true value</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3-4: Reporting -->
+            <div id="tab3-4" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Advanced Reporting & Analysis</h3>
+                    <p class="text-neutral-600">Comprehensive reporting dashboard and analysis techniques...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Interview Q&A -->
+        <section id="qa-practice" class="content-section hidden">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-neutral-900 mb-4">💬 Interview Q&A Practice</h2>
+                <p class="text-lg text-neutral-600 leading-relaxed">
+                    Master common interview questions and develop confident, detailed responses for your Adobe Target specialist interview.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                <button class="tab-button active bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300" onclick="showTab('tab4-1', this)">
+                    Technical Questions
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab4-2', this)">
+                    Scenario-Based
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab4-3', this)">
+                    Behavioral
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab4-4', this)">
+                    Panera-Specific
+                </button>
+            </div>
+
+            <!-- Tab 4-1: Technical Questions -->
+            <div id="tab4-1" class="tab-content">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Technical Adobe Target Questions</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Explain the difference between A/B testing and Multivariate testing in Adobe Target.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    A/B testing compares two or more complete page variations where each visitor sees one full experience. 
+                                    It's ideal for testing major design changes or completely different layouts.
+                                </p>
+                                <p class="text-neutral-700 mb-3">
+                                    Multivariate testing (MVT) tests multiple elements simultaneously on the same page, showing how different 
+                                    combinations of changes work together. For example, testing 3 headlines × 2 images × 2 CTAs = 12 combinations.
+                                </p>
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>Key Point:</strong> Use A/B for major changes with moderate traffic; use MVT for optimizing multiple elements with high traffic.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How do you handle implementation when VEC cannot load a page?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    When VEC fails to load, I use the Form-Based Experience Composer as an alternative. 
+                                    This involves working directly with mboxes and requires closer collaboration with developers.
+                                </p>
+                                <div class="space-y-2 mt-3">
+                                    <p class="text-neutral-700"><strong>Common VEC issues and solutions:</strong></p>
+                                    <ul class="text-neutral-700 space-y-1 ml-4">
+                                        <li>• X-Frame-Options blocking → Use Enhanced Experience Composer</li>
+                                        <li>• Mixed content (HTTP/HTTPS) → Update protocol settings</li>
+                                        <li>• Single Page Apps → Implement SPA support with at.js 2.x</li>
+                                        <li>• Authentication required → Set up VEC helper extension</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Describe your approach to audience targeting and segmentation.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    I start with business objectives to determine relevant audience segments. I typically layer multiple criteria:
+                                </p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Behavioral Targeting:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1">
+                                            <li>• Previous visit behavior</li>
+                                            <li>• Purchase history</li>
+                                            <li>• Time spent on site</li>
+                                            <li>• Page depth</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Demographic Targeting:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1">
+                                            <li>• Geographic location</li>
+                                            <li>• Device type</li>
+                                            <li>• Traffic source</li>
+                                            <li>• Browser/OS</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: What is the difference between at.js and mbox.js? When would you use each?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    at.js is the newer, preferred library that replaced mbox.js. Key differences:
+                                </p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                                    <div class="p-3 bg-green-50 rounded border">
+                                        <h5 class="font-medium text-green-900">at.js Advantages:</h5>
+                                        <ul class="text-sm text-green-700 mt-2 space-y-1">
+                                            <li>• Better page load performance</li>
+                                            <li>• Improved flicker handling</li>
+                                            <li>• Enhanced SPA support (v2.x)</li>
+                                            <li>• Asynchronous execution</li>
+                                            <li>• Better debugging tools</li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-3 bg-amber-50 rounded border">
+                                        <h5 class="font-medium text-amber-900">mbox.js (Legacy):</h5>
+                                        <ul class="text-sm text-amber-700 mt-2 space-y-1">
+                                            <li>• Synchronous by default</li>
+                                            <li>• More flicker issues</li>
+                                            <li>• No longer updated</li>
+                                            <li>• Limited SPA support</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>Recommendation:</strong> Always use at.js 2.x for new implementations, especially for SPAs and modern web applications.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Explain how Analytics for Target (A4T) works and its benefits.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    A4T integrates Adobe Target with Adobe Analytics to use Analytics as the reporting source for Target activities. 
+                                    Instead of Target's native reporting, all data flows through Analytics.
+                                </p>
+                                <p class="text-neutral-700 mb-3"><strong>How it works:</strong></p>
+                                <ol class="text-neutral-700 space-y-2 ml-4">
+                                    <li>1. Target delivers experiences and sends activity data to Analytics</li>
+                                    <li>2. Analytics collects both Target activity data and standard web analytics</li>
+                                    <li>3. All reporting is done through Analytics workspace</li>
+                                    <li>4. Target activity data appears as custom dimensions in Analytics</li>
+                                </ol>
+                                <div class="mt-4 space-y-2">
+                                    <p class="font-medium text-neutral-900">Key Benefits:</p>
+                                    <ul class="text-neutral-700 space-y-1 ml-4">
+                                        <li>• Single source of truth for all data</li>
+                                        <li>• Advanced segmentation capabilities</li>
+                                        <li>• Custom conversion events and calculated metrics</li>
+                                        <li>• Cross-channel attribution analysis</li>
+                                        <li>• Longer data retention periods</li>
+                                        <li>• Enterprise-grade reporting and data governance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How do you determine statistical significance and sample size for A/B tests?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Statistical significance and sample size are critical for reliable test results. Here's my approach:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Pre-test Planning:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Set significance level (typically 95%, α = 0.05)</li>
+                                            <li>• Define statistical power (typically 80%)</li>
+                                            <li>• Determine minimum detectable effect (MDE)</li>
+                                            <li>• Calculate required sample size using these parameters</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Sample Size Formula Factors:</p>
+                                        <pre class="text-xs bg-white p-2 rounded mt-1">n = 2 × (Zα/2 + Zβ)² × p × (1-p) / (δ)²
+Where: p = baseline conversion rate, δ = effect size</pre>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">During Test:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Monitor for adequate sample size before drawing conclusions</li>
+                                            <li>• Use confidence intervals to understand result ranges</li>
+                                            <li>• Avoid peeking issues by pre-defining analysis schedule</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-amber-50 p-3 rounded border-l-4 border-amber-500 mt-4">
+                                    <p class="text-amber-700 text-sm"><strong>Best Practice:</strong> Never stop a test early based on statistical significance alone - always reach your pre-calculated sample size.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: What are Profile Scripts and how do you use them effectively?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Profile Scripts are JavaScript code snippets that execute server-side for each mbox request to create custom profile attributes. 
+                                    They're powerful for advanced targeting and personalization.
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Common Use Cases:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Calculate customer lifetime value</li>
+                                            <li>• Determine loyalty tier based on purchase history</li>
+                                            <li>• Track visit frequency and recency</li>
+                                            <li>• Create behavioral segments</li>
+                                            <li>• Calculate product affinity scores</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Example Profile Script:</p>
+                                        <pre class="text-xs bg-white p-3 rounded border mt-1 overflow-x-auto"><code>// Loyalty tier calculation
+if (user.get('totalSpent') > 500) {
+    return 'gold';
+} else if (user.get('totalSpent') > 200) {
+    return 'silver';
+} else if (user.get('totalSpent') > 50) {
+    return 'bronze';
+} else {
+    return 'new';
+}</code></pre>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Best Practices:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Keep scripts lightweight (under 2KB)</li>
+                                            <li>• Use caching with user.get() and user.setLocal()</li>
+                                            <li>• Handle null/undefined values gracefully</li>
+                                            <li>• Test scripts thoroughly before production</li>
+                                            <li>• Document script logic for maintenance</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How do you implement Adobe Target for Single Page Applications (SPAs)?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    SPAs require special implementation because traditional page loads don't occur. I use at.js 2.x with specific SPA functions:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Implementation Approach:</p>
+                                        <pre class="text-xs bg-white p-3 rounded border mt-1 overflow-x-auto"><code>// Initial page load
+adobe.target.getOffers({
+    request: {
+        execute: {
+            pageLoad: {}
+        }
+    }
+}).then(function(response) {
+    adobe.target.applyOffers({
+        response: response
+    });
+});
+
+// On route changes
+function onRouteChange(newView) {
+    adobe.target.triggerView(newView);
+}</code></pre>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Key SPA Functions:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <code>triggerView()</code> - Notify Target of view changes</li>
+                                            <li>• <code>getOffers()</code> with views parameter</li>
+                                            <li>• <code>applyOffers()</code> for rendering</li>
+                                            <li>• <code>sendNotifications()</code> for tracking</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">SPA Considerations:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Define clear view names for different app states</li>
+                                            <li>• Handle dynamic content loading</li>
+                                            <li>• Manage DOM manipulation timing</li>
+                                            <li>• Implement proper error handling</li>
+                                            <li>• Test across all navigation scenarios</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>Pro Tip:</strong> Use the VEC for SPAs feature in Target to visually create experiences for different views.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Explain the difference between Auto-Allocate and Auto-Target.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="p-3 bg-blue-50 rounded border">
+                                        <h5 class="font-medium text-blue-900 mb-2">Auto-Allocate</h5>
+                                        <p class="text-sm text-blue-700 mb-2">Automatically shifts traffic to winning experiences</p>
+                                        <ul class="text-xs text-blue-700 space-y-1">
+                                            <li>• Tests multiple experiences against each other</li>
+                                            <li>• Gradually sends more traffic to winners</li>
+                                            <li>• Reduces opportunity cost of poor performers</li>
+                                            <li>• Good for clear A/B comparisons</li>
+                                            <li>• Faster time to significance</li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-3 bg-green-50 rounded border">
+                                        <h5 class="font-medium text-green-900 mb-2">Auto-Target</h5>
+                                        <p class="text-sm text-green-700 mb-2">Personalizes experiences using machine learning</p>
+                                        <ul class="text-xs text-green-700 space-y-1">
+                                            <li>• Delivers personalized experiences per visitor</li>
+                                            <li>• Uses visitor attributes for targeting</li>
+                                            <li>• Learns from visitor behavior patterns</li>
+                                            <li>• Good for broad personalization</li>
+                                            <li>• Requires larger traffic volumes</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <p class="font-medium text-neutral-900">When to Use Each:</p>
+                                    <ul class="text-sm text-neutral-700 space-y-1 ml-4 mt-2">
+                                        <li>• <strong>Auto-Allocate:</strong> Testing 2-5 clear experience variations with specific hypotheses</li>
+                                        <li>• <strong>Auto-Target:</strong> Broad personalization when you want different experiences for different visitor types</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How do you handle cross-domain tracking and implementation?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Cross-domain tracking requires careful coordination between Target, Analytics, and the Visitor ID service to maintain visitor identity across domains.
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Implementation Steps:</p>
+                                        <ol class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>1. Configure Visitor ID service with all domains</li>
+                                            <li>2. Set up consistent at.js implementation across domains</li>
+                                            <li>3. Configure cross-domain settings in Target</li>
+                                            <li>4. Implement proper URL parameter passing</li>
+                                            <li>5. Test visitor identity persistence</li>
+                                        </ol>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Code Example:</p>
+                                        <pre class="text-xs bg-white p-3 rounded border mt-1 overflow-x-auto"><code>// Visitor ID service configuration
+var visitor = Visitor.getInstance("ORG_ID@AdobeOrg", {
+    trackingServer: "metrics.company.com",
+    trackingServerSecure: "smetrics.company.com",
+    marketingCloudServer: "dpm.demdex.net",
+    marketingCloudServerSecure: "dpm.demdex.net"
+});
+
+// Cross-domain URL parameters
+var appendVisitorIDsTo = visitor.appendVisitorIDsTo;
+link.href = appendVisitorIDsTo(link.href);</code></pre>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">Common Challenges:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Cookie domain restrictions</li>
+                                            <li>• Safari ITP (Intelligent Tracking Prevention)</li>
+                                            <li>• Subdomain vs. different domain scenarios</li>
+                                            <li>• Mobile app to web transitions</li>
+                                            <li>• GDPR compliance considerations</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Q&A tabs -->
+            <div id="tab4-2" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Scenario-Based Questions</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Scenario: Your A/B test shows a 15% conversion rate increase, but it's only been running for 3 days with 800 visitors per variant. Leadership wants to implement the winning experience immediately. How do you respond?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    I would explain to leadership that while the early results are promising, we haven't reached statistical significance yet. 
+                                    Here's my structured approach:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Present the Risk Assessment:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• With only 800 visitors per variant, we're likely underpowered</li>
+                                            <li>• Early results often show false positives due to random variation</li>
+                                            <li>• Risk of implementing a change that actually hurts conversions</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Calculate Required Sample Size:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Show the statistical calculation for proper sample size</li>
+                                            <li>• Explain how many more visitors we need for confidence</li>
+                                            <li>• Provide a timeline for reaching significance</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Offer Alternatives:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Increase traffic allocation to speed up the test</li>
+                                            <li>• Implement a gradual rollout to reduce risk</li>
+                                            <li>• Set up monitoring to catch any negative impact quickly</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-amber-50 p-3 rounded border-l-4 border-amber-500 mt-4">
+                                    <p class="text-amber-700 text-sm"><strong>Key Message:</strong> "Let's be confident in our decision with proper statistical backing to ensure long-term success rather than risking a potentially costly mistake."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Scenario: A major page redesign test is showing negative results after 2 weeks. The CMO is frustrated and wants to know what went wrong and how to fix it quickly.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    I would approach this systematically to diagnose the issue and provide actionable solutions:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Immediate Analysis:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Review segment performance - is it negative across all user types?</li>
+                                            <li>• Check device/browser breakdowns for technical issues</li>
+                                            <li>• Analyze the conversion funnel to identify drop-off points</li>
+                                            <li>• Review heatmaps and user session recordings</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Root Cause Investigation:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Test loading speed differences between variants</li>
+                                            <li>• Check for JavaScript errors or broken functionality</li>
+                                            <li>• Validate that tracking is working correctly</li>
+                                            <li>• Review user feedback or support tickets for insights</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Recovery Strategy:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Stop the current test immediately to prevent further impact</li>
+                                            <li>• Design focused tests on individual elements that showed promise</li>
+                                            <li>• Create iterative improvements based on learnings</li>
+                                            <li>• Set up better success criteria for future redesign tests</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>Communication Strategy:</strong> "Present findings as valuable learning that prevents a costly full rollout and provides clear direction for improvement."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Scenario: Your e-commerce client wants to test a new checkout flow, but their traffic is seasonal and they're approaching Black Friday. How do you design and time the test?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    This scenario requires careful planning around seasonality and high-stakes timing:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Pre-Black Friday Strategy:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Run a smaller-scale test 4-6 weeks before Black Friday</li>
+                                            <li>• Use 10-20% traffic allocation to minimize risk</li>
+                                            <li>• Focus on critical path elements (payment, shipping)</li>
+                                            <li>• Test with representative traffic mix</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Risk Mitigation:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Create detailed QA protocol for edge cases</li>
+                                            <li>• Set up real-time monitoring and alerts</li>
+                                            <li>• Prepare rollback procedures for immediate implementation</li>
+                                            <li>• Have technical team on standby during peak periods</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Seasonal Considerations:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Account for different user behavior during sales events</li>
+                                            <li>• Test mobile checkout flows specifically (higher mobile traffic)</li>
+                                            <li>• Consider new vs. returning customer differences</li>
+                                            <li>• Plan for higher cart values and gift purchases</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Decision Framework:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• If test shows positive results, gradual rollout starting 2 weeks before</li>
+                                            <li>• If inconclusive, stick with proven flow for Black Friday</li>
+                                            <li>• If negative, iterate and test again post-holiday</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-500 mt-4">
+                                    <p class="text-green-700 text-sm"><strong>Success Metric:</strong> Focus on revenue per visitor rather than just conversion rate, given higher-value seasonal shopping behavior.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Scenario: You're running an Auto-Target activity that's been live for 6 weeks but isn't showing expected lift. The algorithm seems to be struggling. What's your troubleshooting approach?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Auto-Target requires specific conditions to work effectively. Here's my diagnostic approach:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Traffic and Data Validation:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Verify we have sufficient traffic (typically 15,000+ visitors per month)</li>
+                                            <li>• Check conversion rate (needs at least 100-200 conversions total)</li>
+                                            <li>• Ensure visitor attribution data is flowing correctly</li>
+                                            <li>• Review data quality and completeness</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Experience Quality Assessment:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Review if experiences are sufficiently different</li>
+                                            <li>• Check that experiences align with different visitor needs</li>
+                                            <li>• Validate that control performs as expected</li>
+                                            <li>• Ensure experiences render correctly across devices</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Algorithm Insights Review:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Analyze the personalization insights report</li>
+                                            <li>• Check which attributes are driving decisions</li>
+                                            <li>• Look for unexpected visitor segment behaviors</li>
+                                            <li>• Review experience distribution patterns</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Optimization Strategies:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Consider switching to Auto-Allocate if experiences are similar</li>
+                                            <li>• Add more diverse experiences for better personalization</li>
+                                            <li>• Extend the learning period if traffic is moderate</li>
+                                            <li>• Supplement with audience-specific A/B tests</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-500 mt-4">
+                                    <p class="text-purple-700 text-sm"><strong>Recommendation:</strong> Auto-Target works best when you have distinct visitor types with different preferences - not just different versions of the same experience.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Scenario: Your company is launching in a new international market. How do you adapt your existing Target implementation for localization and cultural differences?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    International expansion requires thoughtful adaptation of both technical implementation and testing strategy:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Technical Implementation:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Set up separate Target properties for different markets if needed</li>
+                                            <li>• Configure geo-targeting rules for region-specific experiences</li>
+                                            <li>• Implement language detection and content serving</li>
+                                            <li>• Set up currency and payment method localization</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Cultural Adaptation Strategy:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Research local user behavior patterns and preferences</li>
+                                            <li>• Test different color schemes (e.g., red means luck in China, danger in Western cultures)</li>
+                                            <li>• Adapt form designs (some cultures prefer longer forms)</li>
+                                            <li>• Test trust signals relevant to local market</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Localization Testing Framework:</p>
+                                        <pre class="text-xs bg-white p-3 rounded border mt-1 overflow-x-auto"><code>// Example geo-targeting setup
+{
+  "audience": {
+    "geo": {
+      "country": "DE",
+      "language": "de"
+    }
+  },
+  "experiences": {
+    "german_experience": {
+      "trust_signals": ["TÜV_certification", "local_reviews"],
+      "payment_methods": ["SEPA", "Klarna", "PayPal"]
+    }
+  }
+}</code></pre>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Testing Priorities:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Start with fundamental elements: navigation, checkout, trust</li>
+                                            <li>• Test local vs. global branding approaches</li>
+                                            <li>• Validate mobile experiences (varies significantly by region)</li>
+                                            <li>• Test customer service integration methods</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">5. Success Metrics Adaptation:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Adjust KPIs for local market expectations</li>
+                                            <li>• Consider different conversion paths and timelines</li>
+                                            <li>• Account for local holidays and seasonal patterns</li>
+                                            <li>• Track localization-specific metrics (language engagement)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-500 mt-4">
+                                    <p class="text-orange-700 text-sm"><strong>Best Practice:</strong> Partner with local teams for cultural insights and avoid assuming global best practices will work in all markets.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab4-3" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Behavioral Questions</h3>
+                    
+                    <div class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <h4 class="font-semibold text-blue-900 mb-2">STAR Method Framework</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
+                            <div>
+                                <p class="font-medium text-blue-800">Situation</p>
+                                <p class="text-blue-700">Set the context</p>
+                            </div>
+                            <div>
+                                <p class="font-medium text-blue-800">Task</p>
+                                <p class="text-blue-700">Define your responsibility</p>
+                            </div>
+                            <div>
+                                <p class="font-medium text-blue-800">Action</p>
+                                <p class="text-blue-700">Describe what you did</p>
+                            </div>
+                            <div>
+                                <p class="font-medium text-blue-800">Result</p>
+                                <p class="text-blue-700">Share the outcome</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Tell me about a time when you had to convince stakeholders to change their approach to testing or optimization.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample STAR Answer:</strong></p>
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Situation:</p>
+                                        <p class="text-sm text-neutral-700">At my previous company, marketing was running tests with very small traffic allocations (5-10%) because they were afraid of impacting revenue negatively, but tests were taking 6+ months to reach significance.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Task:</p>
+                                        <p class="text-sm text-neutral-700">I needed to convince them that higher traffic allocation would actually reduce risk by getting faster, more reliable results, and that their current approach was costing opportunity cost.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Action:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1">
+                                            <li>• Created a detailed analysis showing the opportunity cost of slow testing</li>
+                                            <li>• Demonstrated with sample size calculations why 50% allocation would reach significance 5x faster</li>
+                                            <li>• Proposed a phased approach: start with 25%, then 50% after proving success</li>
+                                            <li>• Set up real-time monitoring dashboards to address their comfort concerns</li>
+                                            <li>• Showed case studies from similar companies with successful higher allocation strategies</li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Result:</p>
+                                        <p class="text-sm text-neutral-700">They agreed to test the 50% allocation approach. We reduced average test duration from 6 months to 6 weeks, increased our testing velocity by 4x, and implemented 3 winning experiences that quarter instead of waiting a full year. Revenue impact was 12% positive within the quarter.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Describe a time when a test failed or gave unexpected results. How did you handle it?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample STAR Answer:</strong></p>
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Situation:</p>
+                                        <p class="text-sm text-neutral-700">We tested a simplified checkout flow that performed incredibly well in user research and stakeholder reviews. However, after 4 weeks of testing, it showed a 18% decrease in conversions.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Task:</p>
+                                        <p class="text-sm text-neutral-700">I needed to understand why the test failed despite positive qualitative feedback, prevent further revenue loss, and extract learnings for future improvements.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Action:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1">
+                                            <li>• Immediately paused the test to stop revenue impact</li>
+                                            <li>• Conducted detailed analysis by device, traffic source, and user type</li>
+                                            <li>• Discovered mobile users were having significantly more issues (technical problem)</li>
+                                            <li>• Found that new users were confused without the step-by-step guidance</li>
+                                            <li>• Interviewed customer service team about related support tickets</li>
+                                            <li>• Created a hybrid approach combining simplicity for returning users with guidance for new users</li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Result:</p>
+                                        <p class="text-sm text-neutral-700">The hybrid version we tested next showed a 8% improvement in conversions. More importantly, this taught us to always segment results by user type and device during development. We changed our testing process to include technical validation across all devices before launch.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Tell me about a time when you had to work with limited resources or tight deadlines on an optimization project.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample STAR Answer:</strong></p>
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Situation:</p>
+                                        <p class="text-sm text-neutral-700">Two weeks before Black Friday, our main competitor launched a aggressive pricing campaign and leadership wanted to respond with optimization tests, but our development team was fully committed to other projects.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Task:</p>
+                                        <p class="text-sm text-neutral-700">I needed to implement meaningful optimizations that could impact Black Friday performance without any development resources and within a 10-day timeline.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Action:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1">
+                                            <li>• Focused on VEC-only changes that required no development</li>
+                                            <li>• Prioritized high-impact, low-effort optimizations: headlines, CTAs, promotional messaging</li>
+                                            <li>• Leveraged existing customer data to create targeted promotional messages</li>
+                                            <li>• Set up 3 parallel tests on different high-traffic pages</li>
+                                            <li>• Used Auto-Allocate to get faster results with limited time</li>
+                                            <li>• Created comprehensive monitoring dashboard for real-time performance tracking</li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Result:</p>
+                                        <p class="text-sm text-neutral-700">All three tests showed positive results within 5 days. We implemented the winning experiences before Black Friday and saw a 23% increase in conversion rate compared to the previous year. This became our standard rapid-response playbook for competitive situations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Give me an example of how you've used data to influence a major business decision.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample STAR Answer:</strong></p>
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Situation:</p>
+                                        <p class="text-sm text-neutral-700">Leadership was considering a major website redesign that would cost $2M+ and 6 months of development time. The design was based on industry trends and executive preferences rather than user data.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Task:</p>
+                                        <p class="text-sm text-neutral-700">I needed to provide data-driven insights to guide this major investment decision and ensure it would actually improve business outcomes.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Action:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1">
+                                            <li>• Conducted comprehensive analysis of current site performance and user behavior</li>
+                                            <li>• Identified the top 5 pages driving 80% of conversions and revenue</li>
+                                            <li>• Proposed testing individual elements of the new design incrementally</li>
+                                            <li>• Set up controlled tests on high-impact pages first</li>
+                                            <li>• Created a ROI projection model based on potential improvements</li>
+                                            <li>• Presented alternative approach: test-driven redesign over 3 months instead of full redesign</li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Result:</p>
+                                        <p class="text-sm text-neutral-700">Leadership agreed to the test-driven approach. After 3 months, we implemented only the elements that showed positive results (about 40% of the original redesign). This saved $1.2M in development costs and delivered 15% better performance than the full redesign would have, based on our test results.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Describe a situation where you had to learn a new technology or tool quickly to complete a project.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample STAR Answer:</strong></p>
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Situation:</p>
+                                        <p class="text-sm text-neutral-700">Our company acquired a smaller company that used a different optimization platform (Optimizely), and I was tasked with migrating their tests to Adobe Target while maintaining their ongoing experiments.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Task:</p>
+                                        <p class="text-sm text-neutral-700">I needed to quickly learn Optimizely's platform to understand their current setup, extract their learnings, and recreate their successful tests in Adobe Target within 4 weeks.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Action:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1">
+                                            <li>• Completed Optimizely's certification program in 1 week</li>
+                                            <li>• Created detailed documentation of their current test implementations</li>
+                                            <li>• Built comparison chart of Optimizely vs. Target features and capabilities</li>
+                                            <li>• Collaborated with their team to understand their testing methodology</li>
+                                            <li>• Developed migration plan prioritizing highest-impact tests</li>
+                                            <li>• Created Target equivalents with improved statistical rigor</li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Result:</p>
+                                        <p class="text-sm text-neutral-700">Successfully migrated 12 active tests within deadline with zero downtime. The new Target implementation showed 20% better performance due to improved targeting capabilities. I also became the go-to person for competitive platform knowledge and helped train the team on multi-platform testing strategies.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Tell me about a time when you disagreed with your manager or team about a testing strategy. How did you handle it?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample STAR Answer:</strong></p>
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Situation:</p>
+                                        <p class="text-sm text-neutral-700">My manager wanted to test 8 different homepage variations simultaneously using multivariate testing, but I believed this would require enormous traffic and take too long to get meaningful results.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Task:</p>
+                                        <p class="text-sm text-neutral-700">I needed to diplomatically present an alternative approach while respecting their decision-making authority and maintaining a positive working relationship.</p>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Action:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1">
+                                            <li>• Prepared detailed analysis showing the traffic requirements for 8-variant MVT</li>
+                                            <li>• Calculated that we'd need 18+ months to reach significance with current traffic</li>
+                                            <li>• Proposed alternative: phased A/B testing approach focusing on highest-impact elements first</li>
+                                            <li>• Presented both options objectively with pros/cons of each approach</li>
+                                            <li>• Suggested small pilot test to validate my concerns</li>
+                                            <li>• Offered to implement either approach based on their decision</li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-3 bg-white rounded border">
+                                        <p class="font-medium text-neutral-900">Result:</p>
+                                        <p class="text-sm text-neutral-700">After reviewing the data, my manager agreed to try the phased approach. We completed 3 successful A/B tests in 4 months instead of waiting 18+ months for MVT results. This built trust and led to more collaborative decision-making on future testing strategies. My manager later said they appreciated how I presented alternatives respectfully.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab4-4" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Panera-Specific Questions</h3>
+                    
+                    <div class="mb-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                        <h4 class="font-semibold text-amber-900 mb-2">🥖 Panera Context</h4>
+                        <p class="text-amber-700 text-sm">
+                            Focus on quick-service restaurant (QSR) challenges, digital ordering, mobile optimization, 
+                            loyalty programs, and food service personalization strategies.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How would you optimize Panera's mobile ordering experience to increase conversion rates and average order value?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    I would focus on the unique challenges of mobile food ordering - speed, personalization, and upselling opportunities:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Conversion Rate Optimization:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Test simplified category navigation (fewer taps to popular items)</li>
+                                            <li>• Implement "Quick Reorder" button for returning customers</li>
+                                            <li>• Test guest checkout vs. account creation flows</li>
+                                            <li>• Optimize form fields (autofill, smart suggestions)</li>
+                                            <li>• Test pickup time selection UX (realistic wait times)</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Average Order Value (AOV) Tests:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Smart upselling based on order contents (soup + sandwich combos)</li>
+                                            <li>• Test meal bundling vs. individual item presentation</li>
+                                            <li>• Implement "Customers also ordered" recommendations</li>
+                                            <li>• Test free delivery threshold messaging</li>
+                                            <li>• Seasonal item recommendations in cart</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. MyPanera Integration Tests:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Personalized homepage based on order history</li>
+                                            <li>• Loyalty points visibility throughout checkout</li>
+                                            <li>• Test reward redemption flow optimization</li>
+                                            <li>• Birthday/special occasion targeted offers</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Mobile-Specific Considerations:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Test thumb-friendly button placement and sizing</li>
+                                            <li>• Image optimization for faster loading</li>
+                                            <li>• One-handed navigation patterns</li>
+                                            <li>• Test payment method prioritization (Apple Pay, saved cards)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-500 mt-4">
+                                    <p class="text-green-700 text-sm"><strong>Key Success Metrics:</strong> Mobile conversion rate, AOV, time to checkout completion, repeat order frequency, and customer satisfaction scores.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Panera wants to test dynamic pricing strategies during peak and off-peak hours. How would you design and implement this test?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Dynamic pricing in QSR requires careful balance between revenue optimization and customer satisfaction:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Test Design Framework:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Segment by location type (downtown vs. suburban) and customer type</li>
+                                            <li>• Test time-based pricing vs. demand-based pricing</li>
+                                            <li>• Start with select menu items, not full menu</li>
+                                            <li>• Include control group with standard pricing</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Implementation Strategy:</p>
+                                        <pre class="text-xs bg-white p-3 rounded border mt-1 overflow-x-auto"><code>// Adobe Target audience rules
+{
+  "time_based_pricing": {
+    "audience": {
+      "time_of_day": "11:30-13:30 OR 17:30-19:30",
+      "location_type": "urban_high_traffic"
+    },
+    "pricing_modifier": "+15%_peak_hours"
+  },
+  "off_peak_discount": {
+    "audience": {
+      "time_of_day": "14:00-16:30",
+      "customer_type": "loyalty_member"
+    },
+    "pricing_modifier": "-10%_off_peak"
+  }
+}</code></pre>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Customer Communication Tests:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Test transparent messaging: "Peak hours pricing" vs. no explanation</li>
+                                            <li>• Show savings during off-peak times prominently</li>
+                                            <li>• Test MyPanera member exclusive pricing</li>
+                                            <li>• Bundle messaging: "Order now, save 10% + skip the line"</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Risk Mitigation:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Start with 10-20% traffic allocation</li>
+                                            <li>• Monitor customer satisfaction scores closely</li>
+                                            <li>• Set up real-time alerts for conversion rate drops</li>
+                                            <li>• Prepare rollback procedures for negative reactions</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">5. Success Metrics:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Revenue per location per hour</li>
+                                            <li>• Order volume distribution across time periods</li>
+                                            <li>• Customer retention and complaint rates</li>
+                                            <li>• Net Promoter Score impact</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-amber-50 p-3 rounded border-l-4 border-amber-500 mt-4">
+                                    <p class="text-amber-700 text-sm"><strong>Caution:</strong> QSR customers are price-sensitive. Focus on value communication and test small price adjustments first (5-10% maximum).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How would you use Adobe Target to personalize the Panera digital menu based on customer preferences and dietary restrictions?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Personalized menu experiences can significantly improve order satisfaction and customer loyalty in food service:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Data Sources for Personalization:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• MyPanera order history and preferences</li>
+                                            <li>• Dietary restriction tags (vegetarian, gluten-free, etc.)</li>
+                                            <li>• Time of day and day of week patterns</li>
+                                            <li>• Location-based preferences</li>
+                                            <li>• Seasonal ordering behavior</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Profile Script Implementation:</p>
+                                        <pre class="text-xs bg-white p-3 rounded border mt-1 overflow-x-auto"><code>// Customer preference scoring
+if (user.get('vegetarianOrders') >= 3) {
+    return 'vegetarian_focused';
+} else if (user.get('glutenFreeOrders') >= 2) {
+    return 'gluten_free_focused';
+} else if (user.get('soupOrders') > user.get('saladOrders')) {
+    return 'comfort_food_lover';
+} else {
+    return 'health_conscious';
+}</code></pre>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Personalization Test Scenarios:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Reorder section at top for frequent customers</li>
+                                            <li>• Dietary restriction filtering prominently displayed</li>
+                                            <li>• Seasonal recommendations based on past seasonal orders</li>
+                                            <li>• Healthy options highlighted for health-conscious users</li>
+                                            <li>• New item suggestions based on similar taste profiles</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Menu Layout Tests:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• "For You" section vs. traditional category navigation</li>
+                                            <li>• Visual prominence of dietary icons and callouts</li>
+                                            <li>• Test recommendation carousel placement</li>
+                                            <li>• Breakfast items shown in morning, dinner items in evening</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">5. Advanced Personalization Features:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Calorie-conscious customers see nutritional info prominently</li>
+                                            <li>• Busy professionals see "Quick Pick" fast options</li>
+                                            <li>• Families see kid-friendly meal combos</li>
+                                            <li>• Budget-conscious customers see value offerings first</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>Success Metrics:</strong> Time to menu decision, items added to cart, order completion rate, customer satisfaction with recommendations, and repeat order frequency.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Panera is expanding their catering services. How would you optimize the catering order flow for business customers?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Catering orders have different requirements than individual orders - larger quantities, advance scheduling, and business decision-making processes:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Business Customer Flow Optimization:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Separate catering entrance vs. integrated with regular menu</li>
+                                            <li>• Business account creation with billing information</li>
+                                            <li>• Headcount-based menu recommendations</li>
+                                            <li>• Advanced scheduling (24+ hours notice)</li>
+                                            <li>• Multiple delivery addresses for large organizations</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. A/B Test Priorities:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Test quantity selector UI (sliders vs. input fields vs. preset packages)</li>
+                                            <li>• Meeting type templates (breakfast meeting, lunch presentation, etc.)</li>
+                                            <li>• Dietary accommodation workflow</li>
+                                            <li>• Payment terms (pay now vs. corporate billing vs. invoicing)</li>
+                                            <li>• Order confirmation and communication preferences</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Trust and Credibility Elements:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Customer testimonials from other businesses</li>
+                                            <li>• On-time delivery guarantees</li>
+                                            <li>• Professional setup service options</li>
+                                            <li>• Dedicated business customer support</li>
+                                            <li>• Detailed nutritional and allergen information</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Personalization for Business Users:</p>
+                                        <pre class="text-xs bg-white p-3 rounded border mt-1 overflow-x-auto"><code>// Business customer targeting
+{
+  "audience": {
+    "order_history": "catering_orders >= 2",
+    "order_value": "> $100",
+    "order_timing": "business_hours"
+  },
+  "experience": {
+    "quick_reorder": true,
+    "saved_preferences": "dietary_restrictions",
+    "volume_discounts": "visible",
+    "dedicated_support": "phone_number_prominent"
+  }
+}</code></pre>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">5. Mobile vs. Desktop Optimization:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Desktop-first design for complex business orders</li>
+                                            <li>• Mobile: quick reorders and order tracking</li>
+                                            <li>• Test cross-device order saving and continuation</li>
+                                            <li>• Email integration for easy team ordering</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-500 mt-4">
+                                    <p class="text-purple-700 text-sm"><strong>Key Insight:</strong> Business customers prioritize reliability, ease of ordering for groups, and detailed information over speed. Test accordingly.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How would you measure and optimize customer lifetime value (CLV) for MyPanera loyalty program members using Adobe Target?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    CLV optimization in QSR requires balancing immediate revenue with long-term customer retention and frequency:
+                                </p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. CLV Segmentation Strategy:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• High-value customers: $500+ annual spend, weekly+ visits</li>
+                                            <li>• Growing customers: increasing order frequency/value</li>
+                                            <li>• At-risk customers: decreasing visit frequency</li>
+                                            <li>• New members: first 90 days, establishing habits</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Targeted Experience Tests by Segment:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>High-value:</strong> Exclusive menu previews, premium rewards, VIP experiences</li>
+                                            <li>• <strong>Growing:</strong> Milestone rewards, habit-building challenges</li>
+                                            <li>• <strong>At-risk:</strong> Win-back offers, feedback surveys, simplified ordering</li>
+                                            <li>• <strong>New:</strong> Onboarding tutorial, first-order incentives, habit formation</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Profile Script for CLV Calculation:</p>
+                                        <pre class="text-xs bg-white p-3 rounded border mt-1 overflow-x-auto"><code>// CLV scoring algorithm
+var totalSpent = user.get('totalSpent') || 0;
+var orderFrequency = user.get('orders90Days') || 0;
+var avgOrderValue = user.get('avgOrderValue') || 0;
+var daysSinceLastOrder = user.get('daysSinceLastOrder') || 999;
+
+var clvScore = (totalSpent * 0.4) + 
+               (orderFrequency * 10) + 
+               (avgOrderValue * 0.3) - 
+               (daysSinceLastOrder * 0.5);
+
+if (clvScore > 200) return 'high_value';
+else if (clvScore > 100) return 'medium_value';
+else if (daysSinceLastOrder > 30) return 'at_risk';
+else return 'new_or_low_value';</code></pre>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Frequency Building Tests:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Test subscription-style offerings (coffee club, weekly salad plan)</li>
+                                            <li>• Lunch break reminders and pre-ordering for office workers</li>
+                                            <li>• Family meal bundles for weekend traffic</li>
+                                            <li>• Seasonal menu item early access</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">5. Retention vs. Acquisition Balance:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• Test referral program effectiveness by customer tier</li>
+                                            <li>• Birthday month special experiences</li>
+                                            <li>• Test surprise and delight tactics for high-value customers</li>
+                                            <li>• Cross-selling catering to individual customers</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-neutral-900">6. CLV Measurement Framework:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• 90-day CLV impact measurement</li>
+                                            <li>• Order frequency trends by segment</li>
+                                            <li>• Retention rate improvements</li>
+                                            <li>• Cross-channel engagement (app + in-store)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-3 rounded border-l-4 border-green-500 mt-4">
+                                    <p class="text-green-700 text-sm"><strong>Success KPIs:</strong> Customer lifetime value increase, order frequency growth, retention rate, and program engagement metrics across all customer segments.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Integration Knowledge -->
+        <section id="integration" class="content-section hidden">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-neutral-900 mb-4">🔗 Integration Knowledge</h2>
+                <p class="text-lg text-neutral-600 leading-relaxed">
+                    Master Adobe Target integrations with Experience Cloud solutions and third-party platforms for comprehensive personalization.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                <button class="tab-button active bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300" onclick="showTab('tab5-1', this)">
+                    Adobe Analytics
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab5-2', this)">
+                    Audience Manager
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab5-3', this)">
+                    Experience Manager
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab5-4', this)">
+                    Third-Party APIs
+                </button>
+            </div>
+
+            <!-- Tab 5-1: Adobe Analytics -->
+            <div id="tab5-1" class="tab-content">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Adobe Analytics Integration (A4T)</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Integration Benefits</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-medium text-blue-900">Unified Reporting</h5>
+                                    <p class="text-sm text-blue-700 mt-1">Single source of truth for all Target activity data in Analytics workspace</p>
+                                </div>
+                                
+                                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-medium text-green-900">Advanced Segmentation</h5>
+                                    <p class="text-sm text-green-700 mt-1">Leverage Analytics segments for deeper audience analysis</p>
+                                </div>
+                                
+                                <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                                    <h5 class="font-medium text-amber-900">Cross-Channel Attribution</h5>
+                                    <p class="text-sm text-amber-700 mt-1">Track impact across all touchpoints and marketing channels</p>
+                                </div>
+                            </div>
+                            
+                            <h4 class="text-lg font-semibold text-neutral-900 mt-8 mb-4">Implementation Code</h4>
+                            <pre class="text-xs bg-neutral-50 p-4 rounded border overflow-x-auto"><code>// A4T Integration Setup
+adobe.target.getOffers({
+    request: {
+        experienceCloud: {
+            analytics: {
+                logging: "server_side",
+                supplementalDataId: "supplemental-data-id"
+            }
+        },
+        execute: {
+            mboxes: [{
+                name: "homepage-hero",
+                index: 1
+            }]
+        }
+    }
+}).then(function(response) {
+    // Handle offers and track with Analytics
+    adobe.target.applyOffers({
+        response: response
+    });
+    
+    // Send Analytics beacon
+    s.t();
+});</code></pre>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">A4T Reporting Capabilities</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 border border-neutral-200 rounded-lg">
+                                    <h5 class="font-medium text-neutral-900">Custom Metrics</h5>
+                                    <ul class="text-sm text-neutral-700 mt-2 space-y-1">
+                                        <li>• Revenue per Visitor</li>
+                                        <li>• Custom conversion events</li>
+                                        <li>• Calculated metrics</li>
+                                        <li>• Success event combinations</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 border border-neutral-200 rounded-lg">
+                                    <h5 class="font-medium text-neutral-900">Advanced Analysis</h5>
+                                    <ul class="text-sm text-neutral-700 mt-2 space-y-1">
+                                        <li>• Cohort analysis</li>
+                                        <li>• Flow visualization</li>
+                                        <li>• Fallout reports</li>
+                                        <li>• Attribution modeling</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 border border-neutral-200 rounded-lg">
+                                    <h5 class="font-medium text-neutral-900">Data Export</h5>
+                                    <ul class="text-sm text-neutral-700 mt-2 space-y-1">
+                                        <li>• Data Warehouse</li>
+                                        <li>• Data Feeds</li>
+                                        <li>• Report Builder</li>
+                                        <li>• API access</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional integration tabs -->
+            <div id="tab5-2" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Audience Manager Integration</h3>
+                    <p class="text-neutral-600">Real-time audience data and segment sharing...</p>
+                </div>
+            </div>
+
+            <div id="tab5-3" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Experience Manager Integration</h3>
+                    <p class="text-neutral-600">Content management and dynamic offer delivery...</p>
+                </div>
+            </div>
+
+            <div id="tab5-4" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Third-Party API Integrations</h3>
+                    <p class="text-neutral-600">External data sources and custom integrations...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Advanced Features -->
+        <section id="advanced-target" class="content-section hidden">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-neutral-900 mb-4">🚀 Advanced Target Features</h2>
+                <p class="text-lg text-neutral-600 leading-relaxed">
+                    Explore cutting-edge Adobe Target capabilities including AI-powered personalization, advanced APIs, and enterprise features.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                <button class="tab-button active bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300" onclick="showTab('tab6-1', this)">
+                    Auto-Target/Allocate
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab6-2', this)">
+                    Recommendations
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab6-3', this)">
+                    APIs & SDKs
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('tab6-4', this)">
+                    Enterprise Features
+                </button>
+            </div>
+
+            <!-- Tab 6-1: Auto-Target/Allocate -->
+            <div id="tab6-1" class="tab-content">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">AI-Powered Optimization</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Auto-Allocate</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-medium text-blue-900">How It Works</h5>
+                                    <p class="text-sm text-blue-700 mt-1">Automatically shifts traffic to winning experiences based on statistical confidence</p>
+                                </div>
+                                
+                                <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-medium text-green-900">Benefits</h5>
+                                    <ul class="text-sm text-green-700 mt-2 space-y-1">
+                                        <li>• Faster results with adaptive allocation</li>
+                                        <li>• Maximizes conversion opportunities</li>
+                                        <li>• Reduces opportunity cost</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                                    <h5 class="font-medium text-amber-900">When to Use</h5>
+                                    <ul class="text-sm text-amber-700 mt-2 space-y-1">
+                                        <li>• Multiple experience variations</li>
+                                        <li>• Clear conversion goal</li>
+                                        <li>• Sufficient traffic volume</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Auto-Target</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h5 class="font-medium text-purple-900">Personalization Engine</h5>
+                                    <p class="text-sm text-purple-700 mt-1">Uses machine learning to deliver personalized experiences to each visitor</p>
+                                </div>
+                                
+                                <div class="p-4 bg-indigo-50 rounded-lg border border-indigo-200">
+                                    <h5 class="font-medium text-indigo-900">Key Factors</h5>
+                                    <ul class="text-sm text-indigo-700 mt-2 space-y-1">
+                                        <li>• Geographic location</li>
+                                        <li>• Device and browser</li>
+                                        <li>• Time of visit</li>
+                                        <li>• Previous behavior</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 bg-cyan-50 rounded-lg border border-cyan-200">
+                                    <h5 class="font-medium text-cyan-900">Implementation</h5>
+                                    <pre class="text-xs bg-white p-2 rounded mt-2 overflow-x-auto"><code>// Auto-Target setup
+{
+  "activityType": "auto-target",
+  "experiences": [
+    { "name": "Control", "content": "..." },
+    { "name": "Variant A", "content": "..." },
+    { "name": "Variant B", "content": "..." }
+  ],
+  "goals": ["conversion", "revenue"]
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional advanced feature tabs -->
+            <div id="tab6-2" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Recommendations Engine</h3>
+                    <p class="text-neutral-600">AI-powered product and content recommendations...</p>
+                </div>
+            </div>
+
+            <div id="tab6-3" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">APIs & SDKs</h3>
+                    <p class="text-neutral-600">Server-side delivery and admin APIs...</p>
+                </div>
+            </div>
+
+            <div id="tab6-4" class="tab-content hidden">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Enterprise Features</h3>
+                    <p class="text-neutral-600">Enterprise permissions, workspaces, and governance...</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Panera Bread Case Study Section -->
+        <section id="panera-bread" class="content-section hidden">
+            <div class="mb-8">
+                <div class="flex items-center mb-4">
+                    <span class="text-4xl mr-4">🥖</span>
+                    <h2 class="text-3xl font-bold text-neutral-900">Panera Bread Case Study</h2>
+                </div>
+                <p class="text-lg text-neutral-600 leading-relaxed">
+                    Comprehensive mobile optimization strategy specifically designed for your Lead Adobe Target Specialist interview at Panera Bread.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+                <button class="tab-button active bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300" onclick="showTab('panera-tab1', this)">
+                    Current Analysis
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('panera-tab2', this)">
+                    Strategy
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('panera-tab3', this)">
+                    Test Scenarios
+                </button>
+                <button class="tab-button bg-neutral-100 text-neutral-700 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-neutral-200" onclick="showTab('panera-tab4', this)">
+                    Interview Prep
+                </button>
+            </div>
+
+            <!-- Panera Tab 1: Current Analysis -->
+            <div id="panera-tab1" class="tab-content">
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover transition-all duration-300">
+                    <h3 class="text-2xl font-semibold text-neutral-900 mb-6">Mobile Experience Analysis</h3>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Current Mobile Challenges</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-red-50 border border-red-200 rounded-lg">
+                                    <h5 class="font-medium text-red-900">Checkout Friction</h5>
+                                    <ul class="text-sm text-red-700 mt-2 space-y-1">
+                                        <li>• Multi-step checkout process</li>
+                                        <li>• Complex loyalty integration</li>
+                                        <li>• Payment method confusion</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 bg-amber-50 border border-amber-200 rounded-lg">
+                                    <h5 class="font-medium text-amber-900">Menu Navigation</h5>
+                                    <ul class="text-sm text-amber-700 mt-2 space-y-1">
+                                        <li>• Deep category hierarchy</li>
+                                        <li>• Limited visual menu items</li>
+                                        <li>• Slow loading product images</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                                    <h5 class="font-medium text-blue-900">Personalization Gaps</h5>
+                                    <ul class="text-sm text-blue-700 mt-2 space-y-1">
+                                        <li>• Limited recommendation engine</li>
+                                        <li>• Generic homepage experience</li>
+                                        <li>• Underutilized MyPanera data</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-lg font-semibold text-neutral-900 mb-4">Competitive Benchmarks</h4>
+                            <div class="space-y-4">
+                                <div class="p-4 border border-neutral-200 rounded-lg">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <h5 class="font-medium text-neutral-900">Starbucks Mobile</h5>
+                                        <span class="text-green-600 font-semibold">Leader</span>
+                                    </div>
+                                    <ul class="text-sm text-neutral-600 space-y-1">
+                                        <li>• One-tap reordering</li>
+                                        <li>• Seamless loyalty integration</li>
+                                        <li>• Contextual recommendations</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 border border-neutral-200 rounded-lg">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <h5 class="font-medium text-neutral-900">Chipotle Digital</h5>
+                                        <span class="text-blue-600 font-semibold">Strong</span>
+                                    </div>
+                                    <ul class="text-sm text-neutral-600 space-y-1">
+                                        <li>• Visual customization builder</li>
+                                        <li>• Quick order shortcuts</li>
+                                        <li>• Real-time order tracking</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="p-4 border border-neutral-200 rounded-lg">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <h5 class="font-medium text-neutral-900">Panera Current</h5>
+                                        <span class="text-amber-600 font-semibold">Opportunity</span>
+                                    </div>
+                                    <ul class="text-sm text-neutral-600 space-y-1">
+                                        <li>• Traditional menu layout</li>
+                                        <li>• Limited personalization</li>
+                                        <li>• Complex checkout flow</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-50 to-amber-50 rounded-lg p-6">
+                        <h4 class="text-lg font-semibold text-neutral-900 mb-4">Key Optimization Opportunities</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-primary">23%</div>
+                                <div class="text-sm text-neutral-600">Expected conversion lift from streamlined checkout</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-accent">18%</div>
+                                <div class="text-sm text-neutral-600">AOV increase through AI recommendations</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-green-600">31%</div>
+                                <div class="text-sm text-neutral-600">Mobile engagement improvement</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Panera tabs would continue here -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-900 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">Ready for Your Interview?</h3>
+                <p class="text-neutral-300 mb-6">Master Adobe Target and land your Lead Adobe Target Specialist role at Panera Bread</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="showSection('qa-practice')" class="bg-primary text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-700">
+                        Practice Interview Questions
+                    </button>
+                    <button onclick="showSection('panera-bread')" class="bg-accent text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-amber-600">
+                        Review Panera Case Study
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript functions for interactivity
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                targetSection.classList.add('active');
+            }
+            
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active', 'bg-primary', 'text-white');
+                item.classList.add('bg-neutral-100', 'text-neutral-700');
+            });
+            
+            // Find and activate the corresponding nav item
+            const navButtons = document.querySelectorAll('.nav-item');
+            navButtons.forEach(button => {
+                if (button.onclick && button.onclick.toString().includes(sectionId)) {
+                    button.classList.remove('bg-neutral-100', 'text-neutral-700');
+                    button.classList.add('active', 'bg-primary', 'text-white');
+                }
+            });
+        }
+
+        function showTab(tabId, buttonElement) {
+            // Hide all tab content within the same section
+            const section = buttonElement.closest('.content-section');
+            section.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Show selected tab
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.remove('hidden');
+            }
+            
+            // Update tab buttons within the same section
+            section.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active', 'bg-primary', 'text-white');
+                btn.classList.add('bg-neutral-100', 'text-neutral-700');
+            });
+            
+            buttonElement.classList.remove('bg-neutral-100', 'text-neutral-700');
+            buttonElement.classList.add('active', 'bg-primary', 'text-white');
+        }
+
+        function validateActivitySetup() {
+            const name = document.getElementById('activityName').value;
+            const type = document.getElementById('activityType').value;
+            const url = document.getElementById('targetUrl').value;
+            
+            const resultDiv = document.getElementById('validationResult');
+            
+            if (name && type && url) {
+                resultDiv.innerHTML = `
+                    <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="text-green-500 text-xl mr-3">✅</span>
+                            <div>
+                                <h4 class="font-semibold text-green-900">Setup Validated Successfully!</h4>
+                                <p class="text-green-700 text-sm mt-1">
+                                    Activity "${name}" is ready for ${type} testing on ${url}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="text-red-500 text-xl mr-3">❌</span>
+                            <div>
+                                <h4 class="font-semibold text-red-900">Validation Failed</h4>
+                                <p class="text-red-700 text-sm mt-1">Please fill in all required fields</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function showSocialExample() {
+            alert('Implementation example:\n\nif (document.referrer.includes("facebook.com")) {\n    displaySocialProof();\n    showUserReviews();\n    trackSocialConversion();\n}');
+        }
+
+        function calculateSampleSize() {
+            const baseline = parseFloat(document.getElementById('baselineRate').value);
+            const mde = parseFloat(document.getElementById('mde').value);
+            const power = parseFloat(document.getElementById('power').value);
+            const significance = parseFloat(document.getElementById('significance').value);
+            
+            const resultDiv = document.getElementById('sampleSizeResult');
+            
+            if (baseline && mde && power && significance) {
+                // Simplified sample size calculation
+                const alpha = (100 - significance) / 100;
+                const beta = (100 - power) / 100;
+                const p1 = baseline / 100;
+                const p2 = p1 * (1 + mde / 100);
+                
+                // Approximate sample size per variant
+                const sampleSize = Math.ceil(
+                    2 * Math.pow(1.96 + 0.84, 2) * p1 * (1 - p1) / Math.pow(p2 - p1, 2)
+                );
+                
+                resultDiv.innerHTML = `
+                    <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="text-green-500 text-xl mr-3">📊</span>
+                            <div>
+                                <h4 class="font-semibold text-green-900">Sample Size Calculation</h4>
+                                <p class="text-green-700 text-sm mt-1">
+                                    <strong>${sampleSize.toLocaleString()}</strong> visitors per variant needed
+                                </p>
+                                <p class="text-green-600 text-xs mt-2">
+                                    Total test size: ${(sampleSize * 2).toLocaleString()} visitors
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="p-4 bg-red-50 border border-red-200 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="text-red-500 text-xl mr-3">❌</span>
+                            <div>
+                                <h4 class="font-semibold text-red-900">Calculation Error</h4>
+                                <p class="text-red-700 text-sm mt-1">Please fill in all required fields</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('hands-on');
+        });
+    </script>
+</body>
+</html>

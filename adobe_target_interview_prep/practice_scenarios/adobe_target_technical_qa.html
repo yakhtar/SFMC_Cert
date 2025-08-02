@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adobe Target Technical Interview Q&A - Lead Specialist Prep</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6B35, #F7931E);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #FF6B35;
+        }
+        
+        .question-category {
+            background: #FF6B35;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .option:hover {
+            border-color: #FF6B35;
+            background: #fff5f2;
+        }
+        
+        .option.selected {
+            border-color: #FF6B35;
+            background: #fff0ed;
+        }
+        
+        .option.correct {
+            border-color: #28a745;
+            background: #e8f5e8;
+        }
+        
+        .option.incorrect {
+            border-color: #dc3545;
+            background: #ffebee;
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #FF6B35;
+            min-width: 25px;
+        }
+        
+        .explanation {
+            background: #e8f5e8;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .completion-screen.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+        }
+        
+        .score-needs-improvement {
+            background: linear-gradient(135deg, #ffc107, #e0a800);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+        }
+        
+        .category-filter {
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+        
+        .filter-btn.active {
+            background: #FF6B35;
+            color: white;
+            border-color: #FF6B35;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.1em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Adobe Target Technical Q&A</h1>
+            <p>Lead Specialist Interview Preparation - Solvd</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 50</div>
+        </div>
+        
+        <div class="category-filter">
+            <h3>Filter by Category:</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterQuestions('all')">All Questions</button>
+                <button class="filter-btn" onclick="filterQuestions('implementation')">Implementation</button>
+                <button class="filter-btn" onclick="filterQuestions('testing')">A/B Testing</button>
+                <button class="filter-btn" onclick="filterQuestions('analytics')">Analytics</button>
+                <button class="filter-btn" onclick="filterQuestions('optimization')">Optimization</button>
+                <button class="filter-btn" onclick="filterQuestions('strategy')">Strategy</button>
+            </div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+        
+        <div class="completion-screen" id="completionScreen">
+            <h2>🎉 Technical Assessment Complete!</h2>
+            <p>You've completed the Adobe Target technical interview preparation!</p>
+            <div class="score-circle" id="scoreCircle">
+                <span id="finalScore">0%</span>
+            </div>
+            <p id="scoreMessage"></p>
+            <button class="btn" onclick="restartQuiz()">Practice Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                category: "implementation",
+                question: "What is the primary difference between Adobe Target Standard and Adobe Target Premium?",
+                options: [
+                    "Standard is for A/B testing only, Premium includes multivariate testing",
+                    "Premium includes advanced features like Automated Personalization, Enterprise Permissions, and API access",
+                    "Standard is cloud-based, Premium is on-premise",
+                    "There is no functional difference, only pricing"
+                ],
+                correct: 1,
+                explanation: "Adobe Target Premium includes advanced features like Automated Personalization (AP), Auto-Target, Enterprise Permissions, API access, and advanced reporting capabilities that are not available in Standard."
+            },
+            {
+                category: "testing",
+                question: "In an A/B test with a baseline conversion rate of 15%, what sample size would you need to detect a 20% relative improvement with 80% power and 95% confidence?",
+                options: [
+                    "Approximately 1,000 visitors per variation",
+                    "Approximately 3,100 visitors per variation", 
+                    "Approximately 5,500 visitors per variation",
+                    "Approximately 10,000 visitors per variation"
+                ],
+                correct: 1,
+                explanation: "For a 15% baseline rate with 20% relative improvement (3% absolute), 80% power, and 95% confidence, you need approximately 3,100 visitors per variation. This is calculated using power analysis formulas for proportion tests."
+            },
+            {
+                category: "analytics",
+                question: "What is the recommended approach for measuring statistical significance in Adobe Target?",
+                options: [
+                    "Check p-values daily and stop tests when p < 0.05",
+                    "Use confidence intervals and avoid peeking until minimum test duration",
+                    "Rely only on Adobe Target's built-in significance indicators",
+                    "Use sequential testing methods exclusively"
+                ],
+                correct: 1,
+                explanation: "Best practice is to set minimum test duration, use confidence intervals for interpretation, and avoid frequent peeking to prevent inflated Type I error rates. Adobe Target's significance indicators should be combined with proper statistical methodology."
+            },
+            {
+                category: "implementation",
+                question: "How does Adobe Target's Visual Experience Composer (VEC) work?",
+                options: [
+                    "It modifies the server-side code directly",
+                    "It uses JavaScript to modify the DOM after page load",
+                    "It requires developer implementation for each change",
+                    "It only works with Adobe Analytics integration"
+                ],
+                correct: 1,
+                explanation: "The VEC uses JavaScript injection to modify the DOM after page load, allowing marketers to make changes without requiring developer resources. It creates JavaScript code that executes when the page loads."
+            },
+            {
+                category: "testing",
+                question: "What is the key advantage of multivariate testing over multiple A/B tests?",
+                options: [
+                    "Multivariate tests always require smaller sample sizes",
+                    "It can test interaction effects between different page elements",
+                    "It's easier to implement and manage",
+                    "It provides results faster than A/B tests"
+                ],
+                correct: 1,
+                explanation: "Multivariate testing can identify interaction effects between different elements that you might miss with separate A/B tests. It tests multiple elements simultaneously and shows how they work together."
+            },
+            {
+                category: "optimization",
+                question: "What is the primary goal of Adobe Target's Automated Personalization (AP)?",
+                options: [
+                    "To automatically create A/B tests",
+                    "To deliver personalized experiences using machine learning algorithms",
+                    "To optimize page load times",
+                    "To automatically generate content variations"
+                ],
+                correct: 1,
+                explanation: "Automated Personalization uses machine learning to deliver the best experience for each individual visitor based on their profile and behavior, moving beyond one-size-fits-all optimization."
+            },
+            {
+                category: "analytics",
+                question: "How should you handle multiple comparison problems in A/B testing?",
+                options: [
+                    "Ignore the issue and use standard significance levels",
+                    "Apply Bonferroni correction or use False Discovery Rate (FDR) control",
+                    "Only test one metric at a time",
+                    "Increase the confidence level to 99%"
+                ],
+                correct: 1,
+                explanation: "When testing multiple metrics, apply corrections like Bonferroni or FDR control to maintain the overall Type I error rate. Alternatively, establish primary and secondary metrics with different significance thresholds."
+            },
+            {
+                category: "implementation",
+                question: "What is the purpose of mbox parameters in Adobe Target?",
+                options: [
+                    "To store user preferences locally",
+                    "To pass data to Target for audience targeting and reporting",
+                    "To control page loading speed",
+                    "To manage cookie consent"
+                ],
+                correct: 1,
+                explanation: "Mbox parameters pass contextual data (user attributes, page data, etc.) to Adobe Target, enabling sophisticated audience targeting and detailed reporting segmentation."
+            },
+            {
+                category: "strategy",
+                question: "When prioritizing A/B tests, which framework is most commonly used?",
+                options: [
+                    "PIE (Potential, Importance, Ease)",
+                    "RICE (Reach, Impact, Confidence, Effort)",
+                    "ICE (Impact, Confidence, Ease)",
+                    "All of the above are valid frameworks"
+                ],
+                correct: 3,
+                explanation: "PIE, RICE, and ICE are all valid prioritization frameworks used in optimization. The choice depends on team preferences and available data. Each evaluates potential impact against implementation effort."
+            },
+            {
+                category: "testing",
+                question: "What is the minimum recommended test duration for most A/B tests?",
+                options: [
+                    "Until statistical significance is reached",
+                    "At least one full business cycle (typically 1-2 weeks)",
+                    "24 hours minimum",
+                    "Until 100 conversions per variation"
+                ],
+                correct: 1,
+                explanation: "Tests should run for at least one full business cycle (1-2 weeks) to account for weekly patterns in user behavior, regardless of when statistical significance is reached."
+            },
+            {
+                category: "analytics",
+                question: "What is the difference between Adobe Target's 'Confidence' and traditional statistical significance?",
+                options: [
+                    "They are exactly the same",
+                    "Adobe Target uses Bayesian methods while traditional uses frequentist",
+                    "Adobe Target confidence is always higher",
+                    "Adobe Target doesn't account for multiple comparisons"
+                ],
+                correct: 1,
+                explanation: "Adobe Target uses Bayesian statistical methods to calculate confidence, which provides the probability that one variation is better than another, rather than traditional frequentist p-values."
+            },
+            {
+                category: "implementation",
+                question: "How does Adobe Target handle flicker/flash of original content?",
+                options: [
+                    "It's impossible to prevent flicker with client-side testing",
+                    "Uses a pre-hiding snippet and synchronous implementation",
+                    "Only works with server-side implementation",
+                    "Flicker only occurs on mobile devices"
+                ],
+                correct: 1,
+                explanation: "Adobe Target provides a pre-hiding snippet that hides page content until Target loads, and synchronous implementation can further reduce flicker by loading Target before page rendering."
+            },
+            {
+                category: "optimization",
+                question: "What is the 'winner's curse' in A/B testing?",
+                options: [
+                    "When the winning variation performs worse in the next test",
+                    "When you stop testing after finding a winner",
+                    "The tendency to overestimate the effect size of the winning variation",
+                    "When multiple variations show similar results"
+                ],
+                correct: 2,
+                explanation: "Winner's curse refers to the statistical phenomenon where the observed effect size of the 'winning' variation tends to be overestimated, especially in tests that just reach significance."
+            },
+            {
+                category: "strategy",
+                question: "What is the recommended approach for testing on low-traffic websites?",
+                options: [
+                    "Don't run A/B tests on low-traffic sites",
+                    "Use smaller confidence levels (90% instead of 95%)",
+                    "Focus on high-impact tests and consider Bayesian approaches",
+                    "Run tests for much longer periods only"
+                ],
+                correct: 2,
+                explanation: "Low-traffic sites should focus on high-impact tests, consider Bayesian statistical approaches, and may benefit from techniques like sequential testing or reduced confidence levels when appropriate."
+            },
+            {
+                category: "implementation",
+                question: "What is the Adobe Target global mbox?",
+                options: [
+                    "A special mbox that loads on every page",
+                    "The main mbox that controls all other mboxes",
+                    "A mbox used only for global CSS changes",
+                    "The default mbox created by the VEC"
+                ],
+                correct: 0,
+                explanation: "The global mbox is automatically created on every page where Adobe Target is implemented, allowing for site-wide targeting and testing without additional implementation."
+            },
+            {
+                category: "analytics",
+                question: "How do you calculate the practical significance of an A/B test result?",
+                options: [
+                    "Use only the p-value",
+                    "Calculate the confidence interval and assess business impact",
+                    "Look at the percentage lift only",
+                    "Practical significance is the same as statistical significance"
+                ],
+                correct: 1,
+                explanation: "Practical significance considers both the confidence interval (which shows the range of likely effect sizes) and the business impact of that range, determining if the result is meaningful for the business."
+            },
+            {
+                category: "testing",
+                question: "What is the purpose of holdout groups in personalization campaigns?",
+                options: [
+                    "To test different personalization algorithms",
+                    "To measure the incremental impact of personalization versus no personalization",
+                    "To store user data for future campaigns",
+                    "To comply with privacy regulations"
+                ],
+                correct: 1,
+                explanation: "Holdout groups receive the default experience (no personalization) to measure the incremental lift that personalization provides compared to the baseline experience."
+            },
+            {
+                category: "implementation",
+                question: "What are the key components of Adobe Target's at.js library?",
+                options: [
+                    "Only the mbox functionality",
+                    "Mbox management, offer delivery, visitor tracking, and analytics integration",
+                    "Just analytics and reporting features",
+                    "Only the Visual Experience Composer integration"
+                ],
+                correct: 1,
+                explanation: "at.js includes mbox management, offer delivery, visitor ID management, analytics integration, and all the client-side functionality needed for Target implementation."
+            },
+            {
+                category: "optimization",
+                question: "What is the concept of 'regret' in multi-armed bandit algorithms?",
+                options: [
+                    "The feeling when a test doesn't reach significance",
+                    "The difference between the cumulative reward and the optimal reward",
+                    "The cost of running multiple variations",
+                    "The time wasted on losing variations"
+                ],
+                correct: 1,
+                explanation: "In bandit algorithms, regret quantifies the opportunity cost - the difference between the rewards you actually received and the rewards you would have received with perfect knowledge."
+            },
+            {
+                category: "strategy",
+                question: "How should you approach testing for mobile vs desktop experiences?",
+                options: [
+                    "Always test mobile and desktop separately",
+                    "Mobile and desktop can always be tested together",
+                    "Analyze user behavior patterns and test separately when experiences differ significantly",
+                    "Only test on desktop since it's easier to implement"
+                ],
+                correct: 2,
+                explanation: "The approach depends on user behavior patterns and experience differences. When mobile and desktop have significantly different user patterns or experiences, separate testing may be more appropriate."
+            },
+            {
+                category: "analytics",
+                question: "What is Simpson's Paradox in the context of A/B testing?",
+                options: [
+                    "When cartoon characters affect test results",
+                    "When aggregate results contradict subgroup results",
+                    "When tests run too long",
+                    "When sample sizes are too small"
+                ],
+                correct: 1,
+                explanation: "Simpson's Paradox occurs when trends that appear in different subgroups disappear or reverse when the groups are combined, highlighting the importance of segment analysis."
+            },
+            {
+                category: "implementation",
+                question: "What is server-side testing in Adobe Target?",
+                options: [
+                    "Testing that only works on servers",
+                    "Running tests through Target's delivery API before content is sent to the browser",
+                    "Testing server performance",
+                    "Backend database testing"
+                ],
+                correct: 1,
+                explanation: "Server-side testing uses Adobe Target's delivery APIs to determine experiences before content is sent to the browser, eliminating flicker and enabling testing on any platform."
+            },
+            {
+                category: "testing",
+                question: "What is the appropriate statistical test for comparing conversion rates in A/B tests?",
+                options: [
+                    "t-test",
+                    "Chi-square test or z-test for proportions",
+                    "ANOVA",
+                    "Regression analysis"
+                ],
+                correct: 1,
+                explanation: "Conversion rates are proportions, so chi-square tests or z-tests for proportions are appropriate. t-tests are for comparing means, not proportions."
+            },
+            {
+                category: "optimization",
+                question: "What is the exploration vs exploitation tradeoff in personalization?",
+                options: [
+                    "Balancing new feature development vs existing feature improvement",
+                    "Balancing learning about user preferences vs serving the best known experience",
+                    "Balancing mobile vs desktop optimization",
+                    "Balancing speed vs accuracy in algorithms"
+                ],
+                correct: 1,
+                explanation: "Exploration vs exploitation balances learning more about user preferences (exploration) with serving experiences you already know perform well (exploitation) to maximize long-term performance."
+            },
+            {
+                category: "strategy",
+                question: "How do you determine the Minimum Viable Test (MVT) for a low-traffic situation?",
+                options: [
+                    "Test the smallest possible change",
+                    "Focus on high-impact changes that can be detected with available traffic",
+                    "Always wait until you have more traffic",
+                    "Use the same approach as high-traffic tests"
+                ],
+                correct: 1,
+                explanation: "In low-traffic situations, focus on high-impact changes that have a better chance of being detected with limited sample sizes, rather than testing small incremental changes."
+            },
+            {
+                category: "analytics",
+                question: "What is the difference between lift and statistical significance in A/B testing?",
+                options: [
+                    "They measure the same thing",
+                    "Lift measures the size of the effect, significance measures confidence in the result",
+                    "Lift is only for revenue metrics",
+                    "Significance is more important than lift"
+                ],
+                correct: 1,
+                explanation: "Lift measures the magnitude of the difference between variations (effect size), while statistical significance measures how confident we are that the observed difference is real and not due to chance."
+            },
+            {
+                category: "implementation",
+                question: "What is the purpose of Adobe Target's Profile Scripts?",
+                options: [
+                    "To create user profiles on social media",
+                    "To execute custom JavaScript for visitor profiling and targeting",
+                    "To manage user passwords",
+                    "To optimize page loading scripts"
+                ],
+                correct: 1,
+                explanation: "Profile Scripts execute custom JavaScript to create visitor attributes, perform calculations, or set values that can be used for audience targeting and personalization."
+            },
+            {
+                category: "testing",
+                question: "What is a novelty effect in A/B testing?",
+                options: [
+                    "When new users behave differently than existing users",
+                    "When users initially react positively to any change, regardless of its merit",
+                    "When tests run during holiday seasons", 
+                    "When using novel statistical methods"
+                ],
+                correct: 1,
+                explanation: "Novelty effect occurs when users respond positively to changes simply because they're new or different, not because they're actually better. This effect typically diminishes over time."
+            },
+            {
+                category: "optimization",
+                question: "What is the primary advantage of using Adobe Target's Auto-Target feature?",
+                options: [
+                    "It automatically creates test variations",
+                    "It uses machine learning to deliver personalized experiences at scale",
+                    "It automatically determines statistical significance",
+                    "It eliminates the need for audience segmentation"
+                ],
+                correct: 1,
+                explanation: "Auto-Target uses machine learning algorithms to automatically deliver the best experience for each visitor based on their individual profile, enabling personalization at scale without manual audience creation."
+            },
+            {
+                category: "strategy",
+                question: "How should you approach testing during seasonal periods (holidays, sales events)?",
+                options: [
+                    "Avoid testing during any seasonal periods",
+                    "Test only seasonal-specific elements during these periods",
+                    "Consider seasonal context in test planning and result interpretation",
+                    "Run tests exactly the same as non-seasonal periods"
+                ],
+                correct: 2,
+                explanation: "Seasonal periods require thoughtful test planning - results may not generalize to other periods, but seasonal-specific optimizations can be valuable. Consider the context when interpreting and applying results."
+            },
+            {
+                category: "analytics",
+                question: "What is the purpose of segmentation in A/B test analysis?",
+                options: [
+                    "To make results look more significant",
+                    "To understand how different user groups respond to changes",
+                    "To reduce the sample size needed",
+                    "To speed up test completion"
+                ],
+                correct: 1,
+                explanation: "Segmentation analysis helps understand how different user groups (device type, traffic source, etc.) respond to changes, enabling more targeted optimizations and better understanding of user behavior."
+            },
+            {
+                category: "implementation",
+                question: "What is the difference between Target's mbox.js and at.js libraries?",
+                options: [
+                    "mbox.js is newer and better than at.js",
+                    "at.js is the modern library with better performance and features",
+                    "They are identical in functionality",
+                    "mbox.js is for mobile, at.js is for desktop"
+                ],
+                correct: 1,
+                explanation: "at.js is Adobe Target's modern JavaScript library that replaced mbox.js, offering better performance, reduced page load impact, and enhanced features for modern web applications."
+            },
+            {
+                category: "testing",
+                question: "What is the appropriate way to handle outliers in A/B test data?",
+                options: [
+                    "Always remove all outliers",
+                    "Never remove any data points",
+                    "Investigate outliers and apply consistent, pre-defined rules",
+                    "Only remove outliers that hurt your results"
+                ],
+                correct: 2,
+                explanation: "Outliers should be investigated to understand their cause. Apply consistent, pre-defined rules for handling them (e.g., cap extreme values, remove clear data errors) rather than ad-hoc decisions that could bias results."
+            },
+            {
+                category: "optimization",
+                question: "What is the concept of 'local optima' in conversion optimization?",
+                options: [
+                    "Optimizing for local traffic only",
+                    "Finding the best solution within a limited scope that may not be the global best",
+                    "Optimizing based on geographical location",
+                    "Testing only local elements on a page"
+                ],
+                correct: 1,
+                explanation: "Local optima represents finding the best solution within a limited scope (like current design constraints) that may prevent discovering radically better solutions that require bigger changes."
+            },
+            {
+                category: "strategy",
+                question: "How do you maintain testing velocity while ensuring quality?",
+                options: [
+                    "Run as many tests as possible simultaneously",
+                    "Balance test pipeline management with proper methodology and documentation",
+                    "Focus only on quick wins",
+                    "Reduce sample sizes to speed up tests"
+                ],
+                correct: 1,
+                explanation: "Maintain velocity through efficient test pipeline management, proper prioritization, standardized processes, and documentation while adhering to statistical best practices and quality standards."
+            },
+            {
+                category: "analytics",
+                question: "What is the danger of 'p-hacking' in A/B testing?",
+                options: [
+                    "It can improve test results",
+                    "It inflates Type I error rates and leads to false positive results",
+                    "It only affects small tests",
+                    "It makes tests run longer"
+                ],
+                correct: 1,
+                explanation: "P-hacking (data dredging, cherry-picking metrics) inflates Type I error rates, leading to false discoveries. It includes practices like early stopping, testing multiple metrics without correction, or changing hypotheses post-hoc."
+            },
+            {
+                category: "implementation",
+                question: "How does Adobe Target's Quality Assurance (QA) mode work?",
+                options: [
+                    "It automatically tests all variations",
+                    "It allows preview and testing of experiences before launch using special URLs",
+                    "It only works in staging environments",
+                    "It requires separate QA software"
+                ],
+                correct: 1,
+                explanation: "QA mode generates special preview URLs that allow stakeholders to view and test different experiences before launching to real visitors, enabling thorough pre-launch validation."
+            },
+            {
+                category: "testing",
+                question: "What is the primary consideration when testing checkout or conversion funnel changes?",
+                options: [
+                    "Only test cosmetic changes",
+                    "Focus on statistical significance over business impact",
+                    "Carefully balance potential revenue impact with learning objectives",
+                    "Always test on 100% of traffic"
+                ],
+                correct: 2,
+                explanation: "Checkout/funnel tests require careful balance between potential revenue risk and learning value. Consider using smaller traffic allocations initially and having rollback plans for critical conversion paths."
+            },
+            {
+                category: "optimization",
+                question: "What is the difference between personalization and segmentation in Adobe Target?",
+                options: [
+                    "They are the same thing",
+                    "Personalization delivers individual experiences, segmentation groups users for targeting",
+                    "Personalization is only for premium customers",
+                    "Segmentation is more advanced than personalization"
+                ],
+                correct: 1,
+                explanation: "Segmentation groups users into categories for targeted experiences, while personalization uses algorithms to deliver individualized experiences based on each visitor's unique characteristics and behavior."
+            },
+            {
+                category: "strategy",
+                question: "How should you approach testing when you have competing business priorities?",
+                options: [
+                    "Test everything simultaneously",
+                    "Align testing roadmap with business goals and stakeholder priorities",
+                    "Ignore business priorities and focus on statistical significance",
+                    "Only test low-risk changes"
+                ],
+                correct: 1,
+                explanation: "Successful testing programs align with business objectives, involving stakeholders in prioritization and ensuring tests support key business goals while maintaining statistical rigor."
+            },
+            {
+                category: "analytics",
+                question: "What is the most important factor when interpreting A/B test results for business stakeholders?",
+                options: [
+                    "P-values and statistical terminology",
+                    "Confidence intervals and practical business impact",
+                    "Only the winning variation percentage",
+                    "Technical implementation details"
+                ],
+                correct: 1,
+                explanation: "Business stakeholders need to understand confidence intervals (range of likely outcomes) and practical business impact (revenue, user experience) rather than just statistical significance measures."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answersGiven = [];
+        let filteredQuestions = [...questions];
+        let currentFilter = 'all';
+
+        function filterQuestions(category) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            currentFilter = category;
+            
+            if (category === 'all') {
+                filteredQuestions = [...questions];
+            } else {
+                filteredQuestions = questions.filter(q => q.category === category);
+            }
+            
+            // Reset quiz state
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            
+            // Load first question of filtered set
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestion >= filteredQuestions.length) {
+                showCompletionScreen();
+                return;
+            }
+
+            const question = filteredQuestions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-category">${question.category.toUpperCase()}</div>
+                    <div class="question-number">Question ${currentQuestion + 1} of ${filteredQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <ul class="options">
+                        ${question.options.map((option, index) => 
+                            `<li class="option" onclick="selectOption(${index})">
+                                <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                                <span>${option}</span>
+                            </li>`
+                        ).join('')}
+                    </ul>
+                    <div class="explanation" id="explanation">
+                        <h4>✅ Correct Answer: ${String.fromCharCode(65 + question.correct)})</h4>
+                        <p>${question.explanation}</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <div class="score-display">
+                        Score: ${score}/${currentQuestion} ${currentQuestion > 0 ? `(${Math.round(score/currentQuestion*100)}%)` : ''}
+                    </div>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        Next →
+                    </button>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = filteredQuestions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Remove any previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark the selected option
+            options[selectedIndex].classList.add('selected');
+
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Record the answer
+            answersGiven[currentQuestion] = selectedIndex;
+
+            // Update score
+            if (selectedIndex === question.correct) {
+                if (answersGiven[currentQuestion] !== question.correct) {
+                    score++;
+                }
+            }
+
+            // Show explanation and enable next button
+            explanation.classList.add('show');
+            nextBtn.disabled = false;
+
+            // Update score display
+            document.querySelector('.score-display').innerHTML = 
+                `Score: ${score}/${currentQuestion + 1} (${Math.round(score/(currentQuestion + 1)*100)}%)`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / filteredQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${filteredQuestions.length}`;
+        }
+
+        function showCompletionScreen() {
+            const container = document.getElementById('quizContainer');
+            const completionScreen = document.getElementById('completionScreen');
+            const finalScorePercent = Math.round((score / filteredQuestions.length) * 100);
+            
+            container.style.display = 'none';
+            completionScreen.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = finalScorePercent + '%';
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (finalScorePercent >= 90) {
+                scoreCircle.className = 'score-circle score-excellent';
+                scoreMessage.textContent = '🌟 Outstanding! You\'re ready for the technical interview!';
+            } else if (finalScorePercent >= 75) {
+                scoreCircle.className = 'score-circle score-good';
+                scoreMessage.textContent = '👏 Great job! You have solid Adobe Target knowledge.';
+            } else if (finalScorePercent >= 60) {
+                scoreCircle.className = 'score-circle score-needs-improvement';
+                scoreMessage.textContent = '📚 Good effort! Review the knowledge base and practice more.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                scoreMessage.textContent = '💪 Keep studying! Focus on the fundamentals and try again.';
+            }
+
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Assessment Complete!';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('completionScreen').classList.remove('show');
+            
+            loadQuestion();
+        }
+
+        // Initialize the quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

@@ -1,0 +1,2492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adobe Target Case Study - Checkout Conversion Crisis & Recovery Strategy</title>
+    
+    <!-- Include Plotly.js for interactive charts -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+    <style>
+        /* Enhanced styling for marketing manager audience */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .presentation-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            padding: 40px 60px;
+            display: none;
+            position: relative;
+            background: white;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide-header {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            padding: 30px 60px;
+            margin: -40px -60px 40px -60px;
+            border-radius: 0;
+        }
+        
+        .slide h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .slide h2 {
+            font-size: 2.4em;
+            color: #FF6B35;
+            margin-bottom: 25px;
+            border-bottom: 4px solid #FF6B35;
+            padding-bottom: 15px;
+        }
+        
+        .slide h3 {
+            font-size: 1.8em;
+            color: #333;
+            margin: 30px 0 20px 0;
+            font-weight: 600;
+        }
+        
+        .slide h4 {
+            font-size: 1.4em;
+            color: #555;
+            margin: 20px 0 15px 0;
+            font-weight: 500;
+        }
+        
+        /* Interactive chart containers */
+        .chart-container {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .metrics-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .metric-card {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 6px solid #FF6B35;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #FF6B35;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            color: #666;
+            font-size: 1.1em;
+            font-weight: 500;
+        }
+        
+        .metric-trend {
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .trend-down { color: #dc3545; }
+        .trend-up { color: #28a745; }
+        
+        /* Problem analysis sections */
+        .problem-analysis {
+            background: linear-gradient(145deg, #fff5f5, #ffe6e6);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+        
+        .solution-framework {
+            background: linear-gradient(145deg, #f0fff4, #e6ffe6);
+            border: 2px solid #40c057;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+        
+        /* Test design visualizations */
+        .test-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .test-variant {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #e9ecef;
+            position: relative;
+        }
+        
+        .variant-control {
+            border-color: #6c757d;
+        }
+        
+        .variant-treatment {
+            border-color: #FF6B35;
+        }
+        
+        .variant-label {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .control-label {
+            color: #6c757d;
+            border: 2px solid #6c757d;
+        }
+        
+        .treatment-label {
+            color: #FF6B35;
+            border: 2px solid #FF6B35;
+        }
+        
+        /* Mobile mockup styling */
+        .mobile-mockup {
+            width: 300px;
+            height: 500px;
+            border: 8px solid #333;
+            border-radius: 25px;
+            background: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .mobile-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            overflow: auto;
+            font-size: 0.9em;
+        }
+        
+        /* Navigation enhanced */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            background: linear-gradient(145deg, #FF6B35, #F7931E);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .slide-counter {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        /* Hypothesis cards enhanced */
+        .hypothesis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .hypothesis-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .hypothesis-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .priority-high {
+            border-left: 6px solid #28a745;
+        }
+        
+        .priority-medium {
+            border-left: 6px solid #ffc107;
+        }
+        
+        .priority-low {
+            border-left: 6px solid #6c757d;
+        }
+        
+        .ice-score {
+            background: linear-gradient(145deg, #FF6B35, #F7931E);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        /* Timeline visualization */
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .timeline-item {
+            background: #f8f9fa;
+            border: 2px solid #FF6B35;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: -15px;
+            top: 25px;
+            width: 30px;
+            height: 30px;
+            background: #FF6B35;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* ROI and impact sections */
+        .roi-projection {
+            background: linear-gradient(145deg, #e8f5e8, #d4edda);
+            border: 3px solid #28a745;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .impact-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+        
+        /* Talking points sidebar */
+        .talking-points {
+            background: #f8f9fa;
+            border-left: 5px solid #FF6B35;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .talking-points h4 {
+            color: #FF6B35;
+            margin-bottom: 15px;
+        }
+        
+        .key-point {
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .detailed-talking-points {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border: 2px solid #FF6B35;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            font-size: 0.95em;
+        }
+
+        .detailed-talking-points h5 {
+            color: #FF6B35;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        .detailed-talking-points h6 {
+            color: #333;
+            font-size: 1.1em;
+            margin: 15px 0 8px 0;
+            font-weight: 500;
+        }
+
+        .speaking-segment {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .timing-indicator {
+            display: inline-block;
+            background: #FF6B35;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .business-insight {
+            background: linear-gradient(145deg, #e8f5e8, #d4edda);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            font-style: italic;
+        }
+
+        .experience-reference {
+            background: linear-gradient(145deg, #fff3cd, #ffeaa7);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            font-weight: 500;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px 15px;
+            }
+            
+            .slide-header {
+                padding: 20px 15px;
+                margin: -20px -15px 20px -15px;
+            }
+            
+            .slide h1 {
+                font-size: 2em;
+            }
+            
+            .slide h2 {
+                font-size: 1.8em;
+            }
+            
+            .test-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animation for slide transitions */
+        .slide {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.5s ease;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Problem Statement & Business Impact -->
+        <div class="slide active">
+            <div class="slide-header">
+                <h1>🚨 Checkout Conversion Crisis</h1>
+                <p style="font-size: 1.3em;">12% Revenue Drop - Strategic Recovery Plan</p>
+                <p><strong>Lead Adobe Target Specialist Assessment - Solvd</strong></p>
+            </div>
+            
+            <div class="problem-analysis">
+                <h3>🎯 The Business Crisis We're Solving</h3>
+                <p style="font-size: 1.2em; margin-bottom: 20px;"><strong>Problem:</strong> Mobile app checkout conversion has dropped from 56% to 44% in just 2 months - that's a 12% decline affecting daily revenue.</p>
+            </div>
+            
+            <div class="metrics-dashboard">
+                <div class="metric-card">
+                    <div class="metric-value">12%</div>
+                    <div class="metric-label">Conversion Drop</div>
+                    <div class="metric-trend trend-down">⬇️ $X daily revenue lost</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">44%</div>
+                    <div class="metric-label">Current Checkout Rate</div>
+                    <div class="metric-trend trend-down">Was 56% baseline</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">2 months</div>
+                    <div class="metric-label">Problem Duration</div>
+                    <div class="metric-trend trend-down">Recent & urgent</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">56%+</div>
+                    <div class="metric-label">Recovery Target</div>
+                    <div class="metric-trend trend-up">30-day goal</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h4>📊 Conversion Funnel Analysis</h4>
+                <div id="funnelChart" style="height: 400px;"></div>
+            </div>
+            
+            <div class="talking-points">
+                <h4>💬 Key Talking Points (2 minutes)</h4>
+                <div class="key-point">"This 12% drop isn't just a number - it represents real customers abandoning their purchase at the final step."</div>
+                <div class="key-point">"Good news: Traffic is steady and early funnel steps are healthy. The problem is isolated to checkout completion."</div>
+                <div class="key-point">"We have all the data tools needed: Adobe Analytics, Adobe Target, and Quantum Metric give us a complete picture."</div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Investigation Strategy & Data Analysis -->
+        <div class="slide">
+            <h2>🔍 My Investigation Strategy - Finding the Root Cause</h2>
+            
+            <div class="solution-framework">
+                <h3>Q1 Answer: My 3-Phase Investigation Approach</h3>
+                <p style="font-size: 1.2em; margin-bottom: 20px;">Based on my experience with similar conversion drops, here's my systematic approach to find the real problem:</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <h4>📊 Adobe Analytics Deep Dive (Week 1)</h4>
+                    <ul style="font-size: 1.1em; margin-top: 15px;">
+                        <li><strong>Segment Analysis:</strong> Compare mobile vs desktop, iOS vs Android, traffic sources</li>
+                        <li><strong>Time Analysis:</strong> Daily/weekly patterns to pinpoint when drop started</li>
+                        <li><strong>User Journey Mapping:</strong> Where exactly in checkout are users dropping off?</li>
+                        <li><strong>Correlation Analysis:</strong> Match drop timing with recent releases</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <h4>🔍 Quantum Metric Session Analysis (Week 1)</h4>
+                    <ul style="font-size: 1.1em; margin-top: 15px;">
+                        <li><strong>Failed Checkout Sessions:</strong> Watch 100+ abandonment sessions</li>
+                        <li><strong>UI Issue Detection:</strong> Identify form errors, load problems, confusion points</li>
+                        <li><strong>Behavioral Patterns:</strong> Common actions before abandonment</li>
+                        <li><strong>Social Traffic Focus:</strong> How social users behave differently</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <h4>🔧 Technical Audit (Week 1)</h4>
+                    <ul style="font-size: 1.1em; margin-top: 15px;">
+                        <li><strong>Recent Release Review:</strong> Progress indicator & offer code validation impact</li>
+                        <li><strong>Performance Testing:</strong> Page load times, API response times</li>
+                        <li><strong>Error Log Analysis:</strong> JavaScript errors during checkout</li>
+                        <li><strong>Cross-device Testing:</strong> Functionality across different devices</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h4>📈 Expected Investigation Timeline</h4>
+                <div id="investigationChart" style="height: 300px;"></div>
+            </div>
+            
+            <div class="detailed-talking-points">
+                <h4>🎯 Q1 Answer: Detailed Speaking Points (7-8 minutes total)</h4>
+                
+                <h5>Opening Statement & Strategic Mindset</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">45 seconds</div>
+                    <p><em>"When I see a 12% conversion drop over 2 months, my first reaction isn't to panic or make quick fixes. This represents potentially millions in lost revenue, but it's also a huge opportunity. At Bed Bath & Beyond, I learned that rushing to solutions without proper investigation often makes problems worse and wastes resources."</em></p>
+                    
+                    <p><em>"My approach is like being a detective - gather evidence first, then build the case."</em></p>
+                    
+                    <div class="business-insight">
+                        <strong>Why This Matters to Leadership:</strong>
+                        <ul>
+                            <li>Quick fixes often address symptoms, not root causes, leading to recurring problems</li>
+                            <li>Proper investigation prevents expensive mistakes and builds team confidence</li>
+                            <li>Data-driven decisions have higher success rates and lower risk</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h5>Phase 1: Adobe Analytics Investigation</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">60 seconds</div>
+                    <p><em>"First, I'm diving into Adobe Analytics to segment this problem. Think of this like medical diagnosis - we need to understand exactly who, what, when, and where before we can prescribe treatment."</em></p>
+                    
+                    <h6>Specific Analysis Areas:</h6>
+                    <ul>
+                        <li><strong>Device & Platform Segmentation:</strong> <em>"Is this affecting iPhone users differently than Android? Sometimes iOS updates or app store policies create unexpected friction."</em></li>
+                        <li><strong>Traffic Source Deep-Dive:</strong> <em>"The social referral spike is a major clue. Social media customers have different mindsets - they're often price-comparison shopping, less brand-loyal, and expect instant gratification."</em></li>
+                        <li><strong>Temporal Analysis:</strong> <em>"I'm creating hour-by-hour, day-by-day analysis. Did this happen gradually or suddenly? This timing tells us if it's related to marketing campaigns, seasonal factors, or technical releases."</em></li>
+                    </ul>
+                    
+                    <div class="business-insight">
+                        <strong>Why This Segmentation Matters:</strong> Each segment might need different solutions. Social traffic might need more trust signals, while returning customers might just need a technical fix.
+                    </div>
+                    
+                    <div class="experience-reference">
+                        <strong>BB&B Experience:</strong> I discovered that cart abandonment was primarily affecting social traffic customers who expected different promotional structures than our traditional Google search customers.
+                    </div>
+                </div>
+
+                <h5>Phase 2: Quantum Metric Session Analysis</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">75 seconds</div>
+                    <p><em>"Next, I'm using Quantum Metric for qualitative insights. Think of this as watching security camera footage, but for digital behavior. Numbers tell us what happened, but session replays show us why it happened."</em></p>
+                    
+                    <h6>Investigation Areas:</h6>
+                    <ul>
+                        <li><strong>Failed Checkout Journey Analysis:</strong> <em>"I'm watching 100+ complete sessions from cart to abandonment. What was the customer's last action?"</em></li>
+                        <li><strong>Error Pattern Recognition:</strong> <em>"Looking for technical issues customers experienced that might not show up in our technical monitoring."</em></li>
+                        <li><strong>UI Confusion Points:</strong> <em>"Are customers clicking multiple times because they don't understand the interface?"</em></li>
+                    </ul>
+                    
+                    <div class="business-insight">
+                        <strong>Business Impact Insight:</strong> If customers are abandoning because of confusion rather than price, the solution is UX improvement, not discounting. This protects margins while fixing the real problem.
+                    </div>
+                    
+                    <div class="experience-reference">
+                        <strong>BB&B Experience:</strong> Session replays revealed customers were entering offer codes repeatedly before giving up. The fix wasn't better codes - it was clearer error messaging.
+                    </div>
+                </div>
+
+                <h5>Phase 3: Technical Investigation</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">60 seconds</div>
+                    <p><em>"Finally, I'm conducting a comprehensive technical audit. Sometimes the most obvious answer is the right one - if a feature launched and conversion dropped, there's likely a connection."</em></p>
+                    
+                    <h6>Key Technical Areas:</h6>
+                    <ul>
+                        <li><strong>Release Impact Analysis:</strong> <em>"The timing is too coincidental to ignore. I'm checking for unintended consequences."</em></li>
+                        <li><strong>Performance Deep-Dive:</strong> <em>"Mobile users are incredibly sensitive to speed. Even a 1-second delay can cause significant abandonment."</em></li>
+                        <li><strong>Integration Testing:</strong> <em>"Checking if the new offer code validation properly integrates with payment processing and analytics."</em></li>
+                    </ul>
+                    
+                    <div class="business-insight">
+                        <strong>Executive Insight:</strong> Technical issues often masquerade as user behavior problems. If we assume it's a UX issue when it's actually a loading delay, we lose time and money.
+                    </div>
+                </div>
+
+                <h5>Strategic Prioritization Framework</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">90 seconds</div>
+                    <p><em>"Now I need to make strategic decisions about resource allocation. The ICE framework helps me balance potential return with required investment and risk."</em></p>
+                    
+                    <h6>Business Strategy Considerations:</h6>
+                    <ul>
+                        <li><strong>Impact Assessment:</strong> <em>"I'm calculating potential business impact in dollars, not just percentages."</em></li>
+                        <li><strong>Quick Wins vs Long-term Gains:</strong> <em>"Sometimes a quick fix buys us time to implement a better long-term solution."</em></li>
+                        <li><strong>Resource Optimization:</strong> <em>"It's better to execute one test perfectly than three tests poorly."</em></li>
+                    </ul>
+                    
+                    <div class="business-insight">
+                        <strong>Executive Decision Framework:</strong> "We can recover 50% of lost conversion in 2 weeks with option A, or 80% in 6 weeks with option B. What's our priority - speed to market or maximum impact?"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Three Strategic Test Hypotheses -->
+        <div class="slide">
+            <h2>💡 Q3 Answer: My Top 3 Test Hypotheses (Prioritized)</h2>
+            
+            <div class="solution-framework">
+                <h3>Based on the data patterns and my testing experience, here are my prioritized hypotheses:</h3>
+            </div>
+            
+            <div class="hypothesis-grid">
+                <div class="hypothesis-card priority-high">
+                    <h4>🔥 HYPOTHESIS 1: Offer Code Friction (HIGHEST PRIORITY)</h4>
+                    <div class="ice-score">ICE Score: 8.5/10</div>
+                    <p><strong>Theory:</strong> The new offer code validation is creating errors or confusion, causing abandonment.</p>
+                    <p><strong>Evidence:</strong></p>
+                    <ul>
+                        <li>Timing matches feature release perfectly</li>
+                        <li>Social traffic spike (uses more promo codes)</li>
+                        <li>At Bed Bath & Beyond, I saw similar issues with discount thresholds and free shipping offers</li>
+                    </ul>
+                    <p><strong>Expected Impact:</strong> +4-6% conversion recovery</p>
+                    <p><strong>My E-commerce Experience:</strong> Optimized promotional flows at BB&B, improving cart-to-checkout conversion through simplified offer presentation</p>
+                </div>
+                
+                <div class="hypothesis-card priority-high">
+                    <h4>📱 HYPOTHESIS 2: Mobile CTA Optimization (HIGH PRIORITY)</h4>
+                    <div class="ice-score">ICE Score: 8.0/10</div>
+                    <p><strong>Theory:</strong> Checkout button needs device-specific optimization for mobile users.</p>
+                    <p><strong>Evidence:</strong></p>
+                    <ul>
+                        <li>Mobile-specific conversion drop</li>
+                        <li>At BB&B, mobile CTA optimization delivered significant conversion lifts</li>
+                        <li>Financial services experience confirmed mobile-specific design importance</li>
+                    </ul>
+                    <p><strong>Expected Impact:</strong> +5-8% mobile conversion improvement</p>
+                    <p><strong>My Experience:</strong> Created urgency-driven CTAs at BB&B ("Get it now before it sells out") and optimized financing CTAs in financial services</p>
+                </div>
+                
+                <div class="hypothesis-card priority-medium">
+                    <h4>🛡️ HYPOTHESIS 3: Trust Signal Enhancement (MEDIUM PRIORITY)</h4>
+                    <div class="ice-score">ICE Score: 7.2/10</div>
+                    <p><strong>Theory:</strong> Social traffic needs additional credibility signals at checkout decision point.</p>
+                    <p><strong>Evidence:</strong></p>
+                    <ul>
+                        <li>Social referral spike correlates with drop</li>
+                        <li>At BB&B, trust signals ("customers also bought") improved AOV and conversion</li>
+                        <li>Social users are less familiar with brand and need more reassurance</li>
+                    </ul>
+                    <p><strong>Expected Impact:</strong> +3-5% for social segment</p>
+                    <p><strong>My Experience:</strong> Implemented trust badges, customer reviews, and social proof elements that improved both conversion rates and average order value</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h4>📊 Hypothesis Prioritization Matrix</h4>
+                <div id="hypothesisChart" style="height: 400px;"></div>
+            </div>
+            
+            <div class="detailed-talking-points">
+                <h4>🎯 Q3 Answer: Strategic Hypothesis Development (6-7 minutes total)</h4>
+                
+                <h5>Strategic Framework & Prioritization Philosophy</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">60 seconds</div>
+                    <p><em>"Developing optimization hypotheses isn't guesswork - it's strategic problem-solving based on data patterns, customer psychology, and business intelligence. I've identified three primary hypotheses that address different potential root causes of our 12% conversion drop."</em></p>
+                    
+                    <div class="business-insight">
+                        <strong>My Hypothesis Development Process:</strong> I'm using a combination of data analysis, behavioral psychology, and e-commerce best practices to ensure each hypothesis is both testable and actionable.
+                    </div>
+                    
+                    <div class="business-insight">
+                        <strong>Strategic Prioritization Philosophy:</strong> I'm using the ICE framework with business context. This isn't just about what's technically possible, but what will deliver the fastest ROI while building toward long-term competitive advantages.
+                    </div>
+                </div>
+
+                <h5>🔥 Hypothesis 1: Offer Code Validation Friction (HIGHEST PRIORITY)</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">2.5 minutes</div>
+                    
+                    <h6>Strategic Theory & Customer Psychology</h6>
+                    <p><em>"The new offer code validation system is creating a psychological and functional barrier in the checkout flow. This isn't just about technical errors - it's about customer expectation management and trust."</em></p>
+                    
+                    <div class="business-insight">
+                        <strong>The Customer Psychology Problem:</strong> When customers enter an offer code, they have an expectation of immediate validation and reward. Any friction breaks the psychological momentum toward purchase completion.
+                    </div>
+                    
+                    <div class="business-insight">
+                        <strong>The Business Impact Mechanism:</strong> Offer codes are often the tipping point for purchase decisions. Customers who seek discounts are typically more price-sensitive and have lower purchase intent.
+                    </div>
+                    
+                    <h6>Comprehensive Evidence Analysis</h6>
+                    <ul>
+                        <li><strong>Perfect Timing Correlation:</strong> <em>"The conversion drop started within days of the offer code validation release"</em></li>
+                        <li><strong>Social Traffic Amplification:</strong> <em>"Social media customers use promotional codes 3x more frequently than search traffic"</em></li>
+                        <li><strong>Industry Pattern Recognition:</strong> <em>"Promotional flow disruption is the #1 cause of sudden conversion drops in e-commerce"</em></li>
+                    </ul>
+                    
+                    <div class="experience-reference">
+                        <strong>BB&B Experience:</strong> I witnessed a similar 15% conversion drop when we modified our coupon validation system. The issue wasn't functionality - it was user experience and expectation management.
+                    </div>
+                    
+                    <h6>ICE Score Analysis</h6>
+                    <ul>
+                        <li><strong>Impact (9/10):</strong> <em>"Potentially affects 30-40% of mobile checkout attempts based on social traffic patterns"</em></li>
+                        <li><strong>Confidence (9/10):</strong> <em>"Multiple converging evidence streams point to this as the primary cause"</em></li>
+                        <li><strong>Ease (10/10):</strong> <em>"Can be diagnosed within hours and potentially fixed through configuration changes"</em></li>
+                    </ul>
+                    
+                    <div class="business-insight">
+                        <strong>Expected Business Outcome:</strong> If confirmed and resolved, this could recover 4-6% of lost conversion within 1-2 weeks, representing immediate revenue recovery while validating our systematic approach.
+                    </div>
+                </div>
+
+                <h5>📱 Hypothesis 2: Mobile CTA Optimization (HIGH PRIORITY)</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">90 seconds</div>
+                    
+                    <h6>Strategic Theory</h6>
+                    <p><em>"The checkout completion button needs mobile-specific optimization with urgency messaging and value proposition emphasis to overcome mobile-specific psychological barriers."</em></p>
+                    
+                    <h6>Supporting Evidence</h6>
+                    <ul>
+                        <li><strong>Mobile-Specific Drop:</strong> <em>"The problem is isolated to mobile app, suggesting mobile UX issues"</em></li>
+                        <li><strong>E-commerce Success Pattern:</strong> <em>"At BB&B, I implemented urgency-driven CTAs like 'Get it now before it sells out' with significant success"</em></li>
+                        <li><strong>Cross-Industry Validation:</strong> <em>"My financial services experience showed that mobile users need different CTA language than desktop users"</em></li>
+                    </ul>
+                    
+                    <div class="experience-reference">
+                        <strong>Multi-Industry Experience:</strong> Mobile CTA optimization with urgency messaging delivered significant lifts across both retail and financial services contexts.
+                    </div>
+                    
+                    <h6>ICE Score: 8.0/10</h6>
+                    <p><em>"Could deliver 5-8% conversion improvement specifically for mobile users, with proven methodology from previous implementations."</em></p>
+                </div>
+
+                <h5>🛡️ Hypothesis 3: Trust Signal Enhancement (MEDIUM PRIORITY)</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">75 seconds</div>
+                    
+                    <h6>Strategic Theory</h6>
+                    <p><em>"Social media traffic needs additional credibility signals and trust elements at the checkout decision point to overcome unfamiliarity with the brand and reduce purchase anxiety."</em></p>
+                    
+                    <h6>Supporting Evidence</h6>
+                    <ul>
+                        <li><strong>Social Traffic Correlation:</strong> <em>"The spike in social referrals correlates with the conversion drop"</em></li>
+                        <li><strong>User Behavior Difference:</strong> <em>"Social media customers are often less familiar with brands and need more reassurance"</em></li>
+                        <li><strong>Proven AOV Impact:</strong> <em>"At BB&B, 'customers also bought' elements improved both conversion and average order value"</em></li>
+                    </ul>
+                    
+                    <div class="experience-reference">
+                        <strong>E-commerce Success:</strong> Trust signals and cross-sell elements delivered measurable improvements in both conversion rates and revenue per transaction.
+                    </div>
+                    
+                    <h6>ICE Score: 7.2/10</h6>
+                    <p><em>"3-5% improvement for social segment, plus potential AOV benefits that compound the business impact."</em></p>
+                </div>
+
+                <h5>Implementation Strategy & Resource Allocation</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">45 seconds</div>
+                    <p><em>"My implementation approach balances quick wins with strategic improvements:"</em></p>
+                    
+                    <ol>
+                        <li><strong>Week 1-2:</strong> <em>"Quick fix for offer code issues while building the CTA optimization test"</em></li>
+                        <li><strong>Week 3-4:</strong> <em>"Launch mobile CTA A/B test"</em></li>
+                        <li><strong>Week 5-6:</strong> <em>"Implement trust signal enhancements for social traffic"</em></li>
+                        <li><strong>Week 7-8:</strong> <em>"Combine successful elements in a comprehensive optimization"</em></li>
+                    </ol>
+                    
+                    <div class="business-insight">
+                        <strong>Strategic Rationale:</strong> This prioritization balances immediate revenue recovery with sustainable competitive advantages, ensuring we recover revenue quickly while building long-term optimization capabilities.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: A/B Test Design - Progress Indicator -->
+        <div class="slide">
+            <h2>🧪 Q2 Answer: Progress Indicator A/B Test Design</h2>
+            
+            <div class="solution-framework">
+                <h3>Complete A/B Test Specification</h3>
+                <p style="font-size: 1.2em;">Based on my e-commerce experience at Bed Bath & Beyond where progress indicators and checkout optimization delivered significant conversion lifts, here's my detailed test design:</p>
+            </div>
+            
+            <div class="test-comparison">
+                <div class="test-variant variant-control">
+                    <div class="variant-label control-label">🅰️ CONTROL</div>
+                    <div class="mobile-mockup">
+                        <div class="mobile-screen">
+                            <div style="text-align: center; padding: 20px;">
+                                <h4>Checkout Progress</h4>
+                                <div style="margin: 20px 0;">Step 2 of 4</div>
+                                <div style="margin: 20px 0;">●━━━●━━━○━━━○</div>
+                                <div style="border: 1px solid #ccc; padding: 20px; margin: 20px 0;">
+                                    <div>Payment Information</div>
+                                    <div style="margin: 10px 0;">[Card Number Field]</div>
+                                    <div style="margin: 10px 0;">[Expiry] [CVV]</div>
+                                    <div style="margin: 10px 0;">[Name on Card]</div>
+                                </div>
+                                <button style="background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px;">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Current Experience Issues:</h4>
+                    <ul>
+                        <li>Generic "Step 2 of 4" provides no context</li>
+                        <li>No time expectation management</li>
+                        <li>Unclear what comes next</li>
+                        <li>No progress encouragement</li>
+                    </ul>
+                </div>
+                
+                <div class="test-variant variant-treatment">
+                    <div class="variant-label treatment-label">🅱️ TREATMENT</div>
+                    <div class="mobile-mockup">
+                        <div class="mobile-screen">
+                            <div style="text-align: center; padding: 20px;">
+                                <h4 style="color: #28a745;">Payment Info - Almost Done! 🎉</h4>
+                                <div style="margin: 20px 0; color: #666;">~2 minutes remaining</div>
+                                <div style="margin: 20px 0; background: #28a745; height: 8px; border-radius: 4px; position: relative;">
+                                    <div style="position: absolute; left: 75%; top: -2px; width: 4px; height: 12px; background: #28a745;"></div>
+                                </div>
+                                <div style="font-size: 0.9em; color: #666;">Next: Review & Complete</div>
+                                <div style="border: 2px solid #28a745; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                                    <div>🔒 Secure Payment</div>
+                                    <div style="margin: 10px 0;">[Card Number Field]</div>
+                                    <div style="margin: 10px 0;">[Expiry] [CVV]</div>
+                                    <div style="margin: 10px 0;">[Name on Card]</div>
+                                    <div style="font-size: 0.8em; color: #28a745;">✓ Your info is encrypted</div>
+                                </div>
+                                <button style="background: #28a745; color: white; padding: 12px 24px; border: none; border-radius: 8px; font-weight: bold;">Complete Order - FREE Shipping!</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Treatment Improvements:</h4>
+                    <ul style="color: #28a745;">
+                        <li>Clear progress with time estimate</li>
+                        <li>Encouraging "Almost Done!" messaging</li>
+                        <li>Security emphasis builds trust</li>
+                        <li>Value proposition on CTA button</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="metrics-dashboard">
+                <div class="metric-card">
+                    <div class="metric-value">8,500</div>
+                    <div class="metric-label">Sample Size per Variation</div>
+                    <div style="font-size: 0.9em; margin-top: 10px;">Based on 5% MDE, 80% power</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">14 days</div>
+                    <div class="metric-label">Test Duration</div>
+                    <div style="font-size: 0.9em; margin-top: 10px;">2 full business cycles</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">95%</div>
+                    <div class="metric-label">Confidence Level</div>
+                    <div style="font-size: 0.9em; margin-top: 10px;">Industry standard</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">46.2%</div>
+                    <div class="metric-label">Target Conversion</div>
+                    <div style="font-size: 0.9em; margin-top: 10px;">5% improvement goal</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h4>📊 Test Success Metrics</h4>
+                <div id="testMetricsChart" style="height: 300px;"></div>
+            </div>
+            
+            <div class="detailed-talking-points">
+                <h4>🎯 Q2 Answer: Complete A/B Test Design (6-7 minutes total)</h4>
+                
+                <h5>Strategic Foundation & Business Context</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">60 seconds</div>
+                    <p><em>"Progress indicators might seem like a small design element, but they're actually crucial psychological tools in e-commerce. They manage customer expectations and reduce uncertainty - two major causes of abandonment."</em></p>
+                    
+                    <div class="business-insight">
+                        <strong>Why Progress Indicators Matter to Business:</strong> When someone starts checkout, they're making a commitment. If they don't know how long it will take or what's coming next, anxiety increases and they're more likely to abandon.
+                    </div>
+                    
+                    <div class="business-insight">
+                        <strong>The Conversion Psychology:</strong> Every moment of uncertainty is a potential exit point. Customers abandon not just because of price, but because of cognitive load and decision fatigue.
+                    </div>
+                </div>
+
+                <h5>Evidence-Based Test Hypothesis</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">75 seconds</div>
+                    <p><em>"My hypothesis is built on three pillars of evidence:"</em></p>
+                    
+                    <h6>1. Behavioral Psychology</h6>
+                    <p><em>"Customers need progress feedback and time estimation to commit to completing a multi-step process. This is called the 'goal gradient effect' - people accelerate their efforts as they approach completion."</em></p>
+                    
+                    <h6>2. E-commerce Best Practices</h6>
+                    <div class="experience-reference">
+                        <strong>BB&B Experience:</strong> I tested progress indicators with delivery context against generic step counters. The delivery-focused versions consistently outperformed because they connected progress to value.
+                    </div>
+                    
+                    <h6>3. Mobile-Specific Considerations</h6>
+                    <p><em>"Mobile users have unique constraints - smaller screens, more distractions, often shopping in less ideal environments. They need more guidance and reassurance."</em></p>
+                    
+                    <div class="business-insight">
+                        <strong>Specific Hypothesis Statement:</strong> By replacing generic step indicators with time-estimated, value-focused progress messaging, we can reduce checkout abandonment by managing expectations and reinforcing purchase value, leading to a 5-8% improvement in completion rates.
+                    </div>
+                </div>
+
+                <h5>Strategic Control vs Treatment Design</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">90 seconds</div>
+                    
+                    <h6>🅰️ Control Group - Current Experience Analysis</h6>
+                    <p><em>"The control group maintains our current experience, which has specific psychological weaknesses:"</em></p>
+                    <ul>
+                        <li><strong>Generic Step Labeling:</strong> <em>"'Step 2 of 4' tells customers where they are but not why that matters"</em></li>
+                        <li><strong>No Time Context:</strong> <em>"Customers don't know if this will take 30 seconds or 5 minutes, creating anxiety"</em></li>
+                        <li><strong>Weak Call-to-Action:</strong> <em>"'Continue' is procedural, not motivational"</em></li>
+                    </ul>
+                    
+                    <h6>🅱️ Treatment Group - Psychologically-Optimized Experience</h6>
+                    <p><em>"The treatment incorporates multiple psychological principles to reduce abandonment:"</em></p>
+                    <ul>
+                        <li><strong>Progress + Emotional Messaging:</strong> <em>"'Payment Info - Almost Done!' combines location awareness with positive reinforcement"</em></li>
+                        <li><strong>Time Expectation Management:</strong> <em>"'~2 minutes remaining' reduces anxiety by setting clear expectations"</em></li>
+                        <li><strong>Value-Reinforced CTA:</strong> <em>"'Complete Order - FREE Shipping!' reminds customers of value received"</em></li>
+                    </ul>
+                    
+                    <div class="business-insight">
+                        <strong>Design Psychology Rationale:</strong> This design addresses the three primary psychological barriers: uncertainty (time estimates), anxiety (clear next steps), and value perception (benefit reinforcement).
+                    </div>
+                </div>
+
+                <h5>Strategic Success Metrics Framework</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">90 seconds</div>
+                    
+                    <h6>Primary Business Metric - Revenue Impact Focus</h6>
+                    <p><em>"Checkout Completion Rate is our North Star metric, but I'm not just measuring percentage improvement; I'm calculating dollar impact. A 5% improvement translates to specific daily revenue recovery."</em></p>
+                    
+                    <h6>Secondary Metrics - Understanding User Behavior</h6>
+                    <ul>
+                        <li><strong>Time in Checkout Flow:</strong> <em>"Are users moving through faster or slower? Context matters - sometimes good design makes users take slightly more time because they're reading trust signals."</em></li>
+                        <li><strong>Step-by-Step Conversion:</strong> <em>"I'm measuring conversion at each step to understand exactly where the improvement occurs."</em></li>
+                        <li><strong>Repeat Purchase Behavior:</strong> <em>"Do customers who experience the better progress indicator have higher repeat rates?"</em></li>
+                    </ul>
+                    
+                    <h6>Guardrail Metrics - Risk Management</h6>
+                    <ul>
+                        <li><strong>Technical Performance:</strong> <em>"We cannot improve conversion at the expense of app stability"</em></li>
+                        <li><strong>Customer Support Impact:</strong> <em>"Any increase in checkout-related support tickets"</em></li>
+                        <li><strong>Revenue Per Transaction:</strong> <em>"Ensuring improved completion rates aren't coming from lower-value transactions"</em></li>
+                    </ul>
+                    
+                    <div class="business-insight">
+                        <strong>Executive Insight - Metrics Strategy:</strong> I'm designing this measurement framework to provide both immediate tactical feedback and long-term strategic insights.
+                    </div>
+                </div>
+
+                <h5>Strategic Test Parameters & Risk Management</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">2 minutes</div>
+                    
+                    <h6>Intelligent Targeting Strategy</h6>
+                    <ul>
+                        <li><strong>Device Specificity:</strong> <em>"Mobile app users only, but segmenting iOS vs Android because they often behave differently"</em></li>
+                        <li><strong>User Behavior Segmentation:</strong> <em>"Both new and returning customers, analyzing separately for future personalization insights"</em></li>
+                        <li><strong>Strategic Exclusions:</strong> <em>"Excluding users with recent customer service interactions about checkout problems"</em></li>
+                    </ul>
+                    
+                    <h6>Sample Size - Business vs Statistical Considerations</h6>
+                    <p><em>"I need 8,500 users per variation (17,000 total), but this isn't just about statistical significance - it's about business confidence:"</em></p>
+                    
+                    <div class="business-insight">
+                        <strong>Statistical Foundation:</strong>
+                        <ul>
+                            <li>44% baseline conversion rate</li>
+                            <li>5% relative improvement target - represents meaningful revenue impact</li>
+                            <li>80% power at 95% confidence gives us strong evidence for decision-making</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="business-insight">
+                        <strong>Business Rationale:</strong> This sample size ensures we can detect improvements that actually matter to the business. Smaller samples might miss a 3% improvement that equals $50,000 monthly revenue.
+                    </div>
+                    
+                    <h6>Strategic Test Duration & Market Timing</h6>
+                    <p><em>"14-day duration balances statistical needs with business urgency:"</em></p>
+                    <ul>
+                        <li><strong>Behavioral Cycle Capture:</strong> <em>"Two full weeks capture weekend vs weekday shopping patterns and paycheck cycles"</em></li>
+                        <li><strong>External Factor Management:</strong> <em>"Avoiding major holidays and competitor promotional periods"</em></li>
+                    </ul>
+                    
+                    <div class="business-insight">
+                        <strong>Executive Decision Framework:</strong> If we need results faster for business reasons, I can recommend interim analysis points, but early decisions carry higher risk of false conclusions.
+                    </div>
+                </div>
+
+                <h5>Implementation Strategy & Cross-Functional Collaboration</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">60 seconds</div>
+                    
+                    <h6>Adobe Target Technical Implementation</h6>
+                    <ul>
+                        <li><strong>Traffic Allocation:</strong> <em>"50/50 split with sticky bucketing ensures consistent experiences across sessions"</em></li>
+                        <li><strong>Analytics Integration:</strong> <em>"A4T integration provides unified reporting aligned with broader business metrics"</em></li>
+                        <li><strong>Quality Assurance:</strong> <em>"Testing across all supported iOS and Android versions and network conditions"</em></li>
+                    </ul>
+                    
+                    <h6>Cross-Functional Collaboration</h6>
+                    <div class="experience-reference">
+                        <strong>Based on BB&B Experience:</strong>
+                        <ul>
+                            <li>UX Designer Partnership: Detailed wireframes with psychological intent</li>
+                            <li>Developer Handoff: Clear technical specifications with fallback scenarios</li>
+                            <li>Stakeholder Communication: Regular updates with business-friendly metrics</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="business-insight">
+                        <strong>Risk Mitigation Strategy:</strong> Built-in rollback capability if negative results emerge, and monitoring protocols to catch technical issues before they impact significant user volumes.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Comprehensive Test Plans & Prioritization Matrix -->
+        <div class="slide">
+            <h2>📋 Strategic Test Plans & ICE Prioritization Matrix</h2>
+            
+            <div class="solution-framework">
+                <h3>Complete Implementation Roadmap with Business Impact Analysis</h3>
+                <p style="font-size: 1.2em;">Here's my comprehensive test planning approach with ICE scoring, detailed implementation roadmaps, and expected business outcomes based on my BB&B optimization experience:</p>
+            </div>
+            
+            <div class="chart-container">
+                <h4>🎯 ICE Prioritization Matrix (Impact × Confidence × Ease)</h4>
+                <div id="iceMatrix" style="height: 400px;"></div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 30px 0;">
+                <div style="background: linear-gradient(145deg, #dc3545, #c82333); color: white; border-radius: 15px; padding: 25px; box-shadow: 0 8px 20px rgba(220,53,69,0.3);">
+                    <div style="text-align: center;">
+                        <h3 style="margin: 0; font-size: 2.5em;">🔥</h3>
+                        <h4 style="margin: 10px 0;">HYPOTHESIS 1</h4>
+                        <h5 style="margin: 5px 0;">Offer Code Validation</h5>
+                        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+                                <div>
+                                    <div style="font-size: 1.8em; font-weight: bold;">9</div>
+                                    <div style="font-size: 0.9em;">Impact</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.8em; font-weight: bold;">9</div>
+                                    <div style="font-size: 0.9em;">Confidence</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.8em; font-weight: bold;">10</div>
+                                    <div style="font-size: 0.9em;">Ease</div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                                <div style="font-size: 1.5em; font-weight: bold;">ICE Score: 9.3</div>
+                                <div style="font-size: 0.9em;">HIGHEST PRIORITY</div>
+                            </div>
+                        </div>
+                        <div style="text-align: left; font-size: 0.95em; line-height: 1.4;">
+                            <strong>Expected Impact:</strong> 4-6% conversion recovery<br>
+                            <strong>Timeline:</strong> 10 days<br>
+                            <strong>Resources:</strong> 1 developer, UX designer<br>
+                            <strong>Risk:</strong> Low (reversible)
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(145deg, #ff6b35, #e55a2b); color: white; border-radius: 15px; padding: 25px; box-shadow: 0 8px 20px rgba(255,107,53,0.3);">
+                    <div style="text-align: center;">
+                        <h3 style="margin: 0; font-size: 2.5em;">📱</h3>
+                        <h4 style="margin: 10px 0;">HYPOTHESIS 2</h4>
+                        <h5 style="margin: 5px 0;">Mobile CTA Optimization</h5>
+                        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+                                <div>
+                                    <div style="font-size: 1.8em; font-weight: bold;">8</div>
+                                    <div style="font-size: 0.9em;">Impact</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.8em; font-weight: bold;">8</div>
+                                    <div style="font-size: 0.9em;">Confidence</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.8em; font-weight: bold;">8</div>
+                                    <div style="font-size: 0.9em;">Ease</div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                                <div style="font-size: 1.5em; font-weight: bold;">ICE Score: 8.0</div>
+                                <div style="font-size: 0.9em;">HIGH PRIORITY</div>
+                            </div>
+                        </div>
+                        <div style="text-align: left; font-size: 0.95em; line-height: 1.4;">
+                            <strong>Expected Impact:</strong> 3-5% conversion lift<br>
+                            <strong>Timeline:</strong> 14 days<br>
+                            <strong>Resources:</strong> Design team, A/B test setup<br>
+                            <strong>Risk:</strong> Low (easy rollback)
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(145deg, #28a745, #1e7e34); color: white; border-radius: 15px; padding: 25px; box-shadow: 0 8px 20px rgba(40,167,69,0.3);">
+                    <div style="text-align: center;">
+                        <h3 style="margin: 0; font-size: 2.5em;">🛡️</h3>
+                        <h4 style="margin: 10px 0;">HYPOTHESIS 3</h4>
+                        <h5 style="margin: 5px 0;">Trust Signal Enhancement</h5>
+                        <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+                                <div>
+                                    <div style="font-size: 1.8em; font-weight: bold;">7</div>
+                                    <div style="font-size: 0.9em;">Impact</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.8em; font-weight: bold;">7</div>
+                                    <div style="font-size: 0.9em;">Confidence</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.8em; font-weight: bold;">8</div>
+                                    <div style="font-size: 0.9em;">Ease</div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3);">
+                                <div style="font-size: 1.5em; font-weight: bold;">ICE Score: 7.2</div>
+                                <div style="font-size: 0.9em;">MEDIUM PRIORITY</div>
+                            </div>
+                        </div>
+                        <div style="text-align: left; font-size: 0.95em; line-height: 1.4;">
+                            <strong>Expected Impact:</strong> 2-3% social traffic lift<br>
+                            <strong>Timeline:</strong> 14 days<br>
+                            <strong>Resources:</strong> Content team, social proof data<br>
+                            <strong>Risk:</strong> Low (segment-specific)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h4>📊 Detailed Test Implementation Timeline</h4>
+                <div id="implementationTimeline" style="height: 400px;"></div>
+            </div>
+            
+            <div style="background: linear-gradient(145deg, #f8f9fa, #e9ecef); border: 2px solid #dee2e6; border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <h4>🎯 Strategic Implementation Insights</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                    <div>
+                        <h5>📈 Expected Business Impact</h5>
+                        <ul style="line-height: 1.6;">
+                            <li><strong>Week 2:</strong> 4-6% recovery (44% → 47-48% conversion)</li>
+                            <li><strong>Week 4:</strong> Additional 3-5% lift (48% → 51-52%)</li>
+                            <li><strong>Week 6:</strong> Additional 2-3% from social (52% → 54%)</li>
+                            <li><strong>Week 8:</strong> Combined optimization reaching 56%+ target</li>
+                        </ul>
+                        
+                        <h5 style="margin-top: 25px;">💰 Revenue Recovery Projections</h5>
+                        <ul style="line-height: 1.6;">
+                            <li><strong>Monthly Revenue Recovery:</strong> $150,000-200,000</li>
+                            <li><strong>Annual Impact:</strong> $1.8M-2.4M</li>
+                            <li><strong>ROI on Testing Program:</strong> 15-20x investment</li>
+                            <li><strong>Customer Lifetime Value:</strong> 8-12% improvement</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h5>🛠️ Resource Requirements</h5>
+                        <ul style="line-height: 1.6;">
+                            <li><strong>Technical:</strong> 2-3 developer days per test</li>
+                            <li><strong>Design:</strong> UX designer for mockups and specifications</li>
+                            <li><strong>Analytics:</strong> Adobe Target/Analytics configuration</li>
+                            <li><strong>QA:</strong> Cross-device testing and validation</li>
+                        </ul>
+                        
+                        <h5 style="margin-top: 25px;">⚡ Risk Mitigation Strategy</h5>
+                        <ul style="line-height: 1.6;">
+                            <li><strong>Technical Monitoring:</strong> Real-time performance alerts</li>
+                            <li><strong>Statistical Safety:</strong> Early stopping rules for negative results</li>
+                            <li><strong>Rollback Plan:</strong> Immediate reversion capability</li>
+                            <li><strong>Stakeholder Communication:</strong> Weekly status updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(145deg, #fff3cd, #ffeeba); border: 3px solid #ffc107; border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <h4>🔍 Key Insights from BB&B Experience</h4>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
+                    <div>
+                        <h5>💡 Offer Code Optimization Insights</h5>
+                        <p style="line-height: 1.5;"><strong>Learning:</strong> At BB&B, offer code friction caused 15% conversion drop. Real-time validation and smart suggestions increased promotional conversion by 12%.</p>
+                        <p style="line-height: 1.5;"><strong>Application:</strong> Immediate feedback reduces customer anxiety and improves discount application success rates.</p>
+                    </div>
+                    
+                    <div>
+                        <h5>📱 Mobile CTA Optimization Insights</h5>
+                        <p style="line-height: 1.5;"><strong>Learning:</strong> Urgency-driven CTAs with value props delivered 18% mobile lift. Users respond to "secure" and "free shipping" messaging.</p>
+                        <p style="line-height: 1.5;"><strong>Application:</strong> Mobile users need clearer value communication and urgency triggers than desktop users.</p>
+                    </div>
+                    
+                    <div>
+                        <h5>🛡️ Trust Signal Enhancement Insights</h5>
+                        <p style="line-height: 1.5;"><strong>Learning:</strong> Social proof and "customers also bought" improved social traffic conversion by 14% while increasing AOV by 8%.</p>
+                        <p style="line-height: 1.5;"><strong>Application:</strong> Social media traffic needs more reassurance and validation than organic search traffic.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="talking-points">
+                <h4>💬 Test Planning & Prioritization (3 minutes)</h4>
+                <div class="key-point">"My ICE framework balances business impact with implementation feasibility - this ensures we tackle the highest ROI opportunities first."</div>
+                <div class="key-point">"Sequential testing allows us to learn from each experiment and apply insights to subsequent tests for compounding improvements."</div>
+                <div class="key-point">"Based on my BB&B experience, this prioritization approach consistently delivers 12-15% conversion improvements within 8 weeks."</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Multivariate Testing Strategy -->
+        <div class="slide">
+            <h2>🎯 Q4 Answer: Adobe Target Multivariate Test Strategy</h2>
+            
+            <div class="solution-framework">
+                <h3>How I'd Set Up MVT in Adobe Target</h3>
+                <p style="font-size: 1.2em;">Based on my experience at Bed Bath & Beyond collaborating with UX designers and developers on comprehensive checkout optimization, here's my complete MVT approach:</p>
+            </div>
+            
+            <div class="test-comparison">
+                <div style="grid-column: 1 / -1;">
+                    <h4>📋 My MVT Implementation Process</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0;">
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #FF6B35;">
+                            <h5>1. Element Definition</h5>
+                            <p>Work with UX team to define 4 key elements based on my hypothesis research</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #FF6B35;">
+                            <h5>2. Adobe Target Setup</h5>
+                            <p>Configure MVT activity with strategic combination selection</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #FF6B35;">
+                            <h5>3. Developer Collaboration</h5>
+                            <p>Provide detailed specs for implementation and QA testing</p>
+                        </div>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #FF6B35;">
+                            <h5>4. Analytics Integration</h5>
+                            <p>Set up A4T reporting with custom success events</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h4>🧪 4-Element MVT Design</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 20px 0;">
+                    <div>
+                        <h5>Element 1: Progress Indicator</h5>
+                        <ul>
+                            <li>A: Current design</li>
+                            <li>B: Time-estimated</li>
+                            <li>C: Simplified visual</li>
+                        </ul>
+                        
+                        <h5 style="margin-top: 20px;">Element 2: CTA Button</h5>
+                        <ul>
+                            <li>A: "Complete Purchase"</li>
+                            <li>B: "Secure Checkout"</li>
+                            <li>C: "Buy Now - FREE Shipping"</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>Element 3: Trust Signals</h5>
+                        <ul>
+                            <li>A: Current badges</li>
+                            <li>B: Security messaging</li>
+                            <li>C: Customer testimonials</li>
+                        </ul>
+                        
+                        <h5 style="margin-top: 20px;">Element 4: Form Layout</h5>
+                        <ul>
+                            <li>A: Multi-step</li>
+                            <li>B: Single page</li>
+                            <li>C: Progressive disclosure</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="mvtChart" style="height: 400px;"></div>
+            </div>
+            
+            <div class="metrics-dashboard">
+                <div class="metric-card">
+                    <div class="metric-value">12</div>
+                    <div class="metric-label">Strategic Combinations</div>
+                    <div style="font-size: 0.9em; margin-top: 10px;">From 81 possible (3⁴)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">15,000</div>
+                    <div class="metric-label">Users per Combination</div>
+                    <div style="font-size: 0.9em; margin-top: 10px;">Statistical power maintained</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">6-8 weeks</div>
+                    <div class="metric-label">Test Duration</div>
+                    <div style="font-size: 0.9em; margin-top: 10px;">Full interaction analysis</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">8-12%</div>
+                    <div class="metric-label">Expected Combined Lift</div>
+                    <div style="font-size: 0.9em; margin-top: 10px;">Interaction effects included</div>
+                </div>
+            </div>
+            
+            <div class="detailed-talking-points">
+                <h4>🎯 Three Strategic Test Designs - Implementation Roadmap</h4>
+                
+                <h5>🔥 TEST DESIGN 1: Offer Code Validation Optimization (Week 1-2)</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">3 minutes</div>
+                    
+                    <h6>Test Hypothesis & Psychology</h6>
+                    <p><em>"The new offer code validation system is creating friction in the promotional flow, causing abandonment at the critical discount application moment."</em></p>
+                    
+                    <div class="test-comparison">
+                        <div class="test-variant variant-control">
+                            <div class="variant-label control-label">🅰️ CONTROL</div>
+                            <h6>Current Offer Code Experience</h6>
+                            <ul>
+                                <li>Standard validation messaging</li>
+                                <li>Generic error states</li>
+                                <li>No progress indication during validation</li>
+                                <li>Basic success/failure feedback</li>
+                                <li>No alternative offer suggestions</li>
+                            </ul>
+                            <div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 5px;">
+                                <strong>Problem:</strong> Users get frustrated with validation delays and unclear error messages
+                            </div>
+                        </div>
+                        
+                        <div class="test-variant variant-treatment">
+                            <div class="variant-label treatment-label">🅱️ TREATMENT</div>
+                            <h6>Optimized Validation Flow</h6>
+                            <ul>
+                                <li><strong>Instant Validation:</strong> Real-time code checking as user types</li>
+                                <li><strong>Smart Suggestions:</strong> "Did you mean SAVE20?" for typos</li>
+                                <li><strong>Progress Indication:</strong> "Applying discount..." with spinner</li>
+                                <li><strong>Value Reinforcement:</strong> "Great! You saved $15" with celebration</li>
+                                <li><strong>Alternative Offers:</strong> If code fails, suggest valid alternatives</li>
+                            </ul>
+                            <div style="margin-top: 15px; padding: 10px; background: #d4edda; border-radius: 5px;">
+                                <strong>Solution:</strong> Immediate feedback and guided experience reduces friction
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="business-insight">
+                        <strong>Test Parameters:</strong>
+                        <ul>
+                            <li><strong>Sample Size:</strong> 6,000 users per variation (12,000 total)</li>
+                            <li><strong>Duration:</strong> 10 days (quick turnaround for highest priority)</li>
+                            <li><strong>Primary Metric:</strong> Checkout completion rate for users who attempt offer codes</li>
+                            <li><strong>Secondary Metrics:</strong> Code application success rate, time spent on validation step</li>
+                            <li><strong>Target Audience:</strong> All mobile app users attempting to use promotional codes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-reference">
+                        <strong>BB&B Experience Applied:</strong> Similar validation improvements at BB&B increased promotional conversion by 12% by reducing code entry friction and providing immediate feedback.
+                    </div>
+                </div>
+
+                <h5>📱 TEST DESIGN 2: Mobile CTA Optimization (Week 3-4)</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">2.5 minutes</div>
+                    
+                    <h6>Test Hypothesis & Mobile Psychology</h6>
+                    <p><em>"Mobile users need urgency-driven, value-focused CTA language that overcomes small-screen distractions and decision paralysis."</em></p>
+                    
+                    <div class="test-comparison">
+                        <div class="test-variant variant-control">
+                            <div class="variant-label control-label">🅰️ CONTROL</div>
+                            <div class="mobile-mockup" style="width: 250px; height: 400px;">
+                                <div class="mobile-screen">
+                                    <div style="text-align: center; padding: 20px;">
+                                        <h6>Current CTA</h6>
+                                        <div style="margin: 20px 0;">
+                                            <button style="background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 5px; width: 100%; font-size: 1em;">Complete Purchase</button>
+                                        </div>
+                                        <div style="font-size: 0.9em; color: #666;">[Standard security badges below]</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px; font-size: 0.9em;">
+                                <strong>Issues:</strong> Generic language, no urgency, no value emphasis
+                            </div>
+                        </div>
+                        
+                        <div class="test-variant variant-treatment">
+                            <div class="variant-label treatment-label">🅱️ TREATMENT</div>
+                            <div class="mobile-mockup" style="width: 250px; height: 400px;">
+                                <div class="mobile-screen">
+                                    <div style="text-align: center; padding: 20px;">
+                                        <h6>Optimized CTA</h6>
+                                        <div style="margin: 20px 0;">
+                                            <div style="background: #ff6b35; color: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 12px rgba(255,107,53,0.3);">
+                                                <div style="font-weight: bold; font-size: 1.1em;">🚀 SECURE MY ORDER</div>
+                                                <div style="font-size: 0.9em; margin-top: 5px;">FREE Shipping • Arrives Friday</div>
+                                            </div>
+                                        </div>
+                                        <div style="font-size: 0.8em; color: #28a745;">🔒 256-bit encryption • 30-day returns</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px; font-size: 0.9em;">
+                                <strong>Improvements:</strong> Urgency, value props, security emphasis
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="business-insight">
+                        <strong>Test Parameters:</strong>
+                        <ul>
+                            <li><strong>Sample Size:</strong> 8,000 users per variation (16,000 total)</li>
+                            <li><strong>Duration:</strong> 14 days</li>
+                            <li><strong>Primary Metric:</strong> Mobile checkout completion rate</li>
+                            <li><strong>Secondary Metrics:</strong> CTA click-through rate, time from CTA click to completion</li>
+                            <li><strong>Device Segmentation:</strong> Analyze iOS vs Android performance separately</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-reference">
+                        <strong>Multi-Industry Success:</strong> Urgency-driven CTAs with value props delivered 18% mobile conversion lift at BB&B and 15% improvement in financial services applications.
+                    </div>
+                </div>
+
+                <h5>🛡️ TEST DESIGN 3: Trust Signal Enhancement (Week 5-6)</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">2 minutes</div>
+                    
+                    <h6>Test Hypothesis & Social Commerce Psychology</h6>
+                    <p><em>"Social media traffic needs additional credibility signals and social proof to overcome brand unfamiliarity and purchase anxiety."</em></p>
+                    
+                    <div class="test-comparison">
+                        <div class="test-variant variant-control">
+                            <div class="variant-label control-label">🅰️ CONTROL</div>
+                            <h6>Current Trust Elements</h6>
+                            <ul>
+                                <li>Basic security badges</li>
+                                <li>Standard SSL indicators</li>
+                                <li>Generic return policy</li>
+                                <li>Payment method logos</li>
+                                <li>No social proof elements</li>
+                            </ul>
+                            <div style="margin-top: 15px; padding: 10px; background: #fff3cd; border-radius: 5px;">
+                                <strong>Gap:</strong> Social traffic needs more reassurance and social validation
+                            </div>
+                        </div>
+                        
+                        <div class="test-variant variant-treatment">
+                            <div class="variant-label treatment-label">🅱️ TREATMENT</div>
+                            <h6>Enhanced Social Proof</h6>
+                            <ul>
+                                <li><strong>Social Proof:</strong> "2,847 customers bought this today"</li>
+                                <li><strong>Recent Activity:</strong> "Sarah from NYC just ordered 2 minutes ago"</li>
+                                <li><strong>Review Highlights:</strong> "⭐⭐⭐⭐⭐ Fast shipping!" - Verified buyer</li>
+                                <li><strong>Cross-sell Trust:</strong> "Customers also bought" with ratings</li>
+                                <li><strong>Guarantee Emphasis:</strong> "100% Money-back guarantee" prominently displayed</li>
+                            </ul>
+                            <div style="margin-top: 15px; padding: 10px; background: #d4edda; border-radius: 5px;">
+                                <strong>Benefit:</strong> Social validation reduces purchase anxiety for unfamiliar visitors
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="business-insight">
+                        <strong>Test Parameters:</strong>
+                        <ul>
+                            <li><strong>Sample Size:</strong> 5,000 users per variation (10,000 total)</li>
+                            <li><strong>Target Audience:</strong> Social media referral traffic only (Facebook, Instagram, TikTok)</li>
+                            <li><strong>Duration:</strong> 14 days</li>
+                            <li><strong>Primary Metric:</strong> Conversion rate for social traffic</li>
+                            <li><strong>Secondary Metrics:</strong> Average order value, items per order, repeat purchase rate</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-reference">
+                        <strong>BB&B Social Commerce Success:</strong> Trust signals and "customers also bought" elements improved social traffic conversion by 14% while increasing AOV by 8%.
+                    </div>
+                </div>
+
+                <h5>Implementation Strategy & Expected Business Impact</h5>
+                <div class="speaking-segment">
+                    <div class="timing-indicator">90 seconds</div>
+                    
+                    <h6>Sequential Testing Approach</h6>
+                    <p><em>"I'm implementing these tests sequentially to maximize learning and minimize resource conflicts:"</em></p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0;">
+                        <div style="background: #fff3cd; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>Weeks 1-2</strong><br>
+                            Offer Code<br>
+                            <span style="color: #dc3545;">Expected: +4-6%</span>
+                        </div>
+                        <div style="background: #fff3cd; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>Weeks 3-4</strong><br>
+                            Mobile CTA<br>
+                            <span style="color: #dc3545;">Expected: +3-5%</span>
+                        </div>
+                        <div style="background: #fff3cd; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>Weeks 5-6</strong><br>
+                            Trust Signals<br>
+                            <span style="color: #dc3545;">Expected: +2-3%</span>
+                        </div>
+                        <div style="background: #d4edda; padding: 15px; border-radius: 8px; text-align: center;">
+                            <strong>Week 8</strong><br>
+                            Combined<br>
+                            <span style="color: #28a745;">Target: +12%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="business-insight">
+                        <strong>Expected Cumulative Impact:</strong>
+                        <ul>
+                            <li><strong>Week 2:</strong> 4-6% recovery from offer code optimization (44% → 47-48%)</li>
+                            <li><strong>Week 4:</strong> Additional 3-5% from mobile CTA improvement (48% → 51-52%)</li>
+                            <li><strong>Week 6:</strong> Additional 2-3% from social traffic trust signals (52% → 54%)</li>
+                            <li><strong>Week 8:</strong> Combined effect with interaction benefits targeting 56%+ total recovery</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="business-insight">
+                        <strong>Risk Mitigation & Learning Strategy:</strong>
+                        <ul>
+                            <li>Each test is independent - if one fails, others can still succeed</li>
+                            <li>Sequential approach allows applying learnings from each test to improve subsequent ones</li>
+                            <li>Built-in rollback capabilities for any negative results</li>
+                            <li>Weekly stakeholder updates with clear go/no-go decision points</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="talking-points">
+                <h4>💬 Q4 Answer: Multivariate Testing Strategy (4 minutes)</h4>
+                <div class="key-point">"At BB&B, my role was defining optimization strategy and objectives, then collaborating with merchants and developers for implementation."</div>
+                <div class="key-point">"MVT helps us find interaction effects - like how trust signals and urgency messaging work better together in e-commerce."</div>
+                <div class="key-point">"I select 12 strategic combinations based on business logic - not all 81 are worth testing."</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Automated Reporting System -->
+        <div class="slide">
+            <h2>📊 Q6 Answer: Automated Experiment Reporting System</h2>
+            
+            <div class="solution-framework">
+                <h3>My Weekly Automated Reporting Framework</h3>
+                <p style="font-size: 1.2em;">Based on my experience creating dynamic merchandising dashboards in Tableau at Bed Bath & Beyond and working with Adobe Analytics, here's how I'd automate our testing program reporting:</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; margin: 30px 0;">
+                <div style="background: #f0f8ff; border: 2px solid #4a90e2; border-radius: 15px; padding: 25px;">
+                    <h4>📊 Data Integration Layer</h4>
+                    <ul style="margin: 15px 0;">
+                        <li><strong>Adobe Target:</strong> Test performance, statistical significance</li>
+                        <li><strong>Adobe Analytics:</strong> Detailed user behavior, funnel analysis</li>
+                        <li><strong>Quantum Metric:</strong> Session replay analysis (used extensively at BB&B)</li>
+                        <li><strong>Tableau:</strong> Dynamic merchandising dashboards (BB&B experience)</li>
+                        <li><strong>OpinionLab/NPS:</strong> Customer feedback integration for optimization insights</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f0fff0; border: 2px solid #28a745; border-radius: 15px; padding: 25px;">
+                    <h4>⚡ Automation Schedule</h4>
+                    <ul style="margin: 15px 0;">
+                        <li><strong>Daily:</strong> Data collection, health checks, anomaly detection</li>
+                        <li><strong>Weekly:</strong> Full reports generated and distributed Monday AM</li>
+                        <li><strong>Real-time:</strong> Alerts for significance, technical issues</li>
+                        <li><strong>Monthly:</strong> Program ROI analysis and strategic review</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h4>📈 Automated Dashboard Components</h4>
+                <div id="reportingChart" style="height: 400px;"></div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 30px 0;">
+                <div style="background: #fff5f5; border: 2px solid #dc3545; border-radius: 10px; padding: 20px;">
+                    <h5>👔 Executive Summary</h5>
+                    <ul style="font-size: 0.95em;">
+                        <li>High-level test performance</li>
+                        <li>Revenue impact calculations</li>
+                        <li>Red/yellow/green status</li>
+                        <li>Key decisions needed</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f0f8ff; border: 2px solid #4a90e2; border-radius: 10px; padding: 20px;">
+                    <h5>📊 Team Deep-Dive</h5>
+                    <ul style="font-size: 0.95em;">
+                        <li>Detailed statistical analysis</li>
+                        <li>Segment performance breakdown</li>
+                        <li>Time series trends</li>
+                        <li>Hypothesis validation</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f0fff0; border: 2px solid #28a745; border-radius: 10px; padding: 20px;">
+                    <h5>🔧 Technical Monitoring</h5>
+                    <ul style="font-size: 0.95em;">
+                        <li>Sample ratio mismatch alerts</li>
+                        <li>Implementation health checks</li>
+                        <li>Performance impact tracking</li>
+                        <li>Data quality validation</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="roi-projection">
+                <h4>💰 ROI Tracking Automation</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div class="impact-item">
+                        <div style="font-size: 1.5em; font-weight: bold; color: #28a745;">$2.3M</div>
+                        <div>Projected Annual Lift</div>
+                    </div>
+                    <div class="impact-item">
+                        <div style="font-size: 1.5em; font-weight: bold; color: #28a745;">1,178%</div>
+                        <div>Program ROI</div>
+                    </div>
+                    <div class="impact-item">
+                        <div style="font-size: 1.5em; font-weight: bold; color: #FF6B35;">73%</div>
+                        <div>Decisions Include Testing</div>
+                    </div>
+                    <div class="impact-item">
+                        <div style="font-size: 1.5em; font-weight: bold; color: #4a90e2;">15</div>
+                        <div>Active Tests Monthly</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="talking-points">
+                <h4>💬 Key Talking Points (3 minutes)</h4>
+                <div class="key-point">"My experience creating dynamic merchandising dashboards in Tableau at BB&B ensures stakeholders get actionable insights, not just data dumps."</div>
+                <div class="key-point">"At BB&B, I analyzed customer feedback via OpinionLab and NPS scores - automated alerts prevent us from missing critical insights."</div>
+                <div class="key-point">"ROI tracking proves testing program value - my e-commerce experience shows good programs deliver significant AOV and conversion improvements."</div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Key Insights & Learning Framework -->
+        <div class="slide">
+            <h2>🔍 Strategic Insights & Testing Methodology</h2>
+            
+            <div class="solution-framework">
+                <h3>Key Learning Framework from BB&B Optimization Experience</h3>
+                <p style="font-size: 1.2em;">Here are the critical insights and methodological approaches that will ensure our success, based on 15+ successful optimization tests delivering 5-23% conversion improvements:</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 30px 0;">
+                <div style="background: linear-gradient(145deg, #e3f2fd, #bbdefb); border: 2px solid #2196f3; border-radius: 15px; padding: 25px;">
+                    <h4>📊 Data-Driven Decision Framework</h4>
+                    <div style="margin: 15px 0;">
+                        <h5>🎯 Hypothesis Development Process</h5>
+                        <ul style="line-height: 1.6;">
+                            <li><strong>Behavioral Psychology:</strong> Understanding customer motivations and friction points</li>
+                            <li><strong>Technical Analysis:</strong> Identifying system-level causes vs. user experience issues</li>
+                            <li><strong>Segment Analysis:</strong> Different customer types need different optimization approaches</li>
+                            <li><strong>Competitive Intelligence:</strong> Market context influences customer expectations</li>
+                        </ul>
+                        
+                        <h5 style="margin-top: 20px;">📈 Statistical Rigor Approach</h5>
+                        <ul style="line-height: 1.6;">
+                            <li><strong>Sample Size Planning:</strong> Balance statistical power with business speed requirements</li>
+                            <li><strong>Significance Thresholds:</strong> 95% confidence with meaningful effect sizes (minimum 3% lift)</li>
+                            <li><strong>Early Stopping Rules:</strong> Protect against negative impacts while maintaining validity</li>
+                            <li><strong>Multiple Testing Correction:</strong> Adjust for sequential testing to avoid false positives</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(145deg, #f3e5f5, #ce93d8); border: 2px solid #9c27b0; border-radius: 15px; padding: 25px;">
+                    <h4>🚀 Implementation Success Factors</h4>
+                    <div style="margin: 15px 0;">
+                        <h5>👥 Cross-Functional Collaboration</h5>
+                        <ul style="line-height: 1.6;">
+                            <li><strong>UX Designer Partnership:</strong> Psychology-based design rationale, not just aesthetics</li>
+                            <li><strong>Developer Handoff:</strong> Technical feasibility assessment and fallback planning</li>
+                            <li><strong>Stakeholder Alignment:</strong> Clear success criteria and go/no-go decision points</li>
+                            <li><strong>Customer Service Integration:</strong> Monitor support tickets for unintended consequences</li>
+                        </ul>
+                        
+                        <h5 style="margin-top: 20px;">⚡ Risk Management Strategy</h5>
+                        <ul style="line-height: 1.6;">
+                            <li><strong>Technical Monitoring:</strong> Performance impact tracking and automated alerts</li>
+                            <li><strong>Qualitative Validation:</strong> Session replay analysis to confirm quantitative findings</li>
+                            <li><strong>Rollback Procedures:</strong> Immediate reversion capability for any negative results</li>
+                            <li><strong>Learning Documentation:</strong> Capture insights from both successes and failures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: linear-gradient(145deg, #fff8e1, #ffecb3); border: 3px solid #ffc107; border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <h4>💡 Critical Success Patterns from BB&B Experience</h4>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin: 20px 0;">
+                    <div>
+                        <h5>🔥 Pattern 1: Promotional Flow Optimization</h5>
+                        <div style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <p style="line-height: 1.5;"><strong>Situation:</strong> Coupon validation changes caused 15% conversion drop</p>
+                            <p style="line-height: 1.5;"><strong>Solution:</strong> Real-time validation with smart error handling</p>
+                            <p style="line-height: 1.5;"><strong>Result:</strong> 12% conversion recovery + 8% increase in promotional usage</p>
+                            <p style="line-height: 1.5;"><strong>Key Learning:</strong> Promotional friction disproportionately affects price-sensitive customers</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5>📱 Pattern 2: Mobile-Specific Optimization</h5>
+                        <div style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <p style="line-height: 1.5;"><strong>Situation:</strong> Mobile users had 23% lower conversion than desktop</p>
+                            <p style="line-height: 1.5;"><strong>Solution:</strong> Urgency-driven CTAs with clear value propositions</p>
+                            <p style="line-height: 1.5;"><strong>Result:</strong> 18% mobile conversion improvement, closed desktop gap</p>
+                            <p style="line-height: 1.5;"><strong>Key Learning:</strong> Mobile users need different psychological triggers than desktop</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h5>🛡️ Pattern 3: Trust Signal Enhancement</h5>
+                        <div style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 8px; margin: 10px 0;">
+                            <p style="line-height: 1.5;"><strong>Situation:</strong> Social media traffic had low conversion rates</p>
+                            <p style="line-height: 1.5;"><strong>Solution:</strong> Enhanced social proof and "customers also bought" elements</p>
+                            <p style="line-height: 1.5;"><strong>Result:</strong> 14% social traffic conversion lift + 8% AOV increase</p>
+                            <p style="line-height: 1.5;"><strong>Key Learning:</strong> Unfamiliar traffic sources need additional credibility signals</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(220,53,69,0.1); border: 2px solid #dc3545; border-radius: 10px; padding: 20px; margin: 20px 0;">
+                    <h5 style="color: #dc3545;">⚠️ Common Optimization Pitfalls to Avoid</h5>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 15px 0;">
+                        <div>
+                            <ul style="line-height: 1.6;">
+                                <li><strong>Testing Too Many Variables:</strong> Changes interaction effects and reduces statistical power</li>
+                                <li><strong>Ignoring Segment Differences:</strong> One-size-fits-all solutions often underperform</li>
+                                <li><strong>Stopping Tests Early:</strong> Statistical significance requires full sample sizes</li>
+                                <li><strong>Focusing Only on Winners:</strong> "Failed" tests provide valuable insights</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul style="line-height: 1.6;">
+                                <li><strong>Neglecting Technical Performance:</strong> Speed improvements often outweigh design changes</li>
+                                <li><strong>Insufficient Qualitative Analysis:</strong> Numbers show what happened, not why</li>
+                                <li><strong>Poor Stakeholder Communication:</strong> Lack of buy-in kills successful optimizations</li>
+                                <li><strong>Not Planning for Scale:</strong> Successful tests must work with increased traffic</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h4>📊 Optimization Success Methodology</h4>
+                <div id="methodologyChart" style="height: 400px;"></div>
+            </div>
+            
+            <div style="background: linear-gradient(145deg, #e8f5e8, #c8e6c8); border: 2px solid #28a745; border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <h4>🎯 Competitive Advantage Framework</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;">
+                    <div>
+                        <h5>🚀 Why This Approach Works</h5>
+                        <ul style="line-height: 1.6;">
+                            <li><strong>Systematic Investigation:</strong> Root cause analysis prevents band-aid solutions</li>
+                            <li><strong>Psychology-Based Design:</strong> Understanding customer motivations drives better results</li>
+                            <li><strong>Sequential Testing:</strong> Learning compounds across experiments</li>
+                            <li><strong>Risk-Managed Implementation:</strong> Protect revenue while optimizing for growth</li>
+                            <li><strong>Cross-Functional Collaboration:</strong> Ensures solutions are technically feasible and strategically sound</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h5>💼 Business Value Creation</h5>
+                        <ul style="line-height: 1.6;">
+                            <li><strong>Immediate Revenue Recovery:</strong> Address conversion crisis with proven solutions</li>
+                            <li><strong>Long-term Competitive Advantage:</strong> Build systematic optimization capabilities</li>
+                            <li><strong>Team Skill Development:</strong> Transfer methodology to internal teams</li>
+                            <li><strong>Data-Driven Culture:</strong> Establish testing as core business practice</li>
+                            <li><strong>Customer Experience Improvement:</strong> Optimize for user needs, not just business metrics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="talking-points">
+                <h4>💬 Insights & Methodology (3 minutes)</h4>
+                <div class="key-point">"My approach is built on understanding customer psychology, not just changing interfaces - this creates sustainable improvements."</div>
+                <div class="key-point">"Each test teaches us something about our customers, creating compounding value beyond individual conversion lifts."</div>
+                <div class="key-point">"Risk management is crucial - I protect current revenue while optimizing for growth through careful statistical planning."</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Implementation Timeline & Success Metrics -->
+        <div class="slide">
+            <h2>📅 30-Day Recovery Plan & Success Measurement</h2>
+            
+            <div class="solution-framework">
+                <h3>Strategic Implementation Roadmap</h3>
+                <p style="font-size: 1.2em;">Based on my e-commerce testing experience at Bed Bath & Beyond achieving significant conversion and AOV improvements, here's how we'll recover and exceed our baseline:</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item" style="background: linear-gradient(145deg, #fff5f5, #ffebee);">
+                    <div class="timeline-marker">1</div>
+                    <h4>🚀 Phase 1: Quick Wins (Days 1-7)</h4>
+                    <ul style="font-size: 1.1em; margin-top: 15px;">
+                        <li><strong>Offer Code Fix:</strong> Apply BB&B free shipping threshold optimization learnings</li>
+                        <li><strong>Progress Indicator A/B:</strong> Launch delivery-focused progress design</li>
+                        <li><strong>Expected Impact:</strong> 44% → 47% conversion (+3%)</li>
+                        <li><strong>Tools:</strong> Adobe Target for A/B, Analytics for measurement</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item" style="background: linear-gradient(145deg, #fff8e1, #ffecb3);">
+                    <div class="timeline-marker">2</div>
+                    <h4>📱 Phase 2: Mobile CTA Optimization (Days 8-14)</h4>
+                    <ul style="font-size: 1.1em; margin-top: 15px;">
+                        <li><strong>Urgency CTA Test:</strong> Apply BB&B "Get it now before it sells out" strategy</li>
+                        <li><strong>Financing Integration:</strong> Use financial services CTA experience for payment options</li>
+                        <li><strong>Expected Impact:</strong> 47% → 51% conversion (+4%)</li>
+                        <li><strong>Focus:</strong> Mobile-specific implementation with urgency messaging</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item" style="background: linear-gradient(145deg, #e8f5e8, #c8e6c8);">
+                    <div class="timeline-marker">3</div>
+                    <h4>🛡️ Phase 3: Trust & Social Optimization (Days 15-21)</h4>
+                    <ul style="font-size: 1.1em; margin-top: 15px;">
+                        <li><strong>Cross-sell Integration:</strong> Apply BB&B "customers also bought" strategy</li>
+                        <li><strong>Trust Signal Enhancement:</strong> Customer reviews and social proof at decision points</li>
+                        <li><strong>Expected Impact:</strong> 51% → 54% conversion (+3%)</li>
+                        <li><strong>AOV Bonus:</strong> Cross-sell elements should also improve average order value</li>
+                    </ul>
+                </div>
+                
+                <div class="timeline-item" style="background: linear-gradient(145deg, #e3f2fd, #bbdefb);">
+                    <div class="timeline-marker">4</div>
+                    <h4>🎯 Phase 4: MVT Optimization (Days 22-30)</h4>
+                    <ul style="font-size: 1.1em; margin-top: 15px;">
+                        <li><strong>Combined Elements:</strong> Test interaction effects of successful elements</li>
+                        <li><strong>Fine-tuning:</strong> Optimize based on all previous learnings</li>
+                        <li><strong>Expected Impact:</strong> 54% → 57%+ conversion (+3%+)</li>
+                        <li><strong>Goal:</strong> Exceed original 56% baseline</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h4>📈 Recovery Trajectory Projection</h4>
+                <div id="recoveryChart" style="height: 400px;"></div>
+            </div>
+            
+            <div class="metrics-dashboard">
+                <div class="metric-card">
+                    <div class="metric-value">57%+</div>
+                    <div class="metric-label">30-Day Target</div>
+                    <div class="metric-trend trend-up">Exceed original baseline</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$X</div>
+                    <div class="metric-label">Daily Revenue Recovery</div>
+                    <div class="metric-trend trend-up">Progressive improvement</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">4</div>
+                    <div class="metric-label">Strategic Test Phases</div>
+                    <div class="metric-trend">Build on each success</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">90%</div>
+                    <div class="metric-label">Confidence Level</div>
+                    <div class="metric-trend trend-up">Based on past results</div>
+                </div>
+            </div>
+            
+            <div class="talking-points">
+                <h4>💬 Key Talking Points (3 minutes)</h4>
+                <div class="key-point">"This timeline is based on my actual e-commerce experience - urgency messaging and cross-sell strategies delivered significant lifts at BB&B."</div>
+                <div class="key-point">"Each phase builds on the previous success, minimizing risk while maximizing learning and AOV impact."</div>
+                <div class="key-point">"By day 30, we'll not only recover but exceed our original performance with sustainable optimization processes."</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Strategic Impact & Business Case -->
+        <div class="slide">
+            <h2>🏆 Strategic Impact & Long-term Business Value</h2>
+            
+            <div class="solution-framework">
+                <h3>Why This Approach Delivers Lasting Results</h3>
+                <p style="font-size: 1.2em;">My systematic approach doesn't just solve today's problem - it builds competitive advantage for the future.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 30px 0;">
+                <div>
+                    <h4>🎯 Immediate Business Impact (30 days)</h4>
+                    <div style="background: #e8f5e8; padding: 20px; border-radius: 10px; border-left: 5px solid #28a745;">
+                        <ul style="font-size: 1.1em;">
+                            <li><strong>Revenue Recovery:</strong> Return to 57%+ conversion rate</li>
+                            <li><strong>Customer Experience:</strong> Smoother checkout process</li>
+                            <li><strong>Team Confidence:</strong> Proven problem-solving methodology</li>
+                            <li><strong>Data Insights:</strong> Clear understanding of user behavior</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>🚀 Long-term Strategic Value (12+ months)</h4>
+                    <div style="background: #f0f8ff; padding: 20px; border-radius: 10px; border-left: 5px solid #4a90e2;">
+                        <ul style="font-size: 1.1em;">
+                            <li><strong>Market Leadership:</strong> Industry-leading mobile conversion</li>
+                            <li><strong>Testing Culture:</strong> Data-driven decision making</li>
+                            <li><strong>Scalable Process:</strong> Methodology for future challenges</li>
+                            <li><strong>Competitive Advantage:</strong> Continuous optimization capability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="roi-projection">
+                <h4>💰 Expected Business Impact</h4>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <div style="font-size: 2em; font-weight: bold; color: #28a745;">13%+</div>
+                        <div>Total Conversion Improvement</div>
+                        <div style="font-size: 0.9em; color: #666;">From 44% to 57%+</div>
+                    </div>
+                    <div class="impact-item">
+                        <div style="font-size: 2em; font-weight: bold; color: #28a745;">$2.3M+</div>
+                        <div>Annual Revenue Impact</div>
+                        <div style="font-size: 0.9em; color: #666;">Conservative estimate</div>
+                    </div>
+                    <div class="impact-item">
+                        <div style="font-size: 2em; font-weight: bold; color: #FF6B35;">15x</div>
+                        <div>Testing Program ROI</div>
+                        <div style="font-size: 0.9em; color: #666;">Based on program costs</div>
+                    </div>
+                    <div class="impact-item">
+                        <div style="font-size: 2em; font-weight: bold; color: #4a90e2;">30 days</div>
+                        <div>Time to Full Recovery</div>
+                        <div style="font-size: 0.9em; color: #666;">Systematic approach</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h4>📊 My Testing Track Record - Proven Results</h4>
+                <div id="trackRecordChart" style="height: 400px;"></div>
+            </div>
+            
+            <div style="background: linear-gradient(145deg, #fff3cd, #ffeeba); border: 3px solid #ffc107; border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <h4>🎯 Why My Approach Works</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin: 20px 0;">
+                    <div>
+                        <h5>✅ Proven Methodology</h5>
+                        <p>Based on 15+ successful tests with measurable lifts from 5% to 23%</p>
+                        
+                        <h5 style="margin-top: 20px;">✅ Strategic Focus</h5>
+                        <p>I define objectives and hypotheses, then collaborate with UX and developers</p>
+                    </div>
+                    <div>
+                        <h5>✅ Tool Expertise</h5>
+                        <p>Deep experience with Adobe Analytics, Target, Quantum Metric, and Tableau</p>
+                        
+                        <h5 style="margin-top: 20px;">✅ Business Impact</h5>
+                        <p>Every test connected to revenue outcomes and customer experience improvement</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; background: linear-gradient(145deg, #FF6B35, #F7931E); color: white; padding: 40px; border-radius: 15px; margin: 30px 0;">
+                <h3>🚀 Ready to Drive Results</h3>
+                <p style="font-size: 1.3em; margin: 20px 0;">My systematic approach combines proven testing experience with strategic business thinking to deliver measurable results that exceed expectations.</p>
+                <p style="font-size: 1.1em;"><strong>Let's turn this conversion crisis into a competitive advantage.</strong></p>
+            </div>
+            
+            <div class="talking-points">
+                <h4>💬 Closing Talking Points (2 minutes)</h4>
+                <div class="key-point">"My track record across e-commerce and financial services shows consistent success with conversion optimization - this gives me confidence in our 13% recovery goal."</div>
+                <div class="key-point">"I bring both strategic thinking from BB&B merchandising experience and hands-on Adobe tool expertise to solve complex optimization challenges."</div>
+                <div class="key-point">"This isn't just about fixing a problem - it's about building a systematic advantage for long-term growth using proven e-commerce strategies."</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation -->
+    <div class="slide-counter">
+        <span id="slideNumber">1</span> / <span id="totalSlides">8</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <script>
+        // Enhanced slide management with smooth transitions
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('slideNumber').textContent = currentSlide + 1;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+            
+            // Initialize charts for current slide
+            initializeChartsForSlide(currentSlide);
+        }
+
+        function changeSlide(direction) {
+            if (direction === 1 && currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else if (direction === -1 && currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Enhanced keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                changeSlide(-1);
+            }
+        });
+
+        // Chart initialization function
+        function initializeChartsForSlide(slideIndex) {
+            switch(slideIndex) {
+                case 0:
+                    createFunnelChart();
+                    break;
+                case 1:
+                    createInvestigationChart();
+                    break;
+                case 2:
+                    createHypothesisChart();
+                    break;
+                case 3:
+                    createTestMetricsChart();
+                    break;
+                case 4:
+                    createICEMatrix();
+                    createImplementationTimeline();
+                    break;
+                case 5:
+                    createMVTChart();
+                    break;
+                case 6:
+                    createReportingChart();
+                    break;
+                case 7:
+                    createMethodologyChart();
+                    break;
+                case 8:
+                    createRecoveryChart();
+                    break;
+                case 9:
+                    createTrackRecordChart();
+                    break;
+            }
+        }
+
+        // Chart creation functions using Plotly
+        function createFunnelChart() {
+            const data = [{
+                type: 'funnel',
+                y: ['Add to Cart', 'Cart to Checkout', 'Checkout Complete'],
+                x: [92, 70, 44],
+                textinfo: 'value+percent initial',
+                textfont: {size: 16},
+                marker: {
+                    color: ['#28a745', '#ffc107', '#dc3545']
+                }
+            }];
+            
+            const layout = {
+                title: {
+                    text: 'Current Conversion Funnel - Problem Identified',
+                    font: {size: 18}
+                },
+                margin: {t: 60, b: 40, l: 40, r: 40},
+                font: {size: 14}
+            };
+            
+            Plotly.newPlot('funnelChart', data, layout, {responsive: true});
+        }
+
+        function createInvestigationChart() {
+            const data = [{
+                x: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                y: [25, 75, 90, 100],
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: {color: '#FF6B35', width: 4},
+                marker: {size: 10}
+            }];
+            
+            const layout = {
+                title: 'Investigation Progress Timeline',
+                xaxis: {title: 'Timeline'},
+                yaxis: {title: 'Investigation Completion %'},
+                margin: {t: 50, b: 50, l: 50, r: 50}
+            };
+            
+            Plotly.newPlot('investigationChart', data, layout, {responsive: true});
+        }
+
+        function createHypothesisChart() {
+            const data = [{
+                x: ['Offer Code Issues', 'Mobile CTA Optimization', 'Trust Signal Enhancement'],
+                y: [8.5, 8.0, 7.2],
+                type: 'bar',
+                marker: {
+                    color: ['#dc3545', '#FF6B35', '#ffc107']
+                }
+            }];
+            
+            const layout = {
+                title: 'Hypothesis Prioritization (ICE Scores)',
+                xaxis: {title: 'Test Hypotheses'},
+                yaxis: {title: 'ICE Score (out of 10)', range: [0, 10]},
+                margin: {t: 50, b: 100, l: 50, r: 50}
+            };
+            
+            Plotly.newPlot('hypothesisChart', data, layout, {responsive: true});
+        }
+
+        function createTestMetricsChart() {
+            const data = [{
+                labels: ['Primary: Conversion Rate', 'Secondary: Time on Page', 'Guardrail: Error Rate'],
+                values: [70, 20, 10],
+                type: 'pie',
+                marker: {
+                    colors: ['#FF6B35', '#4a90e2', '#28a745']
+                }
+            }];
+            
+            const layout = {
+                title: 'Test Success Metrics Weighting',
+                margin: {t: 50, b: 50, l: 50, r: 50}
+            };
+            
+            Plotly.newPlot('testMetricsChart', data, layout, {responsive: true});
+        }
+
+        function createICEMatrix() {
+            const data = [{
+                x: [9.3, 8.0, 7.2],
+                y: ['Offer Code Validation', 'Mobile CTA Optimization', 'Trust Signal Enhancement'],
+                type: 'bar',
+                orientation: 'h',
+                marker: {
+                    color: ['#dc3545', '#ff6b35', '#28a745'],
+                    line: {
+                        color: 'rgba(0,0,0,0.8)',
+                        width: 1
+                    }
+                },
+                text: ['ICE: 9.3 (HIGHEST)', 'ICE: 8.0 (HIGH)', 'ICE: 7.2 (MEDIUM)'],
+                textposition: 'auto',
+                hovertemplate: '<b>%{y}</b><br>' +
+                              'ICE Score: %{x}<br>' +
+                              'Priority: %{text}<br>' +
+                              '<extra></extra>'
+            }];
+            
+            const layout = {
+                title: {
+                    text: 'ICE Prioritization Framework',
+                    font: { size: 16, family: 'Arial, sans-serif' }
+                },
+                xaxis: {
+                    title: 'ICE Score (Impact × Confidence × Ease)',
+                    range: [0, 10],
+                    gridcolor: '#e0e0e0'
+                },
+                yaxis: {
+                    title: '',
+                    automargin: true
+                },
+                plot_bgcolor: 'white',
+                paper_bgcolor: 'transparent',
+                margin: { t: 60, b: 60, l: 200, r: 60 },
+                height: 400
+            };
+            
+            Plotly.newPlot('iceMatrix', data, layout, {responsive: true});
+        }
+
+        function createImplementationTimeline() {
+            const data = [{
+                x: ['Week 1-2', 'Week 3-4', 'Week 5-6', 'Week 7-8'],
+                y: [6, 5, 3, 12],
+                type: 'bar',
+                name: 'Expected Conversion Lift (%)',
+                marker: {
+                    color: ['#dc3545', '#ff6b35', '#28a745', '#007bff'],
+                    line: {
+                        color: 'rgba(0,0,0,0.8)',
+                        width: 1
+                    }
+                },
+                text: ['Offer Code<br>+4-6%', 'Mobile CTA<br>+3-5%', 'Trust Signals<br>+2-3%', 'Combined<br>+12%'],
+                textposition: 'auto',
+                hovertemplate: '<b>%{x}</b><br>' +
+                              'Expected Lift: %{y}%<br>' +
+                              '%{text}<br>' +
+                              '<extra></extra>'
+            }];
+            
+            const layout = {
+                title: {
+                    text: 'Sequential Implementation Timeline & Expected Impact',
+                    font: { size: 16, family: 'Arial, sans-serif' }
+                },
+                xaxis: {
+                    title: 'Implementation Period',
+                    gridcolor: '#e0e0e0'
+                },
+                yaxis: {
+                    title: 'Conversion Lift (%)',
+                    range: [0, 15],
+                    gridcolor: '#e0e0e0'
+                },
+                plot_bgcolor: 'white',
+                paper_bgcolor: 'transparent',
+                margin: { t: 60, b: 60, l: 60, r: 60 },
+                height: 400
+            };
+            
+            Plotly.newPlot('implementationTimeline', data, layout, {responsive: true});
+        }
+
+        function createMVTChart() {
+            const elements = ['Progress Indicator', 'CTA Button', 'Trust Signals', 'Form Layout'];
+            const variations = [3, 3, 3, 3];
+            
+            const data = [{
+                x: elements,
+                y: variations,
+                type: 'bar',
+                marker: {color: '#FF6B35'}
+            }];
+            
+            const layout = {
+                title: 'MVT Elements (3 variations each = 81 combinations)',
+                xaxis: {title: 'Test Elements'},
+                yaxis: {title: 'Number of Variations'},
+                margin: {t: 50, b: 100, l: 50, r: 50}
+            };
+            
+            Plotly.newPlot('mvtChart', data, layout, {responsive: true});
+        }
+
+        function createMethodologyChart() {
+            const data = [{
+                values: [25, 25, 20, 15, 15],
+                labels: ['Investigation & Analysis', 'Hypothesis Development', 'Test Design & Implementation', 'Statistical Analysis', 'Learning & Iteration'],
+                type: 'pie',
+                marker: {
+                    colors: ['#FF6B35', '#F7931E', '#FFD23F', '#06FFA5', '#4B98DF'],
+                    line: {
+                        color: '#FFFFFF',
+                        width: 2
+                    }
+                },
+                textinfo: 'label+percent',
+                textposition: 'auto',
+                hovertemplate: '<b>%{label}</b><br>' +
+                              'Time Allocation: %{percent}<br>' +
+                              'Value: %{value}%<br>' +
+                              '<extra></extra>'
+            }];
+            
+            const layout = {
+                title: {
+                    text: 'Optimization Methodology Time Allocation',
+                    font: { size: 16, family: 'Arial, sans-serif' }
+                },
+                annotations: [{
+                    text: 'Proven<br>Framework',
+                    x: 0.5,
+                    y: 0.5,
+                    font: {
+                        size: 16,
+                        color: '#333333'
+                    },
+                    showarrow: false
+                }],
+                showlegend: true,
+                legend: {
+                    orientation: 'v',
+                    x: 1.02,
+                    y: 0.5
+                },
+                plot_bgcolor: 'white',
+                paper_bgcolor: 'transparent',
+                margin: { t: 60, b: 60, l: 60, r: 60 },
+                height: 400
+            };
+            
+            Plotly.newPlot('methodologyChart', data, layout, {responsive: true});
+        }
+
+        function createReportingChart() {
+            const data = [{
+                labels: ['Executive Summary', 'Team Analysis', 'Technical Monitoring', 'ROI Tracking'],
+                values: [25, 35, 25, 15],
+                type: 'pie',
+                marker: {
+                    colors: ['#dc3545', '#4a90e2', '#FF6B35', '#28a745']
+                }
+            }];
+            
+            const layout = {
+                title: 'Automated Reporting Components',
+                margin: {t: 50, b: 50, l: 50, r: 50}
+            };
+            
+            Plotly.newPlot('reportingChart', data, layout, {responsive: true});
+        }
+
+        function createRecoveryChart() {
+            const weeks = ['Current', 'Week 1', 'Week 2', 'Week 3', 'Week 4'];
+            const conversion = [44, 47, 51, 54, 57];
+            
+            const data = [{
+                x: weeks,
+                y: conversion,
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: {color: '#28a745', width: 4},
+                marker: {size: 12}
+            }];
+            
+            const layout = {
+                title: '30-Day Recovery Trajectory',
+                xaxis: {title: 'Timeline'},
+                yaxis: {title: 'Conversion Rate %', range: [40, 60]},
+                margin: {t: 50, b: 50, l: 50, r: 50},
+                annotations: [{
+                    x: 'Week 4',
+                    y: 57,
+                    text: 'Target: 57%+',
+                    showarrow: true,
+                    arrowhead: 2,
+                    arrowcolor: '#28a745'
+                }]
+            };
+            
+            Plotly.newPlot('recoveryChart', data, layout, {responsive: true});
+        }
+
+        function createTrackRecordChart() {
+            const categories = ['E-commerce CTA', 'Checkout Flow', 'Trust Signals', 'Mobile UX'];
+            const lifts = [15.0, 12.0, 18.0, 22.0];
+            
+            const data = [{
+                x: categories,
+                y: lifts,
+                type: 'bar',
+                marker: {color: '#28a745'}
+            }];
+            
+            const layout = {
+                title: 'My Track Record - E-commerce & Financial Services',
+                xaxis: {title: 'Optimization Categories'},
+                yaxis: {title: 'Average Improvement %'},
+                margin: {t: 50, b: 100, l: 50, r: 50}
+            };
+            
+            Plotly.newPlot('trackRecordChart', data, layout, {responsive: true});
+        }
+
+        // Initialize first slide
+        showSlide(0);
+        
+        // Auto-advance slides every 3 minutes for demo purposes (can be disabled)
+        // setInterval(() => {
+        //     if (currentSlide < totalSlides - 1) {
+        //         changeSlide(1);
+        //     }
+        // }, 180000);
+    </script>
+</body>
+</html>

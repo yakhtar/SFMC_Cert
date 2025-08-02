@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solvd Interview - 6 Slide Presentation</title>
+    <style>
+        /* PDF-Optimized Styles for 6 Slides */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: white;
+        }
+
+        @media print {
+            body {
+                font-size: 12pt;
+                line-height: 1.3;
+            }
+            .slide {
+                page-break-after: always;
+                break-after: page;
+                min-height: 100vh;
+            }
+            .slide:last-child {
+                page-break-after: avoid;
+            }
+        }
+
+        .slide {
+            min-height: 100vh;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Slide Headers */
+        .slide-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .slide-number {
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .slide-title {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .slide-subtitle {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            font-weight: 300;
+        }
+
+        /* Content Styles */
+        .content-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Slide 1 - Title Slide */
+        .title-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .main-title {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .main-subtitle {
+            font-size: 1.6em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .presenter-info {
+            font-size: 1.2em;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+
+        /* Problem Statement */
+        .problem-highlight {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .problem-highlight h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .problem-highlight p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 1em;
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+
+        /* Hypothesis Cards */
+        .hypothesis-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        .hypothesis-card {
+            padding: 25px;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hypothesis-card.priority-1 {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .hypothesis-card.priority-2 {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+
+        .hypothesis-card.priority-3 {
+            background: linear-gradient(135deg, #27ae60, #229954);
+        }
+
+        .hypothesis-card h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .hypothesis-card .ice-score {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .hypothesis-card .impact {
+            font-size: 1.1em;
+            margin-top: 15px;
+            opacity: 0.9;
+        }
+
+        /* Test Design */
+        .test-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 25px 0;
+        }
+
+        .test-variant {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #dee2e6;
+        }
+
+        .test-variant.control {
+            border-color: #6c757d;
+        }
+
+        .test-variant.treatment {
+            border-color: #28a745;
+        }
+
+        .variant-header {
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        .variant-header.control {
+            background: #6c757d;
+        }
+
+        .variant-header.treatment {
+            background: #28a745;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border-top: 5px solid #3498db;
+        }
+
+        .timeline-week {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .timeline-test {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .timeline-lift {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        /* Results Summary */
+        .results-summary {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .result-item {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .result-value {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .result-label {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .tool-category {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+        }
+
+        .tool-category h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .tool-list {
+            list-style: none;
+        }
+
+        .tool-list li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        .tool-list li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Key Insights */
+        .insight-box {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .insight-box h4 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .insight-box p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            font-size: 1.05em;
+        }
+
+        p {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            font-size: 1.05em;
+        }
+
+        /* Print Optimization */
+        @media print {
+            .title-slide,
+            .problem-highlight,
+            .hypothesis-card,
+            .insight-box,
+            .results-summary {
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Title Slide -->
+    <div class="slide title-slide">
+        <div class="main-title">Checkout Conversion Recovery</div>
+        <div class="main-subtitle">Digital Experimentation & Optimization Strategy</div>
+        <div class="presenter-info">
+            <strong>Solvd Interview Presentation</strong><br>
+            Digital Experimentation & Optimization Analyst Position<br>
+            Director of Analytics Meeting
+        </div>
+    </div>
+
+    <!-- Slide 2: Problem & Investigation -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">Slide 2 of 6</div>
+            <h2 class="slide-title">🚨 Business Challenge & My Investigation Approach</h2>
+        </div>
+
+        <div class="content-section">
+            <div class="problem-highlight">
+                <h3>Critical Conversion Crisis</h3>
+                <p>Mobile checkout conversion dropped from <strong>56% to 44%</strong> (12% decline) over 2 months, coinciding with new progress indicator and offer code validation launch. Social referral traffic increased 40%.</p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">12%</div>
+                    <div class="metric-label">Conversion Drop</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">56%→44%</div>
+                    <div class="metric-label">Mobile Rate</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">+40%</div>
+                    <div class="metric-label">Social Traffic</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">2 months</div>
+                    <div class="metric-label">Duration</div>
+                </div>
+            </div>
+
+            <h3 style="color: #2c3e50; margin-bottom: 15px;">My Systematic Investigation Strategy</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                <div>
+                    <h4 style="color: #3498db; margin-bottom: 10px;">📊 Adobe Analytics Deep-Dive</h4>
+                    <ul>
+                        <li>Device/platform segmentation (iOS vs Android)</li>
+                        <li>Traffic source analysis (social vs organic patterns)</li>
+                        <li>Temporal analysis (gradual vs sudden changes)</li>
+                        <li>Customer value segmentation impact</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #3498db; margin-bottom: 10px;">🎥 Quantum Metric Session Analysis</h4>
+                    <ul>
+                        <li>100+ failed checkout journey reviews</li>
+                        <li>Error pattern and UI confusion identification</li>
+                        <li>New feature interaction analysis</li>
+                        <li>Social vs search user behavior differences</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Hypotheses & Prioritization -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">Slide 3 of 6</div>
+            <h2 class="slide-title">💡 Strategic Hypotheses & ICE Prioritization</h2>
+        </div>
+
+        <div class="content-section">
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 25px; color: #2c3e50;">
+                <strong>My ICE Framework</strong> (Impact × Confidence × Ease) prioritizes highest ROI opportunities first
+            </p>
+
+            <div class="hypothesis-grid">
+                <div class="hypothesis-card priority-1">
+                    <h4>🔥 Offer Code Validation</h4>
+                    <div class="ice-score">ICE: 9.3</div>
+                    <p>New validation system creating promotional flow friction</p>
+                    <div class="impact">Expected: +4-6% recovery</div>
+                </div>
+
+                <div class="hypothesis-card priority-2">
+                    <h4>📱 Mobile CTA Optimization</h4>
+                    <div class="ice-score">ICE: 8.0</div>
+                    <p>Urgency-driven, value-focused CTA language needed</p>
+                    <div class="impact">Expected: +3-5% lift</div>
+                </div>
+
+                <div class="hypothesis-card priority-3">
+                    <h4>🛡️ Trust Signal Enhancement</h4>
+                    <div class="ice-score">ICE: 7.2</div>
+                    <p>Social traffic needs additional credibility signals</p>
+                    <div class="impact">Expected: +2-3% lift</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4>🎯 BB&B Experience Applied</h4>
+                <p>Based on my Bed Bath & Beyond experience, similar offer code friction caused a 15% conversion drop. Real-time validation with smart error handling recovered 12% conversion and increased promotional usage by 8%. This pattern recognition gives me confidence in our prioritization.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Q2 - Progress Indicator A/B Test Design -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">Slide 4 of 8</div>
+            <h2 class="slide-title">🧪 Q2: Progress Indicator A/B Test Design</h2>
+        </div>
+
+        <div class="content-section">
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 20px; color: #2c3e50;">
+                <strong>Hypothesis:</strong> Enhanced progress indicator with time estimates and value messaging will reduce checkout abandonment
+            </p>
+
+            <div class="test-comparison">
+                <div class="test-variant control">
+                    <div class="variant-header control">🅰️ CONTROL - Current Progress Indicator</div>
+                    <h4>Current Design Issues:</h4>
+                    <ul>
+                        <li>Generic "Step 2 of 4" labeling</li>
+                        <li>No time context or expectations</li>
+                        <li>Basic dots with no progress reinforcement</li>
+                        <li>Weak "Continue" call-to-action</li>
+                        <li>No value or benefit messaging</li>
+                    </ul>
+                    <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 15px; color: #856404;">
+                        <strong>Problem:</strong> Users don't know progress or time commitment, creating anxiety and abandonment
+                    </div>
+                </div>
+
+                <div class="test-variant treatment">
+                    <div class="variant-header treatment">🅱️ TREATMENT - Enhanced Progress Experience</div>
+                    <h4>Optimized Features:</h4>
+                    <ul>
+                        <li><strong>Progress + emotional messaging:</strong> "Payment Info - Almost Done!"</li>
+                        <li><strong>Time expectation management:</strong> "~2 minutes remaining"</li>
+                        <li><strong>Next step transparency:</strong> "Next: Review & Complete"</li>
+                        <li><strong>Value-reinforced CTA:</strong> "Complete Order - FREE Shipping!"</li>
+                        <li><strong>Trust building:</strong> "Your info is encrypted & secure"</li>
+                    </ul>
+                    <div style="background: #d4edda; padding: 15px; border-radius: 8px; margin-top: 15px; color: #155724;">
+                        <strong>Solution:</strong> Clear expectations and value reinforcement create momentum toward completion
+                    </div>
+                </div>
+            </div>
+
+            <h4 style="margin: 25px 0 15px 0; color: #2c3e50;">Test Parameters & Success Metrics</h4>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+                <div style="text-align: center; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    <div style="font-size: 1.8em; font-weight: bold; color: #3498db;">17,000</div>
+                    <div style="font-size: 0.9em; color: #7f8c8d;">Sample Size</div>
+                </div>
+                <div style="text-align: center; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    <div style="font-size: 1.8em; font-weight: bold; color: #3498db;">14 days</div>
+                    <div style="font-size: 0.9em; color: #7f8c8d;">Duration</div>
+                </div>
+                <div style="text-align: center; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    <div style="font-size: 1.8em; font-weight: bold; color: #3498db;">95%</div>
+                    <div style="font-size: 0.9em; color: #7f8c8d;">Confidence</div>
+                </div>
+                <div style="text-align: center; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    <div style="font-size: 1.8em; font-weight: bold; color: #3498db;">5%</div>
+                    <div style="font-size: 0.9em; color: #7f8c8d;">Min Effect</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px;">
+                <div>
+                    <h4 style="color: #2c3e50; margin-bottom: 10px;">📊 Success Metrics</h4>
+                    <ul style="font-size: 0.95em;">
+                        <li><strong>Primary:</strong> Checkout completion rate (44% baseline)</li>
+                        <li><strong>Secondary:</strong> Time in checkout flow, step conversion rates</li>
+                        <li><strong>Guardrail:</strong> Page performance, error rates</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #2c3e50; margin-bottom: 10px;">🎯 Targeting</h4>
+                    <ul style="font-size: 0.95em;">
+                        <li><strong>Audience:</strong> Mobile app users only</li>
+                        <li><strong>Split:</strong> 50/50 with sticky bucketing</li>
+                        <li><strong>Exclusions:</strong> QA, employees, recent support contacts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Implementation Timeline -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">Slide 5 of 8</div>
+            <h2 class="slide-title">📅 8-Week Sequential Implementation Roadmap</h2>
+        </div>
+
+        <div class="content-section">
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 25px; color: #2c3e50;">
+                <strong>Strategic Approach:</strong> Sequential testing allows learning from each experiment to improve subsequent tests
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 1-2</div>
+                    <div class="timeline-test">🔥 Offer Code Fix</div>
+                    <div class="timeline-lift">+4-6%</div>
+                    <p style="font-size: 0.9em; margin-top: 10px; color: #7f8c8d;">Real-time validation with smart error handling</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 3-4</div>
+                    <div class="timeline-test">📱 Mobile CTA</div>
+                    <div class="timeline-lift">+3-5%</div>
+                    <p style="font-size: 0.9em; margin-top: 10px; color: #7f8c8d;">Urgency-driven, value-focused messaging</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 5-6</div>
+                    <div class="timeline-test">🛡️ Trust Signals</div>
+                    <div class="timeline-lift">+2-3%</div>
+                    <p style="font-size: 0.9em; margin-top: 10px; color: #7f8c8d;">Social proof for social media traffic</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-week">Week 7-8</div>
+                    <div class="timeline-test">🎯 Combined</div>
+                    <div class="timeline-lift">+12%</div>
+                    <p style="font-size: 0.9em; margin-top: 10px; color: #7f8c8d;">Integrate successful elements</p>
+                </div>
+            </div>
+
+            <div class="tools-grid">
+                <div class="tool-category">
+                    <h4>🛠️ Tools & Methodology</h4>
+                    <ul class="tool-list">
+                        <li>Adobe Target (A/B testing, MVT)</li>
+                        <li>Adobe Analytics (A4T integration)</li>
+                        <li>Quantum Metric (session replays)</li>
+                        <li>Statistical analysis & power calculations</li>
+                    </ul>
+                </div>
+
+                <div class="tool-category">
+                    <h4>🤝 Collaboration Approach</h4>
+                    <ul class="tool-list">
+                        <li>Cross-functional team coordination</li>
+                        <li>UX designer partnership</li>
+                        <li>Developer technical specifications</li>
+                        <li>Weekly stakeholder updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Three Priority A/B Test Designs -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">Slide 6 of 9</div>
+            <h2 class="slide-title">🧪 Complete A/B Test Designs for All Three Hypotheses</h2>
+        </div>
+
+        <div class="content-section">
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 20px; color: #2c3e50;">
+                <strong>Strategic Test Portfolio:</strong> Detailed control vs treatment designs for systematic implementation
+            </p>
+
+            <!-- Test 1: Offer Code Validation -->
+            <div style="background: linear-gradient(135deg, #dc3545, #c82333); color: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                <h3 style="margin-bottom: 15px;">🔥 TEST 1: Offer Code Validation Optimization (ICE: 9.3)</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                        <h4 style="margin-bottom: 10px;">🅰️ CONTROL - Current Experience</h4>
+                        <ul style="font-size: 0.9em; line-height: 1.4;">
+                            <li>Standard validation messaging</li>
+                            <li>Generic error states with delays</li>
+                            <li>No progress indication during validation</li>
+                            <li>Basic success/failure feedback</li>
+                            <li>No alternative offer suggestions</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                        <h4 style="margin-bottom: 10px;">🅱️ TREATMENT - Optimized Flow</h4>
+                        <ul style="font-size: 0.9em; line-height: 1.4;">
+                            <li><strong>Real-time validation</strong> as user types</li>
+                            <li><strong>Smart suggestions</strong> "Did you mean SAVE20?"</li>
+                            <li><strong>Progress indication</strong> "Applying discount..."</li>
+                            <li><strong>Value reinforcement</strong> "Great! You saved $15"</li>
+                            <li><strong>Alternative offers</strong> if code fails</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 15px; font-size: 0.95em;">
+                    <strong>Expected Impact:</strong> +4-6% conversion recovery | <strong>Duration:</strong> 10 days | <strong>Sample:</strong> 12,000 users
+                </div>
+            </div>
+
+            <!-- Test 2: Mobile CTA -->
+            <div style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                <h3 style="margin-bottom: 15px;">📱 TEST 2: Mobile CTA Optimization (ICE: 8.0)</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                        <h4 style="margin-bottom: 10px;">🅰️ CONTROL - Current CTA</h4>
+                        <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 5px; margin: 10px 0; text-align: center;">
+                            <div style="background: #007bff; color: white; padding: 10px; border-radius: 5px;">
+                                Complete Purchase
+                            </div>
+                        </div>
+                        <ul style="font-size: 0.9em; line-height: 1.4;">
+                            <li>Generic language, no urgency</li>
+                            <li>No value emphasis</li>
+                            <li>Standard security badges below</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                        <h4 style="margin-bottom: 10px;">🅱️ TREATMENT - Optimized CTA</h4>
+                        <div style="background: rgba(255,255,255,0.2); padding: 10px; border-radius: 5px; margin: 10px 0; text-align: center;">
+                            <div style="background: #ff6b35; color: white; padding: 12px; border-radius: 8px; box-shadow: 0 4px 12px rgba(255,107,53,0.3);">
+                                <div style="font-weight: bold;">🚀 SECURE MY ORDER</div>
+                                <div style="font-size: 0.85em; margin-top: 3px;">FREE Shipping • Arrives Friday</div>
+                            </div>
+                            <div style="font-size: 0.75em; color: rgba(255,255,255,0.8); margin-top: 5px;">🔒 256-bit encryption • 30-day returns</div>
+                        </div>
+                        <ul style="font-size: 0.9em; line-height: 1.4;">
+                            <li>Urgency + value proposition</li>
+                            <li>Security emphasis integrated</li>
+                            <li>Delivery promise included</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 15px; font-size: 0.95em;">
+                    <strong>Expected Impact:</strong> +3-5% mobile conversion lift | <strong>Duration:</strong> 14 days | <strong>Sample:</strong> 16,000 users
+                </div>
+            </div>
+
+            <!-- Test 3: Trust Signals -->
+            <div style="background: linear-gradient(135deg, #27ae60, #229954); color: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                <h3 style="margin-bottom: 15px;">🛡️ TEST 3: Trust Signal Enhancement (ICE: 7.2)</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                        <h4 style="margin-bottom: 10px;">🅰️ CONTROL - Current Trust Elements</h4>
+                        <ul style="font-size: 0.9em; line-height: 1.4;">
+                            <li>Basic security badges</li>
+                            <li>Standard SSL indicators</li>
+                            <li>Generic return policy</li>
+                            <li>Payment method logos</li>
+                            <li>No social proof elements</li>
+                        </ul>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                        <h4 style="margin-bottom: 10px;">🅱️ TREATMENT - Enhanced Social Proof</h4>
+                        <ul style="font-size: 0.9em; line-height: 1.4;">
+                            <li><strong>Social proof:</strong> "2,847 customers bought this today"</li>
+                            <li><strong>Recent activity:</strong> "Sarah from NYC just ordered"</li>
+                            <li><strong>Review highlights:</strong> "⭐⭐⭐⭐⭐ Fast shipping!"</li>
+                            <li><strong>Cross-sell trust:</strong> "Customers also bought" with ratings</li>
+                            <li><strong>Guarantee emphasis:</strong> "100% Money-back guarantee"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 15px; font-size: 0.95em;">
+                    <strong>Expected Impact:</strong> +2-3% social traffic lift | <strong>Duration:</strong> 14 days | <strong>Target:</strong> Social media referrals only
+                </div>
+            </div>
+
+            <div style="background: #fff3cd; padding: 20px; border-radius: 10px; border: 2px solid #ffc107; margin: 20px 0;">
+                <h4 style="color: #856404; margin-bottom: 10px;">💡 Sequential Testing Strategy</h4>
+                <p style="color: #856404; line-height: 1.5;">
+                    <strong>Week 1-2:</strong> Offer Code (highest impact) → <strong>Week 3-4:</strong> Mobile CTA → <strong>Week 5-6:</strong> Trust Signals → <strong>Week 7-8:</strong> Combined optimization. This approach allows learning from each test to inform subsequent improvements while maintaining statistical rigor.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: Visual Test Mockups -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">Slide 7 of 10</div>
+            <h2 class="slide-title">📱 Visual Test Mockups: What Users Will See</h2>
+        </div>
+
+        <div class="content-section">
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 25px; color: #2c3e50;">
+                <strong>User Experience Comparison:</strong> Side-by-side visual representation of control vs treatment experiences
+            </p>
+
+            <!-- Test 1: Offer Code Validation Mockups -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #dc3545; margin-bottom: 15px; text-align: center;">🔥 TEST 1: Offer Code Validation Experience</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+                    <!-- Control Mockup -->
+                    <div style="background: #f8f9fa; border: 3px solid #6c757d; border-radius: 15px; padding: 20px;">
+                        <div style="background: #6c757d; color: white; text-align: center; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-weight: bold;">🅰️ CONTROL - Current Experience</div>
+                        
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 10px;">
+                            <label style="display: block; margin-bottom: 5px; font-size: 0.9em; color: #666;">Promo Code:</label>
+                            <input type="text" value="SAVE20" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+                            <button style="background: #007bff; color: white; padding: 8px 16px; border: none; border-radius: 4px; font-size: 0.9em;">Apply</button>
+                        </div>
+                        
+                        <div style="background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; padding: 10px; border-radius: 4px; font-size: 0.85em; margin-bottom: 10px;">
+                            ❌ Invalid promo code
+                        </div>
+                        
+                        <div style="background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 8px; border-radius: 4px; font-size: 0.8em;">
+                            ⚠️ Issues: Generic error, no suggestions, user confusion
+                        </div>
+                    </div>
+
+                    <!-- Treatment Mockup -->
+                    <div style="background: #f8f9fa; border: 3px solid #28a745; border-radius: 15px; padding: 20px;">
+                        <div style="background: #28a745; color: white; text-align: center; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-weight: bold;">🅱️ TREATMENT - Optimized Experience</div>
+                        
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 10px;">
+                            <label style="display: block; margin-bottom: 5px; font-size: 0.9em; color: #666;">Promo Code:</label>
+                            <input type="text" value="SAVE20" style="width: 100%; padding: 8px; border: 2px solid #28a745; border-radius: 4px; margin-bottom: 8px;">
+                            <div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 8px; border-radius: 4px; font-size: 0.85em; margin-bottom: 8px;">
+                                ✅ Great! You saved $15.00
+                                <div style="font-size: 0.8em; margin-top: 3px;">🎉 FREE shipping unlocked!</div>
+                            </div>
+                            <button style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-size: 0.9em; font-weight: bold;">Applied Successfully ✓</button>
+                        </div>
+                        
+                        <div style="background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; padding: 8px; border-radius: 4px; font-size: 0.8em;">
+                            💡 Smart validation, instant feedback, value reinforcement
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test 2: Mobile CTA Mockups -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #f39c12; margin-bottom: 15px; text-align: center;">📱 TEST 2: Mobile CTA Experience</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+                    <!-- Control Mobile Mockup -->
+                    <div style="background: #f8f9fa; border: 3px solid #6c757d; border-radius: 15px; padding: 20px;">
+                        <div style="background: #6c757d; color: white; text-align: center; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-weight: bold;">🅰️ CONTROL - Current Mobile</div>
+                        
+                        <div style="background: white; border: 2px solid #ddd; border-radius: 15px; padding: 20px; width: 200px; margin: 0 auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                                    <div style="font-size: 0.9em; color: #666;">Order Total: $89.99</div>
+                                </div>
+                                
+                                <button style="background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 5px; width: 100%; font-size: 1em; margin-bottom: 10px;">
+                                    Complete Purchase
+                                </button>
+                                
+                                <div style="font-size: 0.7em; color: #999; text-align: center;">
+                                    🔒 Secure checkout
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 8px; border-radius: 4px; font-size: 0.8em; margin-top: 10px;">
+                            ⚠️ Generic, no urgency, weak value proposition
+                        </div>
+                    </div>
+
+                    <!-- Treatment Mobile Mockup -->
+                    <div style="background: #f8f9fa; border: 3px solid #28a745; border-radius: 15px; padding: 20px;">
+                        <div style="background: #28a745; color: white; text-align: center; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-weight: bold;">🅱️ TREATMENT - Optimized Mobile</div>
+                        
+                        <div style="background: white; border: 2px solid #ddd; border-radius: 15px; padding: 20px; width: 200px; margin: 0 auto; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div style="background: #f8f9fa; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                                    <div style="font-size: 0.9em; color: #666;">Order Total: $89.99</div>
+                                </div>
+                                
+                                <button style="background: linear-gradient(135deg, #ff6b35, #f7931e); color: white; padding: 15px; border: none; border-radius: 10px; width: 100%; box-shadow: 0 4px 12px rgba(255,107,53,0.3); margin-bottom: 8px;">
+                                    <div style="font-size: 1.1em; font-weight: bold;">🚀 SECURE MY ORDER</div>
+                                    <div style="font-size: 0.85em; margin-top: 3px;">FREE Shipping • Arrives Friday</div>
+                                </button>
+                                
+                                <div style="font-size: 0.75em; color: #28a745; text-align: center;">
+                                    🔒 256-bit encryption • 30-day returns
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; padding: 8px; border-radius: 4px; font-size: 0.8em; margin-top: 10px;">
+                            💡 Urgency + value + security + delivery promise
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Test 3: Trust Signals Mockups -->
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: #27ae60; margin-bottom: 15px; text-align: center;">🛡️ TEST 3: Trust Signal Experience</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+                    <!-- Control Trust Mockup -->
+                    <div style="background: #f8f9fa; border: 3px solid #6c757d; border-radius: 15px; padding: 20px;">
+                        <div style="background: #6c757d; color: white; text-align: center; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-weight: bold;">🅰️ CONTROL - Basic Trust</div>
+                        
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 10px;">Nike Air Max Sneakers</div>
+                                <div style="font-size: 1.3em; color: #e74c3c; font-weight: bold; margin-bottom: 15px;">$129.99</div>
+                                
+                                <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAzMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMDA3YmZmIi8+Cjx0ZXh0IHg9IjE1IiB5PSIxMiIgZm9udC1zaXplPSI4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+U1NMPC90ZXh0Pgo8L3N2Zz4K" alt="SSL" style="width: 30px; height: 20px;">
+                                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMjAiIHZpZXdCb3g9IjAgMCAzMCAyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjMjhhNzQ1Ii8+Cjx0ZXh0IHg9IjE1IiB5PSIxMiIgZm9udC1zaXplPSI2IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+VklTQTwvdGV4dD4KPHN2Zz4K" alt="Visa" style="width: 30px; height: 20px;">
+                                </div>
+                                
+                                <div style="font-size: 0.8em; color: #666;">30-day return policy</div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; padding: 8px; border-radius: 4px; font-size: 0.8em; margin-top: 10px;">
+                            ⚠️ Minimal trust signals, no social proof
+                        </div>
+                    </div>
+
+                    <!-- Treatment Trust Mockup -->
+                    <div style="background: #f8f9fa; border: 3px solid #28a745; border-radius: 15px; padding: 20px;">
+                        <div style="background: #28a745; color: white; text-align: center; padding: 10px; border-radius: 8px; margin-bottom: 15px; font-weight: bold;">🅱️ TREATMENT - Enhanced Trust</div>
+                        
+                        <div style="background: white; border: 1px solid #ddd; border-radius: 8px; padding: 15px;">
+                            <div style="text-align: center; margin-bottom: 15px;">
+                                <div style="font-size: 1.1em; font-weight: bold; margin-bottom: 5px;">Nike Air Max Sneakers</div>
+                                <div style="font-size: 0.85em; color: #f39c12; margin-bottom: 8px;">⭐⭐⭐⭐⭐ "Fast shipping!" - Verified buyer</div>
+                                <div style="font-size: 1.3em; color: #e74c3c; font-weight: bold; margin-bottom: 10px;">$129.99</div>
+                                
+                                <div style="background: #fff3cd; padding: 8px; border-radius: 5px; margin-bottom: 10px; font-size: 0.85em;">
+                                    🔥 2,847 customers bought this today
+                                </div>
+                                
+                                <div style="background: #d4edda; padding: 6px; border-radius: 4px; margin-bottom: 10px; font-size: 0.8em;">
+                                    📦 Sarah from NYC just ordered 2 minutes ago
+                                </div>
+                                
+                                <div style="background: #e7f3ff; padding: 8px; border-radius: 5px; margin-bottom: 10px;">
+                                    <div style="font-size: 0.8em; font-weight: bold; color: #0066cc;">Customers also bought:</div>
+                                    <div style="font-size: 0.75em; color: #666;">Nike Socks (⭐⭐⭐⭐⭐) • Shoe Cleaner Kit</div>
+                                </div>
+                                
+                                <div style="background: #28a745; color: white; padding: 6px; border-radius: 4px; font-size: 0.8em; font-weight: bold;">
+                                    ✅ 100% Money-Back Guarantee
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #d1ecf1; border: 1px solid #bee5eb; color: #0c5460; padding: 8px; border-radius: 4px; font-size: 0.8em; margin-top: 10px;">
+                            💡 Social proof + activity + reviews + guarantees
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #74b9ff, #0984e3); color: white; padding: 20px; border-radius: 15px; text-align: center;">
+                <h4 style="margin-bottom: 10px; font-size: 1.3em;">🎯 Visual Impact Summary</h4>
+                <p style="line-height: 1.5;">
+                    These mockups show exactly how each optimization addresses specific user psychology: <strong>reducing friction</strong> (offer codes), <strong>creating urgency</strong> (mobile CTA), and <strong>building trust</strong> (social proof). Each design change has a clear behavioral rationale.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Q4 - Multivariate Test in Adobe Target -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">Slide 8 of 10</div>
+            <h2 class="slide-title">🎯 Q4: Adobe Target Multivariate Test Strategy</h2>
+        </div>
+
+        <div class="content-section">
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 20px; color: #2c3e50;">
+                <strong>MVT Approach:</strong> Test multiple checkout elements simultaneously to identify optimal combinations and interaction effects
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin: 25px 0;">
+                <div>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">🧪 4-Element MVT Design</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #3498db;">
+                        <h4 style="color: #3498db; margin-bottom: 10px;">Element 1: Progress Indicator (3 variations)</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>A: Current generic design</li>
+                            <li>B: Time-estimated with delivery promises</li>
+                            <li>C: Simplified visual with clear step names</li>
+                        </ul>
+                        
+                        <h4 style="color: #3498db; margin: 15px 0 10px 0;">Element 2: Call-to-Action (3 variations)</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>A: Current "Complete Purchase"</li>
+                            <li>B: Security-focused "Secure Checkout"</li>
+                            <li>C: Value-driven "Buy Now - FREE Shipping!"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">⚙️ Adobe Target Setup</h3>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 5px solid #e74c3c;">
+                        <h4 style="color: #e74c3c; margin-bottom: 10px;">Element 3: Trust Signals (3 variations)</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>A: Current security badges</li>
+                            <li>B: Enhanced security messaging</li>
+                            <li>C: Social proof with testimonials</li>
+                        </ul>
+                        
+                        <h4 style="color: #e74c3c; margin: 15px 0 10px 0;">Element 4: Form Layout (3 variations)</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>A: Current multi-step approach</li>
+                            <li>B: Single-page checkout</li>
+                            <li>C: Progressive disclosure</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #74b9ff, #0984e3); color: white; padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <h4 style="font-size: 1.3em; margin-bottom: 15px;">🔧 Technical Implementation</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                    <div>
+                        <h5 style="margin-bottom: 10px;">Adobe Target Configuration:</h5>
+                        <ul style="font-size: 0.95em; line-height: 1.5;">
+                            <li><strong>Activity Type:</strong> Multivariate Test</li>
+                            <li><strong>Combinations:</strong> 12 strategic selections (from 81 possible)</li>
+                            <li><strong>Traffic Allocation:</strong> Equal distribution</li>
+                            <li><strong>A4T Integration:</strong> Analytics for Target reporting</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 style="margin-bottom: 10px;">Statistical Requirements:</h5>
+                        <ul style="font-size: 0.95em; line-height: 1.5;">
+                            <li><strong>Sample Size:</strong> 15,000 users per combination</li>
+                            <li><strong>Test Duration:</strong> 6-8 weeks</li>
+                            <li><strong>Confidence Level:</strong> 95%</li>
+                            <li><strong>Expected Combined Lift:</strong> 8-12%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #fff3cd; padding: 20px; border-radius: 10px; border: 2px solid #ffc107; margin: 20px 0;">
+                <h4 style="color: #856404; margin-bottom: 10px;">💡 MVT Advantage Over Sequential A/B Testing</h4>
+                <p style="color: #856404; line-height: 1.5;">
+                    <strong>Interaction Effects:</strong> MVT reveals how elements work together (e.g., time-estimated progress + value-driven CTA might perform better than either alone). This helps us find optimal combinations faster than testing elements individually over months.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: Q6 - Automated Experiment Reporting -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">Slide 9 of 10</div>
+            <h2 class="slide-title">📊 Q6: Automated Experiment Reporting System</h2>
+        </div>
+
+        <div class="content-section">
+            <p style="text-align: center; font-size: 1.2em; margin-bottom: 20px; color: #2c3e50;">
+                <strong>Weekly Automation Framework:</strong> Based on my BB&B Tableau dashboard experience, here's how I'd automate our testing program reporting
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin: 25px 0;">
+                <div style="background: #f0f8ff; border: 2px solid #4a90e2; border-radius: 15px; padding: 25px;">
+                    <h4 style="color: #4a90e2; margin-bottom: 15px;">📊 Data Integration Layer</h4>
+                    <ul style="line-height: 1.6;">
+                        <li><strong>Adobe Target:</strong> Test performance & statistical significance</li>
+                        <li><strong>Adobe Analytics:</strong> A4T integration for unified reporting</li>
+                        <li><strong>Quantum Metric:</strong> Session replay insights</li>
+                        <li><strong>Custom ETL:</strong> Daily data collection & validation</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f0fff0; border: 2px solid #28a745; border-radius: 15px; padding: 25px;">
+                    <h4 style="color: #28a745; margin-bottom: 15px;">⚡ Automated Schedule</h4>
+                    <ul style="line-height: 1.6;">
+                        <li><strong>Daily:</strong> Data collection, health checks, anomaly detection</li>
+                        <li><strong>Weekly:</strong> Full reports generated Monday 8AM</li>
+                        <li><strong>Real-time:</strong> Alerts for significance or technical issues</li>
+                        <li><strong>Monthly:</strong> Program ROI analysis & strategic review</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="color: #2c3e50; margin: 25px 0 15px 0;">📈 Three-Tier Dashboard System</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div style="background: #fff5f5; border: 2px solid #dc3545; border-radius: 10px; padding: 20px;">
+                    <h5 style="color: #dc3545; margin-bottom: 10px;">👔 Executive Summary</h5>
+                    <ul style="font-size: 0.9em; line-height: 1.4;">
+                        <li>High-level test performance</li>
+                        <li>Revenue impact calculations</li>
+                        <li>Red/yellow/green status</li>
+                        <li>Key decisions needed</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f0f8ff; border: 2px solid #4a90e2; border-radius: 10px; padding: 20px;">
+                    <h5 style="color: #4a90e2; margin-bottom: 10px;">📊 Team Deep-Dive</h5>
+                    <ul style="font-size: 0.9em; line-height: 1.4;">
+                        <li>Detailed statistical analysis</li>
+                        <li>Segment performance breakdown</li>
+                        <li>Time series trends</li>
+                        <li>Hypothesis validation</li>
+                    </ul>
+                </div>
+                
+                <div style="background: #f0fff0; border: 2px solid #28a745; border-radius: 10px; padding: 20px;">
+                    <h5 style="color: #28a745; margin-bottom: 10px;">🔧 Technical Monitoring</h5>
+                    <ul style="font-size: 0.9em; line-height: 1.4;">
+                        <li>Sample ratio mismatch detection</li>
+                        <li>Implementation health checks</li>
+                        <li>Data quality monitoring</li>
+                        <li>Performance impact tracking</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #00b894, #00a085); color: white; padding: 25px; border-radius: 15px; margin: 25px 0;">
+                <h4 style="font-size: 1.3em; margin-bottom: 15px;">🚨 Intelligent Alert System</h4>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                    <div>
+                        <h5 style="margin-bottom: 10px;">Statistical Significance Alerts:</h5>
+                        <ul style="font-size: 0.95em; line-height: 1.4;">
+                            <li>95% confidence level achieved</li>
+                            <li>Early indicators of strong signals</li>
+                            <li>Negative results requiring immediate attention</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 style="margin-bottom: 10px;">Technical Health Alerts:</h5>
+                        <ul style="font-size: 0.95em; line-height: 1.4;">
+                            <li>JavaScript errors or tracking failures</li>
+                            <li>Unexpected traffic patterns</li>
+                            <li>Sample ratio distribution issues</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #fff3cd; padding: 20px; border-radius: 10px; border: 2px solid #ffc107;">
+                <h4 style="color: #856404; margin-bottom: 10px;">💡 BB&B Dashboard Experience Applied</h4>
+                <p style="color: #856404; line-height: 1.5;">
+                    At Bed Bath & Beyond, I created dynamic merchandising dashboards in Tableau that automatically updated stakeholders on performance metrics. Our automated ROI tracking showed the optimization program delivered 10x+ return, which secured executive support for program expansion. I'd apply the same approach here.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Expected Results & Next Steps -->
+    <div class="slide">
+        <div class="slide-header">
+            <div class="slide-number">Slide 10 of 10</div>
+            <h2 class="slide-title">🎯 Expected Impact & Why I'm Excited</h2>
+        </div>
+
+        <div class="content-section">
+            <div class="results-summary">
+                <h3 style="font-size: 1.8em; margin-bottom: 20px;">Projected Business Impact</h3>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <div class="result-value">12%+</div>
+                        <div class="result-label">Conversion Recovery</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value">$150K-200K</div>
+                        <div class="result-label">Monthly Revenue</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value">$1.8M-2.4M</div>
+                        <div class="result-label">Annual Impact</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-value">15-20x</div>
+                        <div class="result-label">ROI</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin: 25px 0;">
+                <div>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">🔍 My Optimization Philosophy</h3>
+                    <ul>
+                        <li><strong>Customer psychology first:</strong> Understanding user motivations drives better results</li>
+                        <li><strong>Data-driven hypotheses:</strong> Combining quantitative analysis with qualitative insights</li>
+                        <li><strong>Sequential learning:</strong> Each test teaches us about our customers</li>
+                        <li><strong>Risk management:</strong> Protecting current revenue while optimizing for growth</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">🚀 Next Steps (Week 1)</h3>
+                    <ul>
+                        <li>Complete Adobe Analytics and Quantum Metric analysis</li>
+                        <li>Finalize hypothesis validation with stakeholders</li>
+                        <li>Coordinate with UX/development teams</li>
+                        <li>Set up Adobe Target configurations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4>💼 Why I'm Excited About This Challenge</h4>
+                <p>This case study represents exactly the type of strategic optimization work I'm passionate about - combining analytical rigor with customer psychology to drive meaningful business results. My systematic approach, proven BB&B experience, and collaborative mindset would help Solvd not only recover from this conversion crisis but establish a competitive advantage through data-driven optimization practices. I'm confident we can exceed the 12% recovery target.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; padding: 20px; background: #2c3e50; color: white; border-radius: 10px;">
+                <h3>Thank you for your consideration</h3>
+                <p style="font-size: 1.1em; margin-top: 10px;">I look forward to discussing this strategy in detail and answering any questions.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
