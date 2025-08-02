@@ -830,39 +830,145 @@ var visitor = Visitor.getInstance("ORG_ID@AdobeOrg", {
                     
                     <div class="space-y-6">
                         <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
-                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Explain the difference between A/B testing and Multivariate testing in Adobe Target.</h4>
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Explain the difference between A/B testing and Multivariate testing in Adobe Target, using Panera's mobile app as an example.</h4>
                             <div class="bg-neutral-50 p-4 rounded-lg">
-                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
                                 <p class="text-neutral-700 mb-3">
-                                    A/B testing compares two or more complete page variations where each visitor sees one full experience. 
-                                    It's ideal for testing major design changes or completely different layouts.
+                                    Think of A/B testing like comparing two completely different restaurant menus. You show half your customers Menu A and half your customers Menu B, then see which one sells more food.
                                 </p>
                                 <p class="text-neutral-700 mb-3">
-                                    Multivariate testing (MVT) tests multiple elements simultaneously on the same page, showing how different 
-                                    combinations of changes work together. For example, testing 3 headlines × 2 images × 2 CTAs = 12 combinations.
+                                    Multivariate testing is like testing different parts of the same menu at once - different colors, different fonts, different pictures, and different prices - all mixed together to see which combination works best.
                                 </p>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="p-4 bg-blue-50 rounded-lg border">
+                                        <h5 class="font-semibold text-blue-900 mb-2">🍞 A/B Testing Example - Panera App Homepage</h5>
+                                        <ul class="text-sm text-blue-700 space-y-1">
+                                            <li><strong>Version A:</strong> Shows "Order Now" button prominently at top</li>
+                                            <li><strong>Version B:</strong> Shows menu categories first, then order button</li>
+                                            <li><strong>Result:</strong> See which gets more people to start ordering</li>
+                                        </ul>
+                                        <p class="text-xs text-blue-600 mt-2"><strong>When to use:</strong> Testing big changes like complete page redesigns</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h5 class="font-semibold text-green-900 mb-2">🥗 Multivariate Testing Example - Panera Menu Page</h5>
+                                        <ul class="text-sm text-green-700 space-y-1">
+                                            <li><strong>3 Headlines:</strong> "Fresh Today", "Made to Order", "Healthy Choice"</li>
+                                            <li><strong>2 Images:</strong> Salad photo vs. Sandwich photo</li>
+                                            <li><strong>2 Buttons:</strong> "Add to Cart" vs. "Order Now"</li>
+                                            <li><strong>Result:</strong> 12 combinations total (3×2×2)</li>
+                                        </ul>
+                                        <p class="text-xs text-green-600 mt-2"><strong>When to use:</strong> Testing small changes on elements that work together</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                                    <h5 class="font-semibold text-amber-900 mb-2">📊 Traffic Requirements for Panera</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div>
+                                            <p class="font-medium text-amber-800">A/B Testing:</p>
+                                            <ul class="text-amber-700 space-y-1">
+                                                <li>• Needs: ~10,000 visitors per month</li>
+                                                <li>• Perfect for: New mobile app features</li>
+                                                <li>• Example: Testing new checkout flow</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-amber-800">Multivariate Testing:</p>
+                                            <ul class="text-amber-700 space-y-1">
+                                                <li>• Needs: ~100,000+ visitors per month</li>
+                                                <li>• Perfect for: Optimizing menu presentation</li>
+                                                <li>• Example: Testing item descriptions + photos</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
-                                    <p class="text-blue-700 text-sm"><strong>Key Point:</strong> Use A/B for major changes with moderate traffic; use MVT for optimizing multiple elements with high traffic.</p>
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> Use A/B testing for major mobile app updates (like new ordering flow). Use Multivariate when you have high traffic and want to optimize multiple small elements on popular pages like the menu or homepage.</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
-                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How do you handle implementation when VEC cannot load a page?</h4>
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How do you handle implementation when VEC (Visual Experience Composer) cannot load Panera's mobile app or website pages?</h4>
                             <div class="bg-neutral-50 p-4 rounded-lg">
-                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
                                 <p class="text-neutral-700 mb-3">
-                                    When VEC fails to load, I use the Form-Based Experience Composer as an alternative. 
-                                    This involves working directly with mboxes and requires closer collaboration with developers.
+                                    Imagine VEC is like a magic window that lets you see and change Panera's website easily by clicking and dragging. Sometimes this magic window gets blocked - like when there's a "Do Not Enter" sign. When this happens, we have backup ways to make changes.
                                 </p>
-                                <div class="space-y-2 mt-3">
-                                    <p class="text-neutral-700"><strong>Common VEC issues and solutions:</strong></p>
-                                    <ul class="text-neutral-700 space-y-1 ml-4">
-                                        <li>• X-Frame-Options blocking → Use Enhanced Experience Composer</li>
-                                        <li>• Mixed content (HTTP/HTTPS) → Update protocol settings</li>
-                                        <li>• Single Page Apps → Implement SPA support with at.js 2.x</li>
-                                        <li>• Authentication required → Set up VEC helper extension</li>
-                                    </ul>
+                                
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-3">🔧 What is VEC and Why It Might Not Work</h5>
+                                    <p class="text-sm text-blue-700 mb-2">
+                                        VEC is Adobe Target's visual editor - think of it like a drag-and-drop website builder. You can click on Panera's "Order Now" button and change it to "Start Your Order" without writing any code.
+                                    </p>
+                                    <p class="text-sm text-blue-700">
+                                        <strong>Common problems:</strong> Security settings, mobile app pages, or complex checkout flows might block VEC from loading.
+                                    </p>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h5 class="font-semibold text-green-900 mb-2">✅ Solution 1: Form-Based Experience Composer</h5>
+                                        <p class="text-sm text-green-700 mb-2"><strong>What it is:</strong> Like a text-based control panel instead of drag-and-drop</p>
+                                        <p class="text-sm text-green-700 mb-2"><strong>Panera Example:</strong></p>
+                                        <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>{
+  "mbox": "panera-checkout-step1",
+  "offer": {
+    "type": "html",
+    "content": "&lt;div class='special-offer'&gt;
+      🥖 Free cookie with orders over $15!
+    &lt;/div&gt;"
+  }
+}</code></pre>
+                                        <p class="text-xs text-green-600 mt-1">This adds a special offer message to Panera's checkout page</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-amber-50 rounded-lg border">
+                                        <h5 class="font-semibold text-amber-900 mb-2">⚡ Solution 2: Enhanced Experience Composer</h5>
+                                        <p class="text-sm text-amber-700 mb-2"><strong>What it is:</strong> A proxy that tricks security settings</p>
+                                        <p class="text-sm text-amber-700 mb-2"><strong>How it works:</strong> Adobe's servers load Panera's page first, then show it to you</p>
+                                        <ul class="text-xs text-amber-700 space-y-1">
+                                            <li>• Bypasses security blocks</li>
+                                            <li>• Works with login-protected pages</li>
+                                            <li>• Good for testing MyPanera member pages</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 space-y-3">
+                                    <h5 class="font-semibold text-neutral-900">🚨 Common Panera-Specific Issues & Solutions:</h5>
+                                    
+                                    <div class="p-3 bg-red-50 rounded-lg border border-red-200">
+                                        <p class="font-medium text-red-900">Problem: Panera's mobile app pages won't load in VEC</p>
+                                        <p class="text-sm text-red-700 mt-1"><strong>Solution:</strong> Use Form-Based Composer with mobile-specific mboxes like "mobile-menu-header" or "mobile-cart-summary"</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                                        <p class="font-medium text-orange-900">Problem: MyPanera login pages block VEC</p>
+                                        <p class="text-sm text-orange-700 mt-1"><strong>Solution:</strong> Enable Enhanced Experience Composer and use VEC Helper extension in Chrome</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                                        <p class="font-medium text-yellow-900">Problem: Panera's checkout flow is a Single Page App (SPA)</p>
+                                        <p class="text-sm text-yellow-700 mt-1"><strong>Solution:</strong> Use at.js 2.x with SPA support and implement triggerView() for each checkout step</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h5 class="font-semibold text-purple-900 mb-2">🎯 Real Panera Scenario</h5>
+                                    <p class="text-sm text-purple-700">
+                                        <strong>Situation:</strong> You want to test a "Free Delivery" banner on Panera's mobile checkout, but VEC won't load because of security settings.
+                                    </p>
+                                    <p class="text-sm text-purple-700 mt-2">
+                                        <strong>Action:</strong> Use Form-Based Composer to target the "mobile-checkout-header" mbox and inject the banner HTML. Work with Panera's developers to make sure the mbox is placed correctly.
+                                    </p>
+                                </div>
+
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> Always have a backup plan! About 30% of enterprise sites (like Panera's) have VEC issues. Master Form-Based Composer and build good relationships with developers - you'll need both to succeed.</p>
                                 </div>
                             </div>
                         </div>
@@ -1136,47 +1242,1534 @@ function onRouteChange(newView) {
                         </div>
 
                         <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
-                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How do you handle cross-domain tracking and implementation?</h4>
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How do you handle cross-domain tracking for Panera's ecosystem (website, mobile app, and catering site)?</h4>
                             <div class="bg-neutral-50 p-4 rounded-lg">
-                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
                                 <p class="text-neutral-700 mb-3">
-                                    Cross-domain tracking requires careful coordination between Target, Analytics, and the Visitor ID service to maintain visitor identity across domains.
+                                    Imagine a customer starts ordering on Panera's website, then switches to the mobile app, then finishes on the catering site. Cross-domain tracking is like having a digital ID card that follows them everywhere so we know it's the same person and can show them relevant experiences.
                                 </p>
-                                <div class="space-y-3">
-                                    <div>
-                                        <p class="font-medium text-neutral-900">Implementation Steps:</p>
-                                        <ol class="text-sm text-neutral-700 space-y-1 ml-4">
-                                            <li>1. Configure Visitor ID service with all domains</li>
-                                            <li>2. Set up consistent at.js implementation across domains</li>
-                                            <li>3. Configure cross-domain settings in Target</li>
-                                            <li>4. Implement proper URL parameter passing</li>
-                                            <li>5. Test visitor identity persistence</li>
-                                        </ol>
+                                
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-3">🌐 Panera's Digital Ecosystem</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-blue-900">Main Website</p>
+                                            <p class="text-blue-700">panerabread.com</p>
+                                            <p class="text-xs text-blue-600">Menu browsing, locations</p>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-blue-900">Mobile App</p>
+                                            <p class="text-blue-700">Native iOS/Android</p>
+                                            <p class="text-xs text-blue-600">Quick ordering, MyPanera</p>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-blue-900">Catering Site</p>
+                                            <p class="text-blue-700">catering.panerabread.com</p>
+                                            <p class="text-xs text-blue-600">Business orders</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p class="font-medium text-neutral-900">Code Example:</p>
-                                        <pre class="text-xs bg-white p-3 rounded border mt-1 overflow-x-auto"><code>// Visitor ID service configuration
-var visitor = Visitor.getInstance("ORG_ID@AdobeOrg", {
-    trackingServer: "metrics.company.com",
-    trackingServerSecure: "smetrics.company.com",
-    marketingCloudServer: "dpm.demdex.net",
-    marketingCloudServerSecure: "dpm.demdex.net"
-});
+                                </div>
 
-// Cross-domain URL parameters
-var appendVisitorIDsTo = visitor.appendVisitorIDsTo;
-link.href = appendVisitorIDsTo(link.href);</code></pre>
+                                <div class="space-y-4 mt-4">
+                                    <h5 class="font-semibold text-neutral-900">🔗 Implementation Steps for Panera</h5>
+                                    
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h6 class="font-medium text-green-900 mb-2">Step 1: Set Up Visitor ID Service</h6>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Configuration for all Panera domains
+var visitor = Visitor.getInstance("PANERA_ORG_ID@AdobeOrg", {
+    trackingServer: "metrics.panerabread.com",
+    trackingServerSecure: "smetrics.panerabread.com",
+    marketingCloudServer: "dpm.demdex.net",
+    marketingCloudServerSecure: "dpm.demdex.net",
+    // Include all Panera domains
+    cookieDomain: ".panerabread.com"
+});</code></pre>
+                                        <p class="text-xs text-green-700 mt-2">This creates a shared identity across panerabread.com, catering.panerabread.com, and rewards.panerabread.com</p>
                                     </div>
-                                    <div>
-                                        <p class="font-medium text-neutral-900">Common Challenges:</p>
-                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
-                                            <li>• Cookie domain restrictions</li>
-                                            <li>• Safari ITP (Intelligent Tracking Prevention)</li>
-                                            <li>• Subdomain vs. different domain scenarios</li>
-                                            <li>• Mobile app to web transitions</li>
-                                            <li>• GDPR compliance considerations</li>
+                                    
+                                    <div class="p-4 bg-amber-50 rounded-lg border">
+                                        <h6 class="font-medium text-amber-900 mb-2">Step 2: Cross-Domain Link Tracking</h6>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// When customer clicks from main site to catering
+function trackCrossDomainClick(cateringLink) {
+    // Add visitor ID to URL
+    var visitor = Visitor.getInstance("PANERA_ORG_ID@AdobeOrg");
+    cateringLink.href = visitor.appendVisitorIDsTo(cateringLink.href);
+    
+    // Example result:
+    // catering.panerabread.com/order?MCMID=12345&MCORGID=PANERA_ORG_ID
+}</code></pre>
+                                        <p class="text-xs text-amber-700 mt-2">This ensures when someone clicks "Order Catering" on the main site, their identity carries over</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-purple-50 rounded-lg border">
+                                        <h6 class="font-medium text-purple-900 mb-2">Step 3: Mobile App Integration</h6>
+                                        <div class="text-sm text-purple-700 space-y-2">
+                                            <p><strong>Challenge:</strong> Mobile apps can't use regular cookies like websites</p>
+                                            <p><strong>Solution:</strong> Use Adobe Mobile SDK to sync identities between app and web</p>
+                                            <pre class="text-xs bg-white p-2 rounded border mt-2"><code>// iOS Swift example
+let visitorId = AdobeExperienceSDK.getVisitorID()
+// Pass this ID when opening web views in app</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
+                                    <h5 class="font-semibold text-red-900 mb-3">🚨 Real Panera Challenges & Solutions</h5>
+                                    <div class="space-y-3 text-sm">
+                                        <div>
+                                            <p class="font-medium text-red-800">Challenge: Safari blocks third-party cookies</p>
+                                            <p class="text-red-700">Solution: Use first-party data collection and server-side tracking for Panera's domains</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-red-800">Challenge: Customer orders on phone, picks up via website</p>
+                                            <p class="text-red-700">Solution: Link accounts through MyPanera login - both mobile and web tie to same account ID</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-red-800">Challenge: GDPR compliance for European customers</p>
+                                            <p class="text-red-700">Solution: Implement consent management and honor opt-out preferences across all domains</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-semibold text-green-900 mb-2">🎯 Panera Success Story Example</h5>
+                                    <p class="text-sm text-green-700">
+                                        <strong>Scenario:</strong> Sarah browses sandwiches on panerabread.com, then opens the mobile app to place an order, but gets interrupted. Later, she visits catering.panerabread.com for a work lunch.
+                                    </p>
+                                    <p class="text-sm text-green-700 mt-2">
+                                        <strong>With Cross-Domain Tracking:</strong> The catering site knows she likes sandwiches and shows sandwich platters first. Her MyPanera points and preferences carry over everywhere.
+                                    </p>
+                                    <p class="text-sm text-green-700 mt-2">
+                                        <strong>Result:</strong> Higher conversion rate because experiences feel connected and personalized.
+                                    </p>
+                                </div>
+
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> Cross-domain tracking is crucial for Panera's multi-touchpoint customer journey. Focus on MyPanera account linking as your primary identity connector, with technical tracking as backup. Test cross-domain experiences regularly - about 40% of Panera customers use multiple touchpoints before ordering.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Explain how you would implement Adobe Target's mobile SDK for Panera's iOS and Android apps.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Think of Adobe Target's mobile SDK like a toolkit that gets built into Panera's mobile app. It's like having a smart assistant inside the app that can change what customers see - different menu layouts, special offers, or checkout flows - without updating the app in the App Store.
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-3">📱 Why Mobile SDK vs Website Tracking</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-blue-900">Website (at.js)</p>
+                                            <ul class="text-blue-700 space-y-1">
+                                                <li>• Works in web browsers</li>
+                                                <li>• Uses cookies and JavaScript</li>
+                                                <li>• Good for panerabread.com</li>
+                                            </ul>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-blue-900">Mobile SDK</p>
+                                            <ul class="text-blue-700 space-y-1">
+                                                <li>• Built into iOS/Android apps</li>
+                                                <li>• Uses app data and device IDs</li>
+                                                <li>• Perfect for Panera mobile app</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-4 mt-4">
+                                    <h5 class="font-semibold text-neutral-900">🔧 Implementation Steps for Panera App</h5>
+                                    
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h6 class="font-medium text-green-900 mb-2">Step 1: Add SDK to Panera's App</h6>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <p class="text-sm font-medium text-green-800">iOS (Swift)</p>
+                                                <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>// In Podfile
+pod 'AEPTarget'
+pod 'AEPCore'
+
+// In AppDelegate.swift
+import AEPCore
+import AEPTarget
+
+func application(_ application: UIApplication, 
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    
+    MobileCore.configureWith(appId: "PANERA_APP_ID")
+    Target.registerExtension()
+    MobileCore.start()
+    
+    return true
+}</code></pre>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-medium text-green-800">Android (Java)</p>
+                                                <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>// In build.gradle
+implementation 'com.adobe.marketing.mobile:target:2.+'
+implementation 'com.adobe.marketing.mobile:core:2.+'
+
+// In MainApplication.java
+import com.adobe.marketing.mobile.MobileCore;
+import com.adobe.marketing.mobile.Target;
+
+@Override
+public void onCreate() {
+    super.onCreate();
+    MobileCore.setApplication(this);
+    MobileCore.configureWithAppID("PANERA_APP_ID");
+    Target.registerExtension();
+    MobileCore.start(null);
+}</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-amber-50 rounded-lg border">
+                                        <h6 class="font-medium text-amber-900 mb-2">Step 2: Set Up Target Locations in Panera App</h6>
+                                        <p class="text-sm text-amber-700 mb-2">Target locations are like placeholders where you can inject different content</p>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// iOS Swift - Request content for menu screen
+let request = TargetRequest(mboxName: "panera-mobile-menu-header", 
+                           defaultContent: "Welcome to Panera!") { content in
+    // Update UI with personalized content
+    DispatchQueue.main.async {
+        self.headerLabel.text = content
+    }
+}
+
+Target.retrieveLocationContent([request]) { error in
+    if let error = error {
+        print("Target request failed: \(error)")
+    }
+}</code></pre>
+                                        <p class="text-xs text-amber-700 mt-2">This could show "Welcome back, Sarah!" for returning customers or "Try our new flatbread!" for new users</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-purple-50 rounded-lg border">
+                                        <h6 class="font-medium text-purple-900 mb-2">Step 3: Track User Actions</h6>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Track when user adds item to cart
+Target.sendNotifications([
+    TargetNotification(
+        id: "item-added-to-cart",
+        timestamp: Date().timeIntervalSince1970,
+        type: .click,
+        mbox: TargetMbox(name: "panera-add-to-cart"),
+        parameters: [
+            "item_name": "Broccoli Cheddar Soup",
+            "item_price": "8.99",
+            "category": "soups"
+        ]
+    )
+])</code></pre>
+                                        <p class="text-xs text-purple-700 mt-2">This tells Adobe Target what the customer likes so future recommendations are better</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h5 class="font-semibold text-orange-900 mb-3">🍞 Real Panera Mobile App Use Cases</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="space-y-2">
+                                            <p class="font-medium text-orange-800">Personalized Menu</p>
+                                            <ul class="text-orange-700 space-y-1">
+                                                <li>• Show breakfast items in morning</li>
+                                                <li>• Highlight customer's favorite soups</li>
+                                                <li>• Feature seasonal items</li>
+                                                <li>• Hide sold-out items</li>
+                                            </ul>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <p class="font-medium text-orange-800">Smart Promotions</p>
+                                            <ul class="text-orange-700 space-y-1">
+                                                <li>• "Free cookie with salad" for health-conscious users</li>
+                                                <li>• "Double points today" for loyalty members</li>
+                                                <li>• "Order ahead for quick pickup" during lunch rush</li>
+                                                <li>• Location-based promotions</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
+                                    <h5 class="font-semibold text-red-900 mb-2">⚠️ Common Panera Mobile Implementation Challenges</h5>
+                                    <div class="space-y-2 text-sm text-red-700">
+                                        <p><strong>Challenge:</strong> App store review delays when updating experiences</p>
+                                        <p><strong>Solution:</strong> Use Target to change content without app updates - only change text, images, and layout, not core functionality</p>
+                                        
+                                        <p class="mt-2"><strong>Challenge:</strong> Offline ordering when customer has no internet</p>
+                                        <p><strong>Solution:</strong> Cache last known personalization rules and gracefully fall back to default content</p>
+                                        
+                                        <p class="mt-2"><strong>Challenge:</strong> Privacy concerns with tracking</p>
+                                        <p><strong>Solution:</strong> Use MyPanera opt-in preferences and be transparent about personalization benefits</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> Mobile SDK implementation requires close partnership with app developers. Start with simple content changes (text, images) before attempting complex layout modifications. Mobile apps typically see 3-5x higher engagement than web, making personalization ROI very strong for Panera's frequent customers.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How would you set up and optimize Adobe Target for Panera's loyalty program (MyPanera) personalization?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    MyPanera is like having a favorite barista who remembers your usual order. Adobe Target helps us make the website and app act like that friendly barista - showing each customer their favorite foods, relevant rewards, and personalized offers based on their past visits and preferences.
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-3">🍞 MyPanera Customer Data We Can Use</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-blue-900">Order History</p>
+                                            <ul class="text-blue-700 space-y-1">
+                                                <li>• Favorite menu items</li>
+                                                <li>• Order frequency</li>
+                                                <li>• Average spending</li>
+                                                <li>• Preferred locations</li>
+                                            </ul>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-blue-900">Preferences</p>
+                                            <ul class="text-blue-700 space-y-1">
+                                                <li>• Dietary restrictions</li>
+                                                <li>• Meal times</li>
+                                                <li>• Delivery vs pickup</li>
+                                                <li>• Communication preferences</li>
+                                            </ul>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-blue-900">Loyalty Status</p>
+                                            <ul class="text-blue-700 space-y-1">
+                                                <li>• Points balance</li>
+                                                <li>• Membership tier</li>
+                                                <li>• Rewards earned</li>
+                                                <li>• Birthday month</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-4 mt-4">
+                                    <h5 class="font-semibold text-neutral-900">🎯 Setting Up MyPanera Personalization</h5>
+                                    
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h6 class="font-medium text-green-900 mb-2">Step 1: Create Customer Profile Scripts</h6>
+                                        <p class="text-sm text-green-700 mb-2">Profile scripts analyze customer data and create simple labels we can use for targeting</p>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Profile Script: Customer Type
+var totalOrders = user.get('mypanera.totalOrders') || 0;
+var avgOrderValue = user.get('mypanera.avgOrderValue') || 0;
+var daysSinceLastOrder = user.get('mypanera.daysSinceLastOrder') || 999;
+
+// Categorize customer
+if (totalOrders >= 50 && avgOrderValue >= 12) {
+    return 'vip_customer';
+} else if (totalOrders >= 10) {
+    return 'regular_customer';
+} else if (daysSinceLastOrder > 30) {
+    return 'at_risk_customer';
+} else {
+    return 'new_customer';
+}</code></pre>
+                                        <p class="text-xs text-green-700 mt-2">This creates simple customer categories: VIP, Regular, At-Risk, or New</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-amber-50 rounded-lg border">
+                                        <h6 class="font-medium text-amber-900 mb-2">Step 2: Create Food Preference Profiles</h6>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Profile Script: Food Preferences
+var soupOrders = user.get('mypanera.soupOrders') || 0;
+var saladOrders = user.get('mypanera.saladOrders') || 0;
+var sandwichOrders = user.get('mypanera.sandwichOrders') || 0;
+var bakeryOrders = user.get('mypanera.bakeryOrders') || 0;
+
+// Find their favorite category
+var maxOrders = Math.max(soupOrders, saladOrders, sandwichOrders, bakeryOrders);
+
+if (maxOrders === soupOrders) return 'soup_lover';
+if (maxOrders === saladOrders) return 'health_conscious';
+if (maxOrders === sandwichOrders) return 'sandwich_fan';
+if (maxOrders === bakeryOrders) return 'bakery_enthusiast';
+
+return 'variety_seeker';</code></pre>
+                                        <p class="text-xs text-amber-700 mt-2">This helps us show relevant menu sections first</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-purple-50 rounded-lg border">
+                                        <h6 class="font-medium text-purple-900 mb-2">Step 3: Set Up Audience Targeting</h6>
+                                        <div class="space-y-3 text-sm">
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-purple-800">VIP Customers Experience</p>
+                                                <ul class="text-purple-700 space-y-1">
+                                                    <li>• Show "Welcome back, [Name]!" with quick reorder</li>
+                                                    <li>• Highlight exclusive menu items</li>
+                                                    <li>• Display current points balance prominently</li>
+                                                    <li>• Offer early access to seasonal items</li>
+                                                </ul>
+                                            </div>
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-purple-800">At-Risk Customers Experience</p>
+                                                <ul class="text-purple-700 space-y-1">
+                                                    <li>• Show "We miss you!" message</li>
+                                                    <li>• Offer comeback discount (20% off)</li>
+                                                    <li>• Highlight their previous favorite items</li>
+                                                    <li>• Simplify ordering process</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h5 class="font-semibold text-orange-900 mb-3">🏆 Advanced MyPanera Personalization Examples</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="space-y-3">
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-orange-800">Smart Recommendations</p>
+                                                <p class="text-orange-700">"Since you love Broccoli Cheddar Soup, try our new Loaded Baked Potato Soup!"</p>
+                                            </div>
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-orange-800">Weather-Based Offers</p>
+                                                <p class="text-orange-700">"Cold day? Your favorite soup is 20% off with MyPanera!"</p>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-orange-800">Time-Based Personalization</p>
+                                                <p class="text-orange-700">"Running late for work? Your usual coffee + bagel is ready for quick pickup!"</p>
+                                            </div>
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-orange-800">Milestone Celebrations</p>
+                                                <p class="text-orange-700">"Happy Birthday! Enjoy a free pastry on us - you've earned it!"</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
+                                    <h5 class="font-semibold text-red-900 mb-2">🔒 Privacy and Data Considerations</h5>
+                                    <div class="space-y-2 text-sm text-red-700">
+                                        <p><strong>Always respect customer privacy:</strong></p>
+                                        <ul class="ml-4 space-y-1">
+                                            <li>• Only use data customers explicitly shared with MyPanera</li>
+                                            <li>• Provide clear opt-out options for personalization</li>
+                                            <li>• Never make customers feel "watched" - keep personalization helpful, not creepy</li>
+                                            <li>• Follow CCPA and GDPR guidelines for customer data</li>
                                         </ul>
                                     </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-semibold text-green-900 mb-2">📈 Success Metrics for MyPanera Personalization</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-green-700">
+                                        <div>
+                                            <p class="font-medium text-green-800">Engagement Metrics</p>
+                                            <ul class="space-y-1">
+                                                <li>• Click-through rate on recommendations</li>
+                                                <li>• Time spent browsing menu</li>
+                                                <li>• Return visit frequency</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-green-800">Business Metrics</p>
+                                            <ul class="space-y-1">
+                                                <li>• Average order value increase</li>
+                                                <li>• Customer lifetime value growth</li>
+                                                <li>• MyPanera signup conversion rate</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> MyPanera personalization is your biggest opportunity for impact. Focus on making loyal customers feel valued while gently encouraging new customers to join the program. A 5% increase in MyPanera engagement typically drives 15-20% revenue growth. Start with simple welcome messages and build complexity based on results.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How would you implement server-side delivery (Delivery API) for Panera's headless commerce platform?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Sometimes Panera's mobile app or website needs to be super fast, so instead of waiting for the customer's browser to ask Adobe Target for personalization, Panera's servers ask Adobe Target first and deliver the personalized content instantly. It's like having the restaurant prepare your usual order before you even walk in.
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-3">🏗️ When Panera Needs Server-Side Delivery</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-blue-900">Performance Critical</p>
+                                            <ul class="text-blue-700 space-y-1">
+                                                <li>• Mobile app loading screens</li>
+                                                <li>• Homepage hero banners</li>
+                                                <li>• Checkout flow optimization</li>
+                                                <li>• Email campaign personalization</li>
+                                            </ul>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-blue-900">Technical Requirements</p>
+                                            <ul class="text-blue-700 space-y-1">
+                                                <li>• SEO-friendly personalization</li>
+                                                <li>• No client-side JavaScript</li>
+                                                <li>• Legacy system integration</li>
+                                                <li>• Enterprise content management</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-4 mt-4">
+                                    <h5 class="font-semibold text-neutral-900">🔧 Server-Side Implementation for Panera</h5>
+                                    
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h6 class="font-medium text-green-900 mb-2">Step 1: Set Up Delivery API Endpoint</h6>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Node.js example for Panera's backend
+const axios = require('axios');
+
+async function getPaneraPersonalization(customerId, location, mboxes) {
+    const deliveryRequest = {
+        context: {
+            channel: "web",
+            application: {
+                id: "panera-website"
+            },
+            screen: {
+                width: 1200,
+                height: 800
+            }
+        },
+        id: {
+            customerIds: [{
+                id: customerId,
+                integrationCode: "mypanera_id",
+                authenticatedState: "authenticated"
+            }]
+        },
+        execute: {
+            mboxes: mboxes.map(mbox => ({
+                name: mbox.name,
+                index: mbox.index,
+                parameters: {
+                    "location": location,
+                    "customer_tier": "gold", // from MyPanera data
+                    "favorite_category": "soups" // from order history
+                }
+            }))
+        }
+    };
+
+    const response = await axios.post(
+        'https://panerabread.tt.omtrdc.net/rest/v1/delivery',
+        deliveryRequest,
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer YOUR_ACCESS_TOKEN'
+            }
+        }
+    );
+
+    return response.data;
+}</code></pre>
+                                        <p class="text-xs text-green-700 mt-2">This requests personalized content for multiple locations on Panera's site</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-amber-50 rounded-lg border">
+                                        <h6 class="font-medium text-amber-900 mb-2">Step 2: Process and Render Content</h6>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Express.js route handler
+app.get('/menu/:location', async (req, res) => {
+    const customerId = req.session.mypanera_id;
+    const location = req.params.location;
+    
+    // Request personalized content
+    const mboxes = [
+        { name: 'panera-menu-hero', index: 1 },
+        { name: 'panera-featured-items', index: 2 },
+        { name: 'panera-promotions', index: 3 }
+    ];
+    
+    try {
+        const targetResponse = await getPaneraPersonalization(customerId, location, mboxes);
+        
+        // Extract offers from response
+        const offers = {};
+        targetResponse.execute.mboxes.forEach(mbox => {
+            if (mbox.options && mbox.options.length > 0) {
+                offers[mbox.name] = mbox.options[0].content;
+            }
+        });
+        
+        // Render page with personalized content
+        res.render('menu', {
+            location: location,
+            heroContent: offers['panera-menu-hero'] || 'Welcome to Panera!',
+            featuredItems: offers['panera-featured-items'] || defaultFeatured,
+            promotions: offers['panera-promotions'] || defaultPromotions
+        });
+        
+    } catch (error) {
+        console.error('Target request failed:', error);
+        // Fallback to default content
+        res.render('menu', { location: location, ...defaultContent });
+    }
+});</code></pre>
+                                        <p class="text-xs text-amber-700 mt-2">This delivers personalized menu content directly in the HTML</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-purple-50 rounded-lg border">
+                                        <h6 class="font-medium text-purple-900 mb-2">Step 3: Track Activities Server-Side</h6>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Send notifications back to Target
+async function trackPaneraActivity(customerId, activityId, experienceId) {
+    const notificationRequest = {
+        context: {
+            channel: "web",
+            application: { id: "panera-website" }
+        },
+        id: {
+            customerIds: [{
+                id: customerId,
+                integrationCode: "mypanera_id"
+            }]
+        },
+        notifications: [{
+            id: "order-completed",
+            timestamp: Date.now(),
+            type: "click",
+            mbox: {
+                name: "panera-checkout-complete"
+            },
+            tokens: [experienceId], // from previous response
+            parameters: {
+                "order_value": "23.45",
+                "items_ordered": "soup,sandwich,cookie"
+            }
+        }]
+    };
+
+    await axios.post(
+        'https://panerabread.tt.omtrdc.net/rest/v1/delivery',
+        notificationRequest
+    );
+}</code></pre>
+                                        <p class="text-xs text-purple-700 mt-2">This tells Target when customers complete actions, improving future personalization</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h5 class="font-semibold text-orange-900 mb-3">🍞 Real Panera Server-Side Use Cases</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="space-y-2">
+                                            <p class="font-medium text-orange-800">Homepage Personalization</p>
+                                            <ul class="text-orange-700 space-y-1">
+                                                <li>• Show breakfast items for morning visitors</li>
+                                                <li>• Display local store promotions</li>
+                                                <li>• Feature customer's favorite categories</li>
+                                                <li>• Weather-based menu suggestions</li>
+                                            </ul>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <p class="font-medium text-orange-800">Email Campaigns</p>
+                                            <ul class="text-orange-700 space-y-1">
+                                                <li>• Personalized menu recommendations</li>
+                                                <li>• Location-specific offers</li>
+                                                <li>• Loyalty tier-based promotions</li>
+                                                <li>• Abandoned cart recovery</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
+                                    <h5 class="font-semibold text-red-900 mb-2">⚡ Performance Benefits for Panera</h5>
+                                    <div class="space-y-2 text-sm text-red-700">
+                                        <p><strong>Speed Improvements:</strong></p>
+                                        <ul class="ml-4 space-y-1">
+                                            <li>• No client-side JavaScript delays</li>
+                                            <li>• Reduced page load time by 200-500ms</li>
+                                            <li>• Better mobile performance on slow connections</li>
+                                            <li>• SEO-friendly personalized content</li>
+                                        </ul>
+                                        
+                                        <p class="mt-3"><strong>Challenges to Consider:</strong></p>
+                                        <ul class="ml-4 space-y-1">
+                                            <li>• More complex server infrastructure</li>
+                                            <li>• Requires developer involvement for changes</li>
+                                            <li>• Need robust error handling and fallbacks</li>
+                                            <li>• Caching strategies become critical</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> Server-side delivery is perfect for Panera's performance-critical pages like homepage and checkout. Start with high-traffic, low-complexity personalizations. Work closely with the backend development team - they'll need to understand Target concepts. The payoff is significant: faster page loads and better conversion rates, especially on mobile.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How do you set up Adobe Target recommendations for Panera's "You might also like" and cross-selling features?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Adobe Target Recommendations is like having a smart cashier who knows exactly what to suggest. When someone orders a soup, the system automatically suggests a sandwich that goes well with it, or when someone looks at salads, it shows other healthy options they might like. It learns from millions of customer choices to make perfect suggestions.
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-3">🧠 How Recommendations Work</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                                        <div class="p-3 bg-white rounded border text-center">
+                                            <p class="font-medium text-blue-900">1. Collect Data</p>
+                                            <p class="text-blue-700">Track what customers view, add to cart, and purchase</p>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border text-center">
+                                            <p class="font-medium text-blue-900">2. Find Patterns</p>
+                                            <p class="text-blue-700">AI finds connections between items and customer preferences</p>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border text-center">
+                                            <p class="font-medium text-blue-900">3. Show Suggestions</p>
+                                            <p class="text-blue-700">Display relevant recommendations in real-time</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-4 mt-4">
+                                    <h5 class="font-semibold text-neutral-900">🍞 Setting Up Panera Recommendations</h5>
+                                    
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h6 class="font-medium text-green-900 mb-2">Step 1: Create Product Catalog Feed</h6>
+                                        <p class="text-sm text-green-700 mb-2">Upload Panera's menu items with detailed attributes</p>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Panera product feed (CSV format)
+entity.id,entity.name,entity.categoryId,entity.price,entity.calories,entity.dietary,entity.temperature
+soup001,"Broccoli Cheddar Soup","soups",8.99,360,"vegetarian","hot"
+sandwich001,"Turkey Sandwich","sandwiches",9.49,520,"","cold"
+salad001,"Caesar Salad","salads",10.99,320,"vegetarian","cold"
+bakery001,"Chocolate Chip Cookie","bakery",2.49,370,"vegetarian",""
+beverage001,"Green Tea","beverages",2.79,0,"vegan","hot"</code></pre>
+                                        <p class="text-xs text-green-700 mt-2">Include nutritional info, dietary tags, and categories for smart matching</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-amber-50 rounded-lg border">
+                                        <h6 class="font-medium text-amber-900 mb-2">Step 2: Track Customer Behavior</h6>
+                                        <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Track when customer views menu item
+mboxDefine('panera-item-view');
+mboxUpdate('panera-item-view', 
+    'entity.id=soup001',
+    'entity.categoryId=soups',
+    'entity.name=Broccoli Cheddar Soup'
+);
+
+// Track when customer adds to cart
+mboxDefine('panera-add-to-cart');
+mboxUpdate('panera-add-to-cart',
+    'entity.id=soup001',
+    'entity.purchaseId=' + orderNumber,
+    'entity.inventory=42' // items left in stock
+);
+
+// Track completed purchase
+mboxDefine('panera-purchase-complete');
+mboxUpdate('panera-purchase-complete',
+    'orderTotal=23.45',
+    'orderId=' + orderNumber,
+    'productPurchasedId=soup001,sandwich001' // comma-separated list
+);</code></pre>
+                                        <p class="text-xs text-amber-700 mt-2">This data trains the recommendation engine to understand preferences</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-purple-50 rounded-lg border">
+                                        <h6 class="font-medium text-purple-900 mb-2">Step 3: Create Recommendation Activities</h6>
+                                        <div class="space-y-3 text-sm">
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-purple-800">"People Who Viewed This Item Also Viewed"</p>
+                                                <p class="text-purple-700">Show similar items when customers browse menu</p>
+                                                <code class="text-xs bg-gray-100 px-2 py-1 rounded">Algorithm: Item-Based Collaborative Filtering</code>
+                                            </div>
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-purple-800">"Frequently Bought Together"</p>
+                                                <p class="text-purple-700">Suggest complementary items during checkout</p>
+                                                <code class="text-xs bg-gray-100 px-2 py-1 rounded">Algorithm: Cart-Based Recommendations</code>
+                                            </div>
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-purple-800">"Recommended For You"</p>
+                                                <p class="text-purple-700">Personal suggestions based on order history</p>
+                                                <code class="text-xs bg-gray-100 px-2 py-1 rounded">Algorithm: User-Based Collaborative Filtering</code>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h5 class="font-semibold text-orange-900 mb-3">🎯 Smart Panera Recommendation Scenarios</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="space-y-3">
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-orange-800">Meal Completion</p>
+                                                <p class="text-orange-700">Customer adds soup → Suggest bread or sandwich</p>
+                                                <p class="text-xs text-orange-600">Logic: "Complete your meal" recommendations</p>
+                                            </div>
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-orange-800">Seasonal Upselling</p>
+                                                <p class="text-orange-700">Summer: Salad buyers → Cold beverages</p>
+                                                <p class="text-xs text-orange-600">Logic: Weather and season-based triggers</p>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-orange-800">Dietary Preferences</p>
+                                                <p class="text-orange-700">Vegetarian items → More vegetarian options</p>
+                                                <p class="text-xs text-orange-600">Logic: Dietary restriction filtering</p>
+                                            </div>
+                                            <div class="p-3 bg-white rounded border">
+                                                <p class="font-medium text-orange-800">Value Optimization</p>
+                                                <p class="text-orange-700">High spenders → Premium items</p>
+                                                <p class="text-xs text-orange-600">Logic: Customer lifetime value targeting</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-semibold text-green-900 mb-3">📊 Advanced Recommendation Features for Panera</h5>
+                                    <div class="space-y-3 text-sm">
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-green-800">Custom Business Rules</p>
+                                            <ul class="text-green-700 space-y-1">
+                                                <li>• Never recommend sold-out items</li>
+                                                <li>• Boost new menu items for first 30 days</li>
+                                                <li>• Hide items customer previously returned</li>
+                                                <li>• Prioritize high-margin items when possible</li>
+                                            </ul>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border">
+                                            <p class="font-medium text-green-800">Multi-Location Inventory</p>
+                                            <pre class="text-xs bg-gray-50 p-2 rounded mt-1"><code>// Only recommend available items
+entity.inventory.location123=15
+entity.inventory.location456=0  // Don't show at this location</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
+                                    <h5 class="font-semibold text-red-900 mb-2">🚀 Expected Results for Panera</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-red-700">
+                                        <div>
+                                            <p class="font-medium text-red-800">Typical Improvements</p>
+                                            <ul class="space-y-1">
+                                                <li>• 15-25% increase in average order value</li>
+                                                <li>• 8-12% improvement in conversion rate</li>
+                                                <li>• 20-30% higher engagement on product pages</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-red-800">Implementation Timeline</p>
+                                            <ul class="space-y-1">
+                                                <li>• Week 1-2: Product feed setup</li>
+                                                <li>• Week 3-4: Tracking implementation</li>
+                                                <li>• Week 5-8: Algorithm training period</li>
+                                                <li>• Week 9+: Optimization and refinement</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> Recommendations are a revenue goldmine for food service. Start with simple "frequently bought together" on high-traffic pages. The system needs 2-4 weeks of data to perform well, so be patient initially. Focus on mobile experience - 60% of Panera's digital orders come from mobile, where recommendations have the highest impact on impulse purchases.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How would you implement Adobe Target Recommendations for Panera's website to show personalized menu suggestions?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Adobe Target Recommendations is like having a smart waiter who remembers what every customer ordered before and suggests similar items they might like. If someone always orders soup, it might suggest "Try our new tomato soup!" or "Customers like you also love our grilled cheese."
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-3">🤖 How Recommendations Work</h5>
+                                    <p class="text-sm text-blue-700 mb-2">
+                                        Think of it like Netflix suggesting movies, but for food! Adobe Target looks at:
+                                    </p>
+                                    <ul class="text-sm text-blue-700 space-y-1 ml-4">
+                                        <li>• What this customer ordered before ("You usually get salads")</li>
+                                        <li>• What similar customers like ("People who order Caesar salad also order...")</li>
+                                        <li>• What's popular right now ("Trending: Autumn Squash Soup")</li>
+                                        <li>• Business rules ("Always suggest high-margin items")</li>
+                                    </ul>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h5 class="font-semibold text-green-900 mb-2">🛠️ Step 1: Set Up Product Catalog</h5>
+                                        <p class="text-sm text-green-700 mb-2">Create a "menu catalog" with all Panera items</p>
+                                        <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>// Product catalog feed (CSV or JSON)
+{
+  "entity.id": "soup-broccoli-cheddar",
+  "entity.name": "Broccoli Cheddar Soup",
+  "entity.categoryId": "soups",
+  "entity.value": 8.99,
+  "entity.inventory": 50,
+  "entity.brand": "Panera",
+  "entity.message": "Our most popular soup!",
+  "entity.thumbnailUrl": "/images/broccoli-cheddar.jpg",
+  "entity.calories": 290,
+  "entity.dietary": ["vegetarian"],
+  "entity.mealType": ["lunch", "dinner"]
+}</code></pre>
+                                        <p class="text-xs text-green-600 mt-1">This tells Target all the details about each menu item</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-amber-50 rounded-lg border">
+                                        <h5 class="font-semibold text-amber-900 mb-2">⚡ Step 2: Track User Behavior</h5>
+                                        <p class="text-sm text-amber-700 mb-2">Track what customers view, add to cart, and buy</p>
+                                        <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>// Track when user views soup page
+adobe.target.trackEvent({
+  "mbox": "panera-item-view",
+  "params": {
+    "entity.id": "soup-broccoli-cheddar",
+    "entity.categoryId": "soups"
+  }
+});
+
+// Track when user adds to cart
+adobe.target.trackEvent({
+  "mbox": "panera-add-to-cart",
+  "params": {
+    "entity.id": "soup-broccoli-cheddar",
+    "entity.purchasedId": "soup-broccoli-cheddar"
+  }
+});</code></pre>
+                                        <p class="text-xs text-amber-600 mt-1">This builds each customer's preference profile</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h5 class="font-semibold text-purple-900 mb-3">🎯 Step 3: Create Recommendation Activities</h5>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="space-y-2">
+                                            <p class="font-medium text-purple-800">Homepage Recommendations</p>
+                                            <ul class="text-purple-700 space-y-1">
+                                                <li>• "Based on your last order..."</li>
+                                                <li>• "Popular with Panera members"</li>
+                                                <li>• "New items you might like"</li>
+                                                <li>• Location: Banner on homepage</li>
+                                            </ul>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <p class="font-medium text-purple-800">Cart Page Recommendations</p>
+                                            <ul class="text-purple-700 space-y-1">
+                                                <li>• "Complete your meal with..."</li>
+                                                <li>• "Customers also ordered..."</li>
+                                                <li>• "Don't forget dessert!"</li>
+                                                <li>• Location: Below cart items</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 space-y-3">
+                                    <h5 class="font-semibold text-neutral-900">🍞 Real Panera Recommendation Examples:</h5>
+                                    
+                                    <div class="p-3 bg-red-50 rounded-lg border border-red-200">
+                                        <p class="font-medium text-red-900">Customer Profile: Health-conscious salad lover</p>
+                                        <p class="text-sm text-red-700 mt-1"><strong>Recommendations:</strong> "Try our new Superfood Salad!" • "Add avocado to your Caesar" • "Low-calorie Green Goddess dressing"</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                                        <p class="font-medium text-orange-900">Customer Profile: Lunch rush regular (always soup + sandwich)</p>
+                                        <p class="text-sm text-orange-700 mt-1"><strong>Recommendations:</strong> "Your usual: Broccoli Cheddar + Half Turkey Sandwich?" • "Try our soup of the day" • "Upgrade to You Pick Two"</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                                        <p class="font-medium text-yellow-900">Customer Profile: Sweet treats person (orders pastries)</p>
+                                        <p class="text-sm text-yellow-700 mt-1"><strong>Recommendations:</strong> "New seasonal cookie available!" • "Pair your coffee with a muffin" • "Limited time: Pumpkin scone"</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h5 class="font-semibold text-orange-900 mb-2">📈 Expected Business Results for Panera</h5>
+                                    <div class="text-sm text-orange-700">
+                                        <p class="mb-2"><strong>Typical improvements from Target Recommendations:</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• <strong>Average Order Value:</strong> 15-25% increase (adding suggested sides, drinks, desserts)</li>
+                                            <li>• <strong>Click-through Rate:</strong> 3-5x higher than generic promotions</li>
+                                            <li>• <strong>Customer Satisfaction:</strong> Higher because suggestions are relevant</li>
+                                            <li>• <strong>Inventory Management:</strong> Promote items that need to sell before expiring</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> Start with "People who viewed this also viewed" recommendations on menu pages - they're easiest to implement and show quick results. Then expand to cart upselling and homepage personalization as you gather more customer data.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Explain how you would set up server-side delivery for Panera's headless commerce architecture using the Adobe Target Delivery API.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Server-side delivery is like having a chef (your server) decide what to cook before the customer even sits down at the table. Instead of the customer's phone or computer asking Adobe Target "What should I show?", your server asks that question first, gets the answer, and then sends the complete meal (webpage) to the customer.
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-3">🏗️ Why Panera Needs Server-Side Delivery</h5>
+                                    <div class="text-sm text-blue-700 space-y-2">
+                                        <p class="mb-2"><strong>Headless Commerce Problems:</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• Customer's phone can't see the backend menu system directly</li>
+                                            <li>• Need to personalize content before it reaches the mobile app</li>
+                                            <li>• Faster loading because everything is prepared server-side</li>
+                                            <li>• Works better for complex ordering flows and MyPanera integration</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h5 class="font-semibold text-green-900 mb-2">🔧 Step 1: Server Setup (Node.js Example)</h5>
+                                        <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>// Install Adobe Target SDK
+npm install @adobe/target-nodejs-sdk
+
+// Basic server setup
+const TargetClient = require("@adobe/target-nodejs-sdk");
+
+const client = TargetClient.create({
+  client: "panera",
+  organizationId: "YOUR_ORG_ID@AdobeOrg",
+  decisioningMethod: "server-side",
+  events: {
+    clientReady: () => {
+      console.log("Target ready for Panera!");
+    }
+  }
+});</code></pre>
+                                        <p class="text-xs text-green-600 mt-1">This creates a connection between Panera's servers and Adobe Target</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-amber-50 rounded-lg border">
+                                        <h5 class="font-semibold text-amber-900 mb-2">⚡ Step 2: Request Personalization</h5>
+                                        <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>// When customer visits Panera app
+async function getPaneraPersonalization(customerId, location, mboxes) {
+  const deliveryRequest = {
+    context: {
+      channel: "web",
+      application: {
+        id: "panera-website"
+      }
+    },
+    id: {
+      customerIds: [{
+        id: customerId,
+        integrationCode: "mypanera_id"
+      }]
+    },
+    execute: {
+      mboxes: mboxes.map(mbox => ({
+        name: mbox.name,
+        parameters: {
+          "location": location,
+          "customer_tier": "gold"
+        }
+      }))
+    }
+  };
+
+  const response = await client.getOffers({
+    request: deliveryRequest
+  });
+  
+  return response;
+}</code></pre>
+                                        <p class="text-xs text-amber-600 mt-1">This asks Target what to show this specific Panera customer</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h5 class="font-semibold text-purple-900 mb-3">🍞 Real Panera Implementation Example</h5>
+                                    <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Panera menu personalization endpoint
+app.get('/api/menu/:customerId', async (req, res) => {
+  const customerId = req.params.customerId;
+  const location = req.query.location || 'default';
+  
+  try {
+    // Request personalized content from Target
+    const targetResponse = await getPaneraPersonalization(
+      customerId, 
+      location,
+      [
+        { name: 'panera-menu-hero-banner' },
+        { name: 'panera-featured-items' },
+        { name: 'panera-special-offers' },
+        { name: 'panera-recommendations' }
+      ]
+    );
+    
+    // Build personalized menu response
+    const personalizedMenu = {
+      heroBanner: extractContent(targetResponse, 'panera-menu-hero-banner'),
+      featuredItems: extractContent(targetResponse, 'panera-featured-items'),
+      specialOffers: extractContent(targetResponse, 'panera-special-offers'),
+      recommendations: extractContent(targetResponse, 'panera-recommendations'),
+      baseMenu: await getBaseMenuItems(location)
+    };
+    
+    res.json(personalizedMenu);
+    
+  } catch (error) {
+    console.error('Target personalization failed:', error);
+    // Fallback to default menu
+    res.json(await getDefaultMenu(location));
+  }
+});
+
+function extractContent(targetResponse, mboxName) {
+  const mbox = targetResponse.response.execute.mboxes.find(m => m.name === mboxName);
+  return mbox?.options[0]?.content || null;
+}</code></pre>
+                                    <p class="text-xs text-purple-700 mt-2">This creates a personalized menu API that Panera's mobile app can call</p>
+                                </div>
+
+                                <div class="mt-4 space-y-3">
+                                    <h5 class="font-semibold text-neutral-900">🎯 Panera Server-Side Use Cases:</h5>
+                                    
+                                    <div class="p-3 bg-red-50 rounded-lg border border-red-200">
+                                        <p class="font-medium text-red-900">MyPanera Member Recognition</p>
+                                        <p class="text-sm text-red-700 mt-1"><strong>Server decides:</strong> "Show VIP customer their usual order" • "Display double points promotion" • "Hide items they're allergic to"</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                                        <p class="font-medium text-orange-900">Location-Based Menus</p>
+                                        <p class="text-sm text-orange-700 mt-1"><strong>Server decides:</strong> "This Boston location is out of clam chowder" • "Show local seasonal items" • "Display delivery options for this area"</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                                        <p class="font-medium text-yellow-900">Time-Based Personalization</p>
+                                        <p class="text-sm text-yellow-700 mt-1"><strong>Server decides:</strong> "It's 7 AM, show breakfast items first" • "Lunch rush: highlight quick options" • "Evening: promote family meals"</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h5 class="font-semibold text-orange-900 mb-2">⚡ Benefits for Panera's Architecture</h5>
+                                    <div class="text-sm text-orange-700">
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• <strong>Faster Loading:</strong> Everything is pre-personalized before reaching the customer</li>
+                                            <li>• <strong>SEO Friendly:</strong> Search engines can see personalized content</li>
+                                            <li>• <strong>Better Mobile Performance:</strong> Less JavaScript processing on customer's phone</li>
+                                            <li>• <strong>Consistent Experience:</strong> Same personalization across web, mobile app, and kiosks</li>
+                                            <li>• <strong>Backend Integration:</strong> Easy to connect with MyPanera systems and inventory</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> Server-side delivery is perfect for Panera's complex ordering system and MyPanera integration. Start with menu personalization APIs, then expand to checkout optimization and promotional content. It gives you more control and better performance than client-side targeting.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: How would you handle cross-domain tracking for Panera customers who visit both the main website and the catering subdomain?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Cross-domain tracking is like having a loyalty card that works at both regular Panera stores AND Panera catering. When a customer goes from panerabread.com to catering.panerabread.com, we want to remember who they are so we can keep showing them personalized content. Without this, it's like they become a stranger every time they switch between sites.
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-3">🔗 The Cross-Domain Problem</h5>
+                                    <div class="text-sm text-blue-700 space-y-2">
+                                        <p class="mb-2"><strong>What happens without cross-domain tracking:</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• Customer browses menu on panerabread.com (Target knows them as "loyal soup customer")</li>
+                                            <li>• Customer clicks "Order catering" → goes to catering.panerabread.com</li>
+                                            <li>• Target sees them as a brand new visitor (loses all personalization)</li>
+                                            <li>• Shows generic catering content instead of "We know you love our soups! Try catering-size soup options"</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h5 class="font-semibold text-green-900 mb-2">🛠️ Solution 1: Visitor ID Service Setup</h5>
+                                        <p class="text-sm text-green-700 mb-2">Use Adobe Experience Cloud ID Service (ECID) on both domains</p>
+                                        <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>// On panerabread.com AND catering.panerabread.com
+var visitor = Visitor.getInstance("PANERA_ORG_ID@AdobeOrg", {
+  trackingServer: "metrics.panerabread.com",
+  trackingServerSecure: "smetrics.panerabread.com",
+  
+  // Enable cross-domain tracking
+  whitelistParentDomain: "panerabread.com",
+  whitelistIframeDomains: [
+    "panerabread.com",
+    "catering.panerabread.com",
+    "orders.panerabread.com"
+  ]
+});
+
+// Get the visitor ID
+var visitorID = visitor.getMarketingCloudVisitorID();</code></pre>
+                                        <p class="text-xs text-green-600 mt-1">This creates a shared identity across all Panera domains</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-amber-50 rounded-lg border">
+                                        <h5 class="font-semibold text-amber-900 mb-2">⚡ Solution 2: URL Parameter Passing</h5>
+                                        <p class="text-sm text-amber-700 mb-2">Pass visitor information in URLs when switching domains</p>
+                                        <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>// On panerabread.com - when customer clicks catering link
+function navigateToCatering() {
+  // Get current visitor info
+  var visitorID = visitor.getMarketingCloudVisitorID();
+  var targetData = mboxFactoryDefault.getVisitorState();
+  
+  // Build catering URL with visitor data
+  var cateringURL = "https://catering.panerabread.com/menu?" +
+    "MCMID=" + visitorID +
+    "&MCAID=" + visitor.getAnalyticsVisitorID() +
+    "&at_property=" + targetData.at_property;
+  
+  // Navigate to catering with visitor info
+  window.open(cateringURL, '_self');
+}
+
+// On catering.panerabread.com - read visitor info from URL
+function restoreVisitorIdentity() {
+  var urlParams = new URLSearchParams(window.location.search);
+  var mcmid = urlParams.get('MCMID');
+  
+  if (mcmid) {
+    // Restore visitor identity
+    visitor.setCustomerIDs({
+      "panera_customer": {
+        "id": mcmid,
+        "authState": visitor.AuthState.AUTHENTICATED
+      }
+    });
+  }
+}</code></pre>
+                                        <p class="text-xs text-amber-600 mt-1">This manually passes visitor identity between domains</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h5 class="font-semibold text-purple-900 mb-3">🍞 Panera-Specific Implementation</h5>
+                                    <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Complete cross-domain setup for Panera
+// File: panera-cross-domain-setup.js
+
+class PaneraCrossDomainTracking {
+  constructor() {
+    this.domains = [
+      'panerabread.com',
+      'catering.panerabread.com', 
+      'orders.panerabread.com',
+      'rewards.panerabread.com'
+    ];
+    this.initializeTracking();
+  }
+  
+  initializeTracking() {
+    // Set up ECID for all Panera domains
+    this.visitor = Visitor.getInstance("PANERA_ORG_ID@AdobeOrg", {
+      trackingServer: "metrics.panerabread.com",
+      trackingServerSecure: "smetrics.panerabread.com",
+      whitelistParentDomain: "panerabread.com",
+      whitelistIframeDomains: this.domains
+    });
+    
+    // Initialize Target with cross-domain support
+    window.targetGlobalSettings = {
+      cookieDomain: ".panerabread.com", // Works for all subdomains
+      crossDomain: {
+        enabled: true,
+        iFrameEnabled: true
+      }
+    };
+  }
+  
+  // Track customer journey across domains
+  trackDomainTransition(fromDomain, toDomain, customerId) {
+    // Send event to Adobe Target
+    adobe.target.trackEvent({
+      mbox: "panera-cross-domain-transition",
+      params: {
+        "from_domain": fromDomain,
+        "to_domain": toDomain,
+        "customer_id": customerId,
+        "timestamp": Date.now()
+      }
+    });
+  }
+  
+  // Preserve customer preferences across domains
+  syncCustomerProfile(profile) {
+    // Store in shared cookie for all .panerabread.com domains
+    document.cookie = `panera_profile=${JSON.stringify(profile)}; domain=.panerabread.com; path=/; secure`;
+  }
+}</code></pre>
+                                    <p class="text-xs text-purple-700 mt-2">This creates a complete cross-domain system for all Panera properties</p>
+                                </div>
+
+                                <div class="mt-4 space-y-3">
+                                    <h5 class="font-semibold text-neutral-900">🎯 Cross-Domain Personalization Examples:</h5>
+                                    
+                                    <div class="p-3 bg-red-50 rounded-lg border border-red-200">
+                                        <p class="font-medium text-red-900">Customer Journey: Main Site → Catering</p>
+                                        <p class="text-sm text-red-700 mt-1"><strong>Personalization:</strong> "We see you love our Mediterranean Veggie Sandwich! Try our catering Mediterranean platter for your office meeting."</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                                        <p class="font-medium text-orange-900">Customer Journey: Catering → Rewards Program</p>
+                                        <p class="text-sm text-orange-700 mt-1"><strong>Personalization:</strong> "You just ordered catering for 15 people! Join MyPanera to earn 2X points on catering orders."</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                                        <p class="font-medium text-yellow-900">Customer Journey: Rewards → Main Menu</p>
+                                        <p class="text-sm text-yellow-700 mt-1"><strong>Personalization:</strong> "Welcome back, Sarah! You have 150 points. Use them on your favorite Broccoli Cheddar Soup today!"</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h5 class="font-semibold text-orange-900 mb-2">⚠️ Common Cross-Domain Issues & Solutions</h5>
+                                    <div class="text-sm text-orange-700 space-y-2">
+                                        <div>
+                                            <p class="font-medium">Problem: Safari's Intelligent Tracking Prevention (ITP) blocks cross-domain cookies</p>
+                                            <p><strong>Solution:</strong> Use CNAME tracking (metrics.panerabread.com) and first-party cookies</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Problem: Mobile app to website transitions lose identity</p>
+                                            <p><strong>Solution:</strong> Use deep links with encrypted visitor ID parameters</p>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium">Problem: Third-party domains (like franchise sites) can't share identity</p>
+                                            <p><strong>Solution:</strong> Create API endpoints to sync customer profiles via MyPanera ID</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> Cross-domain tracking is crucial for Panera's multi-property strategy. Start with ECID implementation across main domains, then add URL parameter passing for complex transitions. Test extensively on Safari and mobile devices where cross-domain restrictions are strictest.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">Q: Describe how you would set up Profile Scripts in Adobe Target to create dynamic customer segments for MyPanera members.</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    Profile Scripts are like having a smart notebook that remembers everything about each Panera customer and does math to figure out what kind of customer they are. It's like a digital waiter who remembers "This person orders salads every Tuesday, spends about $12, and always comes during lunch rush - they're a healthy lunch regular!"
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-3">🧠 What Profile Scripts Do</h5>
+                                    <div class="text-sm text-blue-700 space-y-2">
+                                        <p class="mb-2">Profile Scripts run in Adobe Target's brain and:</p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• Remember customer behavior across visits ("John ordered soup 5 times this month")</li>
+                                            <li>• Calculate customer value ("Sarah spends $15 per visit on average")</li>
+                                            <li>• Predict customer preferences ("Customers who order salads often like healthy desserts")</li>
+                                            <li>• Create smart customer groups ("VIP customers", "Breakfast people", "Sweet tooth customers")</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                                    <div class="p-4 bg-green-50 rounded-lg border">
+                                        <h5 class="font-semibold text-green-900 mb-2">📊 Profile Script Example: Customer Type</h5>
+                                        <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>// Profile Script Name: customerType
+// Purpose: Categorize MyPanera members by behavior
+
+var totalOrders = user.get('mypanera.totalOrders') || 0;
+var avgOrderValue = user.get('mypanera.avgOrderValue') || 0;
+var favoriteCategory = user.get('mypanera.favoriteCategory') || '';
+var lastOrderDays = user.get('mypanera.daysSinceLastOrder') || 999;
+
+// Determine customer type
+if (totalOrders >= 50 && avgOrderValue >= 12) {
+  return 'vip_customer';
+} else if (favoriteCategory === 'breakfast' && totalOrders >= 10) {
+  return 'breakfast_regular';
+} else if (favoriteCategory === 'salads' && avgOrderValue <= 10) {
+  return 'health_conscious';
+} else if (lastOrderDays <= 7 && totalOrders >= 5) {
+  return 'frequent_visitor';
+} else if (totalOrders >= 3) {
+  return 'regular_customer';
+} else {
+  return 'new_customer';
+}</code></pre>
+                                        <p class="text-xs text-green-600 mt-1">This script automatically puts each customer into a category</p>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-amber-50 rounded-lg border">
+                                        <h5 class="font-semibold text-amber-900 mb-2">⏰ Profile Script Example: Time-Based Behavior</h5>
+                                        <pre class="text-xs bg-white p-2 rounded border overflow-x-auto"><code>// Profile Script Name: preferredOrderTime
+// Purpose: Track when customers usually order
+
+var currentHour = new Date().getHours();
+var orderTimes = user.get('panera.orderTimes') || [];
+
+// Add current order time to history
+orderTimes.push(currentHour);
+
+// Keep only last 20 orders to prevent data bloat
+if (orderTimes.length > 20) {
+  orderTimes = orderTimes.slice(-20);
+}
+
+// Save updated order times
+user.set('panera.orderTimes', orderTimes);
+
+// Calculate most common order time
+var timeGroups = {
+  'breakfast': 0,  // 6-11 AM
+  'lunch': 0,      // 11 AM-3 PM
+  'dinner': 0,     // 5-9 PM
+  'late_night': 0  // 9 PM-12 AM
+};
+
+orderTimes.forEach(function(hour) {
+  if (hour >= 6 && hour < 11) timeGroups.breakfast++;
+  else if (hour >= 11 && hour < 15) timeGroups.lunch++;
+  else if (hour >= 17 && hour < 21) timeGroups.dinner++;
+  else if (hour >= 21 && hour <= 23) timeGroups.late_night++;
+});
+
+// Return the most common time period
+var maxCount = 0;
+var preferredTime = 'lunch'; // default
+for (var time in timeGroups) {
+  if (timeGroups[time] > maxCount) {
+    maxCount = timeGroups[time];
+    preferredTime = time;
+  }
+}
+
+return preferredTime;</code></pre>
+                                        <p class="text-xs text-amber-600 mt-1">This remembers when each customer usually orders</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h5 class="font-semibold text-purple-900 mb-3">🍞 Advanced Profile Script: Recommendation Engine</h5>
+                                    <pre class="text-xs bg-white p-3 rounded border overflow-x-auto"><code>// Profile Script Name: nextBestOffer
+// Purpose: Predict what customer should be offered next
+
+var orderHistory = user.get('panera.recentOrders') || [];
+var customerType = user.get('profile.customerType') || 'new_customer';
+var season = user.get('panera.currentSeason') || 'spring';
+
+// Update order history with current visit
+if (mbox.param('item_ordered')) {
+  orderHistory.push({
+    item: mbox.param('item_ordered'),
+    category: mbox.param('item_category'),
+    date: new Date().toISOString().split('T')[0]
+  });
+  
+  // Keep only last 10 orders
+  if (orderHistory.length > 10) {
+    orderHistory = orderHistory.slice(-10);
+  }
+  
+  user.set('panera.recentOrders', orderHistory);
+}
+
+// Determine next best offer based on patterns
+function getNextBestOffer(history, type, season) {
+  // Count category preferences
+  var categories = {};
+  history.forEach(function(order) {
+    categories[order.category] = (categories[order.category] || 0) + 1;
+  });
+  
+  var topCategory = Object.keys(categories).reduce(function(a, b) {
+    return categories[a] > categories[b] ? a : b;
+  });
+  
+  // Business rules for recommendations
+  if (type === 'vip_customer' && topCategory === 'soups') {
+    return season === 'winter' ? 'premium_soup_combo' : 'cold_soup_special';
+  } else if (type === 'health_conscious' && topCategory === 'salads') {
+    return 'new_superfood_salad';
+  } else if (type === 'breakfast_regular') {
+    return 'coffee_pastry_bundle';
+  } else if (categories.soups && categories.sandwiches) {
+    return 'you_pick_two_upgrade';
+  } else {
+    return 'seasonal_special';
+  }
+}
+
+return getNextBestOffer(orderHistory, customerType, season);</code></pre>
+                                    <p class="text-xs text-purple-700 mt-2">This predicts what offer will work best for each customer</p>
+                                </div>
+
+                                <div class="mt-4 space-y-3">
+                                    <h5 class="font-semibold text-neutral-900">🎯 Using Profile Scripts in Audiences:</h5>
+                                    
+                                    <div class="p-3 bg-red-50 rounded-lg border border-red-200">
+                                        <p class="font-medium text-red-900">Audience: VIP Breakfast Customers</p>
+                                        <p class="text-sm text-red-700 mt-1"><strong>Conditions:</strong> profile.customerType equals "vip_customer" AND profile.preferredOrderTime equals "breakfast"</p>
+                                        <p class="text-sm text-red-700"><strong>Experience:</strong> Show premium breakfast combos and early-bird specials</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-orange-50 rounded-lg border border-orange-200">
+                                        <p class="font-medium text-orange-900">Audience: Health-Conscious Lunch Crowd</p>
+                                        <p class="text-sm text-orange-700 mt-1"><strong>Conditions:</strong> profile.customerType equals "health_conscious" AND profile.preferredOrderTime equals "lunch"</p>
+                                        <p class="text-sm text-orange-700"><strong>Experience:</strong> Highlight salads, show calorie counts, promote healthy sides</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                                        <p class="font-medium text-yellow-900">Audience: New Customers with Sweet Preference</p>
+                                        <p class="text-sm text-yellow-700 mt-1"><strong>Conditions:</strong> profile.customerType equals "new_customer" AND profile.nextBestOffer contains "pastry"</p>
+                                        <p class="text-sm text-yellow-700"><strong>Experience:</strong> Feature bakery items, show free cookie offers, highlight dessert menu</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h5 class="font-semibold text-orange-900 mb-2">⚡ Profile Script Best Practices for Panera</h5>
+                                    <div class="text-sm text-orange-700 space-y-2">
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• <strong>Keep scripts fast:</strong> Use simple calculations, avoid complex loops</li>
+                                            <li>• <strong>Limit data storage:</strong> Only keep 10-20 recent data points per customer</li>
+                                            <li>• <strong>Handle missing data:</strong> Always provide default values for new customers</li>
+                                            <li>• <strong>Use business logic:</strong> Align customer segments with Panera's marketing strategy</li>
+                                            <li>• <strong>Test thoroughly:</strong> Profile scripts affect all experiences - bugs impact everyone</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                        <h5 class="font-semibold text-blue-900 mb-2">✅ Profile Script DOs</h5>
+                                        <ul class="text-sm text-blue-700 space-y-1">
+                                            <li>• Use for customer segmentation</li>
+                                            <li>• Calculate customer lifetime value</li>
+                                            <li>• Track preference patterns</li>
+                                            <li>• Create personalization rules</li>
+                                            <li>• Update customer profiles gradually</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                                        <h5 class="font-semibold text-red-900 mb-2">❌ Profile Script DON'Ts</h5>
+                                        <ul class="text-sm text-red-700 space-y-1">
+                                            <li>• Don't store sensitive payment info</li>
+                                            <li>• Don't make external API calls</li>
+                                            <li>• Don't create infinite loops</li>
+                                            <li>• Don't store massive datasets</li>
+                                            <li>• Don't rely on them for real-time data</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-500 mt-4">
+                                    <p class="text-blue-700 text-sm"><strong>For Panera's Lead Target Specialist:</strong> Profile Scripts are your secret weapon for MyPanera personalization. Start with simple customer type classification, then add preference tracking and recommendation logic. Remember: the goal is to make each customer feel like Panera knows and remembers them personally.</p>
                                 </div>
                             </div>
                         </div>
@@ -1191,41 +2784,68 @@ link.href = appendVisitorIDsTo(link.href);</code></pre>
                     
                     <div class="space-y-6">
                         <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
-                            <h4 class="text-lg font-semibold text-primary mb-3">Scenario: Your A/B test shows a 15% conversion rate increase, but it's only been running for 3 days with 800 visitors per variant. Leadership wants to implement the winning experience immediately. How do you respond?</h4>
+                            <h4 class="text-lg font-semibold text-primary mb-3">🍞 Panera Scenario: Your mobile checkout optimization test shows a 15% conversion increase after 3 days with 800 visitors per variant. The Head of Digital wants to implement it immediately for the lunch rush season. How do you respond?</h4>
                             <div class="bg-neutral-50 p-4 rounded-lg">
-                                <p class="text-neutral-700 mb-3"><strong>Sample Answer:</strong></p>
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
                                 <p class="text-neutral-700 mb-3">
-                                    I would explain to leadership that while the early results are promising, we haven't reached statistical significance yet. 
-                                    Here's my structured approach:
+                                    This is like seeing 3 customers out of 100 buy more soup on Monday and thinking "Great! Let's change our entire soup program!" But what if Monday was just a fluke because it was cold outside? We need to see what happens over more days and more customers before making big changes.
                                 </p>
+                                
+                                <div class="mt-4 p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h5 class="font-semibold text-orange-900 mb-3">🎯 Panera-Specific Context</h5>
+                                    <p class="text-sm text-orange-700 mb-2">
+                                        <strong>Test Details:</strong> Testing a new "Quick Order" button vs. current "Add to Cart" on Panera's mobile app during breakfast and lunch hours.
+                                    </p>
+                                    <ul class="text-sm text-orange-700 space-y-1 ml-4">
+                                        <li>• Current baseline: 3.2% mobile conversion rate</li>
+                                        <li>• Test variant: 3.7% conversion rate (15% improvement)</li>
+                                        <li>• Traffic: 800 visitors per variant over 3 days</li>
+                                        <li>• Pressure: Lunch rush season starting in 2 weeks</li>
+                                    </ul>
+                                </div>
+
+                                <p class="text-neutral-700 mb-3 mt-4"><strong>Structured Response to Panera Leadership:</strong></p>
                                 <div class="space-y-3">
                                     <div>
-                                        <p class="font-medium text-neutral-900">1. Present the Risk Assessment:</p>
+                                        <p class="font-medium text-neutral-900">1. Present the Panera-Specific Risk Assessment:</p>
                                         <ul class="text-sm text-neutral-700 space-y-1 ml-4">
-                                            <li>• With only 800 visitors per variant, we're likely underpowered</li>
-                                            <li>• Early results often show false positives due to random variation</li>
-                                            <li>• Risk of implementing a change that actually hurts conversions</li>
+                                            <li>• <strong>Small Sample Size:</strong> 800 visitors is only 2-3 hours of lunch rush traffic - not representative</li>
+                                            <li>• <strong>Seasonal Risk:</strong> False positives could hurt revenue during Panera's busiest revenue period</li>
+                                            <li>• <strong>Customer Experience:</strong> A change that confuses customers during lunch rush could damage the brand</li>
+                                            <li>• <strong>Financial Impact:</strong> If we're wrong, we could lose $50,000+ in daily mobile orders</li>
                                         </ul>
                                     </div>
+                                    
                                     <div>
-                                        <p class="font-medium text-neutral-900">2. Calculate Required Sample Size:</p>
+                                        <p class="font-medium text-neutral-900">2. Calculate Required Sample Size for Panera:</p>
                                         <ul class="text-sm text-neutral-700 space-y-1 ml-4">
-                                            <li>• Show the statistical calculation for proper sample size</li>
-                                            <li>• Explain how many more visitors we need for confidence</li>
-                                            <li>• Provide a timeline for reaching significance</li>
+                                            <li>• <strong>Proper Sample:</strong> Need ~4,000 visitors per variant (95% confidence, 80% power)</li>
+                                            <li>• <strong>Timeline:</strong> With 1,000 mobile visitors/day, need 8 more days to reach significance</li>
+                                            <li>• <strong>Recommendation:</strong> Run test for 2 weeks total to capture weekday vs. weekend behavior</li>
+                                            <li>• <strong>Launch Timeline:</strong> Still have 1 week buffer before lunch rush season</li>
                                         </ul>
                                     </div>
+                                    
                                     <div>
-                                        <p class="font-medium text-neutral-900">3. Offer Alternatives:</p>
+                                        <p class="font-medium text-neutral-900">3. Panera-Specific Alternatives:</p>
                                         <ul class="text-sm text-neutral-700 space-y-1 ml-4">
-                                            <li>• Increase traffic allocation to speed up the test</li>
-                                            <li>• Implement a gradual rollout to reduce risk</li>
-                                            <li>• Set up monitoring to catch any negative impact quickly</li>
+                                            <li>• <strong>Accelerate Traffic:</strong> Increase test allocation to 50% to reach significance faster</li>
+                                            <li>• <strong>Segment Testing:</strong> Test only during off-peak hours first (8 AM - 11 AM)</li>
+                                            <li>• <strong>Geographic Rollout:</strong> Implement in 10% of locations first as a pilot</li>
+                                            <li>• <strong>Monitoring Plan:</strong> Set up real-time alerts for order completion rates</li>
                                         </ul>
                                     </div>
                                 </div>
+
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-2">💡 What You'd Say to Panera's Head of Digital:</h5>
+                                    <p class="text-sm text-blue-700">
+                                        "I understand the urgency for lunch rush season, and these early results are promising! However, 3 days isn't enough to confidently change our mobile experience for 2 million+ monthly users. Let's run this for 10 more days - we'll still have time to implement before lunch season if it wins. But if we're wrong and implement now, we could lose hundreds of thousands in mobile orders during our peak season. The smart play is to be confident in our decision."
+                                    </p>
+                                </div>
+
                                 <div class="bg-amber-50 p-3 rounded border-l-4 border-amber-500 mt-4">
-                                    <p class="text-amber-700 text-sm"><strong>Key Message:</strong> "Let's be confident in our decision with proper statistical backing to ensure long-term success rather than risking a potentially costly mistake."</p>
+                                    <p class="text-amber-700 text-sm"><strong>Key Message for Panera:</strong> "Let's protect Panera's lunch rush revenue with proper statistical backing. A few extra days of testing now could save us from losing thousands of orders during our busiest season."</p>
                                 </div>
                             </div>
                         </div>
@@ -1438,6 +3058,449 @@ link.href = appendVisitorIDsTo(link.href);</code></pre>
                                 </div>
                                 <div class="bg-orange-50 p-3 rounded border-l-4 border-orange-500 mt-4">
                                     <p class="text-orange-700 text-sm"><strong>Best Practice:</strong> Partner with local teams for cultural insights and avoid assuming global best practices will work in all markets.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">🍞 Panera Scenario: MyPanera members are complaining that your personalization test is showing them the wrong dietary recommendations. A diabetic customer received promotions for sweet pastries, and a vegan customer was shown meat-heavy You Pick Two combos. How do you diagnose and fix this?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    This is like a restaurant waiter recommending steak to a vegetarian customer because their computer system has wrong information. We need to find where our "digital waiter" (Adobe Target) is getting confused about customer preferences and fix it so everyone gets recommendations that actually make sense for them.
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
+                                    <h5 class="font-semibold text-red-900 mb-3">🚨 Crisis Context</h5>
+                                    <p class="text-sm text-red-700 mb-2">
+                                        <strong>Impact:</strong> 15% of MyPanera members are receiving inappropriate dietary recommendations
+                                    </p>
+                                    <ul class="text-sm text-red-700 space-y-1 ml-4">
+                                        <li>• Customer complaints increasing daily</li>
+                                        <li>• Social media posts about "Panera not caring about dietary needs"</li>
+                                        <li>• Potential health/safety concerns for diabetic customers</li>
+                                        <li>• Trust issues with MyPanera personalization features</li>
+                                    </ul>
+                                </div>
+
+                                <p class="text-neutral-700 mb-3 mt-4"><strong>Immediate Action Plan:</strong></p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Emergency Damage Control (First 24 Hours):</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Pause the Test:</strong> Immediately stop the personalization test to prevent further inappropriate recommendations</li>
+                                            <li>• <strong>Revert to Safe Mode:</strong> Switch to generic recommendations that don't use dietary profile data</li>
+                                            <li>• <strong>Customer Service Alert:</strong> Brief support team on the issue and provide response scripts</li>
+                                            <li>• <strong>Document Everything:</strong> Capture screenshots of inappropriate recommendations for analysis</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Root Cause Investigation:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Data Flow Audit:</strong> Check how dietary preferences flow from MyPanera account to Adobe Target</li>
+                                            <li>• <strong>Profile Script Review:</strong> Examine customer segmentation logic for dietary classification errors</li>
+                                            <li>• <strong>API Integration Check:</strong> Verify data synchronization between Panera's CRM and Target</li>
+                                            <li>• <strong>Algorithm Analysis:</strong> Review recommendation logic for dietary restriction conflicts</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Technical Diagnosis:</p>
+                                        <div class="mt-2 p-3 bg-neutral-100 rounded border">
+                                            <pre class="text-xs overflow-x-auto"><code>// Example debugging process
+// 1. Check customer profile data
+console.log("Customer dietary preferences:", user.get('dietary_restrictions'));
+console.log("Customer order history:", user.get('order_categories'));
+
+// 2. Verify recommendation algorithm
+if (customer.dietary_restrictions.includes('diabetic')) {
+  // Should exclude high-sugar items
+  excludeCategories.push('pastries', 'sweet_drinks', 'desserts');
+}
+
+// 3. Check data mapping issues
+// Problem: 'vegan' preference not excluding 'meat' category
+if (customer.dietary_restrictions.includes('vegan')) {
+  excludeCategories.push('meat', 'cheese', 'dairy'); // Fixed mapping
+}</code></pre>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Fix Implementation:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Dietary Filter Logic:</strong> Create hard exclusion rules that override recommendations</li>
+                                            <li>• <strong>Data Validation:</strong> Add checks to ensure dietary preferences are properly mapped</li>
+                                            <li>• <strong>Fallback System:</strong> If dietary data is unclear, default to showing all options with clear labels</li>
+                                            <li>• <strong>Testing Protocol:</strong> Create test customer profiles for each dietary restriction to validate fixes</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-semibold text-green-900 mb-2">✅ Quality Assurance Process</h5>
+                                    <div class="text-sm text-green-700 space-y-2">
+                                        <p><strong>Before re-launching personalization:</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• Test with real MyPanera member accounts (with permission)</li>
+                                            <li>• Verify 100% accuracy for critical dietary restrictions (diabetic, celiac, vegan)</li>
+                                            <li>• Create monitoring alerts for inappropriate recommendation patterns</li>
+                                            <li>• Implement gradual rollout starting with 10% of users</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-2">📞 Communication Strategy</h5>
+                                    <p class="text-sm text-blue-700">
+                                        <strong>To Panera Leadership:</strong> "We've identified a data mapping issue in our personalization system and have immediately paused the test. Customer safety and trust are our priority. We're implementing additional safeguards and will have a fix ready for gradual testing within 48 hours."
+                                    </p>
+                                    <p class="text-sm text-blue-700 mt-2">
+                                        <strong>To Affected Customers:</strong> "We sincerely apologize for the inappropriate meal suggestions. We've fixed the issue and are taking additional steps to ensure our recommendations respect your dietary preferences. Your health and satisfaction are our top priorities."
+                                    </p>
+                                </div>
+
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-500 mt-4">
+                                    <p class="text-red-700 text-sm"><strong>Key Learning for Panera:</strong> "Personalization is powerful, but when it involves health and dietary needs, accuracy is non-negotiable. Always have exclusion rules that can't be overridden, and test with real customer scenarios before launching."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">🍞 Panera Scenario: Your Auto-Target activity for breakfast promotions has been running for 6 weeks but conversion is actually down 3%. The breakfast team is questioning whether Adobe Target is worth the investment. How do you diagnose and turn this around?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    This is like hiring a smart assistant to help sell breakfast, but after 6 weeks, fewer people are buying breakfast than before. Either the assistant doesn't understand Panera customers well enough, or we're not giving it the right information to work with. We need to figure out what's going wrong and teach it better.
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                                    <h5 class="font-semibold text-amber-900 mb-3">🎯 Panera Breakfast Context</h5>
+                                    <p class="text-sm text-amber-700 mb-2">
+                                        <strong>Auto-Target Setup:</strong> Testing 4 breakfast promotion experiences on Panera's homepage from 6 AM - 11 AM
+                                    </p>
+                                    <ul class="text-sm text-amber-700 space-y-1 ml-4">
+                                        <li>• Control: Generic "Fresh Breakfast" banner</li>
+                                        <li>• Variant A: "Coffee + Pastry Combo $6.99"</li>
+                                        <li>• Variant B: "Protein-Packed Breakfast Wraps"</li>
+                                        <li>• Variant C: "Quick Breakfast - Order Ahead"</li>
+                                        <li>• Current Results: 2.3% breakfast conversion (down from 2.4% baseline)</li>
+                                    </ul>
+                                </div>
+
+                                <p class="text-neutral-700 mb-3 mt-4"><strong>Systematic Diagnosis Approach:</strong></p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Auto-Target Requirements Check:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Traffic Volume:</strong> Need 15,000+ breakfast visitors/month - verify we have enough</li>
+                                            <li>• <strong>Conversion Events:</strong> Check we have 200+ breakfast orders total for algorithm learning</li>
+                                            <li>• <strong>Data Quality:</strong> Verify visitor attribution data is flowing correctly to Target</li>
+                                            <li>• <strong>Experience Differentiation:</strong> Confirm variants are truly different enough for personalization</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Panera-Specific Data Analysis:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Time-Based Patterns:</strong> Check if 6-8 AM customers behave differently than 9-11 AM</li>
+                                            <li>• <strong>Device Performance:</strong> Mobile vs. desktop breakfast ordering behavior</li>
+                                            <li>• <strong>Location Factors:</strong> Business district vs. suburban Panera performance</li>
+                                            <li>• <strong>Customer Type:</strong> New customers vs. MyPanera members response rates</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Algorithm Performance Review:</p>
+                                        <div class="mt-2 p-3 bg-neutral-100 rounded border">
+                                            <pre class="text-xs overflow-x-auto"><code>// Check Auto-Target insights in Target reporting
+Personalization Insights Report:
+- Top attributes driving decisions: time_of_visit, device_type, returning_visitor
+- Experience distribution: Control 60%, Variant A 25%, B 10%, C 5%
+- Confidence level: Medium (may need more data)
+
+// Red flags to investigate:
+- If one variant gets <5% traffic → experiences too similar
+- If confidence is "Low" → need more conversions or time
+- If top attributes seem irrelevant → data quality issue</code></pre>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Hypotheses for Poor Performance:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Generic Experiences:</strong> All variants may be too similar for meaningful personalization</li>
+                                            <li>• <strong>Wrong Success Metric:</strong> Optimizing for clicks but not actual breakfast purchases</li>
+                                            <li>• <strong>Seasonal Factors:</strong> Algorithm learning during low-breakfast season (summer?)</li>
+                                            <li>• <strong>Audience Mismatch:</strong> Target showing coffee promotions to tea drinkers</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-semibold text-green-900 mb-2">🔧 Recovery Strategy</h5>
+                                    <div class="text-sm text-green-700 space-y-2">
+                                        <p><strong>Immediate Actions (Week 1):</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• Switch to Auto-Allocate to find the best single experience first</li>
+                                            <li>• Create more distinct experiences: Health-focused vs. Indulgent vs. Speed-focused</li>
+                                            <li>• Add audience filters: Rush commuters vs. Leisurely breakfast customers</li>
+                                        </ul>
+                                        <p><strong>Medium-term fixes (Weeks 2-4):</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• Gather more breakfast customer data through surveys</li>
+                                            <li>• Test breakfast promotions against different customer segments separately</li>
+                                            <li>• Use Profile Scripts to better identify breakfast preferences</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-2">💼 Business Case Presentation</h5>
+                                    <p class="text-sm text-blue-700">
+                                        <strong>To Panera's Breakfast Team:</strong> "The 3% decline shows our initial approach wasn't quite right, but we now have valuable data on what doesn't work. Auto-Target needs very different experiences to personalize effectively. Instead of similar breakfast promotions, let's test completely different approaches: convenience-focused vs. health-focused vs. indulgent. We'll also switch to A/B testing first to identify winning concepts, then use personalization to deliver the right concept to the right customer."
+                                    </p>
+                                </div>
+
+                                <div class="bg-amber-50 p-3 rounded border-l-4 border-amber-500 mt-4">
+                                    <p class="text-amber-700 text-sm"><strong>Key Learning for Panera:</strong> "Auto-Target needs truly different experiences, not variations of the same concept. Start with A/B testing to find winners, then use Auto-Target to deliver the right winner to the right customer segment."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">🍞 Panera Scenario: You're tasked with launching Adobe Target at Panera's new international locations (Canada and UK). The CMO wants to use the same tests that work in the US, but early results show poor performance. How do you adapt your strategy?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    This is like trying to sell American-style comfort food in a French restaurant - what Americans love might not work for people with different tastes and customs. Even though Panera serves similar food, customers in Canada and UK might have different preferences, habits, and ways of using websites.
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h5 class="font-semibold text-purple-900 mb-3">🌍 International Context</h5>
+                                    <p class="text-sm text-purple-700 mb-2">
+                                        <strong>Situation:</strong> US winning tests failing in new markets
+                                    </p>
+                                    <ul class="text-sm text-purple-700 space-y-1 ml-4">
+                                        <li>• <strong>US Winner:</strong> "Free delivery on orders over $15" → 12% conversion lift</li>
+                                        <li>• <strong>Canada Results:</strong> Same test → 2% conversion decrease</li>
+                                        <li>• <strong>UK Results:</strong> Same test → 5% conversion decrease</li>
+                                        <li>• <strong>Timeline Pressure:</strong> CMO wants quick international growth</li>
+                                    </ul>
+                                </div>
+
+                                <p class="text-neutral-700 mb-3 mt-4"><strong>Cultural Adaptation Strategy:</strong></p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Research Local Customer Behavior:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Canada Analysis:</strong> Free delivery may be less important due to different delivery expectations</li>
+                                            <li>• <strong>UK Analysis:</strong> £12 threshold might be too high compared to local meal prices</li>
+                                            <li>• <strong>Payment Preferences:</strong> Different preferred payment methods (Interac in Canada, contactless in UK)</li>
+                                            <li>• <strong>Meal Timing:</strong> Different lunch and tea time customs affecting when people order</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Localized Test Design:</p>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                            <div class="p-3 bg-blue-50 rounded border">
+                                                <h6 class="font-medium text-blue-900">Canada-Specific Tests</h6>
+                                                <ul class="text-xs text-blue-700 space-y-1 mt-1">
+                                                    <li>• "Tim Hortons Alternative" messaging</li>
+                                                    <li>• Bilingual French/English options</li>
+                                                    <li>• Cold weather comfort food promotions</li>
+                                                    <li>• Interac payment prominence</li>
+                                                </ul>
+                                            </div>
+                                            <div class="p-3 bg-green-50 rounded border">
+                                                <h6 class="font-medium text-green-900">UK-Specific Tests</h6>
+                                                <ul class="text-xs text-green-700 space-y-1 mt-1">
+                                                    <li>• "Artisan bakery" positioning vs. chain</li>
+                                                    <li>• Tea and coffee culture adaptation</li>
+                                                    <li>• £ pricing psychology (£4.99 vs £5.00)</li>
+                                                    <li>• Contactless payment emphasis</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Technical Implementation for International:</p>
+                                        <div class="mt-2 p-3 bg-neutral-100 rounded border">
+                                            <pre class="text-xs overflow-x-auto"><code>// Geo-targeting setup for international markets
+{
+  "audiences": {
+    "canada_visitors": {
+      "geo": {"country": "CA"},
+      "experiences": {
+        "promotion": "Free delivery over $20 CAD",
+        "messaging": "Better than Tim's - Fresh baked daily",
+        "payment": ["interac", "visa", "mastercard"]
+      }
+    },
+    "uk_visitors": {
+      "geo": {"country": "GB"},
+      "experiences": {
+        "promotion": "Free delivery over £10",
+        "messaging": "Artisan bakery meets American comfort",
+        "payment": ["contactless", "paypal", "apple_pay"]
+      }
+    }
+  }
+}</code></pre>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Localized Success Metrics:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Canada:</strong> Focus on average order value (higher food costs)</li>
+                                            <li>• <strong>UK:</strong> Emphasize repeat purchase rate (competitive market)</li>
+                                            <li>• <strong>Both Markets:</strong> Track local competitor comparison metrics</li>
+                                            <li>• <strong>Cultural Metrics:</strong> Measure brand perception and local market fit</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                                    <h5 class="font-semibold text-yellow-900 mb-2">🧪 Testing Framework for International</h5>
+                                    <div class="text-sm text-yellow-700 space-y-2">
+                                        <p><strong>Phase 1 (Weeks 1-4): Local Market Research</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• Survey Canadian and UK customers about food preferences</li>
+                                            <li>• Analyze competitor offerings and pricing</li>
+                                            <li>• Test basic website usability and navigation preferences</li>
+                                        </ul>
+                                        <p><strong>Phase 2 (Weeks 5-8): Localized A/B Tests</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• Test locally-relevant value propositions</li>
+                                            <li>• Optimize pricing displays for local currency psychology</li>
+                                            <li>• Test payment method preferences and trust signals</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-2">💬 CMO Communication Strategy</h5>
+                                    <p class="text-sm text-blue-700">
+                                        "The US tests failing internationally is actually valuable data - it shows we need localized approaches to succeed globally. Rather than copying US strategies, we'll develop market-specific tests that respect local preferences. This approach will take 8 weeks longer but will build sustainable competitive advantages in each market. The alternative is continuing to lose conversions by treating international customers like US customers."
+                                    </p>
+                                </div>
+
+                                <div class="bg-purple-50 p-3 rounded border-l-4 border-purple-500 mt-4">
+                                    <p class="text-purple-700 text-sm"><strong>Key Learning for International Panera:</strong> "Global brand, local experience. Keep Panera's core identity but adapt messaging, pricing, and user experience to local market preferences and cultural norms."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 border border-neutral-200 rounded-lg hover:border-primary transition-all duration-300">
+                            <h4 class="text-lg font-semibold text-primary mb-3">🍞 Panera Scenario: Black Friday is in 2 weeks and you want to test a new "Order Ahead for Pickup" promotion, but Panera's traffic is highly seasonal. The operations team is nervous about changes during the busiest period. How do you design a safe but effective test?</h4>
+                            <div class="bg-neutral-50 p-4 rounded-lg">
+                                <p class="text-neutral-700 mb-3"><strong>Simple Explanation:</strong></p>
+                                <p class="text-neutral-700 mb-3">
+                                    This is like wanting to try a new way to serve customers during the lunch rush at a restaurant. It might work great and make things faster, but if something goes wrong during the busiest day of the year, it could be a disaster. We need to test it carefully so we don't hurt Panera's biggest shopping day.
+                                </p>
+                                
+                                <div class="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
+                                    <h5 class="font-semibold text-red-900 mb-3">⚠️ High-Stakes Context</h5>
+                                    <p class="text-sm text-red-700 mb-2">
+                                        <strong>Situation:</strong> Testing new pickup promotion before Black Friday shopping season
+                                    </p>
+                                    <ul class="text-sm text-red-700 space-y-1 ml-4">
+                                        <li>• <strong>Risk:</strong> Black Friday generates 15-20% of Q4 revenue for Panera</li>
+                                        <li>• <strong>Opportunity:</strong> "Order Ahead" could reduce wait times and increase sales</li>
+                                        <li>• <strong>Concern:</strong> Operations team worried about system overload</li>
+                                        <li>• <strong>Timeline:</strong> Only 2 weeks to test and validate before Black Friday</li>
+                                    </ul>
+                                </div>
+
+                                <p class="text-neutral-700 mb-3 mt-4"><strong>Safe High-Impact Testing Strategy:</strong></p>
+                                <div class="space-y-3">
+                                    <div>
+                                        <p class="font-medium text-neutral-900">1. Risk-Minimized Test Design (Week 1):</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Traffic Allocation:</strong> Start with only 10% of traffic to limit potential impact</li>
+                                            <li>• <strong>Geographic Limits:</strong> Test in 20% of locations (avoid highest-volume stores)</li>
+                                            <li>• <strong>Time-Based Controls:</strong> Run only during low-traffic hours (2 PM - 5 PM)</li>
+                                            <li>• <strong>Customer Segments:</strong> Target existing MyPanera members only (familiar with ordering)</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <p class="font-medium text-neutral-900">2. Operational Safeguards:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Real-time Monitoring:</strong> Set up alerts for order volume spikes or completion failures</li>
+                                            <li>• <strong>Fallback System:</strong> Instant rollback capability if pickup times exceed 10 minutes</li>
+                                            <li>• <strong>Staff Training:</strong> Brief test locations on pickup process and problem escalation</li>
+                                            <li>• <strong>Tech Support:</strong> Have development team on standby during test hours</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <p class="font-medium text-neutral-900">3. Seasonal Testing Considerations:</p>
+                                        <ul class="text-sm text-neutral-700 space-y-1 ml-4">
+                                            <li>• <strong>Black Friday Simulation:</strong> Test during a busy Saturday to simulate high traffic</li>
+                                            <li>• <strong>Holiday Menu Items:</strong> Include seasonal items that will be available Black Friday</li>
+                                            <li>• <strong>Gift Card Integration:</strong> Test with gift card purchases (popular during holidays)</li>
+                                            <li>• <strong>Family Orders:</strong> Test larger order sizes typical during holiday shopping</li>
+                                        </ul>
+                                    </div>
+
+                                    <div>
+                                        <p class="font-medium text-neutral-900">4. Success Criteria & Decision Framework:</p>
+                                        <div class="mt-2 p-3 bg-neutral-100 rounded border">
+                                            <pre class="text-xs overflow-x-auto"><code>// Clear decision criteria for Black Friday rollout
+Success Metrics:
+- Order completion rate: >95% (vs 92% baseline)
+- Average pickup time: <5 minutes (vs 8 minutes in-store)
+- Customer satisfaction: >4.5/5 rating
+- System stability: No crashes or major errors
+
+Decision Matrix:
+- All metrics met → Gradual rollout starting Nov 20
+- 3 of 4 metrics met → Limited rollout to test locations only
+- <3 metrics met → Postpone until after Black Friday
+
+Automatic Stop Conditions:
+- Order completion rate drops below 85%
+- Average pickup time exceeds 15 minutes
+- More than 5 customer complaints per day</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 class="font-semibold text-green-900 mb-2">📈 Phased Rollout Plan</h5>
+                                    <div class="text-sm text-green-700 space-y-2">
+                                        <p><strong>Week 1 (Nov 8-14): Conservative Testing</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• 10% traffic, 20% locations, off-peak hours only</li>
+                                            <li>• Focus on system stability and operational workflow</li>
+                                        </ul>
+                                        <p><strong>Week 2 (Nov 15-21): Expansion if Successful</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• If Week 1 succeeds: 25% traffic, peak hours included</li>
+                                            <li>• If issues arise: Fix problems, keep conservative approach</li>
+                                        </ul>
+                                        <p><strong>Black Friday Decision (Nov 22):</strong></p>
+                                        <ul class="space-y-1 ml-4">
+                                            <li>• Full rollout only if all success criteria met</li>
+                                            <li>• Otherwise: Stick with proven checkout process</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h5 class="font-semibold text-blue-900 mb-2">🤝 Operations Team Communication</h5>
+                                    <p class="text-sm text-blue-700">
+                                        "I understand your concerns about changing anything before Black Friday. Our test is designed to be ultra-conservative - only 10% of customers in select locations during off-peak hours. We have automatic stopping rules and instant rollback capability. If we see any problems, we immediately revert to the current system. But if it works, we could reduce wait times and serve more customers on our busiest day."
+                                    </p>
+                                </div>
+
+                                <div class="bg-red-50 p-3 rounded border-l-4 border-red-500 mt-4">
+                                    <p class="text-red-700 text-sm"><strong>Key Principle for Seasonal Testing:</strong> "During high-stakes periods, test small and safe. It's better to miss a potential 5% improvement than to risk a 15% decrease on your biggest day of the year."</p>
                                 </div>
                             </div>
                         </div>
