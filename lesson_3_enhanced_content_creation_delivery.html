@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 3: Content Creation & Delivery - Enhanced with NTO Context</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-green-900 to-teal-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="bg-black/20 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xl font-bold bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">
+                        🎨 SFMC Mastery Hub
+                    </a>
+                    <span class="text-sm text-gray-300">Lesson 3: Content Creation & Delivery</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="enhanced_sfmc_certification_mastery.html" class="text-green-300 hover:text-green-200 transition-colors">Main Certification</a>
+                    <a href="lesson_2_enhanced_marketing_automation.html" class="text-green-300 hover:text-green-200 transition-colors">← Lesson 2</a>
+                    <a href="index.html" class="text-green-300 hover:text-green-200 transition-colors">🏠 Hub</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-green-400 via-teal-400 to-green-500 bg-clip-text text-transparent animate-gradient-x">
+                    SFMC Lesson 3: Content Creation & Delivery
+                </span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-4">Enhanced with Northern Trail Outfitters Context</p>
+            <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                🎨 Master content creation using outdoor gear marketing scenarios. This lesson covers 18-24% of your certification exam!
+            </p>
+            
+            <!-- Progress Dashboard -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-green-400" id="conceptsLearned">0</div>
+                    <div class="text-sm text-gray-300">Concepts Learned</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-teal-400" id="questionsAnswered">0</div>
+                    <div class="text-sm text-gray-300">Questions Answered</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-yellow-400" id="accuracyRate">0%</div>
+                    <div class="text-sm text-gray-300">Accuracy Rate</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-cyan-400" id="studyProgress">0%</div>
+                    <div class="text-sm text-gray-300">Completion</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Navigation -->
+        <div class="mb-8">
+            <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                <h3 class="text-xl font-semibold mb-4">🧭 Quick Navigation</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <button onclick="scrollToSection('concepts')" class="bg-green-600/30 hover:bg-green-600/50 p-3 rounded-lg transition-all">
+                        🎨 Core Concepts
+                    </button>
+                    <button onclick="scrollToSection('nto-scenarios')" class="bg-teal-600/30 hover:bg-teal-600/50 p-3 rounded-lg transition-all">
+                        🏔️ NTO Content
+                    </button>
+                    <button onclick="scrollToSection('interactive-quiz')" class="bg-cyan-600/30 hover:bg-cyan-600/50 p-3 rounded-lg transition-all">
+                        🎯 Interactive Quiz
+                    </button>
+                    <button onclick="scrollToSection('certification-tips')" class="bg-orange-600/30 hover:bg-orange-600/50 p-3 rounded-lg transition-all">
+                        🎓 Cert Tips
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Concepts Section -->
+        <div id="concepts" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🎨 Core Content Creation Concepts</h2>
+            
+            <!-- Concept Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Content Builder -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-green-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-green-400">🏗️ Content Builder</h3>
+                    <p class="text-gray-300 mb-4">Your creative command center - the central hub for creating, storing, and managing all marketing content.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Key Features:</strong> Asset Management, Folder Structure, Content Types, Collaboration Tools
+                    </div>
+                </div>
+
+                <!-- Dynamic Content -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-teal-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-teal-400">🎯 Dynamic Content</h3>
+                    <p class="text-gray-300 mb-4">Personalized content that changes based on subscriber data, behavior, and preferences.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Types:</strong> Personalization Strings, Dynamic Blocks, Real-time Content
+                    </div>
+                </div>
+
+                <!-- Responsive Design -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-cyan-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-cyan-400">📱 Responsive Design</h3>
+                    <p class="text-gray-300 mb-4">Emails that adapt perfectly to any screen size - from phones to desktops.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Principles:</strong> Mobile-First, Touch-Friendly, Readable Typography, Optimized Images
+                    </div>
+                </div>
+
+                <!-- Content Blocks -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-yellow-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-yellow-400">🧩 Content Blocks</h3>
+                    <p class="text-gray-300 mb-4">Reusable LEGO-like pieces of content that can be mixed and matched to build emails.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Types:</strong> Free Form, Layout-Based, Dynamic Content Blocks
+                    </div>
+                </div>
+
+                <!-- A/B Testing -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-purple-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-purple-400">📊 A/B Testing</h3>
+                    <p class="text-gray-300 mb-4">Comparing two versions of content to determine which performs better with your audience.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Test Elements:</strong> Subject Lines, Images, CTAs, Layout, Send Times
+                    </div>
+                </div>
+
+                <!-- Brand Consistency -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-pink-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-pink-400">🎭 Brand Consistency</h3>
+                    <p class="text-gray-300 mb-4">Maintaining uniform visual and messaging standards across all content.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Elements:</strong> Style Guides, Templates, Voice & Tone, Approval Workflows
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NTO Scenarios Section -->
+        <div id="nto-scenarios" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🏔️ Northern Trail Outfitters Content Creation</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Scenario 1: Responsive Email Design -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-green-400">📱 Mobile-First Hiking Gear Email</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> NTO creates a summer hiking gear promotion for mobile-heavy audience (70% mobile opens).
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-green-300 mb-2">Responsive Design Strategy:</h4>
+                        <div class="text-sm text-gray-300 space-y-2">
+                            <div>• <strong>Single Column Layout:</strong> Easy mobile scrolling</div>
+                            <div>• <strong>Large CTA Buttons:</strong> 44x44px minimum for touch</div>
+                            <div>• <strong>Hero Image:</strong> 600x300px hiking boots, compressed to 200KB</div>
+                            <div>• <strong>Typography:</strong> 16px body text, high contrast</div>
+                            <div>• <strong>Product Grid:</strong> Stacks vertically on mobile</div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-green-300">
+                        <strong>Result:</strong> 45% mobile click-through rate vs. 28% industry average
+                    </div>
+                </div>
+
+                <!-- Scenario 2: Dynamic Content Personalization -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-teal-400">🎯 Personalized Gear Recommendations</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> NTO uses dynamic content to show different gear based on customer activity preferences and location.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-teal-300 mb-2">Dynamic Content Rules:</h4>
+                        <div class="text-sm text-gray-300 space-y-1">
+                            <div><strong>Rule 1:</strong> IF Activity_Preference = "Hiking" → Show Trail Gear</div>
+                            <div><strong>Rule 2:</strong> IF Location = "Colorado" → Show High-Altitude Gear</div>
+                            <div><strong>Rule 3:</strong> IF Season = "Winter" → Show Cold Weather Gear</div>
+                            <div><strong>Default:</strong> Show General Outdoor Essentials</div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-teal-300">
+                        <strong>Personalization String:</strong> "Hi %%FirstName%%, perfect gear for %%Activity_Preference%% in %%State%%!"
+                    </div>
+                </div>
+
+                <!-- Scenario 3: A/B Testing Content -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-cyan-400">📊 A/B Testing Campaign Performance</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> NTO tests two approaches for their winter jacket campaign.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-cyan-300 mb-2">Test Variables:</h4>
+                        <div class="text-sm text-gray-300 space-y-2">
+                            <div><strong>Version A:</strong> "Stay Warm This Winter" (Feature-focused)</div>
+                            <div><strong>Version B:</strong> "Don't Let Cold Stop Your Adventures" (Benefit-focused)</div>
+                            <div><strong>Test Elements:</strong> Subject line, hero image, main CTA text</div>
+                            <div><strong>Sample Size:</strong> 10,000 subscribers each (20,000 total)</div>
+                            <div><strong>Success Metric:</strong> Click-through rate to product pages</div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-cyan-300">
+                        <strong>Winner:</strong> Version B (+23% CTR) - Adventure-focused messaging resonated better
+                    </div>
+                </div>
+
+                <!-- Scenario 4: Content Block Strategy -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-400">🧩 Modular Content Library</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> NTO builds reusable content blocks for consistent seasonal campaigns.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-purple-300 mb-2">Content Block Library:</h4>
+                        <div class="text-sm text-gray-300 space-y-1">
+                            <div>• <strong>Header_NTO_Logo_Green:</strong> Branded header with logo</div>
+                            <div>• <strong>Hero_Seasonal_Banner:</strong> Dynamic seasonal imagery</div>
+                            <div>• <strong>Product_Grid_3Col:</strong> Responsive product showcase</div>
+                            <div>• <strong>CTA_Shop_Now_Orange:</strong> Brand-consistent buttons</div>
+                            <div>• <strong>Footer_Social_Contact:</strong> Standardized footer</div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-purple-300">
+                        <strong>Efficiency Gain:</strong> 60% faster email creation, 100% brand consistency
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Quiz Section -->
+        <div id="interactive-quiz" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🎯 Interactive Content Creation Quiz</h2>
+            
+            <!-- Quiz Controls -->
+            <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 mb-6">
+                <div class="flex flex-wrap items-center justify-between mb-4">
+                    <h3 class="text-xl font-semibold">Lesson 3: Content Creation & Delivery Mastery</h3>
+                    <div class="flex space-x-4">
+                        <button onclick="startQuiz('practice')" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition-colors">
+                            📚 Practice Mode
+                        </button>
+                        <button onclick="startQuiz('exam')" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-colors">
+                            🎯 Exam Mode
+                        </button>
+                        <button onclick="resetQuiz()" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors">
+                            🔄 Reset
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quiz Status -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <div class="text-lg font-bold text-green-400" id="currentQuestion">0</div>
+                        <div class="text-sm text-gray-300">Current Question</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-teal-400" id="correctAnswers">0</div>
+                        <div class="text-sm text-gray-300">Correct</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-red-400" id="incorrectAnswers">0</div>
+                        <div class="text-sm text-gray-300">Incorrect</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-yellow-400" id="timeRemaining">--:--</div>
+                        <div class="text-sm text-gray-300">Time Left</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Content -->
+            <div id="quizContainer" class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20" style="display: none;">
+                <div id="questionCard">
+                    <!-- Questions will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Quiz Results -->
+            <div id="resultsContainer" class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20" style="display: none;">
+                <!-- Results will be shown here -->
+            </div>
+        </div>
+
+        <!-- Certification Tips Section -->
+        <div id="certification-tips" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🎓 Certification Tips</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Key Focus Areas -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">🎯 Key Focus Areas (18-24% of Exam)</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-green-400">•</span>
+                            <span><strong>Content Builder:</strong> Know file types, folder structure, and organization best practices</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-teal-400">•</span>
+                            <span><strong>Responsive Design:</strong> Understand mobile-first principles and optimization techniques</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-cyan-400">•</span>
+                            <span><strong>Dynamic Content:</strong> Master personalization strings and dynamic content rules</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-purple-400">•</span>
+                            <span><strong>Content Blocks:</strong> Know when to use different block types and modular design benefits</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-pink-400">•</span>
+                            <span><strong>A/B Testing:</strong> Understand testing methodology and statistical significance</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Common Mistakes -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-red-400">⚠️ Common Mistakes to Avoid</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Confusing free form vs. layout-based content blocks</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Not understanding mobile-first design principles</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Forgetting to include default values for personalization strings</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Not knowing proper image file sizes and formats for email</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Misunderstanding A/B testing methodology and sample sizes</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pro Tips -->
+            <div class="bg-gradient-to-r from-green-600/20 to-teal-600/20 backdrop-blur-md rounded-lg p-6 border border-white/20 mt-8">
+                <h3 class="text-xl font-semibold mb-4 text-center">💡 Pro Content Creation Tips</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">📱</div>
+                        <div class="font-semibold text-green-400">Mobile-First</div>
+                        <div class="text-sm text-gray-300">Always design for mobile screens first</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🧪</div>
+                        <div class="font-semibold text-teal-400">Test Everything</div>
+                        <div class="text-sm text-gray-300">A/B test one variable at a time</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🎯</div>
+                        <div class="font-semibold text-cyan-400">Personalize</div>
+                        <div class="text-sm text-gray-300">Use dynamic content for relevance</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🧩</div>
+                        <div class="font-semibold text-yellow-400">Build Modular</div>
+                        <div class="text-sm text-gray-300">Create reusable content blocks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="text-center py-8">
+            <div class="space-x-4">
+                <a href="lesson_2_enhanced_marketing_automation.html" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    ← Lesson 2: Marketing Automation
+                </a>
+                <a href="enhanced_sfmc_certification_mastery.html" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    📚 Main Certification Hub
+                </a>
+                <a href="lesson_4_interactive_qa.html" class="bg-teal-600 hover:bg-teal-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    ➡️ Next: Lesson 4
+                </a>
+                <a href="index.html" class="bg-gray-600 hover:bg-gray-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    🏠 Back to Hub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data - Enhanced NTO-focused questions for Lesson 3
+        const lesson3Questions = [
+            {
+                question: "🏔️ NTO is creating a responsive email featuring their new hiking boots. What's the recommended maximum width for mobile optimization?",
+                options: [
+                    "400 pixels maximum",
+                    "600-650 pixels maximum",
+                    "800 pixels maximum",
+                    "No width limit needed"
+                ],
+                correct: 1,
+                domain: "Content Creation & Delivery",
+                difficulty: "Basic",
+                simpleExplanation: "Think of email width like a doorway - it needs to fit through different sized doors (screens). 600-650 pixels works well across most devices while remaining readable on mobile screens.",
+                ntoExample: "NTO's hiking boot showcase email uses 600px width. On desktop, it looks spacious and professional. On mobile, it fits perfectly without horizontal scrolling, making it easy for customers to view product details.",
+                certificationTip: "600-650 pixels is the industry standard maximum width that works across most email clients and devices while maintaining readability."
+            },
+            {
+                question: "🎯 NTO wants to show different outdoor gear based on customer location. What SFMC feature should they use?",
+                options: [
+                    "Static content blocks only",
+                    "Dynamic Content with geographic rules",
+                    "Multiple separate email campaigns",
+                    "Random content rotation"
+                ],
+                correct: 1,
+                domain: "Content Creation & Delivery",
+                difficulty: "Intermediate",
+                simpleExplanation: "Dynamic Content is like having a smart store clerk who knows where each customer lives and shows them relevant local products. It automatically changes content based on subscriber data.",
+                ntoExample: "NTO uses Dynamic Content rules: IF State = 'Colorado' show high-altitude hiking gear, IF State = 'Florida' show water sports equipment. Each customer sees gear relevant to their local outdoor activities.",
+                certificationTip: "Dynamic Content Rules allow one email template to show different content based on subscriber attributes, making campaigns more relevant and efficient."
+            },
+            {
+                question: "📱 What's the minimum recommended button size for touch-friendly mobile emails?",
+                options: [
+                    "20x20 pixels",
+                    "30x30 pixels", 
+                    "44x44 pixels or larger",
+                    "60x60 pixels"
+                ],
+                correct: 2,
+                domain: "Content Creation & Delivery",
+                difficulty: "Basic",
+                simpleExplanation: "Think of your finger like a small sausage trying to tap a tiny button. 44x44 pixels gives enough space for accurate tapping without accidentally hitting the wrong thing.",
+                ntoExample: "NTO's 'Shop Now' buttons are 50x44 pixels, making them easy to tap even when customers are viewing gear recommendations on their phones while hiking or camping.",
+                certificationTip: "44x44 pixels is Apple's recommended minimum touch target size, widely adopted as the industry standard for mobile-friendly buttons."
+            },
+            {
+                question: "🎨 NTO creates reusable content blocks for consistent branding. What's the main benefit of this modular approach?",
+                options: [
+                    "Blocks cost less to create",
+                    "Faster email creation and consistent brand appearance",
+                    "Blocks automatically optimize themselves",
+                    "They require no maintenance"
+                ],
+                correct: 1,
+                domain: "Content Creation & Delivery",
+                difficulty: "Intermediate",
+                simpleExplanation: "Content blocks are like LEGO pieces - once you build them, you can quickly snap them together to create new emails while ensuring everything looks consistent and on-brand.",
+                ntoExample: "NTO has blocks for headers, product grids, and footers. Their team can build a winter gear email in 15 minutes by assembling existing blocks, and every email automatically maintains their outdoor adventure brand look.",
+                certificationTip: "Modular content design reduces creation time and ensures brand consistency, making it easier to scale email production while maintaining quality."
+            },
+            {
+                question: "📊 NTO wants to A/B test their camping gear email. What's the most important rule for valid testing?",
+                options: [
+                    "Test as many elements as possible simultaneously",
+                    "Test only one variable at a time to isolate what caused performance differences",
+                    "Always test for exactly 30 days",
+                    "Only test with VIP customers"
+                ],
+                correct: 1,
+                domain: "Content Creation & Delivery",
+                difficulty: "Advanced",
+                simpleExplanation: "A/B testing is like a science experiment - if you change multiple things at once, you won't know which change caused the result. Test one thing at a time to get clear answers.",
+                ntoExample: "NTO tests two subject lines for their tent sale: 'Save 25% on Camping Tents' vs. 'Your Perfect Camping Adventure Awaits.' They only change the subject line, keeping everything else identical to see which approach works better.",
+                certificationTip: "Testing multiple variables simultaneously makes results meaningless because you can't determine which change caused the performance difference."
+            },
+            {
+                question: "🖼️ What's the recommended maximum file size for images in SFMC emails?",
+                options: [
+                    "500 KB",
+                    "1 MB or smaller",
+                    "5 MB",
+                    "No limit on image size"
+                ],
+                correct: 1,
+                domain: "Content Creation & Delivery",
+                difficulty: "Basic",
+                simpleExplanation: "Large images are like trying to stuff a huge suitcase through a small door - they take forever to load and might not fit. 1MB or smaller ensures fast loading on all devices.",
+                ntoExample: "NTO's product photos are optimized to 800KB each. This ensures their hiking boot showcase loads quickly even when customers are checking email on mountain trails with slow cell service.",
+                certificationTip: "1MB maximum ensures good performance across all devices and connection speeds, especially important for mobile users with limited bandwidth."
+            },
+            {
+                question: "📝 When using personalization strings in SFMC, what should you always include?",
+                options: [
+                    "The subscriber's full address",
+                    "A default value in case the data field is empty",
+                    "The current date and time",
+                    "The subscriber's purchase history"
+                ],
+                correct: 1,
+                domain: "Content Creation & Delivery",
+                difficulty: "Intermediate",
+                simpleExplanation: "Default values are like having a backup plan. If someone's name is missing from your database, instead of showing a blank space or error, you show 'Outdoor Enthusiast' or 'Valued Customer.'",
+                ntoExample: "NTO uses: 'Hi %%FirstName OR 'Outdoor Adventurer'%%!' If Sarah's name is in the system, she sees 'Hi Sarah!' If the name field is empty, she sees 'Hi Outdoor Adventurer!' instead of 'Hi !'",
+                certificationTip: "Always provide default values for personalization strings to prevent empty spaces or error messages when subscriber data is missing."
+            },
+            {
+                question: "🎨 What's the difference between Free Form and Layout-Based Content Blocks?",
+                options: [
+                    "Free Form blocks cost more than Layout-Based blocks",
+                    "Free Form allows custom HTML/CSS; Layout-Based uses structured templates with drag-and-drop",
+                    "There is no difference between them",
+                    "Layout-Based blocks are only for advanced users"
+                ],
+                correct: 1,
+                domain: "Content Creation & Delivery",
+                difficulty: "Advanced",
+                simpleExplanation: "Free Form blocks are like a blank canvas where you can paint anything with code. Layout-Based blocks are like paint-by-numbers with pre-made sections you fill in with drag-and-drop.",
+                ntoExample: "NTO uses Free Form blocks for their unique adventure story headers (requires custom HTML). They use Layout-Based blocks for product showcases where non-technical team members can easily add new gear using drag-and-drop.",
+                certificationTip: "Free Form blocks offer maximum flexibility but require HTML/CSS skills, while Layout-Based blocks are user-friendly but less customizable."
+            },
+            {
+                question: "📊 NTO wants to show real-time inventory levels in their emails. What type of content should they use?",
+                options: [
+                    "Static images with inventory numbers",
+                    "Real-time dynamic content that updates when emails are opened",
+                    "Manual updates before each send",
+                    "Standard personalization strings"
+                ],
+                correct: 1,
+                domain: "Content Creation & Delivery",
+                difficulty: "Advanced",
+                simpleExplanation: "Real-time content is like a live scoreboard that updates instantly. When customers open the email, it pulls the current inventory numbers, so they always see accurate availability.",
+                ntoExample: "When customers open NTO's flash sale email, real-time content shows 'Only 12 backpacks left!' The number updates automatically based on current inventory, creating urgency and preventing overselling.",
+                certificationTip: "Real-time dynamic content pulls current data at the moment of email opening, ensuring information is always accurate and current."
+            },
+            {
+                question: "🔍 What does alt text accomplish in email images?",
+                options: [
+                    "It makes images load faster",
+                    "It provides descriptions when images don't load and improves accessibility",
+                    "It reduces file sizes automatically",
+                    "It adds keywords for search engine optimization"
+                ],
+                correct: 1,
+                domain: "Content Creation & Delivery",
+                difficulty: "Basic",
+                simpleExplanation: "Alt text is like a verbal description of a photo for someone who can't see it. It helps when images don't load and assists visually impaired customers who use screen readers.",
+                ntoExample: "NTO's hiking boot image has alt text: 'Waterproof hiking boots on mountain trail.' If the image doesn't load, customers still understand what product is being featured, and screen readers can describe it to visually impaired users.",
+                certificationTip: "Alt text serves both accessibility (screen readers) and functionality (when images are blocked) purposes, making it essential for inclusive email design."
+            }
+        ];
+
+        // Quiz State
+        let currentQuizMode = '';
+        let currentQuestionIndex = 0;
+        let quizStartTime = 0;
+        let timerInterval = null;
+        let userAnswers = [];
+        let quizQuestions = [];
+
+        // Progress Tracking
+        let stats = {
+            conceptsLearned: 0,
+            questionsAnswered: 0,
+            correctAnswers: 0,
+            totalQuestions: 0,
+            studyProgress: 0
+        };
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgressDisplay();
+            trackConceptViewing();
+        });
+
+        // Utility Functions
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateProgressDisplay() {
+            document.getElementById('conceptsLearned').textContent = stats.conceptsLearned;
+            document.getElementById('questionsAnswered').textContent = stats.questionsAnswered;
+            document.getElementById('accuracyRate').textContent = stats.totalQuestions > 0 ? 
+                Math.round((stats.correctAnswers / stats.totalQuestions) * 100) + '%' : '0%';
+            document.getElementById('studyProgress').textContent = Math.round(stats.studyProgress) + '%';
+        }
+
+        function trackConceptViewing() {
+            const conceptCards = document.querySelectorAll('.concept-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('viewed')) {
+                        entry.target.classList.add('viewed');
+                        stats.conceptsLearned++;
+                        stats.studyProgress = Math.min(90, (stats.conceptsLearned / conceptCards.length) * 50 + 
+                                                            (stats.questionsAnswered / lesson3Questions.length) * 40);
+                        updateProgressDisplay();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            conceptCards.forEach(card => observer.observe(card));
+        }
+
+        // Quiz Functions
+        function startQuiz(mode) {
+            currentQuizMode = mode;
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            quizQuestions = [...lesson3Questions].sort(() => Math.random() - 0.5); // Shuffle questions
+            
+            if (mode === 'exam') {
+                quizQuestions = quizQuestions.slice(0, 12); // Limit to 12 questions for exam mode
+            }
+
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('resultsContainer').style.display = 'none';
+            
+            quizStartTime = Date.now();
+            startTimer(mode === 'exam' ? 20 : 60); // 20 min for exam, 60 for practice
+            
+            showQuestion();
+            updateQuizStatus();
+        }
+
+        function startTimer(minutes) {
+            const duration = minutes * 60 * 1000;
+            const endTime = Date.now() + duration;
+            
+            timerInterval = setInterval(() => {
+                const remaining = endTime - Date.now();
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    finishQuiz();
+                    return;
+                }
+                
+                const mins = Math.floor(remaining / (60 * 1000));
+                const secs = Math.floor((remaining % (60 * 1000)) / 1000);
+                document.getElementById('timeRemaining').textContent = 
+                    `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function showQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            const questionCard = document.getElementById('questionCard');
+            
+            questionCard.innerHTML = `
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-green-600/30 px-3 py-1 rounded-full text-sm">${question.domain}</span>
+                        <span class="bg-yellow-600/30 px-3 py-1 rounded-full text-sm">${question.difficulty}</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">${question.question}</h3>
+                    <div class="space-y-3">
+                        ${question.options.map((option, index) => `
+                            <button onclick="selectAnswer(${index})" 
+                                    class="w-full text-left p-4 bg-white/5 hover:bg-white/10 rounded-lg border border-white/20 hover:border-green-400/50 transition-all answer-option"
+                                    data-index="${index}">
+                                <span class="font-semibold">${String.fromCharCode(65 + index)})</span> ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    ${currentQuizMode === 'practice' ? `
+                        <div id="explanationArea" class="mt-6" style="display: none;">
+                            <!-- Explanation will appear here -->
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="previousQuestion()" ${currentQuestionIndex === 0 ? 'disabled' : ''} 
+                            class="bg-gray-600 hover:bg-gray-700 disabled:bg-gray-800 disabled:opacity-50 px-4 py-2 rounded-lg transition-colors">
+                        ← Previous
+                    </button>
+                    <button onclick="nextQuestion()" 
+                            class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition-colors">
+                        ${currentQuestionIndex === quizQuestions.length - 1 ? 'Finish Quiz' : 'Next →'}
+                    </button>
+                </div>
+            `;
+        }
+
+        function selectAnswer(selectedIndex) {
+            const question = quizQuestions[currentQuestionIndex];
+            const options = document.querySelectorAll('.answer-option');
+            
+            // Clear previous selections
+            options.forEach(option => {
+                option.classList.remove('border-green-400', 'border-red-400', 'bg-green-600/20', 'bg-red-600/20');
+            });
+            
+            // Highlight selected answer
+            const selectedOption = options[selectedIndex];
+            const isCorrect = selectedIndex === question.correct;
+            
+            if (currentQuizMode === 'practice') {
+                // Show immediate feedback in practice mode
+                if (isCorrect) {
+                    selectedOption.classList.add('border-green-400', 'bg-green-600/20');
+                } else {
+                    selectedOption.classList.add('border-red-400', 'bg-red-600/20');
+                    options[question.correct].classList.add('border-green-400', 'bg-green-600/20');
+                }
+                
+                // Show explanation
+                showExplanation(question, isCorrect);
+            } else {
+                selectedOption.classList.add('border-green-400', 'bg-green-600/20');
+            }
+            
+            // Record answer
+            userAnswers[currentQuestionIndex] = {
+                selected: selectedIndex,
+                correct: isCorrect,
+                timeSpent: Date.now() - quizStartTime
+            };
+            
+            updateQuizStatus();
+        }
+
+        function showExplanation(question, isCorrect) {
+            const explanationArea = document.getElementById('explanationArea');
+            explanationArea.style.display = 'block';
+            explanationArea.innerHTML = `
+                <div class="bg-black/30 rounded-lg p-4 border-l-4 ${isCorrect ? 'border-green-400' : 'border-red-400'}">
+                    <div class="flex items-center mb-3">
+                        <span class="text-lg mr-2">${isCorrect ? '✅' : '❌'}</span>
+                        <span class="font-semibold ${isCorrect ? 'text-green-400' : 'text-red-400'}">
+                            ${isCorrect ? 'Correct!' : 'Incorrect'}
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <h4 class="font-semibold text-green-300 mb-1">📝 Simple Explanation:</h4>
+                            <p class="text-gray-300 text-sm">${question.simpleExplanation}</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-teal-300 mb-1">🏔️ NTO Example:</h4>
+                            <p class="text-gray-300 text-sm">${question.ntoExample}</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-yellow-300 mb-1">🎓 Certification Tip:</h4>
+                            <p class="text-gray-300 text-sm">${question.certificationTip}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+                updateQuizStatus();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+                updateQuizStatus();
+            }
+        }
+
+        function updateQuizStatus() {
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            
+            const correctCount = userAnswers.filter(answer => answer && answer.correct).length;
+            const incorrectCount = userAnswers.filter(answer => answer && !answer.correct).length;
+            
+            document.getElementById('correctAnswers').textContent = correctCount;
+            document.getElementById('incorrectAnswers').textContent = incorrectCount;
+            
+            // Update global stats
+            stats.questionsAnswered = userAnswers.filter(answer => answer).length;
+            stats.correctAnswers = correctCount;
+            stats.totalQuestions = stats.questionsAnswered;
+            stats.studyProgress = Math.min(100, (stats.conceptsLearned / 6) * 50 + 
+                                                (stats.questionsAnswered / lesson3Questions.length) * 50);
+            updateProgressDisplay();
+        }
+
+        function finishQuiz() {
+            clearInterval(timerInterval);
+            
+            const correctCount = userAnswers.filter(answer => answer && answer.correct).length;
+            const totalAnswered = userAnswers.filter(answer => answer).length;
+            const percentage = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+            
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'block';
+            
+            let performanceLevel = '';
+            let performanceColor = '';
+            let recommendations = '';
+            
+            if (percentage >= 80) {
+                performanceLevel = 'Excellent! Content Creation Master';
+                performanceColor = 'text-green-400';
+                recommendations = 'You have a strong understanding of Content Creation & Delivery concepts. Ready for the certification exam!';
+            } else if (percentage >= 65) {
+                performanceLevel = 'Good Progress - Review Key Areas';
+                performanceColor = 'text-yellow-400';
+                recommendations = 'You\'re doing well! Review the concepts you missed and practice more NTO content scenarios.';
+            } else {
+                performanceLevel = 'Needs More Study';
+                performanceColor = 'text-red-400';
+                recommendations = 'Spend more time with content creation concepts. Focus on responsive design, dynamic content, and Content Builder fundamentals.';
+            }
+            
+            document.getElementById('resultsContainer').innerHTML = `
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-4">🎨 Content Creation Quiz Results</h3>
+                    <div class="text-6xl font-bold ${performanceColor} mb-2">${percentage}%</div>
+                    <div class="text-xl ${performanceColor} mb-4">${performanceLevel}</div>
+                    <div class="text-gray-300">${correctCount} correct out of ${totalAnswered} questions</div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white/10 rounded-lg p-4 text-center border border-white/20">
+                        <div class="text-2xl font-bold text-green-400">${correctCount}</div>
+                        <div class="text-sm text-gray-300">Correct Answers</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4 text-center border border-white/20">
+                        <div class="text-2xl font-bold text-red-400">${totalAnswered - correctCount}</div>
+                        <div class="text-sm text-gray-300">Incorrect Answers</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4 text-center border border-white/20">
+                        <div class="text-2xl font-bold text-teal-400">${Math.round((Date.now() - quizStartTime) / 60000)}</div>
+                        <div class="text-sm text-gray-300">Minutes Spent</div>
+                    </div>
+                </div>
+                
+                <div class="bg-black/30 rounded-lg p-6 border border-white/20 mb-6">
+                    <h4 class="font-semibold text-yellow-400 mb-2">📋 Recommendations:</h4>
+                    <p class="text-gray-300">${recommendations}</p>
+                </div>
+                
+                <div class="text-center space-x-4">
+                    <button onclick="startQuiz('practice')" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-lg transition-colors">
+                        🔄 Retake Quiz
+                    </button>
+                    <button onclick="resetQuiz()" class="bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded-lg transition-colors">
+                        📚 Review Concepts
+                    </button>
+                </div>
+            `;
+        }
+
+        function resetQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'none';
+            document.getElementById('timeRemaining').textContent = '--:--';
+            
+            // Reset quiz status
+            document.getElementById('currentQuestion').textContent = '0';
+            document.getElementById('correctAnswers').textContent = '0';
+            document.getElementById('incorrectAnswers').textContent = '0';
+            
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            quizQuestions = [];
+        }
+    </script>
+</body>
+</html>

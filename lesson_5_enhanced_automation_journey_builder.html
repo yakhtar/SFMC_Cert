@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5B: Automation & Journey Builder | SFMC Certification Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'nto-green': '#2c5530',
+                        'nto-orange': '#ff6b35',
+                        'nto-blue': '#1e40af',
+                        'nto-gray': '#6b7280'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b-2 border-nto-green">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-nto-green hover:text-nto-orange transition-colors">
+                        🏔️ SFMC Mastery Hub
+                    </a>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="enhanced_sfmc_certification_mastery.html" class="text-nto-gray hover:text-nto-green font-medium">Certification</a>
+                    <a href="lesson_1_enhanced_subscriber_data_management.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 1</a>
+                    <a href="lesson_2_enhanced_marketing_automation.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 2</a>
+                    <a href="lesson_3_enhanced_content_creation_delivery.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 3</a>
+                    <a href="lesson_4_enhanced_testing_delivery.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 4</a>
+                    <a href="lesson_5_enhanced_email_message_design.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 5A</a>
+                    <span class="text-nto-orange font-semibold">Lesson 5B</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-nto-green to-blue-600 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">🤖 Lesson 5B: Automation & Journey Builder</h1>
+            <p class="text-xl opacity-90 mb-6">Master Customer Journey Orchestration Like a Trail Guide</p>
+            <div class="flex justify-center items-center space-x-8 text-sm">
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-nto-orange rounded-full mr-2"></span>
+                    <span>Automation Studio</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></span>
+                    <span>Journey Builder</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-green-400 rounded-full mr-2"></span>
+                    <span>Best Practices</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Tracking -->
+    <div class="max-w-4xl mx-auto px-4 py-6">
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="font-semibold text-nto-green">📊 Your Journey Progress</h3>
+                <button id="resetProgress" class="text-sm text-nto-gray hover:text-nto-orange">Reset</button>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+                <div id="progressBar" class="bg-gradient-to-r from-nto-green to-nto-orange h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between text-sm text-nto-gray mt-2">
+                <span>Concepts: <span id="conceptsViewed">0</span>/10</span>
+                <span>Quiz: <span id="quizProgress">0</span>/10</span>
+                <span>Overall: <span id="overallProgress">0</span>%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 pb-12">
+        <!-- Learning Tabs -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="flex space-x-8 px-6">
+                    <button class="tab-btn active py-4 px-2 border-b-2 border-nto-orange text-nto-orange font-medium" data-tab="overview">
+                        🎯 Overview
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="concepts">
+                        📚 Key Concepts
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="quiz">
+                        🧠 Interactive Quiz
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="resources">
+                        📖 Resources
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content p-6">
+                <div class="prose max-w-none">
+                    <h2 class="text-2xl font-bold text-nto-green mb-6">🤖 What is Marketing Automation?</h2>
+                    
+                    <div class="bg-blue-50 border-l-4 border-nto-blue p-6 rounded-r-lg mb-6">
+                        <h3 class="text-lg font-semibold text-nto-blue mb-3">🏔️ The NTO Customer Adventure</h3>
+                        <p class="text-gray-700 mb-4">Think of automation like setting up dominoes for the perfect customer adventure:</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <span class="w-8 h-8 bg-nto-green rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">1</span>
+                                    <span class="text-sm">Customer signs up for hiking newsletter</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-8 h-8 bg-nto-orange rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">2</span>
+                                    <span class="text-sm">Automation sends welcome email instantly</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">3</span>
+                                    <span class="text-sm">Waits 3 days for engagement</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <span class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">4</span>
+                                    <span class="text-sm">Sends gear recommendations based on interests</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">5</span>
+                                    <span class="text-sm">Triggers purchase follow-up sequences</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">6</span>
+                                    <span class="text-sm">Creates personalized adventure path</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-nto-green mb-4">🛠️ SFMC Automation Tools</h3>
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-green-50 to-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-green mb-2">🏗️ Automation Studio</h4>
+                            <p class="text-sm text-gray-600">Behind-the-scenes data processing, imports, and technical workflows that keep everything running smoothly.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-orange mb-2">🗺️ Journey Builder</h4>
+                            <p class="text-sm text-gray-600">Customer-facing experiences and multi-step communications that guide customers through their adventure.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-blue mb-2">⚡ Triggered Sends</h4>
+                            <p class="text-sm text-gray-600">Instant emails sent when specific actions occur, like immediate responses to customer behavior.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-600 mb-2">📊 Data Activities</h4>
+                            <p class="text-sm text-gray-600">Import, query, filter, and manage customer data automatically to power personalization.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-nto-green bg-opacity-10 border border-nto-green rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-3">💡 Why Automation Matters for NTO</h3>
+                        <p class="text-gray-700 mb-3">Like having a knowledgeable trail guide available 24/7, automation helps NTO:</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li>Welcome new outdoor enthusiasts instantly</li>
+                            <li>Recommend gear based on hiking preferences</li>
+                            <li>Follow up on abandoned carts with perfect timing</li>
+                            <li>Send seasonal gear reminders automatically</li>
+                            <li>Create personalized adventure journeys</li>
+                            <li>Scale customer care without losing the personal touch</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Concepts Tab -->
+            <div id="concepts" class="tab-content hidden p-6">
+                <h2 class="text-2xl font-bold text-nto-green mb-6">📚 Master These Automation Concepts</h2>
+                
+                <div class="space-y-6">
+                    <!-- Concept 1: Automation Studio Fundamentals -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="automation-studio">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🏗️ Automation Studio Fundamentals</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">The backstage crew that handles data processing and technical workflows.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-blue-600 mb-2">Key Activities</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• <strong>Import Activity:</strong> Bringing data into SFMC</li>
+                                        <li>• <strong>Query Activity:</strong> Using SQL to find customers</li>
+                                        <li>• <strong>Filter Activity:</strong> Creating customer segments</li>
+                                        <li>• <strong>Data Copy:</strong> Moving data between extensions</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-600 mb-2">NTO Use Cases</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Daily import of new subscribers</li>
+                                        <li>• Weekly segmentation of hiking preferences</li>
+                                        <li>• Monthly data cleanup and archiving</li>
+                                        <li>• Real-time purchase data processing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-yellow-800 mb-2">💡 Pro Tip</h4>
+                                <p class="text-sm text-gray-700">Automation Studio is like the base camp operations - essential but behind the scenes. Focus on data flow and scheduling for optimal performance.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 2: Journey Builder Basics -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="journey-builder">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🗺️ Journey Builder Fundamentals</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Creating choose-your-own-adventure experiences for customers.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="mb-4">
+                                <h4 class="font-semibold text-nto-green mb-3">🎯 Journey Components</h4>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="space-y-3">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-nto-green rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">E</div>
+                                            <span class="text-sm"><strong>Entry Source:</strong> How customers enter</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-nto-orange rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">A</div>
+                                            <span class="text-sm"><strong>Activities:</strong> Actions taken (emails, waits)</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">D</div>
+                                            <span class="text-sm"><strong>Decision Splits:</strong> Different paths</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold mr-3">G</div>
+                                            <span class="text-sm"><strong>Goals:</strong> Target achievements</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-600 mb-2">🏔️ NTO Welcome Journey Example</h4>
+                                <div class="text-sm text-gray-600 space-y-1">
+                                    <div>1. <strong>Entry:</strong> New subscriber joins hiking newsletter</div>
+                                    <div>2. <strong>Welcome Email:</strong> Immediate gear guide and trail tips</div>
+                                    <div>3. <strong>Wait 3 days:</strong> Time to explore initial content</div>
+                                    <div>4. <strong>Decision Split:</strong> Did they open the welcome email?</div>
+                                    <div>5a. <strong>Yes Path:</strong> Send hiking boot recommendations</div>
+                                    <div>5b. <strong>No Path:</strong> Send re-engagement with special offer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 3: Entry Sources -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="entry-sources">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🚪 Entry Sources & Data Extensions</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">The starting gates that determine how customers begin their journey.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">📊 Entry Source Types</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div><strong>Data Extensions:</strong> Customer lists and segments</div>
+                                        <div><strong>Salesforce Objects:</strong> CRM data integration</div>
+                                        <div><strong>API Events:</strong> Real-time triggers from website</div>
+                                        <div><strong>Audience Builder:</strong> Pre-built audience segments</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">⚙️ Entry Settings</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>No re-entry:</strong> One-time experience</div>
+                                        <div>• <strong>Re-entry after exit:</strong> Can return after completion</div>
+                                        <div>• <strong>Re-entry anytime:</strong> Multiple participations</div>
+                                        <div>• <strong>Evaluation frequency:</strong> How often to check for new customers</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-green-50 rounded-lg">
+                                <h4 class="font-semibold text-green-700 mb-2">🏔️ NTO Entry Strategy</h4>
+                                <p class="text-sm text-gray-600">NTO uses Data Extensions for new subscribers, API Events for website behaviors (cart abandonment, product views), and Salesforce Objects for CRM-triggered journeys.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 4: Decision Splits -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="decision-splits">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🎯 Decision Splits & Branching Logic</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Creating different adventure paths based on customer behavior and preferences.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-3 gap-4 mb-4">
+                                <div class="bg-blue-50 p-4 rounded-lg text-center">
+                                    <h4 class="font-semibold text-blue-600 mb-2">📧 Engagement Splits</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div>Based on email opens</div>
+                                        <div>Click-through behavior</div>
+                                        <div>Time-based engagement</div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg text-center">
+                                    <h4 class="font-semibold text-green-600 mb-2">👤 Attribute Splits</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div>Demographics (age, location)</div>
+                                        <div>Preferences (hiking, camping)</div>
+                                        <div>Purchase history</div>
+                                    </div>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg text-center">
+                                    <h4 class="font-semibold text-purple-600 mb-2">🎲 Random Splits</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div>A/B testing</div>
+                                        <div>Percentage-based division</div>
+                                        <div>Control group creation</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-orange-50 border-l-4 border-nto-orange p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-nto-orange mb-2">🏔️ NTO Decision Split Example</h4>
+                                <div class="text-sm text-gray-700">
+                                    <p class="mb-2"><strong>Scenario:</strong> Customer abandoned hiking boots in cart</p>
+                                    <div class="space-y-1">
+                                        <div>• <strong>Path A (First-time visitor):</strong> Educational content about boot features</div>
+                                        <div>• <strong>Path B (Returning customer):</strong> Limited-time discount offer</div>
+                                        <div>• <strong>Path C (VIP member):</strong> Personal gear consultant invitation</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 5: Wait Activities -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="wait-activities">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">⏰ Wait Activities & Timing</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Perfect timing like a well-planned rest stop on a hiking trail.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-3 gap-4 mb-4">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-blue-600 mb-2">⏱️ Duration Wait</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div>Specific time periods</div>
+                                        <div>Hours, days, weeks</div>
+                                        <div>Most common type</div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-600 mb-2">📅 Date/Time Wait</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div>Until specific date</div>
+                                        <div>Seasonal campaigns</div>
+                                        <div>Event-based timing</div>
+                                    </div>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-purple-600 mb-2">📊 Attribute Wait</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div>Until data changes</div>
+                                        <div>Status updates</div>
+                                        <div>Behavior triggers</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-yellow-800 mb-2">⏰ NTO Timing Best Practices</h4>
+                                <div class="grid md:grid-cols-2 gap-4 text-sm text-gray-700">
+                                    <div>
+                                        <div>• <strong>Welcome Series:</strong> 2-3 days between emails</div>
+                                        <div>• <strong>Abandoned Cart:</strong> 1hr → 24hr → 3 days → 1 week</div>
+                                    </div>
+                                    <div>
+                                        <div>• <strong>Educational:</strong> 1 week between lessons</div>
+                                        <div>• <strong>Seasonal:</strong> Wait until campaign dates</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 6: Journey Settings -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="journey-settings">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">⚙️ Journey Settings & Configuration</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Setting up the rules and objectives for customer adventures.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">🎯 Journey Goals</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Purchase completion:</strong> Customer buys product</div>
+                                        <div>• <strong>Engagement target:</strong> Opens X emails</div>
+                                        <div>• <strong>Website action:</strong> Visits specific page</div>
+                                        <div>• <strong>Profile completion:</strong> Fills preferences</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">📧 Email Settings</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Send Classification:</strong> From address/name</div>
+                                        <div>• <strong>Publication Lists:</strong> Unsubscribe options</div>
+                                        <div>• <strong>Delivery Options:</strong> Send time preferences</div>
+                                        <div>• <strong>Suppression Lists:</strong> Who not to contact</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                                <h4 class="font-semibold text-blue-600 mb-2">🏔️ NTO Goal Strategy</h4>
+                                <p class="text-sm text-gray-600">NTO sets specific goals for each journey: Welcome journeys aim for first purchase within 30 days, seasonal campaigns target engagement with 3+ emails, and loyalty journeys focus on repeat purchases.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 7: Journey Analytics -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="analytics">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">📊 Journey Analytics & Reporting</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Measuring success like tracking progress on a hiking expedition.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">📈 Key Metrics</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Entry Count:</strong> Customers who started</div>
+                                        <div>• <strong>Goal Achievement:</strong> Success rate percentage</div>
+                                        <div>• <strong>Exit Count:</strong> Early departures</div>
+                                        <div>• <strong>Path Performance:</strong> Which routes work best</div>
+                                        <div>• <strong>Conversion Rates:</strong> Step-by-step success</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">🔍 Analysis Focus</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Drop-off points:</strong> Where customers leave</div>
+                                        <div>• <strong>High-performing paths:</strong> Best decision routes</div>
+                                        <div>• <strong>Time in journey:</strong> How long customers take</div>
+                                        <div>• <strong>Activity performance:</strong> Email engagement rates</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-green-50 rounded-lg">
+                                <h4 class="font-semibold text-green-700 mb-2">📊 NTO Analytics Strategy</h4>
+                                <p class="text-sm text-gray-600">NTO monitors weekly journey performance, focusing on goal achievement rates and identifying bottlenecks. They use insights to optimize wait times, improve content, and refine decision split criteria.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 8: Testing & Validation -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="testing">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🧪 Journey Testing & Validation</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Testing routes before guiding customers on their adventure.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="mb-4">
+                                <h4 class="font-semibold text-nto-green mb-3">✅ Validation Checklist</h4>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span>All activities properly connected</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span>Email content approved and tested</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span>Data extensions have correct fields</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span>Entry source properly configured</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span>Wait times are reasonable</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span>Decision splits cover all paths</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span>Goals properly configured</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span>Test data created and verified</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-yellow-800 mb-2">🏔️ NTO Testing Process</h4>
+                                <p class="text-sm text-gray-700">NTO creates test data extensions with sample customers representing different personas (new hikers, experienced adventurers, seasonal shoppers) and monitors their progress through each journey path before going live.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 9: Best Practices -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="best-practices">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">💡 Automation Best Practices</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Proven strategies for creating exceptional automated experiences.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">🎯 Planning Principles</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Start with goals:</strong> Know what success looks like</div>
+                                        <div>• <strong>Map customer experience:</strong> Think like your customer</div>
+                                        <div>• <strong>Keep it simple:</strong> Don't overcomplicate paths</div>
+                                        <div>• <strong>Test small:</strong> Start with limited audience</div>
+                                        <div>• <strong>Monitor performance:</strong> Check results regularly</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">📧 Email Timing</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Welcome emails:</strong> Send immediately</div>
+                                        <div>• <strong>Educational content:</strong> 3-7 days apart</div>
+                                        <div>• <strong>Promotional emails:</strong> Max 2-3 per week</div>
+                                        <div>• <strong>Abandoned cart:</strong> 1hr → 24hr → 3d → 1w</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                                <h4 class="font-semibold text-blue-600 mb-2">🏔️ NTO Success Formula</h4>
+                                <p class="text-sm text-gray-600">NTO's most successful journeys follow the "Trail Guide Approach": Clear entry points, helpful content at each step, respect for customer pace, and always leading toward a valuable destination.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 10: Advanced Features -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="advanced">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🚀 Advanced Automation Features</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Cutting-edge features for sophisticated customer experiences.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-purple-600 mb-3">🧠 Einstein Features</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Send Time Optimization:</strong> AI-powered timing</div>
+                                        <div>• <strong>Engagement Frequency:</strong> Personalized cadence</div>
+                                        <div>• <strong>Engagement Scoring:</strong> Predictive engagement</div>
+                                        <div>• <strong>Content Selection:</strong> AI content recommendations</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-blue mb-3">🔧 Advanced Techniques</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Multi-channel journeys:</strong> Email + SMS + Social</div>
+                                        <div>• <strong>Real-time personalization:</strong> Dynamic content</div>
+                                        <div>• <strong>Cross-cloud integration:</strong> Sales + Service + Marketing</div>
+                                        <div>• <strong>Custom activities:</strong> Developer extensions</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-purple-50 rounded-lg">
+                                <h4 class="font-semibold text-purple-700 mb-2">🎯 Future of NTO Automation</h4>
+                                <p class="text-sm text-gray-600">NTO is exploring Einstein features to optimize send times for different customer segments (early morning hikers vs. evening adventurers) and implementing cross-channel journeys that connect email, SMS, and in-store experiences.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Tab -->
+            <div id="quiz" class="tab-content hidden p-6">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-nto-green mb-4">🧠 Automation & Journey Builder Mastery Quiz</h2>
+                    <p class="text-gray-600 mb-6">Test your journey orchestration skills with NTO scenarios</p>
+                    
+                    <div class="flex justify-center space-x-4 mb-6">
+                        <button id="startQuiz" class="bg-nto-green hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                            🎯 Start Adventure Quiz
+                        </button>
+                        <button id="reviewMode" class="bg-nto-orange hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                            📖 Review Mode
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Interface -->
+                <div id="quizInterface" class="hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <!-- Quiz Progress -->
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="text-sm text-gray-600">
+                                Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                Score: <span id="currentScore">0</span>/10
+                            </div>
+                        </div>
+
+                        <!-- Question -->
+                        <div id="questionContainer" class="mb-6">
+                            <h3 id="questionText" class="text-lg font-semibold text-nto-green mb-4"></h3>
+                            <div id="optionsContainer" class="space-y-3"></div>
+                        </div>
+
+                        <!-- Feedback -->
+                        <div id="feedback" class="hidden mb-6 p-4 rounded-lg"></div>
+
+                        <!-- Navigation -->
+                        <div class="flex justify-between">
+                            <button id="prevQuestion" class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded font-medium transition-colors" disabled>
+                                ← Previous
+                            </button>
+                            <button id="nextQuestion" class="bg-nto-blue hover:bg-blue-700 text-white px-4 py-2 rounded font-medium transition-colors" disabled>
+                                Next →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Results -->
+                <div id="quizResults" class="hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div id="resultsContent"></div>
+                        <div class="mt-6 space-x-4">
+                            <button id="retakeQuiz" class="bg-nto-green hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                🔄 Retake Quiz
+                            </button>
+                            <button id="reviewAnswers" class="bg-nto-orange hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                📋 Review Answers
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Tab -->
+            <div id="resources" class="tab-content hidden p-6">
+                <h2 class="text-2xl font-bold text-nto-green mb-6">📖 Additional Resources</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Key Terms -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-4">🔑 Key Terms to Remember</h3>
+                        <div class="space-y-2 text-sm">
+                            <div><strong>Automation:</strong> Automated marketing tasks without manual intervention</div>
+                            <div><strong>Journey Builder:</strong> Multi-step customer experience tool</div>
+                            <div><strong>Entry Source:</strong> How customers enter journeys</div>
+                            <div><strong>Decision Split:</strong> Branching paths based on criteria</div>
+                            <div><strong>Wait Activity:</strong> Timed pause in customer journey</div>
+                            <div><strong>Goal:</strong> Target action for journey success</div>
+                            <div><strong>Query Activity:</strong> SQL-based data selection</div>
+                            <div><strong>Single Send:</strong> One-time email broadcast</div>
+                        </div>
+                    </div>
+
+                    <!-- Pro Tips -->
+                    <div class="bg-gradient-to-br from-nto-green to-blue-600 text-white rounded-lg p-6">
+                        <h3 class="text-lg font-semibold mb-4">💡 Pro Tips for Success</h3>
+                        <div class="space-y-2 text-sm">
+                            <div>✓ Think like your customer first</div>
+                            <div>✓ Start simple, build complexity gradually</div>
+                            <div>✓ Always test before going live</div>
+                            <div>✓ Monitor performance regularly</div>
+                            <div>✓ Keep content fresh and relevant</div>
+                            <div>✓ Respect communication frequency</div>
+                            <div>✓ Plan for edge cases and errors</div>
+                            <div>✓ Document everything clearly</div>
+                        </div>
+                    </div>
+
+                    <!-- Next Steps -->
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-yellow-800 mb-4">🎯 Next Steps</h3>
+                        <div class="space-y-2 text-sm text-yellow-700">
+                            <div>1. Practice building simple journeys</div>
+                            <div>2. Create test data extensions</div>
+                            <div>3. Experiment with decision splits</div>
+                            <div>4. Set up journey analytics</div>
+                            <div>5. Implement A/B testing</div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Topics -->
+                    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-purple-800 mb-4">🚀 Advanced Topics</h3>
+                        <div class="space-y-2 text-sm text-purple-700">
+                            <div>• Multi-channel journey orchestration</div>
+                            <div>• Einstein AI integration</div>
+                            <div>• Cross-cloud data synchronization</div>
+                            <div>• Custom activity development</div>
+                            <div>• Real-time personalization</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Questions
+        const lesson5BQuestions = [
+            {
+                question: "🏔️ What's the main difference between Automation Studio and Journey Builder for NTO's marketing team?",
+                options: [
+                    "Automation Studio is for emails, Journey Builder is for data",
+                    "Automation Studio handles backend processes, Journey Builder manages customer experiences",
+                    "They perform identical functions",
+                    "Journey Builder is more expensive than Automation Studio"
+                ],
+                correct: 1,
+                domain: "Automation Fundamentals",
+                difficulty: "Basic",
+                simpleExplanation: "Think of Automation Studio as the base camp operations (behind-the-scenes data work) and Journey Builder as the trail guide (customer-facing experiences). Both are essential but serve different purposes.",
+                ntoExample: "NTO uses Automation Studio to import daily customer data and process purchase information, while Journey Builder creates the welcome series and abandoned cart emails that customers actually receive.",
+                certificationTip: "Remember: Automation Studio = backend data processing, Journey Builder = customer experience management. Know when to use each tool."
+            },
+            {
+                question: "🚪 NTO wants to start a welcome journey for new hiking newsletter subscribers. What determines how customers enter this journey?",
+                options: [
+                    "The email content determines entry",
+                    "The Entry Source configuration (like a Data Extension with new subscribers)",
+                    "Customers enter randomly",
+                    "All existing customers automatically enter"
+                ],
+                correct: 1,
+                domain: "Entry Sources",
+                difficulty: "Basic",
+                simpleExplanation: "Entry Sources are like the starting gate of a hiking trail - they define exactly who can begin the journey and when they're allowed to start.",
+                ntoExample: "NTO sets up a Data Extension called 'New_Hiking_Subscribers' that gets updated daily. The welcome journey checks this extension and automatically starts the experience for anyone who joined in the last 24 hours.",
+                certificationTip: "Entry Source types: Data Extensions (most common), Salesforce Objects, API Events, Audience Builder. Each serves different trigger scenarios."
+            },
+            {
+                question: "⏰ In NTO's abandoned cart journey, what's the recommended timing sequence for follow-up emails?",
+                options: [
+                    "Send all emails immediately",
+                    "Wait 1 hour, then 24 hours, then 3 days, then 1 week",
+                    "Wait 1 month between each email",
+                    "Send emails randomly throughout the month"
+                ],
+                correct: 1,
+                domain: "Wait Activities",
+                difficulty: "Intermediate",
+                simpleExplanation: "Like giving someone time to rest between challenging sections of a hike, abandoned cart timing respects the customer's decision-making process while staying helpful.",
+                ntoExample: "When a customer abandons hiking boots in their cart, NTO sends: 1hr reminder ('Still thinking about those boots?'), 24hr educational content ('Why these boots are perfect for your trails'), 3 days discount offer, and 1 week final chance with customer service contact.",
+                certificationTip: "Standard abandoned cart timing: 1hr → 24hr → 3 days → 1 week. This balances persistence with respect for customer decision-making time."
+            },
+            {
+                question: "🎯 What type of Decision Split should NTO use to send different content based on whether customers opened their welcome email?",
+                options: [
+                    "Random Split for A/B testing",
+                    "Attribute Split based on demographics",
+                    "Engagement Split based on email interaction",
+                    "Date Split based on time"
+                ],
+                correct: 2,
+                domain: "Decision Splits",
+                difficulty: "Basic",
+                simpleExplanation: "Engagement Splits are like checking if hikers are following the trail markers - they look at how customers interact with your emails to determine the next best step.",
+                ntoExample: "NTO's welcome journey uses an Engagement Split: customers who opened get advanced gear recommendations, while non-openers receive a re-engagement email with hiking tips and a different subject line.",
+                certificationTip: "Decision Split types: Engagement (email behavior), Attribute (customer data), Random (A/B testing). Choose based on what criteria you want to split on."
+            },
+            {
+                question: "📊 Which SQL function would NTO use in a Query Activity to find customers who joined in the last 7 days?",
+                options: [
+                    "SELECT * FROM Customers WHERE JoinDate = TODAY",
+                    "SELECT * FROM Customers WHERE JoinDate >= DATEADD(DAY, -7, GETDATE())",
+                    "SELECT * FROM Customers WHERE JoinDate < 7",
+                    "SELECT * FROM Customers ORDER BY JoinDate"
+                ],
+                correct: 1,
+                domain: "Automation Studio",
+                difficulty: "Intermediate",
+                simpleExplanation: "DATEADD is like measuring trail distance backwards - it subtracts 7 days from today's date to find customers who joined within that timeframe.",
+                ntoExample: "NTO's weekly new subscriber report uses this query to identify recent hiking newsletter signups and automatically add them to their welcome journey Data Extension.",
+                certificationTip: "Key SQL functions for SFMC: DATEADD for date calculations, GETDATE() for current date, WHERE for filtering. Practice date-based queries for certification."
+            },
+            {
+                question: "🎪 Before activating NTO's new seasonal gear journey, what should they do first?",
+                options: [
+                    "Send it to all customers immediately",
+                    "Wait a week to think about it",
+                    "Validate and test the journey with small test groups",
+                    "Only check the email design"
+                ],
+                correct: 2,
+                domain: "Testing & Validation",
+                difficulty: "Basic",
+                simpleExplanation: "Testing a journey is like doing a practice hike before leading a group - you want to make sure every step works correctly and safely before involving real customers.",
+                ntoExample: "NTO creates a test Data Extension with 50 sample contacts representing different customer personas (new hikers, experienced climbers, seasonal shoppers) and monitors their progress through each journey path.",
+                certificationTip: "Always validate journeys: check connections, test emails, verify data extensions, confirm timing, and test with sample data before activation."
+            },
+            {
+                question: "🏆 What should NTO set as Goals in their welcome journey to measure success?",
+                options: [
+                    "Goals are not necessary in journeys",
+                    "Only email open rates",
+                    "Specific actions like first purchase within 30 days or profile completion",
+                    "Number of emails sent"
+                ],
+                correct: 2,
+                domain: "Journey Settings",
+                difficulty: "Intermediate",
+                simpleExplanation: "Journey Goals are like summit markers on a mountain - they define what success looks like and help you measure if customers are reaching the destination you planned for them.",
+                ntoExample: "NTO's welcome journey goal is 'First Purchase within 30 days' - this helps them measure how effectively the journey converts new subscribers into customers and optimize accordingly.",
+                certificationTip: "Journey Goals define success metrics and can trigger exit behavior. Common goals: purchases, email engagement targets, website actions, profile completion."
+            },
+            {
+                question: "📧 What happens to customers already in an NTO journey when the marketing team makes changes to it?",
+                options: [
+                    "They automatically get the updated experience",
+                    "Active customers continue with the original version; new customers get updates",
+                    "All customers restart from the beginning",
+                    "Changes affect everyone immediately"
+                ],
+                correct: 1,
+                domain: "Journey Management",
+                difficulty: "Advanced",
+                simpleExplanation: "Journey versioning is like hikers who started with one trail map - they continue with their original route while new hikers get the updated map with improvements.",
+                ntoExample: "When NTO updates their welcome journey with new product recommendations, customers already in progress continue with the original emails they were scheduled to receive, ensuring a consistent experience.",
+                certificationTip: "Journey versioning maintains experience consistency. Active customers stay on their version; new entrants get updates. Plan changes carefully."
+            },
+            {
+                question: "🔄 NTO wants to allow customers to go through their seasonal campaign journey multiple times throughout the year. What re-entry setting should they use?",
+                options: [
+                    "No re-entry (one-time only)",
+                    "Re-entry only after exiting",
+                    "Re-entry anytime during the journey",
+                    "Manual re-entry only"
+                ],
+                correct: 1,
+                domain: "Journey Configuration",
+                difficulty: "Intermediate",
+                simpleExplanation: "Re-entry settings are like park passes - 'only after exiting' means customers can return for each new season after they complete or leave the current seasonal experience.",
+                ntoExample: "NTO's 'Winter Gear Campaign' allows re-entry after exit, so customers who complete the winter journey can enter again when the spring gear campaign launches, but can't duplicate the same seasonal experience.",
+                certificationTip: "Re-entry options: No re-entry (one-time experiences), Re-entry after exit (recurring campaigns), Re-entry anytime (ongoing engagement). Choose based on journey purpose."
+            },
+            {
+                question: "🧠 What Einstein feature could help NTO optimize when individual customers receive their hiking gear emails?",
+                options: [
+                    "Einstein Content Selection only",
+                    "Einstein Send Time Optimization through Engagement Splits",
+                    "Einstein only works with Salesforce CRM",
+                    "Einstein features are not available in Journey Builder"
+                ],
+                correct: 1,
+                domain: "Advanced Features",
+                difficulty: "Advanced",
+                simpleExplanation: "Einstein Send Time Optimization is like having an AI trail guide who knows when each hiker prefers to start their adventure - it learns individual customer patterns to send emails at their optimal times.",
+                ntoExample: "NTO uses Einstein to learn that some customers (early morning hikers) engage best with 6 AM emails, while others (evening adventurers) prefer 7 PM sends, automatically optimizing timing for each individual.",
+                certificationTip: "Einstein features in Journey Builder: Send Time Optimization, Engagement Frequency, Engagement Scoring. Implemented through Einstein Engagement Splits."
+            }
+        ];
+
+        // Application State
+        let currentQuestionIndex = 0;
+        let selectedAnswers = [];
+        let quizScore = 0;
+        let isReviewMode = false;
+        let conceptsViewed = new Set();
+
+        // Progress Tracking
+        function updateProgress() {
+            const conceptProgress = conceptsViewed.size;
+            const quizProgress = selectedAnswers.length;
+            const totalProgress = Math.round(((conceptProgress * 5) + (quizProgress * 5)) / 10);
+            
+            document.getElementById('conceptsViewed').textContent = conceptProgress;
+            document.getElementById('quizProgress').textContent = quizProgress;
+            document.getElementById('overallProgress').textContent = totalProgress;
+            document.getElementById('progressBar').style.width = totalProgress + '%';
+            
+            // Save progress
+            localStorage.setItem('lesson5BProgress', JSON.stringify({
+                conceptsViewed: Array.from(conceptsViewed),
+                quizAnswers: selectedAnswers,
+                quizScore: quizScore
+            }));
+        }
+
+        // Load saved progress
+        function loadProgress() {
+            const saved = localStorage.getItem('lesson5BProgress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                conceptsViewed = new Set(progress.conceptsViewed || []);
+                selectedAnswers = progress.quizAnswers || [];
+                quizScore = progress.quizScore || 0;
+                updateProgress();
+            }
+        }
+
+        // Tab Management
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                // Update button states
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active', 'border-nto-orange', 'text-nto-orange');
+                    b.classList.add('border-transparent', 'text-gray-500');
+                });
+                btn.classList.add('active', 'border-nto-orange', 'text-nto-orange');
+                btn.classList.remove('border-transparent', 'text-gray-500');
+                
+                // Show target content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(targetTab).classList.remove('hidden');
+            });
+        });
+
+        // Concept Cards
+        document.querySelectorAll('.concept-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const details = card.querySelector('.concept-details');
+                const concept = card.dataset.concept;
+                
+                if (details.classList.contains('hidden')) {
+                    details.classList.remove('hidden');
+                    conceptsViewed.add(concept);
+                    updateProgress();
+                } else {
+                    details.classList.add('hidden');
+                }
+            });
+        });
+
+        // Quiz Management
+        function startQuiz(reviewMode = false) {
+            isReviewMode = reviewMode;
+            currentQuestionIndex = 0;
+            if (!reviewMode) {
+                selectedAnswers = [];
+                quizScore = 0;
+            }
+            
+            document.getElementById('startQuiz').classList.add('hidden');
+            document.getElementById('reviewMode').classList.add('hidden');
+            document.getElementById('quizInterface').classList.remove('hidden');
+            document.getElementById('totalQuestions').textContent = lesson5BQuestions.length;
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = lesson5BQuestions[currentQuestionIndex];
+            
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('currentScore').textContent = quizScore;
+            document.getElementById('questionText').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option-item p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-nto-blue transition-colors';
+                
+                const isSelected = selectedAnswers[currentQuestionIndex] === index;
+                const isCorrect = index === question.correct;
+                
+                if (isReviewMode && selectedAnswers[currentQuestionIndex] !== undefined) {
+                    if (isCorrect) {
+                        optionDiv.className += ' bg-green-100 border-green-500';
+                    } else if (isSelected && !isCorrect) {
+                        optionDiv.className += ' bg-red-100 border-red-500';
+                    }
+                }
+                
+                optionDiv.innerHTML = `
+                    <label class="flex items-center cursor-pointer">
+                        <input type="radio" name="question" value="${index}" class="mr-3" ${isSelected ? 'checked' : ''}>
+                        <span>${option}</span>
+                    </label>
+                `;
+                
+                if (!isReviewMode) {
+                    optionDiv.addEventListener('click', () => selectAnswer(index));
+                }
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Show feedback in review mode
+            if (isReviewMode && selectedAnswers[currentQuestionIndex] !== undefined) {
+                showFeedback(selectedAnswers[currentQuestionIndex] === question.correct);
+            } else {
+                document.getElementById('feedback').classList.add('hidden');
+            }
+            
+            // Update navigation
+            document.getElementById('prevQuestion').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextQuestion').disabled = !isReviewMode && selectedAnswers[currentQuestionIndex] === undefined;
+        }
+
+        function selectAnswer(answerIndex) {
+            selectedAnswers[currentQuestionIndex] = answerIndex;
+            const isCorrect = answerIndex === lesson5BQuestions[currentQuestionIndex].correct;
+            
+            if (isCorrect) {
+                quizScore++;
+            }
+            
+            // Update option styling
+            document.querySelectorAll('.option-item').forEach((item, index) => {
+                item.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+                if (index === lesson5BQuestions[currentQuestionIndex].correct) {
+                    item.classList.add('bg-green-100', 'border-green-500');
+                } else if (index === answerIndex && !isCorrect) {
+                    item.classList.add('bg-red-100', 'border-red-500');
+                }
+            });
+            
+            showFeedback(isCorrect);
+            document.getElementById('nextQuestion').disabled = false;
+            updateProgress();
+        }
+
+        function showFeedback(isCorrect) {
+            const feedback = document.getElementById('feedback');
+            const question = lesson5BQuestions[currentQuestionIndex];
+            
+            feedback.className = `mb-6 p-4 rounded-lg ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`;
+            
+            feedback.innerHTML = `
+                <h4 class="font-semibold ${isCorrect ? 'text-green-800' : 'text-red-800'} mb-2">
+                    ${isCorrect ? '✅ Correct!' : '❌ Not quite right'}
+                </h4>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <strong class="text-gray-700">Simple Explanation:</strong>
+                        <p class="text-gray-600 mt-1">${question.simpleExplanation}</p>
+                    </div>
+                    <div>
+                        <strong class="text-nto-green">🏔️ NTO Example:</strong>
+                        <p class="text-gray-600 mt-1">${question.ntoExample}</p>
+                    </div>
+                    <div>
+                        <strong class="text-nto-orange">📝 Certification Tip:</strong>
+                        <p class="text-gray-600 mt-1">${question.certificationTip}</p>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-2">
+                        Domain: ${question.domain} | Difficulty: ${question.difficulty}
+                    </div>
+                </div>
+            `;
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < lesson5BQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizInterface').classList.add('hidden');
+            document.getElementById('quizResults').classList.remove('hidden');
+            
+            const percentage = Math.round((quizScore / lesson5BQuestions.length) * 100);
+            let message, colorClass;
+            
+            if (percentage >= 80) {
+                message = "🏆 Outstanding! You've mastered automation and journey orchestration like a expert trail guide!";
+                colorClass = "text-green-600";
+            } else if (percentage >= 70) {
+                message = "🌟 Great job! Review the automation concepts you missed and you'll be journey-ready.";
+                colorClass = "text-nto-orange";
+            } else {
+                message = "📚 Keep exploring! Focus on understanding how automation flows work together.";
+                colorClass = "text-red-600";
+            }
+            
+            document.getElementById('resultsContent').innerHTML = `
+                <div class="text-6xl mb-4">🗺️</div>
+                <h3 class="text-2xl font-bold ${colorClass} mb-4">Journey Complete!</h3>
+                <div class="text-4xl font-bold ${colorClass} mb-4">${quizScore}/${lesson5BQuestions.length}</div>
+                <div class="text-xl ${colorClass} mb-6">${percentage}%</div>
+                <p class="text-gray-600 mb-6">${message}</p>
+                <div class="text-sm text-gray-500">
+                    Automation & Journey Builder are core components of SFMC Email Specialist certification
+                </div>
+            `;
+        }
+
+        // Event Listeners
+        document.getElementById('startQuiz').addEventListener('click', () => startQuiz(false));
+        document.getElementById('reviewMode').addEventListener('click', () => startQuiz(true));
+        document.getElementById('nextQuestion').addEventListener('click', nextQuestion);
+        document.getElementById('prevQuestion').addEventListener('click', prevQuestion);
+        document.getElementById('retakeQuiz').addEventListener('click', () => {
+            document.getElementById('quizResults').classList.add('hidden');
+            document.getElementById('startQuiz').classList.remove('hidden');
+            document.getElementById('reviewMode').classList.remove('hidden');
+        });
+        document.getElementById('reviewAnswers').addEventListener('click', () => {
+            document.getElementById('quizResults').classList.add('hidden');
+            startQuiz(true);
+        });
+        document.getElementById('resetProgress').addEventListener('click', () => {
+            if (confirm('Reset all progress for this lesson?')) {
+                localStorage.removeItem('lesson5BProgress');
+                conceptsViewed.clear();
+                selectedAnswers = [];
+                quizScore = 0;
+                updateProgress();
+            }
+        });
+
+        // Initialize
+        loadProgress();
+    </script>
+</body>
+</html>

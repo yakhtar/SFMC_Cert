@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 1: Subscriber & Data Management - Enhanced with NTO Context</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="bg-black/20 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                        📧 SFMC Mastery Hub
+                    </a>
+                    <span class="text-sm text-gray-300">Lesson 1: Subscriber & Data Management</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="enhanced_sfmc_certification_mastery.html" class="text-blue-300 hover:text-blue-200 transition-colors">Main Certification</a>
+                    <a href="index.html" class="text-blue-300 hover:text-blue-200 transition-colors">← Back to Hub</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent animate-gradient-x">
+                    SFMC Lesson 1: Subscriber & Data Management
+                </span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-4">Enhanced with Northern Trail Outfitters Context</p>
+            <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                🏔️ Master data management concepts using outdoor gear e-commerce scenarios. This lesson covers 26-29% of your certification exam!
+            </p>
+            
+            <!-- Progress Dashboard -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-blue-400" id="conceptsLearned">0</div>
+                    <div class="text-sm text-gray-300">Concepts Learned</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-green-400" id="questionsAnswered">0</div>
+                    <div class="text-sm text-gray-300">Questions Answered</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-yellow-400" id="accuracyRate">0%</div>
+                    <div class="text-sm text-gray-300">Accuracy Rate</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lng p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-purple-400" id="studyProgress">0%</div>
+                    <div class="text-sm text-gray-300">Completion</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Navigation -->
+        <div class="mb-8">
+            <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                <h3 class="text-xl font-semibold mb-4">🧭 Quick Navigation</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <button onclick="scrollToSection('concepts')" class="bg-blue-600/30 hover:bg-blue-600/50 p-3 rounded-lg transition-all">
+                        📊 Core Concepts
+                    </button>
+                    <button onclick="scrollToSection('nto-scenarios')" class="bg-green-600/30 hover:bg-green-600/50 p-3 rounded-lg transition-all">
+                        🏔️ NTO Scenarios
+                    </button>
+                    <button onclick="scrollToSection('interactive-quiz')" class="bg-purple-600/30 hover:bg-purple-600/50 p-3 rounded-lg transition-all">
+                        🎯 Interactive Quiz
+                    </button>
+                    <button onclick="scrollToSection('certification-tips')" class="bg-orange-600/30 hover:bg-orange-600/50 p-3 rounded-lg transition-all">
+                        🎓 Cert Tips
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Concepts Section -->
+        <div id="concepts" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">📊 Core Concepts</h2>
+            
+            <!-- Concept Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Contact Builder -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-blue-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-blue-400">🏗️ Contact Builder</h3>
+                    <p class="text-gray-300 mb-4">Your customer universe - the master directory where all customer information lives and connects.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Key Features:</strong> Contact Records, Attribute Groups, Data Relationships, Contact Model
+                    </div>
+                </div>
+
+                <!-- Data Extensions -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-green-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-green-400">📋 Data Extensions</h3>
+                    <p class="text-gray-300 mb-4">Like spreadsheets that store specific types of customer information for different purposes.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Types:</strong> Standard, Filtered, Random, Sendable
+                    </div>
+                </div>
+
+                <!-- Import Activities -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-purple-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-purple-400">📥 Import Activities</h3>
+                    <p class="text-gray-300 mb-4">Digital conveyor belts that bring customer information from outside sources into SFMC.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Actions:</strong> Add Only, Add and Update, Update Only, Overwrite
+                    </div>
+                </div>
+
+                <!-- Data Filters -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-yellow-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-yellow-400">🔍 Data Filters</h3>
+                    <p class="text-gray-300 mb-4">Smart search tools that help you find specific groups of customers based on rules you set.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Operators:</strong> Equals, Greater Than, Contains, Is Between
+                    </div>
+                </div>
+
+                <!-- Query Activities -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-red-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-red-400">🔎 Query Activities</h3>
+                    <p class="text-gray-300 mb-4">Advanced customer searches using SQL - like giving very specific instructions to a super-smart assistant.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Components:</strong> SELECT, FROM, WHERE, ORDER BY, JOIN
+                    </div>
+                </div>
+
+                <!-- Data Quality -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-cyan-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-cyan-400">📊 Data Quality</h3>
+                    <p class="text-gray-300 mb-4">Ensuring customer information is accurate, complete, consistent, and timely for effective marketing.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Principles:</strong> Accuracy, Completeness, Consistency, Timeliness
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NTO Scenarios Section -->
+        <div id="nto-scenarios" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🏔️ Northern Trail Outfitters Scenarios</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Scenario 1: Customer Data Organization -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-blue-400">📊 Customer Data Organization</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> NTO needs to organize their outdoor enthusiast customers for targeted seasonal campaigns.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-green-400 mb-2">Contact Builder Setup:</h4>
+                        <ul class="text-sm text-gray-300 space-y-1">
+                            <li>• <strong>Demographics:</strong> Name, Age, Location, Income Level</li>
+                            <li>• <strong>Activity Preferences:</strong> Hiking, Camping, Winter Sports, Family Adventures</li>
+                            <li>• <strong>Purchase History:</strong> Last Purchase, Total Spent, Favorite Categories</li>
+                            <li>• <strong>Engagement:</strong> Email Opens, Website Visits, Store Visits</li>
+                        </ul>
+                    </div>
+                    <div class="text-sm text-blue-300">
+                        <strong>Result:</strong> Complete 360° view of each outdoor enthusiast for personalized gear recommendations
+                    </div>
+                </div>
+
+                <!-- Scenario 2: Seasonal Campaign Segmentation -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-green-400">🍂 Seasonal Campaign Segmentation</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> Create targeted segments for fall hiking gear promotion targeting active customers.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-yellow-400 mb-2">Data Filter Setup:</h4>
+                        <ul class="text-sm text-gray-300 space-y-1">
+                            <li>• <strong>Activity Interest:</strong> Contains "Hiking" OR "Backpacking"</li>
+                            <li>• <strong>Last Purchase:</strong> Greater than 6 months ago</li>
+                            <li>• <strong>Total Spent:</strong> Greater than $500</li>
+                            <li>• <strong>Email Engagement:</strong> Opened emails in last 3 months</li>
+                        </ul>
+                    </div>
+                    <div class="text-sm text-green-300">
+                        <strong>Result:</strong> Highly targeted list of engaged hiking enthusiasts ready for fall gear promotions
+                    </div>
+                </div>
+
+                <!-- Scenario 3: Customer Data Import -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-400">📥 Weekly Customer Data Import</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> NTO receives weekly purchase data from their e-commerce platform that needs to be imported into SFMC.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-purple-300 mb-2">Import Activity Process:</h4>
+                        <ul class="text-sm text-gray-300 space-y-1">
+                            <li>• <strong>Source:</strong> CSV file from e-commerce system</li>
+                            <li>• <strong>Target:</strong> Customer Purchase History Data Extension</li>
+                            <li>• <strong>Action:</strong> Add and Update (new purchases + update customer totals)</li>
+                            <li>• <strong>Schedule:</strong> Every Monday at 6 AM</li>
+                        </ul>
+                    </div>
+                    <div class="text-sm text-purple-300">
+                        <strong>Result:</strong> Fresh customer data every week for accurate targeting and personalization
+                    </div>
+                </div>
+
+                <!-- Scenario 4: Complex Customer Analysis -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-orange-400">🔎 Complex Customer Analysis</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> Find customers who bought winter gear last year but haven't purchased anything this season.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-orange-300 mb-2">SQL Query Logic:</h4>
+                        <pre class="text-xs text-gray-300 bg-gray-900/50 p-2 rounded">
+SELECT 
+    c.EmailAddress,
+    c.FirstName,
+    c.LastName,
+    MAX(p.PurchaseDate) as LastWinterPurchase
+FROM Customers c
+JOIN Purchases p ON c.CustomerID = p.CustomerID
+WHERE p.ProductCategory = 'Winter Gear'
+    AND p.PurchaseDate BETWEEN '2023-10-01' AND '2024-03-31'
+    AND c.CustomerID NOT IN (
+        SELECT CustomerID FROM Purchases 
+        WHERE PurchaseDate >= '2024-10-01'
+    )
+GROUP BY c.EmailAddress, c.FirstName, c.LastName</pre>
+                    </div>
+                    <div class="text-sm text-orange-300">
+                        <strong>Result:</strong> Precise list of winter gear customers ready for re-engagement campaigns
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Quiz Section -->
+        <div id="interactive-quiz" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🎯 Interactive Quiz</h2>
+            
+            <!-- Quiz Controls -->
+            <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 mb-6">
+                <div class="flex flex-wrap items-center justify-between mb-4">
+                    <h3 class="text-xl font-semibold">Lesson 1: Subscriber & Data Management Quiz</h3>
+                    <div class="flex space-x-4">
+                        <button onclick="startQuiz('practice')" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                            📚 Practice Mode
+                        </button>
+                        <button onclick="startQuiz('exam')" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-colors">
+                            🎯 Exam Mode
+                        </button>
+                        <button onclick="resetQuiz()" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors">
+                            🔄 Reset
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quiz Status -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <div class="text-lg font-bold text-blue-400" id="currentQuestion">0</div>
+                        <div class="text-sm text-gray-300">Current Question</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-green-400" id="correctAnswers">0</div>
+                        <div class="text-sm text-gray-300">Correct</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-red-400" id="incorrectAnswers">0</div>
+                        <div class="text-sm text-gray-300">Incorrect</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-yellow-400" id="timeRemaining">--:--</div>
+                        <div class="text-sm text-gray-300">Time Left</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Content -->
+            <div id="quizContainer" class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20" style="display: none;">
+                <div id="questionCard">
+                    <!-- Questions will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Quiz Results -->
+            <div id="resultsContainer" class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20" style="display: none;">
+                <!-- Results will be shown here -->
+            </div>
+        </div>
+
+        <!-- Certification Tips Section -->
+        <div id="certification-tips" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🎓 Certification Tips</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Key Focus Areas -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">🎯 Key Focus Areas (26-29% of Exam)</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-blue-400">•</span>
+                            <span><strong>Contact Builder:</strong> Understand Contact Keys, Attribute Groups, and Data Relationships</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-green-400">•</span>
+                            <span><strong>Data Extensions:</strong> Know field types, Primary Keys, and when to use different types</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-purple-400">•</span>
+                            <span><strong>Import Activities:</strong> Master import actions and error handling</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">•</span>
+                            <span><strong>SQL Queries:</strong> Basic SQL syntax and when to use queries vs filters</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-cyan-400">•</span>
+                            <span><strong>Data Compliance:</strong> GDPR, consent management, and data retention</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Common Mistakes -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-red-400">⚠️ Common Mistakes to Avoid</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Confusing Contact Key with Primary Key</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Not understanding when to use Overwrite vs Add and Update</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Forgetting about Sendable Data Extension requirements</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Mixing up filter operators (Contains vs Equals)</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Not considering data retention and compliance requirements</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pro Tips -->
+            <div class="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-md rounded-lg p-6 border border-white/20 mt-8">
+                <h3 class="text-xl font-semibold mb-4 text-center">💡 Pro Tips for Success</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🏗️</div>
+                        <div class="font-semibold text-blue-400">Build First</div>
+                        <div class="text-sm text-gray-300">Design your Contact Model before importing data</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🧪</div>
+                        <div class="font-semibold text-green-400">Test Small</div>
+                        <div class="text-sm text-gray-300">Always test imports with sample data first</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">📋</div>
+                        <div class="font-semibold text-purple-400">Document Everything</div>
+                        <div class="text-sm text-gray-300">Keep notes on data sources and transformations</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🧹</div>
+                        <div class="font-semibold text-yellow-400">Stay Clean</div>
+                        <div class="text-sm text-gray-300">Regularly remove duplicates and outdated records</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="text-center py-8">
+            <div class="space-x-4">
+                <a href="enhanced_sfmc_certification_mastery.html" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    📚 Main Certification Hub
+                </a>
+                <a href="lesson_2_interactive_qa.html" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    ➡️ Next: Lesson 2
+                </a>
+                <a href="index.html" class="bg-gray-600 hover:bg-gray-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    🏠 Back to Hub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data - Enhanced NTO-focused questions for Lesson 1
+        const lesson1Questions = [
+            {
+                question: "🏔️ Northern Trail Outfitters wants to track customers across their website, mobile app, and retail stores. What should be their primary Contact Key strategy?",
+                options: [
+                    "Use email address as the Contact Key since it's unique",
+                    "Use customer phone number as the Contact Key",
+                    "Create a unique Customer ID that works across all channels",
+                    "Use different Contact Keys for each channel"
+                ],
+                correct: 2,
+                domain: "Subscriber & Data Management",
+                difficulty: "Advanced",
+                simpleExplanation: "Think of a Contact Key like a customer's ID card that works everywhere. Sarah might use different emails for work and personal, but her Customer ID (like NTO12345) stays the same whether she shops online, in-store, or on mobile.",
+                ntoExample: "When Sarah browses hiking boots on NTO's website, then uses the mobile app to check store inventory, and finally purchases in-store, the same Customer ID links all these activities to build a complete picture of her shopping journey.",
+                certificationTip: "The Contact Key is the foundation of your entire SFMC data architecture. It must be unique, consistent across all touchpoints, and never change for a customer."
+            },
+            {
+                question: "🎯 NTO needs to create a Data Extension for customers who bought winter gear last season. Which Data Extension type should they use for a campaign launching next week?",
+                options: [
+                    "Standard Data Extension with manual updates",
+                    "Filtered Data Extension with dynamic criteria",
+                    "Random Data Extension for A/B testing",
+                    "Synchronized Data Extension from Salesforce"
+                ],
+                correct: 0,
+                domain: "Subscriber & Data Management",
+                difficulty: "Intermediate",
+                simpleExplanation: "For a campaign launching soon, you need a stable list that won't change during the campaign. A Standard Data Extension is like a snapshot of customers at a specific moment - perfect for immediate campaigns.",
+                ntoExample: "NTO creates a Standard Data Extension called 'Winter2023Buyers' with customers who bought ski jackets, boots, or winter camping gear. This list stays the same throughout their 'Early Bird Winter 2024' campaign.",
+                certificationTip: "Use Standard Data Extensions for campaigns when you need the audience to remain consistent. Use Filtered Data Extensions for ongoing programs where you want the audience to update automatically."
+            },
+            {
+                question: "📊 When importing NTO's weekly purchase data, the file contains some records with the same CustomerID but different purchase dates. What import action should be used?",
+                options: [
+                    "Add Only - to avoid duplicates",
+                    "Add and Update - to capture new purchases and update existing customer totals",
+                    "Update Only - to modify existing records",
+                    "Overwrite - to replace all data with fresh information"
+                ],
+                correct: 1,
+                domain: "Subscriber & Data Management",
+                difficulty: "Intermediate",
+                simpleExplanation: "Add and Update is like having a smart assistant who adds new information and updates existing information at the same time. If Sarah bought a backpack last week (new), and her total spending needs updating (existing), both happen automatically.",
+                ntoExample: "NTO's weekly file shows John bought new hiking boots (add this purchase) and Sarah made another purchase that increases her total spending from $500 to $750 (update her record). Add and Update handles both scenarios perfectly.",
+                certificationTip: "Add and Update is the most commonly used import action for regular data updates. It's safe and handles both new and existing data intelligently."
+            },
+            {
+                question: "🔍 NTO wants to find customers who spent more than $1,000 AND live in Colorado for a special Rocky Mountain gear promotion. Which filter logic should they use?",
+                options: [
+                    "TotalSpent > 1000 OR State = Colorado",
+                    "TotalSpent > 1000 AND State = Colorado",
+                    "TotalSpent >= 1000 OR State CONTAINS Colorado",
+                    "TotalSpent = 1000 AND State NOT EQUAL Colorado"
+                ],
+                correct: 1,
+                domain: "Subscriber & Data Management",
+                difficulty: "Basic",
+                simpleExplanation: "AND means both conditions must be true. It's like saying 'I want customers who are wealthy AND live in Colorado' - they need to meet both requirements to qualify for the special promotion.",
+                ntoExample: "For NTO's Rocky Mountain promotion, they want high-value customers (spent over $1,000) who also live in Colorado. Sarah spent $1,200 and lives in Denver = qualifies. Mike spent $800 and lives in Colorado = doesn't qualify because he doesn't meet the spending requirement.",
+                certificationTip: "AND makes your audience smaller and more specific. OR makes your audience larger and more inclusive. Choose based on whether you want customers to meet all criteria or just some criteria."
+            },
+            {
+                question: "🏔️ NTO's marketing team wants to automatically update their 'Active Hikers' segment daily with customers who hiked-related purchases in the last 90 days. What's the best approach?",
+                options: [
+                    "Create a Standard Data Extension and update it manually daily",
+                    "Use a Filtered Data Extension with automatic refresh schedule",
+                    "Create a Query Activity that runs monthly",
+                    "Import a new file every day"
+                ],
+                correct: 1,
+                domain: "Subscriber & Data Management",
+                difficulty: "Advanced",
+                simpleExplanation: "A Filtered Data Extension with automatic refresh is like having a self-updating list. Every day, it automatically checks who bought hiking gear in the last 90 days and updates the segment without any manual work.",
+                ntoExample: "NTO sets up a Filtered Data Extension that automatically finds customers with hiking purchases in the last 90 days. Sarah bought boots yesterday - she's automatically added. Mike's last hiking purchase was 95 days ago - he's automatically removed. The team never has to manually update the list.",
+                certificationTip: "Filtered Data Extensions with schedules are perfect for segments that need regular updating based on changing criteria. They save time and ensure your segments are always current."
+            },
+            {
+                question: "📋 What is the maximum number of fields allowed in an SFMC Data Extension?",
+                options: [
+                    "500 fields",
+                    "1,000 fields",
+                    "4,000 fields",
+                    "No limit on fields"
+                ],
+                correct: 2,
+                domain: "Subscriber & Data Management",
+                difficulty: "Basic",
+                simpleExplanation: "SFMC allows up to 4,000 fields in a Data Extension, but just because you can doesn't mean you should! It's like having a huge filing cabinet - more organized sections are better than one giant messy drawer.",
+                ntoExample: "NTO could theoretically track 4,000 different things about each customer (favorite boot color, preferred hiking trail difficulty, camping frequency, etc.), but they focus on the most important 20-30 fields that actually help with marketing decisions.",
+                certificationTip: "While 4,000 fields are allowed, best practice is to only include fields you actually use. More fields = slower performance and higher storage costs."
+            },
+            {
+                question: "🔎 NTO wants to find customers who bought camping gear but have never opened an email. This requires data from multiple sources. What should they use?",
+                options: [
+                    "Data Filter with multiple conditions",
+                    "Standard Data Extension with manual analysis",
+                    "Query Activity with JOIN operations",
+                    "Import Activity with complex mapping"
+                ],
+                correct: 2,
+                domain: "Subscriber & Data Management",
+                difficulty: "Advanced",
+                simpleExplanation: "Query Activities using JOIN are like having a super-smart detective who can look at multiple filing cabinets at once and find connections. A simple filter can only look at one cabinet at a time.",
+                ntoExample: "NTO needs to JOIN the Purchases table (camping gear buyers) with the Email Engagement table (email opens). SQL can find customers who appear in the first table but NOT in the second table - camping buyers who never opened emails.",
+                certificationTip: "Use Query Activities when you need to combine data from multiple Data Extensions or perform complex analysis that simple filters can't handle."
+            },
+            {
+                question: "🏗️ In Contact Builder, what does an Attribute Group represent?",
+                options: [
+                    "A group of email templates",
+                    "A collection of related customer data fields organized by category",
+                    "A group of marketing campaigns",
+                    "A set of email addresses"
+                ],
+                correct: 1,
+                domain: "Subscriber & Data Management",
+                difficulty: "Intermediate",
+                simpleExplanation: "Attribute Groups are like organized folders that group related customer information together. Instead of having all customer details scattered randomly, you organize them into logical categories.",
+                ntoExample: "NTO organizes customer data into Attribute Groups: Demographics (name, age, location), Activity Preferences (hiking, camping, skiing), and Purchase History (last buy date, total spent, favorite categories). Each group contains related fields that make sense together.",
+                certificationTip: "Attribute Groups help organize your Contact Model and make it easier to find and use customer data. They're especially important for large implementations with lots of customer data."
+            },
+            {
+                question: "⚠️ NTO accidentally imported duplicate customer records. What's the best way to handle this data quality issue?",
+                options: [
+                    "Delete all data and start over",
+                    "Use data deduplication tools to identify and merge duplicate records",
+                    "Keep all duplicates for backup purposes",
+                    "Create a new Data Extension and ignore the old one"
+                ],
+                correct: 1,
+                domain: "Subscriber & Data Management",
+                difficulty: "Intermediate",
+                simpleExplanation: "Data deduplication is like organizing your photo collection and removing duplicate pictures. You identify which records represent the same person and either merge them or remove the extras, keeping the most complete information.",
+                ntoExample: "NTO finds three records for Sarah Johnson: sarah@gmail.com, sarah.johnson@gmail.com, and s.johnson@gmail.com. Deduplication tools help identify these as the same person and merge them into one complete record with all her purchase history and preferences.",
+                certificationTip: "Regular data deduplication prevents sending multiple emails to the same person and improves campaign accuracy. Always deduplicate based on multiple fields, not just email address."
+            },
+            {
+                question: "📧 NTO wants to ensure their 'Weekly Newsletter' Data Extension can be used directly for email sends. What must it include?",
+                options: [
+                    "At least 1,000 subscriber records",
+                    "A Subscriber Key field and proper data relationship to Contact Builder",
+                    "Only email addresses and first names",
+                    "A connection to their CRM system"
+                ],
+                correct: 1,
+                domain: "Subscriber & Data Management",
+                difficulty: "Advanced",
+                simpleExplanation: "A Sendable Data Extension is like a mailing list that's properly formatted for the post office. It needs a Subscriber Key (like a postal code) and proper connections to Contact Builder to ensure emails get delivered correctly.",
+                ntoExample: "NTO's Weekly Newsletter Data Extension includes EmailAddress, SubscriberKey (linking to Contact Builder), FirstName, and PreferredCategories. Because it has the proper Subscriber Key relationship, they can use it directly to send their newsletter without additional setup.",
+                certificationTip: "Sendable Data Extensions require a Subscriber Key field that relates to Contact Builder. Without this relationship, you can't use the Data Extension for email sends."
+            }
+        ];
+
+        // Quiz State
+        let currentQuizMode = '';
+        let currentQuestionIndex = 0;
+        let quizStartTime = 0;
+        let timerInterval = null;
+        let userAnswers = [];
+        let quizQuestions = [];
+
+        // Progress Tracking
+        let stats = {
+            conceptsLearned: 0,
+            questionsAnswered: 0,
+            correctAnswers: 0,
+            totalQuestions: 0,
+            studyProgress: 0
+        };
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgressDisplay();
+            trackConceptViewing();
+        });
+
+        // Utility Functions
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateProgressDisplay() {
+            document.getElementById('conceptsLearned').textContent = stats.conceptsLearned;
+            document.getElementById('questionsAnswered').textContent = stats.questionsAnswered;
+            document.getElementById('accuracyRate').textContent = stats.totalQuestions > 0 ? 
+                Math.round((stats.correctAnswers / stats.totalQuestions) * 100) + '%' : '0%';
+            document.getElementById('studyProgress').textContent = Math.round(stats.studyProgress) + '%';
+        }
+
+        function trackConceptViewing() {
+            const conceptCards = document.querySelectorAll('.concept-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('viewed')) {
+                        entry.target.classList.add('viewed');
+                        stats.conceptsLearned++;
+                        stats.studyProgress = Math.min(90, (stats.conceptsLearned / conceptCards.length) * 50 + 
+                                                            (stats.questionsAnswered / lesson1Questions.length) * 40);
+                        updateProgressDisplay();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            conceptCards.forEach(card => observer.observe(card));
+        }
+
+        // Quiz Functions
+        function startQuiz(mode) {
+            currentQuizMode = mode;
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            quizQuestions = [...lesson1Questions].sort(() => Math.random() - 0.5); // Shuffle questions
+            
+            if (mode === 'exam') {
+                quizQuestions = quizQuestions.slice(0, 20); // Limit to 20 questions for exam mode
+            }
+
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('resultsContainer').style.display = 'none';
+            
+            quizStartTime = Date.now();
+            startTimer(mode === 'exam' ? 30 : 60); // 30 min for exam, 60 for practice
+            
+            showQuestion();
+            updateQuizStatus();
+        }
+
+        function startTimer(minutes) {
+            const duration = minutes * 60 * 1000;
+            const endTime = Date.now() + duration;
+            
+            timerInterval = setInterval(() => {
+                const remaining = endTime - Date.now();
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    finishQuiz();
+                    return;
+                }
+                
+                const mins = Math.floor(remaining / (60 * 1000));
+                const secs = Math.floor((remaining % (60 * 1000)) / 1000);
+                document.getElementById('timeRemaining').textContent = 
+                    `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function showQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            const questionCard = document.getElementById('questionCard');
+            
+            questionCard.innerHTML = `
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-blue-600/30 px-3 py-1 rounded-full text-sm">${question.domain}</span>
+                        <span class="bg-yellow-600/30 px-3 py-1 rounded-full text-sm">${question.difficulty}</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">${question.question}</h3>
+                    <div class="space-y-3">
+                        ${question.options.map((option, index) => `
+                            <button onclick="selectAnswer(${index})" 
+                                    class="w-full text-left p-4 bg-white/5 hover:bg-white/10 rounded-lg border border-white/20 hover:border-blue-400/50 transition-all answer-option"
+                                    data-index="${index}">
+                                <span class="font-semibold">${String.fromCharCode(65 + index)})</span> ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    ${currentQuizMode === 'practice' ? `
+                        <div id="explanationArea" class="mt-6" style="display: none;">
+                            <!-- Explanation will appear here -->
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="previousQuestion()" ${currentQuestionIndex === 0 ? 'disabled' : ''} 
+                            class="bg-gray-600 hover:bg-gray-700 disabled:bg-gray-800 disabled:opacity-50 px-4 py-2 rounded-lg transition-colors">
+                        ← Previous
+                    </button>
+                    <button onclick="nextQuestion()" 
+                            class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                        ${currentQuestionIndex === quizQuestions.length - 1 ? 'Finish Quiz' : 'Next →'}
+                    </button>
+                </div>
+            `;
+        }
+
+        function selectAnswer(selectedIndex) {
+            const question = quizQuestions[currentQuestionIndex];
+            const options = document.querySelectorAll('.answer-option');
+            
+            // Clear previous selections
+            options.forEach(option => {
+                option.classList.remove('border-green-400', 'border-red-400', 'bg-green-600/20', 'bg-red-600/20');
+            });
+            
+            // Highlight selected answer
+            const selectedOption = options[selectedIndex];
+            const isCorrect = selectedIndex === question.correct;
+            
+            if (currentQuizMode === 'practice') {
+                // Show immediate feedback in practice mode
+                if (isCorrect) {
+                    selectedOption.classList.add('border-green-400', 'bg-green-600/20');
+                } else {
+                    selectedOption.classList.add('border-red-400', 'bg-red-600/20');
+                    options[question.correct].classList.add('border-green-400', 'bg-green-600/20');
+                }
+                
+                // Show explanation
+                showExplanation(question, isCorrect);
+            } else {
+                selectedOption.classList.add('border-blue-400', 'bg-blue-600/20');
+            }
+            
+            // Record answer
+            userAnswers[currentQuestionIndex] = {
+                selected: selectedIndex,
+                correct: isCorrect,
+                timeSpent: Date.now() - quizStartTime
+            };
+            
+            updateQuizStatus();
+        }
+
+        function showExplanation(question, isCorrect) {
+            const explanationArea = document.getElementById('explanationArea');
+            explanationArea.style.display = 'block';
+            explanationArea.innerHTML = `
+                <div class="bg-black/30 rounded-lg p-4 border-l-4 ${isCorrect ? 'border-green-400' : 'border-red-400'}">
+                    <div class="flex items-center mb-3">
+                        <span class="text-lg mr-2">${isCorrect ? '✅' : '❌'}</span>
+                        <span class="font-semibold ${isCorrect ? 'text-green-400' : 'text-red-400'}">
+                            ${isCorrect ? 'Correct!' : 'Incorrect'}
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <h4 class="font-semibold text-blue-300 mb-1">📝 Simple Explanation:</h4>
+                            <p class="text-gray-300 text-sm">${question.simpleExplanation}</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-green-300 mb-1">🏔️ NTO Example:</h4>
+                            <p class="text-gray-300 text-sm">${question.ntoExample}</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-yellow-300 mb-1">🎓 Certification Tip:</h4>
+                            <p class="text-gray-300 text-sm">${question.certificationTip}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+                updateQuizStatus();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+                updateQuizStatus();
+            }
+        }
+
+        function updateQuizStatus() {
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            
+            const correctCount = userAnswers.filter(answer => answer && answer.correct).length;
+            const incorrectCount = userAnswers.filter(answer => answer && !answer.correct).length;
+            
+            document.getElementById('correctAnswers').textContent = correctCount;
+            document.getElementById('incorrectAnswers').textContent = incorrectCount;
+            
+            // Update global stats
+            stats.questionsAnswered = userAnswers.filter(answer => answer).length;
+            stats.correctAnswers = correctCount;
+            stats.totalQuestions = stats.questionsAnswered;
+            stats.studyProgress = Math.min(100, (stats.conceptsLearned / 6) * 50 + 
+                                                (stats.questionsAnswered / lesson1Questions.length) * 50);
+            updateProgressDisplay();
+        }
+
+        function finishQuiz() {
+            clearInterval(timerInterval);
+            
+            const correctCount = userAnswers.filter(answer => answer && answer.correct).length;
+            const totalAnswered = userAnswers.filter(answer => answer).length;
+            const percentage = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+            
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'block';
+            
+            let performanceLevel = '';
+            let performanceColor = '';
+            let recommendations = '';
+            
+            if (percentage >= 80) {
+                performanceLevel = 'Excellent! Ready for Certification';
+                performanceColor = 'text-green-400';
+                recommendations = 'You have a strong understanding of Subscriber & Data Management concepts. Continue with the next lesson!';
+            } else if (percentage >= 65) {
+                performanceLevel = 'Good Progress - Review Key Areas';
+                performanceColor = 'text-yellow-400';
+                recommendations = 'You\'re on the right track! Review the concepts you missed and practice the NTO scenarios again.';
+            } else {
+                performanceLevel = 'Needs More Study';
+                performanceColor = 'text-red-400';
+                recommendations = 'Spend more time with the core concepts and practice questions. Focus on Contact Builder and Data Extension fundamentals.';
+            }
+            
+            document.getElementById('resultsContainer').innerHTML = `
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-4">📊 Quiz Results</h3>
+                    <div class="text-6xl font-bold ${performanceColor} mb-2">${percentage}%</div>
+                    <div class="text-xl ${performanceColor} mb-4">${performanceLevel}</div>
+                    <div class="text-gray-300">${correctCount} correct out of ${totalAnswered} questions</div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white/10 rounded-lg p-4 text-center border border-white/20">
+                        <div class="text-2xl font-bold text-green-400">${correctCount}</div>
+                        <div class="text-sm text-gray-300">Correct Answers</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4 text-center border border-white/20">
+                        <div class="text-2xl font-bold text-red-400">${totalAnswered - correctCount}</div>
+                        <div class="text-sm text-gray-300">Incorrect Answers</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4 text-center border border-white/20">
+                        <div class="text-2xl font-bold text-blue-400">${Math.round((Date.now() - quizStartTime) / 60000)}</div>
+                        <div class="text-sm text-gray-300">Minutes Spent</div>
+                    </div>
+                </div>
+                
+                <div class="bg-black/30 rounded-lg p-6 border border-white/20 mb-6">
+                    <h4 class="font-semibold text-yellow-400 mb-2">📋 Recommendations:</h4>
+                    <p class="text-gray-300">${recommendations}</p>
+                </div>
+                
+                <div class="text-center space-x-4">
+                    <button onclick="startQuiz('practice')" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-lg transition-colors">
+                        🔄 Retake Quiz
+                    </button>
+                    <button onclick="resetQuiz()" class="bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded-lg transition-colors">
+                        📚 Review Concepts
+                    </button>
+                </div>
+            `;
+        }
+
+        function resetQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'none';
+            document.getElementById('timeRemaining').textContent = '--:--';
+            
+            // Reset quiz status
+            document.getElementById('currentQuestion').textContent = '0';
+            document.getElementById('correctAnswers').textContent = '0';
+            document.getElementById('incorrectAnswers').textContent = '0';
+            
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            quizQuestions = [];
+        }
+    </script>
+</body>
+</html>

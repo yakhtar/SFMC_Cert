@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6: Email Marketing Best Practices | SFMC Certification Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'nto-green': '#2c5530',
+                        'nto-orange': '#ff6b35',
+                        'nto-blue': '#1e40af',
+                        'nto-gray': '#6b7280'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b-2 border-nto-green">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-nto-green hover:text-nto-orange transition-colors">
+                        🏔️ SFMC Mastery Hub
+                    </a>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="enhanced_sfmc_certification_mastery.html" class="text-nto-gray hover:text-nto-green font-medium">Certification</a>
+                    <a href="lesson_5_enhanced_email_message_design.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 5A</a>
+                    <a href="lesson_5_enhanced_automation_journey_builder.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 5B</a>
+                    <span class="text-nto-orange font-semibold">Lesson 6</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-nto-green to-blue-600 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">🏆 Lesson 6: Email Marketing Best Practices</h1>
+            <p class="text-xl opacity-90 mb-6">Master the Golden Rules of Ethical & Effective Email Marketing (10-15% of Exam)</p>
+            <div class="flex justify-center items-center space-x-8 text-sm">
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-nto-orange rounded-full mr-2"></span>
+                    <span>Permission & Compliance</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></span>
+                    <span>Deliverability Excellence</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-green-400 rounded-full mr-2"></span>
+                    <span>Performance Optimization</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Tracking -->
+    <div class="max-w-4xl mx-auto px-4 py-6">
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="font-semibold text-nto-green">📊 Your Progress</h3>
+                <button id="resetProgress" class="text-sm text-nto-gray hover:text-nto-orange">Reset</button>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+                <div id="progressBar" class="bg-gradient-to-r from-nto-green to-nto-orange h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between text-sm text-nto-gray mt-2">
+                <span>Concepts: <span id="conceptsViewed">0</span>/8</span>
+                <span>Quiz: <span id="quizProgress">0</span>/10</span>
+                <span>Overall: <span id="overallProgress">0</span>%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 pb-12">
+        <!-- Learning Tabs -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="flex space-x-8 px-6">
+                    <button class="tab-btn active py-4 px-2 border-b-2 border-nto-orange text-nto-orange font-medium" data-tab="overview">
+                        🎯 Overview
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="concepts">
+                        📚 Key Concepts
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="quiz">
+                        🧠 Interactive Quiz
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="resources">
+                        📖 Resources
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content p-6">
+                <div class="prose max-w-none">
+                    <h2 class="text-2xl font-bold text-nto-green mb-6">🏆 What are Email Marketing Best Practices?</h2>
+                    
+                    <div class="bg-blue-50 border-l-4 border-nto-blue p-6 rounded-r-lg mb-6">
+                        <h3 class="text-lg font-semibold text-nto-blue mb-3">🏔️ The Golden Rules for NTO's Email Success</h3>
+                        <p class="text-gray-700 mb-4">Think of email best practices like the rules of good trail etiquette - respect other hikers, leave no trace, and make everyone's adventure better:</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-nto-green rounded-full mr-3"></span>
+                                    <span class="text-sm">Only email people who want to hear from you</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-nto-orange rounded-full mr-3"></span>
+                                    <span class="text-sm">Provide valuable content worth their time</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Follow laws and regulations like trail rules</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Make it easy to unsubscribe when needed</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Ensure emails reach inboxes, not spam</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Monitor and optimize for better results</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-nto-green mb-4">🎯 Core Best Practice Areas</h3>
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-green-50 to-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-green mb-2">✅ Permission & Consent</h4>
+                            <p class="text-sm text-gray-600">Only email people who clearly said "Yes!" - the foundation of ethical marketing.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-orange mb-2">📬 Deliverability Excellence</h4>
+                            <p class="text-sm text-gray-600">Getting your emails to inboxes instead of spam folders through reputation management.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-blue mb-2">🧹 List Management</h4>
+                            <p class="text-sm text-gray-600">Keeping your email lists healthy, engaged, and up-to-date like maintaining a trail.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-600 mb-2">⚖️ Legal Compliance</h4>
+                            <p class="text-sm text-gray-600">Following laws like CAN-SPAM, GDPR, and CCPA to protect everyone's rights.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-nto-green bg-opacity-10 border border-nto-green rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-3">💡 Why Best Practices Matter for NTO</h3>
+                        <p class="text-gray-700 mb-3">Like following Leave No Trace principles on hiking trails, email best practices ensure:</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li>Customer trust and long-term relationships</li>
+                            <li>Emails actually reach outdoor enthusiasts' inboxes</li>
+                            <li>Compliance with legal requirements worldwide</li>
+                            <li>Better performance and higher engagement</li>
+                            <li>Protection of NTO's brand reputation</li>
+                            <li>Sustainable growth of the email program</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Concepts Tab -->
+            <div id="concepts" class="tab-content hidden p-6">
+                <h2 class="text-2xl font-bold text-nto-green mb-6">📚 Master These Best Practice Concepts</h2>
+                
+                <div class="space-y-6">
+                    <!-- Concept 1: Permission-Based Marketing -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="permission">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">✅ Permission-Based Marketing</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">The golden rule: only email people who want to hear from you.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-3 gap-4 mb-4">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-blue-600 mb-2">Explicit Opt-In</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Active checkbox selection</li>
+                                        <li>• Clear signup language</li>
+                                        <li>• Best practice standard</li>
+                                        <li>• Higher engagement rates</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-600 mb-2">Confirmed Opt-In</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Email confirmation required</li>
+                                        <li>• Double verification process</li>
+                                        <li>• Gold standard approach</li>
+                                        <li>• Lowest complaint rates</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-red-600 mb-2">Implicit Opt-In</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Pre-checked boxes</li>
+                                        <li>• Assumed permission</li>
+                                        <li>• Higher risk approach</li>
+                                        <li>• More complaints/unsubscribes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-nto-green bg-opacity-10 p-4 rounded-lg">
+                                <h4 class="font-semibold text-nto-green mb-2">🏔️ NTO Permission Strategy</h4>
+                                <p class="text-sm text-gray-700">NTO uses confirmed opt-in for their hiking newsletter: "Yes, I want weekly trail tips and gear recommendations from Northern Trail Outfitters" with email confirmation to ensure genuine interest.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 2: Email Deliverability -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="deliverability">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">📬 Email Deliverability Excellence</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Getting your emails to inboxes instead of spam folders.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="mb-4">
+                                <h4 class="font-semibold text-nto-green mb-3">🔐 Email Authentication</h4>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="bg-blue-50 p-3 rounded">
+                                        <h5 class="font-semibold text-blue-600 text-sm mb-1">SPF</h5>
+                                        <p class="text-xs text-gray-600">Sender Policy Framework - authorizes sending servers</p>
+                                    </div>
+                                    <div class="bg-green-50 p-3 rounded">
+                                        <h5 class="font-semibold text-green-600 text-sm mb-1">DKIM</h5>
+                                        <p class="text-xs text-gray-600">Cryptographic signature proving authenticity</p>
+                                    </div>
+                                    <div class="bg-purple-50 p-3 rounded">
+                                        <h5 class="font-semibold text-purple-600 text-sm mb-1">DMARC</h5>
+                                        <p class="text-xs text-gray-600">Combines SPF/DKIM with policy instructions</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-2">📊 Key Metrics</h4>
+                                    <div class="text-sm text-gray-600 space-y-1">
+                                        <div>• <strong>Bounce Rate:</strong> Keep under 5%</div>
+                                        <div>• <strong>Complaint Rate:</strong> Keep under 0.1%</div>
+                                        <div>• <strong>Engagement:</strong> Track opens/clicks</div>
+                                        <div>• <strong>List Quality:</strong> Regular cleaning</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-blue mb-2">🏔️ NTO's Approach</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <p>NTO maintains sender reputation by authenticating with SPF/DKIM/DMARC, monitoring engagement rates, and removing inactive subscribers monthly to keep their outdoor community emails reaching inboxes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 3: List Management -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="list-management">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🧹 List Management & Hygiene</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Keeping your email lists healthy like maintaining a clean campsite.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">🔄 Regular Maintenance</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div><strong>Hard Bounces:</strong> Remove invalid addresses immediately</div>
+                                        <div><strong>Soft Bounces:</strong> Monitor and remove if persistent</div>
+                                        <div><strong>Inactive Subscribers:</strong> 6+ months no engagement</div>
+                                        <div><strong>Re-engagement:</strong> Win-back campaigns before removal</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">📈 Segmentation Benefits</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Highly Engaged:</strong> Frequent, premium content</div>
+                                        <div>• <strong>Moderately Engaged:</strong> Regular newsletters</div>
+                                        <div>• <strong>Low Engagement:</strong> Re-engagement series</div>
+                                        <div>• <strong>Inactive:</strong> Final win-back attempt</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                                <h4 class="font-semibold text-blue-600 mb-2">🏔️ NTO List Strategy</h4>
+                                <p class="text-sm text-gray-600">NTO segments their 50,000 outdoor enthusiasts by engagement level and hiking preferences, sending monthly cleanup campaigns and seasonal re-engagement offers to maintain a healthy, active community.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 4: Legal Compliance -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="compliance">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">⚖️ Legal Compliance</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Following email laws like CAN-SPAM, GDPR, and CCPA.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-3 gap-4 mb-4">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-blue-600 mb-2">CAN-SPAM (US)</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Accurate header information</li>
+                                        <li>• No deceptive subject lines</li>
+                                        <li>• Physical address required</li>
+                                        <li>• Easy unsubscribe process</li>
+                                        <li>• 10 business days to process</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-purple-600 mb-2">GDPR (EU)</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Explicit, informed consent</li>
+                                        <li>• Right to access data</li>
+                                        <li>• Right to be forgotten</li>
+                                        <li>• Data portability rights</li>
+                                        <li>• Privacy by design</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-600 mb-2">CCPA (CA)</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Right to know data use</li>
+                                        <li>• Right to delete data</li>
+                                        <li>• Right to opt-out of sale</li>
+                                        <li>• Non-discrimination rights</li>
+                                        <li>• Transparent privacy policies</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-yellow-800 mb-2">🏔️ NTO Compliance Strategy</h4>
+                                <p class="text-sm text-gray-700">NTO includes their Seattle headquarters address in all emails, processes unsubscribes within 24 hours, maintains detailed consent records, and offers preference centers for international customers to comply with global regulations.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 5: Content Quality -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="content">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🎯 Content Quality Standards</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Creating valuable content that subscribers actually want to receive.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">✅ Quality Elements</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span><strong>Relevance:</strong> Matches subscriber interests</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span><strong>Value:</strong> Educational or entertaining content</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span><strong>Professional:</strong> Error-free, branded design</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="text-green-500 mr-2">✓</span>
+                                            <span><strong>Clear:</strong> Scannable with obvious CTAs</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-red-600 mb-3">❌ Spam Triggers</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• Excessive "FREE," "URGENT," ALL CAPS</div>
+                                        <div>• Too many exclamation marks!!!</div>
+                                        <div>• Misleading subject lines</div>
+                                        <div>• Poor text-to-image ratio</div>
+                                        <div>• Suspicious links or domains</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-green-50 rounded-lg">
+                                <h4 class="font-semibold text-green-700 mb-2">🏔️ NTO Content Strategy</h4>
+                                <p class="text-sm text-gray-600">NTO focuses on helpful hiking tips, seasonal gear guides, trail safety education, and member-exclusive adventure stories - content that provides genuine value to outdoor enthusiasts beyond just product promotion.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 6: Frequency & Timing -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="timing">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">⏰ Frequency & Timing Optimization</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Finding the perfect balance - not too much, not too little.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">📅 Timing Best Practices</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Tuesday-Thursday:</strong> Generally best days</div>
+                                        <div>• <strong>10 AM - 2 PM:</strong> Peak engagement times</div>
+                                        <div>• <strong>Time Zones:</strong> Consider subscriber locations</div>
+                                        <div>• <strong>B2B vs B2C:</strong> Business hours vs evenings</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">📊 Frequency Guidelines</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Welcome Series:</strong> 3-5 emails over 1-2 weeks</div>
+                                        <div>• <strong>Newsletters:</strong> Weekly to monthly</div>
+                                        <div>• <strong>Promotional:</strong> Not more than 2-3 per week</div>
+                                        <div>• <strong>Transactional:</strong> Immediate, as needed</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-orange-50 rounded-lg">
+                                <h4 class="font-semibold text-orange-700 mb-2">🏔️ NTO Timing Strategy</h4>
+                                <p class="text-sm text-gray-600">NTO sends their weekly "Trail Tuesday" newsletter at 10 AM PST to catch early morning hikers, with seasonal gear emails on Thursdays and weekend adventure inspiration on Fridays for trip planning.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 7: Performance Monitoring -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="performance">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">📊 Performance Monitoring</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Measuring success and optimizing for better results.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-3 gap-4 mb-4">
+                                <div class="bg-blue-50 p-4 rounded-lg text-center">
+                                    <h4 class="font-semibold text-blue-600 mb-2">Deliverability</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div><strong>Bounce Rate:</strong> &lt;5%</div>
+                                        <div><strong>Spam Rate:</strong> &lt;0.1%</div>
+                                        <div><strong>Delivery Rate:</strong> &gt;95%</div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg text-center">
+                                    <h4 class="font-semibold text-green-600 mb-2">Engagement</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div><strong>Open Rate:</strong> 20-25%</div>
+                                        <div><strong>Click Rate:</strong> 2-5%</div>
+                                        <div><strong>Click-to-Open:</strong> 10-15%</div>
+                                    </div>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg text-center">
+                                    <h4 class="font-semibold text-purple-600 mb-2">Business</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div><strong>Conversion:</strong> 1-3%</div>
+                                        <div><strong>ROI:</strong> 4200%+ avg</div>
+                                        <div><strong>List Growth:</strong> Positive</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-600 mb-2">🏔️ NTO Monitoring Approach</h4>
+                                <p class="text-sm text-gray-600">NTO tracks weekly performance dashboards, A/B tests subject lines monthly, monitors seasonal engagement patterns, and maintains 22% average open rates by segmenting their outdoor community by activity preferences.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 8: Advanced Strategies -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="advanced">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🚀 Advanced Best Practices</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Sophisticated strategies for email marketing excellence.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">🎯 Advanced Segmentation</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Behavioral:</strong> Purchase history, engagement</div>
+                                        <div>• <strong>Demographic:</strong> Age, location, gender</div>
+                                        <div>• <strong>Psychographic:</strong> Interests, values, lifestyle</div>
+                                        <div>• <strong>Lifecycle:</strong> New, active, at-risk, win-back</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">🔄 Lifecycle Marketing</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Welcome Series:</strong> Onboard new subscribers</div>
+                                        <div>• <strong>Nurture Campaigns:</strong> Build relationships</div>
+                                        <div>• <strong>Re-engagement:</strong> Win back inactive users</div>
+                                        <div>• <strong>Loyalty Programs:</strong> Reward best customers</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 grid md:grid-cols-2 gap-4">
+                                <div class="bg-purple-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-purple-600 mb-2">🤖 Automation Excellence</h4>
+                                    <p class="text-sm text-gray-600">Triggered workflows, behavioral responses, and personalized journeys based on customer actions and preferences.</p>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-600 mb-2">♿ Accessibility Focus</h4>
+                                    <p class="text-sm text-gray-600">Alt text, proper contrast, semantic HTML, and screen reader compatibility for inclusive communication.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Tab -->
+            <div id="quiz" class="tab-content hidden p-6">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-nto-green mb-4">🧠 Email Marketing Best Practices Quiz</h2>
+                    <p class="text-gray-600 mb-6">Test your knowledge of ethical and effective email marketing principles</p>
+                    
+                    <div class="flex justify-center space-x-4 mb-6">
+                        <button id="startQuiz" class="bg-nto-green hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                            🎯 Start Best Practices Quiz
+                        </button>
+                        <button id="reviewMode" class="bg-nto-orange hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                            📖 Review Mode
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Interface -->
+                <div id="quizInterface" class="hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <!-- Quiz Progress -->
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="text-sm text-gray-600">
+                                Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                Score: <span id="currentScore">0</span>/10
+                            </div>
+                        </div>
+
+                        <!-- Question -->
+                        <div id="questionContainer" class="mb-6">
+                            <h3 id="questionText" class="text-lg font-semibold text-nto-green mb-4"></h3>
+                            <div id="optionsContainer" class="space-y-3"></div>
+                        </div>
+
+                        <!-- Feedback -->
+                        <div id="feedback" class="hidden mb-6 p-4 rounded-lg"></div>
+
+                        <!-- Navigation -->
+                        <div class="flex justify-between">
+                            <button id="prevQuestion" class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded font-medium transition-colors" disabled>
+                                ← Previous
+                            </button>
+                            <button id="nextQuestion" class="bg-nto-blue hover:bg-blue-700 text-white px-4 py-2 rounded font-medium transition-colors" disabled>
+                                Next →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Results -->
+                <div id="quizResults" class="hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div id="resultsContent"></div>
+                        <div class="mt-6 space-x-4">
+                            <button id="retakeQuiz" class="bg-nto-green hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                🔄 Retake Quiz
+                            </button>
+                            <button id="reviewAnswers" class="bg-nto-orange hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                📋 Review Answers
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Tab -->
+            <div id="resources" class="tab-content hidden p-6">
+                <h2 class="text-2xl font-bold text-nto-green mb-6">📖 Additional Resources</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Official Resources -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-4">📚 Official Salesforce Resources</h3>
+                        <div class="space-y-3">
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Email Deliverability Best Practices
+                            </a>
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → CAN-SPAM Requirements
+                            </a>
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Bounce Mail Management
+                            </a>
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Email Sender Authentication Package
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Key Terms -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-4">🔑 Key Terms to Remember</h3>
+                        <div class="space-y-2 text-sm">
+                            <div><strong>Permission Marketing:</strong> Only emailing consenting subscribers</div>
+                            <div><strong>Double Opt-In:</strong> Email confirmation after signup</div>
+                            <div><strong>Deliverability:</strong> Ability to reach inboxes</div>
+                            <div><strong>Sender Reputation:</strong> ISP assessment of practices</div>
+                            <div><strong>List Hygiene:</strong> Regular list maintenance</div>
+                            <div><strong>CAN-SPAM:</strong> US commercial email law</div>
+                            <div><strong>GDPR:</strong> EU data protection regulation</div>
+                            <div><strong>Suppression List:</strong> Addresses not to email</div>
+                        </div>
+                    </div>
+
+                    <!-- Industry Benchmarks -->
+                    <div class="bg-gradient-to-br from-nto-green to-blue-600 text-white rounded-lg p-6">
+                        <h3 class="text-lg font-semibold mb-4">📊 Industry Benchmarks</h3>
+                        <div class="space-y-2 text-sm">
+                            <div>✓ Open Rate: 20-25%</div>
+                            <div>✓ Click Rate: 2-5%</div>
+                            <div>✓ Bounce Rate: Under 5%</div>
+                            <div>✓ Spam Rate: Under 0.1%</div>
+                            <div>✓ Unsubscribe: 0.2-0.5%</div>
+                            <div>✓ List Growth: Positive monthly</div>
+                            <div>✓ ROI: 4200%+ average</div>
+                        </div>
+                    </div>
+
+                    <!-- Best Practice Checklist -->
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-yellow-800 mb-4">✅ Best Practice Checklist</h3>
+                        <div class="space-y-2 text-sm text-yellow-700">
+                            <div>□ Explicit opt-in process implemented</div>
+                            <div>□ Email authentication (SPF, DKIM, DMARC)</div>
+                            <div>□ Monthly list hygiene performed</div>
+                            <div>□ Legal compliance verified</div>
+                            <div>□ Content provides genuine value</div>
+                            <div>□ Frequency optimized for audience</div>
+                            <div>□ Performance monitored regularly</div>
+                            <div>□ A/B testing program active</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Questions
+        const lesson6Questions = [
+            {
+                question: "🏔️ NTO wants to build their hiking newsletter list ethically. What's the gold standard for email permission?",
+                options: [
+                    "Pre-checked opt-in boxes on their website",
+                    "Confirmed opt-in (double opt-in) with email verification",
+                    "Purchasing email lists from outdoor gear retailers",
+                    "Adding customers automatically after purchase"
+                ],
+                correct: 1,
+                domain: "Permission Marketing",
+                difficulty: "Basic",
+                simpleExplanation: "Double opt-in is like asking someone twice if they really want to join your hiking group - it ensures genuine interest and dramatically reduces complaints.",
+                ntoExample: "When someone signs up for NTO's hiking newsletter, they receive a confirmation email asking them to verify their subscription. This extra step ensures only truly interested outdoor enthusiasts join their community.",
+                certificationTip: "Remember: Confirmed opt-in (double opt-in) is the gold standard because it provides the strongest proof of consent and results in higher engagement rates."
+            },
+            {
+                question: "📬 What does SPF authentication do for NTO's email deliverability?",
+                options: [
+                    "Makes emails load faster",
+                    "Authorizes which servers can send email from NTO's domain",
+                    "Automatically personalizes email content",
+                    "Creates better email designs"
+                ],
+                correct: 1,
+                domain: "Email Authentication",
+                difficulty: "Intermediate",
+                simpleExplanation: "SPF is like having a guest list at a party - it tells email providers which servers are authorized to send emails on behalf of NTO, preventing spammers from impersonating them.",
+                ntoExample: "NTO's SPF record tells Gmail, Yahoo, and other email providers that only their authorized Salesforce servers can send emails from @northerntrailoutfitters.com, protecting their brand from spoofing.",
+                certificationTip: "SPF (Sender Policy Framework) prevents domain spoofing. Combined with DKIM and DMARC, it creates a complete email authentication system."
+            },
+            {
+                question: "🧹 NTO notices some subscribers haven't opened emails in 8 months. What should they do first?",
+                options: [
+                    "Remove them immediately without notice",
+                    "Send a re-engagement campaign offering them a chance to stay subscribed",
+                    "Add them to more email lists to increase engagement",
+                    "Send them emails more frequently"
+                ],
+                correct: 1,
+                domain: "List Hygiene",
+                difficulty: "Intermediate",
+                simpleExplanation: "Re-engagement campaigns are like giving inactive hikers one last invitation to join the group before assuming they've found other trails to explore.",
+                ntoExample: "NTO sends a 'We Miss You on the Trails' campaign to inactive subscribers, offering exclusive trail guides and asking if they still want hiking tips. Those who don't respond after 2 weeks are removed.",
+                certificationTip: "Always attempt re-engagement before removing inactive subscribers. This can win back interested customers while clearly identifying who should be removed."
+            },
+            {
+                question: "⚖️ According to CAN-SPAM, how quickly must NTO process unsubscribe requests?",
+                options: [
+                    "Within 24 hours",
+                    "Within 10 business days",
+                    "Within 30 days",
+                    "There's no time requirement"
+                ],
+                correct: 1,
+                domain: "Legal Compliance",
+                difficulty: "Basic",
+                simpleExplanation: "CAN-SPAM gives you 10 business days to process unsubscribes, but like good trail etiquette, faster is always better for customer experience.",
+                ntoExample: "When a customer unsubscribes from NTO's hiking newsletter, they process it within 24 hours as a courtesy, even though CAN-SPAM allows up to 10 business days.",
+                certificationTip: "CAN-SPAM requires processing unsubscribes within 10 business days, but best practice is to process them immediately or within 24 hours."
+            },
+            {
+                question: "🎯 What makes email content 'valuable' to NTO's outdoor community?",
+                options: [
+                    "Expensive-looking design with lots of graphics",
+                    "Content that solves problems, educates, or provides exclusive benefits",
+                    "Frequent promotional offers for gear discounts",
+                    "Long, detailed product specifications"
+                ],
+                correct: 1,
+                domain: "Content Quality",
+                difficulty: "Basic",
+                simpleExplanation: "Valuable content is like a helpful trail guide - it provides useful information, solves problems, and makes the customer's journey better, not just tries to sell them something.",
+                ntoExample: "NTO's most valued emails include seasonal hiking safety tips, trail condition updates, gear maintenance guides, and member-exclusive adventure stories - content that helps outdoor enthusiasts beyond just promoting products.",
+                certificationTip: "Valuable content serves subscriber needs first. Educational, entertaining, or exclusive content typically performs better than purely promotional messages."
+            },
+            {
+                question: "⏰ When do most email marketing campaigns typically see the highest engagement?",
+                options: [
+                    "Monday mornings at 6 AM",
+                    "Tuesday through Thursday, 10 AM - 2 PM",
+                    "Friday evenings after 6 PM",
+                    "Weekend nights after 10 PM"
+                ],
+                correct: 1,
+                domain: "Timing Optimization",
+                difficulty: "Basic",
+                simpleExplanation: "Mid-week, mid-morning timing is like hitting the trail when conditions are optimal - people are settled into their week and checking email during work breaks.",
+                ntoExample: "NTO sends their 'Trail Tuesday' newsletter at 10 AM PST, catching early morning hikers checking email with their coffee and office workers planning weekend adventures during their morning break.",
+                certificationTip: "Tuesday-Thursday and 10 AM-2 PM are general best practices, but always test with your specific audience to find optimal timing."
+            },
+            {
+                question: "📊 What's a healthy email bounce rate that NTO should maintain?",
+                options: [
+                    "Under 2%",
+                    "Under 5%",
+                    "Under 10%",
+                    "Bounce rate doesn't affect deliverability"
+                ],
+                correct: 1,
+                domain: "Performance Monitoring",
+                difficulty: "Basic",
+                simpleExplanation: "A bounce rate under 5% is like having most of your trail maps reach their destination - it shows your email list is healthy and well-maintained.",
+                ntoExample: "NTO maintains a 3% bounce rate by regularly cleaning their list, removing hard bounces immediately, and monitoring soft bounces that persist over multiple campaigns.",
+                certificationTip: "Bounce rates should be under 5% for good deliverability. Under 2% is excellent. Higher rates indicate list quality issues that can harm sender reputation."
+            },
+            {
+                question: "🔍 What is behavioral segmentation in NTO's email marketing?",
+                options: [
+                    "Segmenting by how people behave in customer service calls",
+                    "Dividing subscribers based on their actions, purchases, and engagement patterns",
+                    "Organizing by personality test results",
+                    "Grouping by complaint behavior only"
+                ],
+                correct: 1,
+                domain: "Advanced Segmentation",
+                difficulty: "Intermediate",
+                simpleExplanation: "Behavioral segmentation is like grouping hikers by their actual trail preferences and experience level, not just what they say they like - actions speak louder than words.",
+                ntoExample: "NTO segments customers who frequently buy winter gear vs. summer equipment, those who click on trail safety articles vs. gear reviews, and customers who purchase hiking boots vs. camping equipment.",
+                certificationTip: "Behavioral segmentation uses actual customer actions (purchases, clicks, opens) to create highly targeted groups for relevant messaging."
+            },
+            {
+                question: "♿ Why should NTO include alt text for images in their emails?",
+                options: [
+                    "Alt text makes images load faster",
+                    "It provides descriptions when images don't load and improves accessibility",
+                    "It's required for email tracking",
+                    "Alt text increases click-through rates"
+                ],
+                correct: 1,
+                domain: "Accessibility",
+                difficulty: "Basic",
+                simpleExplanation: "Alt text is like having a verbal description of scenic views for hikers who can't see them - it ensures everyone can understand and enjoy the content.",
+                ntoExample: "NTO includes alt text like 'Waterproof hiking boots on rocky mountain trail' for their product images, so screen readers can describe the gear to visually impaired outdoor enthusiasts.",
+                certificationTip: "Alt text serves two purposes: describing images when they don't load (common in email) and providing accessibility for screen readers and visually impaired users."
+            },
+            {
+                question: "🚀 What is the most important principle underlying all email marketing best practices?",
+                options: [
+                    "Maximizing profit from each email campaign",
+                    "Respecting subscribers and providing genuine value in every interaction",
+                    "Sending as many emails as possible to increase revenue",
+                    "Following competitor strategies exactly"
+                ],
+                correct: 1,
+                domain: "Core Principles",
+                difficulty: "Advanced",
+                simpleExplanation: "Respecting subscribers is like following Leave No Trace principles on hiking trails - it ensures everyone has a better experience and the environment (your email program) stays healthy for the long term.",
+                ntoExample: "NTO treats their email subscribers like valued members of their outdoor community, focusing on helpful content, respecting preferences, and making it easy to customize their experience rather than just pushing sales.",
+                certificationTip: "All email best practices stem from respecting subscribers as people, not just marketing targets. This foundation leads to sustainable, successful email programs."
+            }
+        ];
+
+        // Application State
+        let currentQuestionIndex = 0;
+        let selectedAnswers = [];
+        let quizScore = 0;
+        let isReviewMode = false;
+        let conceptsViewed = new Set();
+
+        // Progress Tracking
+        function updateProgress() {
+            const conceptProgress = conceptsViewed.size;
+            const quizProgress = selectedAnswers.length;
+            const totalProgress = Math.round(((conceptProgress * 5) + (quizProgress * 5)) / 10);
+            
+            document.getElementById('conceptsViewed').textContent = conceptProgress;
+            document.getElementById('quizProgress').textContent = quizProgress;
+            document.getElementById('overallProgress').textContent = totalProgress;
+            document.getElementById('progressBar').style.width = totalProgress + '%';
+            
+            // Save progress
+            localStorage.setItem('lesson6Progress', JSON.stringify({
+                conceptsViewed: Array.from(conceptsViewed),
+                quizAnswers: selectedAnswers,
+                quizScore: quizScore
+            }));
+        }
+
+        // Load saved progress
+        function loadProgress() {
+            const saved = localStorage.getItem('lesson6Progress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                conceptsViewed = new Set(progress.conceptsViewed || []);
+                selectedAnswers = progress.quizAnswers || [];
+                quizScore = progress.quizScore || 0;
+                updateProgress();
+            }
+        }
+
+        // Tab Management
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                // Update button states
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active', 'border-nto-orange', 'text-nto-orange');
+                    b.classList.add('border-transparent', 'text-gray-500');
+                });
+                btn.classList.add('active', 'border-nto-orange', 'text-nto-orange');
+                btn.classList.remove('border-transparent', 'text-gray-500');
+                
+                // Show target content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(targetTab).classList.remove('hidden');
+            });
+        });
+
+        // Concept Cards
+        document.querySelectorAll('.concept-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const details = card.querySelector('.concept-details');
+                const concept = card.dataset.concept;
+                
+                if (details.classList.contains('hidden')) {
+                    details.classList.remove('hidden');
+                    conceptsViewed.add(concept);
+                    updateProgress();
+                } else {
+                    details.classList.add('hidden');
+                }
+            });
+        });
+
+        // Quiz Management
+        function startQuiz(reviewMode = false) {
+            isReviewMode = reviewMode;
+            currentQuestionIndex = 0;
+            if (!reviewMode) {
+                selectedAnswers = [];
+                quizScore = 0;
+            }
+            
+            document.getElementById('startQuiz').classList.add('hidden');
+            document.getElementById('reviewMode').classList.add('hidden');
+            document.getElementById('quizInterface').classList.remove('hidden');
+            document.getElementById('totalQuestions').textContent = lesson6Questions.length;
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = lesson6Questions[currentQuestionIndex];
+            
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('currentScore').textContent = quizScore;
+            document.getElementById('questionText').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option-item p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-nto-blue transition-colors';
+                
+                const isSelected = selectedAnswers[currentQuestionIndex] === index;
+                const isCorrect = index === question.correct;
+                
+                if (isReviewMode && selectedAnswers[currentQuestionIndex] !== undefined) {
+                    if (isCorrect) {
+                        optionDiv.className += ' bg-green-100 border-green-500';
+                    } else if (isSelected && !isCorrect) {
+                        optionDiv.className += ' bg-red-100 border-red-500';
+                    }
+                }
+                
+                optionDiv.innerHTML = `
+                    <label class="flex items-center cursor-pointer">
+                        <input type="radio" name="question" value="${index}" class="mr-3" ${isSelected ? 'checked' : ''}>
+                        <span>${option}</span>
+                    </label>
+                `;
+                
+                if (!isReviewMode) {
+                    optionDiv.addEventListener('click', () => selectAnswer(index));
+                }
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Show feedback in review mode
+            if (isReviewMode && selectedAnswers[currentQuestionIndex] !== undefined) {
+                showFeedback(selectedAnswers[currentQuestionIndex] === question.correct);
+            } else {
+                document.getElementById('feedback').classList.add('hidden');
+            }
+            
+            // Update navigation
+            document.getElementById('prevQuestion').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextQuestion').disabled = !isReviewMode && selectedAnswers[currentQuestionIndex] === undefined;
+        }
+
+        function selectAnswer(answerIndex) {
+            selectedAnswers[currentQuestionIndex] = answerIndex;
+            const isCorrect = answerIndex === lesson6Questions[currentQuestionIndex].correct;
+            
+            if (isCorrect) {
+                quizScore++;
+            }
+            
+            // Update option styling
+            document.querySelectorAll('.option-item').forEach((item, index) => {
+                item.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+                if (index === lesson6Questions[currentQuestionIndex].correct) {
+                    item.classList.add('bg-green-100', 'border-green-500');
+                } else if (index === answerIndex && !isCorrect) {
+                    item.classList.add('bg-red-100', 'border-red-500');
+                }
+            });
+            
+            showFeedback(isCorrect);
+            document.getElementById('nextQuestion').disabled = false;
+            updateProgress();
+        }
+
+        function showFeedback(isCorrect) {
+            const feedback = document.getElementById('feedback');
+            const question = lesson6Questions[currentQuestionIndex];
+            
+            feedback.className = `mb-6 p-4 rounded-lg ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`;
+            
+            feedback.innerHTML = `
+                <h4 class="font-semibold ${isCorrect ? 'text-green-800' : 'text-red-800'} mb-2">
+                    ${isCorrect ? '✅ Correct!' : '❌ Not quite right'}
+                </h4>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <strong class="text-gray-700">Simple Explanation:</strong>
+                        <p class="text-gray-600 mt-1">${question.simpleExplanation}</p>
+                    </div>
+                    <div>
+                        <strong class="text-nto-green">🏔️ NTO Example:</strong>
+                        <p class="text-gray-600 mt-1">${question.ntoExample}</p>
+                    </div>
+                    <div>
+                        <strong class="text-nto-orange">📝 Certification Tip:</strong>
+                        <p class="text-gray-600 mt-1">${question.certificationTip}</p>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-2">
+                        Domain: ${question.domain} | Difficulty: ${question.difficulty}
+                    </div>
+                </div>
+            `;
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < lesson6Questions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizInterface').classList.add('hidden');
+            document.getElementById('quizResults').classList.remove('hidden');
+            
+            const percentage = Math.round((quizScore / lesson6Questions.length) * 100);
+            let message, colorClass;
+            
+            if (percentage >= 80) {
+                message = "🏆 Outstanding! You've mastered email best practices like a seasoned trail guide!";
+                colorClass = "text-green-600";
+            } else if (percentage >= 70) {
+                message = "🌟 Great job! Review the areas you missed and you'll be best-practices ready.";
+                colorClass = "text-nto-orange";
+            } else {
+                message = "📚 Keep learning! Focus on understanding the ethical foundations of email marketing.";
+                colorClass = "text-red-600";
+            }
+            
+            document.getElementById('resultsContent').innerHTML = `
+                <div class="text-6xl mb-4">🏆</div>
+                <h3 class="text-2xl font-bold ${colorClass} mb-4">Best Practices Mastery!</h3>
+                <div class="text-4xl font-bold ${colorClass} mb-4">${quizScore}/${lesson6Questions.length}</div>
+                <div class="text-xl ${colorClass} mb-6">${percentage}%</div>
+                <p class="text-gray-600 mb-6">${message}</p>
+                <div class="text-sm text-gray-500">
+                    Email Marketing Best Practices represent 10-15% of the SFMC Email Specialist certification exam
+                </div>
+            `;
+        }
+
+        // Event Listeners
+        document.getElementById('startQuiz').addEventListener('click', () => startQuiz(false));
+        document.getElementById('reviewMode').addEventListener('click', () => startQuiz(true));
+        document.getElementById('nextQuestion').addEventListener('click', nextQuestion);
+        document.getElementById('prevQuestion').addEventListener('click', prevQuestion);
+        document.getElementById('retakeQuiz').addEventListener('click', () => {
+            document.getElementById('quizResults').classList.add('hidden');
+            document.getElementById('startQuiz').classList.remove('hidden');
+            document.getElementById('reviewMode').classList.remove('hidden');
+        });
+        document.getElementById('reviewAnswers').addEventListener('click', () => {
+            document.getElementById('quizResults').classList.add('hidden');
+            startQuiz(true);
+        });
+        document.getElementById('resetProgress').addEventListener('click', () => {
+            if (confirm('Reset all progress for this lesson?')) {
+                localStorage.removeItem('lesson6Progress');
+                conceptsViewed.clear();
+                selectedAnswers = [];
+                quizScore = 0;
+                updateProgress();
+            }
+        });
+
+        // Initialize
+        loadProgress();
+    </script>
+</body>
+</html>

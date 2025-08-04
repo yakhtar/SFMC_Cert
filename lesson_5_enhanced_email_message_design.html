@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Email Message Design | SFMC Certification Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'nto-green': '#2c5530',
+                        'nto-orange': '#ff6b35',
+                        'nto-blue': '#1e40af',
+                        'nto-gray': '#6b7280'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b-2 border-nto-green">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-nto-green hover:text-nto-orange transition-colors">
+                        🏔️ SFMC Mastery Hub
+                    </a>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="enhanced_sfmc_certification_mastery.html" class="text-nto-gray hover:text-nto-green font-medium">Certification</a>
+                    <a href="lesson_1_enhanced_subscriber_data_management.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 1</a>
+                    <a href="lesson_2_enhanced_marketing_automation.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 2</a>
+                    <a href="lesson_3_enhanced_content_creation_delivery.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 3</a>
+                    <a href="lesson_4_enhanced_testing_delivery.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 4</a>
+                    <span class="text-nto-orange font-semibold">Lesson 5</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-nto-green to-blue-600 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">📧 Lesson 5: Email Message Design</h1>
+            <p class="text-xl opacity-90 mb-6">Master the Art of Creating Beautiful, Functional Emails (13% of Exam)</p>
+            <div class="flex justify-center items-center space-x-8 text-sm">
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-nto-orange rounded-full mr-2"></span>
+                    <span>Design Fundamentals</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></span>
+                    <span>Mobile Optimization</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-green-400 rounded-full mr-2"></span>
+                    <span>Cross-Client Compatibility</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Tracking -->
+    <div class="max-w-4xl mx-auto px-4 py-6">
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="font-semibold text-nto-green">📊 Your Progress</h3>
+                <button id="resetProgress" class="text-sm text-nto-gray hover:text-nto-orange">Reset</button>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+                <div id="progressBar" class="bg-gradient-to-r from-nto-green to-nto-orange h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between text-sm text-nto-gray mt-2">
+                <span>Concepts: <span id="conceptsViewed">0</span>/8</span>
+                <span>Quiz: <span id="quizProgress">0</span>/10</span>
+                <span>Overall: <span id="overallProgress">0</span>%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 pb-12">
+        <!-- Learning Tabs -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="flex space-x-8 px-6">
+                    <button class="tab-btn active py-4 px-2 border-b-2 border-nto-orange text-nto-orange font-medium" data-tab="overview">
+                        🎯 Overview
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="concepts">
+                        📚 Key Concepts
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="quiz">
+                        🧠 Interactive Quiz
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="resources">
+                        📖 Resources
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content p-6">
+                <div class="prose max-w-none">
+                    <h2 class="text-2xl font-bold text-nto-green mb-6">🎨 What is Email Message Design?</h2>
+                    
+                    <div class="bg-blue-50 border-l-4 border-nto-blue p-6 rounded-r-lg mb-6">
+                        <h3 class="text-lg font-semibold text-nto-blue mb-3">🏔️ Northern Trail Outfitters Email Design Journey</h3>
+                        <p class="text-gray-700 mb-4">Imagine a hiker receives an email about new hiking boots from NTO. The email design journey includes:</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-nto-green rounded-full mr-3"></span>
+                                    <span class="text-sm">Perfect mobile display during morning commute</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-nto-orange rounded-full mr-3"></span>
+                                    <span class="text-sm">Clear product images showcase boot features</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Easy-to-tap buttons for quick shopping</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Design reflects NTO's outdoor brand</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Fast loading even with weak trail signal</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Accessible for all outdoor enthusiasts</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-nto-green mb-4">🎯 Core Design Elements</h3>
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-green-50 to-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-green mb-2">🏗️ Visual Hierarchy</h4>
+                            <p class="text-sm text-gray-600">Guiding the eye through content logically, like trail markers showing the path ahead.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-orange mb-2">🎨 Brand Consistency</h4>
+                            <p class="text-sm text-gray-600">Maintaining recognizable design elements across all communications.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-blue mb-2">📱 Mobile Optimization</h4>
+                            <p class="text-sm text-gray-600">Ensuring perfect display on all screen sizes, especially mobile devices.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-600 mb-2">♿ Accessibility</h4>
+                            <p class="text-sm text-gray-600">Making content usable for everyone, including those with disabilities.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-nto-green bg-opacity-10 border border-nto-green rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-3">💡 Why Email Design Matters</h3>
+                        <p class="text-gray-700 mb-3">Email design is like creating the perfect invitation to your outdoor adventure. It needs to:</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li>Grab attention in a crowded inbox</li>
+                            <li>Communicate clearly across all devices</li>
+                            <li>Inspire action with compelling CTAs</li>
+                            <li>Work flawlessly across email clients</li>
+                            <li>Reflect your brand's adventurous spirit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Concepts Tab -->
+            <div id="concepts" class="tab-content hidden p-6">
+                <h2 class="text-2xl font-bold text-nto-green mb-6">📚 Master These Design Concepts</h2>
+                
+                <div class="space-y-6">
+                    <!-- Concept 1: Template Fundamentals -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="templates">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🏗️ Email Template Fundamentals</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Understanding drag-and-drop, HTML, and hybrid templates for different needs.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-3 gap-4 mb-4">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-blue-600 mb-2">Drag-and-Drop</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• User-friendly visual builder</li>
+                                        <li>• No coding required</li>
+                                        <li>• Quick campaign creation</li>
+                                        <li>• Limited customization</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-600 mb-2">HTML Templates</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Full creative control</li>
+                                        <li>• Requires coding knowledge</li>
+                                        <li>• Maximum customization</li>
+                                        <li>• Better performance</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-purple-600 mb-2">Hybrid Templates</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Coded structure + editing</li>
+                                        <li>• Balance of flexibility</li>
+                                        <li>• Custom with content blocks</li>
+                                        <li>• Best of both worlds</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 2: Mobile-First Design -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="mobile">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">📱 Mobile-First Design Principles</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">With 60%+ mobile opens, designing for mobile first is essential.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="bg-orange-50 border-l-4 border-nto-orange p-4 rounded-r-lg mb-4">
+                                <h4 class="font-semibold text-nto-orange mb-2">📊 Mobile Statistics</h4>
+                                <p class="text-sm text-gray-700">Over 60% of emails are opened on mobile devices, making mobile-first design critical for success.</p>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">✅ Mobile Best Practices</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Single column layout</li>
+                                        <li>• 44px+ touch targets</li>
+                                        <li>• 14px+ font sizes</li>
+                                        <li>• Optimized images</li>
+                                        <li>• Adequate white space</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-red-600 mb-3">❌ Mobile Mistakes</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• Small, cramped buttons</li>
+                                        <li>• Tiny fonts</li>
+                                        <li>• Multi-column layouts</li>
+                                        <li>• Large, slow images</li>
+                                        <li>• Horizontal scrolling</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 3: Visual Hierarchy -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="hierarchy">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🎯 Visual Hierarchy & Layout</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Guiding readers through content like breadcrumbs on a hiking trail.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="mb-4">
+                                <h4 class="font-semibold text-nto-green mb-3">📏 Creating Hierarchy</h4>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="space-y-3">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-nto-green rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">1</div>
+                                            <span class="text-sm"><strong>Size & Scale:</strong> Larger = more important</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-nto-orange rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">2</div>
+                                            <span class="text-sm"><strong>Color & Contrast:</strong> High contrast draws attention</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">3</div>
+                                            <span class="text-sm"><strong>White Space:</strong> Creates focus and breathing room</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold mr-3">4</div>
+                                            <span class="text-sm"><strong>Position:</strong> Top-left gets attention first</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-600 mb-2">🧭 F-Pattern Reading</h4>
+                                <p class="text-sm text-gray-600">People read left-to-right, top-to-bottom, creating an F-shaped scanning pattern. Place key content accordingly.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 4: Color Theory -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="color">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🌈 Color Theory & Brand Consistency</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Using color psychology to enhance NTO's outdoor brand identity.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">🎨 NTO Color Psychology</h4>
+                                    <div class="space-y-2">
+                                        <div class="flex items-center">
+                                            <div class="w-4 h-4 bg-green-600 rounded mr-3"></div>
+                                            <span class="text-sm"><strong>Green:</strong> Nature, growth, adventure</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-4 h-4 bg-blue-600 rounded mr-3"></div>
+                                            <span class="text-sm"><strong>Blue:</strong> Trust, reliability, sky/water</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-4 h-4 bg-orange-600 rounded mr-3"></div>
+                                            <span class="text-sm"><strong>Orange:</strong> Energy, enthusiasm, sunrise</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-4 h-4 bg-yellow-600 rounded mr-3"></div>
+                                            <span class="text-sm"><strong>Brown:</strong> Natural materials, reliability</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-red-600 mb-3">♿ Accessibility Requirements</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Normal Text:</strong> 4.5:1 contrast ratio</div>
+                                        <div>• <strong>Large Text:</strong> 3:1 contrast ratio</div>
+                                        <div>• <strong>Don't rely on color alone</strong> for meaning</div>
+                                        <div>• <strong>Test with color-blind users</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 5: Typography -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="typography">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🔤 Typography & Readability</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Choosing fonts and sizing for maximum readability across devices.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">📝 Web-Safe Fonts</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="font-sans"><strong>Arial:</strong> Clean, modern, highly readable</div>
+                                        <div class="font-sans"><strong>Helvetica:</strong> Professional, minimal</div>
+                                        <div class="font-serif"><strong>Georgia:</strong> Serif option, screen-readable</div>
+                                        <div class="font-mono"><strong>Verdana:</strong> Designed for screen clarity</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-blue mb-3">📏 Size Guidelines</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Headlines:</strong> 22-36px (mobile), 28-48px (desktop)</div>
+                                        <div>• <strong>Body Text:</strong> 14-16px minimum</div>
+                                        <div>• <strong>Captions:</strong> 12-14px minimum</div>
+                                        <div>• <strong>CTA Buttons:</strong> 16-18px</div>
+                                        <div>• <strong>Line Height:</strong> 1.4-1.6x font size</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 6: Image Optimization -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="images">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🖼️ Image Optimization & Management</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Balancing visual impact with loading speed and accessibility.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">📁 File Format Guide</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div><strong>JPEG:</strong> Photos, complex images, gradients</div>
+                                        <div><strong>PNG:</strong> Graphics with transparency, logos</div>
+                                        <div><strong>GIF:</strong> Simple animations (use sparingly)</div>
+                                        <div><strong>SVG:</strong> Scalable graphics (limited support)</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">⚡ Optimization Tips</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Max 1MB per image</strong> (smaller is better)</div>
+                                        <div>• <strong>72 DPI resolution</strong> for web</div>
+                                        <div>• <strong>600px width max</strong> for email</div>
+                                        <div>• <strong>Always include alt text</strong></div>
+                                        <div>• <strong>Test with images blocked</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 7: CTA Design -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="cta">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🔘 Call-to-Action Design</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Creating buttons that stand out and inspire action like trail markers.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">✅ Effective CTA Text</h4>
+                                    <div class="space-y-2">
+                                        <div class="bg-nto-orange text-white px-4 py-2 rounded font-semibold text-center text-sm">Shop Hiking Boots Now</div>
+                                        <div class="bg-nto-green text-white px-4 py-2 rounded font-semibold text-center text-sm">Get Your Gear</div>
+                                        <div class="bg-blue-600 text-white px-4 py-2 rounded font-semibold text-center text-sm">Start Your Adventure</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-red-600 mb-3">❌ Weak CTA Text</h4>
+                                    <div class="space-y-2">
+                                        <div class="bg-gray-400 text-white px-4 py-2 rounded text-center text-sm">Click Here</div>
+                                        <div class="bg-gray-400 text-white px-4 py-2 rounded text-center text-sm">Submit</div>
+                                        <div class="bg-gray-400 text-white px-4 py-2 rounded text-center text-sm">More</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                                <h4 class="font-semibold text-blue-600 mb-2">📐 CTA Design Requirements</h4>
+                                <div class="text-sm text-gray-600 grid md:grid-cols-2 gap-2">
+                                    <div>• Minimum 44x44px for mobile</div>
+                                    <div>• High contrast with background</div>
+                                    <div>• Clear, action-oriented text</div>
+                                    <div>• Adequate padding around text</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 8: Email Client Compatibility -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="compatibility">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">📧 Email Client Compatibility</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Ensuring consistent display across Outlook, Gmail, Apple Mail, and more.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-3 gap-4 mb-4">
+                                <div class="text-center">
+                                    <h4 class="font-semibold text-red-600 mb-2">😤 Outlook</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div>Uses Word engine</div>
+                                        <div>Limited CSS support</div>
+                                        <div>Requires table layout</div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <h4 class="font-semibold text-green-600 mb-2">📱 Mobile Clients</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div>Better CSS support</div>
+                                        <div>Touch considerations</div>
+                                        <div>Responsive design</div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <h4 class="font-semibold text-blue-600 mb-2">🌐 Webmail</h4>
+                                    <div class="text-sm text-gray-600">
+                                        <div>Gmail strips styles</div>
+                                        <div>Yahoo decent support</div>
+                                        <div>Mixed capabilities</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-yellow-800 mb-2">⚠️ Compatibility Best Practices</h4>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• Use table-based layouts for structure</li>
+                                    <li>• Inline CSS for critical styles</li>
+                                    <li>• Provide fallbacks for unsupported features</li>
+                                    <li>• Test across major email clients</li>
+                                    <li>• Focus on 80/20 rule (20% clients = 80% users)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Tab -->
+            <div id="quiz" class="tab-content hidden p-6">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-nto-green mb-4">🧠 Email Message Design Mastery Quiz</h2>
+                    <p class="text-gray-600 mb-6">Test your knowledge with NTO-focused scenarios and certification-level questions</p>
+                    
+                    <div class="flex justify-center space-x-4 mb-6">
+                        <button id="startQuiz" class="bg-nto-green hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                            🎯 Start Quiz Challenge
+                        </button>
+                        <button id="reviewMode" class="bg-nto-orange hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                            📖 Review Mode
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Interface -->
+                <div id="quizInterface" class="hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <!-- Quiz Progress -->
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="text-sm text-gray-600">
+                                Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                Score: <span id="currentScore">0</span>/10
+                            </div>
+                        </div>
+
+                        <!-- Question -->
+                        <div id="questionContainer" class="mb-6">
+                            <h3 id="questionText" class="text-lg font-semibold text-nto-green mb-4"></h3>
+                            <div id="optionsContainer" class="space-y-3"></div>
+                        </div>
+
+                        <!-- Feedback -->
+                        <div id="feedback" class="hidden mb-6 p-4 rounded-lg"></div>
+
+                        <!-- Navigation -->
+                        <div class="flex justify-between">
+                            <button id="prevQuestion" class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded font-medium transition-colors" disabled>
+                                ← Previous
+                            </button>
+                            <button id="nextQuestion" class="bg-nto-blue hover:bg-blue-700 text-white px-4 py-2 rounded font-medium transition-colors" disabled>
+                                Next →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Results -->
+                <div id="quizResults" class="hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div id="resultsContent"></div>
+                        <div class="mt-6 space-x-4">
+                            <button id="retakeQuiz" class="bg-nto-green hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                🔄 Retake Quiz
+                            </button>
+                            <button id="reviewAnswers" class="bg-nto-orange hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                📋 Review Answers
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Tab -->
+            <div id="resources" class="tab-content hidden p-6">
+                <h2 class="text-2xl font-bold text-nto-green mb-6">📖 Additional Resources</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Official Resources -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-4">📚 Official Salesforce Resources</h3>
+                        <div class="space-y-3">
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Email Client Support for Default Templates
+                            </a>
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Content Builder Support File Types
+                            </a>
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Email Template Best Practices
+                            </a>
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Mobile Email Design Guidelines
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Key Terms -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-4">🔑 Key Terms to Remember</h3>
+                        <div class="space-y-2 text-sm">
+                            <div><strong>Visual Hierarchy:</strong> Arrangement guiding reader's eye</div>
+                            <div><strong>Responsive Design:</strong> Adapts to different screen sizes</div>
+                            <div><strong>Above the Fold:</strong> Content visible without scrolling</div>
+                            <div><strong>CTA:</strong> Call-to-action button or link</div>
+                            <div><strong>Alt Text:</strong> Descriptive text for images</div>
+                            <div><strong>Web-Safe Fonts:</strong> Fonts displaying consistently</div>
+                            <div><strong>Inline CSS:</strong> Styling applied directly to elements</div>
+                            <div><strong>Media Queries:</strong> CSS rules for different devices</div>
+                        </div>
+                    </div>
+
+                    <!-- Pro Tips -->
+                    <div class="bg-gradient-to-br from-nto-green to-blue-600 text-white rounded-lg p-6">
+                        <h3 class="text-lg font-semibold mb-4">💡 Pro Tips for Success</h3>
+                        <div class="space-y-2 text-sm">
+                            <div>✓ Always design mobile-first</div>
+                            <div>✓ Test across multiple email clients</div>
+                            <div>✓ Keep designs simple and clean</div>
+                            <div>✓ Use tables for layout structure</div>
+                            <div>✓ Inline critical CSS styles</div>
+                            <div>✓ Always include alt text</div>
+                            <div>✓ Make CTAs obvious and compelling</div>
+                            <div>✓ Consider accessibility for all users</div>
+                        </div>
+                    </div>
+
+                    <!-- Next Steps -->
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-yellow-800 mb-4">🎯 Next Steps</h3>
+                        <div class="space-y-2 text-sm text-yellow-700">
+                            <div>1. Practice creating responsive templates</div>
+                            <div>2. Test designs across email clients</div>
+                            <div>3. Implement A/B tests for CTAs</div>
+                            <div>4. Create brand style guide</div>
+                            <div>5. Set up accessibility testing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Questions
+        const lesson5Questions = [
+            {
+                question: "🏔️ NTO is designing a new email template for their winter jacket promotion. What should be their PRIMARY consideration for mobile users?",
+                options: [
+                    "Using multiple columns to show more products",
+                    "Single-column layout with touch-friendly buttons (44px+)",
+                    "Adding more images to make it visually appealing",
+                    "Using smaller fonts to fit more content"
+                ],
+                correct: 1,
+                domain: "Mobile-First Design",
+                difficulty: "Basic",
+                simpleExplanation: "Mobile users need single-column layouts that are easy to navigate with their fingers. Think of it like creating a simple path up a mountain - one clear direction is better than multiple confusing trails.",
+                ntoExample: "When NTO customers check their email while hiking or commuting, they need large, easy-to-tap buttons and content that flows naturally in one column on their phone screen.",
+                certificationTip: "Remember: 60%+ of emails are opened on mobile devices. Always design mobile-first with single columns and 44px+ touch targets."
+            },
+            {
+                question: "📧 Which email template type gives NTO maximum design flexibility but requires HTML/CSS knowledge?",
+                options: [
+                    "Drag-and-drop templates",
+                    "HTML templates",
+                    "Auto-generated templates",
+                    "Image-only templates"
+                ],
+                correct: 1,
+                domain: "Template Fundamentals",
+                difficulty: "Basic",
+                simpleExplanation: "HTML templates are like building a custom campsite from scratch - you have complete control over every detail, but you need the skills to build it properly.",
+                ntoExample: "NTO's design team uses HTML templates for their seasonal campaigns because they can create custom layouts that perfectly showcase outdoor gear with unique animations and interactions.",
+                certificationTip: "Know the three template types: Drag-and-drop (easy, limited), HTML (flexible, requires coding), Hybrid (balanced approach)."
+            },
+            {
+                question: "🎨 What's the minimum color contrast ratio required for normal text to meet accessibility standards?",
+                options: [
+                    "2:1 ratio",
+                    "3:1 ratio",
+                    "4.5:1 ratio",
+                    "6:1 ratio"
+                ],
+                correct: 2,
+                domain: "Accessibility",
+                difficulty: "Intermediate",
+                simpleExplanation: "Color contrast is like the difference between a clear trail marker and one that's faded - you need enough contrast so everyone can read your content easily.",
+                ntoExample: "NTO ensures their green text on white backgrounds meets the 4.5:1 contrast ratio so customers with visual impairments can still read about their hiking adventures.",
+                certificationTip: "WCAG guidelines: 4.5:1 for normal text, 3:1 for large text. Don't rely on color alone to convey information."
+            },
+            {
+                question: "🖼️ NTO wants to include high-quality product images in their emails. What's the recommended maximum file size per image?",
+                options: [
+                    "5MB per image",
+                    "2MB per image",
+                    "1MB per image (smaller is better)",
+                    "500KB per image"
+                ],
+                correct: 2,
+                domain: "Image Optimization",
+                difficulty: "Basic",
+                simpleExplanation: "Large images are like carrying a heavy backpack on a hike - they slow you down. Smaller, optimized images load faster and don't frustrate your customers.",
+                ntoExample: "NTO compresses their stunning mountain photography to under 1MB so customers can quickly see their gear even when they have limited data on hiking trails.",
+                certificationTip: "Keep images under 1MB, use 72 DPI for web, always include alt text, and test how emails look with images blocked."
+            },
+            {
+                question: "📱 What's the recommended minimum font size for email body text on mobile devices?",
+                options: [
+                    "10px",
+                    "12px",
+                    "14px or larger",
+                    "16px or larger"
+                ],
+                correct: 2,
+                domain: "Typography",
+                difficulty: "Basic",
+                simpleExplanation: "Reading tiny text on a phone is like trying to read a map in dim light - it's frustrating and people give up quickly. Larger fonts ensure everyone can read your message comfortably.",
+                ntoExample: "NTO uses 16px fonts for their email body text so customers can easily read product details while checking email during their morning coffee or trail breaks.",
+                certificationTip: "Mobile typography minimums: 14px+ for body text, 22px+ for headlines, 16-18px for CTA buttons."
+            },
+            {
+                question: "🔘 What makes a call-to-action button effective for NTO's email campaigns?",
+                options: [
+                    "Using generic text like 'Click Here'",
+                    "High contrast, clear action text, adequate size (44px+), prominent placement",
+                    "Making it blend with the background",
+                    "Using only text links instead of buttons"
+                ],
+                correct: 1,
+                domain: "CTA Design",
+                difficulty: "Intermediate",
+                simpleExplanation: "A good CTA button is like a bright trail sign - it stands out clearly, tells you exactly where you're going, and is easy to follow.",
+                ntoExample: "Instead of 'Click Here', NTO uses specific CTAs like 'Shop Winter Boots' or 'Start Your Adventure' with orange buttons that stand out against their green brand colors.",
+                certificationTip: "Effective CTAs: High contrast colors, specific action words, 44px+ for mobile, placed above the fold and at natural stopping points."
+            },
+            {
+                question: "📏 In visual hierarchy, what naturally draws the reader's attention FIRST?",
+                options: [
+                    "Smaller elements at the bottom",
+                    "Elements with low contrast",
+                    "Larger elements with high contrast",
+                    "Elements in the footer"
+                ],
+                correct: 2,
+                domain: "Visual Hierarchy",
+                difficulty: "Basic",
+                simpleExplanation: "Our eyes are naturally drawn to big, bold things first - like how you notice a tall mountain peak before smaller hills. Use size and contrast to guide attention.",
+                ntoExample: "NTO makes their main product headline large and bold in dark green, ensuring customers see their featured hiking gear before reading smaller details.",
+                certificationTip: "Visual hierarchy tools: Size (larger = more important), color contrast, position (top-left gets attention first), white space for focus."
+            },
+            {
+                question: "💻 Why is Outlook particularly challenging for email design?",
+                options: [
+                    "It has the best CSS support",
+                    "It uses the Word rendering engine with limited CSS support",
+                    "It only displays plain text emails",
+                    "It automatically optimizes all designs"
+                ],
+                correct: 1,
+                domain: "Email Client Compatibility",
+                difficulty: "Intermediate",
+                simpleExplanation: "Outlook is like an old hiking trail that requires special equipment - it doesn't support modern CSS features, so you need to use older, more reliable methods.",
+                ntoExample: "NTO's developers use table-based layouts and inline CSS for their email templates because Outlook's Word engine doesn't understand modern CSS like flexbox or grid.",
+                certificationTip: "Outlook challenges: Uses Word rendering engine, limited CSS support, requires tables for layout, needs inline CSS and conditional comments."
+            },
+            {
+                question: "🌟 What is progressive enhancement in email design?",
+                options: [
+                    "Making emails progressively more expensive",
+                    "Starting with basic functionality that works everywhere, then adding enhancements for capable clients",
+                    "Progressively adding more images",
+                    "Making emails progressively longer"
+                ],
+                correct: 1,
+                domain: "Advanced Design Concepts",
+                difficulty: "Advanced",
+                simpleExplanation: "Progressive enhancement is like packing for a hike - you bring essentials that work everywhere, then add nice-to-have items for better conditions.",
+                ntoExample: "NTO's emails work perfectly in basic email clients with core content and CTAs, but add interactive elements and animations for modern clients that support them.",
+                certificationTip: "Progressive enhancement ensures core functionality works in all clients while providing enhanced experiences where supported."
+            },
+            {
+                question: "🧪 When A/B testing email design elements, what's the most important rule?",
+                options: [
+                    "Test multiple elements simultaneously",
+                    "Test only one design element at a time to isolate variables",
+                    "Only test with VIP customers",
+                    "Test for exactly 24 hours"
+                ],
+                correct: 1,
+                domain: "Testing & Optimization",
+                difficulty: "Intermediate",
+                simpleExplanation: "Testing one thing at a time is like trying one new trail route at a time - if you change too many things at once, you won't know which change made the difference.",
+                ntoExample: "NTO tests only their CTA button color in one campaign, then tests headline size in the next, so they know exactly which change improved their click-through rates.",
+                certificationTip: "A/B testing best practices: Test one variable at a time, ensure statistical significance, run tests long enough for reliable data."
+            }
+        ];
+
+        // Application State
+        let currentQuestionIndex = 0;
+        let selectedAnswers = [];
+        let quizScore = 0;
+        let isReviewMode = false;
+        let conceptsViewed = new Set();
+
+        // Progress Tracking
+        function updateProgress() {
+            const conceptProgress = conceptsViewed.size;
+            const quizProgress = selectedAnswers.length;
+            const totalProgress = Math.round(((conceptProgress * 5) + (quizProgress * 5)) / 10);
+            
+            document.getElementById('conceptsViewed').textContent = conceptProgress;
+            document.getElementById('quizProgress').textContent = quizProgress;
+            document.getElementById('overallProgress').textContent = totalProgress;
+            document.getElementById('progressBar').style.width = totalProgress + '%';
+            
+            // Save progress
+            localStorage.setItem('lesson5Progress', JSON.stringify({
+                conceptsViewed: Array.from(conceptsViewed),
+                quizAnswers: selectedAnswers,
+                quizScore: quizScore
+            }));
+        }
+
+        // Load saved progress
+        function loadProgress() {
+            const saved = localStorage.getItem('lesson5Progress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                conceptsViewed = new Set(progress.conceptsViewed || []);
+                selectedAnswers = progress.quizAnswers || [];
+                quizScore = progress.quizScore || 0;
+                updateProgress();
+            }
+        }
+
+        // Tab Management
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                // Update button states
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active', 'border-nto-orange', 'text-nto-orange');
+                    b.classList.add('border-transparent', 'text-gray-500');
+                });
+                btn.classList.add('active', 'border-nto-orange', 'text-nto-orange');
+                btn.classList.remove('border-transparent', 'text-gray-500');
+                
+                // Show target content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(targetTab).classList.remove('hidden');
+            });
+        });
+
+        // Concept Cards
+        document.querySelectorAll('.concept-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const details = card.querySelector('.concept-details');
+                const concept = card.dataset.concept;
+                
+                if (details.classList.contains('hidden')) {
+                    details.classList.remove('hidden');
+                    conceptsViewed.add(concept);
+                    updateProgress();
+                } else {
+                    details.classList.add('hidden');
+                }
+            });
+        });
+
+        // Quiz Management
+        function startQuiz(reviewMode = false) {
+            isReviewMode = reviewMode;
+            currentQuestionIndex = 0;
+            if (!reviewMode) {
+                selectedAnswers = [];
+                quizScore = 0;
+            }
+            
+            document.getElementById('startQuiz').classList.add('hidden');
+            document.getElementById('reviewMode').classList.add('hidden');
+            document.getElementById('quizInterface').classList.remove('hidden');
+            document.getElementById('totalQuestions').textContent = lesson5Questions.length;
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = lesson5Questions[currentQuestionIndex];
+            
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('currentScore').textContent = quizScore;
+            document.getElementById('questionText').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option-item p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-nto-blue transition-colors';
+                
+                const isSelected = selectedAnswers[currentQuestionIndex] === index;
+                const isCorrect = index === question.correct;
+                
+                if (isReviewMode && selectedAnswers[currentQuestionIndex] !== undefined) {
+                    if (isCorrect) {
+                        optionDiv.className += ' bg-green-100 border-green-500';
+                    } else if (isSelected && !isCorrect) {
+                        optionDiv.className += ' bg-red-100 border-red-500';
+                    }
+                }
+                
+                optionDiv.innerHTML = `
+                    <label class="flex items-center cursor-pointer">
+                        <input type="radio" name="question" value="${index}" class="mr-3" ${isSelected ? 'checked' : ''}>
+                        <span>${option}</span>
+                    </label>
+                `;
+                
+                if (!isReviewMode) {
+                    optionDiv.addEventListener('click', () => selectAnswer(index));
+                }
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Show feedback in review mode
+            if (isReviewMode && selectedAnswers[currentQuestionIndex] !== undefined) {
+                showFeedback(selectedAnswers[currentQuestionIndex] === question.correct);
+            } else {
+                document.getElementById('feedback').classList.add('hidden');
+            }
+            
+            // Update navigation
+            document.getElementById('prevQuestion').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextQuestion').disabled = !isReviewMode && selectedAnswers[currentQuestionIndex] === undefined;
+        }
+
+        function selectAnswer(answerIndex) {
+            selectedAnswers[currentQuestionIndex] = answerIndex;
+            const isCorrect = answerIndex === lesson5Questions[currentQuestionIndex].correct;
+            
+            if (isCorrect) {
+                quizScore++;
+            }
+            
+            // Update option styling
+            document.querySelectorAll('.option-item').forEach((item, index) => {
+                item.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+                if (index === lesson5Questions[currentQuestionIndex].correct) {
+                    item.classList.add('bg-green-100', 'border-green-500');
+                } else if (index === answerIndex && !isCorrect) {
+                    item.classList.add('bg-red-100', 'border-red-500');
+                }
+            });
+            
+            showFeedback(isCorrect);
+            document.getElementById('nextQuestion').disabled = false;
+            updateProgress();
+        }
+
+        function showFeedback(isCorrect) {
+            const feedback = document.getElementById('feedback');
+            const question = lesson5Questions[currentQuestionIndex];
+            
+            feedback.className = `mb-6 p-4 rounded-lg ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`;
+            
+            feedback.innerHTML = `
+                <h4 class="font-semibold ${isCorrect ? 'text-green-800' : 'text-red-800'} mb-2">
+                    ${isCorrect ? '✅ Correct!' : '❌ Not quite right'}
+                </h4>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <strong class="text-gray-700">Simple Explanation:</strong>
+                        <p class="text-gray-600 mt-1">${question.simpleExplanation}</p>
+                    </div>
+                    <div>
+                        <strong class="text-nto-green">🏔️ NTO Example:</strong>
+                        <p class="text-gray-600 mt-1">${question.ntoExample}</p>
+                    </div>
+                    <div>
+                        <strong class="text-nto-orange">📝 Certification Tip:</strong>
+                        <p class="text-gray-600 mt-1">${question.certificationTip}</p>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-2">
+                        Domain: ${question.domain} | Difficulty: ${question.difficulty}
+                    </div>
+                </div>
+            `;
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < lesson5Questions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizInterface').classList.add('hidden');
+            document.getElementById('quizResults').classList.remove('hidden');
+            
+            const percentage = Math.round((quizScore / lesson5Questions.length) * 100);
+            let message, colorClass;
+            
+            if (percentage >= 80) {
+                message = "🏆 Outstanding! You're ready for the Email Design questions on the certification exam!";
+                colorClass = "text-green-600";
+            } else if (percentage >= 70) {
+                message = "🌟 Great job! Review the areas you missed and you'll be certification-ready.";
+                colorClass = "text-nto-orange";
+            } else {
+                message = "📚 Keep studying! Focus on the concepts where you need improvement.";
+                colorClass = "text-red-600";
+            }
+            
+            document.getElementById('resultsContent').innerHTML = `
+                <div class="text-6xl mb-4">🎨</div>
+                <h3 class="text-2xl font-bold ${colorClass} mb-4">Quiz Complete!</h3>
+                <div class="text-4xl font-bold ${colorClass} mb-4">${quizScore}/${lesson5Questions.length}</div>
+                <div class="text-xl ${colorClass} mb-6">${percentage}%</div>
+                <p class="text-gray-600 mb-6">${message}</p>
+                <div class="text-sm text-gray-500">
+                    Email Message Design represents 13% of the SFMC Email Specialist certification exam
+                </div>
+            `;
+        }
+
+        // Event Listeners
+        document.getElementById('startQuiz').addEventListener('click', () => startQuiz(false));
+        document.getElementById('reviewMode').addEventListener('click', () => startQuiz(true));
+        document.getElementById('nextQuestion').addEventListener('click', nextQuestion);
+        document.getElementById('prevQuestion').addEventListener('click', prevQuestion);
+        document.getElementById('retakeQuiz').addEventListener('click', () => {
+            document.getElementById('quizResults').classList.add('hidden');
+            document.getElementById('startQuiz').classList.remove('hidden');
+            document.getElementById('reviewMode').classList.remove('hidden');
+        });
+        document.getElementById('reviewAnswers').addEventListener('click', () => {
+            document.getElementById('quizResults').classList.add('hidden');
+            startQuiz(true);
+        });
+        document.getElementById('resetProgress').addEventListener('click', () => {
+            if (confirm('Reset all progress for this lesson?')) {
+                localStorage.removeItem('lesson5Progress');
+                conceptsViewed.clear();
+                selectedAnswers = [];
+                quizScore = 0;
+                updateProgress();
+            }
+        });
+
+        // Initialize
+        loadProgress();
+    </script>
+</body>
+</html>

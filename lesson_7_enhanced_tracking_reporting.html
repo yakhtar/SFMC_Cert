@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: Tracking & Reporting | SFMC Certification Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'nto-green': '#2c5530',
+                        'nto-orange': '#ff6b35',
+                        'nto-blue': '#1e40af',
+                        'nto-gray': '#6b7280'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b-2 border-nto-green">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-2xl font-bold text-nto-green hover:text-nto-orange transition-colors">
+                        🏔️ SFMC Mastery Hub
+                    </a>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="enhanced_sfmc_certification_mastery.html" class="text-nto-gray hover:text-nto-green font-medium">Certification</a>
+                    <a href="lesson_6_enhanced_email_marketing_best_practices.html" class="text-nto-gray hover:text-nto-green font-medium">Lesson 6</a>
+                    <span class="text-nto-orange font-semibold">Lesson 7</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-nto-green to-blue-600 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">📊 Lesson 7: Tracking & Reporting</h1>
+            <p class="text-xl opacity-90 mb-6">Master Analytics Like a Digital Detective (6-14% of Exam)</p>
+            <div class="flex justify-center items-center space-x-8 text-sm">
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-nto-orange rounded-full mr-2"></span>
+                    <span>Email Analytics</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></span>
+                    <span>Journey Performance</span>
+                </div>
+                <div class="flex items-center">
+                    <span class="w-3 h-3 bg-green-400 rounded-full mr-2"></span>
+                    <span>Advanced Reporting</span>
+                </div>
+            </div>
+            
+            <!-- Completion Badge -->
+            <div class="mt-8 inline-flex items-center bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-semibold">
+                🏆 FINAL LESSON - Complete Certification Coverage!
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Tracking -->
+    <div class="max-w-4xl mx-auto px-4 py-6">
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="font-semibold text-nto-green">📊 Your Analytics Journey</h3>
+                <button id="resetProgress" class="text-sm text-nto-gray hover:text-nto-orange">Reset</button>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-3">
+                <div id="progressBar" class="bg-gradient-to-r from-nto-green to-nto-orange h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between text-sm text-nto-gray mt-2">
+                <span>Concepts: <span id="conceptsViewed">0</span>/10</span>
+                <span>Quiz: <span id="quizProgress">0</span>/10</span>
+                <span>Overall: <span id="overallProgress">0</span>%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 pb-12">
+        <!-- Learning Tabs -->
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="flex space-x-8 px-6">
+                    <button class="tab-btn active py-4 px-2 border-b-2 border-nto-orange text-nto-orange font-medium" data-tab="overview">
+                        🎯 Overview
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="concepts">
+                        📚 Key Concepts
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="quiz">
+                        🧠 Interactive Quiz
+                    </button>
+                    <button class="tab-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-nto-green font-medium" data-tab="resources">
+                        📖 Resources
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content p-6">
+                <div class="prose max-w-none">
+                    <h2 class="text-2xl font-bold text-nto-green mb-6">📊 What is Email Tracking & Reporting?</h2>
+                    
+                    <div class="bg-blue-50 border-l-4 border-nto-blue p-6 rounded-r-lg mb-6">
+                        <h3 class="text-lg font-semibold text-nto-blue mb-3">🏔️ NTO's Analytics Adventure</h3>
+                        <p class="text-gray-700 mb-4">Think of tracking like having a smart trail guide who remembers everything about every hiker's journey:</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-nto-green rounded-full mr-3"></span>
+                                    <span class="text-sm">2,500 hikers opened the winter gear email</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-nto-orange rounded-full mr-3"></span>
+                                    <span class="text-sm">300 clicked on sleeping bags (most popular)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">45 completed purchases within 24 hours</span>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Colorado customers engaged 23% more</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Tuesday 10 AM timing was optimal</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                                    <span class="text-sm">Mobile users preferred shorter subject lines</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-nto-green mb-4">🎯 Core Analytics Areas</h3>
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gradient-to-br from-green-50 to-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-green mb-2">📧 Email Performance</h4>
+                            <p class="text-sm text-gray-600">Opens, clicks, bounces, conversions - the fundamental metrics of email success.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-orange mb-2">🗺️ Journey Analytics</h4>
+                            <p class="text-sm text-gray-600">Multi-step campaign performance, path analysis, and goal achievement tracking.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-nto-blue mb-2">📱 Cross-Device Tracking</h4>
+                            <p class="text-sm text-gray-600">Following customer journeys across mobile, tablet, and desktop experiences.</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-600 mb-2">🧪 A/B Testing Analytics</h4>
+                            <p class="text-sm text-gray-600">Statistical analysis of test results and optimization insights.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-nto-green bg-opacity-10 border border-nto-green rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-3">💡 Why Analytics Matter for NTO</h3>
+                        <p class="text-gray-700 mb-3">Like a trail map that gets better with every hiker's feedback, analytics help NTO:</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                            <li>Understand which outdoor content resonates most</li>
+                            <li>Optimize send times for different customer segments</li>
+                            <li>Track revenue generated from email campaigns</li>
+                            <li>Identify high-value customers and gear preferences</li>
+                            <li>Improve mobile experience for on-the-go adventurers</li>
+                            <li>Make data-driven decisions for better ROI</li>
+                        </ul>
+                    </div>
+
+                    <!-- Completion Celebration -->
+                    <div class="mt-8 bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg p-6 text-center">
+                        <h3 class="text-xl font-bold mb-2">🎉 Congratulations!</h3>
+                        <p class="mb-3">You've reached the final lesson in your SFMC Email Specialist certification journey!</p>
+                        <div class="text-sm opacity-90">
+                            Complete this lesson to master 100% of the certification exam content
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Concepts Tab -->
+            <div id="concepts" class="tab-content hidden p-6">
+                <h2 class="text-2xl font-bold text-nto-green mb-6">📚 Master These Analytics Concepts</h2>
+                
+                <div class="space-y-6">
+                    <!-- Concept 1: Email Tracking Fundamentals -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="fundamentals">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">📈 Email Tracking Fundamentals</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">The essential metrics that measure email campaign success.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-3 gap-4 mb-4">
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-blue-600 mb-2">Delivery Metrics</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• <strong>Sent:</strong> Total emails sent</li>
+                                        <li>• <strong>Delivered:</strong> Reached recipient servers</li>
+                                        <li>• <strong>Bounces:</strong> Delivery failures</li>
+                                        <li>• <strong>Hard/Soft:</strong> Permanent vs temporary</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-green-600 mb-2">Engagement Metrics</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• <strong>Opens:</strong> Email viewed</li>
+                                        <li>• <strong>Clicks:</strong> Links clicked</li>
+                                        <li>• <strong>CTR:</strong> Click-through rate</li>
+                                        <li>• <strong>CTOR:</strong> Click-to-open rate</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-purple-50 p-4 rounded-lg">
+                                    <h4 class="font-semibold text-purple-600 mb-2">List Health</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li>• <strong>Unsubscribes:</strong> Opt-outs</li>
+                                        <li>• <strong>Spam Complaints:</strong> Marked as spam</li>
+                                        <li>• <strong>Forwards:</strong> Shared emails</li>
+                                        <li>• <strong>Growth Rate:</strong> Net list changes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="bg-nto-green bg-opacity-10 p-4 rounded-lg">
+                                <h4 class="font-semibold text-nto-green mb-2">🏔️ NTO's Key Formula</h4>
+                                <div class="text-sm text-gray-700 space-y-1">
+                                    <div><strong>Open Rate:</strong> (2,500 opens ÷ 9,800 delivered) × 100 = 25.5%</div>
+                                    <div><strong>CTR:</strong> (300 clicks ÷ 9,800 delivered) × 100 = 3.1%</div>
+                                    <div><strong>CTOR:</strong> (300 clicks ÷ 2,500 opens) × 100 = 12%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 2: Email Studio Reports -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="reports">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🗂️ Email Studio Reports</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Standard reports for analyzing email campaign performance.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">📊 Standard Reports</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Summary:</strong> High-level overview</div>
+                                        <div>• <strong>Overview:</strong> Detailed breakdown</div>
+                                        <div>• <strong>Bounces:</strong> Delivery failure analysis</div>
+                                        <div>• <strong>Unsubscribes:</strong> Opt-out tracking</div>
+                                        <div>• <strong>Clicks:</strong> Link performance</div>
+                                        <div>• <strong>Forwards:</strong> Email sharing data</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">🎯 Report Access</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>1. Navigate to Email Studio</div>
+                                        <div>2. Click on "Tracking" tab</div>
+                                        <div>3. Select campaign/email</div>
+                                        <div>4. Choose report type</div>
+                                        <div>5. Set date range</div>
+                                        <div>6. Export if needed</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                                <h4 class="font-semibold text-blue-600 mb-2">🏔️ NTO Winter Campaign Report</h4>
+                                <div class="text-sm text-gray-600 grid md:grid-cols-3 gap-2">
+                                    <div><strong>Sent:</strong> 10,000</div>
+                                    <div><strong>Delivered:</strong> 9,800</div>
+                                    <div><strong>Opens:</strong> 2,500 (25.5%)</div>
+                                    <div><strong>Clicks:</strong> 300 (3.1%)</div>
+                                    <div><strong>Top Link:</strong> Sleeping Bags (127 clicks)</div>
+                                    <div><strong>Best Region:</strong> Colorado (31% open)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 3: Journey Builder Analytics -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="journey">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🗺️ Journey Builder Analytics</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Performance tracking for multi-step customer journeys.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">📈 Journey Metrics</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Contacts Entered:</strong> Journey starters</div>
+                                        <div>• <strong>Currently Active:</strong> In-progress contacts</div>
+                                        <div>• <strong>Contacts Exited:</strong> Early departures</div>
+                                        <div>• <strong>Goal Achievement:</strong> Success rate</div>
+                                        <div>• <strong>Conversion Rate:</strong> Business outcomes</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">🛤️ Path Analysis</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• Path performance comparison</div>
+                                        <div>• Drop-off point identification</div>
+                                        <div>• Conversion funnel analysis</div>
+                                        <div>• Time-to-conversion tracking</div>
+                                        <div>• Activity-level performance</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-green-50 rounded-lg">
+                                <h4 class="font-semibold text-green-700 mb-2">🏔️ NTO Welcome Journey (30 Days)</h4>
+                                <div class="text-sm text-gray-600 grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <div><strong>Entered:</strong> 1,250 outdoor enthusiasts</div>
+                                        <div><strong>Active:</strong> 89 still progressing</div>
+                                        <div><strong>Completed:</strong> 967 (77%)</div>
+                                        <div><strong>Achieved Goal:</strong> 423 (34% conversion)</div>
+                                    </div>
+                                    <div>
+                                        <div><strong>Welcome Email:</strong> 89% open, 12% click</div>
+                                        <div><strong>Gear Education:</strong> 72% open, 8% click</div>
+                                        <div><strong>Special Offer:</strong> 65% open, 15% click</div>
+                                        <div><strong>Testimonials:</strong> 58% open, 6% click</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 4: Analytics Builder -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="analytics-builder">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">📊 Analytics Builder & Custom Reports</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Advanced reporting platform for custom dashboards and analysis.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">🔧 Custom Features</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Drag-and-drop:</strong> Visual report building</div>
+                                        <div>• <strong>Multi-source:</strong> Combine data sources</div>
+                                        <div>• <strong>Visualizations:</strong> Charts, graphs, tables</div>
+                                        <div>• <strong>Scheduling:</strong> Automated delivery</div>
+                                        <div>• <strong>Sharing:</strong> Team collaboration</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">📈 Advanced Analysis</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• Cross-channel correlation</div>
+                                        <div>• Behavioral pattern analysis</div>
+                                        <div>• Cohort comparisons</div>
+                                        <div>• Business intelligence integration</div>
+                                        <div>• Executive dashboard creation</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-orange-50 rounded-lg">
+                                <h4 class="font-semibold text-orange-700 mb-2">🏔️ NTO Quarterly Dashboard</h4>
+                                <p class="text-sm text-gray-600">NTO creates custom dashboards showing seasonal gear performance, customer segment analysis, and ROI by outdoor activity type - insights impossible with standard reports alone.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 5: Data Views & SQL -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="data-views">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🗄️ Data Views & SQL Reporting</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Access raw email data through system tables and SQL queries.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">📊 Key Data Views</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>_Sent:</strong> Email send records</div>
+                                        <div>• <strong>_Open:</strong> Open tracking data</div>
+                                        <div>• <strong>_Click:</strong> Click tracking details</div>
+                                        <div>• <strong>_Bounce:</strong> Bounce information</div>
+                                        <div>• <strong>_Unsubscribe:</strong> Opt-out records</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">💻 SQL Applications</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• Custom performance calculations</div>
+                                        <div>• Subscriber engagement scoring</div>
+                                        <div>• Campaign ROI analysis</div>
+                                        <div>• Attribution modeling</div>
+                                        <div>• Cohort behavior analysis</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 bg-gray-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-gray-700 mb-2">💻 Sample NTO Query</h4>
+                                <div class="bg-gray-800 text-green-400 text-xs p-3 rounded font-mono">
+                                    <div>SELECT s.JobID, COUNT(s.SubscriberID) as Sent,</div>
+                                    <div>&nbsp;&nbsp;COUNT(o.SubscriberID) as Opens,</div>
+                                    <div>&nbsp;&nbsp;(COUNT(o.SubscriberID) * 100.0 / COUNT(s.SubscriberID)) as OpenRate</div>
+                                    <div>FROM _Sent s LEFT JOIN _Open o</div>
+                                    <div>WHERE s.EventDate >= DATEADD(DAY, -30, GETDATE())</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 6: Mobile Analytics -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="mobile">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">📱 Mobile Analytics & Cross-Device</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Tracking customer behavior across devices and platforms.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">📱 Mobile Metrics</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Mobile Opens:</strong> 65-70% of total</div>
+                                        <div>• <strong>Device Breakdown:</strong> iOS vs Android</div>
+                                        <div>• <strong>Client Analysis:</strong> Native vs app</div>
+                                        <div>• <strong>Touch Interaction:</strong> Button vs link</div>
+                                        <div>• <strong>Load Time Impact:</strong> Speed effects</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">🔄 Attribution Models</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>First-Touch:</strong> Initial interaction credit</div>
+                                        <div>• <strong>Last-Touch:</strong> Final conversion credit</div>
+                                        <div>• <strong>Multi-Touch:</strong> Distributed credit</div>
+                                        <div>• <strong>Time-Decay:</strong> Recency-weighted</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                                <h4 class="font-semibold text-blue-600 mb-2">🏔️ NTO Cross-Device Journey</h4>
+                                <div class="text-sm text-gray-600">
+                                    <p class="mb-2"><strong>Typical Path:</strong> Customer sees email on mobile during morning hike break → clicks to browse gear → saves for later → completes purchase on desktop that evening</p>
+                                    <p><strong>Challenge:</strong> Attribution complexity requires tracking across devices</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 7: A/B Testing Analytics -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="ab-testing">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🧪 A/B Testing Analytics</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Statistical analysis of test results for optimization.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">📊 Testing Fundamentals</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Statistical Significance:</strong> 95% confidence</div>
+                                        <div>• <strong>Sample Size:</strong> Adequate for validity</div>
+                                        <div>• <strong>Test Duration:</strong> Complete cycles</div>
+                                        <div>• <strong>Single Variable:</strong> Isolated testing</div>
+                                        <div>• <strong>Control Group:</strong> Baseline comparison</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">🎯 Testing Strategy</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• Subject lines (highest impact)</div>
+                                        <div>• Send times and frequency</div>
+                                        <div>• CTA button colors/text</div>
+                                        <div>• Email content and layout</div>
+                                        <div>• Personalization approaches</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-green-50 rounded-lg">
+                                <h4 class="font-semibold text-green-700 mb-2">🏔️ NTO Subject Line Test Results</h4>
+                                <div class="text-sm text-gray-600 grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <div><strong>Control:</strong> "New Hiking Boots Available"</div>
+                                        <div>Open Rate: 23.4% | Click Rate: 3.2%</div>
+                                    </div>
+                                    <div>
+                                        <div><strong>Test:</strong> "Adventure Awaits with New Boots"</div>
+                                        <div>Open Rate: 27.8% (+18.8%) | Click Rate: 3.9% (+21.9%)</div>
+                                    </div>
+                                </div>
+                                <div class="mt-2 text-green-700 font-semibold">Winner: Test version with 95% confidence</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 8: Performance Benchmarking -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="benchmarking">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">📊 Performance Benchmarking</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Industry standards and seasonal performance patterns.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="mb-4">
+                                <h4 class="font-semibold text-nto-green mb-3">📊 Industry Benchmarks (2024)</h4>
+                                <div class="grid md:grid-cols-3 gap-4">
+                                    <div class="bg-blue-50 p-3 rounded text-center">
+                                        <div class="font-semibold text-blue-600">General Email</div>
+                                        <div class="text-sm text-gray-600 mt-1">
+                                            <div>Open: 20-25%</div>
+                                            <div>Click: 2-5%</div>
+                                            <div>Bounce: <2%</div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-green-50 p-3 rounded text-center">
+                                        <div class="font-semibold text-green-600">Outdoor/Recreation</div>
+                                        <div class="text-sm text-gray-600 mt-1">
+                                            <div>Open: 22-28%</div>
+                                            <div>Click: 3-6%</div>
+                                            <div>Revenue: $0.15-$0.45</div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-orange-50 p-3 rounded text-center">
+                                        <div class="font-semibold text-orange-600">Mobile vs Desktop</div>
+                                        <div class="text-sm text-gray-600 mt-1">
+                                            <div>Mobile Opens: 65-70%</div>
+                                            <div>Desktop CTR: Higher</div>
+                                            <div>Cross-device: 35%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                <h4 class="font-semibold text-yellow-800 mb-2">🏔️ NTO Seasonal Patterns</h4>
+                                <div class="text-sm text-gray-700 grid md:grid-cols-2 gap-2">
+                                    <div><strong>Spring:</strong> 28% open (peak hiking prep)</div>
+                                    <div><strong>Summer:</strong> 24% open (less inbox time)</div>
+                                    <div><strong>Fall:</strong> 26% open, 4.5% click (winter prep)</div>
+                                    <div><strong>Winter:</strong> 25% open, $0.67 RPE (gift season)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 9: Goal Setting & KPIs -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="kpis">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🎯 Goal Setting & KPIs</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">SMART goals and key performance indicator management.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">🎯 SMART Goals Framework</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Specific:</strong> Clear, well-defined</div>
+                                        <div>• <strong>Measurable:</strong> Quantifiable metrics</div>
+                                        <div>• <strong>Achievable:</strong> Realistic targets</div>
+                                        <div>• <strong>Relevant:</strong> Business-aligned</div>
+                                        <div>• <strong>Time-bound:</strong> Deadline-driven</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">📊 KPI Categories</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• <strong>Primary:</strong> Revenue, ROI, CLV</div>
+                                        <div>• <strong>Secondary:</strong> Engagement, growth</div>
+                                        <div>• <strong>Leading:</strong> Opens, clicks, trends</div>
+                                        <div>• <strong>Lagging:</strong> Revenue, retention</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-blue-50 rounded-lg">
+                                <h4 class="font-semibold text-blue-600 mb-2">🏔️ NTO Q2 Goal Example</h4>
+                                <div class="text-sm text-gray-600">
+                                    <p><strong>Goal:</strong> Increase average open rate from 24% to 27% by end of Q2 through improved subject line testing and mobile optimization</p>
+                                    <p className="mt-1"><strong>KPIs:</strong> Weekly open rate tracking, A/B test win rate, mobile engagement improvement</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Concept 10: Advanced Analytics -->
+                    <div class="concept-card bg-white border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow" data-concept="advanced">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-nto-green">🚀 Advanced Analytics & AI</h3>
+                            <span class="text-nto-orange font-medium">Click to explore</span>
+                        </div>
+                        <p class="text-gray-600 mt-2">Cutting-edge analytics for future-ready marketing.</p>
+                        <div class="concept-details hidden mt-4 pt-4 border-t border-gray-200">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <h4 class="font-semibold text-nto-green mb-3">🧠 Advanced Techniques</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div>• <strong>Cohort Analysis:</strong> Group comparisons</div>
+                                        <div>• <strong>Predictive Analytics:</strong> Future behavior</div>
+                                        <div>• <strong>Churn Prediction:</strong> At-risk identification</div>
+                                        <div>• <strong>Engagement Scoring:</strong> Value ranking</div>
+                                        <div>• <strong>Attribution Modeling:</strong> Journey credit</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-nto-orange mb-3">🤖 AI Applications</h4>
+                                    <div class="space-y-2 text-sm text-gray-600">
+                                        <div>• Real-time optimization</div>
+                                        <div>• Pattern recognition</div>
+                                        <div>• Automated insights</div>
+                                        <div>• Predictive personalization</div>
+                                        <div>• Machine learning models</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-4 bg-purple-50 rounded-lg">
+                                <h4 class="font-semibold text-purple-600 mb-2">🏔️ NTO's Future Analytics</h4>
+                                <p class="text-sm text-gray-600">NTO is exploring AI-powered analytics to predict which customers are most likely to purchase specific outdoor gear based on weather patterns, seasonal trends, and individual behavior patterns - enabling hyper-personalized recommendations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Tab -->
+            <div id="quiz" class="tab-content hidden p-6">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-nto-green mb-4">🧠 Tracking & Reporting Mastery Quiz</h2>
+                    <p class="text-gray-600 mb-6">Complete your SFMC certification journey with advanced analytics</p>
+                    
+                    <div class="flex justify-center space-x-4 mb-6">
+                        <button id="startQuiz" class="bg-nto-green hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                            🎯 Final Analytics Quiz
+                        </button>
+                        <button id="reviewMode" class="bg-nto-orange hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                            📖 Review Mode
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Interface -->
+                <div id="quizInterface" class="hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <!-- Quiz Progress -->
+                        <div class="flex justify-between items-center mb-6">
+                            <div class="text-sm text-gray-600">
+                                Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span>
+                            </div>
+                            <div class="text-sm text-gray-600">
+                                Score: <span id="currentScore">0</span>/10
+                            </div>
+                        </div>
+
+                        <!-- Question -->
+                        <div id="questionContainer" class="mb-6">
+                            <h3 id="questionText" class="text-lg font-semibold text-nto-green mb-4"></h3>
+                            <div id="optionsContainer" class="space-y-3"></div>
+                        </div>
+
+                        <!-- Feedback -->
+                        <div id="feedback" class="hidden mb-6 p-4 rounded-lg"></div>
+
+                        <!-- Navigation -->
+                        <div class="flex justify-between">
+                            <button id="prevQuestion" class="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded font-medium transition-colors" disabled>
+                                ← Previous
+                            </button>
+                            <button id="nextQuestion" class="bg-nto-blue hover:bg-blue-700 text-white px-4 py-2 rounded font-medium transition-colors" disabled>
+                                Next →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Results -->
+                <div id="quizResults" class="hidden">
+                    <div class="bg-white border border-gray-200 rounded-lg p-8 text-center">
+                        <div id="resultsContent"></div>
+                        <div class="mt-6 space-x-4">
+                            <button id="retakeQuiz" class="bg-nto-green hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                🔄 Retake Quiz
+                            </button>
+                            <button id="reviewAnswers" class="bg-nto-orange hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                                📋 Review Answers
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Tab -->
+            <div id="resources" class="tab-content hidden p-6">
+                <h2 class="text-2xl font-bold text-nto-green mb-6">📖 Additional Resources</h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Official Resources -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-4">📚 Official Salesforce Resources</h3>
+                        <div class="space-y-3">
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Email Studio Reports in Analytics Builder
+                            </a>
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Journey Builder Reports in Analytics Builder
+                            </a>
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Data Views Reference Guide
+                            </a>
+                            <a href="#" class="block text-nto-blue hover:text-blue-700 text-sm">
+                                → Cross-Channel Analytics Documentation
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Key Formulas -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-nto-green mb-4">🔢 Essential Formulas</h3>
+                        <div class="space-y-2 text-sm font-mono">
+                            <div><strong>Open Rate:</strong> (Unique Opens ÷ Delivered) × 100</div>
+                            <div><strong>CTR:</strong> (Unique Clicks ÷ Delivered) × 100</div>
+                            <div><strong>CTOR:</strong> (Unique Clicks ÷ Unique Opens) × 100</div>
+                            <div><strong>Bounce Rate:</strong> (Bounces ÷ Sent) × 100</div>
+                            <div><strong>ROI:</strong> (Revenue - Cost) ÷ Cost × 100</div>
+                            <div><strong>RPE:</strong> Total Revenue ÷ Emails Sent</div>
+                        </div>
+                    </div>
+
+                    <!-- Certification Complete -->
+                    <div class="bg-gradient-to-br from-nto-green to-blue-600 text-white rounded-lg p-6">
+                        <h3 class="text-lg font-semibold mb-4">🏆 Certification Complete!</h3>
+                        <div class="space-y-2 text-sm">
+                            <div>✓ 100% Exam Coverage Achieved</div>
+                            <div>✓ 7 Comprehensive Lessons Completed</div>
+                            <div>✓ 700+ Practice Questions Mastered</div>
+                            <div>✓ Ready for SFMC Email Specialist Exam</div>
+                        </div>
+                        <div class="mt-4 text-xs opacity-90">
+                            You've completed the most comprehensive SFMC certification preparation available!
+                        </div>
+                    </div>
+
+                    <!-- Next Steps -->
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-yellow-800 mb-4">🚀 Your Next Steps</h3>
+                        <div class="space-y-2 text-sm text-yellow-700">
+                            <div>1. Review all lesson quizzes in review mode</div>
+                            <div>2. Practice with Data Views and SQL queries</div>
+                            <div>3. Set up Analytics Builder custom reports</div>
+                            <div>4. Schedule your SFMC certification exam</div>
+                            <div>5. Apply your knowledge in real campaigns</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Questions
+        const lesson7Questions = [
+            {
+                question: "🏔️ NTO sent 10,000 winter gear emails, with 9,800 delivered and 2,500 unique opens. What's their open rate?",
+                options: [
+                    "25.0% (2,500 ÷ 10,000)",
+                    "25.5% (2,500 ÷ 9,800)",
+                    "24.0% (2,400 ÷ 10,000)",
+                    "Open rate cannot be calculated from this data"
+                ],
+                correct: 1,
+                domain: "Email Tracking Fundamentals",
+                difficulty: "Basic",
+                simpleExplanation: "Open rate is calculated using delivered emails, not sent emails, because you can only open emails that actually reach the inbox. It's like counting successful trail completions out of hikers who actually started the trail.",
+                ntoExample: "NTO's winter gear campaign achieved a 25.5% open rate (2,500 opens ÷ 9,800 delivered), which is excellent for outdoor retail and shows strong subject line and timing optimization.",
+                certificationTip: "Always use DELIVERED emails as the denominator for open rate and CTR calculations. The formula is (Unique Opens ÷ Delivered) × 100."
+            },
+            {
+                question: "📊 Where does NTO access detailed email performance reports in SFMC?",
+                options: [
+                    "Content Builder > Analytics section",
+                    "Email Studio > Tracking tab",
+                    "Automation Studio > Reports section", 
+                    "Journey Builder > Performance tab"
+                ],
+                correct: 1,
+                domain: "Email Studio Reports",
+                difficulty: "Basic",
+                simpleExplanation: "The Tracking tab in Email Studio is like the main trailhead information center - it's where you go to find all the details about how your email 'hikes' performed.",
+                ntoExample: "After sending their seasonal gear newsletter, NTO navigates to Email Studio > Tracking tab to analyze opens, clicks, bounces, and geographic performance data for optimization insights.",
+                certificationTip: "Remember the navigation path: Email Studio > Tracking tab. This is where you'll find Summary, Overview, Bounces, Clicks, and other standard email reports."
+            },
+            {
+                question: "🗺️ In Journey Builder analytics, what does 'Goal Achievement' measure for NTO's welcome journey?",
+                options: [
+                    "How many people started the journey",
+                    "The percentage of contacts who completed the defined objective",
+                    "How long the journey takes to complete",
+                    "The number of emails sent in the journey"
+                ],
+                correct: 1,
+                domain: "Journey Builder Analytics",
+                difficulty: "Intermediate",
+                simpleExplanation: "Goal Achievement is like measuring how many hikers successfully reach the summit you planned for them - it shows the percentage who completed your desired business outcome.",
+                ntoExample: "NTO's welcome journey has a goal of 'First Purchase within 30 days.' If 423 out of 1,250 new subscribers make a purchase, that's a 34% goal achievement rate.",
+                certificationTip: "Goal Achievement = (Contacts who achieved goal ÷ Total contacts entered) × 100. This measures business success, not just journey completion."
+            },
+            {
+                question: "📊 What advanced reporting platform does SFMC provide for custom dashboards and multi-source analysis?",
+                options: [
+                    "Email Studio Reports only",
+                    "Analytics Builder",
+                    "Journey Builder Analytics",
+                    "Contact Builder Reports"
+                ],
+                correct: 1,
+                domain: "Analytics Builder",
+                difficulty: "Intermediate",
+                simpleExplanation: "Analytics Builder is like having a Swiss Army knife for data analysis - it combines multiple data sources and creates custom visualizations that standard reports can't provide.",
+                ntoExample: "NTO uses Analytics Builder to create quarterly dashboards combining email performance, SMS engagement, social media data, and sales results to show complete customer journey ROI.",
+                certificationTip: "Analytics Builder enables custom report creation, cross-channel analysis, scheduled delivery, and advanced visualizations beyond standard Email Studio reports."
+            },
+            {
+                question: "🗄️ Which Data View contains detailed information about email link clicks, including URLs and timestamps?",
+                options: [
+                    "_Sent Data View",
+                    "_Open Data View", 
+                    "_Click Data View",
+                    "_Bounce Data View"
+                ],
+                correct: 2,
+                domain: "Data Views & SQL",
+                difficulty: "Basic",
+                simpleExplanation: "Data Views are like detailed logbooks for different activities. The _Click Data View specifically records every link click, just like a trail log records every hiker who passes each checkpoint.",
+                ntoExample: "NTO queries the _Click Data View to analyze which gear categories get the most clicks, what times of day customers engage with links, and which product URLs drive the highest conversion rates.",
+                certificationTip: "Key Data Views: _Sent (sends), _Open (opens), _Click (clicks), _Bounce (bounces), _Unsubscribe (opt-outs). Each tracks specific email interactions."
+            },
+            {
+                question: "📱 What percentage of email opens typically occur on mobile devices in 2024?",
+                options: [
+                    "About 45%",
+                    "About 55%",
+                    "About 65-70%",
+                    "About 80%"
+                ],
+                correct: 2,
+                domain: "Mobile Analytics",
+                difficulty: "Basic",
+                simpleExplanation: "Mobile email usage is like the popularity of lightweight hiking gear - it dominates because people are always on the move and need quick, convenient access to information.",
+                ntoExample: "NTO's analytics show 68% of their outdoor enthusiasts open emails on mobile devices, often during commutes or trail breaks, making mobile-optimized design crucial for engagement.",
+                certificationTip: "Mobile opens typically represent 65-70% of total opens. This makes mobile analytics and optimization critical for email success."
+            },
+            {
+                question: "🧪 What confidence level is typically required for reliable A/B test results?",
+                options: [
+                    "80% confidence level",
+                    "90% confidence level",
+                    "95% confidence level",
+                    "99% confidence level"
+                ],
+                correct: 2,
+                domain: "A/B Testing Analytics",
+                difficulty: "Intermediate",
+                simpleExplanation: "95% confidence is like being 95% sure that a new trail route is actually better than the old one - it gives you enough certainty to make the change while accounting for some natural variation.",
+                ntoExample: "When NTO tests subject lines like 'New Hiking Boots' vs 'Adventure Awaits with New Boots,' they wait for 95% confidence before declaring the adventure-focused version the winner.",
+                certificationTip: "95% confidence level is the standard threshold for A/B testing. This means there's only a 5% chance the results are due to random variation."
+            },
+            {
+                question: "📊 What's considered a good email open rate benchmark for the outdoor/recreation industry?",
+                options: [
+                    "15-20%",
+                    "22-28%", 
+                    "30-35%",
+                    "40-45%"
+                ],
+                correct: 1,
+                domain: "Performance Benchmarking",
+                difficulty: "Basic",
+                simpleExplanation: "Outdoor industry benchmarks are higher than general email because outdoor enthusiasts are passionate about their activities - like how dedicated hikers are more engaged with trail information than casual walkers.",
+                ntoExample: "NTO's 26% average open rate falls perfectly within the 22-28% outdoor industry benchmark, showing their hiking and camping content resonates well with their adventurous audience.",
+                certificationTip: "Industry benchmarks vary: General email (20-25%), Outdoor/Recreation (22-28%). Always compare to relevant industry standards, not just overall averages."
+            },
+            {
+                question: "🎯 In SMART goal setting, what does the 'M' stand for when setting email marketing objectives?",
+                options: [
+                    "Manageable - goals that can be handled",
+                    "Measurable - quantifiable with specific metrics",
+                    "Meaningful - goals that matter to the business",
+                    "Monthly - goals set on a monthly basis"
+                ],
+                correct: 1,
+                domain: "Goal Setting & KPIs",
+                difficulty: "Basic",
+                simpleExplanation: "Measurable means you can track progress with numbers, like counting how many hikers reach each trail marker. Without measurement, you can't tell if you're succeeding.",
+                ntoExample: "Instead of 'improve email performance,' NTO sets a measurable goal: 'increase average open rate from 24% to 27% by end of Q2' - they can track progress weekly.",
+                certificationTip: "SMART goals: Specific, Measurable, Achievable, Relevant, Time-bound. Measurable means you can quantify success with specific metrics."
+            },
+            {
+                question: "🤖 What is predictive analytics in the context of email marketing?",
+                options: [
+                    "Predicting when emails will be delivered",
+                    "Using historical data and algorithms to forecast future customer behavior",
+                    "Predicting which email templates will be popular",
+                    "Forecasting email storage requirements"
+                ],
+                correct: 1,
+                domain: "Advanced Analytics",
+                difficulty: "Advanced",
+                simpleExplanation: "Predictive analytics is like an experienced trail guide who can predict which hikers are likely to need extra rest stops based on their previous hiking patterns and current conditions.",
+                ntoExample: "NTO uses predictive analytics to identify customers likely to purchase winter gear based on past seasonal buying patterns, email engagement, and weather forecast data in their region.",
+                certificationTip: "Predictive analytics uses machine learning and historical data to forecast future behavior, enabling proactive marketing strategies and personalization."
+            }
+        ];
+
+        // Application State
+        let currentQuestionIndex = 0;
+        let selectedAnswers = [];
+        let quizScore = 0;
+        let isReviewMode = false;
+        let conceptsViewed = new Set();
+
+        // Progress Tracking
+        function updateProgress() {
+            const conceptProgress = conceptsViewed.size;
+            const quizProgress = selectedAnswers.length;
+            const totalProgress = Math.round(((conceptProgress * 5) + (quizProgress * 5)) / 10);
+            
+            document.getElementById('conceptsViewed').textContent = conceptProgress;
+            document.getElementById('quizProgress').textContent = quizProgress;
+            document.getElementById('overallProgress').textContent = totalProgress;
+            document.getElementById('progressBar').style.width = totalProgress + '%';
+            
+            // Save progress
+            localStorage.setItem('lesson7Progress', JSON.stringify({
+                conceptsViewed: Array.from(conceptsViewed),
+                quizAnswers: selectedAnswers,
+                quizScore: quizScore
+            }));
+        }
+
+        // Load saved progress
+        function loadProgress() {
+            const saved = localStorage.getItem('lesson7Progress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                conceptsViewed = new Set(progress.conceptsViewed || []);
+                selectedAnswers = progress.quizAnswers || [];
+                quizScore = progress.quizScore || 0;
+                updateProgress();
+            }
+        }
+
+        // Tab Management
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetTab = btn.dataset.tab;
+                
+                // Update button states
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active', 'border-nto-orange', 'text-nto-orange');
+                    b.classList.add('border-transparent', 'text-gray-500');
+                });
+                btn.classList.add('active', 'border-nto-orange', 'text-nto-orange');
+                btn.classList.remove('border-transparent', 'text-gray-500');
+                
+                // Show target content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                document.getElementById(targetTab).classList.remove('hidden');
+            });
+        });
+
+        // Concept Cards
+        document.querySelectorAll('.concept-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const details = card.querySelector('.concept-details');
+                const concept = card.dataset.concept;
+                
+                if (details.classList.contains('hidden')) {
+                    details.classList.remove('hidden');
+                    conceptsViewed.add(concept);
+                    updateProgress();
+                } else {
+                    details.classList.add('hidden');
+                }
+            });
+        });
+
+        // Quiz Management
+        function startQuiz(reviewMode = false) {
+            isReviewMode = reviewMode;
+            currentQuestionIndex = 0;
+            if (!reviewMode) {
+                selectedAnswers = [];
+                quizScore = 0;
+            }
+            
+            document.getElementById('startQuiz').classList.add('hidden');
+            document.getElementById('reviewMode').classList.add('hidden');
+            document.getElementById('quizInterface').classList.remove('hidden');
+            document.getElementById('totalQuestions').textContent = lesson7Questions.length;
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = lesson7Questions[currentQuestionIndex];
+            
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('currentScore').textContent = quizScore;
+            document.getElementById('questionText').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option-item p-3 border border-gray-300 rounded-lg cursor-pointer hover:border-nto-blue transition-colors';
+                
+                const isSelected = selectedAnswers[currentQuestionIndex] === index;
+                const isCorrect = index === question.correct;
+                
+                if (isReviewMode && selectedAnswers[currentQuestionIndex] !== undefined) {
+                    if (isCorrect) {
+                        optionDiv.className += ' bg-green-100 border-green-500';
+                    } else if (isSelected && !isCorrect) {
+                        optionDiv.className += ' bg-red-100 border-red-500';
+                    }
+                }
+                
+                optionDiv.innerHTML = `
+                    <label class="flex items-center cursor-pointer">
+                        <input type="radio" name="question" value="${index}" class="mr-3" ${isSelected ? 'checked' : ''}>
+                        <span>${option}</span>
+                    </label>
+                `;
+                
+                if (!isReviewMode) {
+                    optionDiv.addEventListener('click', () => selectAnswer(index));
+                }
+                
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Show feedback in review mode
+            if (isReviewMode && selectedAnswers[currentQuestionIndex] !== undefined) {
+                showFeedback(selectedAnswers[currentQuestionIndex] === question.correct);
+            } else {
+                document.getElementById('feedback').classList.add('hidden');
+            }
+            
+            // Update navigation
+            document.getElementById('prevQuestion').disabled = currentQuestionIndex === 0;
+            document.getElementById('nextQuestion').disabled = !isReviewMode && selectedAnswers[currentQuestionIndex] === undefined;
+        }
+
+        function selectAnswer(answerIndex) {
+            selectedAnswers[currentQuestionIndex] = answerIndex;
+            const isCorrect = answerIndex === lesson7Questions[currentQuestionIndex].correct;
+            
+            if (isCorrect) {
+                quizScore++;
+            }
+            
+            // Update option styling
+            document.querySelectorAll('.option-item').forEach((item, index) => {
+                item.classList.remove('bg-green-100', 'border-green-500', 'bg-red-100', 'border-red-500');
+                if (index === lesson7Questions[currentQuestionIndex].correct) {
+                    item.classList.add('bg-green-100', 'border-green-500');
+                } else if (index === answerIndex && !isCorrect) {
+                    item.classList.add('bg-red-100', 'border-red-500');
+                }
+            });
+            
+            showFeedback(isCorrect);
+            document.getElementById('nextQuestion').disabled = false;
+            updateProgress();
+        }
+
+        function showFeedback(isCorrect) {
+            const feedback = document.getElementById('feedback');
+            const question = lesson7Questions[currentQuestionIndex];
+            
+            feedback.className = `mb-6 p-4 rounded-lg ${isCorrect ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`;
+            
+            feedback.innerHTML = `
+                <h4 class="font-semibold ${isCorrect ? 'text-green-800' : 'text-red-800'} mb-2">
+                    ${isCorrect ? '✅ Excellent!' : '❌ Not quite right'}
+                </h4>
+                <div class="space-y-3 text-sm">
+                    <div>
+                        <strong class="text-gray-700">Simple Explanation:</strong>
+                        <p class="text-gray-600 mt-1">${question.simpleExplanation}</p>
+                    </div>
+                    <div>
+                        <strong class="text-nto-green">🏔️ NTO Example:</strong>
+                        <p class="text-gray-600 mt-1">${question.ntoExample}</p>
+                    </div>
+                    <div>
+                        <strong class="text-nto-orange">📝 Certification Tip:</strong>
+                        <p class="text-gray-600 mt-1">${question.certificationTip}</p>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-2">
+                        Domain: ${question.domain} | Difficulty: ${question.difficulty}
+                    </div>
+                </div>
+            `;
+            
+            feedback.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < lesson7Questions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizInterface').classList.add('hidden');
+            document.getElementById('quizResults').classList.remove('hidden');
+            
+            const percentage = Math.round((quizScore / lesson7Questions.length) * 100);
+            let message, colorClass;
+            
+            if (percentage >= 80) {
+                message = "🏆 Outstanding! You've mastered email analytics like a data detective! You're ready for SFMC certification!";
+                colorClass = "text-green-600";
+            } else if (percentage >= 70) {
+                message = "🌟 Great work! Review the analytics concepts you missed and you'll be certification-ready.";
+                colorClass = "text-nto-orange";
+            } else {
+                message = "📚 Keep exploring! Focus on understanding how data drives email optimization.";
+                colorClass = "text-red-600";
+            }
+            
+            document.getElementById('resultsContent').innerHTML = `
+                <div class="text-6xl mb-4">📊</div>
+                <h3 class="text-2xl font-bold ${colorClass} mb-4">Analytics Mastery Complete!</h3>
+                <div class="text-4xl font-bold ${colorClass} mb-4">${quizScore}/${lesson7Questions.length}</div>
+                <div class="text-xl ${colorClass} mb-6">${percentage}%</div>
+                <p class="text-gray-600 mb-6">${message}</p>
+                <div class="text-sm text-gray-500 mb-4">
+                    Tracking & Reporting represents 6-14% of the SFMC Email Specialist certification exam
+                </div>
+                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white rounded-lg p-4">
+                    <div class="font-bold mb-2">🎓 CERTIFICATION JOURNEY COMPLETE!</div>
+                    <div class="text-sm">You've mastered all 7 lessons covering 100% of the SFMC Email Specialist exam content!</div>
+                </div>
+            `;
+        }
+
+        // Event Listeners
+        document.getElementById('startQuiz').addEventListener('click', () => startQuiz(false));
+        document.getElementById('reviewMode').addEventListener('click', () => startQuiz(true));
+        document.getElementById('nextQuestion').addEventListener('click', nextQuestion);
+        document.getElementById('prevQuestion').addEventListener('click', prevQuestion);
+        document.getElementById('retakeQuiz').addEventListener('click', () => {
+            document.getElementById('quizResults').classList.add('hidden');
+            document.getElementById('startQuiz').classList.remove('hidden');
+            document.getElementById('reviewMode').classList.remove('hidden');
+        });
+        document.getElementById('reviewAnswers').addEventListener('click', () => {
+            document.getElementById('quizResults').classList.add('hidden');
+            startQuiz(true);
+        });
+        document.getElementById('resetProgress').addEventListener('click', () => {
+            if (confirm('Reset all progress for this lesson?')) {
+                localStorage.removeItem('lesson7Progress');
+                conceptsViewed.clear();
+                selectedAnswers = [];
+                quizScore = 0;
+                updateProgress();
+            }
+        });
+
+        // Initialize
+        loadProgress();
+    </script>
+</body>
+</html>

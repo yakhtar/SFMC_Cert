@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Advanced Q&A - Lesson 1: Subscriber & Data Management | Digital Optimization Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .nto-orange { color: #ff6b35; }
+        .nto-green { color: #4ecdc4; }
+        .code-block {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        .question-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left-color: #667eea;
+        }
+        .correct-answer {
+            background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+            border-left: 4px solid #4caf50;
+        }
+        .explanation-section {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+        }
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .progress-ring-fill {
+            transition: stroke-dashoffset 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-xl font-bold gradient-bg bg-clip-text text-transparent">
+                            Digital Optimization Mastery
+                        </h1>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                        🏠 Home
+                    </a>
+                    <a href="enhanced_sfmc_certification_mastery.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                        📚 SFMC Hub
+                    </a>
+                    <a href="lesson_1_enhanced_subscriber_data_management.html" class="text-blue-600 hover:text-blue-800 px-3 py-2 text-sm font-medium">
+                        📖 Lesson 1 Core
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="gradient-bg text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="mb-6">
+                <span class="inline-block bg-white bg-opacity-20 rounded-full px-4 py-2 text-sm font-medium mb-4">
+                    🏔️ Northern Trail Outfitters Context
+                </span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                SFMC Advanced Certification Q&A
+            </h1>
+            <h2 class="text-xl md:text-2xl mb-8 text-gray-100">
+                Lesson 1: Subscriber & Data Management Mastery
+            </h2>
+            <div class="max-w-2xl mx-auto">
+                <p class="text-lg text-gray-100 mb-6">
+                    Advanced scenarios and expert-level questions covering enterprise data management,
+                    performance optimization, and compliance strategies using NTO's outdoor gear business context.
+                </p>
+                <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                    <p class="text-sm">
+                        <strong>🎯 Exam Coverage:</strong> 26-29% of SFMC Email Specialist certification
+                        <br>
+                        <strong>📊 Difficulty:</strong> Advanced Enterprise Level
+                        <br>
+                        <strong>⏱️ Time:</strong> 60-90 minutes for complete mastery
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Tracking -->
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-semibold">Progress Tracking</h3>
+                <div class="flex items-center space-x-4">
+                    <div class="text-center">
+                        <div class="relative inline-block">
+                            <svg class="progress-ring w-16 h-16" viewBox="0 0 42 42">
+                                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#e2e8f0" stroke-width="2"/>
+                                <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#667eea" stroke-width="2" 
+                                        stroke-dasharray="100" stroke-dashoffset="100" class="progress-ring-fill" id="progressCircle"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="text-sm font-bold" id="progressText">0%</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-600 mt-1">Questions Viewed</p>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        <div>Questions: <span id="questionsViewed">0</span>/20</div>
+                        <div>Concepts: <span id="conceptsViewed">0</span>/8</div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-3 bg-blue-50 rounded-lg">
+                    <div class="text-2xl font-bold text-blue-600" id="contactBuilderCount">0</div>
+                    <div class="text-xs text-gray-600">Contact Builder</div>
+                </div>
+                <div class="p-3 bg-green-50 rounded-lg">
+                    <div class="text-2xl font-bold text-green-600" id="dataExtensionsCount">0</div>
+                    <div class="text-xs text-gray-600">Data Extensions</div>
+                </div>
+                <div class="p-3 bg-purple-50 rounded-lg">
+                    <div class="text-2xl font-bold text-purple-600" id="performanceCount">0</div>
+                    <div class="text-xs text-gray-600">Performance</div>
+                </div>
+                <div class="p-3 bg-orange-50 rounded-lg">
+                    <div class="text-2xl font-bold text-orange-600" id="complianceCount">0</div>
+                    <div class="text-xs text-gray-600">Compliance</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 pb-16">
+        
+        <!-- Section A: Contact Builder Mastery -->
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
+                <div class="text-center mb-8">
+                    <h2 class="section-header text-3xl font-bold mb-4">
+                        Section A: Contact Builder Mastery
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        🏔️ <strong>NTO Context:</strong> Managing outdoor enthusiast customer data across multiple touchpoints - 
+                        e-commerce, retail stores, mobile app, and customer service interactions.
+                    </p>
+                </div>
+
+                <!-- Question 1 -->
+                <div class="question-card bg-gray-50 rounded-lg p-6 mb-8" data-question="1" data-section="contact-builder">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">1</span>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Contact Model Architecture</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>🏔️ NTO Scenario:</strong> You're setting up SFMC for Northern Trail Outfitters with customers who 
+                                shop online, visit retail stores, use the mobile app, and contact customer service. They have separate 
+                                systems for e-commerce, POS, mobile, and support.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Question:</strong> What is the most critical consideration when designing your Contact Model for NTO's multi-channel outdoor retail environment?
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="ml-12 space-y-3 mb-6">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="A" class="mt-1">
+                            <span>A) Using email address as the primary Contact Key across all systems</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="B" class="mt-1">
+                            <span>B) Creating separate Contact Models for each channel</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="C" class="mt-1">
+                            <span>C) Establishing a unified Contact Key that can link customer records across all channels</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q1" value="D" class="mt-1">
+                            <span>D) Using customer ID from the e-commerce system only</span>
+                        </label>
+                    </div>
+
+                    <button onclick="showAnswer(1)" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                        Show Answer & Explanation
+                    </button>
+
+                    <div id="answer1" class="hidden mt-6">
+                        <div class="correct-answer rounded-lg p-6 mb-6">
+                            <h4 class="font-bold text-green-800 mb-2">✅ Correct Answer: C) Establishing a unified Contact Key that can link customer records across all channels</h4>
+                        </div>
+                        
+                        <div class="explanation-section rounded-lg p-6">
+                            <h4 class="font-bold mb-3">📚 Detailed Explanation:</h4>
+                            <p class="mb-4">
+                                The Contact Key is the foundation of your entire SFMC data architecture. For NTO's multi-channel outdoor retail environment, you need a consistent identifier that works across:
+                            </p>
+                            <ul class="list-disc list-inside mb-4 text-gray-700 space-y-1">
+                                <li>E-commerce transactions (online gear purchases)</li>
+                                <li>In-store purchases (POS system)</li>
+                                <li>Mobile app interactions (trail guides, store locator)</li>
+                                <li>Customer service interactions (gear returns, sizing help)</li>
+                                <li>Email marketing campaigns</li>
+                                <li>SMS notifications for gear availability</li>
+                            </ul>
+
+                            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold mb-2">🏔️ NTO Implementation Strategy:</h5>
+                                <div class="code-block text-sm">
+                                    <pre class="text-green-400">Recommended Contact Key Strategy:
+- Primary: NTO Customer ID (unified across all systems)
+- Secondary: Email address for email-only contacts  
+- Backup: Phone number for mobile-first customers
+
+Example Customer Journey:
+Sarah browses hiking boots online → adds to cart → visits store → 
+purchases in-store → receives email receipt → joins email list →
+gets targeted camping gear recommendations</pre>
+                                </div>
+                            </div>
+
+                            <div class="bg-red-50 border-l-4 border-red-200 p-4 mb-4">
+                                <h5 class="font-semibold text-red-800 mb-2">Why other options fail:</h5>
+                                <ul class="text-red-700 space-y-1">
+                                    <li><strong>A)</strong> Email addresses change and aren't always available (in-store cash customers)</li>
+                                    <li><strong>B)</strong> Separate models prevent unified customer views and cross-channel personalization</li>
+                                    <li><strong>D)</strong> E-commerce ID won't work for in-store-only customers</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-200 p-4">
+                                <h5 class="font-semibold text-blue-800 mb-2">💡 Certification Tip:</h5>
+                                <p class="text-blue-700">
+                                    Always plan for customers who interact through multiple channels. A unified Contact Key enables 
+                                    cross-channel personalization, journey orchestration, and comprehensive customer analytics.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-card bg-gray-50 rounded-lg p-6 mb-8" data-question="2" data-section="contact-builder">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">2</span>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Population Strategy</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>🏔️ NTO Scenario:</strong> Northern Trail Outfitters has 500,000 customers, 1.2 million prospects (outdoor enthusiasts who opted in), 
+                                50,000 adventure club members, and 200,000 mobile app users. Many customers belong to multiple categories.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Question:</strong> How should you structure Populations in Contact Builder to optimize targeting and avoid data duplication?
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="ml-12 space-y-3 mb-6">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="A" class="mt-1">
+                            <span>A) Create four separate populations with no overlap</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="B" class="mt-1">
+                            <span>B) Create a master "All Contacts" population with filtered sub-populations</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="C" class="mt-1">
+                            <span>C) Use only one population containing all contacts</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q2" value="D" class="mt-1">
+                            <span>D) Create populations based on geographic location instead</span>
+                        </label>
+                    </div>
+
+                    <button onclick="showAnswer(2)" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                        Show Answer & Explanation
+                    </button>
+
+                    <div id="answer2" class="hidden mt-6">
+                        <div class="correct-answer rounded-lg p-6 mb-6">
+                            <h4 class="font-bold text-green-800 mb-2">✅ Correct Answer: B) Create a master "All Contacts" population with filtered sub-populations</h4>
+                        </div>
+                        
+                        <div class="explanation-section rounded-lg p-6">
+                            <h4 class="font-bold mb-3">📚 NTO Population Architecture:</h4>
+                            
+                            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                                <div class="code-block text-sm">
+                                    <pre class="text-green-400">🏔️ Recommended NTO Structure:
+All Outdoor Enthusiasts (Master Population)
+├── Customers (made purchases - hiking boots, tents, etc.)
+├── Prospects (opted in, never purchased)
+├── Adventure Club Members (premium members with exclusive access)
+└── Mobile App Users (downloaded NTO trail app)</pre>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div class="bg-blue-50 rounded-lg p-4">
+                                    <h5 class="font-semibold text-blue-800 mb-2">Benefits:</h5>
+                                    <ul class="text-blue-700 text-sm space-y-1">
+                                        <li>✅ Single source of truth</li>
+                                        <li>✅ Flexible segmentation</li>
+                                        <li>✅ Better reporting</li>
+                                        <li>✅ Reduced complexity</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-green-50 rounded-lg p-4">
+                                    <h5 class="font-semibold text-green-800 mb-2">🏔️ NTO Example:</h5>
+                                    <p class="text-green-700 text-sm">
+                                        <strong>Sarah</strong> might be:<br>
+                                        • A Customer (bought hiking boots)<br>
+                                        • Adventure Club Member<br>
+                                        • Mobile App User<br>
+                                        Target as "Premium Customer with App"
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-200 p-4">
+                                <h5 class="font-semibold text-blue-800 mb-2">💡 Certification Tip:</h5>
+                                <p class="text-blue-700">
+                                    Master population with filtered sub-populations enables unified customer views while maintaining 
+                                    flexible segmentation for targeted outdoor gear campaigns.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-card bg-gray-50 rounded-lg p-6 mb-8" data-question="3" data-section="contact-builder">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">3</span>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Attribute Group Optimization</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>🏔️ NTO Question:</strong> You're importing NTO customer data with 47 different fields including demographics, 
+                                outdoor activity preferences, purchase history, gear reviews, and seasonal engagement patterns. What's the 
+                                best practice for organizing these into Attribute Groups?
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="ml-12 space-y-3 mb-6">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q3" value="A" class="mt-1">
+                            <span>A) Put all 47 fields into one Attribute Group for simplicity</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q3" value="B" class="mt-1">
+                            <span>B) Create logical groupings: Demographics, Outdoor Preferences, Purchase Behavior, Engagement History</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q3" value="C" class="mt-1">
+                            <span>C) Create separate Attribute Groups for each individual field</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q3" value="D" class="mt-1">
+                            <span>D) Only use system-default Attribute Groups</span>
+                        </label>
+                    </div>
+
+                    <button onclick="showAnswer(3)" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                        Show Answer & Explanation
+                    </button>
+
+                    <div id="answer3" class="hidden mt-6">
+                        <div class="correct-answer rounded-lg p-6 mb-6">
+                            <h4 class="font-bold text-green-800 mb-2">✅ Correct Answer: B) Create logical groupings: Demographics, Outdoor Preferences, Purchase Behavior, Engagement History</h4>
+                        </div>
+                        
+                        <div class="explanation-section rounded-lg p-6">
+                            <h4 class="font-bold mb-3">📚 NTO Attribute Group Structure:</h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div class="bg-gray-100 rounded-lg p-4">
+                                    <h5 class="font-semibold mb-2">🏔️ Demographics Group:</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Name, Age, Gender, Birthday</li>
+                                        <li>• Address, City, State, ZIP</li>
+                                        <li>• Climate Zone, Elevation</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-100 rounded-lg p-4">
+                                    <h5 class="font-semibold mb-2">🏃‍♂️ Outdoor Preferences Group:</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Activity Types (hiking, skiing, etc.)</li>
+                                        <li>• Skill Levels, Experience Years</li>
+                                        <li>• Seasonal Preferences</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-100 rounded-lg p-4">
+                                    <h5 class="font-semibold mb-2">🛒 Purchase Behavior Group:</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Last Purchase, Total Spent</li>
+                                        <li>• Favorite Categories, Brands</li>
+                                        <li>• Seasonal Buying Patterns</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-100 rounded-lg p-4">
+                                    <h5 class="font-semibold mb-2">📊 Engagement History Group:</h5>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Email Opens, Clicks</li>
+                                        <li>• Website Activity, App Usage</li>
+                                        <li>• Review History, Social Shares</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bg-green-50 border-l-4 border-green-200 p-4 mb-4">
+                                <h5 class="font-semibold text-green-800 mb-2">Benefits of Logical Grouping:</h5>
+                                <ul class="text-green-700 space-y-1">
+                                    <li>✅ <strong>Performance:</strong> Faster data retrieval for outdoor campaigns</li>
+                                    <li>✅ <strong>Maintenance:</strong> Easier to manage seasonal gear preferences</li>
+                                    <li>✅ <strong>Team Collaboration:</strong> Clear data organization for marketing teams</li>
+                                    <li>✅ <strong>Compliance:</strong> Separate PII from behavioral outdoor activity data</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-200 p-4">
+                                <h5 class="font-semibold text-blue-800 mb-2">💡 Certification Tip:</h5>
+                                <p class="text-blue-700">
+                                    Logical attribute grouping improves query performance and makes it easier to manage 
+                                    seasonal outdoor campaigns with targeted gear recommendations.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section B: Data Extensions Mastery -->
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
+                <div class="text-center mb-8">
+                    <h2 class="section-header text-3xl font-bold mb-4">
+                        Section B: Data Extensions Mastery
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        🏔️ <strong>NTO Context:</strong> Managing complex outdoor gear transactions, seasonal inventory, 
+                        customer adventure journeys, and performance tracking data.
+                    </p>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question-card bg-gray-50 rounded-lg p-6 mb-8" data-question="4" data-section="data-extensions">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">4</span>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Primary Key Strategy</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>🏔️ NTO Scenario:</strong> You're creating a Data Extension to track customer outdoor gear purchase history. 
+                                Each NTO customer can make multiple purchases (hiking boots in spring, winter coat in fall, camping gear in summer), 
+                                and you need to track individual transaction details for personalized recommendations.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Question:</strong> What should you use as the Primary Key for this "NTO Purchase History" Data Extension?
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="ml-12 space-y-3 mb-6">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q4" value="A" class="mt-1">
+                            <span>A) Customer Email Address</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q4" value="B" class="mt-1">
+                            <span>B) Customer ID</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q4" value="C" class="mt-1">
+                            <span>C) Transaction ID or Order Number</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q4" value="D" class="mt-1">
+                            <span>D) Purchase Date</span>
+                        </label>
+                    </div>
+
+                    <button onclick="showAnswer(4)" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
+                        Show Answer & Explanation
+                    </button>
+
+                    <div id="answer4" class="hidden mt-6">
+                        <div class="correct-answer rounded-lg p-6 mb-6">
+                            <h4 class="font-bold text-green-800 mb-2">✅ Correct Answer: C) Transaction ID or Order Number</h4>
+                        </div>
+                        
+                        <div class="explanation-section rounded-lg p-6">
+                            <h4 class="font-bold mb-3">📚 NTO Purchase History Structure:</h4>
+                            
+                            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                                <div class="code-block text-sm">
+                                    <pre class="text-green-400">🏔️ NTO Purchase History Data Extension:
+Primary Key: NTO_TransactionID (unique for each purchase)
+
+Fields:
+- NTO_TransactionID (Primary Key) - "NTO240115001"
+- CustomerID (links to Contact) - "CUST_HIKER_123"
+- Email (for sending) - "sarah@email.com"
+- PurchaseDate - "2024-01-15"
+- TotalAmount - "$289.99"
+- GearCategory - "Winter Hiking"
+- ProductsPurchased - "Insulated Boots, Thermal Socks"
+- StoreLocation - "Denver Flagship"
+- Season - "Winter"</pre>
+                                </div>
+                            </div>
+
+                            <div class="bg-yellow-50 border-l-4 border-yellow-200 p-4 mb-4">
+                                <h5 class="font-semibold text-yellow-800 mb-2">🏔️ Real NTO Example:</h5>
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full text-xs text-gray-700">
+                                        <thead>
+                                            <tr class="bg-yellow-100">
+                                                <th class="px-2 py-1">TransactionID</th>
+                                                <th class="px-2 py-1">CustomerID</th>
+                                                <th class="px-2 py-1">Email</th>
+                                                <th class="px-2 py-1">Date</th>
+                                                <th class="px-2 py-1">Gear</th>
+                                                <th class="px-2 py-1">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="px-2 py-1">NTO240115001</td>
+                                                <td class="px-2 py-1">CUST_HIKER_123</td>
+                                                <td class="px-2 py-1">sarah@email.com</td>
+                                                <td class="px-2 py-1">2024-01-15</td>
+                                                <td class="px-2 py-1">Winter Boots</td>
+                                                <td class="px-2 py-1">$289.99</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-2 py-1">NTO240310002</td>
+                                                <td class="px-2 py-1">CUST_HIKER_123</td>
+                                                <td class="px-2 py-1">sarah@email.com</td>
+                                                <td class="px-2 py-1">2024-03-10</td>
+                                                <td class="px-2 py-1">Hiking Pack</td>
+                                                <td class="px-2 py-1">$124.50</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="bg-red-50 border-l-4 border-red-200 p-4 mb-4">
+                                <h5 class="font-semibold text-red-800 mb-2">Why other options fail:</h5>
+                                <ul class="text-red-700 space-y-1">
+                                    <li><strong>A) Email:</strong> Sarah can buy both winter boots AND spring hiking gear</li>
+                                    <li><strong>B) Customer ID:</strong> Same customer purchases gear across multiple seasons</li>
+                                    <li><strong>D) Purchase Date:</strong> Multiple customers can buy gear on the same day</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-200 p-4">
+                                <h5 class="font-semibold text-blue-800 mb-2">💡 Certification Tip:</h5>
+                                <p class="text-blue-700">
+                                    Primary Key must uniquely identify each RECORD, not each customer. For purchase history, 
+                                    each transaction needs its own unique identifier for proper gear recommendation tracking.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question-card bg-gray-50 rounded-lg p-6 mb-8" data-question="5" data-section="data-extensions">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">5</span>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Data Extension Types Selection</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>🏔️ NTO Scenario:</strong> You need to create three different data extensions for NTO:
+                            </p>
+                            <ol class="list-decimal list-inside text-gray-700 mb-4 space-y-1">
+                                <li>A list of Adventure Club VIP members (automatically updated when spending exceeds $1,000 on outdoor gear)</li>
+                                <li>A random 10% sample of all customers for A/B testing new camping gear promotions</li>
+                                <li>A master customer database for sending weekly outdoor adventure newsletters</li>
+                            </ol>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Question:</strong> Which Data Extension types should you use for each NTO scenario?
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="ml-12 space-y-3 mb-6">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q5" value="A" class="mt-1">
+                            <span>A) All should be Standard Data Extensions</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q5" value="B" class="mt-1">
+                            <span>B) Filtered, Random, Sendable (respectively)</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q5" value="C" class="mt-1">
+                            <span>C) All should be Sendable Data Extensions</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q5" value="D" class="mt-1">
+                            <span>D) Standard, Filtered, Random (respectively)</span>
+                        </label>
+                    </div>
+
+                    <button onclick="showAnswer(5)" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
+                        Show Answer & Explanation
+                    </button>
+
+                    <div id="answer5" class="hidden mt-6">
+                        <div class="correct-answer rounded-lg p-6 mb-6">
+                            <h4 class="font-bold text-green-800 mb-2">✅ Correct Answer: B) Filtered, Random, Sendable (respectively)</h4>
+                        </div>
+                        
+                        <div class="explanation-section rounded-lg p-6">
+                            <h4 class="font-bold mb-3">📚 NTO Data Extension Strategy:</h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                    <h5 class="font-semibold text-blue-800 mb-2">🏆 Scenario 1: Adventure Club VIPs</h5>
+                                    <p class="text-sm text-blue-700 mb-2"><strong>Type:</strong> Filtered Data Extension</p>
+                                    <p class="text-xs text-blue-600">
+                                        <strong>Why:</strong> Automatically updates based on outdoor gear spending criteria ($1,000+)
+                                    </p>
+                                    <div class="bg-blue-100 rounded p-2 mt-2 text-xs">
+                                        Filter: TotalGearSpent > 1000 AND AdventureClubMember = True
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                    <h5 class="font-semibold text-green-800 mb-2">🎲 Scenario 2: A/B Test Sample</h5>
+                                    <p class="text-sm text-green-700 mb-2"><strong>Type:</strong> Random Data Extension</p>
+                                    <p class="text-xs text-green-600">
+                                        <strong>Why:</strong> Creates statistically valid random samples for camping gear tests
+                                    </p>
+                                    <div class="bg-green-100 rounded p-2 mt-2 text-xs">
+                                        10% random sample of active outdoor enthusiasts
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                                    <h5 class="font-semibold text-purple-800 mb-2">📧 Scenario 3: Newsletter Database</h5>
+                                    <p class="text-sm text-purple-700 mb-2"><strong>Type:</strong> Sendable Data Extension</p>
+                                    <p class="text-xs text-purple-600">
+                                        <strong>Why:</strong> Configured for direct email sends with proper subscriber relationship
+                                    </p>
+                                    <div class="bg-purple-100 rounded p-2 mt-2 text-xs">
+                                        Must have Email + subscriber relationship
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold mb-2">🏔️ NTO Technical Implementation:</h5>
+                                <div class="code-block text-sm">
+                                    <pre class="text-green-400">Adventure Club VIPs (Filtered):
+Filter Logic: TotalOutdoorSpent >= 1000 AND EmailOptIn = True
+Refresh: Daily at 2 AM
+Products: Premium gear, exclusive trail access
+
+Gear A/B Test Sample (Random):
+Source: All Active Outdoor Customers  
+Sample Size: 10%
+Refresh: Weekly for new camping gear tests
+
+Master Newsletter (Sendable):
+Primary Key: CustomerID
+Subscriber Key: Email
+Send Relationship: Contact Key
+Content: Weekly trail guides, gear reviews</pre>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-200 p-4">
+                                <h5 class="font-semibold text-blue-800 mb-2">💡 Certification Tip:</h5>
+                                <p class="text-blue-700">
+                                    Choose Data Extension type based on functionality: Filtered for automatic updates, 
+                                    Random for unbiased testing, Sendable for direct email campaigns.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Questions Section -->
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-sm p-8">
+                <div class="text-center mb-8">
+                    <h2 class="section-header text-3xl font-bold mb-4">
+                        Section G: Performance & Scalability
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        🏔️ <strong>NTO Context:</strong> Optimizing SFMC performance for millions of outdoor enthusiasts 
+                        with complex seasonal campaigns and real-time gear recommendations.
+                    </p>
+                </div>
+
+                <!-- Question 15 -->
+                <div class="question-card bg-gray-50 rounded-lg p-6 mb-8" data-question="15" data-section="performance">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">15</span>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">Large-Scale Data Management</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>🏔️ NTO Scenario:</strong> Northern Trail Outfitters' database has grown to 10 million outdoor enthusiasts 
+                                with 500GB of seasonal purchase data, trail activity logs, and gear preferences. Query performance is degrading 
+                                during peak outdoor seasons, and daily imports of trail activity data are taking hours to complete.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Question:</strong> What's the most effective strategy to optimize performance for NTO's large-scale outdoor customer environment?
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="ml-12 space-y-3 mb-6">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q15" value="A" class="mt-1">
+                            <span>A) Delete half the customer data to reduce size</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q15" value="B" class="mt-1">
+                            <span>B) Implement data archiving, indexing, and query optimization strategies</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q15" value="C" class="mt-1">
+                            <span>C) Buy more expensive servers</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q15" value="D" class="mt-1">
+                            <span>D) Switch to manual data processes</span>
+                        </label>
+                    </div>
+
+                    <button onclick="showAnswer(15)" class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition-colors">
+                        Show Answer & Explanation
+                    </button>
+
+                    <div id="answer15" class="hidden mt-6">
+                        <div class="correct-answer rounded-lg p-6 mb-6">
+                            <h4 class="font-bold text-green-800 mb-2">✅ Correct Answer: B) Implement data archiving, indexing, and query optimization strategies</h4>
+                        </div>
+                        
+                        <div class="explanation-section rounded-lg p-6">
+                            <h4 class="font-bold mb-3">📚 NTO Large-Scale Optimization Strategy:</h4>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                    <h5 class="font-semibold text-blue-800 mb-2">🗄️ Data Archiving</h5>
+                                    <div class="code-block text-xs">
+                                        <pre class="text-green-400">-- Archive inactive outdoor enthusiasts
+-- Move customers inactive 2+ years to archive
+SELECT * FROM NTO_Customers 
+WHERE LastTrailActivity < DATEADD(year, -2, GETDATE())
+AND LastGearPurchase < DATEADD(year, -2, GETDATE())
+
+Result: 30-40% reduction in active dataset</pre>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                    <h5 class="font-semibold text-green-800 mb-2">⚡ Strategic Indexing</h5>
+                                    <div class="code-block text-xs">
+                                        <pre class="text-green-400">-- Index frequently queried fields
+CREATE INDEX IX_NTO_Performance ON Customers 
+(Region, LastPurchaseDate, ActivityLevel)
+
+-- Geographic + seasonal indexing
+CREATE INDEX IX_NTO_Seasonal ON Customers 
+(State, PreferredSeason, GearCategory)</pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-yellow-50 border-l-4 border-yellow-200 p-4 mb-4">
+                                <h5 class="font-semibold text-yellow-800 mb-2">🏔️ NTO Import Optimization:</h5>
+                                <div class="text-sm text-yellow-700 space-y-2">
+                                    <div><strong>Before:</strong> Single 10M record import (4 hours)</div>
+                                    <div><strong>After:</strong></div>
+                                    <ul class="list-disc list-inside ml-4 space-y-1">
+                                        <li>Split by region: West Coast, East Coast, International (3.3M each)</li>
+                                        <li>Process during off-peak hours (2-6 AM)</li>
+                                        <li>Seasonal batch optimization for peak outdoor periods</li>
+                                        <li><strong>Result:</strong> 45 minutes total processing time</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold mb-2">📊 Expected NTO Performance Results:</h5>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                    <div class="bg-white rounded p-3">
+                                        <div class="text-lg font-bold text-blue-600">5-10x</div>
+                                        <div class="text-xs text-gray-600">Query Speed</div>
+                                    </div>
+                                    <div class="bg-white rounded p-3">
+                                        <div class="text-lg font-bold text-green-600">70-80%</div>
+                                        <div class="text-xs text-gray-600">Import Time Reduction</div>
+                                    </div>
+                                    <div class="bg-white rounded p-3">
+                                        <div class="text-lg font-bold text-purple-600">30-40%</div>
+                                        <div class="text-xs text-gray-600">Storage Optimization</div>
+                                    </div>
+                                    <div class="bg-white rounded p-3">
+                                        <div class="text-lg font-bold text-orange-600">95%</div>
+                                        <div class="text-xs text-gray-600">Reduced Timeouts</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-200 p-4">
+                                <h5 class="font-semibold text-blue-800 mb-2">💡 Certification Tip:</h5>
+                                <p class="text-blue-700">
+                                    Large-scale optimization requires systematic approach: archive old data, index frequently-used fields, 
+                                    optimize queries, and batch process during off-peak hours. Don't just add hardware - optimize architecture.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compliance Section -->
+        <section class="mb-12">
+            <div class="bg-white rounded-lg shadow-sm p-8">
+                <div class="text-center mb-8">
+                    <h2 class="section-header text-3xl font-bold mb-4">
+                        Section F: Data Quality & Compliance
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        🏔️ <strong>NTO Context:</strong> Managing GDPR compliance for global outdoor enthusiasts 
+                        while maintaining high-quality customer data for personalized gear recommendations.
+                    </p>
+                </div>
+
+                <!-- Question 13 -->
+                <div class="question-card bg-gray-50 rounded-lg p-6 mb-8" data-question="13" data-section="compliance">
+                    <div class="flex items-start mb-4">
+                        <span class="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-1">13</span>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2">GDPR Compliance Implementation</h3>
+                            <p class="text-gray-700 mb-4">
+                                <strong>🏔️ NTO Scenario:</strong> A European outdoor enthusiast submits a "Right to be Forgotten" request through NTO's 
+                                privacy portal. They want all their personal data deleted - trail preferences, gear purchase history, hiking activity logs, 
+                                and marketing data from SFMC. You have their data in 6 different Data Extensions and 3 Marketing Cloud applications.
+                            </p>
+                            <p class="text-gray-700 mb-4">
+                                <strong>Question:</strong> What's the correct process to handle this GDPR request comprehensively for NTO?
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="ml-12 space-y-3 mb-6">
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q13" value="A" class="mt-1">
+                            <span>A) Delete their email address from the main subscriber list only</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q13" value="B" class="mt-1">
+                            <span>B) Manually search and delete from each Data Extension individually</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q13" value="C" class="mt-1">
+                            <span>C) Use Contact Delete functionality to remove from all connected systems and maintain audit trail</span>
+                        </label>
+                        <label class="flex items-start space-x-3 cursor-pointer">
+                            <input type="radio" name="q13" value="D" class="mt-1">
+                            <span>D) Mark their email as unsubscribed but keep all outdoor activity data</span>
+                        </label>
+                    </div>
+
+                    <button onclick="showAnswer(13)" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition-colors">
+                        Show Answer & Explanation
+                    </button>
+
+                    <div id="answer13" class="hidden mt-6">
+                        <div class="correct-answer rounded-lg p-6 mb-6">
+                            <h4 class="font-bold text-green-800 mb-2">✅ Correct Answer: C) Use Contact Delete functionality to remove from all connected systems and maintain audit trail</h4>
+                        </div>
+                        
+                        <div class="explanation-section rounded-lg p-6">
+                            <h4 class="font-bold mb-3">📚 NTO GDPR-Compliant Deletion Process:</h4>
+                            
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-blue-800 mb-2">📋 Step 1: Document the NTO Request</h5>
+                                <div class="code-block text-sm">
+                                    <pre class="text-green-400">🏔️ NTO Deletion Request Log:
+- Date Received: 2024-01-15
+- Customer ID: NTO_HIKER_789
+- Email: eu_customer@outdoor.com  
+- Trail Activities: Alpine hiking, winter sports
+- Request Method: NTO Privacy Portal
+- Legal Basis: GDPR Article 17 (Right to Erasure)
+- Data Categories: Purchase history, trail logs, preferences</pre>
+                                </div>
+                            </div>
+
+                            <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-green-800 mb-2">🔄 Step 2: Contact Delete Removes Data From:</h5>
+                                <ul class="text-green-700 text-sm space-y-1">
+                                    <li>✅ All Data Extensions (gear purchases, trail activities, preferences)</li>
+                                    <li>✅ Email Studio subscriber lists and outdoor newsletters</li>
+                                    <li>✅ Mobile Studio contacts (trail app notifications)</li>
+                                    <li>✅ Journey Builder entry events (seasonal gear campaigns)</li>
+                                    <li>✅ Advertising Studio audiences (outdoor gear retargeting)</li>
+                                    <li>✅ Synchronized Salesforce CRM records</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold text-yellow-800 mb-2">🔍 Step 3: Verification Query</h5>
+                                <div class="code-block text-sm">
+                                    <pre class="text-green-400">-- Verify complete NTO customer deletion
+SELECT COUNT(*) FROM NTO_AllContacts 
+WHERE ContactKey = 'NTO_HIKER_789'
+-- Should return 0 records
+
+-- Check all NTO Data Extensions  
+SELECT DE.Name, COUNT(*) as RecordCount
+FROM NTO_DataExtensions DE
+LEFT JOIN DataExtensionData DED ON DE.ID = DED.DataExtensionID
+WHERE DED.EmailAddress = 'eu_customer@outdoor.com'
+GROUP BY DE.Name
+-- Should return no results</pre>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-100 rounded-lg p-4 mb-4">
+                                <h5 class="font-semibold mb-2">📊 Step 4: NTO Compliance Audit Trail</h5>
+                                <div class="text-sm text-gray-700 space-y-1">
+                                    <div><strong>Deletion Date:</strong> 2024-01-16</div>
+                                    <div><strong>Records Removed:</strong> 47 across 6 Data Extensions</div>
+                                    <div><strong>Data Types:</strong> Gear purchases, trail logs, seasonal preferences</div>
+                                    <div><strong>Applications Affected:</strong> Email Studio, Journey Builder, Mobile Studio</div>
+                                    <div><strong>Verification Completed:</strong> 2024-01-16</div>
+                                    <div><strong>Privacy Officer Notified:</strong> Yes</div>
+                                </div>
+                            </div>
+
+                            <div class="bg-red-50 border-l-4 border-red-200 p-4 mb-4">
+                                <h5 class="font-semibold text-red-800 mb-2">⚠️ Important NTO Considerations:</h5>
+                                <ul class="text-red-700 text-sm space-y-1">
+                                    <li><strong>Legal holds:</strong> Check if trail safety data must be retained for liability reasons</li>
+                                    <li><strong>Analytics impact:</strong> Consider anonymization vs. deletion for seasonal trend reporting</li>
+                                    <li><strong>System integrations:</strong> Ensure e-commerce and POS systems also process deletion</li>
+                                    <li><strong>Gear warranties:</strong> Maintain product safety data as required by law</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-200 p-4">
+                                <h5 class="font-semibold text-blue-800 mb-2">💡 Certification Tip:</h5>
+                                <p class="text-blue-700">
+                                    GDPR compliance requires systematic deletion across ALL systems, proper documentation, 
+                                    and audit trails. Contact Delete ensures comprehensive removal while maintaining legal compliance records.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Summary -->
+        <section class="mb-12">
+            <div class="gradient-bg text-white rounded-lg p-8 text-center">
+                <h2 class="text-2xl font-bold mb-4">🎯 Advanced Certification Mastery Achieved</h2>
+                <p class="text-lg mb-6">
+                    You've completed NTO's advanced SFMC data management scenarios - enterprise-level concepts 
+                    that go beyond basic certification requirements.
+                </p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <div class="text-2xl font-bold">26-29%</div>
+                        <div class="text-sm">Exam Coverage</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <div class="text-2xl font-bold">20</div>
+                        <div class="text-sm">Advanced Questions</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <div class="text-2xl font-bold">8</div>
+                        <div class="text-sm">Core Concepts</div>
+                    </div>
+                    <div class="bg-white bg-opacity-20 rounded-lg p-4">
+                        <div class="text-2xl font-bold">100%</div>
+                        <div class="text-sm">Expert Level</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="lesson_1_enhanced_subscriber_data_management.html" 
+                       class="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                        📖 Return to Lesson 1 Core
+                    </a>
+                    <a href="enhanced_sfmc_certification_mastery.html" 
+                       class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        🏠 SFMC Hub
+                    </a>
+                    <a href="index.html" 
+                       class="bg-white bg-opacity-20 text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:bg-opacity-30 transition-colors">
+                        🏔️ Learning Hub
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Tracking variables
+        let questionsViewed = new Set();
+        let conceptCounts = {
+            'contact-builder': 0,
+            'data-extensions': 0,
+            'performance': 0,
+            'compliance': 0
+        };
+
+        function showAnswer(questionNumber) {
+            const answerId = `answer${questionNumber}`;
+            const answerDiv = document.getElementById(answerId);
+            
+            if (answerDiv.classList.contains('hidden')) {
+                answerDiv.classList.remove('hidden');
+                
+                // Track question as viewed
+                questionsViewed.add(questionNumber);
+                
+                // Update concept count based on question section
+                const questionCard = document.querySelector(`[data-question="${questionNumber}"]`);
+                const section = questionCard.getAttribute('data-section');
+                if (section && conceptCounts.hasOwnProperty(section)) {
+                    conceptCounts[section]++;
+                    updateConceptDisplay(section);
+                }
+                
+                updateProgress();
+            } else {
+                answerDiv.classList.add('hidden');
+            }
+        }
+
+        function updateConceptDisplay(section) {
+            const countMap = {
+                'contact-builder': 'contactBuilderCount',
+                'data-extensions': 'dataExtensionsCount', 
+                'performance': 'performanceCount',
+                'compliance': 'complianceCount'
+            };
+            
+            const elementId = countMap[section];
+            if (elementId) {
+                document.getElementById(elementId).textContent = conceptCounts[section];
+            }
+        }
+
+        function updateProgress() {
+            const totalQuestions = 20; // This represents a subset of the 20 questions
+            const viewed = questionsViewed.size;
+            const percentage = Math.round((viewed / 5) * 100); // Based on 5 sample questions shown
+            
+            // Update progress display
+            document.getElementById('questionsViewed').textContent = viewed;
+            document.getElementById('progressText').textContent = `${Math.round((viewed / 5) * 100)}%`;
+            
+            // Update progress circle
+            const circle = document.getElementById('progressCircle');
+            const offset = 100 - (viewed / 5) * 100;
+            circle.style.strokeDashoffset = offset;
+            
+            // Update concepts viewed
+            const totalConcepts = Object.values(conceptCounts).reduce((sum, count) => sum + (count > 0 ? 1 : 0), 0);
+            document.getElementById('conceptsViewed').textContent = totalConcepts;
+        }
+
+        // Initialize progress tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+        });
+    </script>
+</body>
+</html>

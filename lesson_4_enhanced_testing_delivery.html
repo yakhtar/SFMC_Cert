@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 4: Testing & Delivery - Enhanced with NTO Context</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-red-900 to-pink-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="bg-black/20 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xl font-bold bg-gradient-to-r from-red-400 to-pink-400 bg-clip-text text-transparent">
+                        🧪 SFMC Mastery Hub
+                    </a>
+                    <span class="text-sm text-gray-300">Lesson 4: Testing & Delivery</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="enhanced_sfmc_certification_mastery.html" class="text-red-300 hover:text-red-200 transition-colors">Main Certification</a>
+                    <a href="lesson_3_enhanced_content_creation_delivery.html" class="text-red-300 hover:text-red-200 transition-colors">← Lesson 3</a>
+                    <a href="index.html" class="text-red-300 hover:text-red-200 transition-colors">🏠 Hub</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-red-400 via-pink-400 to-red-500 bg-clip-text text-transparent animate-gradient-x">
+                    SFMC Lesson 4: Testing & Delivery
+                </span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-4">Enhanced with Northern Trail Outfitters Context</p>
+            <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                🧪 Master email testing and delivery using outdoor gear campaign scenarios. Ensure your emails reach adventurers' inboxes perfectly!
+            </p>
+            
+            <!-- Progress Dashboard -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 max-w-4xl mx-auto">
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-red-400" id="conceptsLearned">0</div>
+                    <div class="text-sm text-gray-300">Concepts Learned</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-pink-400" id="questionsAnswered">0</div>
+                    <div class="text-sm text-gray-300">Questions Answered</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-yellow-400" id="accuracyRate">0%</div>
+                    <div class="text-sm text-gray-300">Accuracy Rate</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20">
+                    <div class="text-2xl font-bold text-purple-400" id="studyProgress">0%</div>
+                    <div class="text-sm text-gray-300">Completion</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Navigation -->
+        <div class="mb-8">
+            <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                <h3 class="text-xl font-semibold mb-4">🧭 Quick Navigation</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <button onclick="scrollToSection('concepts')" class="bg-red-600/30 hover:bg-red-600/50 p-3 rounded-lg transition-all">
+                        🧪 Core Concepts
+                    </button>
+                    <button onclick="scrollToSection('nto-scenarios')" class="bg-pink-600/30 hover:bg-pink-600/50 p-3 rounded-lg transition-all">
+                        🏔️ NTO Testing
+                    </button>
+                    <button onclick="scrollToSection('interactive-quiz')" class="bg-purple-600/30 hover:bg-purple-600/50 p-3 rounded-lg transition-all">
+                        🎯 Interactive Quiz
+                    </button>
+                    <button onclick="scrollToSection('certification-tips')" class="bg-orange-600/30 hover:bg-orange-600/50 p-3 rounded-lg transition-all">
+                        🎓 Cert Tips
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Concepts Section -->
+        <div id="concepts" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🧪 Core Testing & Delivery Concepts</h2>
+            
+            <!-- Concept Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Test Sends -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-red-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-red-400">📧 Test Sends</h3>
+                    <p class="text-gray-300 mb-4">Your email practice run - send emails to yourself and team members to check everything works perfectly.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Check:</strong> Links, Personalization, Device Rendering, Appearance
+                    </div>
+                </div>
+
+                <!-- Subscriber Preview -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-pink-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-pink-400">👀 Subscriber Preview</h3>
+                    <p class="text-gray-300 mb-4">See how your email looks for different subscribers with different data and personalization.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Preview:</strong> Personalization, Dynamic Content, Segmentation
+                    </div>
+                </div>
+
+                <!-- Send Classifications -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-purple-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-purple-400">🎯 Send Classifications</h3>
+                    <p class="text-gray-300 mb-4">The email's ID card - controls sender identity, compliance settings, and delivery configuration.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Settings:</strong> From Name, Email Address, CAN-SPAM, Reply-To
+                    </div>
+                </div>
+
+                <!-- Publication Lists -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-yellow-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-yellow-400">📊 Publication Lists</h3>
+                    <p class="text-gray-300 mb-4">Organize subscribers into groups based on their interests and communication preferences.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Benefits:</strong> Relevant Content, Better Engagement, Compliance
+                    </div>
+                </div>
+
+                <!-- Email Tracking -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-green-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-green-400">🔍 Email Tracking</h3>
+                    <p class="text-gray-300 mb-4">Detective work for your emails - track opens, clicks, bounces, and conversions.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Metrics:</strong> Delivered, Opens, Clicks, Bounces, Unsubscribes
+                    </div>
+                </div>
+
+                <!-- A/B Testing -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-blue-400/50 transition-all concept-card">
+                    <h3 class="text-xl font-semibold mb-3 text-blue-400">⚗️ A/B Testing</h3>
+                    <p class="text-gray-300 mb-4">Compare two versions of your email to see which performs better with your audience.</p>
+                    <div class="text-sm text-gray-400">
+                        <strong>Test:</strong> Subject Lines, Content, Send Times, Personalization
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NTO Scenarios Section -->
+        <div id="nto-scenarios" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🏔️ Northern Trail Outfitters Testing Scenarios</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Scenario 1: A/B Testing Subject Lines -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-red-400">🧪 A/B Testing Hiking Boot Campaign</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> NTO tests two subject line approaches for their new waterproof hiking boot launch.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-red-300 mb-2">Test Setup:</h4>
+                        <div class="text-sm text-gray-300 space-y-2">
+                            <div><strong>Version A:</strong> "New Waterproof Hiking Boots Available Now" (Feature-focused)</div>
+                            <div><strong>Version B:</strong> "Conquer Every Trail - Even in the Rain!" (Adventure-focused)</div>
+                            <div><strong>Sample Size:</strong> 5,000 subscribers each (10,000 total)</div>
+                            <div><strong>Success Metric:</strong> Open rate</div>
+                            <div><strong>Test Duration:</strong> 24 hours</div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-red-300">
+                        <strong>Winner:</strong> Version B (+31% open rate) - Adventure messaging resonated with outdoor enthusiasts
+                    </div>
+                </div>
+
+                <!-- Scenario 2: Cross-Device Testing -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-pink-400">📱 Mobile-First Testing Strategy</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> NTO's customers frequently check emails while hiking, camping, or traveling with limited connectivity.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-pink-300 mb-2">Testing Protocol:</h4>
+                        <div class="text-sm text-gray-300 space-y-1">
+                            <div>• <strong>Device Testing:</strong> iPhone Safari, Android Gmail, tablet clients</div>
+                            <div>• <strong>Connection Testing:</strong> Slow 3G, WiFi, offline-to-online scenarios</div>
+                            <div>• <strong>Image Loading:</strong> Test with images blocked (common in wilderness)</div>
+                            <div>• <strong>Touch Targets:</strong> Ensure buttons work with gloves/cold fingers</div>
+                            <div>• <strong>Battery Impact:</strong> Lightweight emails for outdoor use</div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-pink-300">
+                        <strong>Result:</strong> 85% improvement in mobile engagement with optimized outdoor-friendly design
+                    </div>
+                </div>
+
+                <!-- Scenario 3: Deliverability Testing -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-400">📬 Seasonal Deliverability Optimization</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> NTO's winter gear emails face deliverability challenges during peak season due to increased volume.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-purple-300 mb-2">Optimization Strategy:</h4>
+                        <div class="text-sm text-gray-300 space-y-1">
+                            <div>• <strong>IP Warming:</strong> Gradual volume increase leading to winter season</div>
+                            <div>• <strong>Authentication:</strong> SPF, DKIM, DMARC properly configured</div>
+                            <div>• <strong>List Hygiene:</strong> Remove inactive subscribers before peak season</div>
+                            <div>• <strong>Content Testing:</strong> Avoid spam trigger words like "FREE" and excessive caps</div>
+                            <div>• <strong>Send Time Optimization:</strong> Peak engagement times for outdoor enthusiasts</div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-purple-300">
+                        <strong>Achievement:</strong> 97% inbox placement rate during peak winter campaign season
+                    </div>
+                </div>
+
+                <!-- Scenario 4: Personalization Testing -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">🎯 Personalization Effectiveness Testing</h3>
+                    <div class="text-gray-300 mb-4">
+                        <strong>Scenario:</strong> NTO tests different levels of personalization for their summer camping gear promotions.
+                    </div>
+                    <div class="bg-black/20 rounded-lg p-4 mb-4">
+                        <h4 class="font-semibold text-yellow-300 mb-2">Test Variations:</h4>
+                        <div class="text-sm text-gray-300 space-y-2">
+                            <div><strong>Control:</strong> Generic "Summer Camping Sale" subject + content</div>
+                            <div><strong>Variation A:</strong> "Hi %%FirstName%%, Summer Camping Sale" (Name only)</div>
+                            <div><strong>Variation B:</strong> "Perfect %%ActivityPreference%% Gear for %%State%%" (Activity + Location)</div>
+                            <div><strong>Variation C:</strong> Dynamic product recommendations based on purchase history</div>
+                        </div>
+                    </div>
+                    <div class="text-sm text-yellow-300">
+                        <strong>Winner:</strong> Variation B (+42% CTR) - Activity and location personalization outperformed name-only
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Quiz Section -->
+        <div id="interactive-quiz" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🎯 Interactive Testing & Delivery Quiz</h2>
+            
+            <!-- Quiz Controls -->
+            <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 mb-6">
+                <div class="flex flex-wrap items-center justify-between mb-4">
+                    <h3 class="text-xl font-semibold">Lesson 4: Testing & Delivery Mastery</h3>
+                    <div class="flex space-x-4">
+                        <button onclick="startQuiz('practice')" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-colors">
+                            📚 Practice Mode
+                        </button>
+                        <button onclick="startQuiz('exam')" class="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-lg transition-colors">
+                            🎯 Exam Mode
+                        </button>
+                        <button onclick="resetQuiz()" class="bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-lg transition-colors">
+                            🔄 Reset
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quiz Status -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <div class="text-lg font-bold text-red-400" id="currentQuestion">0</div>
+                        <div class="text-sm text-gray-300">Current Question</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-pink-400" id="correctAnswers">0</div>
+                        <div class="text-sm text-gray-300">Correct</div>
+                    </div>
+                    <div class="text-lg font-bold text-yellow-400" id="incorrectAnswers">0</div>
+                        <div class="text-sm text-gray-300">Incorrect</div>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-purple-400" id="timeRemaining">--:--</div>
+                        <div class="text-sm text-gray-300">Time Left</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Content -->
+            <div id="quizContainer" class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20" style="display: none;">
+                <div id="questionCard">
+                    <!-- Questions will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Quiz Results -->
+            <div id="resultsContainer" class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20" style="display: none;">
+                <!-- Results will be shown here -->
+            </div>
+        </div>
+
+        <!-- Certification Tips Section -->
+        <div id="certification-tips" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🎓 Certification Tips</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Key Focus Areas -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">🎯 Key Focus Areas (Testing & Delivery)</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">•</span>
+                            <span><strong>Test Sends:</strong> Know when and how to use test sends effectively</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-pink-400">•</span>
+                            <span><strong>Send Classifications:</strong> Understand CAN-SPAM compliance and sender settings</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-purple-400">•</span>
+                            <span><strong>Publication Lists:</strong> Know how to organize and manage subscriber preferences</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-blue-400">•</span>
+                            <span><strong>Tracking Metrics:</strong> Understand bounce types, engagement metrics, and deliverability</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-green-400">•</span>
+                            <span><strong>A/B Testing:</strong> Master testing methodology and statistical significance</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Common Mistakes -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-red-400">⚠️ Common Mistakes to Avoid</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Confusing hard bounces with soft bounces</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Not understanding the difference between delivered and inbox placement</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Forgetting to test emails on multiple devices and email clients</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Not using proper sample sizes for A/B testing statistical significance</span>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <span class="text-red-400">✗</span>
+                            <span>Mixing up Commercial vs. Transactional CAN-SPAM classifications</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pro Tips -->
+            <div class="bg-gradient-to-r from-red-600/20 to-pink-600/20 backdrop-blur-md rounded-lg p-6 border border-white/20 mt-8">
+                <h3 class="text-xl font-semibold mb-4 text-center">💡 Pro Testing & Delivery Tips</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🧪</div>
+                        <div class="font-semibold text-red-400">Test Everything</div>
+                        <div class="text-sm text-gray-300">Always test before sending to your full list</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">📱</div>
+                        <div class="font-semibold text-pink-400">Mobile First</div>
+                        <div class="text-sm text-gray-300">Prioritize mobile testing and experience</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">📊</div>
+                        <div class="font-semibold text-purple-400">Track Performance</div>
+                        <div class="text-sm text-gray-300">Monitor deliverability and engagement metrics</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">⚗️</div>
+                        <div class="font-semibold text-yellow-400">A/B Test Smart</div>
+                        <div class="text-sm text-gray-300">Test one variable at a time for clear results</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="text-center py-8">
+            <div class="space-x-4">
+                <a href="lesson_3_enhanced_content_creation_delivery.html" class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    ← Lesson 3: Content Creation
+                </a>
+                <a href="enhanced_sfmc_certification_mastery.html" class="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    📚 Main Certification Hub
+                </a>
+                <a href="lesson_5_interactive_qa.html" class="bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    ➡️ Next: Lesson 5
+                </a>
+                <a href="index.html" class="bg-gray-600 hover:bg-gray-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    🏠 Back to Hub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz Data - Enhanced NTO-focused questions for Lesson 4
+        const lesson4Questions = [
+            {
+                question: "🏔️ NTO wants to test their new winter jacket email campaign. What should they do BEFORE sending to their 50,000 subscriber list?",
+                options: [
+                    "Send it immediately to save time",
+                    "Send test emails to check for errors and functionality",
+                    "Only check the subject line",
+                    "Wait a week to think about it"
+                ],
+                correct: 1,
+                domain: "Testing & Delivery",
+                difficulty: "Basic",
+                simpleExplanation: "Test sends are like dress rehearsals before a big performance. You always test your emails first to catch any problems with links, formatting, personalization, or appearance before sending to your entire audience.",
+                ntoExample: "Before NTO sends their winter jacket promotion to 50,000 outdoor enthusiasts, they send test emails to their team to check that product links work, images display properly on mobile devices, and personalization shows correctly for different customer types.",
+                certificationTip: "Always send test emails before launching campaigns. This basic best practice prevents embarrassing mistakes and ensures professional email delivery."
+            },
+            {
+                question: "📱 Why is mobile testing especially important for NTO's outdoor customer base?",
+                options: [
+                    "Mobile testing is optional for outdoor companies",
+                    "Outdoor enthusiasts frequently check emails on mobile devices while hiking, camping, or traveling",
+                    "Desktop users are more important",
+                    "Mobile emails don't need different testing"
+                ],
+                correct: 1,
+                domain: "Testing & Delivery",
+                difficulty: "Intermediate",
+                simpleExplanation: "Outdoor enthusiasts are often on-the-go, checking emails on phones while hiking trails, at campsites, or during travel. Mobile testing ensures emails work perfectly in these outdoor scenarios with various connection speeds and device conditions.",
+                ntoExample: "Sarah checks her NTO emails while camping in the mountains with spotty cell service. Mobile-optimized emails with compressed images, touch-friendly buttons, and offline-friendly design ensure she can still engage with gear recommendations even in remote locations.",
+                certificationTip: "Mobile testing should include various devices, connection speeds, and real-world usage scenarios, especially for audiences with active, mobile lifestyles."
+            },
+            {
+                question: "🎯 NTO sets up a Send Classification for their promotional emails. What information is required?",
+                options: [
+                    "Only the from email address",
+                    "From name, from email, reply-to email, and CAN-SPAM classification",
+                    "Just the subject line template",
+                    "Only the physical mailing address"
+                ],
+                correct: 1,
+                domain: "Testing & Delivery",
+                difficulty: "Intermediate",
+                simpleExplanation: "Send Classifications are like an ID card for your emails. They need complete sender information (who it's from), where replies should go, and legal compliance settings to ensure proper delivery and regulatory compliance.",
+                ntoExample: "NTO's promotional Send Classification includes: From Name: 'Northern Trail Outfitters', From Email: 'adventures@northerntrail.com', Reply-To: 'support@northerntrail.com', and Commercial CAN-SPAM classification for their gear promotions.",
+                certificationTip: "Send Classifications are essential for compliance and deliverability. Commercial emails have different requirements than Transactional emails for unsubscribe handling."
+            },
+            {
+                question: "📊 NTO wants to track email performance. What does the 'delivered' metric actually measure?",
+                options: [
+                    "Emails that reached the inbox folder",
+                    "Emails that were successfully accepted by the receiving email server",
+                    "Emails that were opened by recipients",
+                    "Emails that generated purchases"
+                ],
+                correct: 1,
+                domain: "Testing & Delivery",
+                difficulty: "Advanced",
+                simpleExplanation: "'Delivered' means the receiving email server accepted your message, like a mail carrier successfully dropping mail at someone's house. However, the mail could still end up in a spam folder instead of the main mailbox (inbox).",
+                ntoExample: "NTO sends 10,000 camping gear emails. 9,500 show as 'delivered' - meaning email servers accepted them. However, some might still go to spam folders. True inbox placement requires additional monitoring beyond just delivery rates.",
+                certificationTip: "Delivery rate ≠ inbox placement rate. Delivered emails can still end up in spam folders. Monitor both metrics for complete picture of email performance."
+            },
+            {
+                question: "🧪 NTO wants to A/B test subject lines for their hiking boot campaign. What's the most important testing rule?",
+                options: [
+                    "Test as many variables as possible simultaneously",
+                    "Test only one variable at a time to isolate what caused performance differences",
+                    "Always test for exactly 30 days",
+                    "Only test with VIP customers"
+                ],
+                correct: 1,
+                domain: "Testing & Delivery",
+                difficulty: "Basic",
+                simpleExplanation: "A/B testing is like a science experiment - if you change multiple things at once, you won't know which change caused the result. Test one thing at a time (like just the subject line) to get clear, actionable insights.",
+                ntoExample: "NTO tests two subject lines: 'New Waterproof Hiking Boots' vs. 'Conquer Any Trail in Any Weather.' They keep everything else identical - same content, same audience, same send time - so they know the subject line caused any performance difference.",
+                certificationTip: "Testing multiple variables simultaneously makes results meaningless. Always test one variable at a time for statistically valid conclusions."
+            },
+            {
+                question: "💌 What's the difference between hard bounces and soft bounces in NTO's email campaigns?",
+                options: [
+                    "Hard bounces are temporary, soft bounces are permanent",
+                    "Hard bounces are permanent failures, soft bounces are temporary",
+                    "There is no difference between them",
+                    "Soft bounces only happen on mobile devices"
+                ],
+                correct: 1,
+                domain: "Testing & Delivery",
+                difficulty: "Intermediate",
+                simpleExplanation: "Hard bounces are like trying to mail a letter to a house that doesn't exist - permanent failure. Soft bounces are like a mailbox being full - temporary problem that might resolve later.",
+                ntoExample: "NTO gets a hard bounce for 'customer@doesntexist.com' (invalid address - remove immediately). They get a soft bounce for 'customer@gmail.com' because their mailbox is full (retry later, it might work).",
+                certificationTip: "Hard bounces require immediate suppression to maintain sender reputation. Soft bounces can be retried a limited number of times before suppression."
+            },
+            {
+                question: "📋 How do Publication Lists help NTO with subscriber preferences?",
+                options: [
+                    "They automatically create email content",
+                    "They let subscribers choose specific types of communications they want to receive",
+                    "They only work for VIP customers",
+                    "They replace the need for email testing"
+                ],
+                correct: 1,
+                domain: "Testing & Delivery",
+                difficulty: "Intermediate",
+                simpleExplanation: "Publication Lists are like different magazine subscriptions. Some people want hiking newsletters, others want camping tips, and some want both. Lists let subscribers choose what interests them most.",
+                ntoExample: "NTO offers Publication Lists for 'Hiking Adventures,' 'Camping Essentials,' 'Winter Sports,' and 'Sale Alerts.' Customers can subscribe to hiking and camping but skip winter sports if they live in warm climates.",
+                certificationTip: "Publication Lists improve engagement by sending relevant content and help with CAN-SPAM compliance by providing granular unsubscribe options."
+            },
+            {
+                question: "👀 What does Subscriber Preview help NTO's marketing team see?",
+                options: [
+                    "How many people will open the email",
+                    "How the email looks for different subscribers with different data",
+                    "The best time to send emails",
+                    "Email delivery statistics"
+                ],
+                correct: 1,
+                domain: "Testing & Delivery",
+                difficulty: "Basic",
+                simpleExplanation: "Subscriber Preview is like trying on different people's glasses to see how they see your email. It shows how personalization and dynamic content appear for different subscribers with different information.",
+                ntoExample: "NTO uses Subscriber Preview to see how their personalized gear recommendations look for 'Sarah the hiker' vs. 'Mike the camper' vs. 'Lisa the winter sports enthusiast' - each sees different products based on their interests.",
+                certificationTip: "Use Subscriber Preview to test AMPscript, personalization strings, and dynamic content with different subscriber data scenarios before sending."
+            },
+            {
+                question: "📈 What should NTO do if their email campaign has a high unsubscribe rate?",
+                options: [
+                    "Ignore it and continue sending the same content",
+                    "Review content relevance, sending frequency, and audience targeting",
+                    "Send more emails to compensate",
+                    "Only send to VIP customers going forward"
+                ],
+                correct: 1,
+                domain: "Testing & Delivery",
+                difficulty: "Advanced",
+                simpleExplanation: "High unsubscribe rates are like customers walking out of your store - it means something's wrong. Maybe you're sending too often, the content isn't relevant, or you're targeting the wrong people.",
+                ntoExample: "NTO's weekly newsletter has high unsubscribes. They investigate and find they're sending winter gear content to warm-climate customers and generic content instead of activity-specific recommendations. They adjust targeting and personalization.",
+                certificationTip: "High unsubscribe rates indicate problems with content relevance, frequency, or targeting. Analyze patterns and adjust strategy rather than ignoring the signal."
+            },
+            {
+                question: "🎛️ How should NTO configure authentication (SPF, DKIM, DMARC) for better deliverability?",
+                options: [
+                    "Authentication doesn't affect deliverability",
+                    "Use SPF, DKIM, and DMARC together for comprehensive email authentication",
+                    "Only SPF is necessary",
+                    "Authentication is only for security, not delivery"
+                ],
+                correct: 1,
+                domain: "Testing & Delivery",
+                difficulty: "Advanced",
+                simpleExplanation: "Email authentication is like having proper ID when traveling - it proves you are who you say you are. ISPs trust authenticated emails more and are more likely to deliver them to inboxes instead of spam folders.",
+                ntoExample: "NTO properly configures SPF (authorizes sending servers), DKIM (digitally signs emails), and DMARC (tells ISPs how to handle failures). This authentication helps their outdoor gear promotions reach customers' inboxes instead of spam folders.",
+                certificationTip: "The combination of SPF, DKIM, and DMARC provides comprehensive email authentication and significantly improves deliverability rates with major ISPs."
+            }
+        ];
+
+        // Quiz State
+        let currentQuizMode = '';
+        let currentQuestionIndex = 0;
+        let quizStartTime = 0;
+        let timerInterval = null;
+        let userAnswers = [];
+        let quizQuestions = [];
+
+        // Progress Tracking
+        let stats = {
+            conceptsLearned: 0,
+            questionsAnswered: 0,
+            correctAnswers: 0,
+            totalQuestions: 0,
+            studyProgress: 0
+        };
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgressDisplay();
+            trackConceptViewing();
+        });
+
+        // Utility Functions
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateProgressDisplay() {
+            document.getElementById('conceptsLearned').textContent = stats.conceptsLearned;
+            document.getElementById('questionsAnswered').textContent = stats.questionsAnswered;
+            document.getElementById('accuracyRate').textContent = stats.totalQuestions > 0 ? 
+                Math.round((stats.correctAnswers / stats.totalQuestions) * 100) + '%' : '0%';
+            document.getElementById('studyProgress').textContent = Math.round(stats.studyProgress) + '%';
+        }
+
+        function trackConceptViewing() {
+            const conceptCards = document.querySelectorAll('.concept-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.classList.contains('viewed')) {
+                        entry.target.classList.add('viewed');
+                        stats.conceptsLearned++;
+                        stats.studyProgress = Math.min(90, (stats.conceptsLearned / conceptCards.length) * 50 + 
+                                                            (stats.questionsAnswered / lesson4Questions.length) * 40);
+                        updateProgressDisplay();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            conceptCards.forEach(card => observer.observe(card));
+        }
+
+        // Quiz Functions
+        function startQuiz(mode) {
+            currentQuizMode = mode;
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            quizQuestions = [...lesson4Questions].sort(() => Math.random() - 0.5); // Shuffle questions
+            
+            if (mode === 'exam') {
+                quizQuestions = quizQuestions.slice(0, 10); // Limit to 10 questions for exam mode
+            }
+
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('resultsContainer').style.display = 'none';
+            
+            quizStartTime = Date.now();
+            startTimer(mode === 'exam' ? 20 : 60); // 20 min for exam, 60 for practice
+            
+            showQuestion();
+            updateQuizStatus();
+        }
+
+        function startTimer(minutes) {
+            const duration = minutes * 60 * 1000;
+            const endTime = Date.now() + duration;
+            
+            timerInterval = setInterval(() => {
+                const remaining = endTime - Date.now();
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    finishQuiz();
+                    return;
+                }
+                
+                const mins = Math.floor(remaining / (60 * 1000));
+                const secs = Math.floor((remaining % (60 * 1000)) / 1000);
+                document.getElementById('timeRemaining').textContent = 
+                    `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function showQuestion() {
+            const question = quizQuestions[currentQuestionIndex];
+            const questionCard = document.getElementById('questionCard');
+            
+            questionCard.innerHTML = `
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="bg-red-600/30 px-3 py-1 rounded-full text-sm">${question.domain}</span>
+                        <span class="bg-yellow-600/30 px-3 py-1 rounded-full text-sm">${question.difficulty}</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">${question.question}</h3>
+                    <div class="space-y-3">
+                        ${question.options.map((option, index) => `
+                            <button onclick="selectAnswer(${index})" 
+                                    class="w-full text-left p-4 bg-white/5 hover:bg-white/10 rounded-lg border border-white/20 hover:border-red-400/50 transition-all answer-option"
+                                    data-index="${index}">
+                                <span class="font-semibold">${String.fromCharCode(65 + index)})</span> ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                    ${currentQuizMode === 'practice' ? `
+                        <div id="explanationArea" class="mt-6" style="display: none;">
+                            <!-- Explanation will appear here -->
+                        </div>
+                    ` : ''}
+                </div>
+                <div class="flex justify-between">
+                    <button onclick="previousQuestion()" ${currentQuestionIndex === 0 ? 'disabled' : ''} 
+                            class="bg-gray-600 hover:bg-gray-700 disabled:bg-gray-800 disabled:opacity-50 px-4 py-2 rounded-lg transition-colors">
+                        ← Previous
+                    </button>
+                    <button onclick="nextQuestion()" 
+                            class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-colors">
+                        ${currentQuestionIndex === quizQuestions.length - 1 ? 'Finish Quiz' : 'Next →'}
+                    </button>
+                </div>
+            `;
+        }
+
+        function selectAnswer(selectedIndex) {
+            const question = quizQuestions[currentQuestionIndex];
+            const options = document.querySelectorAll('.answer-option');
+            
+            // Clear previous selections
+            options.forEach(option => {
+                option.classList.remove('border-green-400', 'border-red-400', 'bg-green-600/20', 'bg-red-600/20');
+            });
+            
+            // Highlight selected answer
+            const selectedOption = options[selectedIndex];
+            const isCorrect = selectedIndex === question.correct;
+            
+            if (currentQuizMode === 'practice') {
+                // Show immediate feedback in practice mode
+                if (isCorrect) {
+                    selectedOption.classList.add('border-green-400', 'bg-green-600/20');
+                } else {
+                    selectedOption.classList.add('border-red-400', 'bg-red-600/20');
+                    options[question.correct].classList.add('border-green-400', 'bg-green-600/20');
+                }
+                
+                // Show explanation
+                showExplanation(question, isCorrect);
+            } else {
+                selectedOption.classList.add('border-red-400', 'bg-red-600/20');
+            }
+            
+            // Record answer
+            userAnswers[currentQuestionIndex] = {
+                selected: selectedIndex,
+                correct: isCorrect,
+                timeSpent: Date.now() - quizStartTime
+            };
+            
+            updateQuizStatus();
+        }
+
+        function showExplanation(question, isCorrect) {
+            const explanationArea = document.getElementById('explanationArea');
+            explanationArea.style.display = 'block';
+            explanationArea.innerHTML = `
+                <div class="bg-black/30 rounded-lg p-4 border-l-4 ${isCorrect ? 'border-green-400' : 'border-red-400'}">
+                    <div class="flex items-center mb-3">
+                        <span class="text-lg mr-2">${isCorrect ? '✅' : '❌'}</span>
+                        <span class="font-semibold ${isCorrect ? 'text-green-400' : 'text-red-400'}">
+                            ${isCorrect ? 'Correct!' : 'Incorrect'}
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <h4 class="font-semibold text-red-300 mb-1">📝 Simple Explanation:</h4>
+                            <p class="text-gray-300 text-sm">${question.simpleExplanation}</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-pink-300 mb-1">🏔️ NTO Example:</h4>
+                            <p class="text-gray-300 text-sm">${question.ntoExample}</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-yellow-300 mb-1">🎓 Certification Tip:</h4>
+                            <p class="text-gray-300 text-sm">${question.certificationTip}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+                updateQuizStatus();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+                updateQuizStatus();
+            }
+        }
+
+        function updateQuizStatus() {
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            
+            const correctCount = userAnswers.filter(answer => answer && answer.correct).length;
+            const incorrectCount = userAnswers.filter(answer => answer && !answer.correct).length;
+            
+            document.getElementById('correctAnswers').textContent = correctCount;
+            document.getElementById('incorrectAnswers').textContent = incorrectCount;
+            
+            // Update global stats
+            stats.questionsAnswered = userAnswers.filter(answer => answer).length;
+            stats.correctAnswers = correctCount;
+            stats.totalQuestions = stats.questionsAnswered;
+            stats.studyProgress = Math.min(100, (stats.conceptsLearned / 6) * 50 + 
+                                                (stats.questionsAnswered / lesson4Questions.length) * 50);
+            updateProgressDisplay();
+        }
+
+        function finishQuiz() {
+            clearInterval(timerInterval);
+            
+            const correctCount = userAnswers.filter(answer => answer && answer.correct).length;
+            const totalAnswered = userAnswers.filter(answer => answer).length;
+            const percentage = totalAnswered > 0 ? Math.round((correctCount / totalAnswered) * 100) : 0;
+            
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'block';
+            
+            let performanceLevel = '';
+            let performanceColor = '';
+            let recommendations = '';
+            
+            if (percentage >= 80) {
+                performanceLevel = 'Excellent! Testing & Delivery Expert';
+                performanceColor = 'text-green-400';
+                recommendations = 'You have a strong understanding of Testing & Delivery concepts. Ready for the certification exam!';
+            } else if (percentage >= 65) {
+                performanceLevel = 'Good Progress - Review Key Areas';
+                performanceColor = 'text-yellow-400';
+                recommendations = 'You\'re doing well! Review the concepts you missed and practice more NTO testing scenarios.';
+            } else {
+                performanceLevel = 'Needs More Study';
+                performanceColor = 'text-red-400';
+                recommendations = 'Spend more time with testing and delivery concepts. Focus on A/B testing methodology, bounce types, and send classifications.';
+            }
+            
+            document.getElementById('resultsContainer').innerHTML = `
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold mb-4">🧪 Testing & Delivery Quiz Results</h3>
+                    <div class="text-6xl font-bold ${performanceColor} mb-2">${percentage}%</div>
+                    <div class="text-xl ${performanceColor} mb-4">${performanceLevel}</div>
+                    <div class="text-gray-300">${correctCount} correct out of ${totalAnswered} questions</div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white/10 rounded-lg p-4 text-center border border-white/20">
+                        <div class="text-2xl font-bold text-green-400">${correctCount}</div>
+                        <div class="text-sm text-gray-300">Correct Answers</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4 text-center border border-white/20">
+                        <div class="text-2xl font-bold text-red-400">${totalAnswered - correctCount}</div>
+                        <div class="text-sm text-gray-300">Incorrect Answers</div>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4 text-center border border-white/20">
+                        <div class="text-2xl font-bold text-pink-400">${Math.round((Date.now() - quizStartTime) / 60000)}</div>
+                        <div class="text-sm text-gray-300">Minutes Spent</div>
+                    </div>
+                </div>
+                
+                <div class="bg-black/30 rounded-lg p-6 border border-white/20 mb-6">
+                    <h4 class="font-semibold text-yellow-400 mb-2">📋 Recommendations:</h4>
+                    <p class="text-gray-300">${recommendations}</p>
+                </div>
+                
+                <div class="text-center space-x-4">
+                    <button onclick="startQuiz('practice')" class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-lg transition-colors">
+                        🔄 Retake Quiz
+                    </button>
+                    <button onclick="resetQuiz()" class="bg-gray-600 hover:bg-gray-700 px-6 py-2 rounded-lg transition-colors">
+                        📚 Review Concepts
+                    </button>
+                </div>
+            `;
+        }
+
+        function resetQuiz() {
+            clearInterval(timerInterval);
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'none';
+            document.getElementById('timeRemaining').textContent = '--:--';
+            
+            // Reset quiz status
+            document.getElementById('currentQuestion').textContent = '0';
+            document.getElementById('correctAnswers').textContent = '0';
+            document.getElementById('incorrectAnswers').textContent = '0';
+            
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            quizQuestions = [];
+        }
+    </script>
+</body>
+</html>

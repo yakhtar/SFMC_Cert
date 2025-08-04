@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Case Study Presentation - Panera Bread Digital Optimization</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'slide-in': 'slideIn 0.5s ease-out',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+                        },
+                        'slideIn': {
+                            '0%': { 'transform': 'translateX(-100%)', 'opacity': '0' },
+                            '100%': { 'transform': 'translateX(0)', 'opacity': '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-orange-900 to-amber-900 min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="bg-black/20 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xl font-bold bg-gradient-to-r from-orange-400 to-amber-400 bg-clip-text text-transparent">
+                        🍞 Digital Optimization Case Study
+                    </a>
+                    <span class="text-sm text-gray-300">Panera Bread - Adobe Target Implementation</span>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="adobe_target_interview_prep/" class="text-orange-300 hover:text-orange-200 transition-colors">Adobe Target Hub</a>
+                    <a href="index.html" class="text-orange-300 hover:text-orange-200 transition-colors">🏠 Back to Hub</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                <span class="bg-gradient-to-r from-orange-400 via-amber-400 to-orange-500 bg-clip-text text-transparent animate-gradient-x">
+                    Panera Bread Digital Optimization
+                </span>
+            </h1>
+            <p class="text-xl text-gray-300 mb-4">Enhanced Case Study Presentation</p>
+            <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                🎯 Comprehensive Adobe Target implementation strategy for improving online ordering, customer experience, and revenue optimization
+            </p>
+            
+            <!-- Presentation Controls -->
+            <div class="flex justify-center space-x-4 mt-8">
+                <button onclick="startPresentation()" class="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-lg transition-colors">
+                    🎯 Start Presentation
+                </button>
+                <button onclick="toggleFullScreen()" class="bg-amber-600 hover:bg-amber-700 px-6 py-3 rounded-lg transition-colors">
+                    🖥️ Full Screen
+                </button>
+                <button onclick="downloadPDF()" class="bg-gray-600 hover:bg-gray-700 px-6 py-3 rounded-lg transition-colors">
+                    📄 Download PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- Presentation Slide Container -->
+        <div id="slideshow-container" class="mb-12">
+            <!-- Slide Navigation -->
+            <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20 mb-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex space-x-2">
+                        <button onclick="previousSlide()" class="bg-orange-600/30 hover:bg-orange-600/50 p-2 rounded-lg transition-all">
+                            ← Previous
+                        </button>
+                        <button onclick="nextSlide()" class="bg-orange-600/30 hover:bg-orange-600/50 p-2 rounded-lg transition-all">
+                            Next →
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-lg font-semibold" id="slide-counter">Slide 1 of 15</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button onclick="resetPresentation()" class="bg-gray-600/30 hover:bg-gray-600/50 p-2 rounded-lg transition-all">
+                            🔄 Reset
+                        </button>
+                        <button onclick="toggleAutoPlay()" class="bg-green-600/30 hover:bg-green-600/50 p-2 rounded-lg transition-all" id="autoplay-btn">
+                            ▶️ Auto Play
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-700 rounded-full h-2 mt-4">
+                    <div class="bg-orange-500 h-2 rounded-full transition-all duration-300" id="progress-bar" style="width: 6.67%"></div>
+                </div>
+            </div>
+
+            <!-- Slide Content -->
+            <div id="slide-content" class="bg-white/10 backdrop-blur-md rounded-lg p-8 border border-white/20 min-h-[600px]">
+                <!-- Slides will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Executive Summary Section -->
+        <div id="executive-summary" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">📊 Executive Summary</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- KPI Cards -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 text-center">
+                    <div class="text-3xl font-bold text-green-400 mb-2" id="conversion-lift">+24%</div>
+                    <div class="text-sm text-gray-300">Conversion Rate Lift</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 text-center">
+                    <div class="text-3xl font-bold text-blue-400 mb-2" id="revenue-impact">$2.1M</div>
+                    <div class="text-sm text-gray-300">Annual Revenue Impact</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 text-center">
+                    <div class="text-3xl font-bold text-yellow-400 mb-2" id="aov-increase">+18%</div>
+                    <div class="text-sm text-gray-300">Average Order Value</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 text-center">
+                    <div class="text-3xl font-bold text-purple-400 mb-2" id="customer-satisfaction">+31%</div>
+                    <div class="text-sm text-gray-300">Customer Satisfaction</div>
+                </div>
+            </div>
+
+            <!-- Key Insights -->
+            <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                <h3 class="text-xl font-semibold mb-4 text-orange-400">🔑 Key Strategic Insights</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-green-300 mb-2">What Worked:</h4>
+                        <ul class="text-gray-300 space-y-1 text-sm">
+                            <li>• Personalized menu recommendations based on order history</li>
+                            <li>• Dynamic pricing strategies during peak/off-peak hours</li>
+                            <li>• Location-based customization for local preferences</li>
+                            <li>• Mobile-first checkout optimization</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-amber-300 mb-2">Strategic Recommendations:</h4>
+                        <ul class="text-gray-300 space-y-1 text-sm">
+                            <li>• Expand personalization to loyalty program integration</li>
+                            <li>• Implement AI-driven dynamic content optimization</li>
+                            <li>• Scale successful tests to additional market segments</li>
+                            <li>• Develop cross-channel experience consistency</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Implementation Details -->
+        <div id="technical-details" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">⚙️ Technical Implementation</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Adobe Target Configuration -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-orange-400">🎯 Adobe Target Setup</h3>
+                    <div class="space-y-4">
+                        <div class="bg-black/20 rounded-lg p-4">
+                            <h4 class="font-semibold text-orange-300 mb-2">Implementation Architecture:</h4>
+                            <div class="text-sm text-gray-300 space-y-1">
+                                <div>• <strong>Server-Side:</strong> Node.js integration for faster loading</div>
+                                <div>• <strong>Client-Side:</strong> at.js 2.x for real-time personalization</div>
+                                <div>• <strong>Analytics:</strong> Adobe Analytics integration for detailed reporting</div>
+                                <div>• <strong>Data Sources:</strong> Customer DB, order history, location data</div>
+                            </div>
+                        </div>
+                        <div class="bg-black/20 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-300 mb-2">Key Activities Implemented:</h4>
+                            <div class="text-sm text-gray-300 space-y-1">
+                                <div>• A/B Testing: Homepage hero optimization</div>
+                                <div>• Multivariate Testing: Checkout flow improvements</div>
+                                <div>• Experience Targeting: Location-based menu customization</div>
+                                <div>• Automated Personalization: Dynamic product recommendations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics & Measurement -->
+                <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                    <h3 class="text-xl font-semibold mb-4 text-amber-400">📈 Analytics & Measurement</h3>
+                    <div class="space-y-4">
+                        <div class="bg-black/20 rounded-lg p-4">
+                            <h4 class="font-semibold text-amber-300 mb-2">Success Metrics Framework:</h4>
+                            <div class="text-sm text-gray-300 space-y-1">
+                                <div>• <strong>Primary:</strong> Online order conversion rate</div>
+                                <div>• <strong>Secondary:</strong> Average order value, cart abandonment</div>
+                                <div>• <strong>Engagement:</strong> Menu browsing time, item views</div>
+                                <div>• <strong>Retention:</strong> Repeat order rate, customer lifetime value</div>
+                            </div>
+                        </div>
+                        <div class="bg-black/20 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-300 mb-2">Reporting Dashboard:</h4>
+                            <div class="text-sm text-gray-300 space-y-1">
+                                <div>• Real-time test performance monitoring</div>
+                                <div>• Statistical significance tracking</div>
+                                <div>• Revenue attribution modeling</div>
+                                <div>• Customer segment analysis</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Case Study Deep Dive -->
+        <div id="case-study-details" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">🔍 Case Study Deep Dive</h2>
+            
+            <!-- Tabbed Content -->
+            <div class="bg-white/10 backdrop-blur-md rounded-lg border border-white/20">
+                <!-- Tab Navigation -->
+                <div class="flex border-b border-white/20">
+                    <button onclick="showTab('challenge')" class="tab-button active flex-1 p-4 text-center hover:bg-white/10 transition-colors" data-tab="challenge">
+                        🎯 Challenge
+                    </button>
+                    <button onclick="showTab('strategy')" class="tab-button flex-1 p-4 text-center hover:bg-white/10 transition-colors" data-tab="strategy">
+                        🧠 Strategy
+                    </button>
+                    <button onclick="showTab('execution')" class="tab-button flex-1 p-4 text-center hover:bg-white/10 transition-colors" data-tab="execution">
+                        ⚙️ Execution
+                    </button>
+                    <button onclick="showTab('results')" class="tab-button flex-1 p-4 text-center hover:bg-white/10 transition-colors" data-tab="results">
+                        📊 Results
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="tab-content" class="p-6">
+                    <!-- Challenge Tab -->
+                    <div id="challenge-content" class="tab-content active">
+                        <h3 class="text-2xl font-semibold mb-4 text-orange-400">🎯 Business Challenge</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-red-300 mb-3">Pain Points Identified:</h4>
+                                <ul class="text-gray-300 space-y-2">
+                                    <li class="flex items-start space-x-2">
+                                        <span class="text-red-400 mt-1">•</span>
+                                        <span><strong>Low Conversion Rate:</strong> 2.1% online ordering conversion vs. 3.8% industry average</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <span class="text-red-400 mt-1">•</span>
+                                        <span><strong>High Cart Abandonment:</strong> 73% of users abandoned orders before completion</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <span class="text-red-400 mt-1">•</span>
+                                        <span><strong>Generic Experience:</strong> Same menu and offers shown to all customers</span>
+                                    </li>
+                                    <li class="flex items-start space-x-2">
+                                        <span class="text-red-400 mt-1">•</span>
+                                        <span><strong>Mobile Issues:</strong> 68% mobile traffic but poor mobile ordering experience</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-amber-300 mb-3">Business Impact:</h4>
+                                <div class="bg-black/20 rounded-lg p-4">
+                                    <div class="text-gray-300 space-y-2">
+                                        <div><strong>Revenue Loss:</strong> ~$3.2M annually from poor conversion</div>
+                                        <div><strong>Customer Friction:</strong> High support calls about ordering issues</div>
+                                        <div><strong>Competitive Disadvantage:</strong> Competitors offering better digital experiences</div>
+                                        <div><strong>Growth Limitation:</strong> Digital channel not scaling with customer demand</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Strategy Tab -->
+                    <div id="strategy-content" class="tab-content" style="display: none;">
+                        <h3 class="text-2xl font-semibold mb-4 text-orange-400">🧠 Strategic Approach</h3>
+                        <div class="space-y-6">
+                            <div class="bg-black/20 rounded-lg p-6">
+                                <h4 class="font-semibold text-green-300 mb-3">📋 Testing Roadmap (6-Month Plan):</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="bg-white/10 rounded-lg p-4">
+                                        <div class="font-semibold text-blue-300 mb-2">Phase 1: Foundation</div>
+                                        <ul class="text-sm text-gray-300 space-y-1">
+                                            <li>• Homepage hero optimization</li>
+                                            <li>• Mobile checkout simplification</li>
+                                            <li>• Basic personalization setup</li>
+                                            <li>• Analytics implementation</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-white/10 rounded-lg p-4">
+                                        <div class="font-semibold text-purple-300 mb-2">Phase 2: Optimization</div>
+                                        <ul class="text-sm text-gray-300 space-y-1">
+                                            <li>• Menu recommendation engine</li>
+                                            <li>• Location-based customization</li>
+                                            <li>• Cart abandonment recovery</li>
+                                            <li>• Loyalty integration testing</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-white/10 rounded-lg p-4">
+                                        <div class="font-semibold text-yellow-300 mb-2">Phase 3: Advanced</div>
+                                        <ul class="text-sm text-gray-300 space-y-1">
+                                            <li>• AI-powered recommendations</li>
+                                            <li>• Dynamic pricing tests</li>
+                                            <li>• Cross-channel personalization</li>
+                                            <li>• Advanced segmentation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-black/20 rounded-lg p-6">
+                                <h4 class="font-semibold text-cyan-300 mb-3">🎯 Targeting Strategy:</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h5 class="font-semibold text-cyan-200 mb-2">Customer Segments:</h5>
+                                        <ul class="text-gray-300 space-y-1 text-sm">
+                                            <li>• <strong>Frequent Orderers:</strong> 3+ orders/month, higher AOV</li>
+                                            <li>• <strong>Occasional Users:</strong> 1-2 orders/month, price sensitive</li>
+                                            <li>• <strong>First-Time Visitors:</strong> Never ordered, need conversion</li>
+                                            <li>• <strong>Mobile-Primary:</strong> >80% mobile usage, quick orders</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold text-cyan-200 mb-2">Personalization Triggers:</h5>
+                                        <ul class="text-gray-300 space-y-1 text-sm">
+                                            <li>• Order history and preferences</li>
+                                            <li>• Geographic location and local trends</li>
+                                            <li>• Time of day and seasonal patterns</li>
+                                            <li>• Device type and browsing behavior</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Execution Tab -->
+                    <div id="execution-content" class="tab-content" style="display: none;">
+                        <h3 class="text-2xl font-semibold mb-4 text-orange-400">⚙️ Implementation Details</h3>
+                        <div class="space-y-6">
+                            <!-- Test Examples -->
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="bg-black/20 rounded-lg p-6">
+                                    <h4 class="font-semibold text-green-300 mb-3">🧪 Test #1: Homepage Hero Optimization</h4>
+                                    <div class="space-y-3">
+                                        <div>
+                                            <strong class="text-green-200">Hypothesis:</strong>
+                                            <p class="text-gray-300 text-sm">Featuring popular menu items with appetizing imagery will increase click-through to ordering.</p>
+                                        </div>
+                                        <div>
+                                            <strong class="text-blue-200">Variations:</strong>
+                                            <ul class="text-gray-300 text-sm space-y-1 mt-1">
+                                                <li>• Control: Generic brand messaging</li>
+                                                <li>• Variant A: Featured popular items</li>
+                                                <li>• Variant B: Personalized recommendations</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <strong class="text-yellow-200">Result:</strong>
+                                            <p class="text-gray-300 text-sm">Variant B (personalized) won with +34% CTR to menu</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-black/20 rounded-lg p-6">
+                                    <h4 class="font-semibold text-purple-300 mb-3">🧪 Test #2: Mobile Checkout Flow</h4>
+                                    <div class="space-y-3">
+                                        <div>
+                                            <strong class="text-purple-200">Hypothesis:</strong>
+                                            <p class="text-gray-300 text-sm">Reducing checkout steps from 4 to 2 will decrease mobile cart abandonment.</p>
+                                        </div>
+                                        <div>
+                                            <strong class="text-blue-200">Changes Made:</strong>
+                                            <ul class="text-gray-300 text-sm space-y-1 mt-1">
+                                                <li>• Combined address & payment steps</li>
+                                                <li>• Implemented autofill for returning users</li>
+                                                <li>• Added progress indicators</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <strong class="text-yellow-200">Result:</strong>
+                                            <p class="text-gray-300 text-sm">-28% cart abandonment on mobile devices</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Implementation Timeline -->
+                            <div class="bg-black/20 rounded-lg p-6">
+                                <h4 class="font-semibold text-amber-300 mb-4">📅 Implementation Timeline</h4>
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+                                        <div>
+                                            <div class="font-semibold text-green-300">Month 1-2: Setup & Foundation</div>
+                                            <div class="text-gray-300 text-sm">Adobe Target implementation, analytics setup, initial A/B tests</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
+                                        <div>
+                                            <div class="font-semibold text-blue-300">Month 3-4: Core Optimization</div>
+                                            <div class="text-gray-300 text-sm">Homepage, checkout flow, mobile experience improvements</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-4">
+                                        <div class="w-4 h-4 bg-purple-500 rounded-full"></div>
+                                        <div>
+                                            <div class="font-semibold text-purple-300">Month 5-6: Personalization</div>
+                                            <div class="text-gray-300 text-sm">AI recommendations, location targeting, loyalty integration</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Tab -->
+                    <div id="results-content" class="tab-content" style="display: none;">
+                        <h3 class="text-2xl font-semibold mb-4 text-orange-400">📊 Results & ROI Analysis</h3>
+                        <div class="space-y-6">
+                            <!-- Performance Metrics -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-black/20 rounded-lg p-6">
+                                    <h4 class="font-semibold text-green-300 mb-4">📈 Key Performance Improvements</h4>
+                                    <div class="space-y-4">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-300">Conversion Rate</span>
+                                            <span class="text-green-400 font-bold">2.1% → 2.6% (+24%)</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-300">Average Order Value</span>
+                                            <span class="text-blue-400 font-bold">$24.50 → $28.90 (+18%)</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-300">Mobile Conversion</span>
+                                            <span class="text-purple-400 font-bold">1.8% → 2.4% (+33%)</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-300">Cart Abandonment</span>
+                                            <span class="text-yellow-400 font-bold">73% → 59% (-19%)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-black/20 rounded-lg p-6">
+                                    <h4 class="font-semibold text-amber-300 mb-4">💰 Financial Impact</h4>
+                                    <div class="space-y-4">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-300">Monthly Revenue Lift</span>
+                                            <span class="text-green-400 font-bold">+$175,000</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-300">Annual Projected Impact</span>
+                                            <span class="text-blue-400 font-bold">+$2.1M</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-300">Implementation Cost</span>
+                                            <span class="text-red-400 font-bold">$180,000</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-300">ROI (First Year)</span>
+                                            <span class="text-green-400 font-bold">1,067%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Test Results Detail -->
+                            <div class="bg-black/20 rounded-lg p-6">
+                                <h4 class="font-semibold text-cyan-300 mb-4">🏆 Top Performing Tests</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-sm">
+                                        <thead>
+                                            <tr class="border-b border-white/20">
+                                                <th class="text-left p-3 text-gray-300">Test Name</th>
+                                                <th class="text-left p-3 text-gray-300">Primary Metric</th>
+                                                <th class="text-left p-3 text-gray-300">Lift</th>
+                                                <th class="text-left p-3 text-gray-300">Confidence</th>
+                                                <th class="text-left p-3 text-gray-300">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-gray-300">
+                                            <tr class="border-b border-white/10">
+                                                <td class="p-3">Personalized Homepage</td>
+                                                <td class="p-3">Click-through Rate</td>
+                                                <td class="p-3 text-green-400">+34%</td>
+                                                <td class="p-3">99%</td>
+                                                <td class="p-3 text-green-400">Implemented</td>
+                                            </tr>
+                                            <tr class="border-b border-white/10">
+                                                <td class="p-3">Mobile Checkout Optimization</td>
+                                                <td class="p-3">Conversion Rate</td>
+                                                <td class="p-3 text-green-400">+28%</td>
+                                                <td class="p-3">97%</td>
+                                                <td class="p-3 text-green-400">Implemented</td>
+                                            </tr>
+                                            <tr class="border-b border-white/10">
+                                                <td class="p-3">Location-Based Menu</td>
+                                                <td class="p-3">Order Value</td>
+                                                <td class="p-3 text-green-400">+22%</td>
+                                                <td class="p-3">95%</td>
+                                                <td class="p-3 text-green-400">Implemented</td>
+                                            </tr>
+                                            <tr class="border-b border-white/10">
+                                                <td class="p-3">AI Recommendations</td>
+                                                <td class="p-3">Add-on Items</td>
+                                                <td class="p-3 text-green-400">+45%</td>
+                                                <td class="p-3">98%</td>
+                                                <td class="p-3 text-yellow-400">Testing</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Future Recommendations -->
+                            <div class="bg-black/20 rounded-lg p-6">
+                                <h4 class="font-semibold text-pink-300 mb-4">🚀 Next Steps & Recommendations</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h5 class="font-semibold text-pink-200 mb-2">Short-term (Next 3 months):</h5>
+                                        <ul class="text-gray-300 space-y-1 text-sm">
+                                            <li>• Scale successful tests to all locations</li>
+                                            <li>• Implement advanced AI recommendations</li>
+                                            <li>• A/B test loyalty program integration</li>
+                                            <li>• Launch cross-channel personalization</li>
+                                        </ul>
+                                    </div>
+                                    <div>  
+                                        <h5 class="font-semibold text-pink-200 mb-2">Long-term (6-12 months):</h5>
+                                        <ul class="text-gray-300 space-y-1 text-sm">
+                                            <li>• Predictive analytics for demand forecasting</li>
+                                            <li>• Voice ordering optimization testing</li>
+                                            <li>• Catering experience personalization</li>
+                                            <li>• Advanced customer journey mapping</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Q&A Section -->
+        <div id="qa-section" class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-center">❓ Interactive Q&A</h2>
+            
+            <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20">
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold mb-4">Test Your Understanding</h3>
+                    <p class="text-gray-300">Answer these questions about the Panera Bread optimization case study:</p>
+                </div>
+
+                <div id="qa-container">
+                    <!-- Q&A will be loaded here -->
+                </div>
+
+                <div class="text-center mt-6">
+                    <button onclick="startQA()" class="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-lg transition-colors">
+                        🧠 Start Q&A Session
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="text-center py-8">
+            <div class="space-x-4">
+                <a href="adobe_target_interview_prep/" class="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    🎯 Adobe Target Hub
+                </a>
+                <a href="enhanced_sfmc_certification_mastery.html" class="bg-amber-600 hover:bg-amber-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    📚 SFMC Certification
+                </a>
+                <a href="index.html" class="bg-gray-600 hover:bg-gray-700 px-6 py-3 rounded-lg transition-colors inline-block">
+                    🏠 Back to Hub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Slide data for the presentation
+        const slides = [
+            {
+                title: "Panera Bread Digital Optimization",
+                subtitle: "Adobe Target Implementation Case Study",
+                content: `
+                    <div class="text-center">
+                        <div class="text-6xl mb-6">🍞</div>
+                        <h1 class="text-4xl font-bold mb-4">Panera Bread Digital Optimization</h1>
+                        <h2 class="text-2xl text-orange-400 mb-6">Adobe Target Implementation Case Study</h2>
+                        <div class="bg-black/20 rounded-lg p-6 max-w-2xl mx-auto">
+                            <p class="text-lg text-gray-300 mb-4">Transforming online ordering experience through strategic A/B testing and personalization</p>
+                            <div class="flex justify-center space-x-8 text-sm">
+                                <div><strong class="text-green-400">+24%</strong> Conversion</div>
+                                <div><strong class="text-blue-400">+18%</strong> AOV</div>
+                                <div><strong class="text-yellow-400">$2.1M</strong> Revenue Impact</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "The Challenge",
+                content: `
+                    <h2 class="text-3xl font-bold mb-6 text-orange-400">🎯 The Challenge</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-red-300">Key Pain Points</h3>
+                            <ul class="space-y-3 text-gray-300">
+                                <li class="flex items-start space-x-3">
+                                    <span class="text-red-400 text-xl">📉</span>
+                                    <div>
+                                        <strong>Low Conversion Rate:</strong> 2.1% vs 3.8% industry average
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="text-red-400 text-xl">🛒</span>
+                                    <div>
+                                        <strong>High Cart Abandonment:</strong> 73% abandonment rate
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="text-red-400 text-xl">📱</span>
+                                    <div>
+                                        <strong>Mobile Issues:</strong> Poor experience despite 68% mobile traffic
+                                    </div>
+                                </li>
+                                <li class="flex items-start space-x-3">
+                                    <span class="text-red-400 text-xl">👤</span>
+                                    <div>
+                                        <strong>Generic Experience:</strong> No personalization or targeting
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-amber-300">Business Impact</h3>
+                            <div class="bg-black/20 rounded-lg p-6">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between">
+                                        <span>Annual Revenue Loss:</span>
+                                        <span class="text-red-400 font-bold">$3.2M</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Customer Support Load:</span>
+                                        <span class="text-yellow-400 font-bold">+40%</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>Competitive Position:</span>
+                                        <span class="text-red-400 font-bold">Behind</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "Strategic Approach",
+                content: `
+                    <h2 class="text-3xl font-bold mb-6 text-orange-400">🧠 Strategic Approach</h2>
+                    <div class="space-y-6">
+                        <div class="bg-black/20 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold mb-4 text-green-300">📋 6-Month Testing Roadmap</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="bg-white/10 rounded-lg p-4">
+                                    <h4 class="font-bold text-blue-300 mb-2">Phase 1: Foundation</h4>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Homepage optimization</li>
+                                        <li>• Mobile checkout fix</li>
+                                        <li>• Basic personalization</li>
+                                        <li>• Analytics setup</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white/10 rounded-lg p-4">
+                                    <h4 class="font-bold text-purple-300 mb-2">Phase 2: Optimization</h4>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• Menu recommendations</li>
+                                        <li>• Location targeting</li>
+                                        <li>• Cart recovery</li>
+                                        <li>• Loyalty integration</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-white/10 rounded-lg p-4">
+                                    <h4 class="font-bold text-yellow-300 mb-2">Phase 3: Advanced</h4>
+                                    <ul class="text-sm space-y-1">
+                                        <li>• AI recommendations</li>
+                                        <li>• Dynamic pricing</li>
+                                        <li>• Cross-channel sync</li>
+                                        <li>• Advanced segments</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-black/20 rounded-lg p-6">
+                            <h3 class="text-xl font-semibold mb-4 text-cyan-300">🎯 Customer Segmentation Strategy</h3>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div class="text-center">
+                                    <div class="text-2xl mb-2">🔄</div>
+                                    <div class="font-semibold text-cyan-200">Frequent Orderers</div>
+                                    <div class="text-sm text-gray-300">3+ orders/month</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl mb-2">⏰</div>
+                                    <div class="font-semibold text-green-200">Occasional Users</div>
+                                    <div class="text-sm text-gray-300">1-2 orders/month</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl mb-2">👋</div>
+                                    <div class="font-semibold text-yellow-200">First-Time Visitors</div>
+                                    <div class="text-sm text-gray-300">Never ordered</div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-2xl mb-2">📱</div>
+                                    <div class="font-semibold text-purple-200">Mobile-Primary</div>
+                                    <div class="text-sm text-gray-300">80%+ mobile</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+        ];
+
+        // Q&A Data
+        const qaQuestions = [
+            {
+                question: "What was Panera's initial online ordering conversion rate before optimization?",
+                options: ["1.8%", "2.1%", "2.6%", "3.8%"],
+                correct: 1,
+                explanation: "Panera's baseline conversion rate was 2.1%, which was significantly below the industry average of 3.8%, indicating a major optimization opportunity."
+            },
+            {
+                question: "Which test delivered the highest performance improvement?",
+                options: ["Mobile checkout optimization (+28%)", "Location-based menu (+22%)", "Personalized homepage (+34%)", "AI recommendations (+45%)"],
+                correct: 3,
+                explanation: "AI recommendations delivered the highest lift at +45% for add-on items, though this was still in testing phase during the case study period."
+            },
+            {
+                question: "What was the primary reason for implementing server-side testing?",
+                options: ["Lower cost", "Faster page load times", "Better analytics", "Easier implementation"],
+                correct: 1,
+                explanation: "Server-side testing was implemented primarily to improve page load times and reduce the impact of testing on site performance, especially important for mobile users."
+            },
+            {
+                question: "What was the calculated ROI for the first year of implementation?",
+                options: ["567%", "789%", "1,067%", "1,245%"],
+                correct: 2,
+                explanation: "With $2.1M annual revenue impact against $180K implementation cost, the ROI was calculated at 1,067% for the first year."
+            }
+        ];
+
+        // Presentation State
+        let currentSlide = 0;
+        let autoPlayInterval = null;
+        let isAutoPlaying = false;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(0);
+        });
+
+        // Presentation Functions
+        function startPresentation() {
+            currentSlide = 0;
+            showSlide(0);
+            document.getElementById('slideshow-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showSlide(index) {
+            if (index < 0) index = slides.length - 1;
+            if (index >= slides.length) index = 0;
+            
+            currentSlide = index;
+            
+            const slideContent = document.getElementById('slide-content');
+            slideContent.innerHTML = slides[index].content;
+            
+            // Update counter and progress
+            document.getElementById('slide-counter').textContent = `Slide ${index + 1} of ${slides.length}`;
+            const progress = ((index + 1) / slides.length) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetPresentation() {
+            currentSlide = 0;
+            showSlide(0);
+            if (isAutoPlaying) {
+                clearInterval(autoPlayInterval);
+                isAutoPlaying = false;
+                document.getElementById('autoplay-btn').textContent = '▶️ Auto Play';
+            }
+        }
+
+        function toggleAutoPlay() {
+            if (isAutoPlaying) {
+                clearInterval(autoPlayInterval);
+                isAutoPlaying = false;
+                document.getElementById('autoplay-btn').textContent = '▶️ Auto Play';
+            } else {
+                autoPlayInterval = setInterval(() => {
+                    if (currentSlide < slides.length - 1) {
+                        nextSlide();
+                    } else {
+                        clearInterval(autoPlayInterval);
+                        isAutoPlaying = false;
+                        document.getElementById('autoplay-btn').textContent = '▶️ Auto Play';
+                    }
+                }, 5000);
+                isAutoPlaying = true;
+                document.getElementById('autoplay-btn').textContent = '⏸️ Pause';
+            }
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        function downloadPDF() {
+            // This would integrate with a PDF generation service
+            alert('📄 PDF download functionality would be implemented with a service like Puppeteer or similar.');
+        }
+
+        // Tab Functions
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-content').style.display = 'block';
+            
+            // Add active class to selected tab button
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+        }
+
+        // Q&A Functions
+        let currentQAIndex = 0;
+        let qaScore = 0;
+        let qaStarted = false;
+
+        function startQA() {
+            qaStarted = true;
+            currentQAIndex = 0;
+            qaScore = 0;
+            showQAQuestion();
+        }
+
+        function showQAQuestion() {
+            if (currentQAIndex >= qaQuestions.length) {
+                showQAResults();
+                return;
+            }
+
+            const question = qaQuestions[currentQAIndex];
+            const container = document.getElementById('qa-container');
+            
+            container.innerHTML = `
+                <div class="bg-black/20 rounded-lg p-6">
+                    <div class="mb-4">
+                        <span class="bg-orange-600/30 px-3 py-1 rounded-full text-sm">Question ${currentQAIndex + 1} of ${qaQuestions.length}</span>
+                    </div>
+                    <h4 class="text-xl font-semibold mb-4">${question.question}</h4>
+                    <div class="space-y-3 mb-6">
+                        ${question.options.map((option, index) => `
+                            <button onclick="selectQAAnswer(${index})" 
+                                    class="w-full text-left p-4 bg-white/10 hover:bg-white/20 rounded-lg border border-white/20 hover:border-orange-400/50 transition-all qa-option">
+                                ${String.fromCharCode(65 + index)}) ${option}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectQAAnswer(selectedIndex) {
+            const question = qaQuestions[currentQAIndex];
+            const isCorrect = selectedIndex === question.correct;
+            
+            if (isCorrect) qaScore++;
+            
+            // Show feedback
+            const container = document.getElementById('qa-container');
+            container.innerHTML += `
+                <div class="bg-black/30 rounded-lg p-4 mt-4 border-l-4 ${isCorrect ? 'border-green-400' : 'border-red-400'}">
+                    <div class="flex items-center mb-2">
+                        <span class="text-lg mr-2">${isCorrect ? '✅' : '❌'}</span>
+                        <span class="font-semibold ${isCorrect ? 'text-green-400' : 'text-red-400'}">
+                            ${isCorrect ? 'Correct!' : 'Incorrect'}
+                        </span>
+                    </div>
+                    <p class="text-gray-300 text-sm">${question.explanation}</p>
+                    <div class="mt-4">
+                        <button onclick="nextQAQuestion()" class="bg-orange-600 hover:bg-orange-700 px-4 py-2 rounded-lg transition-colors">
+                            ${currentQAIndex === qaQuestions.length - 1 ? 'View Results' : 'Next Question →'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function nextQAQuestion() {
+            currentQAIndex++;
+            showQAQuestion();
+        }
+
+        function showQAResults() {
+            const percentage = Math.round((qaScore / qaQuestions.length) * 100);
+            const container = document.getElementById('qa-container');
+            
+            container.innerHTML = `
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold mb-4">🎉 Q&A Complete!</h3>
+                    <div class="text-6xl font-bold text-orange-400 mb-4">${percentage}%</div>
+                    <p class="text-gray-300 mb-6">You scored ${qaScore} out of ${qaQuestions.length} questions correctly.</p>
+                    <button onclick="startQA()" class="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-lg transition-colors">
+                        🔄 Try Again
+                    </button>
+                </div>
+            `;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                showSlide(0);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                showSlide(slides.length - 1);
+            }
+        });
+
+        // Add CSS for active tab
+        const style = document.createElement('style');
+        style.textContent = `
+            .tab-button.active {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-bottom: 2px solid #fb923c;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

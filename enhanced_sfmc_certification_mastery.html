@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Email Specialist Certification Mastery - Northern Trail Outfitters Focus</title>
+    <meta name="description" content="Comprehensive SFMC Email Specialist certification preparation with Northern Trail Outfitters context, simple explanations, and advanced practice scenarios.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        .question-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .option-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .option-card:hover {
+            background-color: #f3f4f6;
+            transform: translateX(4px);
+        }
+        .option-card.selected {
+            background-color: #dbeafe;
+            border-color: #3b82f6;
+        }
+        .option-card.correct {
+            background-color: #dcfce7;
+            border-color: #16a34a;
+        }
+        .option-card.incorrect {
+            background-color: #fecaca;
+            border-color: #dc2626;
+        }
+        .domain-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-data { background: #dbeafe; color: #1d4ed8; }
+        .badge-content { background: #f3e8ff; color: #7c2d12; }
+        .badge-automation { background: #dcfce7; color: #15803d; }
+        .badge-analytics { background: #fef3c7; color: #d97706; }
+        .badge-practices { background: #fce7f3; color: #be185d; }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-home text-blue-600 mr-2"></i>
+                        Hub
+                    </a>
+                    <div class="ml-8 text-lg font-semibold text-gray-800">
+                        <i class="fas fa-envelope text-blue-600 mr-2"></i>
+                        SFMC Certification Mastery
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-6">
+                    <div class="text-sm text-gray-600">
+                        <i class="fas fa-mountain text-green-600 mr-1"></i>
+                        Northern Trail Outfitters Context
+                    </div>
+                    <div id="progressIndicator" class="hidden items-center space-x-2">
+                        <span class="text-sm text-gray-600">Progress:</span>
+                        <div class="w-24 bg-gray-200 rounded-full h-2">
+                            <div id="overallProgress" class="bg-blue-600 h-2 rounded-full progress-bar" style="width: 0%"></div>
+                        </div>
+                        <span id="progressText" class="text-sm font-medium text-blue-600">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center text-white">
+                <h1 class="text-5xl lg:text-6xl font-bold mb-6">
+                    SFMC Email Specialist
+                    <span class="block text-yellow-300">Certification Mastery</span>
+                </h1>
+                <p class="text-xl mb-8 text-gray-100 max-w-3xl mx-auto">
+                    Comprehensive certification preparation with Northern Trail Outfitters context, simple explanations, 
+                    and advanced practice scenarios. Master all 5 certification domains with confidence.
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto mb-8">
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold">26%</div>
+                        <div class="text-sm">Subscriber & Data</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold">24%</div>
+                        <div class="text-sm">Content Creation</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold">26%</div>
+                        <div class="text-sm">Marketing Automation</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold">14%</div>
+                        <div class="text-sm">Analytics</div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-4 text-center">
+                        <div class="text-2xl font-bold">10%</div>
+                        <div class="text-sm">Best Practices</div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button id="startPractice" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-play mr-2"></i>Start Practice Mode
+                    </button>
+                    <button id="startExam" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                        <i class="fas fa-stopwatch mr-2"></i>Take Timed Exam
+                    </button>
+                    <button id="reviewMode" class="bg-yellow-500 text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+                        <i class="fas fa-book mr-2"></i>Study Guide
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mode Selection -->
+    <section id="modeSelection" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Choose Your Learning Path</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Structured learning approach with Northern Trail Outfitters context for real-world application.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Practice Mode -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8 card-hover border-l-4 border-green-500">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-dumbbell text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Practice Mode</h3>
+                    <p class="text-gray-700 mb-6">
+                        Unlimited practice with immediate feedback, simple explanations, and NTO outdoor gear scenarios. 
+                        Perfect for learning and mastering concepts.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>300+ practice questions</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Immediate explanations</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>NTO context examples</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Domain-specific practice</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Progress tracking</li>
+                    </ul>
+                    <button class="mode-btn w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors" data-mode="practice">
+                        Start Practicing
+                    </button>
+                </div>
+
+                <!-- Exam Mode -->
+                <div class="bg-gradient-to-br from-red-50 to-rose-100 rounded-2xl p-8 card-hover border-l-4 border-red-500">
+                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-stopwatch text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Exam Simulation</h3>
+                    <p class="text-gray-700 mb-6">
+                        Realistic exam conditions with 60 questions, 90-minute timer, and detailed performance analysis. 
+                        Test your certification readiness.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>60 questions, 90 minutes</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Real exam conditions</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>65% passing score</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Domain breakdown analysis</li>
+                        <li><i class="fas fa-check text-red-500 mr-2"></i>Detailed score report</li>
+                    </ul>
+                    <button class="mode-btn w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors" data-mode="exam">
+                        Take Practice Exam
+                    </button>
+                </div>
+
+                <!-- Study Guide -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 card-hover border-l-4 border-blue-500">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-book text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Study Guide</h3>
+                    <p class="text-gray-700 mb-6">
+                        Comprehensive study materials with concept explanations, NTO examples, and certification tips. 
+                        Learn at your own pace.
+                    </p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>All 5 certification domains</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Simple explanations</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Real-world examples</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Interactive learning</li>
+                        <li><i class="fas fa-check text-blue-500 mr-2"></i>Certification tips</li>
+                    </ul>
+                    <button class="mode-btn w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors" data-mode="study">
+                        View Study Guide
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Interface -->
+    <section id="quizInterface" class="py-20 bg-gray-50 hidden">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Quiz Header -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 id="quizTitle" class="text-3xl font-bold text-gray-900">SFMC Practice Mode</h2>
+                        <p id="quizSubtitle" class="text-gray-600 mt-2">Northern Trail Outfitters Context</p>
+                    </div>
+                    <div class="text-right">
+                        <div id="timerDisplay" class="text-3xl font-bold text-blue-600 hidden">
+                            <i class="fas fa-clock mr-2"></i><span id="timeRemaining">90:00</span>
+                        </div>
+                        <div id="questionProgress" class="text-lg text-gray-600">
+                            Question <span id="currentQuestion">1</span> of <span id="totalQuestions">60</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-200 rounded-full h-3 mb-4">
+                    <div id="progressBar" class="bg-blue-600 h-3 rounded-full progress-bar" style="width: 0%"></div>
+                </div>
+                
+                <!-- Domain Filter -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <button class="domain-filter active px-3 py-1 rounded-full text-xs font-semibold bg-gray-900 text-white" data-domain="all">
+                        All Domains
+                    </button>
+                    <button class="domain-filter px-3 py-1 rounded-full text-xs font-semibold badge-data" data-domain="data">
+                        Subscriber & Data (26%)
+                    </button>
+                    <button class="domain-filter px-3 py-1 rounded-full text-xs font-semibold badge-content" data-domain="content">
+                        Content Creation (24%)
+                    </button>
+                    <button class="domain-filter px-3 py-1 rounded-full text-xs font-semibold badge-automation" data-domain="automation">
+                        Marketing Automation (26%)
+                    </button>
+                    <button class="domain-filter px-3 py-1 rounded-full text-xs font-semibold badge-analytics" data-domain="analytics">
+                        Analytics (14%)
+                    </button>
+                    <button class="domain-filter px-3 py-1 rounded-full text-xs font-semibold badge-practices" data-domain="practices">
+                        Best Practices (10%)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div id="questionCard" class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <div class="mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span id="domainBadge" class="domain-badge badge-data">Subscriber & Data Management</span>
+                        <span id="difficultyBadge" class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">Intermediate</span>
+                    </div>
+                    <h3 id="questionText" class="text-xl font-semibold text-gray-900 mb-2">Question text will appear here...</h3>
+                    <div id="questionContext" class="text-sm text-gray-600 bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500 hidden">
+                        <strong>NTO Context:</strong> <span id="contextText"></span>
+                    </div>
+                </div>
+
+                <div id="optionsContainer" class="space-y-4 mb-8">
+                    <!-- Options will be populated by JavaScript -->
+                </div>
+
+                <div id="explanationContainer" class="hidden">
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-lg">
+                        <h4 class="text-lg font-semibold text-yellow-800 mb-3">
+                            <i class="fas fa-lightbulb mr-2"></i>Simple Explanation
+                        </h4>
+                        <p id="simpleExplanation" class="text-yellow-700 mb-4"></p>
+                        <h4 class="text-lg font-semibold text-yellow-800 mb-3">
+                            <i class="fas fa-mountain mr-2"></i>NTO Example
+                        </h4>
+                        <p id="ntoExample" class="text-yellow-700 mb-4"></p>
+                        <h4 class="text-lg font-semibold text-yellow-800 mb-3">
+                            <i class="fas fa-graduation-cap mr-2"></i>Certification Tip
+                        </h4>
+                        <p id="certificationTip" class="text-yellow-700"></p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="flex justify-between items-center mt-8">
+                    <button id="prevQuestion" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-arrow-left mr-2"></i>Previous
+                    </button>
+                    
+                    <div class="flex space-x-4">
+                        <button id="submitAnswer" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                            Submit Answer
+                        </button>
+                        <button id="nextQuestion" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors hidden">
+                            Next Question <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                    
+                    <button id="finishQuiz" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors hidden">
+                        <i class="fas fa-flag-checkered mr-2"></i>Finish Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="resultsSection" class="py-20 bg-white hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Your Results</h2>
+                <p class="text-xl text-gray-600">Detailed performance analysis and certification readiness assessment</p>
+            </div>
+
+            <!-- Score Display -->
+            <div id="scoreCard" class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-8 text-white text-center mb-12">
+                <div class="mb-4">
+                    <div id="scorePercentage" class="text-6xl font-bold mb-2">85%</div>
+                    <div id="scoreStatus" class="text-2xl font-semibold">PASS - Certification Ready!</div>
+                    <div id="scoreDetails" class="text-lg opacity-90 mt-2">52 out of 60 questions correct</div>
+                </div>
+                <div class="grid grid-cols-3 gap-8 mt-8">
+                    <div>
+                        <div class="text-3xl font-bold" id="correctAnswers">52</div>
+                        <div class="text-sm opacity-90">Correct</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold" id="incorrectAnswers">8</div>
+                        <div class="text-sm opacity-90">Incorrect</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold" id="timeUsed">72:45</div>
+                        <div class="text-sm opacity-90">Time Used</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domain Performance -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Performance by Domain</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <div class="font-semibold text-gray-900">Subscriber & Data Management</div>
+                                <div class="text-sm text-gray-600">26% of exam weight</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-green-600">92%</div>
+                                <div class="text-sm text-gray-600">11/12 correct</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <div class="font-semibold text-gray-900">Content Creation & Delivery</div>
+                                <div class="text-sm text-gray-600">24% of exam weight</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-green-600">88%</div>
+                                <div class="text-sm text-gray-600">14/16 correct</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <div class="font-semibold text-gray-900">Marketing Automation</div>
+                                <div class="text-sm text-gray-600">26% of exam weight</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-yellow-600">75%</div>
+                                <div class="text-sm text-gray-600">12/16 correct</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <div class="font-semibold text-gray-900">Insights & Analytics</div>
+                                <div class="text-sm text-gray-600">14% of exam weight</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-green-600">90%</div>
+                                <div class="text-sm text-gray-600">9/10 correct</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                            <div>
+                                <div class="font-semibold text-gray-900">Email Marketing Best Practices</div>
+                                <div class="text-sm text-gray-600">10% of exam weight</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-green-600">100%</div>
+                                <div class="text-sm text-gray-600">6/6 correct</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">Recommendations</h3>
+                    <div class="space-y-6">
+                        <div class="p-4 bg-green-50 border-l-4 border-green-500 rounded-lg">
+                            <h4 class="font-semibold text-green-800 mb-2">
+                                <i class="fas fa-check-circle mr-2"></i>Strengths
+                            </h4>
+                            <ul class="text-sm text-green-700 space-y-1">
+                                <li>• Excellent understanding of data management concepts</li>
+                                <li>• Strong grasp of email best practices and compliance</li>
+                                <li>• Good performance on analytics and reporting questions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg">
+                            <h4 class="font-semibold text-yellow-800 mb-2">
+                                <i class="fas fa-exclamation-triangle mr-2"></i>Areas for Improvement
+                            </h4>
+                            <ul class="text-sm text-yellow-700 space-y-1">
+                                <li>• Focus more on Marketing Automation concepts</li>
+                                <li>• Review Journey Builder advanced features</li>
+                                <li>• Practice AMPscript and dynamic content scenarios</li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 mb-2">
+                                <i class="fas fa-lightbulb mr-2"></i>Study Recommendations
+                            </h4>
+                            <ul class="text-sm text-blue-700 space-y-1">
+                                <li>• Complete NTO Journey Builder scenarios</li>
+                                <li>• Practice automation studio workflows</li>
+                                <li>• Review triggered send configurations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="text-center space-y-4">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button id="retakeQuiz" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-redo mr-2"></i>Retake Quiz
+                    </button>
+                    <button id="reviewAnswers" class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                        <i class="fas fa-eye mr-2"></i>Review Answers
+                    </button>
+                    <button id="studyWeakAreas" class="bg-yellow-600 text-white px-8 py-3 rounded-lg hover:bg-yellow-700 transition-colors">
+                        <i class="fas fa-book mr-2"></i>Study Weak Areas
+                    </button>
+                    <a href="index.html" class="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-colors inline-block">
+                        <i class="fas fa-home mr-2"></i>Back to Hub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Enhanced SFMC Question Bank with NTO Context
+        const questionBank = {
+            "data_management": [
+                {
+                    question: "🏔️ Northern Trail Outfitters wants to track customers across their website, mobile app, and retail stores. What should be their primary Contact Key strategy?",
+                    options: [
+                        "Use email address as the primary key for all touchpoints",
+                        "Create separate Contact Models for web, mobile, and retail",
+                        "Use a unified customer ID that links all touchpoints together",
+                        "Use phone numbers since they're more consistent than emails"
+                    ],
+                    correct: 2,
+                    domain: "Subscriber & Data Management",
+                    difficulty: "Advanced",
+                    simpleExplanation: "Think of a Contact Key like a customer's ID card that works everywhere. NTO needs one ID that follows customers whether they're shopping online, using the mobile app, or visiting a store - so they can see that it's the same person everywhere.",
+                    ntoExample: "When Sarah browses hiking boots on NTO's website, then uses the mobile app to check store inventory, then buys the boots in-store, NTO needs to know it's all the same Sarah. A unified customer ID (like loyalty number) connects all these touchpoints, while separate email addresses or phone numbers might not link together.",
+                    certificationTip: "The Contact Key is the foundation of your entire SFMC data architecture. For multi-channel businesses like NTO, always choose a key that works across ALL customer touchpoints. Email addresses change and aren't always available (cash customers), so a customer/loyalty ID is usually best."
+                },
+                {
+                    question: "🎿 NTO's winter sports customers often shop seasonally. How should they structure their Contact Builder populations to optimize targeting?",
+                    options: [
+                        "Create separate populations for each sport (skiing, snowboarding, ice climbing)",
+                        "Use a single population with Data Extensions for different customer attributes",
+                        "Create populations based on purchase timing (early season, peak season, late season)",
+                        "Separate populations for equipment buyers vs. apparel buyers"
+                    ],
+                    correct: 1,
+                    domain: "Subscriber & Data Management",
+                    difficulty: "Intermediate",
+                    simpleExplanation: "Populations in Contact Builder are like big filing cabinets where you store all your customer information. Instead of having many small cabinets (populations) for different things, it's better to have one big organized cabinet with different drawers (Data Extensions) for different types of information.",
+                    ntoExample: "Instead of separate populations for 'Skiers', 'Snowboarders', and 'Winter Hikers', NTO should have one 'Customers' population with Data Extensions for 'Sports Preferences', 'Purchase History', and 'Seasonal Activity'. This way, a customer who both skis AND snowboards appears once, with all their interests tracked in different data tables.",
+                    certificationTip: "Avoid creating multiple populations that could overlap. Use one primary population (usually 'All Contacts' or 'Customers') and leverage Data Extensions and related data to segment and target. This prevents data duplication and makes reporting much cleaner."
+                },
+                {
+                    question: "🥾 NTO wants to send personalized emails based on customers' hiking experience level (Beginner, Intermediate, Expert). What's the best way to store and use this data?",
+                    options: [
+                        "Store in Contact Attributes as a single 'Hiking Level' field",
+                        "Create separate Data Extensions for each experience level",
+                        "Use a related Data Extension with experience level and associated product recommendations",
+                        "Store as email preferences in Subscription Center"
+                    ],
+                    correct: 2,
+                    domain: "Subscriber & Data Management",
+                    difficulty: "Intermediate",
+                    simpleExplanation: "The best approach is like having a detailed customer file that not only stores their hiking level, but also connects that level to specific product recommendations and content. This way, when you know someone is a 'Beginner', you automatically know what gear and advice to show them.",
+                    ntoExample: "NTO creates a 'Customer Hiking Profile' Data Extension that stores: Customer ID, Hiking Level (Beginner/Intermediate/Expert), Recommended Gear Categories, Content Preferences, and Safety Level. When sending emails, they can automatically show beginners basic trail tips and starter gear, while showing experts advanced equipment and challenging trail guides.",
+                    certificationTip: "Related Data Extensions are powerful for storing complex customer attributes with associated data. This approach allows for dynamic content that changes based on the customer's profile, making emails much more relevant and personalized."
+                },
+                {
+                    question: "⛰️ NTO collects customer data from multiple sources: website, mobile app, retail stores, and customer service. What's the most important consideration for data quality?",
+                    options: [
+                        "Ensuring all data is collected in real-time",
+                        "Having identical field formats and validation rules across all sources",
+                        "Storing all data in separate Data Extensions by source",
+                        "Prioritizing mobile app data since it's most frequently updated"
+                    ],
+                    correct: 1,
+                    domain: "Subscriber & Data Management",
+                    difficulty: "Advanced",
+                    simpleExplanation: "Data quality is like having everyone in your company speak the same language and use the same filing system. If the website stores phone numbers as '555-123-4567' but the app stores them as '5551234567', your computer can't tell they're the same person calling.",
+                    ntoExample: "When a customer updates their address on NTO's website, in the mobile app, and tells customer service on the phone, all three systems need to store that address in exactly the same format. If website uses 'Street', app uses 'St.', and phone uses 'Street Ave', the customer ends up with three different addresses in SFMC, causing confused and duplicate mailings.",
+                    certificationTip: "Data standardization is crucial for Contact Builder to work properly. Establish clear data formats, validation rules, and naming conventions across all data sources BEFORE starting to collect data. It's much harder to clean up inconsistent data later than to prevent it upfront."
+                }
+            ],
+            "content_creation": [
+                {
+                    question: "🏕️ NTO wants to create a camping gear email that shows different products based on the recipient's preferred camping style (car camping, backpacking, glamping). What's the best approach?",
+                    options: [
+                        "Create three separate emails for each camping style",
+                        "Use AMPscript with conditional statements to show different content blocks",
+                        "Use dynamic content rules in Content Builder",
+                        "Send a generic email with all products and let customers choose"
+                    ],
+                    correct: 2,
+                    domain: "Content Creation & Delivery",
+                    difficulty: "Intermediate",
+                    simpleExplanation: "Dynamic content is like having a smart email that automatically shows the right products to each person. Instead of creating separate emails or writing complex code, you set up rules that say 'If someone likes backpacking, show lightweight gear. If they like car camping, show larger, heavier items.'",
+                    ntoExample: "NTO creates one email template with dynamic content rules: 'Car Campers' see spacious family tents, camp stoves, and coolers. 'Backpackers' see ultralight tents, portable stoves, and water purification. 'Glampers' see comfort items like camp chairs, lanterns, and portable showers. Same email, personalized content for each customer.",
+                    certificationTip: "Dynamic content in Content Builder is easier to manage than AMPscript for simple personalization rules. Use it when you have clear, straightforward conditions (like customer segments or preferences). Save AMPscript for more complex logic and calculations."
+                },
+                {
+                    question: "🧗‍♀️ NTO's email designer wants to ensure their climbing gear emails look good on mobile devices. What's the most important design principle?",
+                    options: [
+                        "Use a single column layout with large, tappable buttons",
+                        "Include as many product images as possible",
+                        "Use small fonts to fit more content",
+                        "Design for desktop first, then adapt for mobile"
+                    ],
+                    correct: 0,
+                    domain: "Content Creation & Delivery",
+                    difficulty: "Basic",
+                    simpleExplanation: "Mobile-first email design is like designing a poster that people will read while walking - everything needs to be big, clear, and easy to tap with your thumb. Single columns are easier to read on small screens than multiple columns squished together.",
+                    ntoExample: "NTO's climbing gear email uses one column showing one product at a time, with large product images, big 'Shop Now' buttons that are easy to tap, and headlines large enough to read without zooming. The email looks clean and professional on both phones and computers, but prioritizes the phone experience since 65% of customers read emails on mobile.",
+                    certificationTip: "Mobile-first design is essential - over 60% of emails are opened on mobile devices. Use single column layouts, buttons at least 44px tall, fonts 14px or larger, and test on actual mobile devices, not just desktop browser windows made smaller."
+                },
+                {
+                    question: "⛷️ NTO wants to send a ski equipment email with personalized product recommendations. The email should show the customer's name, their preferred ski type, and recommended products. What's the most efficient approach?",
+                    options: [
+                        "Use AMPscript to pull data from multiple Data Extensions",
+                        "Create separate content blocks for each customer segment",
+                        "Use personalization strings for basic fields and dynamic content for products",
+                        "Build the entire email using HTML and AMPscript from scratch"
+                    ],
+                    correct: 2,
+                    domain: "Content Creation & Delivery",
+                    difficulty: "Advanced",
+                    simpleExplanation: "This is like building an email with both simple fill-in-the-blanks (for name and ski type) and smart recommendation sections (for products). Use the easy personalization for simple fields, and save the powerful dynamic content features for the complex product recommendations.",
+                    ntoExample: "NTO's email says 'Hi %%FirstName%%, here are ski recommendations for %%SkiType%% skiing:' for the simple personalization, then uses dynamic content rules to show 'All-Mountain Skis' section for recreational skiers, 'Racing Skis' for competitive skiers, or 'Powder Skis' for backcountry skiers.",
+                    certificationTip: "Combine personalization strings (%%FieldName%%) for simple field replacement with dynamic content for complex conditional logic. This approach is more maintainable than writing everything in AMPscript and more powerful than using only basic personalization."
+                }
+            ],
+            "marketing_automation": [
+                {
+                    question: "🎒 NTO wants to create an automated journey for customers who abandon their cart with outdoor gear. What's the most effective sequence for a 3-email journey?",
+                    options: [
+                        "Email 1: Generic reminder, Email 2: 10% discount, Email 3: 20% discount",
+                        "Email 1: Personalized reminder with cart contents, Email 2: Social proof + reviews, Email 3: Urgency + final discount",
+                        "Email 1: Company information, Email 2: Product catalog, Email 3: Contact information",
+                        "Email 1: Discount offer, Email 2: Alternative products, Email 3: Company benefits"
+                    ],
+                    correct: 1,
+                    domain: "Marketing Automation",
+                    difficulty: "Advanced",
+                    simpleExplanation: "The best abandoned cart journey is like a helpful salesperson who: 1) Reminds you what you were looking at, 2) Shows you that other people love those products, and 3) Creates a reason to buy now (urgency + final incentive). Each email has a different job to do.",
+                    ntoExample: "Email 1 (2 hours later): 'Hi Sarah! You left these hiking boots in your cart...' with product images. Email 2 (24 hours): 'These boots have 500+ 5-star reviews!' with customer testimonials. Email 3 (3 days): 'Only 2 pairs left in your size + free shipping if you order today!' with time-limited offer.",
+                    certificationTip: "Effective abandoned cart journeys use psychology: Email 1 (memory trigger), Email 2 (social proof to overcome objections), Email 3 (urgency + final incentive). Timing matters too: 2 hours, 24 hours, 3-7 days is a proven sequence."
+                },
+                {
+                    question: "🏃‍♂️ NTO wants to set up an automation that triggers when customers purchase running shoes, sending them running tips and accessory recommendations. What's the best approach in Journey Builder?",
+                    options: [
+                        "Use a Data Extension entry event with purchase data",
+                        "Use an API Event with real-time purchase information",
+                        "Use a Salesforce Data entry event connected to order records",
+                        "Use an email activity entry event based on order confirmation emails"
+                    ],
+                    correct: 1,
+                    domain: "Marketing Automation",
+                    difficulty: "Intermediate",
+                    simpleExplanation: "API Events are like having a direct phone line between NTO's website and SFMC. When someone buys running shoes, the website immediately calls SFMC and says 'Sarah just bought running shoes!', which starts her journey right away with all the purchase details.",
+                    ntoExample: "When a customer completes a running shoe purchase on NTO's website, an API Event immediately fires with details like product type, size, price, and customer info. This starts a journey that sends: Day 1 - shoe care tips, Day 7 - running accessories, Day 30 - running sock recommendations, Day 90 - new shoe reminder.",
+                    certificationTip: "API Events are best for real-time triggers from website purchases because they can pass detailed purchase information and fire immediately. Data Extension entries require file imports and batch processing, making them slower and less detailed for transactional scenarios."
+                },
+                {
+                    question: "⛺ NTO's camping journey should send different follow-up emails based on whether customers purchased tents, sleeping bags, or camp stoves. What Journey Builder feature should they use?",
+                    options: [
+                        "Split activity with engagement criteria",
+                        "Decision split based on Data Extension values",
+                        "Random split to test different approaches",
+                        "Multi-criteria decision split with attribute-based paths"
+                    ],
+                    correct: 3,
+                    domain: "Marketing Automation",
+                    difficulty: "Advanced",
+                    simpleExplanation: "Multi-criteria decision splits are like smart traffic directors that look at multiple things about each customer and send them down the most relevant path. It's more sophisticated than just looking at one piece of information.",
+                    ntoExample: "NTO's decision split looks at both 'Product Category' AND 'Customer Experience Level': New tent buyers get tent setup tips, experienced tent buyers get advanced camping location guides, sleeping bag buyers get temperature rating education, and camp stove buyers get cooking recipe emails.",
+                    certificationTip: "Use multi-criteria decision splits when you need to consider multiple customer attributes simultaneously. This creates more precise segmentation than single-criteria splits and enables highly personalized customer journeys."
+                }
+            ],
+            "analytics": [
+                {
+                    question: "📊 NTO wants to measure the success of their winter gear email campaign. Which metrics combination best indicates strong performance?",
+                    options: [
+                        "High open rate and click rate only",
+                        "Open rate, click rate, conversion rate, and revenue per email",
+                        "Total emails sent and delivered",
+                        "Social media shares and forwards"
+                    ],
+                    correct: 1,
+                    domain: "Insights & Analytics",
+                    difficulty: "Intermediate",
+                    simpleExplanation: "Measuring email success is like grading a test - you need to look at multiple scores, not just one. Open rate shows if people were interested, click rate shows if they took action, conversion rate shows if they bought something, and revenue shows how much money it made.",
+                    ntoExample: "NTO's winter gear campaign: 25% open rate (good interest), 4% click rate (people clicked to see products), 2% conversion rate (people actually bought), and $15 revenue per email sent. This tells the complete story from initial interest to final purchase.",
+                    certificationTip: "Always measure the full funnel: Delivery (technical success) → Opens (subject line success) → Clicks (content success) → Conversions (business success) → Revenue (ROI success). Each metric tells a different part of the story."
+                },
+                {
+                    question: "🎯 NTO wants to A/B test their hiking boot email subject lines. What sample size and confidence level should they use for reliable results?",
+                    options: [
+                        "Send to 100 people per variation with 90% confidence",
+                        "Send to 1,000 people per variation with 95% confidence",
+                        "Send to at least 1,000 people total with 95% confidence and statistical significance",
+                        "Send to their entire list immediately"
+                    ],
+                    correct: 2,
+                    domain: "Insights & Analytics",
+                    difficulty: "Advanced",
+                    simpleExplanation: "A/B testing is like a scientific experiment - you need enough people to get reliable results, just like you need enough people in a survey to trust the answers. Too few people and the results might be just random luck.",
+                    ntoExample: "NTO tests 'New Hiking Boots Arrived!' vs. 'Conquer Any Trail with These Boots' with 2,000 people total (1,000 each). After getting statistically significant results at 95% confidence (meaning there's only a 5% chance the difference is random), they send the winning subject line to the remaining 50,000 customers.",
+                    certificationTip: "For email A/B tests, aim for at least 1,000 recipients per variation and 95% confidence level. Always wait for statistical significance before declaring a winner. SFMC's A/B Test activity can calculate this automatically."
+                }
+            ],
+            "best_practices": [
+                {
+                    question: "📧 NTO needs to maintain good email deliverability for their outdoor gear campaigns. What's the most important factor?",
+                    options: [
+                        "Sending emails at the optimal time of day",
+                        "Maintaining good list hygiene and sender reputation",
+                        "Using fancy email designs with lots of images",
+                        "Sending emails as frequently as possible"
+                    ],
+                    correct: 1,
+                    domain: "Email Marketing Best Practices",
+                    difficulty: "Basic",
+                    simpleExplanation: "Email deliverability is like your reputation in a neighborhood - if you're known as someone who only sends relevant, wanted messages to people who actually want them, the mail system (like Gmail) trusts you and delivers your emails. If you send spam or unwanted emails, you get a bad reputation.",
+                    ntoExample: "NTO maintains deliverability by: removing email addresses that bounce, honoring unsubscribe requests immediately, only sending relevant outdoor gear content to people who signed up for it, and monitoring their sender score. This keeps Gmail, Yahoo, and other providers trusting NTO's emails.",
+                    certificationTip: "Deliverability is foundational - even the best email content won't work if it doesn't reach inboxes. Focus on list quality over quantity, authentication (SPF, DKIM, DMARC), engagement rates, and complaint rates. One spam trap or high complaint rate can hurt your entire program."
+                },
+                {
+                    question: "🔒 NTO collects email addresses from customers in the EU for their hiking newsletter. What GDPR requirement must they meet?",
+                    options: [
+                        "Automatically subscribe all customers to marketing emails",
+                        "Get clear, specific, informed consent with easy opt-out options",
+                        "Only send emails to customers who made purchases",
+                        "Require customers to opt-out if they don't want emails"
+                    ],
+                    correct: 1,
+                    domain: "Email Marketing Best Practices",
+                    difficulty: "Intermediate",
+                    simpleExplanation: "GDPR is like asking permission before borrowing something from a friend - you need to clearly ask, explain what you want to do, and make it easy for them to say no or change their mind later. You can't just assume it's okay or make it hard for them to refuse.",
+                    ntoExample: "NTO's EU signup form clearly states: 'Yes, I want to receive hiking tips and gear recommendations from Northern Trail Outfitters via email. You can unsubscribe anytime.' They cannot pre-check this box or hide it in fine print, and they must provide easy unsubscribe options in every email.",
+                    certificationTip: "GDPR requires 'freely given, specific, informed, and unambiguous' consent. This means clear opt-in language, no pre-checked boxes, easy opt-out, and detailed privacy policies. Always err on the side of being more transparent and giving customers more control."
+                }
+            ]
+        };
+
+        // Quiz State Management
+        let currentMode = '';
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let startTime = null;
+        let timerInterval = null;
+        let selectedDomain = 'all';
+
+        // DOM Elements
+        const modeSelection = document.getElementById('modeSelection');
+        const quizInterface = document.getElementById('quizInterface');
+        const resultsSection = document.getElementById('resultsSection');
+        const questionCard = document.getElementById('questionCard');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const explanationContainer = document.getElementById('explanationContainer');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Mode selection buttons
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const mode = this.dataset.mode;
+                    startQuiz(mode);
+                });
+            });
+
+            // Header quick start buttons
+            document.getElementById('startPractice').addEventListener('click', () => startQuiz('practice'));
+            document.getElementById('startExam').addEventListener('click', () => startQuiz('exam'));
+            document.getElementById('reviewMode').addEventListener('click', () => startQuiz('study'));
+
+            // Domain filters
+            document.querySelectorAll('.domain-filter').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    selectedDomain = this.dataset.domain;
+                    document.querySelectorAll('.domain-filter').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    // Regenerate questions for the selected domain
+                    if (currentMode === 'practice') {
+                        generateQuestions();
+                        currentQuestionIndex = 0;
+                        displayQuestion();
+                    }
+                });
+            });
+
+            // Navigation buttons
+            document.getElementById('prevQuestion').addEventListener('click', previousQuestion);
+            document.getElementById('nextQuestion').addEventListener('click', nextQuestion);
+            document.getElementById('submitAnswer').addEventListener('click', submitAnswer);
+            document.getElementById('finishQuiz').addEventListener('click', finishQuiz);
+
+            // Results buttons
+            document.getElementById('retakeQuiz').addEventListener('click', () => startQuiz(currentMode));
+            document.getElementById('reviewAnswers').addEventListener('click', reviewAnswers);
+            document.getElementById('studyWeakAreas').addEventListener('click', studyWeakAreas);
+        }
+
+        function startQuiz(mode) {
+            currentMode = mode;
+            selectedDomain = 'all';
+            userAnswers = [];
+            currentQuestionIndex = 0;
+            startTime = new Date();
+
+            // Show quiz interface
+            modeSelection.classList.add('hidden');
+            quizInterface.classList.remove('hidden');
+            resultsSection.classList.add('hidden');
+
+            // Configure based on mode
+            if (mode === 'exam') {
+                document.getElementById('timerDisplay').classList.remove('hidden');
+                document.getElementById('progressIndicator').classList.remove('hidden');
+                startTimer(90 * 60); // 90 minutes
+            } else {
+                document.getElementById('timerDisplay').classList.add('hidden');
+            }
+
+            // Generate questions
+            generateQuestions();
+            displayQuestion();
+        }
+
+        function generateQuestions() {
+            currentQuestions = [];
+            
+            if (selectedDomain === 'all') {
+                // Mix questions from all domains
+                Object.keys(questionBank).forEach(domain => {
+                    currentQuestions = currentQuestions.concat(questionBank[domain]);
+                });
+            } else {
+                // Questions from selected domain only
+                const domainMap = {
+                    'data': 'data_management',
+                    'content': 'content_creation',
+                    'automation': 'marketing_automation',
+                    'analytics': 'analytics',
+                    'practices': 'best_practices'
+                };
+                if (domainMap[selectedDomain]) {
+                    currentQuestions = [...questionBank[domainMap[selectedDomain]]];
+                }
+            }
+
+            // Shuffle questions
+            currentQuestions = shuffleArray(currentQuestions);
+
+            // Limit questions based on mode
+            if (currentMode === 'exam') {
+                currentQuestions = currentQuestions.slice(0, 60);
+            } else if (currentMode === 'practice') {
+                currentQuestions = currentQuestions.slice(0, 20);
+            }
+
+            // Update UI
+            document.getElementById('totalQuestions').textContent = currentQuestions.length;
+        }
+
+        function displayQuestion() {
+            const question = currentQuestions[currentQuestionIndex];
+            if (!question) return;
+
+            // Update question info
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+            document.getElementById('questionText').textContent = question.question;
+            
+            // Update domain badge
+            const domainBadge = document.getElementById('domainBadge');
+            domainBadge.textContent = question.domain;
+            domainBadge.className = 'domain-badge ' + getDomainBadgeClass(question.domain);
+
+            // Update difficulty
+            document.getElementById('difficultyBadge').textContent = question.difficulty;
+
+            // Show NTO context if available
+            const contextElement = document.getElementById('questionContext');
+            if (question.ntoContext) {
+                document.getElementById('contextText').textContent = question.ntoContext;
+                contextElement.classList.remove('hidden');
+            } else {
+                contextElement.classList.add('hidden');
+            }
+
+            // Generate options
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option-card border-2 border-gray-200 rounded-lg p-4 cursor-pointer transition-all duration-300';
+                optionDiv.dataset.index = index;
+                optionDiv.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="w-6 h-6 border-2 border-gray-300 rounded-full mr-4 flex items-center justify-center">
+                            <span class="font-bold text-gray-600">${String.fromCharCode(65 + index)}</span>
+                        </div>
+                        <span class="text-gray-800">${option}</span>
+                    </div>
+                `;
+                
+                optionDiv.addEventListener('click', function() {
+                    document.querySelectorAll('.option-card').forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            // Hide explanation
+            explanationContainer.classList.add('hidden');
+            document.getElementById('submitAnswer').classList.remove('hidden');
+            document.getElementById('nextQuestion').classList.add('hidden');
+
+            // Update progress bar
+            const progress = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            if (document.getElementById('overallProgress')) {
+                document.getElementById('overallProgress').style.width = progress + '%';
+                document.getElementById('progressText').textContent = Math.round(progress) + '%';
+            }
+
+            // Update navigation buttons
+            document.getElementById('prevQuestion').disabled = currentQuestionIndex === 0;
+            document.getElementById('finishQuiz').classList.toggle('hidden', currentQuestionIndex < currentQuestions.length - 1);
+        }
+
+        function submitAnswer() {
+            const selectedOption = document.querySelector('.option-card.selected');
+            if (!selectedOption) {
+                alert('Please select an answer before submitting.');
+                return;
+            }
+
+            const selectedIndex = parseInt(selectedOption.dataset.index);
+            const question = currentQuestions[currentQuestionIndex];
+            const isCorrect = selectedIndex === question.correct;
+
+            // Store answer
+            userAnswers[currentQuestionIndex] = {
+                questionIndex: currentQuestionIndex,
+                selectedAnswer: selectedIndex,
+                correctAnswer: question.correct,
+                isCorrect: isCorrect,
+                timeSpent: new Date() - startTime
+            };
+
+            // Show visual feedback on options
+            document.querySelectorAll('.option-card').forEach((option, index) => {
+                option.classList.remove('selected');
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+
+            // Show explanation
+            document.getElementById('simpleExplanation').textContent = question.simpleExplanation;
+            document.getElementById('ntoExample').textContent = question.ntoExample;
+            document.getElementById('certificationTip').textContent = question.certificationTip;
+            explanationContainer.classList.remove('hidden');
+
+            // Update buttons
+            document.getElementById('submitAnswer').classList.add('hidden');
+            document.getElementById('nextQuestion').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+                
+                // If this question was already answered, show the explanation
+                if (userAnswers[currentQuestionIndex]) {
+                    const answer = userAnswers[currentQuestionIndex];
+                    const question = currentQuestions[currentQuestionIndex];
+                    
+                    // Mark the previously selected option
+                    const options = document.querySelectorAll('.option-card');
+                    options[answer.selectedAnswer].classList.add(answer.isCorrect ? 'correct' : 'incorrect');
+                    options[question.correct].classList.add('correct');
+                    
+                    // Show explanation
+                    document.getElementById('simpleExplanation').textContent = question.simpleExplanation;
+                    document.getElementById('ntoExample').textContent = question.ntoExample;
+                    document.getElementById('certificationTip').textContent = question.certificationTip;
+                    explanationContainer.classList.remove('hidden');
+                    
+                    // Update buttons
+                    document.getElementById('submitAnswer').classList.add('hidden');
+                    document.getElementById('nextQuestion').classList.remove('hidden');
+                }
+            }
+        }
+
+        function finishQuiz() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+
+            const endTime = new Date();
+            const totalTime = Math.round((endTime - startTime) / 1000);
+            
+            // Calculate results
+            const results = calculateResults(totalTime);
+            
+            // Show results
+            displayResults(results);
+            
+            // Switch to results view
+            quizInterface.classList.add('hidden');
+            resultsSection.classList.remove('hidden');
+        }
+
+        function calculateResults(totalTime) {
+            const correctAnswers = userAnswers.filter(answer => answer.isCorrect).length;
+            const totalQuestions = currentQuestions.length;
+            const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+            const passed = percentage >= 65;
+
+            // Calculate domain performance
+            const domainPerformance = {};
+            const domainCounts = {};
+
+            currentQuestions.forEach((question, index) => {
+                const domain = question.domain;
+                const answer = userAnswers[index];
+                
+                if (!domainPerformance[domain]) {
+                    domainPerformance[domain] = { correct: 0, total: 0 };
+                }
+                
+                domainPerformance[domain].total++;
+                if (answer && answer.isCorrect) {
+                    domainPerformance[domain].correct++;
+                }
+            });
+
+            return {
+                correctAnswers,
+                totalQuestions,
+                percentage,
+                passed,
+                totalTime,
+                domainPerformance
+            };
+        }
+
+        function displayResults(results) {
+            // Update score card
+            document.getElementById('scorePercentage').textContent = results.percentage + '%';
+            document.getElementById('scoreStatus').textContent = results.passed ? 
+                'PASS - Certification Ready!' : 'NEEDS IMPROVEMENT - Keep Studying';
+            document.getElementById('scoreDetails').textContent = 
+                `${results.correctAnswers} out of ${results.totalQuestions} questions correct`;
+            
+            const scoreCard = document.getElementById('scoreCard');
+            scoreCard.className = results.passed ? 
+                'bg-gradient-to-r from-green-500 to-emerald-600 rounded-2xl p-8 text-white text-center mb-12' :
+                'bg-gradient-to-r from-red-500 to-rose-600 rounded-2xl p-8 text-white text-center mb-12';
+
+            // Update summary stats
+            document.getElementById('correctAnswers').textContent = results.correctAnswers;
+            document.getElementById('incorrectAnswers').textContent = results.totalQuestions - results.correctAnswers;
+            document.getElementById('timeUsed').textContent = formatTime(results.totalTime);
+
+            // Update domain performance (would need detailed implementation for domain breakdown)
+            // This is a simplified version
+            console.log('Domain Performance:', results.domainPerformance);
+        }
+
+        function startTimer(seconds) {
+            let timeLeft = seconds;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timeRemaining').textContent = formatTime(timeLeft);
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    finishQuiz();
+                }
+            }, 1000);
+        }
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        function getDomainBadgeClass(domain) {
+            const domainMap = {
+                'Subscriber & Data Management': 'badge-data',
+                'Content Creation & Delivery': 'badge-content',
+                'Marketing Automation': 'badge-automation',
+                'Insights & Analytics': 'badge-analytics',
+                'Email Marketing Best Practices': 'badge-practices'
+            };
+            return domainMap[domain] || 'badge-data';
+        }
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function reviewAnswers() {
+            // Implementation for reviewing answers
+            alert('Review feature would show detailed breakdown of each question and answer');
+        }
+
+        function studyWeakAreas() {
+            // Implementation for studying weak areas
+            alert('Study feature would provide targeted content for domains with low scores');
+        }
+
+        // Back to home functionality
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (confirm('Are you sure you want to exit the quiz?')) {
+                    window.location.href = 'index.html';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

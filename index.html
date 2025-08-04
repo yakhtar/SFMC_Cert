@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Optimization & AI Mastery Hub - Comprehensive Learning & Interview Preparation</title>
+    <meta name="description" content="Comprehensive learning platform for digital optimization, Adobe Target, SFMC, and AI-driven marketing analytics. Interview preparation and certification mastery.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
+            position: relative;
+        }
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        .gradient-bg > * {
+            position: relative;
+            z-index: 2;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .skill-bar {
+            animation: fillBar 2s ease-in-out forwards;
+        }
+        @keyframes fillBar {
+            from { width: 0%; }
+        }
+        .hero-pattern {
+            background-image: 
+                radial-gradient(circle at 25px 25px, rgba(255,255,255,0.2) 2px, transparent 0),
+                radial-gradient(circle at 75px 75px, rgba(255,255,255,0.2) 2px, transparent 0);
+            background-size: 100px 100px;
+        }
+        .search-container {
+            position: relative;
+        }
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            z-index: 50;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+        }
+        .search-results.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold text-gray-900">
+                        <i class="fas fa-chart-line text-blue-600 mr-2"></i>
+                        Digital Optimization Hub
+                    </h1>
+                </div>
+                
+                <!-- Search Bar -->
+                <div class="search-container flex-1 max-w-lg mx-8">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="globalSearch" 
+                            placeholder="Search all content, Q&A, guides..." 
+                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                        <div id="searchResults" class="search-results"></div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <a href="#expertise" class="text-gray-700 hover:text-blue-600 transition-colors">Skills</a>
+                    <a href="#learning-paths" class="text-gray-700 hover:text-blue-600 transition-colors">Learning</a>
+                    <a href="#certifications" class="text-gray-700 hover:text-blue-600 transition-colors">Certs</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg hero-pattern min-h-screen flex items-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-lg">
+                        Digital Optimization
+                        <span class="block text-yellow-200 drop-shadow-lg">& AI Mastery</span>
+                    </h1>
+                    <p class="text-xl mb-8 text-white drop-shadow-md">
+                        Comprehensive learning platform for Adobe Target, SFMC, AI-driven analytics, and digital optimization expertise. Master the skills that drive results.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#learning-paths" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-graduation-cap mr-2"></i>Start Learning
+                        </a>
+                        <a href="#interview-prep" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                            <i class="fas fa-briefcase mr-2"></i>Interview Prep
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                    <h3 class="text-2xl font-bold text-white mb-6">
+                        <i class="fas fa-rocket text-yellow-300 mr-3"></i>Quick Access
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="adobe_target_interview_prep/technical_training/adobe_target_technical_mastery.html" 
+                           class="bg-white/20 hover:bg-white/30 text-white p-4 rounded-lg transition-colors text-center">
+                            <i class="fas fa-target text-2xl mb-2 block"></i>
+                            <span class="text-sm font-medium">Adobe Target Mastery</span>
+                        </a>
+                        <a href="sfmc_certification_simulator.html" 
+                           class="bg-white/20 hover:bg-white/30 text-white p-4 rounded-lg transition-colors text-center">
+                            <i class="fas fa-envelope text-2xl mb-2 block"></i>
+                            <span class="text-sm font-medium">SFMC Certification</span>
+                        </a>
+                        <a href="adobe_target_interview_prep/presentation/enhanced_case_study_presentation.html" 
+                           class="bg-white/20 hover:bg-white/30 text-white p-4 rounded-lg transition-colors text-center">
+                            <i class="fas fa-presentation text-2xl mb-2 block"></i>
+                            <span class="text-sm font-medium">Case Studies</span>
+                        </a>
+                        <a href="#ai-resources" 
+                           class="bg-white/20 hover:bg-white/30 text-white p-4 rounded-lg transition-colors text-center">
+                            <i class="fas fa-brain text-2xl mb-2 block"></i>
+                            <span class="text-sm font-medium">AI Resources</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Overview -->
+    <section id="expertise" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Core Expertise & Skills</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive mastery across digital optimization, marketing automation, and AI-driven analytics for enterprise-level growth and conversion optimization.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Adobe Target -->
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="bg-red-100 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-target text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Adobe Target Excellence</h3>
+                    <p class="text-gray-600 mb-6">Advanced A/B testing, multivariate optimization, personalization, and conversion rate optimization for enterprise platforms.</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span>A/B Testing & MVT</span>
+                            <span class="font-semibold">95%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-red-500 h-2 rounded-full skill-bar" style="width: 95%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Personalization</span>
+                            <span class="font-semibold">90%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-red-500 h-2 rounded-full skill-bar" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <a href="adobe_target_interview_prep/technical_training/adobe_target_technical_mastery.html" 
+                       class="mt-6 inline-flex items-center text-red-600 hover:text-red-700 font-semibold">
+                        Explore Target Mastery <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- SFMC -->
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="bg-blue-100 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-envelope text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">SFMC Mastery</h3>
+                    <p class="text-gray-600 mb-6">Email marketing automation, Journey Builder, AMPscript development, and multi-channel campaign orchestration.</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span>Email Marketing</span>
+                            <span class="font-semibold">92%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full skill-bar" style="width: 92%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Journey Builder</span>
+                            <span class="font-semibold">88%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-500 h-2 rounded-full skill-bar" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <a href="sfmc_certification_simulator.html" 
+                       class="mt-6 inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold">
+                        Explore SFMC Resources <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- AI & Analytics -->
+                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
+                    <div class="bg-purple-100 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">AI & Advanced Analytics</h3>
+                    <p class="text-gray-600 mb-6">Machine learning optimization, predictive analytics, data science applications, and AI-driven personalization.</p>
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span>Data Analytics</span>
+                            <span class="font-semibold">85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-purple-500 h-2 rounded-full skill-bar" style="width: 85%"></div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>AI/ML Applications</span>
+                            <span class="font-semibold">78%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-purple-500 h-2 rounded-full skill-bar" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <a href="#ai-resources" 
+                       class="mt-6 inline-flex items-center text-purple-600 hover:text-purple-700 font-semibold">
+                        Explore AI Resources <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Paths -->
+    <section id="learning-paths" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Comprehensive Learning Paths</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Structured learning journeys with interactive Q&A, real-world scenarios, and certification preparation materials.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- SFMC Learning Path -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-gradient-to-r from-blue-500 to-cyan-600 p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">
+                            <i class="fas fa-envelope mr-3"></i>SFMC Email Specialist
+                        </h3>
+                        <p class="text-blue-100">Complete certification preparation with Northern Trail Outfitters context</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-blue-600">8</div>
+                                <div class="text-sm text-gray-600">Lessons</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-blue-600">200+</div>
+                                <div class="text-sm text-gray-600">Practice Q&A</div>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <a href="lesson_1_interactive_qa.html" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <span class="font-medium">Lesson 1: Subscriber & Data Management</span>
+                                <span class="text-blue-600 text-sm">26% of exam</span>
+                            </a>
+                            <a href="lesson_2_interactive_qa.html" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <span class="font-medium">Lesson 2: Marketing Automation</span>
+                                <span class="text-blue-600 text-sm">26% of exam</span>
+                            </a>
+                            <a href="lesson_3_interactive_qa.html" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <span class="font-medium">Lesson 3: Content Creation & Delivery</span>
+                                <span class="text-blue-600 text-sm">24% of exam</span>
+                            </a>
+                            <a href="lesson_4_interactive_qa.html" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <span class="font-medium">Lesson 4: Testing & Delivery</span>
+                                <span class="text-blue-600 text-sm">View Details</span>
+                            </a>
+                        </div>
+                        <div class="mt-6 flex space-x-3">
+                            <a href="sfmc_certification_simulator.html" class="flex-1 bg-blue-600 text-white text-center py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                                Start Certification Prep
+                            </a>
+                            <a href="SFMC-NTO-Training-System/README.md" class="px-4 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+                                View Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Adobe Target Learning Path -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-gradient-to-r from-red-500 to-pink-600 p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">
+                            <i class="fas fa-target mr-3"></i>Adobe Target Mastery
+                        </h3>
+                        <p class="text-red-100">Advanced optimization techniques with Panera case studies</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-red-600">50+</div>
+                                <div class="text-sm text-gray-600">Technical Q&A</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-red-600">5</div>
+                                <div class="text-sm text-gray-600">Case Studies</div>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <a href="adobe_target_interview_prep/technical_training/adobe_target_technical_mastery.html" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <span class="font-medium">Technical Interview Mastery</span>
+                                <span class="text-red-600 text-sm">Advanced Level</span>
+                            </a>
+                            <a href="adobe_target_interview_prep/presentation/enhanced_case_study_presentation.html" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <span class="font-medium">Case Study Presentations</span>
+                                <span class="text-red-600 text-sm">Real Scenarios</span>
+                            </a>
+                            <a href="adobe_target_interview_prep/practice_scenarios/interview_scenarios.md" class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                                <span class="font-medium">Practice Scenarios</span>
+                                <span class="text-red-600 text-sm">Hands-on</span>
+                            </a>
+                        </div>
+                        <div class="mt-6 flex space-x-3">
+                            <a href="adobe_target_interview_prep/technical_training/adobe_target_technical_mastery.html" class="flex-1 bg-red-600 text-white text-center py-3 rounded-lg hover:bg-red-700 transition-colors">
+                                Start Target Mastery
+                            </a>
+                            <a href="adobe_target_interview_prep/README.md" class="px-4 py-3 border border-red-600 text-red-600 rounded-lg hover:bg-red-50 transition-colors">
+                                View Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interview Preparation -->
+    <section id="interview-prep" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Interview Preparation Resources</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Comprehensive preparation materials for Digital Optimization Analyst roles with focus on enterprise-level implementations.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Technical Q&A -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 card-hover">
+                    <div class="bg-blue-600 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Technical Q&A</h3>
+                    <p class="text-gray-700 mb-6">In-depth technical questions with simple explanations and real-world implementations.</p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>50+ Adobe Target questions</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>200+ SFMC practice questions</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Code examples & implementations</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Sixth-grade level explanations</li>
+                    </ul>
+                    <a href="adobe_target_interview_prep/technical_training/adobe_target_technical_mastery.html" class="w-full bg-blue-600 text-white text-center py-3 rounded-lg hover:bg-blue-700 transition-colors inline-block">
+                        Access Technical Q&A
+                    </a>
+                </div>
+
+                <!-- Case Studies -->
+                <div class="bg-gradient-to-br from-purple-50 to-pink-100 rounded-2xl p-8 card-hover">
+                    <div class="bg-purple-600 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-presentation text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Case Studies</h3>
+                    <p class="text-gray-700 mb-6">Real-world scenarios with detailed analysis and presentation-ready formats.</p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Panera checkout optimization</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Crisis management scenarios</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>International expansion</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>A/B testing frameworks</li>
+                    </ul>
+                    <a href="adobe_target_interview_prep/presentation/enhanced_case_study_presentation.html" class="w-full bg-purple-600 text-white text-center py-3 rounded-lg hover:bg-purple-700 transition-colors inline-block">
+                        View Case Studies
+                    </a>
+                </div>
+
+                <!-- Behavioral & Scenario -->
+                <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8 card-hover">
+                    <div class="bg-green-600 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Behavioral & Scenarios</h3>
+                    <p class="text-gray-700 mb-6">Leadership scenarios, crisis management, and stakeholder communication strategies.</p>
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>STAR method examples</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Crisis management</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Team leadership</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Stakeholder communication</li>
+                    </ul>
+                    <a href="adobe_target_interview_prep/technical_training/adobe_target_technical_mastery.html#behavioral" class="w-full bg-green-600 text-white text-center py-3 rounded-lg hover:bg-green-700 transition-colors inline-block">
+                        Practice Scenarios
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI & Future Skills -->
+    <section id="ai-resources" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">AI & Future Skills Development</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Advanced AI applications in digital optimization and marketing automation for next-generation roles.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6">AI-Driven Optimization</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-robot text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Machine Learning Personalization</h4>
+                                <p class="text-gray-600">Advanced AI algorithms for real-time personalization, predictive analytics, and automated optimization strategies.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-chart-line text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Predictive Analytics</h4>
+                                <p class="text-gray-600">Customer behavior prediction, conversion forecasting, and automated decision-making systems.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-cogs text-green-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Automated Optimization</h4>
+                                <p class="text-gray-600">AI-powered A/B testing, dynamic content optimization, and self-learning campaign management.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h4 class="text-2xl font-bold text-gray-900 mb-6">Skills Roadmap</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-gray-700">Data Science Fundamentals</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Advanced</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-gray-700">Machine Learning Applications</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Intermediate</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-gray-700">AI-Powered Personalization</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Learning</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="font-medium text-gray-700">Predictive Modeling</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Planned</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <p class="text-sm text-gray-600 mb-4">Next learning objectives for AI-driven roles:</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-circle text-xs text-purple-500 mr-2"></i>Advanced Python for ML</li>
+                            <li><i class="fas fa-circle text-xs text-purple-500 mr-2"></i>TensorFlow & PyTorch</li>
+                            <li><i class="fas fa-circle text-xs text-purple-500 mr-2"></i>AI Ethics & Governance</li>
+                            <li><i class="fas fa-circle text-xs text-purple-500 mr-2"></i>Real-time Personalization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Achievements -->
+    <section id="certifications" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Certifications & Achievements</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Track progress and showcase mastery across multiple platforms and specializations.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-red-50 rounded-2xl p-6 text-center card-hover">
+                    <div class="bg-red-100 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-target text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Adobe Target</h3>
+                    <p class="text-sm text-gray-600 mb-4">Business Practitioner Expert</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                        <div class="bg-red-500 h-2 rounded-full" style="width: 95%"></div>
+                    </div>
+                    <span class="text-xs text-gray-500">95% Complete</span>
+                </div>
+
+                <div class="bg-blue-50 rounded-2xl p-6 text-center card-hover">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-envelope text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">SFMC</h3>
+                    <p class="text-sm text-gray-600 mb-4">Email Specialist</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                        <div class="bg-blue-500 h-2 rounded-full" style="width: 78%"></div>
+                    </div>
+                    <span class="text-xs text-gray-500">78% Complete</span>
+                </div>
+
+                <div class="bg-green-50 rounded-2xl p-6 text-center card-hover">
+                    <div class="bg-green-100 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-chart-bar text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Google Analytics</h3>
+                    <p class="text-sm text-gray-600 mb-4">Individual Qualification</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                    </div>
+                    <span class="text-xs text-gray-500">Certified</span>
+                </div>
+
+                <div class="bg-purple-50 rounded-2xl p-6 text-center card-hover">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-brain text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">AI/ML</h3>
+                    <p class="text-sm text-gray-600 mb-4">Specialization</p>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                        <div class="bg-purple-500 h-2 rounded-full" style="width: 45%"></div>
+                    </div>
+                    <span class="text-xs text-gray-500">45% Complete</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">
+                        <i class="fas fa-chart-line text-blue-400 mr-2"></i>
+                        Digital Optimization Hub
+                    </h3>
+                    <p class="text-gray-400 text-sm">
+                        Comprehensive learning platform for digital optimization, AI-driven analytics, and marketing automation mastery.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Learning Paths</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="adobe_target_interview_prep/" class="hover:text-white transition-colors">Adobe Target</a></li>
+                        <li><a href="sfmc_certification_simulator.html" class="hover:text-white transition-colors">SFMC Certification</a></li>
+                        <li><a href="#ai-resources" class="hover:text-white transition-colors">AI & ML</a></li>
+                        <li><a href="#certifications" class="hover:text-white transition-colors">Certifications</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="SFMC-NTO-Training-System/" class="hover:text-white transition-colors">Training System</a></li>
+                        <li><a href="#interview-prep" class="hover:text-white transition-colors">Interview Prep</a></li>
+                        <li><a href="adobe_target_interview_prep/presentation/" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Practice Q&A</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Access</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Search All Content</a></li>
+                        <li><a href="GITHUB-SYNC-GUIDE.md" class="hover:text-white transition-colors">Sync Guide</a></li>
+                        <li><a href="QUICK-START-CHECKLIST.md" class="hover:text-white transition-colors">Quick Start</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
+                <p>&copy; 2024 Digital Optimization Hub. Comprehensive learning platform for optimization and AI mastery.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global Search Functionality
+        const searchInput = document.getElementById('globalSearch');
+        const searchResults = document.getElementById('searchResults');
+        
+        // Sample search data - would be populated from all your content
+        const searchData = [
+            { title: 'Adobe Target Technical Mastery', url: 'adobe_target_interview_prep/technical_training/adobe_target_technical_mastery.html', type: 'Technical Q&A', description: 'Comprehensive technical questions with Panera examples' },
+            { title: 'SFMC Certification Simulator', url: 'sfmc_certification_simulator.html', type: 'Certification', description: 'Complete SFMC practice exam preparation' },
+            { title: 'Enhanced Case Study Presentation', url: 'adobe_target_interview_prep/presentation/enhanced_case_study_presentation.html', type: 'Case Study', description: 'Panera checkout optimization case study' },
+            { title: 'Lesson 1: Subscriber & Data Management', url: 'lesson_1_interactive_qa.html', type: 'SFMC Learning', description: 'Interactive Q&A for Contact Builder and data management' },
+            { title: 'Lesson 2: Marketing Automation', url: 'lesson_2_interactive_qa.html', type: 'SFMC Learning', description: 'Journey Builder and automation concepts' },
+            { title: 'Northern Trail Outfitters Training', url: 'SFMC-NTO-Training-System/README.md', type: 'Training System', description: 'Complete NTO-focused SFMC training system' },
+            { title: 'ICE Framework Talking Points', url: 'adobe_target_interview_prep/presentation/ice_framework_talking_points.md', type: 'Interview Prep', description: 'Impact, Confidence, Ease prioritization framework' },
+            { title: 'A/B Test Talking Points', url: 'adobe_target_interview_prep/presentation/ab_test_talking_points.md', type: 'Interview Prep', description: 'Strategic rationale for test design and implementation' }
+        ];
+
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.classList.remove('active');
+                return;
+            }
+
+            const filtered = searchData.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.description.toLowerCase().includes(query) ||
+                item.type.toLowerCase().includes(query)
+            );
+
+            if (filtered.length > 0) {
+                searchResults.innerHTML = filtered.map(item => `
+                    <a href="${item.url}" class="block p-4 hover:bg-gray-50 border-b border-gray-100 transition-colors">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-900">${item.title}</h4>
+                                <p class="text-sm text-gray-600 mt-1">${item.description}</p>
+                            </div>
+                            <span class="ml-4 px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">${item.type}</span>
+                        </div>
+                    </a>
+                `).join('');
+                searchResults.classList.add('active');
+            } else {
+                searchResults.innerHTML = '<div class="p-4 text-gray-500 text-center">No results found</div>';
+                searchResults.classList.add('active');
+            }
+        });
+
+        // Close search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add loading animation for skill bars
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            bar.style.animationDelay = `${index * 200}ms`;
+                            bar.classList.add('animate');
+                        }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('#expertise .card-hover').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
