@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 1: Marketing Cloud Overview & Setup - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2a5298, #1e3c72);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #2a5298;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .option:hover {
+            border-color: #2a5298;
+            background: #f0f7ff;
+        }
+        
+        .option.selected {
+            border-color: #2a5298;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #2a5298;
+            min-width: 25px;
+        }
+        
+        .explanation {
+            background: #e8f5e8;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .completion-screen.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .score-needs-improvement {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.0em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 SFMC Email Specialist Certification</h1>
+            <p>Lesson 1: Marketing Cloud Overview & Setup (Foundation)</p>
+            <div style="font-size: 0.9em; margin-top: 10px; opacity: 0.8;">
+                🎯 SFMC Certification Exam Questions 🎯
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 35</div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+        
+        <div class="completion-screen" id="completionScreen">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the Marketing Cloud Overview & Setup certification quiz!</p>
+            <div class="score-circle" id="scoreCircle">
+                <span id="finalScore">0%</span>
+            </div>
+            <p id="scoreMessage"></p>
+            <div style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                💡 This quiz covers foundational Marketing Cloud concepts essential for certification success
+            </div>
+            <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        // SFMC Email Specialist Certification Questions
+        // Lesson 1: Marketing Cloud Overview & Setup (Foundation)
+        // Comprehensive 35-Question Certification Preparation Set
+        const questions = [
+            // Trust Site Configuration & Domain Verification (Questions 1-5)
+            {
+                question: "When setting up a new Marketing Cloud account for NTO, what is the first critical step that must be completed before any email campaigns can be sent?",
+                options: [
+                    "Configure Email Studio and create email templates",
+                    "Complete the Trust Site configuration and domain verification",
+                    "Import contact data into Contact Builder",
+                    "Create Journey Builder automated campaigns"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. The Trust Site configuration and domain verification is the foundational first step when setting up Marketing Cloud. This establishes the security framework, verifies domain ownership, and enables sender authentication before other Marketing Cloud applications can be properly configured and used."
+            },
+
+            {
+                question: "NTO wants to ensure their Marketing Cloud instance meets security requirements. What is the primary purpose of configuring the Trust Site in Marketing Cloud?",
+                options: [
+                    "To enable email personalization features",
+                    "To establish sender authentication (SPF, DKIM) and domain verification for email deliverability",
+                    "To connect with Salesforce CRM data",
+                    "To enable Journey Builder automation"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. The Trust Site configuration establishes sender authentication (SPF, DKIM) and domain verification, which are critical for email deliverability and security. This prevents emails from being marked as spam and establishes trust with email providers."
+            },
+
+            {
+                question: "During domain verification setup, NTO's IT team asks about the DNS records required. Which DNS records are typically required for Marketing Cloud Trust Site configuration?",
+                options: [
+                    "Only CNAME records for tracking domains",
+                    "SPF, DKIM, and CNAME records for complete sender authentication and tracking",
+                    "Only MX records for email routing",
+                    "A records and AAAA records only"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Complete Trust Site configuration requires SPF records for sender verification, DKIM records for message authentication, and CNAME records for tracking domains. This comprehensive setup ensures optimal deliverability and security."
+            },
+
+            {
+                question: "NTO has multiple subdomains for different business units. How should they approach Trust Site configuration for optimal deliverability across all subdomains?",
+                options: [
+                    "Configure only the main domain and use it for all sends",
+                    "Set up separate Trust Site configurations for each subdomain to maintain brand integrity",
+                    "Use generic Marketing Cloud domains without custom configuration",
+                    "Configure Trust Site only for the highest volume subdomain"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Setting up separate Trust Site configurations for each subdomain maintains brand integrity, improves deliverability reputation per business unit, and ensures proper sender authentication for each brand. This approach supports multi-brand strategies effectively."
+            },
+
+            {
+                question: "After completing Trust Site configuration, NTO notices delivery issues. What is the most likely cause and solution for newly configured Trust Sites experiencing deliverability problems?",
+                options: [
+                    "DNS propagation delays - wait 24-48 hours for global DNS updates",
+                    "Incorrect email content - modify subject lines",
+                    "Missing contact preferences - update subscriber data",
+                    "Journey Builder configuration errors - rebuild automations"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. DNS propagation delays are common after Trust Site configuration changes. DNS updates can take 24-48 hours to propagate globally, during which deliverability may be impacted. Patience and monitoring are required during this period."
+            },
+
+            // User Management, Roles & Permissions (Questions 6-10)
+            {
+                question: "A new Marketing Cloud user needs to understand user roles and permissions. What is the best practice for managing user access in Marketing Cloud?",
+                options: [
+                    "Give all users administrator access for simplicity",
+                    "Assign role-based permissions based on job responsibilities and principle of least privilege",
+                    "Create custom roles for each individual user",
+                    "Use only default system roles without customization"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Role-based permissions following the principle of least privilege ensure users have access only to the features and data they need for their job responsibilities. This improves security and prevents accidental changes to critical configurations."
+            },
+
+            {
+                question: "NTO wants to grant different access levels to their marketing team. What is the difference between 'Marketing Cloud Administrator' and 'Marketing Cloud Viewer' roles?",
+                options: [
+                    "Both roles have identical access permissions",
+                    "Administrator has full system access including user management, while Viewer has read-only access to campaigns and data",
+                    "Viewer can create campaigns but not send them, Administrator can do both",
+                    "Administrator only manages users, Viewer manages campaigns"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Marketing Cloud Administrator has comprehensive access including user management, system configuration, and all campaign functions. Marketing Cloud Viewer has read-only access to view campaigns, reports, and data without modification capabilities."
+            },
+
+            {
+                question: "NTO needs to create a custom role for their email designers who should only access Email Studio and Content Builder. What approach should they take?",
+                options: [
+                    "Use the default Content Creator role without modifications",
+                    "Create a custom role with Email Studio and Content Builder permissions while restricting administrative functions",
+                    "Assign Marketing Cloud Administrator role with restrictions",
+                    "Give users individual application access without role assignments"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Creating custom roles allows precise permission control. Email designers need Email Studio and Content Builder access for content creation while restricting administrative functions, data management, and sending permissions for security and operational control."
+            },
+
+            {
+                question: "When setting up user permissions for NTO's marketing team, what is the recommended approach for managing Business Unit access in a multi-brand environment?",
+                options: [
+                    "Give all users access to all Business Units for flexibility",
+                    "Assign users to specific Business Units based on their brand responsibilities",
+                    "Create separate Marketing Cloud instances for each Business Unit",
+                    "Use only the parent Business Unit for all operations"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Assigning users to specific Business Units based on brand responsibilities ensures data security, maintains brand separation, and prevents cross-contamination of campaigns and subscriber data between different business divisions."
+            },
+
+            {
+                question: "NTO's security team requires audit capabilities for Marketing Cloud activities. Which permission is essential for users who need to monitor system changes and user activities?",
+                options: [
+                    "Email Send permission",
+                    "System Monitor permission with access to System Monitoring and Audit Trail",
+                    "Data Extension Management permission",
+                    "Content Creation permission"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. System Monitor permission with access to System Monitoring and Audit Trail allows users to track system changes, user activities, login attempts, and configuration modifications. This is essential for security compliance and operational oversight."
+            },
+
+            // Marketing Cloud Application Navigation & Relationships (Questions 11-15)
+            {
+                question: "A marketing manager is navigating Marketing Cloud for the first time. Which application serves as the central hub for managing subscriber data and contact information?",
+                options: [
+                    "Email Studio",
+                    "Contact Builder",
+                    "Journey Builder",
+                    "Automation Studio"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Contact Builder serves as the central hub for managing all subscriber data and contact information in Marketing Cloud. It provides a unified view of contacts and manages data relationships across all Marketing Cloud applications."
+            },
+
+            {
+                question: "NTO wants to understand the relationship between Marketing Cloud applications. How do Contact Builder, Email Studio, and Journey Builder work together in a typical email marketing workflow?",
+                options: [
+                    "They operate independently without data sharing",
+                    "Contact Builder stores subscriber data, Email Studio creates emails, and Journey Builder automates customer journeys using both",
+                    "Email Studio manages all data and Journey Builder sends emails",
+                    "Journey Builder is only used for advanced automation"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Contact Builder stores and manages subscriber data, Email Studio creates and manages email content, and Journey Builder orchestrates automated customer journeys using data from Contact Builder and emails from Email Studio. They work together as an integrated platform."
+            },
+
+            {
+                question: "NTO is setting up their Marketing Cloud navigation structure. What is the most efficient way to organize Marketing Cloud applications for their marketing team?",
+                options: [
+                    "Use only Email Studio for all email marketing activities",
+                    "Organize applications by business function: Contact Builder for data, Email Studio for content, Journey Builder for automation",
+                    "Keep all applications separate without integration",
+                    "Use Automation Studio as the primary interface"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Organizing applications by business function (data management, content creation, automation) provides clear workflows and helps teams understand which application to use for specific tasks. This improves efficiency and adoption."
+            },
+
+            {
+                question: "NTO's marketing team is confused about when to use Automation Studio versus Journey Builder. What is the primary difference between these two automation platforms?",
+                options: [
+                    "They serve identical functions with different interfaces",
+                    "Automation Studio handles scheduled, file-based processes while Journey Builder manages real-time, behavior-triggered customer journeys",
+                    "Journey Builder only works with Email Studio, Automation Studio works with all applications",
+                    "Automation Studio is for advanced users only"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Automation Studio handles scheduled, file-based processes like data imports, reports, and batch campaigns. Journey Builder manages real-time, behavior-triggered customer journeys with decision-making capabilities and cross-channel orchestration."
+            },
+
+            {
+                question: "When navigating Marketing Cloud, NTO notices different folder structures across applications. What is the best practice for maintaining consistent organization across Email Studio, Content Builder, and Journey Builder?",
+                options: [
+                    "Use different naming conventions for each application",
+                    "Implement consistent folder naming conventions across all applications to mirror business structure and campaign types",
+                    "Keep all content in root folders without organization",
+                    "Organize folders alphabetically without business logic"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Implementing consistent folder naming conventions across all applications that mirror business structure and campaign types improves navigation, content findability, and team collaboration. This organizational approach scales effectively as content volume grows."
+            },
+
+            // Send Classifications & Sender Profiles (Questions 16-20)
+            {
+                question: "When configuring Send Classifications in Marketing Cloud, what is the primary benefit of using different Send Classifications for different types of campaigns?",
+                options: [
+                    "To improve email template design",
+                    "To organize sending profiles, delivery profiles, and sender information for different campaign types",
+                    "To increase email deliverability automatically",
+                    "To enable AMPscript personalization"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Send Classifications organize and manage sending profiles, delivery profiles, and sender information for different types of campaigns (promotional, transactional, newsletters). This ensures proper sender authentication and organization of email campaigns."
+            },
+
+            {
+                question: "NTO needs to set up Send Classifications for their promotional emails, transactional emails, and newsletters. What components must be configured for each Send Classification?",
+                options: [
+                    "Only the sender email address",
+                    "Send Classification name, Sender Profile, Delivery Profile, and optionally Reply Mail Management settings",
+                    "Just the IP address and domain",
+                    "Only the unsubscribe link configuration"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Each Send Classification requires a descriptive name, Sender Profile (from name/email), Delivery Profile (IP/domain configuration), and optionally Reply Mail Management settings. This complete configuration ensures proper sending infrastructure and branding."
+            },
+
+            {
+                question: "NTO wants to use different 'From' names for their promotional versus transactional emails. How should they configure this using Send Classifications?",
+                options: [
+                    "Use the same Sender Profile for both but change email content",
+                    "Create separate Sender Profiles with different 'From' names and assign them to respective Send Classifications",
+                    "Change the 'From' name manually for each email send",
+                    "Use Journey Builder to modify sender information dynamically"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Creating separate Sender Profiles with appropriate 'From' names (e.g., 'NTO Promotions' vs 'NTO Customer Service') and assigning them to respective Send Classifications ensures consistent branding and subscriber recognition for different message types."
+            },
+
+            {
+                question: "During Send Classification setup, NTO's compliance team asks about Reply Mail Management (RMM). When should RMM be configured in Send Classifications?",
+                options: [
+                    "Never - it's not necessary for email marketing",
+                    "For all Send Classifications to handle subscriber replies and manage auto-responses professionally",
+                    "Only for transactional emails",
+                    "Only when using Journey Builder"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Reply Mail Management should be configured for all Send Classifications to professionally handle subscriber replies, manage auto-responses, and maintain engagement opportunities. This improves customer experience and operational efficiency."
+            },
+
+            {
+                question: "NTO notices inconsistent sender reputation across their different email types. How can properly configured Send Classifications help address sender reputation issues?",
+                options: [
+                    "Send Classifications don't affect sender reputation",
+                    "Different Send Classifications can use separate IP addresses and domains, allowing distinct reputation management per message type",
+                    "Only email content affects reputation, not configuration",
+                    "Send Classifications only organize emails visually"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Send Classifications can utilize separate Delivery Profiles with distinct IP addresses and domains, enabling independent reputation management. This allows promotional emails to have separate reputation from transactional emails, protecting critical communications."
+            },
+
+            // Compliance Setup & Preference Centers (Questions 21-24)
+            {
+                question: "NTO needs to allow subscribers to manage their email preferences. What Marketing Cloud feature should they implement to give subscribers control over their communication preferences?",
+                options: [
+                    "Email Studio templates",
+                    "Preference Center with subscription management and granular communication controls",
+                    "Journey Builder decision splits",
+                    "Automation Studio workflows"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Preference Centers allow subscribers to manage their communication preferences, including subscription types, frequency, and opt-out options. This is essential for compliance (GDPR, CAN-SPAM) and improving subscriber engagement by respecting preferences."
+            },
+
+            {
+                question: "NTO wants to ensure compliance with email marketing regulations. What foundational elements should be configured during Marketing Cloud setup to support compliance requirements?",
+                options: [
+                    "Only email templates with unsubscribe links",
+                    "Preference Centers, proper Send Classifications, subscriber consent tracking, and compliance-ready email templates",
+                    "Journey Builder automation only",
+                    "Contact Builder populations without preferences"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Compliance requires multiple foundational elements: Preference Centers for subscriber control, proper Send Classifications for different message types, consent tracking capabilities, and email templates with required compliance elements (unsubscribe links, privacy policies, etc.)."
+            },
+
+            {
+                question: "When configuring Preference Centers for NTO, what subscription options should be included to provide comprehensive subscriber control while maintaining marketing effectiveness?",
+                options: [
+                    "Only a global unsubscribe option",
+                    "Communication type preferences, frequency controls, content categories, and channel preferences with clear descriptions",
+                    "Just email frequency settings",
+                    "Only opt-out with no granular controls"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Comprehensive Preference Centers should include communication type preferences (promotional, newsletter, transactional), frequency controls, content categories (product updates, events, offers), and channel preferences. Clear descriptions help subscribers make informed choices."
+            },
+
+            {
+                question: "NTO's legal team requires audit trails for subscriber consent and preference changes. What Marketing Cloud functionality supports compliance documentation requirements?",
+                options: [
+                    "Email Studio tracking only",
+                    "Contact Builder preference change tracking and system audit trails for compliance documentation",
+                    "Journey Builder entry tracking",
+                    "Manual spreadsheet maintenance"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Contact Builder tracks preference changes with timestamps and user information, while system audit trails document all subscriber interactions. This automated tracking provides the documentation needed for regulatory compliance and legal requirements."
+            },
+
+            // Multi-Brand Management (Questions 25-28)
+            {
+                question: "NTO is configuring their Marketing Cloud instance for multiple brands. What is the best approach for managing multiple brands within a single Marketing Cloud account?",
+                options: [
+                    "Use separate Send Classifications and Preference Centers for each brand with organized folder structures",
+                    "Create completely separate Marketing Cloud instances for each brand",
+                    "Use only one Send Classification for all brands",
+                    "Mix all brand communications without distinction"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Using separate Send Classifications and Preference Centers for each brand within organized folder structures allows for brand-specific management while maintaining operational efficiency in a single instance. This approach supports brand consistency while enabling shared resources and data."
+            },
+
+            {
+                question: "NTO has three distinct brands: NTO Outdoor, NTO Home, and NTO Tech. How should they structure their Business Units for optimal brand separation and operational efficiency?",
+                options: [
+                    "Use one Business Unit for all brands to simplify management",
+                    "Create separate child Business Units for each brand under a parent Business Unit for centralized oversight",
+                    "Avoid Business Units and use folders only",
+                    "Create separate Marketing Cloud instances"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Creating separate child Business Units for each brand under a parent Business Unit provides brand separation while enabling centralized oversight, shared resources, and consolidated reporting. This structure supports both brand integrity and operational efficiency."
+            },
+
+            {
+                question: "When managing multiple brands in Marketing Cloud, how should NTO approach subscriber data management to maintain brand relationships while preventing cross-contamination?",
+                options: [
+                    "Share all subscriber data across all brands",
+                    "Use Business Unit-specific Data Extensions and populations with controlled sharing where appropriate",
+                    "Keep subscriber data completely separate with no sharing",
+                    "Use only All Subscribers for all brands"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Business Unit-specific Data Extensions and populations maintain brand separation while allowing controlled sharing when subscribers explicitly opt into multiple brands. This approach respects subscriber preferences while enabling cross-brand insights where appropriate."
+            },
+
+            {
+                question: "NTO wants to create brand-specific Preference Centers for their multi-brand setup. What is the recommended approach for maintaining consistent user experience while allowing brand customization?",
+                options: [
+                    "Use one generic Preference Center for all brands",
+                    "Create brand-specific Preference Centers with consistent functionality but brand-appropriate styling and content",
+                    "Eliminate Preference Centers to avoid complexity",
+                    "Use third-party preference management tools"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Brand-specific Preference Centers maintain brand consistency in styling and messaging while providing consistent functionality. This approach ensures subscribers recognize the brand context while offering standardized preference management capabilities."
+            },
+
+            // Initial Configuration Sequences & Best Practices (Questions 29-32)
+            {
+                question: "When setting up Marketing Cloud for the first time, what is the correct sequence for initial configuration?",
+                options: [
+                    "Import data, create emails, setup automation, configure trust site",
+                    "Configure Trust Site and domain verification, setup user access and roles, establish Contact Builder structure, create Send Classifications, then begin campaign development",
+                    "Create emails first, then import data and setup automation",
+                    "Setup automation, then configure other applications"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. The correct sequence starts with foundational security (Trust Site), user access management, data structure (Contact Builder), sending infrastructure (Send Classifications), and then campaign creation. This ensures a solid foundation before building campaigns."
+            },
+
+            {
+                question: "NTO's implementation team asks about Marketing Cloud setup best practices. What is the recommended approach for initial folder structure creation across all applications?",
+                options: [
+                    "Create folders as needed without planning",
+                    "Establish consistent naming conventions and folder hierarchies that reflect business structure before creating content",
+                    "Use only default folders provided by Marketing Cloud",
+                    "Copy folder structures from other marketing platforms"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Establishing consistent naming conventions and folder hierarchies that reflect business structure (brands, campaigns, content types) before creating content ensures scalability, findability, and team adoption. This organizational foundation prevents future reorganization efforts."
+            },
+
+            {
+                question: "During initial Marketing Cloud configuration, NTO wants to ensure optimal performance. What is a critical best practice for Contact Builder setup that impacts system performance?",
+                options: [
+                    "Create as many Data Extensions as possible",
+                    "Plan data model structure with appropriate relationships and avoid unnecessary data duplication",
+                    "Import all available customer data immediately",
+                    "Use only synchronized Data Extensions"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Planning data model structure with appropriate relationships and avoiding unnecessary data duplication ensures optimal system performance, faster query execution, and efficient storage utilization. Strategic data modeling is crucial for scalability."
+            },
+
+            {
+                question: "NTO's setup team asks about initial testing procedures after Marketing Cloud configuration. What testing sequence ensures all systems are properly configured before launching campaigns?",
+                options: [
+                    "Start sending campaigns immediately to test in production",
+                    "Test domain verification, send test emails through each Send Classification, verify tracking and preference centers, then conduct user acceptance testing",
+                    "Only test email deliverability",
+                    "Skip testing and rely on Marketing Cloud's built-in validation"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Comprehensive testing includes domain verification confirmation, test sends through each Send Classification, tracking validation, preference center functionality, and user acceptance testing. This systematic approach identifies issues before production launches."
+            },
+
+            // Data Architecture Relationships (Questions 33-34)
+            {
+                question: "A marketing administrator needs to understand Marketing Cloud's data architecture. What is the relationship between Contact Builder and other Marketing Cloud applications?",
+                options: [
+                    "Contact Builder works independently from other applications",
+                    "Contact Builder serves as the central data foundation that other applications reference for subscriber information",
+                    "Contact Builder only stores email addresses",
+                    "Other applications don't use Contact Builder data"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Contact Builder serves as the central data foundation for Marketing Cloud. All other applications (Email Studio, Journey Builder, Mobile Studio, etc.) reference Contact Builder for subscriber information, ensuring data consistency across campaigns."
+            },
+
+            {
+                question: "NTO wants to understand how data flows between Marketing Cloud applications. When a subscriber updates their preferences in a Preference Center, how does this change propagate through the Marketing Cloud ecosystem?",
+                options: [
+                    "Changes only affect Email Studio",
+                    "Preference changes update Contact Builder attributes which are then reflected in all applications that reference subscriber data",
+                    "Each application maintains separate preference data",
+                    "Preference changes must be manually updated in each application"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Preference changes update Contact Builder attributes (the central data repository), which automatically propagates to all applications that reference subscriber data. This ensures consistent subscriber experience across all touchpoints and campaigns."
+            },
+
+            // Security Requirements & Operational Efficiency (Question 35)
+            {
+                question: "NTO's IT security team requires comprehensive security measures for their Marketing Cloud implementation. Which combination of security features provides the most robust protection for Marketing Cloud data and operations?",
+                options: [
+                    "Strong passwords only",
+                    "Multi-factor authentication, IP allowlisting, role-based permissions with principle of least privilege, regular audit trail reviews, and secure API access management",
+                    "Basic user authentication without additional security",
+                    "Marketing Cloud's default security settings only"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Comprehensive Marketing Cloud security requires multi-factor authentication, IP allowlisting for controlled access, role-based permissions with least privilege principles, regular audit trail monitoring, and secure API access management. This layered security approach protects against various threat vectors and ensures compliance with enterprise security requirements."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answersGiven = [];
+        let quizCompleted = false;
+        let shuffledQuestions = [];
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function prepareQuestion(questionData) {
+            // Create array of options with their original indices
+            const optionsWithIndex = questionData.options.map((option, index) => ({
+                text: option,
+                originalIndex: index,
+                isCorrect: index === questionData.correct
+            }));
+            
+            // Shuffle the options
+            const shuffled = shuffleArray(optionsWithIndex);
+            
+            // Find the new index of the correct answer
+            const newCorrectIndex = shuffled.findIndex(option => option.isCorrect);
+            
+            // Create mapping from original indices to new indices
+            const indexMapping = {};
+            shuffled.forEach((option, newIndex) => {
+                indexMapping[option.originalIndex] = newIndex;
+            });
+            
+            // Update explanation text to reflect new option positions
+            let updatedExplanation = questionData.explanation;
+            
+            // Replace letter references in explanation with updated letters
+            for (let originalIndex = 0; originalIndex < questionData.options.length; originalIndex++) {
+                const originalLetter = String.fromCharCode(65 + originalIndex);
+                const newLetter = String.fromCharCode(65 + indexMapping[originalIndex]);
+                
+                // Replace references like "(A)" or " A " with new letter
+                const regex = new RegExp(`\\(${originalLetter}\\)|\\b${originalLetter}\\b`, 'g');
+                updatedExplanation = updatedExplanation.replace(regex, (match) => {
+                    return match.includes('(') ? `(${newLetter})` : newLetter;
+                });
+            }
+            
+            return {
+                ...questionData,
+                options: shuffled.map(option => option.text),
+                correct: newCorrectIndex,
+                explanation: updatedExplanation
+            };
+        }
+
+        function loadQuestion() {
+            if (currentQuestion >= shuffledQuestions.length) {
+                showCompletionScreen();
+                return;
+            }
+
+            const question = shuffledQuestions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${shuffledQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <ul class="options">
+                        ${question.options.map((option, index) => 
+                            `<li class="option" onclick="selectOption(${index})">
+                                <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                                <span>${option}</span>
+                            </li>`
+                        ).join('')}
+                    </ul>
+                    <div class="explanation" id="explanation">
+                        <h4>✅ Correct Answer: ${String.fromCharCode(65 + question.correct)})</h4>
+                        <p>${question.explanation}</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <div class="score-display">
+                        <div style="background: linear-gradient(135deg, #4CAF50, #2196F3); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;">
+                            📊 Running Score: ${score}/${currentQuestion + (answersGiven[currentQuestion] !== undefined ? 1 : 0)} 
+                            ${(currentQuestion > 0 || answersGiven[currentQuestion] !== undefined) ? `(${Math.round((score/(currentQuestion + (answersGiven[currentQuestion] !== undefined ? 1 : 0)))*100)}%)` : '(0%)'}
+                        </div>
+                    </div>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        Next →
+                    </button>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = shuffledQuestions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Remove any previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark the selected option
+            options[selectedIndex].classList.add('selected');
+
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Update score - only if this is the first time answering this question
+            if (answersGiven[currentQuestion] === undefined) {
+                if (selectedIndex === question.correct) {
+                    score++;
+                }
+            }
+
+            // Record the answer
+            answersGiven[currentQuestion] = selectedIndex;
+
+            // Show explanation and enable next button
+            explanation.classList.add('show');
+            nextBtn.disabled = false;
+
+            // Update score display with enhanced styling
+            document.querySelector('.score-display').innerHTML = 
+                `<div style="background: linear-gradient(135deg, #4CAF50, #2196F3); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;">
+                    📊 Running Score: ${score}/${currentQuestion + 1} (${Math.round(score/(currentQuestion + 1)*100)}%)
+                </div>`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / shuffledQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${shuffledQuestions.length}`;
+        }
+
+        function showCompletionScreen() {
+            const container = document.getElementById('quizContainer');
+            const completionScreen = document.getElementById('completionScreen');
+            const finalScorePercent = Math.round((score / shuffledQuestions.length) * 100);
+            
+            container.style.display = 'none';
+            completionScreen.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = finalScorePercent + '%';
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (finalScorePercent >= 85) {
+                scoreCircle.className = 'score-circle score-excellent';
+                scoreMessage.textContent = '🌟 Outstanding! You demonstrate enterprise-level SFMC expertise ready for certification success!';
+            } else if (finalScorePercent >= 75) {
+                scoreCircle.className = 'score-circle score-good';
+                scoreMessage.textContent = '👏 Great job! You have strong knowledge. Review missed concepts and you\'ll be ready for the certification.';
+            } else if (finalScorePercent >= 65) {
+                scoreCircle.className = 'score-circle score-needs-improvement';
+                scoreMessage.textContent = '📚 Good progress! Focus on understanding the enterprise scenarios and technical details for certification success.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                scoreMessage.textContent = '💪 Keep studying! These advanced questions require deep SFMC knowledge. Review the concepts and try again.';
+            }
+
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quiz Complete!';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            quizCompleted = false;
+            
+            // Reshuffle questions and answers
+            initializeQuiz();
+            
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('completionScreen').classList.remove('show');
+            
+            loadQuestion();
+        }
+
+        function initializeQuiz() {
+            // Shuffle the questions and prepare each one with shuffled answers
+            shuffledQuestions = shuffleArray(questions).map(prepareQuestion);
+        }
+
+        // Initialize the quiz
+        initializeQuiz();
+        loadQuestion();
+    </script>
+</body>
+</html>
