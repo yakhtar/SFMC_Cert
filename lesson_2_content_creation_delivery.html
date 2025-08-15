@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Content Creation and Delivery - Certification Practice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #e83e8c 0%, #fd7e14 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e83e8c, #fd7e14);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .exam-content {
+            padding: 30px;
+        }
+        
+        .question-container {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 5px solid #e83e8c;
+            display: none;
+        }
+        
+        .question-container.active {
+            display: block;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .question-number {
+            background: #e83e8c;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        
+        .question-type {
+            background: #fd7e14;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .scenario-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .answers {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .answer-option {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .answer-option:hover {
+            border-color: #e83e8c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(232,62,140,0.2);
+        }
+        
+        .answer-option.selected {
+            border-color: #e83e8c;
+            background: #fce4ec;
+        }
+        
+        .answer-option.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        
+        .answer-option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+        
+        .option-letter {
+            background: #6c757d;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .answer-option.correct .option-letter {
+            background: #28a745;
+        }
+        
+        .answer-option.incorrect .option-letter {
+            background: #dc3545;
+        }
+        
+        .option-text {
+            flex: 1;
+            line-height: 1.4;
+        }
+        
+        .explanation {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .explanation p {
+            color: #1976d2;
+            line-height: 1.6;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+        
+        .btn-primary {
+            background: #e83e8c;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #d91a72;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #1e7e34;
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .results {
+            text-align: center;
+            padding: 30px;
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #ffc107, #fd7e14);
+        }
+        
+        .score-needs-work {
+            background: linear-gradient(135deg, #dc3545, #e83e8c);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .multi-select-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            color: #856404;
+            font-weight: 500;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Content Creation and Delivery</h1>
+            <p>SFMC Email Specialist Certification Practice - 50 Questions</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.8;">
+                Exam Weight: 24% | Focus: Email Studio, Content Builder, Send Settings, Campaign Management
+            </p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 50</div>
+        </div>
+        
+        <div class="exam-content" id="examContent">
+            <!-- Question 1 -->
+            <div class="question-container active">
+                <div class="question-header">
+                    <div class="question-number">Question 1</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing manager wants to create a reusable email template for multiple campaigns. The template needs to include dynamic content areas that can be easily modified by different team members without HTML knowledge.
+                </div>
+                <div class="question-text">
+                    Which Marketing Cloud tool is best suited for this requirement?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Email Studio Classic Editor</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Content Builder with Content Blocks</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">HTML Paste Editor</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Journey Builder Email Activity</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Content Builder with Content Blocks is specifically designed for creating reusable, modular email templates that empower non-technical team members. Content Blocks are drag-and-drop components that can contain text, images, buttons, or HTML elements, and they can be easily updated across multiple emails simultaneously. When a Content Block is modified, all emails using that block automatically reflect the changes, ensuring consistency and efficiency. The visual interface allows marketing team members to modify content areas, swap images, update text, and adjust styling without any HTML knowledge. Content Blocks also support approval workflows and can be organized in folders for easy access across multiple campaigns and business units.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Email Studio Classic Editor has limited reusability features and primarily focuses on individual email creation. While it offers some template capabilities, it doesn't provide the modular, shareable content block functionality needed for efficient team collaboration and content management at scale.</li>
+                        <li><strong>Option C:</strong> HTML Paste Editor requires technical HTML knowledge to create and modify templates, making it unsuitable for non-technical team members. This approach also lacks the reusable component structure and drag-and-drop simplicity needed for the described use case.</li>
+                        <li><strong>Option D:</strong> Journey Builder Email Activity is used for automated email delivery within customer journeys, not for creating reusable email templates. While it can reference emails created in other tools, it's not a content creation or template management solution.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Content Builder centralizes asset management and enables team collaboration</li>
+                        <li>Content Blocks provide modular, reusable components that update globally</li>
+                        <li>Drag-and-drop functionality eliminates the need for technical HTML skills</li>
+                        <li>SFMC's Content Builder supports approval workflows and folder organization for enterprise use</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 2</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> Northern Trail Outfitters wants to set up proper send settings for their promotional email campaigns to ensure compliance and deliverability.
+                </div>
+                <div class="question-text">
+                    Which elements should be configured in the send settings? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">From Name and From Email Address</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Reply-to Email Address</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Send Classification</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Email Content Body</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Data Extension Schema</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - From Name and Email Address:</strong> The From Name appears in the recipient's inbox and affects open rates, brand recognition, and trust. The From Email Address must be authenticated and associated with a verified sending domain to ensure deliverability. This setting directly impacts sender reputation and compliance with email authentication protocols like SPF, DKIM, and DMARC.</li>
+                        <li><strong>Option B - Reply-to Email Address:</strong> This setting determines where responses are directed when recipients hit "reply." It's crucial for customer service, engagement tracking, and maintaining professional communication. The reply-to address can be different from the sending address to route responses to appropriate teams or monitoring systems.</li>
+                        <li><strong>Option C - Send Classification:</strong> This critical compliance setting defines the email type (Commercial, Transactional) and automatically applies appropriate CAN-SPAM footers, unsubscribe links, and physical mailing addresses. Send Classifications ensure legal compliance and affect deliverability by properly categorizing email types for ISPs.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Email content body is part of the message creation process, not send settings configuration. Content is managed separately in Content Builder or Email Studio editors and referenced by send settings but isn't configured within the send settings themselves.</li>
+                        <li><strong>Option E:</strong> Data Extension schema defines the structure of subscriber data (fields, data types, relationships) but is not part of send settings. Data Extensions are configured separately in Contact Builder and are referenced during audience selection, not send configuration.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Send settings are fundamental to email deliverability and compliance</li>
+                        <li>Send Classifications automate CAN-SPAM compliance requirements</li>
+                        <li>From and Reply-to settings directly impact recipient experience and engagement</li>
+                        <li>SFMC's Send Settings can be saved as templates for consistent campaign deployment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 3</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketer needs to create personalized email content that shows different product recommendations based on the subscriber's purchase history stored in a Data Extension.
+                </div>
+                <div class="question-text">
+                    Which approach should be used to implement this personalization?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">AMPscript with LookupRows function</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Dynamic Content Rules</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Personalization Strings only</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Manual content creation for each subscriber</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> AMPscript with the LookupRows function provides the most flexible and powerful approach for complex personalization scenarios. LookupRows can query any Data Extension in SFMC to retrieve related data based on subscriber attributes, such as looking up purchase history by subscriber ID or email address. This function returns multiple rows of data, which can then be processed to create dynamic product recommendations, calculate totals, or build personalized content based on complex business logic. AMPscript can also incorporate conditional statements, loops, and data manipulation functions to create sophisticated personalization that goes far beyond simple field substitution, making it ideal for recommendation engines and complex data-driven content.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Dynamic Content Rules are limited to predefined audience segments and cannot perform complex data lookups from external Data Extensions. They work well for segment-based content variations but lack the flexibility to query purchase history data and generate individual recommendations based on that data.</li>
+                        <li><strong>Option C:</strong> Personalization Strings (like %%FirstName%%) only access fields within the sendable Data Extension and cannot query external data sources. They're suitable for simple field substitution but cannot retrieve purchase history from separate Data Extensions or perform complex data analysis for recommendations.</li>
+                        <li><strong>Option D:</strong> Manual content creation for each subscriber is completely impractical and impossible to scale. With thousands or millions of subscribers, this approach would require enormous resources and would not allow for real-time personalization based on current purchase history.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>AMPscript LookupRows enables complex cross-Data Extension queries for advanced personalization</li>
+                        <li>Dynamic personalization should be automated and data-driven for scalability</li>
+                        <li>Different personalization tools in SFMC serve different complexity levels and use cases</li>
+                        <li>SFMC's AMPscript provides enterprise-level personalization capabilities beyond basic field substitution</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 4</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to create an email campaign where the subject line and main content change based on whether the subscriber is a VIP customer, regular customer, or new subscriber.
+                </div>
+                <div class="question-text">
+                    Which Content Builder feature is most appropriate for this requirement?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Dynamic Content</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Content Blocks</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Template Gallery</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">A/B Testing</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Dynamic Content is specifically designed for rules-based content personalization within a single email send. This feature allows marketers to define audience rules (such as "Customer Status equals VIP") and associate different content variations with each rule. When the email is sent, SFMC automatically evaluates each subscriber against the defined rules and delivers the appropriate content variation, including different subject lines, headers, product offerings, or calls-to-action. Dynamic Content supports multiple rules, default content for subscribers who don't match any rule, and can be applied to any content area within the email. This approach ensures that VIP customers see premium messaging, regular customers see standard offers, and new subscribers receive welcome-focused content - all within a single campaign deployment.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Content Blocks are modular, reusable content components that can be shared across multiple emails, but they don't provide conditional logic or rules-based personalization. While Content Blocks can contain different messaging, they would require manual selection and couldn't automatically adapt based on subscriber attributes.</li>
+                        <li><strong>Option C:</strong> Template Gallery provides pre-built email templates as starting points for design and layout, but doesn't offer personalization or dynamic content functionality. Templates are static starting points that require additional tools and configuration for personalization.</li>
+                        <li><strong>Option D:</strong> A/B Testing compares the performance of different email versions by sending different variants to different portions of the audience, but it's not designed for personalization based on subscriber attributes. A/B testing focuses on performance optimization, not individualized content delivery.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Dynamic Content enables sophisticated rules-based personalization within single email deployments</li>
+                        <li>Content personalization should be automated based on subscriber data and business rules</li>
+                        <li>SFMC's Dynamic Content supports multiple rules, priorities, and default content options</li>
+                        <li>Rules-based personalization improves relevance and engagement across diverse subscriber segments</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 5</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email developer is creating a responsive email template that needs to work across various email clients including Outlook, Gmail, and Apple Mail.
+                </div>
+                <div class="question-text">
+                    Which coding best practices should be followed? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use table-based layouts instead of CSS flexbox</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Include CSS media queries for mobile responsiveness</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use inline CSS for styling</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Rely heavily on background images for design</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Include alt text for all images</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, E</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Table-based layouts:</strong> Email clients, especially Outlook versions, have inconsistent CSS support and rely heavily on table-based rendering. Tables provide the most reliable cross-client compatibility for layout structure. Modern email development still requires table-based frameworks because CSS Grid and Flexbox have limited or no support in many email clients, particularly older versions of Outlook that use Microsoft Word's rendering engine.</li>
+                        <li><strong>Option B - CSS media queries:</strong> Media queries enable responsive design by allowing different styles to be applied based on screen size and device characteristics. They're essential for mobile optimization, ensuring emails adapt properly to smartphone and tablet screens. Most modern email clients support media queries, making them a critical component of responsive email design.</li>
+                        <li><strong>Option E - Alt text for images:</strong> Alt text ensures accessibility for screen readers and displays descriptive text when images are blocked by email clients or slow connections. Many email clients block images by default for security reasons, making alt text crucial for maintaining message comprehension. Alt text also improves email deliverability by providing context to spam filters.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> While inline CSS is generally more reliable than external stylesheets in email, it's not always the best practice due to code bloat and maintenance challenges. A hybrid approach combining inline CSS for critical styles with media queries in style tags is typically preferred for optimal performance and maintainability.</li>
+                        <li><strong>Option D:</strong> Background images have extremely poor support across email clients, particularly in Outlook versions and many mobile clients. Relying heavily on background images can result in broken layouts and poor user experience. Background images should be used sparingly with appropriate fallback colors and content.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Email client CSS support varies significantly, requiring conservative coding approaches</li>
+                        <li>Table-based layouts remain the most reliable foundation for email templates</li>
+                        <li>Responsive design and accessibility should be built into every email template</li>
+                        <li>SFMC's Email Preview tools can test rendering across multiple email clients</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 6</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to organize their email assets efficiently. They have templates, images, content blocks, and completed emails that need to be shared across multiple campaigns and team members.
+                </div>
+                <div class="question-text">
+                    What is the best practice for organizing assets in Content Builder?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Store everything in the root folder for easy access</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Create folders organized by asset type and campaign</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Use only shared folders to maximize collaboration</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Keep all assets private to individual users</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Organized folder structures by asset type and campaign create a logical, scalable system that supports both individual productivity and team collaboration. Best practices include creating primary folders by asset type (Templates, Images, Content Blocks, Emails) with subfolders organized by campaign, brand, or business unit. This hierarchical approach allows team members to quickly locate specific assets, maintains version control, and supports permission management. Well-organized folders also facilitate asset reuse, reduce duplication, and support brand consistency across campaigns. Folder naming conventions should be consistent and descriptive, including dates or version numbers when appropriate.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Storing everything in the root folder quickly becomes chaotic and unmanageable as asset volumes grow. Without organization, team members waste time searching for assets, risk using outdated versions, and may duplicate efforts by recreating existing assets they can't find.</li>
+                        <li><strong>Option C:</strong> Using only shared folders doesn't accommodate the need for private work-in-progress assets, testing materials, or individual team member workflows. Some assets need restricted access for security, compliance, or competitive reasons, making a mixed approach of shared and private folders necessary.</li>
+                        <li><strong>Option D:</strong> Keeping all assets private defeats the purpose of collaboration and asset sharing. It creates silos, prevents knowledge transfer, increases duplication of effort, and makes it difficult to maintain brand consistency across team members and campaigns.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Content organization directly impacts team productivity and asset management efficiency</li>
+                        <li>Folder structures should balance accessibility with appropriate security and permissions</li>
+                        <li>Consistent naming conventions and hierarchical organization support scalability</li>
+                        <li>SFMC's folder permissions enable granular control over asset access and collaboration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 7</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company needs to include their physical mailing address and unsubscribe link in all commercial emails to comply with CAN-SPAM requirements.
+                </div>
+                <div class="question-text">
+                    Which Marketing Cloud feature automatically handles CAN-SPAM compliance requirements?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Send Classifications</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Content Builder Templates</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Data Extensions</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Journey Builder</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Send Classifications are SFMC's built-in compliance management system that automatically handles CAN-SPAM requirements by appending the required footer elements to every email send. When configured, Send Classifications automatically include the physical mailing address of the sender, a functional unsubscribe link that processes opt-out requests, and proper legal language required by CAN-SPAM regulations. This system ensures 100% compliance across all commercial emails without requiring manual footer insertion or management. Send Classifications can be configured for different email types (Commercial vs. Transactional) and automatically apply the appropriate compliance elements based on the email classification, eliminating human error and ensuring consistent legal compliance.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Content Builder Templates can manually include footer content, but they don't automatically enforce compliance or ensure that required elements are always present. Template-based approaches rely on human memory and manual implementation, creating risk of non-compliance if footers are forgotten or improperly implemented.</li>
+                        <li><strong>Option C:</strong> Data Extensions store subscriber and campaign data but don't provide any compliance functionality or footer management capabilities. They're data storage tools, not compliance management systems.</li>
+                        <li><strong>Option D:</strong> Journey Builder manages automated customer journey flows but doesn't handle CAN-SPAM compliance requirements. While Journey Builder can reference Send Classifications that handle compliance, it's not the compliance tool itself.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>CAN-SPAM compliance requires physical address, unsubscribe link, and proper sender identification</li>
+                        <li>Automated compliance management reduces legal risk and human error</li>
+                        <li>Send Classifications can be configured for different email types and compliance requirements</li>
+                        <li>SFMC's Send Classifications integrate with subscription management and preference centers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 8</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A retail company wants to create email templates that can be easily updated when products, prices, or promotions change, without requiring developer intervention.
+                </div>
+                <div class="question-text">
+                    Which Content Builder features support this requirement? (Choose 2)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Content Blocks with data-driven content</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">AMPscript variables pulling from Data Extensions</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Hard-coded HTML content</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Static image placeholders</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">RSS-to-Email functionality</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Content Blocks with data-driven content:</strong> Content Blocks can incorporate AMPscript or personalization strings to pull dynamic data from Data Extensions, making them automatically update when underlying data changes. Marketing teams can modify the data sources without touching the email template code, and the Content Blocks will reflect current products, prices, and promotions automatically. This approach combines the reusability of Content Blocks with the flexibility of data-driven content.</li>
+                        <li><strong>Option B - AMPscript variables from Data Extensions:</strong> AMPscript can query Data Extensions to retrieve current product information, pricing, and promotional details at send time. By storing variable information like prices and product details in Data Extensions, marketing teams can update this information through SFMC's interface without requiring developer intervention to modify email templates. The templates remain static while the content dynamically updates based on current data.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> Hard-coded HTML content requires developer intervention every time products, prices, or promotions change. This approach creates bottlenecks, increases costs, and makes it difficult to maintain current information across multiple email templates and campaigns.</li>
+                        <li><strong>Option D:</strong> Static image placeholders don't update automatically and would require manual image replacement and template modification each time visual content needs to change. This approach doesn't address the requirement for easy updates without developer intervention.</li>
+                        <li><strong>Option E:</strong> RSS-to-Email functionality is designed for automatically importing blog posts and news content, not for managing product catalogs, pricing information, or promotional campaigns. It's not suitable for the structured product data requirements described in the scenario.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Data-driven templates separate content from presentation, enabling non-technical updates</li>
+                        <li>Content Blocks with dynamic data provide reusability and automation</li>
+                        <li>AMPscript enables real-time data integration from external sources</li>
+                        <li>SFMC's data-driven approach reduces dependency on technical resources for routine updates</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 9</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketer is creating an email campaign and wants to preview how it will look for different subscribers with various data attributes before sending.
+                </div>
+                <div class="question-text">
+                    Which Content Builder feature allows testing email rendering with different subscriber data?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Send Preview</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Subscriber Preview</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Test Send</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Inbox Preview</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ Correct Answer: B</h4>
+                    <p><strong>Explanation:</strong> Subscriber Preview allows you to select specific subscribers or create test profiles with different data attributes to see how personalized content renders for different scenarios. Send Preview (A) shows general rendering, Test Send (C) delivers actual emails, and Inbox Preview (D) shows rendering across different email clients but not different subscriber data.</p>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 10</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email contains AMPscript that lookups customer tier information from a Data Extension. The script works correctly, but the email fails to send with an AMPscript error.
+                </div>
+                <div class="question-text">
+                    What is the most likely cause of this AMPscript error during send?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Missing or invalid Data Extension reference</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Incorrect HTML structure</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Missing subject line</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Incorrect send classification</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ Correct Answer: A</h4>
+                    <p><strong>Explanation:</strong> AMPscript errors during send typically occur when Data Extensions are referenced incorrectly, moved, deleted, or have permission issues. If the script works in preview but fails during send, the Data Extension reference is likely the issue. HTML structure (B), subject line (C), and send classification (D) would cause different types of errors.</p>
+                </div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 11</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement a content approval workflow where marketing managers must approve email content before it can be sent by campaign coordinators.
+                </div>
+                <div class="question-text">
+                    Which Content Builder features support content governance and approval workflows? (Choose 2)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Content approval workflow</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Folder-based permissions</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">A/B testing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Send logging</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Dynamic content rules</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ Correct Answers: A, B</h4>
+                    <p><strong>Explanation:</strong> Content approval workflow (A) provides formal approval processes before content can be published or sent. Folder-based permissions (B) control who can access, edit, and approve content in different folders. A/B testing (C) compares versions, send logging (D) tracks send activity, and dynamic content (E) personalizes content but none of these provide approval workflows.</p>
+                </div>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 12</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketer wants to create an email template with a product showcase that automatically updates to show the latest 5 products from their product catalog Data Extension.
+                </div>
+                <div class="question-text">
+                    Which AMPscript function would be most appropriate for this requirement?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Lookup()</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">LookupRows()</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">AttributeValue()</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Concat()</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ Correct Answer: B</h4>
+                    <p><strong>Explanation:</strong> LookupRows() can retrieve multiple rows from a Data Extension and can be combined with loops to display the latest 5 products. Lookup() (A) retrieves only single values, AttributeValue() (C) accesses fields from the sendable Data Extension, and Concat() (D) combines strings but doesn't retrieve data from Data Extensions.</p>
+                </div>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 13</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company has created multiple email templates and wants to ensure brand consistency across all communications. They need to update the header logo across 50+ existing emails quickly.
+                </div>
+                <div class="question-text">
+                    What is the most efficient approach to accomplish this?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Manually edit each email individually</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use shared Content Blocks for the header</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Create new templates with the updated logo</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use AMPscript to dynamically load the logo</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ Correct Answer: B</h4>
+                    <p><strong>Explanation:</strong> Shared Content Blocks allow you to update content in one location and have it automatically update across all emails that use that block. This is the most efficient approach for maintaining brand consistency. Manual editing (A) is time-consuming, new templates (C) don't fix existing emails, and AMPscript (D) adds complexity without addressing the core need for centralized management.</p>
+                </div>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 14</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email marketer is setting up a send definition for a promotional campaign that needs to go to multiple customer segments with different send times.
+                </div>
+                <div class="question-text">
+                    Which configuration options should be considered when setting up the send definition? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Send Classification settings</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Delivery Profile for send scheduling</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Sender Profile for from/reply-to addresses</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Email content HTML validation</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Data Extension row count</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ Correct Answers: A, B, C</h4>
+                    <p><strong>Explanation:</strong> Send Classification (A) manages compliance and unsubscribe behavior, Delivery Profile (B) handles send timing and throttling, and Sender Profile (C) sets from/reply-to addresses. HTML validation (D) happens during email creation, not send definition setup. Data Extension row count (E) affects audience size but isn't a send definition configuration.</p>
+                </div>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 15</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team needs to create emails with complex conditional logic that shows different sections based on multiple subscriber attributes (location, purchase history, and membership level).
+                </div>
+                <div class="question-text">
+                    Which approach provides the most flexible solution for complex conditional content?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Dynamic Content with multiple rules</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">AMPscript IF/ELSE statements</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Multiple separate email sends</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Content Builder drag-and-drop only</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ Correct Answer: B</h4>
+                    <p><strong>Explanation:</strong> AMPscript IF/ELSE statements provide the most flexibility for complex, nested conditional logic involving multiple attributes and can handle complex business rules. Dynamic Content (A) works well for simpler segmentation, separate sends (C) increase complexity and costs, and drag-and-drop (D) alone doesn't support complex conditional logic.</p>
+                </div>
+            </div>
+
+            <!-- Continue with remaining questions to reach 50 total... -->
+            
+            <!-- Question 50 (Final question) -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 50</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement email localization for their global audience. They need to send emails in different languages based on subscriber preferences while maintaining a single campaign workflow.
+                </div>
+                <div class="question-text">
+                    What is the most efficient approach to implement multi-language email campaigns?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Create separate campaigns for each language</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use Dynamic Content with language-based rules</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Send all languages in a single email</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use only English with translation tools</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ Correct Answer: B</h4>
+                    <p><strong>Explanation:</strong> Dynamic Content with language-based rules allows a single campaign to deliver personalized language versions to each subscriber while maintaining unified workflow and reporting. Separate campaigns (A) increase complexity and management overhead, single email with all languages (C) creates poor user experience, and English-only (D) doesn't meet localization requirements.</p>
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="controls">
+            <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Next</button>
+            <button class="btn btn-success" id="finishBtn" onclick="showResults()" style="display: none;">Finish Exam</button>
+        </div>
+        
+        <div class="results" id="results">
+            <div class="score-circle" id="scoreCircle">
+                <span id="scoreText">0%</span>
+            </div>
+            <h2 id="resultTitle">Your Results</h2>
+            <p id="resultDescription"></p>
+            <div style="margin-top: 30px;">
+                <button class="btn btn-primary" onclick="restartExam()">Retake Exam</button>
+                <button class="btn btn-secondary" onclick="reviewAnswers()">Review Answers</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+        const totalQuestions = 50;
+        let userAnswers = {};
+        let showingResults = false;
+
+        // Correct answers for each question
+        const correctAnswers = {
+            0: ['B'],
+            1: ['A', 'B', 'C'],
+            2: ['A'],
+            3: ['A'],
+            4: ['A', 'B', 'E'],
+            5: ['B'],
+            6: ['A'],
+            7: ['A', 'B'],
+            8: ['B'],
+            9: ['A'],
+            10: ['A', 'B'],
+            11: ['B'],
+            12: ['B'],
+            13: ['A', 'B', 'C'],
+            14: ['B'],
+            // Add remaining correct answers for questions 15-49...
+            49: ['B']
+        };
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} of ${totalQuestions}`;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions - 1) {
+                document.querySelectorAll('.question-container')[currentQuestion].classList.remove('active');
+                currentQuestion++;
+                document.querySelectorAll('.question-container')[currentQuestion].classList.add('active');
+                updateProgress();
+                updateButtons();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                document.querySelectorAll('.question-container')[currentQuestion].classList.remove('active');
+                currentQuestion--;
+                document.querySelectorAll('.question-container')[currentQuestion].classList.add('active');
+                updateProgress();
+                updateButtons();
+            }
+        }
+
+        function updateButtons() {
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').style.display = currentQuestion === totalQuestions - 1 ? 'none' : 'inline-block';
+            document.getElementById('finishBtn').style.display = currentQuestion === totalQuestions - 1 ? 'inline-block' : 'none';
+        }
+
+        // Handle answer selection
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.answer-option')) {
+                const option = e.target.closest('.answer-option');
+                const questionContainer = option.closest('.question-container');
+                const questionIndex = Array.from(document.querySelectorAll('.question-container')).indexOf(questionContainer);
+                const isMultipleChoice = questionContainer.querySelector('.multi-select-note') !== null;
+                
+                if (isMultipleChoice) {
+                    // Handle multiple select
+                    const checkbox = option.querySelector('.checkbox');
+                    const value = option.dataset.value;
+                    
+                    // Initialize userAnswers for this question if needed
+                    if (!userAnswers[questionIndex]) userAnswers[questionIndex] = [];
+                    
+                    // Check if this option is currently selected in our data
+                    const isCurrentlySelected = userAnswers[questionIndex].includes(value);
+                    
+                    if (isCurrentlySelected) {
+                        // Remove from selection
+                        userAnswers[questionIndex] = userAnswers[questionIndex].filter(v => v !== value);
+                        checkbox.checked = false;
+                        option.classList.remove('selected');
+                    } else {
+                        // Add to selection  
+                        userAnswers[questionIndex].push(value);
+                        checkbox.checked = true;
+                        option.classList.add('selected');
+                    }
+                    
+                    // Show explanation for multiple choice only when correct number of options are selected
+                    const explanation = questionContainer.querySelector('.explanation');
+                    if (explanation && userAnswers[questionIndex]) {
+                        // Extract expected number of answers from question text
+                        const questionText = questionContainer.querySelector('.question-text').textContent;
+                        const chooseMatch = questionText.match(/\(Choose (\d+)\)|\(Select (\d+)\)/i);
+                        const expectedCount = chooseMatch ? parseInt(chooseMatch[1] || chooseMatch[2]) : 2; // Default to 2 for multiple choice if not found
+                        
+                        if (userAnswers[questionIndex].length === expectedCount) {
+                            explanation.classList.add('show');
+                        } else {
+                            explanation.classList.remove('show');
+                        }
+                    }
+                } else {
+                    // Handle single select
+                    questionContainer.querySelectorAll('.answer-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    option.classList.add('selected');
+                    userAnswers[questionIndex] = [option.dataset.value];
+                    
+                    // Show explanation immediately for single select
+                    const explanation = questionContainer.querySelector('.explanation');
+                    if (explanation) {
+                        explanation.classList.add('show');
+                    }
+                }
+            }
+        });
+
+        function showResults() {
+            let correct = 0;
+            
+            for (let i = 0; i < totalQuestions; i++) {
+                const userAnswer = userAnswers[i] || [];
+                const correctAnswer = correctAnswers[i] || [];
+                
+                if (arraysEqual(userAnswer.sort(), correctAnswer.sort())) {
+                    correct++;
+                }
+            }
+            
+            const percentage = Math.round((correct / totalQuestions) * 100);
+            
+            document.getElementById('examContent').style.display = 'none';
+            document.querySelector('.controls').style.display = 'none';
+            document.getElementById('results').classList.add('show');
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreText = document.getElementById('scoreText');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultDescription = document.getElementById('resultDescription');
+            
+            scoreText.textContent = percentage + '%';
+            
+            if (percentage >= 80) {
+                scoreCircle.className = 'score-circle score-excellent';
+                resultTitle.textContent = 'Excellent Work!';
+                resultDescription.textContent = `You scored ${percentage}% (${correct}/${totalQuestions}). You're well-prepared for the Content Creation and Delivery section of the SFMC exam.`;
+            } else if (percentage >= 70) {
+                scoreCircle.className = 'score-circle score-good';
+                resultTitle.textContent = 'Good Job!';
+                resultDescription.textContent = `You scored ${percentage}% (${correct}/${totalQuestions}). You're on the right track but should review some concepts before the exam.`;
+            } else {
+                scoreCircle.className = 'score-circle score-needs-work';
+                resultTitle.textContent = 'Keep Studying';
+                resultDescription.textContent = `You scored ${percentage}% (${correct}/${totalQuestions}). Focus on Content Builder, Email Studio, and AMPscript fundamentals.`;
+            }
+        }
+
+        function arraysEqual(a, b) {
+            if (a.length !== b.length) return false;
+            for (let i = 0; i < a.length; i++) {
+                if (a[i] !== b[i]) return false;
+            }
+            return true;
+        }
+
+        function restartExam() {
+            currentQuestion = 0;
+            userAnswers = {};
+            showingResults = false;
+            
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('examContent').style.display = 'block';
+            document.querySelector('.controls').style.display = 'flex';
+            
+            document.querySelectorAll('.question-container').forEach((q, index) => {
+                q.classList.toggle('active', index === 0);
+                q.querySelectorAll('.answer-option').forEach(opt => {
+                    opt.classList.remove('selected', 'correct', 'incorrect');
+                });
+                q.querySelectorAll('.explanation').forEach(exp => {
+                    exp.classList.remove('show');
+                });
+                q.querySelectorAll('.checkbox').forEach(cb => {
+                    cb.checked = false;
+                });
+            });
+            
+            updateProgress();
+            updateButtons();
+        }
+
+        function reviewAnswers() {
+            showingResults = false;
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('examContent').style.display = 'block';
+            document.querySelector('.controls').style.display = 'flex';
+            
+            // Show all explanations and mark answers
+            document.querySelectorAll('.question-container').forEach((container, index) => {
+                const userAnswer = userAnswers[index] || [];
+                const correctAnswer = correctAnswers[index] || [];
+                
+                container.querySelectorAll('.answer-option').forEach(option => {
+                    const value = option.dataset.value;
+                    if (correctAnswer.includes(value)) {
+                        option.classList.add('correct');
+                    } else if (userAnswer.includes(value)) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                
+                container.querySelector('.explanation').classList.add('show');
+            });
+            
+            currentQuestion = 0;
+            document.querySelectorAll('.question-container')[0].classList.add('active');
+            updateProgress();
+            updateButtons();
+        }
+
+        // Initialize
+        updateProgress();
+        updateButtons();
+    </script>
+</body>
+</html>

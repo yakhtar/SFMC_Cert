@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Email Specialist Certification - Lesson 5: Insights and Analytics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.2em;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+        
+        .progress-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00b894, #00cec9);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 600;
+            color: #2d3436;
+        }
+        
+        .question-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .question {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        
+        .question-type {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .question-type.multi {
+            background: #f39c12;
+        }
+        
+        .options {
+            margin: 20px 0;
+        }
+        
+        .option {
+            margin: 12px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .option:hover {
+            background: #e3f2fd;
+            border-color: #2196f3;
+            transform: translateY(-1px);
+        }
+        
+        .option.selected {
+            background: #e8f5e8;
+            border-color: #4caf50;
+            color: #2e7d32;
+        }
+        
+        .option input {
+            margin-right: 12px;
+        }
+        
+        .option label {
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .results-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .score {
+            font-size: 3em;
+            font-weight: 700;
+            margin: 20px 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .explanation {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: left;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .show-explanation {
+            background: #17a2b8;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        
+        .show-explanation:hover {
+            background: #138496;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .question-container {
+                padding: 20px;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 SFMC Email Specialist Certification</h1>
+            <p>Lesson 5: Insights and Analytics (14% of Exam)</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 35</div>
+        </div>
+        
+        <div class="question-container" id="questionContainer">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="results-container" id="resultsContainer" style="display: none;">
+            <h2>🎉 Quiz Complete!</h2>
+            <div class="score" id="finalScore">0%</div>
+            <p id="scoreMessage"></p>
+            <button class="btn btn-primary" onclick="restartQuiz()">Retake Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                type: "single",
+                question: "A marketing manager wants to track the effectiveness of their email campaigns. Which Einstein feature provides predictive analytics for email engagement?",
+                options: [
+                    "Einstein Send Time Optimization",
+                    "Einstein Engagement Scoring", 
+                    "Einstein Copy Insights",
+                    "Einstein Subject Line Insights"
+                ],
+                correct: [1],
+                explanation: "**✅ CORRECT ANSWER: Einstein Engagement Scoring**\n\n**Why this is correct:** Einstein Engagement Scoring leverages machine learning algorithms to analyze historical engagement patterns and predict future subscriber behavior with remarkable accuracy. This predictive model evaluates factors like open history, click patterns, unsubscribe behavior, and engagement timing to assign each subscriber a likelihood score for opening future emails. The scoring system enables sophisticated audience segmentation based on predicted engagement, allowing marketers to target high-propensity subscribers for important campaigns, exclude low-engagement subscribers to protect sender reputation, and customize send strategies for different engagement levels. This data-driven approach significantly improves campaign performance by focusing resources on subscribers most likely to engage.\n\n**Why other options are incorrect:**\n• **Einstein Send Time Optimization:** Focuses specifically on optimal timing rather than comprehensive engagement prediction across all subscriber attributes\n• **Einstein Copy Insights:** Analyzes email content performance but doesn't predict individual subscriber engagement likelihood\n• **Einstein Subject Line Insights:** Limited to subject line optimization rather than holistic engagement scoring\n\n**Key Learning Points:**\n• Predictive engagement scoring enables proactive audience targeting and sender reputation protection\n• Machine learning models in SFMC analyze multiple engagement factors simultaneously\n• Einstein scoring supports advanced segmentation strategies beyond traditional demographic targeting\n• SFMC's Einstein tools provide actionable insights for optimizing campaign performance and ROI"
+            },
+            {
+                type: "multi",
+                question: "When analyzing email campaign performance in Email Studio, which metrics are considered primary engagement indicators? (Choose 3)",
+                options: [
+                    "Open Rate",
+                    "Click-Through Rate", 
+                    "Bounce Rate",
+                    "List Growth Rate",
+                    "Conversion Rate"
+                ],
+                correct: [0, 1, 4],
+                explanation: "**✅ CORRECT ANSWER: Open Rate, Click-Through Rate, and Conversion Rate**\n\n**Why these are correct:**\n• **Open Rate:** Measures the percentage of delivered emails that were opened, providing the first indicator of subject line effectiveness and subscriber interest. While not perfect due to image blocking and privacy updates, it remains a fundamental engagement metric for initial campaign assessment.\n• **Click-Through Rate (CTR):** Represents the percentage of recipients who clicked on links within the email, indicating genuine interest and engagement with the content. CTR directly correlates with campaign effectiveness and content relevance, making it crucial for optimization efforts.\n• **Conversion Rate:** Measures the percentage of recipients who completed the desired action (purchase, signup, download), representing the ultimate success metric that ties email marketing directly to business objectives and ROI.\n\n**Why other options are incorrect:**\n• **Bounce Rate:** While important for deliverability and list health, it's a delivery metric rather than an engagement metric\n• **Unsubscribe Rate:** Indicates negative engagement and campaign issues but doesn't measure positive subscriber interaction\n• **List Growth Rate:** Measures acquisition rather than engagement with existing subscribers\n\n**Key Learning Points:**\n• Primary engagement metrics form a funnel from awareness (opens) to action (conversions)\n• These three metrics provide comprehensive insight into campaign performance at each stage\n• Engagement metrics should be analyzed together rather than in isolation for complete campaign assessment\n• SFMC provides detailed reporting and segmentation capabilities based on these engagement indicators"
+            },
+            {
+                type: "single", 
+                question: "A company wants to set up comprehensive tracking for their email campaigns. What is the primary purpose of implementing Web Analytics Connector?",
+                options: [
+                    "To track social media engagement",
+                    "To connect SFMC data with Google Analytics or Adobe Analytics",
+                    "To monitor server performance",
+                    "To track mobile app usage"
+                ],
+                correct: [1],
+                explanation: "Web Analytics Connector allows you to connect Marketing Cloud data with external analytics platforms like Google Analytics or Adobe Analytics for comprehensive cross-channel reporting."
+            },
+            {
+                type: "multi",
+                question: "When creating a comprehensive reporting strategy, which Einstein Analytics features can provide advanced insights? (Choose 2)",
+                options: [
+                    "Einstein Discovery for automated insights",
+                    "Einstein Vision for image recognition",
+                    "Einstein Engagement Frequency for optimal send frequency",
+                    "Einstein Language for translation",
+                    "Einstein Prediction Builder for custom models"
+                ],
+                correct: [0, 2],
+                explanation: "Einstein Discovery provides automated insights by analyzing your data patterns, while Einstein Engagement Frequency helps determine optimal send frequency for each subscriber to maximize engagement."
+            },
+            {
+                type: "single",
+                question: "A marketer wants to track conversions from email campaigns to website purchases. Which tracking method provides the most accurate attribution?",
+                options: [
+                    "UTM parameters in email links",
+                    "Pixel tracking only",
+                    "Click tracking only", 
+                    "Subject line tracking"
+                ],
+                correct: [0],
+                explanation: "UTM parameters in email links provide the most accurate conversion attribution by allowing you to track the specific source, medium, and campaign that drove website traffic and conversions."
+            },
+            {
+                type: "multi",
+                question: "When analyzing Journey Builder performance, which key metrics should be monitored for optimization? (Choose 3)",
+                options: [
+                    "Entry and exit rates at each activity",
+                    "Goal completion rates",
+                    "Email template design scores",
+                    "Journey duration and path analysis",
+                    "Server response times"
+                ],
+                correct: [0, 1, 3],
+                explanation: "Entry/exit rates show where subscribers drop off, goal completion rates measure journey effectiveness, and duration/path analysis helps optimize the customer experience flow."
+            },
+            {
+                type: "single",
+                question: "A company notices declining email performance and wants to use Einstein to optimize their campaigns. Which feature would best help identify the optimal send time for each subscriber?",
+                options: [
+                    "Einstein Engagement Scoring",
+                    "Einstein Send Time Optimization",
+                    "Einstein Copy Insights", 
+                    "Einstein Subject Line Insights"
+                ],
+                correct: [1],
+                explanation: "Einstein Send Time Optimization analyzes individual subscriber behavior to determine the optimal time to send emails to each person, maximizing the likelihood of engagement."
+            },
+            {
+                type: "multi",
+                question: "When setting up A/B testing for email campaigns, which elements can be tested to improve performance? (Choose 4)",
+                options: [
+                    "Subject lines",
+                    "Send times",
+                    "Email content and layout",
+                    "From names and addresses",
+                    "Database structure",
+                    "Server configurations"
+                ],
+                correct: [0, 1, 2, 3],
+                explanation: "Subject lines, send times, email content/layout, and from names/addresses are all testable elements that directly impact subscriber engagement and campaign performance."
+            },
+            {
+                type: "single",
+                question: "A marketing team wants to measure the long-term impact of their email marketing efforts. Which metric provides the best insight into customer lifetime value from email campaigns?",
+                options: [
+                    "Click-through rate",
+                    "Open rate",
+                    "Revenue per email sent",
+                    "Unsubscribe rate"
+                ],
+                correct: [2],
+                explanation: "Revenue per email sent is the most effective metric for measuring long-term customer lifetime value, as it directly correlates email efforts with actual business revenue generation."
+            },
+            {
+                type: "multi",
+                question: "When implementing comprehensive email tracking, which tracking pixels and methods should be configured? (Choose 3)",
+                options: [
+                    "Open tracking pixel",
+                    "Click tracking for all links",
+                    "Conversion tracking pixels",
+                    "Social media tracking pixels",
+                    "Video tracking pixels"
+                ],
+                correct: [0, 1, 2],
+                explanation: "Open tracking pixels measure email opens, click tracking monitors link engagement, and conversion tracking pixels measure the completion of desired actions after email interaction."
+            },
+            {
+                type: "single",
+                question: "A company wants to analyze subscriber engagement patterns over time. Which SFMC reporting feature provides the most comprehensive longitudinal analysis?",
+                options: [
+                    "Email Studio Reports",
+                    "Einstein Analytics with custom dashboards",
+                    "Journey Builder Analytics",
+                    "Contact Builder Reports"
+                ],
+                correct: [1],
+                explanation: "Einstein Analytics with custom dashboards provides the most comprehensive longitudinal analysis by allowing you to create custom visualizations and track engagement patterns across multiple dimensions over time."
+            },
+            {
+                type: "multi",
+                question: "When analyzing email deliverability performance, which metrics indicate potential reputation issues? (Choose 3)",
+                options: [
+                    "Increasing bounce rates",
+                    "High open rates",
+                    "Decreasing inbox placement rates",
+                    "High click-through rates", 
+                    "Increasing spam complaints"
+                ],
+                correct: [0, 2, 4],
+                explanation: "Increasing bounce rates, decreasing inbox placement rates, and increasing spam complaints are all indicators of deliverability issues that can damage sender reputation."
+            },
+            {
+                type: "single",
+                question: "A marketer wants to understand which email content performs best for different subscriber segments. Which Einstein feature provides content optimization recommendations?",
+                options: [
+                    "Einstein Send Time Optimization",
+                    "Einstein Copy Insights",
+                    "Einstein Engagement Scoring",
+                    "Einstein Subject Line Insights"
+                ],
+                correct: [1],
+                explanation: "Einstein Copy Insights analyzes email content performance across different subscriber segments and provides recommendations for optimizing content to improve engagement rates."
+            },
+            {
+                type: "multi",
+                question: "When creating automated reporting for executive stakeholders, which key performance indicators should be included? (Choose 4)",
+                options: [
+                    "Total email volume sent",
+                    "Revenue attribution from email",
+                    "List growth and churn rates",
+                    "Deliverability rates",
+                    "Server uptime statistics",
+                    "Campaign ROI"
+                ],
+                correct: [1, 2, 3, 5],
+                explanation: "Revenue attribution, list growth/churn rates, deliverability rates, and campaign ROI provide executives with comprehensive insights into email marketing business impact and health."
+            },
+            {
+                type: "single",
+                question: "A company implements cross-channel attribution tracking. Which feature in SFMC helps connect email engagement with other marketing touchpoints?",
+                options: [
+                    "Contact Builder",
+                    "Journey Builder",
+                    "Einstein Analytics",
+                    "Email Studio"
+                ],
+                correct: [2],
+                explanation: "Einstein Analytics provides cross-channel attribution capabilities by integrating data from multiple marketing touchpoints and allowing you to analyze the complete customer journey."
+            },
+            {
+                type: "multi",
+                question: "When optimizing email campaigns using Einstein insights, which automated recommendations can be implemented? (Choose 3)",
+                options: [
+                    "Optimal send times for individual subscribers",
+                    "Subject line variations for better open rates",
+                    "Content personalization suggestions",
+                    "Server maintenance schedules",
+                    "Database backup procedures"
+                ],
+                correct: [0, 1, 2],
+                explanation: "Einstein provides automated recommendations for send time optimization, subject line improvements, and content personalization to enhance individual subscriber engagement."
+            },
+            {
+                type: "single",
+                question: "A marketing team wants to measure the effectiveness of their re-engagement campaigns. Which metric best indicates campaign success?",
+                options: [
+                    "Total emails sent",
+                    "Reactivation rate of previously inactive subscribers",
+                    "Server response time",
+                    "Database query speed"
+                ],
+                correct: [1],
+                explanation: "Reactivation rate of previously inactive subscribers is the most relevant metric for re-engagement campaigns, showing how effectively the campaign brought dormant subscribers back to active engagement."
+            },
+            {
+                type: "multi",
+                question: "When implementing advanced tracking for email campaigns, which UTM parameter combinations provide the most granular insights? (Choose 3)",
+                options: [
+                    "utm_source (email platform)",
+                    "utm_medium (email)",
+                    "utm_campaign (specific campaign name)",
+                    "utm_term (keywords)",
+                    "utm_content (email version or link)"
+                ],
+                correct: [0, 1, 2],
+                explanation: "UTM_source identifies the platform (SFMC), utm_medium specifies the channel (email), and utm_campaign identifies the specific campaign, providing comprehensive tracking granularity."
+            },
+            {
+                type: "single",
+                question: "A company wants to predict which subscribers are likely to unsubscribe. Which Einstein feature provides this predictive capability?",
+                options: [
+                    "Einstein Engagement Scoring",
+                    "Einstein Copy Insights", 
+                    "Einstein Send Time Optimization",
+                    "Einstein Discovery"
+                ],
+                correct: [3],
+                explanation: "Einstein Discovery can analyze subscriber behavior patterns and predict which subscribers are likely to unsubscribe, enabling proactive retention strategies."
+            },
+            {
+                type: "multi",
+                question: "When analyzing email performance across different customer lifecycle stages, which segmentation approaches provide the most actionable insights? (Choose 3)",
+                options: [
+                    "Recency of last purchase",
+                    "Geographic location only",
+                    "Engagement frequency patterns",
+                    "Email client preference",
+                    "Customer lifetime value segments"
+                ],
+                correct: [0, 2, 4],
+                explanation: "Recency of last purchase, engagement frequency patterns, and customer lifetime value segments provide actionable insights for lifecycle-based email optimization and personalization."
+            },
+            {
+                type: "single",
+                question: "A marketing manager needs to create a comprehensive dashboard showing email program health. Which visualization type best displays engagement trends over time?",
+                options: [
+                    "Pie chart",
+                    "Bar chart",
+                    "Line chart with multiple metrics",
+                    "Scatter plot"
+                ],
+                correct: [2],
+                explanation: "Line charts with multiple metrics are ideal for showing engagement trends over time, allowing you to visualize how different KPIs (opens, clicks, conversions) change across time periods."
+            },
+            {
+                type: "multi", 
+                question: "When implementing conversion tracking for email campaigns, which touchpoints should be monitored for attribution analysis? (Choose 4)",
+                options: [
+                    "Email open timestamps",
+                    "Link click events",
+                    "Website landing page views",
+                    "Purchase completion events",
+                    "Email template load times",
+                    "Form submission completions"
+                ],
+                correct: [0, 1, 2, 3],
+                explanation: "Email opens, link clicks, landing page views, and purchase completions form the complete attribution path from email engagement to conversion, enabling accurate ROI measurement."
+            },
+            {
+                type: "single",
+                question: "A company wants to optimize their email frequency using data-driven insights. Which approach provides the most accurate frequency optimization?",
+                options: [
+                    "Sending the same frequency to all subscribers",
+                    "Using Einstein Engagement Frequency recommendations",
+                    "Following industry benchmarks only",
+                    "Randomly testing different frequencies"
+                ],
+                correct: [1],
+                explanation: "Einstein Engagement Frequency analyzes individual subscriber behavior to recommend optimal send frequency for each person, maximizing engagement while minimizing unsubscribes."
+            },
+            {
+                type: "multi",
+                question: "When creating comprehensive A/B testing strategies, which statistical considerations are essential? (Choose 3)",
+                options: [
+                    "Statistical significance testing",
+                    "Adequate sample size calculation",
+                    "Test duration planning",
+                    "Color scheme preferences",
+                    "Server capacity planning"
+                ],
+                correct: [0, 1, 2],
+                explanation: "Statistical significance testing ensures reliable results, adequate sample size provides confidence in outcomes, and proper test duration allows for meaningful data collection."
+            },
+            {
+                type: "single",
+                question: "A marketing team wants to identify their highest-value email subscribers for VIP treatment. Which combination of metrics best identifies these subscribers?",
+                options: [
+                    "High open rates only",
+                    "High click rates only", 
+                    "High engagement rates combined with high conversion value",
+                    "High unsubscribe rates"
+                ],
+                correct: [2],
+                explanation: "High engagement rates combined with high conversion value identifies subscribers who not only interact with emails but also generate significant business value, making them ideal VIP candidates."
+            },
+            {
+                type: "multi",
+                question: "When implementing cross-device tracking for email campaigns, which identifiers help connect subscriber behavior across devices? (Choose 2)",
+                options: [
+                    "Email address as primary identifier",
+                    "Device IP addresses only",
+                    "Customer ID from CRM system",
+                    "Browser cookies only",
+                    "Operating system versions"
+                ],
+                correct: [0, 2],
+                explanation: "Email addresses and Customer ID from CRM systems serve as consistent identifiers that can link subscriber behavior across multiple devices and touchpoints."
+            },
+            {
+                type: "single",
+                question: "A company wants to measure the incremental lift from their email marketing campaigns. Which testing methodology provides the most accurate measurement?",
+                options: [
+                    "A/B testing subject lines",
+                    "Holdout group testing with control groups",
+                    "Click tracking only",
+                    "Open rate comparison"
+                ],
+                correct: [1],
+                explanation: "Holdout group testing with control groups provides the most accurate incremental lift measurement by comparing results between subscribers who received campaigns and those who didn't."
+            },
+            {
+                type: "multi",
+                question: "When analyzing email campaign performance in Einstein Analytics, which calculated metrics provide deeper insights than standard reports? (Choose 3)",
+                options: [
+                    "Engagement velocity (change in engagement over time)",
+                    "Revenue per subscriber segment",
+                    "Email client market share",
+                    "Conversion path length from email to purchase",
+                    "Server processing speeds"
+                ],
+                correct: [0, 1, 3],
+                explanation: "Engagement velocity shows engagement trends, revenue per segment identifies high-value audiences, and conversion path length helps optimize the customer journey from email to purchase."
+            },
+            {
+                type: "single",
+                question: "A marketing manager wants to automatically identify and flag campaigns with unusual performance patterns. Which Einstein feature provides automated anomaly detection?",
+                options: [
+                    "Einstein Copy Insights",
+                    "Einstein Discovery",
+                    "Einstein Send Time Optimization",
+                    "Einstein Subject Line Insights"
+                ],
+                correct: [1],
+                explanation: "Einstein Discovery provides automated anomaly detection by analyzing campaign performance patterns and identifying unusual deviations that warrant investigation."
+            },
+            {
+                type: "multi",
+                question: "When creating executive-level email marketing reports, which trend analyses provide the most strategic value? (Choose 4)",
+                options: [
+                    "Year-over-year revenue growth from email",
+                    "Subscriber acquisition cost trends",
+                    "Email template color preferences",
+                    "Customer lifetime value by acquisition channel",
+                    "Competitive benchmarking analysis",
+                    "Server maintenance logs"
+                ],
+                correct: [0, 1, 3, 4],
+                explanation: "Revenue growth trends, acquisition cost analysis, customer lifetime value, and competitive benchmarking provide strategic insights that inform business decisions and investment allocation."
+            },
+            {
+                type: "single", 
+                question: "A company implements predictive analytics for email marketing. Which data sources provide the most valuable input for predictive modeling?",
+                options: [
+                    "Email engagement history only",
+                    "Combined email, purchase, and behavioral data",
+                    "Geographic data only",
+                    "Email client preferences only"
+                ],
+                correct: [1],
+                explanation: "Combined email, purchase, and behavioral data provides the most comprehensive foundation for predictive modeling, enabling accurate predictions about future subscriber behavior and value."
+            },
+            {
+                type: "multi",
+                question: "When optimizing email campaigns based on Einstein recommendations, which implementation approaches ensure maximum effectiveness? (Choose 3)",
+                options: [
+                    "Testing recommendations with small segments first",
+                    "Implementing all recommendations simultaneously",
+                    "Monitoring performance changes after implementation",
+                    "Ignoring statistical significance",
+                    "Gradual rollout to larger audiences"
+                ],
+                correct: [0, 2, 4],
+                explanation: "Testing with small segments first, monitoring performance changes, and gradual rollout to larger audiences ensure Einstein recommendations are effective before full implementation."
+            },
+            {
+                type: "single",
+                question: "A marketing team wants to understand the relationship between email engagement and customer churn. Which analytical approach provides the most accurate insights?",
+                options: [
+                    "Simple correlation analysis",
+                    "Cohort analysis with engagement scoring",
+                    "Single metric comparison",
+                    "Geographic analysis only"
+                ],
+                correct: [1],
+                explanation: "Cohort analysis with engagement scoring provides the most accurate insights by tracking how engagement patterns change over time for different customer groups and their relationship to churn behavior."
+            },
+            {
+                type: "multi",
+                question: "When implementing comprehensive email attribution modeling, which attribution models should be considered for different business objectives? (Choose 3)",
+                options: [
+                    "First-touch attribution for brand awareness campaigns",
+                    "Last-touch attribution for conversion campaigns",
+                    "Multi-touch attribution for complex customer journeys",
+                    "Random attribution for testing",
+                    "Time-decay attribution for sales cycles"
+                ],
+                correct: [0, 1, 2],
+                explanation: "First-touch attribution measures initial brand awareness impact, last-touch attribution credits final conversion drivers, and multi-touch attribution provides comprehensive journey analysis for complex customer paths."
+            },
+            {
+                type: "single",
+                question: "A company wants to optimize their email marketing ROI using advanced analytics. Which metric combination provides the most comprehensive ROI measurement?",
+                options: [
+                    "Open rate and click rate only",
+                    "Total revenue divided by total email costs",
+                    "Campaign costs, attributed revenue, and customer lifetime value impact",
+                    "Unsubscribe rate only"
+                ],
+                correct: [2],
+                explanation: "Combining campaign costs, attributed revenue, and customer lifetime value impact provides the most comprehensive ROI measurement by accounting for both immediate returns and long-term customer value creation."
+            }
+        ];
+
+        const correctAnswers = questions.map(q => q.correct);
+        
+        let currentQuestion = 0;
+        const totalQuestions = questions.length;
+        let userAnswers = {};
+        
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} of ${totalQuestions}`;
+        }
+        
+        function displayQuestion() {
+            const question = questions[currentQuestion];
+            const container = document.getElementById('questionContainer');
+            
+            let optionsHTML = '';
+            const inputType = question.type === 'multi' ? 'checkbox' : 'radio';
+            const inputName = question.type === 'multi' ? `question${currentQuestion}` : `question${currentQuestion}`;
+            
+            question.options.forEach((option, index) => {
+                const isChecked = userAnswers[currentQuestion] && userAnswers[currentQuestion].includes(index) ? 'checked' : '';
+                const isSelected = userAnswers[currentQuestion] && userAnswers[currentQuestion].includes(index) ? 'selected' : '';
+                
+                optionsHTML += `
+                    <div class="option ${isSelected}" onclick="selectOption(${index})">
+                        <input type="${inputType}" name="${inputName}" value="${index}" ${isChecked} onchange="handleOptionChange(${index})">
+                        <label>${option}</label>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = `
+                <div class="question-type ${question.type === 'multi' ? 'multi' : ''}">${question.type === 'multi' ? 'MULTI-SELECT' : 'SINGLE SELECT'}</div>
+                <div class="question">${question.question}</div>
+                <div class="options">
+                    ${optionsHTML}
+                </div>
+                <div class="explanation" id="explanation${currentQuestion}">
+                    <strong>Explanation:</strong> ${question.explanation}
+                </div>
+                <button class="show-explanation" onclick="toggleExplanation(${currentQuestion})">Show Explanation</button>
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>Previous</button>
+                    <span>Question ${currentQuestion + 1} of ${totalQuestions}</span>
+                    ${currentQuestion === totalQuestions - 1 ? 
+                        '<button class="btn btn-primary" onclick="showResults()">Finish Quiz</button>' : 
+                        '<button class="btn btn-primary" onclick="nextQuestion()">Next</button>'
+                    }
+                </div>
+            `;
+            
+            updateProgress();
+        }
+        
+        function selectOption(optionIndex) {
+            const question = questions[currentQuestion];
+            
+            if (!userAnswers[currentQuestion]) {
+                userAnswers[currentQuestion] = [];
+            }
+            
+            if (question.type === 'single') {
+                // Handle single select
+                userAnswers[currentQuestion] = [optionIndex];
+                
+                // Show explanation immediately for single select
+                const explanation = document.getElementById(`explanation${currentQuestion}`);
+                if (explanation) {
+                    explanation.classList.add('show');
+                }
+            } else {
+                // Handle multiple select
+                const index = userAnswers[currentQuestion].indexOf(optionIndex);
+                if (index > -1) {
+                    userAnswers[currentQuestion].splice(index, 1);
+                } else {
+                    userAnswers[currentQuestion].push(optionIndex);
+                }
+                
+                // Show explanation for multiple choice only when correct number of options are selected
+                const explanation = document.getElementById(`explanation${currentQuestion}`);
+                if (explanation && userAnswers[currentQuestion]) {
+                    // Extract expected number of answers from question text
+                    const questionText = document.querySelector('.question').textContent;
+                    const chooseMatch = questionText.match(/\(Choose (\d+)\)|\(Select (\d+)\)/i);
+                    const expectedCount = chooseMatch ? parseInt(chooseMatch[1] || chooseMatch[2]) : 2; // Default to 2 for multiple choice if not found
+                    
+                    if (userAnswers[currentQuestion].length === expectedCount) {
+                        explanation.classList.add('show');
+                    } else {
+                        explanation.classList.remove('show');
+                    }
+                }
+            }
+            
+            displayQuestion();
+        }
+        
+        function handleOptionChange(optionIndex) {
+            selectOption(optionIndex);
+        }
+        
+        function toggleExplanation(questionIndex) {
+            const explanation = document.getElementById(`explanation${questionIndex}`);
+            explanation.classList.toggle('show');
+        }
+        
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions - 1) {
+                currentQuestion++;
+                displayQuestion();
+            }
+        }
+        
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                displayQuestion();
+            }
+        }
+        
+        function arraysEqual(a, b) {
+            return a.length === b.length && a.every(val => b.includes(val));
+        }
+        
+        function showResults() {
+            let correct = 0;
+            
+            for (let i = 0; i < totalQuestions; i++) {
+                const userAnswer = userAnswers[i] || [];
+                const correctAnswer = correctAnswers[i] || [];
+                
+                if (arraysEqual(userAnswer.sort(), correctAnswer.sort())) {
+                    correct++;
+                }
+            }
+            
+            const percentage = Math.round((correct / totalQuestions) * 100);
+            
+            document.getElementById('questionContainer').style.display = 'none';
+            document.getElementById('resultsContainer').style.display = 'block';
+            document.getElementById('finalScore').textContent = `${percentage}%`;
+            
+            let message = '';
+            if (percentage >= 67) {
+                message = `🎉 Congratulations! You scored ${correct}/${totalQuestions} (${percentage}%). This meets the 67% passing threshold for the SFMC Email Specialist Certification. You've demonstrated strong knowledge of email insights and analytics!`;
+            } else {
+                message = `📚 You scored ${correct}/${totalQuestions} (${percentage}%). You need 67% to pass the certification. Focus on reviewing insights and analytics concepts, Einstein features, and reporting strategies to improve your score.`;
+            }
+            
+            document.getElementById('scoreMessage').textContent = message;
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quiz Complete!';
+        }
+        
+        function restartQuiz() {
+            currentQuestion = 0;
+            userAnswers = {};
+            document.getElementById('questionContainer').style.display = 'block';
+            document.getElementById('resultsContainer').style.display = 'none';
+            displayQuestion();
+        }
+        
+        displayQuestion();
+    </script>
+</body>
+</html>
