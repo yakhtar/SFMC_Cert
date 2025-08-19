@@ -1042,8 +1042,1792 @@
                 </div>
             </div>
 
-            <!-- Continue with remaining questions to reach 52 total... -->
-            
+            <!-- Question 16 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 16</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to create a compound Primary Key for their order Data Extension that combines CustomerID and OrderID to ensure each customer-order combination is unique.
+                </div>
+                <div class="question-text">
+                    How should this compound Primary Key be configured in SFMC Data Extensions?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Select both CustomerID and OrderID fields as Primary Key during Data Extension creation</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Create a single concatenated field combining CustomerID and OrderID values</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Use CustomerID as Primary Key and OrderID as a regular field</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">SFMC doesn't support compound Primary Keys</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    <p><strong>Why this is correct:</strong> SFMC Data Extensions support compound Primary Keys by selecting multiple fields during the Data Extension creation process. When multiple fields are designated as Primary Key fields, the system enforces uniqueness across the combination of all selected fields, ensuring that each CustomerID-OrderID combination is unique. This approach maintains referential integrity while allowing customers to have multiple orders and preventing duplicate order entries.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>SFMC supports multi-field Primary Keys for complex data relationships</li>
+                        <li>Compound keys enforce uniqueness across field combinations, not individual fields</li>
+                        <li>This approach is ideal for transaction data where multiple related identifiers create uniqueness</li>
+                        <li>Proper compound key design supports data integrity in relational data models</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 17</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team is designing their Contact Builder data model to support personalized email campaigns. They need to organize customer data, preferences, and behavioral data efficiently.
+                </div>
+                <div class="question-text">
+                    Which Contact Builder design best practices should they follow? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Group related fields into logical Attribute Groups</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Create separate Data Extensions for transactional data</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Establish proper relationships between data sources</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Store all data in a single large Data Extension</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Duplicate data across multiple Data Extensions</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Attribute Groups organize related fields logically, improving data management and making it easier to understand and maintain the data model.</li>
+                        <li><strong>Option B:</strong> Transactional data should be separated from profile data to optimize performance and maintain proper normalization principles.</li>
+                        <li><strong>Option C:</strong> Proper relationships enable data connections and support complex personalization scenarios across different data sources.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Single large Data Extensions create performance issues and violate normalization principles.</li>
+                        <li><strong>Option E:</strong> Data duplication creates sync issues and increases storage costs without providing benefits.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 18</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company has 50,000 active subscribers but their Data Extension contains 75,000 records. They notice some customers are receiving duplicate emails and others are not receiving emails at all.
+                </div>
+                <div class="question-text">
+                    What is the most likely cause of this sending issue?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Insufficient server capacity</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Duplicate records with the same email address but different Subscriber Keys</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Email template rendering issues</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Incorrect business unit configuration</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> The 25,000 extra records suggest duplicate data. When the same email address exists with different Subscriber Keys, SFMC treats them as separate recipients, sending multiple emails to the same address. Conversely, if there are subscriber records without corresponding Data Extension entries, those subscribers won't receive emails. This data integrity issue is a common cause of both duplicate sends and missed sends.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Data Extension record counts should align with subscriber counts for clean sending</li>
+                        <li>Duplicate email addresses with different keys cause multiple sends</li>
+                        <li>Regular data audits help identify and resolve sending issues</li>
+                        <li>Proper data deduplication processes are essential for delivery integrity</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 19</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A retail company wants to create a Data Extension to store product recommendation data that will be populated by their recommendation engine and used in real-time personalized emails.
+                </div>
+                <div class="question-text">
+                    Which Data Extension configuration is most suitable for this real-time recommendation scenario?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Standard Data Extension with manual updates</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Synchronized Data Extension linked to Sales Cloud</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Data Extension with API write access enabled</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Filtered Data Extension based on purchase history</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: C</h4>
+                    <p><strong>Why this is correct:</strong> Data Extensions with API write access allow external systems (like recommendation engines) to update data in real-time through REST or SOAP API calls. This enables the recommendation engine to push fresh product recommendations directly to SFMC as they're generated, supporting true real-time personalization in triggered emails. The API approach provides the flexibility and speed needed for dynamic content updates.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>API-enabled Data Extensions support real-time external system integration</li>
+                        <li>Real-time personalization requires dynamic data update capabilities</li>
+                        <li>API access enables push-based data updates rather than batch processing</li>
+                        <li>This configuration supports event-driven marketing automation scenarios</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 20</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company is implementing GDPR compliance for their SFMC instance. They need to handle data subject rights including access, portability, rectification, and erasure.
+                </div>
+                <div class="question-text">
+                    Which SFMC features support GDPR compliance requirements? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Data Extract Activities for data portability</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">SQL Query Activities with DELETE statements for erasure</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Automation Studio for automated data lifecycle management</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Email Studio templates for privacy notices</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Journey Builder for marketing automation</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Data Extract Activities can export subscriber data for portability requests, providing data in accessible formats.</li>
+                        <li><strong>Option B:</strong> SQL DELETE statements enable data erasure to fulfill "right to be forgotten" requests.</li>
+                        <li><strong>Option C:</strong> Automation Studio can manage data retention policies and automate compliance processes like scheduled deletions.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Email templates support communication about privacy but don't directly support GDPR rights.</li>
+                        <li><strong>Option E:</strong> Journey Builder executes marketing automation but doesn't provide specific GDPR compliance capabilities.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 21 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 21</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing manager needs to create a segment of customers who have not made a purchase in the last 90 days and have opened fewer than 2 emails in the last 30 days. This data exists in separate Data Extensions for purchases and email engagement.
+                </div>
+                <div class="question-text">
+                    Which SQL approach would most efficiently create this segment?
+                </div>
+                <div class="data-model-box">
+                    Available Data Extensions:<br>
+                    - Customers: CustomerID, Email, FirstName, LastName<br>
+                    - Purchases: CustomerID, PurchaseDate, Amount<br>
+                    - EmailEngagement: CustomerID, OpenDate, EmailID
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">LEFT JOIN with WHERE clauses to exclude recent activity</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">INNER JOIN to find active customers, then exclude them</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">UNION to combine purchase and email data</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Three separate queries with manual consolidation</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    <p><strong>Why this is correct:</strong> LEFT JOINs preserve all customer records while allowing you to identify those without recent activity. By using WHERE clauses to filter out customers with purchases in the last 90 days or 2+ email opens in 30 days, you efficiently identify inactive customers. LEFT JOINs show NULL values for customers without matching records in the purchase/engagement tables, making it easy to identify inactive subscribers.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>LEFT JOINs are ideal for finding records that don't exist in related tables</li>
+                        <li>NULL values from LEFT JOINs indicate absence of activity</li>
+                        <li>Complex segmentation often requires combining multiple data sources with proper JOIN logic</li>
+                        <li>Date-based filtering helps identify behavioral patterns and customer lifecycle stages</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 22 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 22</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company has a Contact Builder data model with a root Data Extension containing 2 million customer records. They want to add a new related Data Extension for loyalty program data that will contain records for only 500,000 customers who are program members.
+                </div>
+                <div class="question-text">
+                    What type of relationship should be established between the root customer Data Extension and the loyalty program Data Extension?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">One-to-One relationship</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">One-to-Many relationship</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Many-to-Many relationship</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">No relationship needed</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    <p><strong>Why this is correct:</strong> A One-to-One relationship is appropriate because each customer can have at most one loyalty program record, and each loyalty program record belongs to exactly one customer. Even though only 500,000 of the 2 million customers participate in the loyalty program, the relationship is still one-to-one - not every customer has a loyalty record, but those who do have exactly one.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>One-to-One relationships don't require every root record to have a related record</li>
+                        <li>The relationship type is determined by the maximum possible connections, not current data volume</li>
+                        <li>Optional relationships (some customers without loyalty data) still follow One-to-One patterns</li>
+                        <li>Contact Builder relationships define data structure, not population requirements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 23 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 23</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team is setting up an automated file import process for daily customer data updates. The source system generates CSV files with 200,000 records daily, and the process must handle errors gracefully.
+                </div>
+                <div class="question-text">
+                    Which Import Activity configuration options should be enabled for this robust automated import? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Enable update existing records based on Primary Key</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Configure notification emails for import failures</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Set up file naming pattern validation</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Require manual approval for each import</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Import only new records, skip updates</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Updating existing records ensures data stays current as customer information changes daily.</li>
+                        <li><strong>Option B:</strong> Notification emails alert administrators to import failures so issues can be resolved quickly.</li>
+                        <li><strong>Option C:</strong> File naming patterns ensure the automation processes the correct files and handles file organization properly.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Manual approval contradicts the automated requirement and creates operational bottlenecks.</li>
+                        <li><strong>Option E:</strong> Skipping updates means customer data becomes stale and inaccurate over time.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 24 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 24</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to create personalized email content based on customers' purchase categories, brand preferences, and engagement patterns. This data is stored across multiple Data Extensions and needs to be accessible for Journey Builder personalization.
+                </div>
+                <div class="question-text">
+                    Which approach best supports complex, multi-source personalization for Journey Builder?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Create individual AMPscript lookups for each data source</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use Contact Builder relationships with unified personalization strings</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Create a consolidated personalization Data Extension using SQL Query Activity</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Store all personalization data in a single large Data Extension</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: C</h4>
+                    <p><strong>Why this is correct:</strong> Creating a consolidated personalization Data Extension using SQL Query Activity allows you to JOIN multiple data sources, create calculated fields for complex personalization logic, and provide Journey Builder with a single, optimized data source. This approach improves performance, simplifies content creation, and enables sophisticated personalization rules that would be difficult to implement with multiple real-time lookups.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Consolidated personalization tables improve Journey Builder performance</li>
+                        <li>SQL Query Activities can combine and transform data from multiple sources</li>
+                        <li>Pre-computed personalization data reduces email rendering time</li>
+                        <li>This approach supports complex business logic and calculated personalization fields</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 25 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 25</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A retail company has customer preference data that includes communication frequency preferences, product category interests, and channel preferences. They want to create dynamic segments that automatically update based on customer behavior and stated preferences.
+                </div>
+                <div class="question-text">
+                    Which segmentation approach supports dynamic, automatically updating segments based on preference changes?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Static Data Filters created monthly</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Scheduled SQL Query Activities with preference-based logic</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Manual list updates based on customer surveys</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Journey Builder entry criteria</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Scheduled SQL Query Activities can run daily or hourly to re-evaluate customer data against preference criteria, automatically updating segment membership as preferences and behaviors change. This approach creates truly dynamic segments that reflect current customer status and preferences, enabling more accurate targeting and personalization. The SQL logic can incorporate complex preference rules and behavioral thresholds.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Scheduled SQL queries enable dynamic, automatically updating segments</li>
+                        <li>Dynamic segments reflect current customer behavior and preferences</li>
+                        <li>Automated segmentation reduces manual effort and improves targeting accuracy</li>
+                        <li>SQL logic can handle complex preference combinations and business rules</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 26 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 26</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A multinational company with multiple brands needs to implement data governance policies that ensure data access controls, maintain audit trails, and support compliance requirements across different business units.
+                </div>
+                <div class="question-text">
+                    Which SFMC features support enterprise data governance requirements? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Business Unit data isolation and sharing controls</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">User role and permission management</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Data Extension activity logging and tracking</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Email template versioning</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Content Builder asset sharing</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Business Unit controls provide data isolation between brands while enabling controlled sharing for enterprise scenarios.</li>
+                        <li><strong>Option B:</strong> User roles and permissions ensure appropriate data access based on job function and business unit membership.</li>
+                        <li><strong>Option C:</strong> Activity logging creates audit trails for data changes, access, and usage for compliance reporting.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Email template versioning supports content management but not data governance.</li>
+                        <li><strong>Option E:</strong> Content Builder asset sharing is for creative assets, not data governance.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 27 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 27</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company's Data Extension import failed with the error "Primary Key violation - duplicate key value." The import file contains 100,000 records, and they need to identify and resolve the duplicate data before re-importing.
+                </div>
+                <div class="question-text">
+                    What is the most efficient approach to identify and handle duplicate Primary Key values before import?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Manually review the entire file to find duplicates</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Import to a staging Data Extension without Primary Key constraints, then use SQL to identify duplicates</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Split the file into smaller batches and import sequentially</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Change the Data Extension to not have a Primary Key</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Importing to a staging Data Extension without Primary Key constraints allows all records to be imported, including duplicates. Then SQL Query Activities can use GROUP BY and HAVING clauses to identify duplicate Primary Key values efficiently. This approach provides visibility into the exact duplicate records and enables data quality analysis before moving clean data to the final Data Extension.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Staging Data Extensions provide safe environments for data quality analysis</li>
+                        <li>SQL GROUP BY and HAVING clauses efficiently identify duplicate records</li>
+                        <li>This approach enables root cause analysis of data quality issues</li>
+                        <li>Clean data can then be moved to production Data Extensions with proper constraints</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 28 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 28</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to create a preference center that allows customers to manage their email subscriptions granularly - choosing specific product categories, communication types, and frequency preferences.
+                </div>
+                <div class="question-text">
+                    Which Data Extension design best supports granular preference management with multiple subscription options?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Single Data Extension with boolean fields for each preference option</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Separate Data Extensions for each product category with subscriber relationships</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Publication Lists for each subscription type</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Profile attributes with comma-separated preference values</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    <p><strong>Why this is correct:</strong> A single Data Extension with boolean fields for each preference option provides the most flexible and maintainable solution for granular preference management. Each customer has one record with individual true/false flags for different subscription types. This design enables easy preference updates, complex segmentation based on preference combinations, and straightforward preference center form integration.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Boolean fields provide clear, binary preference states that are easy to manage</li>
+                        <li>Single record per subscriber simplifies preference updates and querying</li>
+                        <li>This design supports complex preference-based segmentation scenarios</li>
+                        <li>Boolean flags integrate well with preference center forms and CloudPages</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 29 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 29</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company is experiencing performance issues with their Data Extension queries. The queries often timeout when filtering large datasets, especially when filtering by date ranges and customer segments.
+                </div>
+                <div class="question-text">
+                    Which optimization techniques could improve Data Extension query performance? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Create indexes on frequently queried fields</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use date field data types instead of text for date columns</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Limit result sets using WHERE clauses before JOINs</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Add more fields to improve data richness</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Remove all WHERE clauses to get complete datasets</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Indexes significantly improve query performance on frequently filtered fields like dates and customer segments.</li>
+                        <li><strong>Option B:</strong> Proper date data types enable efficient date range filtering and comparison operations.</li>
+                        <li><strong>Option C:</strong> Filtering before JOINs reduces the dataset size early, improving overall query performance.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Adding more fields increases data transfer and processing time, worsening performance.</li>
+                        <li><strong>Option E:</strong> Removing WHERE clauses forces processing of entire datasets, dramatically slowing queries.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 30 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 30</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company needs to implement cross-channel customer journey tracking by connecting email engagement data, mobile app activity, website behavior, and purchase transactions across multiple systems.
+                </div>
+                <div class="question-text">
+                    Which Contact Builder strategy best supports unified cross-channel identity resolution?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Use email address as the universal identifier across all data sources</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Create a master customer Data Extension with cross-reference keys for each system</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Store all cross-channel data in separate, unrelated Data Extensions</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use system-specific identifiers without cross-references</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> A master customer Data Extension with cross-reference keys provides the most robust identity resolution solution. This approach stores each system's unique identifier (CRM ID, Mobile App ID, Website Cookie ID, etc.) in a single record per customer, enabling accurate cross-channel journey tracking even when customers use different identifiers across systems. This design supports identity matching rules and provides a single source of truth for customer identity.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Cross-reference tables enable identity resolution across multiple systems</li>
+                        <li>Master customer records provide single source of truth for customer identity</li>
+                        <li>This approach supports complex identity matching and merging scenarios</li>
+                        <li>Cross-channel journey tracking requires unified customer identification</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 31 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 31</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A subscription box company wants to automatically remove customers from active campaigns when they cancel their subscription, but retain their historical data for analytics and potential re-engagement campaigns.
+                </div>
+                <div class="question-text">
+                    Which data management approach best supports this subscription cancellation scenario?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Delete customer records completely from all Data Extensions</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Update subscription status field and filter active campaigns accordingly</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Move cancelled customers to a separate Data Extension</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Change email addresses to prevent sending</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Updating a subscription status field preserves all historical data while enabling campaign filtering based on current subscription state. Active campaigns can include WHERE clauses to target only active subscribers, while analytics and re-engagement campaigns can access the complete dataset. This approach provides flexibility, maintains data integrity, and supports both operational and analytical requirements without data loss.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Status fields enable flexible campaign targeting while preserving historical data</li>
+                        <li>Data preservation supports analytics and re-engagement opportunities</li>
+                        <li>Campaign filtering based on status provides operational control</li>
+                        <li>This approach balances compliance requirements with business needs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 32 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 32</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company is implementing a data quality monitoring system to proactively identify issues with their customer data before they affect email campaigns.
+                </div>
+                <div class="question-text">
+                    Which data quality checks should be implemented for proactive monitoring? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Email address format validation and domain verification</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Duplicate record detection across Data Extensions</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Data freshness monitoring for recent update timestamps</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Email content optimization recommendations</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Journey Builder flow analysis</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Email validation prevents deliverability issues and maintains sender reputation by catching malformed addresses early.</li>
+                        <li><strong>Option B:</strong> Duplicate detection prevents customers from receiving multiple emails and identifies data integration issues.</li>
+                        <li><strong>Option C:</strong> Data freshness monitoring ensures customer information remains current and identifies stale data sources.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Email content optimization is about messaging effectiveness, not data quality.</li>
+                        <li><strong>Option E:</strong> Journey flow analysis is about automation performance, not underlying data quality.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 33 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 33</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A financial services company needs to implement data archiving policies that automatically move customer data older than 7 years to long-term storage while maintaining the ability to retrieve it for regulatory inquiries.
+                </div>
+                <div class="question-text">
+                    Which SFMC approach best supports automated data archiving with retrieval capabilities?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Delete old data permanently to save storage space</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use Automation Studio to extract old data to files, then delete from active Data Extensions</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Move old data to separate archive Data Extensions within SFMC</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Keep all data in active Data Extensions indefinitely</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Using Automation Studio to extract data to files before deletion provides the best balance of storage optimization and regulatory compliance. The extracted files can be stored in secure file systems or data lakes where they're accessible for regulatory inquiries but don't consume SFMC storage or affect performance. This approach maintains compliance while optimizing active system performance and controlling costs.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Data archiving balances compliance requirements with system performance</li>
+                        <li>Extracted files provide accessible long-term storage outside SFMC</li>
+                        <li>Automation Studio enables scheduled, policy-driven data lifecycle management</li>
+                        <li>This approach supports both operational efficiency and regulatory compliance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 34 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 34</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to create a dynamic product recommendation Data Extension that updates in real-time based on customer browsing behavior, purchase history, and inventory levels from their e-commerce platform.
+                </div>
+                <div class="question-text">
+                    Which integration approach best supports real-time product recommendation updates?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Daily batch file imports via FTP</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Webhook-triggered API updates to Data Extensions</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Manual weekly data uploads</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Monthly data synchronization</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Webhook-triggered API updates provide true real-time data synchronization. When customers browse products or inventory levels change, the e-commerce platform can immediately trigger webhooks that update SFMC Data Extensions via REST APIs. This approach ensures recommendation data is always current, enabling timely and relevant product recommendations in triggered emails and Journey Builder interactions.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Webhooks enable event-driven, real-time data updates</li>
+                        <li>API integration provides immediate data synchronization capabilities</li>
+                        <li>Real-time updates support dynamic personalization scenarios</li>
+                        <li>This approach maximizes recommendation relevance and conversion potential</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 35 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 35</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company is designing their Contact Builder model for a global operation with multiple brands, different customer lifecycle stages, and varying data collection practices across regions.
+                </div>
+                <div class="question-text">
+                    Which Contact Builder design considerations are important for this global, multi-brand scenario? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Design flexible Attribute Groups that accommodate regional data differences</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Create brand-specific relationship structures within the same model</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Plan for scalable population management across multiple data sources</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use identical data structures for all regions regardless of local requirements</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Limit the model to single brand requirements only</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Flexible Attribute Groups can accommodate regional differences in data collection while maintaining overall structure consistency.</li>
+                        <li><strong>Option B:</strong> Brand-specific relationships within one model provide both unity and flexibility for different brand requirements.</li>
+                        <li><strong>Option C:</strong> Scalable population management supports growth and diverse data sources across global operations.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Identical structures ignore legitimate regional differences and compliance requirements.</li>
+                        <li><strong>Option E:</strong> Single brand limitation contradicts the multi-brand scenario requirements.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 36 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 36</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company has customer data spread across multiple Data Extensions with inconsistent field names and data formats. They want to create standardized data views for their marketing campaigns.
+                </div>
+                <div class="question-text">
+                    Which SQL approach best supports data standardization from multiple inconsistent sources?
+                </div>
+                <div class="data-model-box">
+                    Source Data Extensions:<br>
+                    - DE1: FirstName, LastName, EmailAddr, DOB<br>
+                    - DE2: FName, LName, Email, BirthDate<br>
+                    - DE3: CustomerFirstName, CustomerLastName, EmailAddress, DateOfBirth
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">UNION ALL queries with field aliasing to standardize column names</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">JOIN all Data Extensions on email address</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Create separate queries for each Data Extension</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Manually rename all fields in source Data Extensions</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    <p><strong>Why this is correct:</strong> UNION ALL with field aliasing allows you to combine data from multiple sources while standardizing field names in the result set. Each SELECT statement can alias fields to common names (e.g., FirstName AS StandardFirstName), creating a unified view with consistent naming conventions. This approach preserves all data while creating standardized output for marketing campaigns.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>UNION ALL combines data from multiple sources with similar structures</li>
+                        <li>Field aliasing enables standardization without changing source data</li>
+                        <li>This approach creates clean, consistent data views for downstream consumption</li>
+                        <li>Data standardization improves campaign efficiency and reduces errors</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 37 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 37</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team needs to create a high-value customer segment by combining recency (last purchase within 60 days), frequency (5+ purchases this year), and monetary (total spending over $2,000) criteria from transaction data.
+                </div>
+                <div class="question-text">
+                    Which SQL approach most efficiently creates this RFM-based segment?
+                </div>
+                <div class="data-model-box">
+                    Available Data:<br>
+                    - Transactions: CustomerID, PurchaseDate, Amount, OrderID
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Three separate queries for R, F, and M criteria with manual combination</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Single query with aggregations and CASE statements to calculate all RFM criteria</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Filter transactions table for each criterion individually</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Create Data Extensions for each criterion and JOIN them</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> A single query with aggregations (MAX(PurchaseDate), COUNT(OrderID), SUM(Amount)) and CASE statements can efficiently calculate all RFM criteria simultaneously. Using GROUP BY CustomerID with HAVING clauses to filter the aggregated results creates the high-value segment in one operation. This approach is more efficient than multiple queries and ensures consistency across all criteria.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Aggregate functions with GROUP BY enable complex customer segmentation analysis</li>
+                        <li>CASE statements provide conditional logic for criteria evaluation</li>
+                        <li>Single queries are more efficient than multiple separate operations</li>
+                        <li>HAVING clauses filter on aggregated values for segment criteria</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 38 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 38</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company is implementing a comprehensive data lineage tracking system to understand how customer data flows through their SFMC instance and transforms across different processes.
+                </div>
+                <div class="question-text">
+                    Which SFMC features and approaches support data lineage tracking and documentation? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Automation Studio activity logging and dependency tracking</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">SQL Query Activity documentation with data source and transformation details</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Contact Builder relationship mapping and data flow documentation</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Email Studio template content versioning</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Journey Builder canvas design layouts</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Automation Studio provides activity logs and dependency tracking that show how data flows through automated processes.</li>
+                        <li><strong>Option B:</strong> SQL Query documentation captures data transformation logic and source-to-target relationships.</li>
+                        <li><strong>Option C:</strong> Contact Builder relationships provide visual mapping of data connections and dependencies.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Email template versioning tracks content changes, not data lineage.</li>
+                        <li><strong>Option E:</strong> Journey Builder layouts show customer flow, not data lineage tracking.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 39 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 39</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement cascading deletes so that when a customer record is deleted from the master Data Extension, all related records in loyalty, preference, and transaction Data Extensions are automatically removed as well.
+                </div>
+                <div class="question-text">
+                    Which approach best supports cascading deletion across related Data Extensions in SFMC?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">SFMC automatically handles cascading deletes through Contact Builder relationships</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Create an Automation Studio workflow with sequential SQL DELETE activities</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Delete records manually from each related Data Extension</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use Data Extension import activities to overwrite with empty files</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> SFMC doesn't natively support cascading deletes, so an Automation Studio workflow with sequential SQL DELETE activities is the most reliable approach. The workflow would first identify the customer to be deleted, then execute DELETE statements against each related Data Extension in the proper order to maintain referential integrity. This approach ensures complete and consistent deletion across all related data.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>SFMC requires manual implementation of cascading delete logic</li>
+                        <li>Automation Studio workflows provide controlled, sequential deletion processes</li>
+                        <li>Proper deletion order prevents referential integrity issues</li>
+                        <li>This approach supports audit trails and error handling for deletion operations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 40 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 40</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to optimize their Data Extension structure for a loyalty program that tracks customer tiers (Bronze, Silver, Gold), tier benefits, tier progression history, and tier-specific communications preferences.
+                </div>
+                <div class="question-text">
+                    Which Data Extension design approach best supports this hierarchical loyalty tier system?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Single Data Extension with all tier information in one record per customer</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Separate Data Extensions for each tier with customer assignment relationships</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Master customer DE with related tier status DE and tier history DE</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Publication Lists for each tier level</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: C</h4>
+                    <p><strong>Why this is correct:</strong> A master customer Data Extension with related tier status and tier history Data Extensions provides the optimal structure for this complex scenario. The master DE holds customer information, the tier status DE tracks current tier and preferences (one-to-one relationship), and the tier history DE captures progression over time (one-to-many relationship). This normalized approach supports efficient querying, historical tracking, and flexible tier-based segmentation.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Normalized data structures support complex hierarchical systems efficiently</li>
+                        <li>Separate history tables enable temporal analysis and progression tracking</li>
+                        <li>This design supports both current state queries and historical analysis</li>
+                        <li>Related Data Extensions provide flexibility for tier-specific functionality</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 41 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 41</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company is planning to migrate customer data from their legacy CRM system to SFMC. The migration involves 5 million customer records with complex relationships and must minimize disruption to ongoing campaigns.
+                </div>
+                <div class="question-text">
+                    Which migration best practices should they implement for this large-scale data migration? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Implement parallel processing by splitting data into batches</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Create staging Data Extensions for data validation before production deployment</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Plan rollback procedures and maintain backup copies of source data</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Migrate all data in a single large batch to minimize complexity</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Skip data validation to speed up the migration process</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Parallel processing with batched data reduces migration time and enables better error isolation and recovery.</li>
+                        <li><strong>Option B:</strong> Staging environments allow thorough validation and testing before affecting production campaigns.</li>
+                        <li><strong>Option C:</strong> Rollback procedures and backups provide safety nets for large-scale migrations where issues are likely.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Single large batches increase risk and make error recovery more difficult.</li>
+                        <li><strong>Option E:</strong> Skipping validation leads to data quality issues that affect campaigns and customer experience.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 42 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 42</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company's data import automation is failing intermittently due to source file formatting inconsistencies. Sometimes fields have extra spaces, quotes, or different date formats that cause import errors.
+                </div>
+                <div class="question-text">
+                    Which approach best handles variable source file formatting in automated imports?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Manually clean each file before importing</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Import to staging DE, then use SQL to clean and standardize data before moving to production</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Reject any file that doesn't meet exact formatting requirements</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Import errors will resolve themselves over time</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Importing to a staging Data Extension allows all data to be captured, even with formatting inconsistencies. SQL Query Activities can then clean the data using functions like TRIM() to remove spaces, REPLACE() to standardize formats, and CAST() to convert data types. This approach enables robust, automated data cleaning while maintaining the automated workflow and providing visibility into data quality issues.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Staging environments enable automated data quality processing</li>
+                        <li>SQL functions provide powerful data cleaning and standardization capabilities</li>
+                        <li>This approach maintains automation while handling data quality challenges</li>
+                        <li>Error isolation in staging prevents production data corruption</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 43 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 43</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A global company needs to implement data sovereignty compliance where customer data from EU regions must remain in European data centers and cannot be processed in other geographic locations.
+                </div>
+                <div class="question-text">
+                    Which SFMC approach best supports data sovereignty requirements for geographic data isolation?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Store all global data in the primary SFMC instance</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use separate SFMC instances in different geographic regions with isolated data processing</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Create separate Business Units within a single global instance</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use data encryption to protect geographic data regardless of location</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Separate SFMC instances in different geographic regions provide true data sovereignty by ensuring EU customer data remains in European data centers and is processed only by European infrastructure. This approach meets strict data sovereignty requirements and provides complete geographic isolation while still enabling region-specific marketing operations.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Data sovereignty requires physical data location control, not just logical separation</li>
+                        <li>Geographic SFMC instances provide compliant data residency</li>
+                        <li>This approach supports regional compliance while maintaining marketing capabilities</li>
+                        <li>Instance-level separation provides the strongest data sovereignty protection</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 44 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 44</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement advanced email suppression management that considers multiple factors: hard bounces, spam complaints, unsubscribes, and inactive subscribers who haven't engaged in 12 months.
+                </div>
+                <div class="question-text">
+                    Which SFMC suppression management approaches should be implemented for this comprehensive suppression strategy? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Auto-suppression lists for hard bounces and spam complaints</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">SQL-based suppression Data Extension for inactive subscribers</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Global suppression lists across all Business Units</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Manual suppression list management only</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Ignore inactive subscribers to maintain list size</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Auto-suppression lists automatically handle hard bounces and complaints, protecting sender reputation.</li>
+                        <li><strong>Option B:</strong> SQL-based suppression Data Extensions can identify and suppress inactive subscribers based on engagement patterns.</li>
+                        <li><strong>Option C:</strong> Global suppression across Business Units ensures consistent suppression regardless of sending context.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Manual-only management doesn't scale and misses real-time reputation protection needs.</li>
+                        <li><strong>Option E:</strong> Ignoring inactive subscribers hurts deliverability and sender reputation.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 45 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 45</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to create a data-driven email frequency optimization system that automatically adjusts send frequency based on individual subscriber engagement patterns and preferences.
+                </div>
+                <div class="question-text">
+                    Which approach best supports automated, individualized email frequency optimization?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Send the same frequency to all subscribers</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Create frequency segments using SQL queries based on engagement metrics and preference data</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Let subscribers manually set all frequency preferences</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Reduce frequency for all subscribers over time</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> SQL queries can analyze engagement patterns (open rates, click rates, unsubscribe rates) and combine them with stated preferences to create dynamic frequency segments. These segments can automatically place subscribers into appropriate sending cadences based on their behavior, optimizing engagement while respecting preferences. This data-driven approach enables personalized frequency without manual intervention.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Data-driven frequency optimization improves engagement and reduces unsubscribes</li>
+                        <li>SQL analysis enables automated segmentation based on behavioral patterns</li>
+                        <li>Dynamic segments adjust frequency as subscriber behavior changes</li>
+                        <li>This approach balances automation with individual subscriber preferences</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 46 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 46</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company needs to create a customer lifetime value (CLV) scoring system that considers purchase history, engagement levels, customer tenure, and product category preferences to create personalized marketing strategies.
+                </div>
+                <div class="question-text">
+                    Which Data Extension and SQL strategy best supports comprehensive CLV calculation and segmentation?
+                </div>
+                <div class="data-model-box">
+                    Available Data:<br>
+                    - Customers: CustomerID, RegistrationDate, TotalSpend<br>
+                    - Orders: CustomerID, OrderDate, OrderValue, ProductCategory<br>
+                    - Engagement: CustomerID, EmailOpen, ClickDate, LastEngagement
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Calculate CLV manually for top customers only</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use complex SQL with JOINs, aggregations, and scoring algorithms to create a comprehensive CLV Data Extension</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Base CLV only on total purchase amount</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Create separate CLV calculations for each data source</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Complex SQL can JOIN all data sources and use aggregations to calculate comprehensive CLV scores. The query can compute metrics like average order value, purchase frequency, customer tenure, engagement scores, and product category preferences, then combine them using weighted algorithms to create a single CLV score. This approach enables sophisticated, multi-dimensional customer valuation for targeted marketing strategies.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Complex SQL enables sophisticated business intelligence within SFMC</li>
+                        <li>Multi-dimensional CLV provides more accurate customer valuation than single metrics</li>
+                        <li>Automated CLV calculation enables dynamic, value-based segmentation</li>
+                        <li>This approach supports advanced personalization and resource allocation strategies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 47 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 47</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company is designing a real-time personalization engine that must dynamically update customer profiles, product recommendations, and behavioral triggers based on cross-channel interactions including website, mobile app, email, and in-store activities.
+                </div>
+                <div class="question-text">
+                    Which SFMC integration approaches support this real-time, cross-channel personalization requirement? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">API-triggered Data Extension updates for real-time profile changes</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Journey Builder API events for cross-channel behavioral triggers</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Webhook integration for immediate cross-system data synchronization</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Monthly batch file imports for all customer data</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Manual data entry for cross-channel updates</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> API-triggered updates provide immediate Data Extension updates when customer interactions occur across channels.</li>
+                        <li><strong>Option B:</strong> Journey Builder API events enable real-time behavioral triggers based on cross-channel activities.</li>
+                        <li><strong>Option C:</strong> Webhooks provide immediate notification and data sync when events occur in external systems.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Monthly batches are too infrequent for real-time personalization requirements.</li>
+                        <li><strong>Option E:</strong> Manual entry can't support real-time, cross-channel personalization at scale.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 48 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 48</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A multinational retail company needs to implement a unified customer identity resolution system that can match customers across different countries, brands, email addresses, and device identifiers while handling name variations and data quality issues.
+                </div>
+                <div class="question-text">
+                    Which advanced data matching strategy best supports comprehensive identity resolution across diverse, global data sources?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Match only on exact email address matches</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Implement fuzzy matching algorithms using multiple data points with confidence scoring</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Create separate customer records for each brand and country</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use phone numbers as the primary matching criterion</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Fuzzy matching algorithms can evaluate multiple data points (email patterns, name similarities, address components, phone numbers, device fingerprints) and assign confidence scores to potential matches. This approach handles data quality issues like typos, name variations, and different contact information while providing probability-based matching that can be tuned for accuracy versus coverage. SQL functions and algorithms can implement sophisticated matching rules within SFMC.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Fuzzy matching handles real-world data quality challenges better than exact matching</li>
+                        <li>Multi-dimensional matching criteria provide higher accuracy than single-field approaches</li>
+                        <li>Confidence scoring enables tunable matching sensitivity based on business requirements</li>
+                        <li>This approach supports global identity resolution across diverse data sources</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 49 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 49</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement predictive data modeling within SFMC to identify customers likely to churn, make their next purchase, or upgrade their service level based on historical behavioral patterns.
+                </div>
+                <div class="question-text">
+                    Which SFMC approach best supports predictive modeling and scoring within the platform?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Basic SQL queries with simple filtering</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Advanced SQL with statistical functions, scoring algorithms, and predictive logic</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Manual customer evaluation and scoring</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Random customer selection for targeting</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Advanced SQL in SFMC can implement sophisticated predictive models using statistical functions, weighted scoring algorithms, and complex business logic. By analyzing historical patterns, calculating metrics like recency, frequency, and monetary values, and applying predictive scoring rules, SQL Query Activities can create predictive scores for churn likelihood, purchase propensity, and upgrade probability. This enables data-driven, predictive marketing within SFMC.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>SFMC SQL can implement sophisticated predictive modeling logic</li>
+                        <li>Historical data analysis enables future behavior prediction</li>
+                        <li>Predictive scores support proactive, targeted marketing strategies</li>
+                        <li>This approach enables advanced marketing automation based on likelihood modeling</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 50 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 50</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company is implementing enterprise-level data governance policies that require comprehensive audit trails, change tracking, and compliance reporting for all customer data operations in SFMC.
+                </div>
+                <div class="question-text">
+                    Which SFMC monitoring and compliance approaches support comprehensive enterprise data governance? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Automation Studio activity logging with detailed execution tracking</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Data Extension modification timestamp tracking for change auditing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">User access and permission monitoring with role-based audit trails</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Email campaign performance tracking only</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Content Builder asset versioning for creative changes</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWERS: A, B, C</h4>
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Automation Studio logging provides detailed audit trails of data processing activities and execution history.</li>
+                        <li><strong>Option B:</strong> Data Extension timestamps enable change tracking and audit requirements for data modification compliance.</li>
+                        <li><strong>Option C:</strong> User access monitoring creates audit trails of who accessed what data and when for security compliance.</li>
+                    </ul>
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Campaign performance tracking doesn't provide data governance audit capabilities.</li>
+                        <li><strong>Option E:</strong> Content versioning supports creative governance but not comprehensive data governance requirements.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 51 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 51</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement dynamic list management where customers automatically move between different marketing lists (prospects, active customers, VIP customers, at-risk customers) based on their current behavior, purchase patterns, and engagement levels.
+                </div>
+                <div class="question-text">
+                    Which approach best supports automated, dynamic list membership management based on behavioral criteria?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Static Publication Lists with manual updates</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Scheduled SQL Query Activities that evaluate criteria and update list membership Data Extensions</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Journey Builder for all list management</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Import Wizard for periodic list updates</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    <p><strong>Why this is correct:</strong> Scheduled SQL Query Activities can automatically evaluate customer behavior, purchase patterns, and engagement metrics to determine appropriate list membership. The queries can move customers between different Data Extensions or update list membership fields based on current criteria, creating truly dynamic list management that responds to behavioral changes. This approach enables automated customer lifecycle management.</p>
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Scheduled SQL queries enable automatic list membership evaluation and updates</li>
+                        <li>Dynamic lists reflect current customer status rather than static assignments</li>
+                        <li>This approach supports behavioral-driven customer lifecycle management</li>
+                        <li>Automated list management ensures targeting accuracy and reduces manual effort</li>
+                    </ul>
+                </div>
+            </div>
+
             <!-- Question 52 (Final question) -->
             <div class="question-container">
                 <div class="question-header">
@@ -1124,8 +2908,43 @@
             12: ['B'],
             13: ['B'],
             14: ['A', 'B', 'C'],
-            // Add remaining correct answers for questions 15-51...
-            51: ['B']
+            15: ['A'],        // Q16: Compound Primary Key - A is correct
+            16: ['A', 'B', 'C'],  // Q17: Contact Builder design - A, B, C are correct 
+            17: ['B'],        // Q18: Duplicate records issue - B is correct
+            18: ['C'],        // Q19: Real-time recommendations - C is correct
+            19: ['A', 'B', 'C'],  // Q20: GDPR compliance - A, B, C are correct
+            20: ['A'],        // Q21: LEFT JOIN for inactive customers - A is correct
+            21: ['A'],        // Q22: One-to-One relationship - A is correct
+            22: ['A', 'B', 'C'],  // Q23: Import Activity configuration - A, B, C are correct
+            23: ['C'],        // Q24: Consolidated personalization DE - C is correct
+            24: ['B'],        // Q25: Dynamic segments with SQL - B is correct
+            25: ['A', 'B', 'C'],  // Q26: Data governance features - A, B, C are correct
+            26: ['B'],        // Q27: Staging DE for duplicate detection - B is correct
+            27: ['A'],        // Q28: Preference center design - A is correct
+            28: ['A', 'B', 'C'],  // Q29: Query performance optimization - A, B, C are correct
+            29: ['B'],        // Q30: Cross-channel identity resolution - B is correct
+            30: ['B'],        // Q31: Subscription cancellation - B is correct
+            31: ['A', 'B', 'C'],  // Q32: Data quality monitoring - A, B, C are correct
+            32: ['B'],        // Q33: Data archiving - B is correct
+            33: ['B'],        // Q34: Real-time product recommendations - B is correct
+            34: ['A', 'B', 'C'],  // Q35: Global Contact Builder design - A, B, C are correct
+            35: ['A'],        // Q36: Data standardization - A is correct
+            36: ['B'],        // Q37: RFM segmentation - B is correct
+            37: ['A', 'B', 'C'],  // Q38: Data lineage tracking - A, B, C are correct
+            38: ['B'],        // Q39: Cascading deletes - B is correct
+            39: ['C'],        // Q40: Loyalty tier system - C is correct
+            40: ['A', 'B', 'C'],  // Q41: Data migration best practices - A, B, C are correct
+            41: ['B'],        // Q42: Variable file formatting - B is correct
+            42: ['B'],        // Q43: Data sovereignty - B is correct
+            43: ['A', 'B', 'C'],  // Q44: Email suppression management - A, B, C are correct
+            44: ['B'],        // Q45: Email frequency optimization - B is correct
+            45: ['B'],        // Q46: CLV calculation - B is correct
+            46: ['A', 'B', 'C'],  // Q47: Real-time personalization integration - A, B, C are correct
+            47: ['B'],        // Q48: Identity resolution - B is correct
+            48: ['B'],        // Q49: Predictive modeling - B is correct
+            49: ['A', 'B', 'C'],  // Q50: Enterprise data governance - A, B, C are correct
+            50: ['B'],        // Q51: Dynamic list management - B is correct
+            51: ['B']         // Q52: Real-time personalization - B is correct
         };
 
         function updateProgress() {

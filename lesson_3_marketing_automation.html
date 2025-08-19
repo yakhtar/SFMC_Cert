@@ -1037,7 +1037,2107 @@
                 </div>
             </div>
 
-            <!-- Continue with remaining questions to reach 52 total... -->
+            <!-- Question 16 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 16</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A financial services company wants to create a Journey Builder campaign that sends personalized investment recommendations based on a customer's portfolio value and risk tolerance. The journey should adapt content based on market conditions.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder feature enables dynamic content personalization based on real-time data attributes?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">AMPscript personalization strings in Email Activities</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Dynamic Content Blocks</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Random Split Activities</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Einstein Content Selection</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> AMPscript personalization strings within Journey Builder Email Activities provide the most robust solution for dynamic content personalization using real-time data attributes. AMPscript can query contact data, Data Extensions, and even external data sources to personalize email content dynamically at send time. In this financial services scenario, AMPscript can reference portfolio value fields, risk tolerance attributes, and even real-time market data to generate personalized investment recommendations. The scripting language supports complex conditional logic, calculations, and data formatting, making it ideal for sophisticated personalization requirements that adapt based on multiple data points.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Dynamic Content Blocks are primarily designed for Email Studio and provide limited personalization compared to AMPscript. They work well for simple content variations but lack the complex data processing and real-time calculation capabilities needed for sophisticated financial recommendations.</li>
+                        <li><strong>Option C:</strong> Random Split Activities divide contacts randomly into different paths but don't personalize content based on individual data attributes. They're used for A/B testing, not for adaptive personalization.</li>
+                        <li><strong>Option D:</strong> Einstein Content Selection optimizes content selection based on engagement patterns but doesn't provide the granular, real-time data-driven personalization required for financial recommendations based on portfolio values and risk tolerance.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>AMPscript enables sophisticated real-time personalization within Journey Builder</li>
+                        <li>Dynamic content in journeys requires data-driven scripting, not just content blocks</li>
+                        <li>Complex business scenarios need advanced personalization capabilities</li>
+                        <li>Journey Builder integrates with all SFMC data sources for comprehensive personalization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 17</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A healthcare organization wants to implement a patient engagement journey that sends appointment reminders, health tips, and follow-up care instructions based on different medical conditions and appointment types.
+                </div>
+                <div class="question-text">
+                    Which capabilities would be essential for this complex healthcare automation? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Decision Splits based on medical condition attributes</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Wait Activities with specific timing for appointment reminders</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Update Contact Activities to track patient engagement</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random Split for A/B testing reminder styles</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Einstein Frequency Optimization</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Decision Splits based on medical condition attributes:</strong> Healthcare journeys require sophisticated routing based on patient data, medical conditions, appointment types, and treatment protocols. Decision Splits can evaluate multiple patient attributes simultaneously to deliver condition-specific health tips, appointment preparation instructions, and follow-up care guidance tailored to each patient's medical situation.</li>
+                        <li><strong>Option B - Wait Activities with specific timing for appointment reminders:</strong> Healthcare automation demands precise timing for appointment reminders (24 hours, 2 hours before), medication reminders, and follow-up schedules. Wait Activities can be configured with exact durations and even dynamic timing based on appointment data, ensuring patients receive timely, relevant communications.</li>
+                        <li><strong>Option C - Update Contact Activities to track patient engagement:</strong> Healthcare engagement tracking is crucial for compliance, care continuity, and outcome measurement. Update Contact Activities can record when patients open health education emails, click appointment links, or complete health assessments, creating a comprehensive engagement history for care coordination.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Random Split for A/B testing, while useful for optimization, is not essential for the core healthcare engagement functionality. Healthcare communications prioritize consistency and compliance over testing variations.</li>
+                        <li><strong>Option E:</strong> Einstein Frequency Optimization, though valuable for engagement, is not a core requirement for this healthcare scenario. Medical communications have regulatory and clinical timing requirements that take precedence over AI optimization.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Healthcare automation requires precise attribute-based routing and timing</li>
+                        <li>Decision Splits enable complex medical condition-based personalization</li>
+                        <li>Wait Activities support critical healthcare timing requirements</li>
+                        <li>Patient engagement tracking is essential for healthcare outcomes and compliance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 18</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An e-commerce company has a Journey Builder automation that's experiencing high contact drop-off at a specific Wait Activity. Contacts seem to be exiting the journey unexpectedly.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder analytics feature would best help identify the cause of contact drop-off?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Journey Performance Dashboard</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Activity Performance Reports</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Exit Criteria Analysis</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Contact History Tracking</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: C</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Exit Criteria Analysis provides the most targeted diagnostic capability for understanding why contacts are unexpectedly leaving a journey during Wait Activities. Exit Criteria in Journey Builder can be configured with specific conditions (purchase completion, unsubscribe, data changes, engagement thresholds) that cause contacts to exit the journey early. When contacts drop off at a Wait Activity, it's often because they've met exit criteria conditions such as completing a purchase, becoming unengaged, or having their contact status change. The Exit Criteria Analysis shows exactly which conditions are triggering contact exits, how many contacts are exiting for each reason, and at which points in the journey exits are occurring most frequently.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Journey Performance Dashboard provides high-level metrics about overall journey performance but doesn't drill down into specific reasons for contact exits at individual activities, particularly Wait Activities.</li>
+                        <li><strong>Option B:</strong> Activity Performance Reports show how individual activities are performing but don't specifically analyze why contacts are exiting the journey unexpectedly. They focus more on email performance and engagement metrics.</li>
+                        <li><strong>Option D:</strong> Contact History Tracking shows individual contact paths through the journey but doesn't provide the systematic analysis needed to identify patterns in exit behavior across all contacts experiencing drop-off.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Exit Criteria Analysis is essential for diagnosing journey drop-off issues</li>
+                        <li>Wait Activity problems often relate to exit criteria configurations</li>
+                        <li>Journey Builder provides sophisticated analytics for troubleshooting automation issues</li>
+                        <li>Understanding contact exit patterns is crucial for journey optimization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 19</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A software company wants to create an Automation Studio workflow that processes customer support ticket data nightly, identifies escalation patterns, and sends alerts to management when critical issues are detected.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio activity is best suited for complex data analysis and pattern recognition in this workflow?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Import Activity</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">SQL Query Activity</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Data Extract Activity</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Filter Activity</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> SQL Query Activity provides the most powerful data processing and analysis capabilities within Automation Studio for complex pattern recognition and business logic implementation. SQL Query Activities can perform sophisticated data analysis including aggregations, window functions, pattern matching, and complex conditional logic needed to identify escalation patterns in support ticket data. The activity can analyze ticket volumes, response times, escalation frequencies, customer satisfaction trends, and identify critical issues that meet specific criteria for management alerts. SQL supports advanced analytical functions like ROW_NUMBER(), LAG(), LEAD(), and statistical functions that can detect anomalies, trends, and patterns that indicate escalation scenarios requiring immediate attention.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Import Activity brings data into SFMC but doesn't perform analysis or pattern recognition. It's a data ingestion tool, not an analytical processing tool, and cannot identify escalation patterns or critical issues in the data.</li>
+                        <li><strong>Option C:</strong> Data Extract Activity exports data from SFMC to external systems but doesn't analyze or process the data for pattern recognition. It's designed for data output, not analytical processing of escalation patterns.</li>
+                        <li><strong>Option D:</strong> Filter Activity applies basic criteria to segment data but lacks the sophisticated analytical capabilities needed for pattern recognition, trend analysis, and complex escalation detection logic required in this scenario.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>SQL Query Activities enable sophisticated data analysis and business intelligence within SFMC</li>
+                        <li>Complex pattern recognition requires SQL's analytical and aggregation functions</li>
+                        <li>Automation Studio can perform advanced business logic through SQL processing</li>
+                        <li>SFMC's SQL Query Activity supports enterprise-grade data analysis workflows</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 20</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A retail chain wants to implement a comprehensive cross-channel marketing automation that coordinates email, SMS, and push notifications based on customer behavior across online and in-store interactions.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder capabilities support this multi-channel orchestration requirement? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Email Activities for email communications</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">SMS Activities for text message delivery</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">MobilePush Activities for app notifications</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Social Media Activities</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Direct Mail Activities</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Email Activities:</strong> Email Activities are core Journey Builder components that enable sophisticated email marketing within multi-channel customer journeys. They support dynamic content, personalization, and can be coordinated with other channel activities to create cohesive customer experiences across touchpoints.</li>
+                        <li><strong>Option B - SMS Activities:</strong> SMS Activities in Journey Builder enable text message delivery as part of coordinated multi-channel campaigns. They can be triggered by the same customer behaviors and data that drive email activities, ensuring consistent messaging across channels with appropriate timing and frequency controls.</li>
+                        <li><strong>Option C - MobilePush Activities:</strong> MobilePush Activities deliver push notifications to mobile app users within Journey Builder automation. They integrate seamlessly with email and SMS activities to create comprehensive mobile-first customer experiences, especially valuable for retail scenarios involving app interactions and location-based messaging.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Social Media Activities are not native Journey Builder activities. While SFMC integrates with Social Studio, direct social media automation isn't executed through Journey Builder activities in the same way as email, SMS, and push notifications.</li>
+                        <li><strong>Option E:</strong> Direct Mail Activities are not standard Journey Builder components. While SFMC can integrate with direct mail providers through custom activities, this isn't a native multi-channel capability within the core Journey Builder platform.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Journey Builder natively supports email, SMS, and push notification orchestration</li>
+                        <li>Multi-channel coordination requires understanding each channel's capabilities and limitations</li>
+                        <li>Retail scenarios benefit significantly from mobile-first multi-channel automation</li>
+                        <li>Journey Builder enables sophisticated cross-channel timing and frequency management</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 21 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 21</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A subscription service company has a Journey Builder automation that sends renewal reminders. They want to implement intelligent send timing that learns each customer's optimal engagement time based on their historical interaction patterns.
+                </div>
+                <div class="question-text">
+                    Which Einstein feature in Journey Builder provides individualized send time optimization?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Einstein Send Time Optimization</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Einstein Engagement Scoring</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Einstein Content Selection</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Einstein Journey Insights</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Einstein Send Time Optimization is specifically designed to analyze individual customer engagement patterns and automatically determine the optimal send time for each contact within Journey Builder activities. This AI-powered feature examines each contact's historical open and click behavior across different times of day and days of the week to predict when they're most likely to engage with email communications. For subscription renewal reminders, this means each customer receives their renewal notice at their personally optimal time, significantly improving open rates, click-through rates, and ultimately renewal conversion rates. Einstein Send Time Optimization operates seamlessly within Email Activities in Journey Builder, requiring no additional configuration beyond enabling the feature.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Einstein Engagement Scoring predicts how likely contacts are to engage with email communications but doesn't optimize send timing. It focuses on identifying highly engaged vs. less engaged contacts rather than determining optimal send times.</li>
+                        <li><strong>Option C:</strong> Einstein Content Selection optimizes which content or subject lines to use for maximum engagement but doesn't address send timing optimization. It's focused on content personalization rather than temporal optimization.</li>
+                        <li><strong>Option D:</strong> Einstein Journey Insights provides analytics and recommendations about journey performance but doesn't actively optimize send times for individual contacts. It's a reporting and analysis tool rather than an optimization feature.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Einstein Send Time Optimization provides individualized timing based on historical behavior</li>
+                        <li>AI-powered send timing significantly improves engagement and conversion rates</li>
+                        <li>Journey Builder integrates Einstein features seamlessly into email activities</li>
+                        <li>Personalized timing is crucial for subscription and retention marketing effectiveness</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 22 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 22</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team is building a complex Journey Builder automation with multiple decision points and wants to ensure they can test different logic paths without affecting live customer communications.
+                </div>
+                <div class="question-text">
+                    What is the recommended approach for testing Journey Builder logic before live deployment?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Use Test Mode with a small control group</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Deploy to production and monitor results</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Create a duplicate journey in a sandbox environment</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use Journey Validation tools only</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Test Mode with a small control group provides the most effective and safe approach for testing complex Journey Builder logic before full deployment. Journey Builder's Test Mode allows marketers to activate the journey with a limited number of test contacts (typically internal team members or a small group of volunteer customers) to validate that all decision splits, wait activities, email triggers, and business logic function correctly. This approach enables real-world testing with actual data while minimizing risk to customer relationships and brand reputation. Test Mode preserves all journey functionality including timing, personalization, and conditional logic while limiting exposure to a controlled audience.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Deploying directly to production without testing is extremely risky and can result in incorrect customer communications, damaged relationships, and compliance issues. This approach violates marketing automation best practices and can cause significant business damage.</li>
+                        <li><strong>Option C:</strong> While sandbox testing is valuable, creating duplicate journeys in sandbox environments may not accurately reflect production data, integrations, or real customer behavior patterns. Sandbox testing alone may miss issues that only appear with live data and systems.</li>
+                        <li><strong>Option D:</strong> Journey Validation tools check for technical errors and configuration issues but cannot validate business logic, customer experience flow, or real-world performance. Validation tools are necessary but not sufficient for comprehensive testing.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Test Mode enables safe testing with real data and limited audience exposure</li>
+                        <li>Complex journey logic requires comprehensive testing before customer deployment</li>
+                        <li>SFMC provides built-in testing capabilities to minimize deployment risks</li>
+                        <li>Effective testing balances real-world validation with risk management</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 23 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 23</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A B2B technology company wants to create a lead nurturing automation in Automation Studio that scores leads based on email engagement, webinar attendance, and content downloads, then routes qualified leads to different sales teams.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio activities are necessary for this lead scoring and routing workflow? (Choose 4)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Import Activity to bring in webinar and content data</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">SQL Query Activity to calculate lead scores</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Filter Activity to segment qualified leads</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Data Extract Activity to send leads to CRM</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Wait Activity for timing delays</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C, D</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Import Activity:</strong> Import Activities are essential for bringing external engagement data (webinar attendance, content downloads) into SFMC Data Extensions where they can be processed alongside email engagement data. This creates a comprehensive data foundation for lead scoring calculations.</li>
+                        <li><strong>Option B - SQL Query Activity:</strong> SQL Query Activities provide the computational power needed for complex lead scoring algorithms that combine multiple engagement factors (email opens/clicks, webinar participation, content downloads) with weighted scoring models and business rules to generate qualified lead scores.</li>
+                        <li><strong>Option C - Filter Activity:</strong> Filter Activities can segment leads based on calculated scores, geographic regions, industry verticals, or other criteria to route qualified leads to appropriate sales teams. This ensures proper lead distribution and sales team specialization.</li>
+                        <li><strong>Option D - Data Extract Activity:</strong> Data Extract Activities are necessary to export qualified lead data to CRM systems, sales automation platforms, or other systems where sales teams can access and act on the leads. This completes the automation workflow by enabling sales follow-up.</li>
+                    </ul>
+                    
+                    <p><strong>Why option E is incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option E:</strong> Wait Activities introduce delays between automation steps, but lead scoring and routing workflows typically need to process data immediately when updated rather than introducing artificial delays. The workflow benefits from immediate processing and lead routing.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Lead scoring automation requires data ingestion, calculation, segmentation, and export capabilities</li>
+                        <li>SQL Query Activities enable sophisticated scoring algorithms and business logic</li>
+                        <li>Automation Studio can orchestrate complex B2B marketing operations workflows</li>
+                        <li>Effective lead management requires integration between marketing and sales systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 24 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 24</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A travel agency has a Journey Builder automation for vacation packages. They want to inject contacts into the journey when customers browse specific destinations on their website but haven't booked within 24 hours.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder entry source would best support this behavioral trigger requirement?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Data Extension with browsing behavior data</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">API Event triggered by website activity</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Automation Studio import process</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Manual contact injection</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> API Event triggered by website activity provides the most effective solution for real-time behavioral journey triggers. When customers browse specific destinations, the website can fire API events to Journey Builder that include browsing behavior data, destination preferences, and timing information. The API Event entry source enables immediate contact injection based on specific website behaviors, allowing the journey to begin tracking the 24-hour window from the moment of initial interest. This real-time triggering ensures that follow-up communications are sent with optimal timing relative to customer behavior, significantly improving relevance and conversion rates for vacation package bookings.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Data Extension with browsing behavior data requires batch processing and scheduled imports, which introduces delays that make it difficult to accurately track the 24-hour window from initial browsing behavior. This approach lacks the real-time responsiveness needed for behavioral triggers.</li>
+                        <li><strong>Option C:</strong> Automation Studio import processes operate on scheduled intervals rather than real-time triggers. This creates timing gaps that could result in contacts entering the journey well after their initial browsing activity, reducing the effectiveness of time-sensitive vacation package promotions.</li>
+                        <li><strong>Option D:</strong> Manual contact injection is not scalable for website behavioral triggers and doesn't support automated response to customer browsing patterns. This approach requires human intervention for each contact, eliminating the automation benefits.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>API Events enable real-time behavioral journey triggers from external systems</li>
+                        <li>Website behavioral automation requires immediate response for maximum effectiveness</li>
+                        <li>Travel and hospitality marketing benefits significantly from timely behavioral follow-up</li>
+                        <li>Journey Builder API integration supports sophisticated customer experience automation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 25 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 25</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company has multiple Journey Builder automations running simultaneously and wants to prevent contacts from receiving more than 3 marketing emails per week across all journeys to avoid over-communication.
+                </div>
+                <div class="question-text">
+                    Which SFMC feature helps enforce communication frequency limits across multiple journeys?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Send Throttling in individual Email Activities</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Contact Builder frequency rules</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Global Send Frequency Management</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Einstein Send Frequency Optimization</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: D</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Einstein Send Frequency Optimization provides AI-powered frequency management that can analyze engagement patterns across all SFMC communications and automatically optimize send frequency to prevent over-communication while maximizing engagement. This feature examines each contact's engagement history, identifies optimal send frequencies based on individual behavior patterns, and can suppress sends when contacts are at risk of email fatigue. Einstein Send Frequency Optimization operates across all Journey Builder activities and Email Studio sends, providing comprehensive frequency management that adapts to individual customer preferences and engagement levels rather than applying rigid global rules.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Send Throttling in individual Email Activities controls the rate of email delivery for system performance but doesn't manage communication frequency limits for individual contacts across multiple journeys. It's designed for technical delivery management, not marketing frequency capping.</li>
+                        <li><strong>Option B:</strong> Contact Builder frequency rules are not a standard SFMC feature. Contact Builder manages customer data and relationships but doesn't include built-in frequency management capabilities for marketing communications.</li>
+                        <li><strong>Option C:</strong> Global Send Frequency Management is not a native SFMC feature. While administrators can set some global sending limits, there isn't a comprehensive global frequency management system for marketing communications across all channels and journeys.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Einstein Send Frequency Optimization provides intelligent, AI-powered frequency management</li>
+                        <li>Effective frequency management requires cross-journey and cross-channel coordination</li>
+                        <li>AI-driven frequency optimization adapts to individual customer engagement patterns</li>
+                        <li>Over-communication prevention is crucial for maintaining customer relationships and engagement</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 26 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 26</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An automotive dealership wants to create a service reminder automation that sends maintenance notifications based on vehicle mileage, service history, and seasonal requirements. Different vehicle types require different service intervals.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio capabilities would support this vehicle maintenance automation? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">SQL Query Activity with complex vehicle maintenance logic</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Import Activity for vehicle service data integration</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Send Email Activity for maintenance notifications</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random Split Activity</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Journey Activity</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - SQL Query Activity with complex vehicle maintenance logic:</strong> SQL Query Activities can implement sophisticated business rules for vehicle maintenance schedules, including mileage-based calculations, service interval logic based on vehicle type, seasonal service requirements, and complex conditional logic that considers multiple factors (vehicle age, driving conditions, previous service history) to determine appropriate maintenance timing.</li>
+                        <li><strong>Option B - Import Activity for vehicle service data integration:</strong> Import Activities are essential for bringing vehicle service data from dealership management systems, including current mileage readings, service history records, vehicle specifications, and customer information needed to calculate personalized maintenance schedules and generate relevant service reminders.</li>
+                        <li><strong>Option C - Send Email Activity for maintenance notifications:</strong> Send Email Activities deliver the actual maintenance reminder communications to customers, with personalized content based on vehicle type, recommended services, scheduling information, and special offers. These can be configured to send to segmented audiences based on maintenance requirements.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Random Split Activity divides contacts randomly, which is not appropriate for vehicle maintenance automation where service reminders should be based on specific vehicle data and maintenance requirements, not random distribution.</li>
+                        <li><strong>Option E:</strong> Journey Activity in Automation Studio injects contacts into Journey Builder, but this scenario describes a complete batch automation workflow within Automation Studio that processes vehicle data and sends maintenance reminders without requiring Journey Builder integration.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Automotive service automation requires complex business logic and data integration</li>
+                        <li>SQL Query Activities enable sophisticated maintenance scheduling calculations</li>
+                        <li>Vehicle maintenance automation benefits from scheduled batch processing in Automation Studio</li>
+                        <li>Effective service reminders require personalization based on vehicle-specific data</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 27 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 27</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A SaaS company has a Journey Builder onboarding sequence that includes a 5-day wait activity. They want contacts to exit this wait early if they complete the onboarding process during the wait period.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder configuration enables contacts to exit wait activities early based on completion events?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Exit Criteria configured with onboarding completion conditions</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Goal Activity after the wait</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Decision Split before the wait</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Dynamic Wait Duration</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Exit Criteria configured with onboarding completion conditions provides the exact functionality needed to allow contacts to exit wait activities early based on specific events or data changes. Exit Criteria can be set up to monitor for onboarding completion events (such as profile completion, feature usage milestones, or specific API events) and immediately remove contacts from the journey when these conditions are met, even if they're currently in a wait activity. This ensures that customers who complete onboarding don't receive unnecessary reminder communications and can proceed to the next phase of their customer experience without delay. Exit Criteria operates continuously throughout the journey, monitoring for the specified conditions regardless of which activity contacts are currently experiencing.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Goal Activity after the wait can track onboarding completion but cannot remove contacts from wait activities early. Goal Activities measure journey success but don't provide early exit functionality from in-progress activities.</li>
+                        <li><strong>Option C:</strong> Decision Split before the wait can route contacts based on current onboarding status but cannot monitor for completion events that occur during the wait period. Decision Splits evaluate conditions at the time of contact entry, not continuously during wait activities.</li>
+                        <li><strong>Option D:</strong> Dynamic Wait Duration can adjust wait timing based on contact data but doesn't provide early exit functionality based on completion events. It changes wait duration but doesn't enable event-based early departure from wait activities.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Exit Criteria provides continuous monitoring and early exit capabilities throughout journeys</li>
+                        <li>SaaS onboarding automation benefits from responsive, event-driven journey management</li>
+                        <li>Wait activities can be made more intelligent with appropriate exit criteria configuration</li>
+                        <li>Journey Builder's exit criteria prevent over-communication and improve customer experience</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 28 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 28</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to create an Automation Studio workflow that processes customer data every morning, but they want to ensure the automation doesn't run on weekends or holidays when their data sources aren't updated.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio scheduling option provides the most flexibility for business day automation execution?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Daily recurring schedule</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Weekly recurring schedule</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Custom recurring schedule with specific days</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Monthly recurring schedule</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: C</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Custom recurring schedule with specific days provides the precise control needed to run automations only on business days while excluding weekends and holidays. This scheduling option allows administrators to select exactly which days of the week the automation should run (Monday through Friday) and provides the flexibility to pause or modify the schedule for holidays or special circumstances. Custom recurring schedules support complex business requirements where simple daily or weekly schedules are insufficient, ensuring that data processing occurs only when source systems are active and updated. This approach prevents unnecessary automation runs, reduces system load, and ensures data quality by only processing when fresh data is available.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Daily recurring schedule runs every day including weekends and holidays, which would attempt to process data when source systems aren't updated, potentially causing errors or processing stale data unnecessarily.</li>
+                        <li><strong>Option B:</strong> Weekly recurring schedule runs once per week, which is insufficient for a requirement to process customer data every morning on business days. This would leave data unprocessed for most weekdays.</li>
+                        <li><strong>Option D:</strong> Monthly recurring schedule runs once per month, which is completely inadequate for daily business data processing requirements and would result in severe delays in customer data updates and communications.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Custom recurring schedules provide precise control for complex business requirements</li>
+                        <li>Business day automation prevents unnecessary processing during non-business periods</li>
+                        <li>Automation Studio scheduling should align with data source availability and business operations</li>
+                        <li>Effective automation scheduling balances processing frequency with resource optimization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 29 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 29</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A financial services company is implementing a Journey Builder automation for mortgage applications that must comply with strict regulatory requirements for timing, content approval, and communication tracking.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder features would be most important for regulatory compliance in financial services? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Journey audit trail and version control</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Contact activity and communication history tracking</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Approval workflows for email content</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random Split for A/B testing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Einstein engagement optimization</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Journey audit trail and version control:</strong> Financial services regulations require comprehensive documentation of all customer communication processes, including who made changes, when changes were implemented, and complete version history. Journey Builder's audit trail and version control provide detailed records of journey modifications, publication dates, and user actions, essential for regulatory compliance and audit requirements.</li>
+                        <li><strong>Option B - Contact activity and communication history tracking:</strong> Regulatory compliance demands complete records of all customer communications, including timing, content delivered, engagement actions, and customer responses. Journey Builder's contact history tracking provides detailed logs of each contact's journey experience, communication delivery, and engagement activity required for compliance reporting.</li>
+                        <li><strong>Option C - Approval workflows for email content:</strong> Financial services communications must undergo legal and compliance review before customer delivery. Content approval workflows ensure that all mortgage communication content is reviewed, approved, and documented by appropriate stakeholders before being used in customer communications, maintaining compliance with financial regulations.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Random Split for A/B testing, while useful for optimization, is not a compliance requirement for financial services. Regulatory focus is on consistent, approved messaging rather than testing variations.</li>
+                        <li><strong>Option E:</strong> Einstein engagement optimization improves marketing performance but is not a regulatory compliance requirement. Financial services compliance focuses on documentation, approval, and consistent communication rather than AI optimization.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Financial services automation requires comprehensive audit trails and documentation</li>
+                        <li>Regulatory compliance demands detailed tracking of all customer communications</li>
+                        <li>Content approval workflows are essential for regulated industries</li>
+                        <li>Journey Builder provides enterprise-grade compliance and governance features</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 30 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 30</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A retail company has a Journey Builder automation that sends personalized product recommendations. They want to implement dynamic content that changes based on real-time inventory levels to avoid promoting out-of-stock items.
+                </div>
+                <div class="question-text">
+                    Which approach best supports real-time inventory-based content personalization in Journey Builder?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Static content blocks updated manually</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">AMPscript with API calls to inventory systems</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Pre-built content variations for each product</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Decision Split based on historical data</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> AMPscript with API calls to inventory systems provides the most effective solution for real-time inventory-based content personalization. AMPscript's HTTPGet() and HTTPPost() functions can make real-time API calls to inventory management systems at the moment of email send, retrieving current stock levels and product availability data. This approach ensures that product recommendations are always current and accurate, preventing customer frustration from out-of-stock promotions. The scripting capability can implement complex logic to select alternative products when preferred items are unavailable, calculate shipping times based on warehouse inventory, and even adjust pricing or promotional offers based on current stock levels. This real-time integration maintains the highest level of personalization accuracy.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Static content blocks updated manually cannot provide real-time inventory responsiveness and require constant human intervention to maintain accuracy. This approach is prone to errors and delays that result in promoting out-of-stock items.</li>
+                        <li><strong>Option C:</strong> Pre-built content variations for each product would require enormous amounts of pre-created content and cannot adapt to real-time inventory changes. This static approach lacks the dynamic responsiveness needed for accurate inventory-based personalization.</li>
+                        <li><strong>Option D:</strong> Decision Split based on historical data can segment contacts but cannot access real-time inventory information at send time. Historical data doesn't reflect current stock availability and would result in outdated product recommendations.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>AMPscript enables real-time data integration through API calls within email content</li>
+                        <li>Retail automation benefits significantly from real-time inventory integration</li>
+                        <li>Dynamic content personalization requires sophisticated scripting capabilities</li>
+                        <li>Journey Builder supports complex real-time personalization through AMPscript</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Continue with Questions 31-51... -->
+
+            <!-- Question 31 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 31</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A subscription box company wants to create a Journey Builder automation that sends different content paths based on customer subscription tier (Basic, Premium, VIP) and recent purchase behavior.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder activity provides the most effective multi-criteria routing for this subscription tier and behavior-based personalization?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Decision Split with multiple criteria</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Random Split Activity</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Engagement Split</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Einstein Decision Split</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Decision Split with multiple criteria provides the most comprehensive and flexible routing capability for complex subscription tier and behavioral personalization scenarios. Decision Splits can evaluate multiple contact attributes simultaneously, including subscription tier data, purchase history, engagement metrics, and behavioral patterns to create sophisticated routing logic. For subscription box companies, this enables creating distinct paths for "Basic subscribers with recent purchases," "Premium subscribers with low engagement," "VIP subscribers with high activity," and numerous other combinations that drive highly personalized customer experiences. Decision Splits support Boolean logic (AND, OR conditions), comparison operators, and can reference both contact data and related Data Extensions for comprehensive multi-criteria evaluation.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Random Split Activity divides contacts randomly without considering subscription tiers or behavioral data, which eliminates personalization benefits and doesn't support business logic-based routing requirements.</li>
+                        <li><strong>Option C:</strong> Engagement Split routes contacts based on email engagement patterns (opens, clicks) but cannot evaluate subscription tier data or broader behavioral criteria beyond email interactions, limiting personalization capabilities.</li>
+                        <li><strong>Option D:</strong> Einstein Decision Split uses machine learning to optimize routing for engagement outcomes but doesn't provide the explicit business rule control needed for subscription tier-based routing and behavioral personalization requirements.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Decision Splits enable sophisticated multi-criteria business logic routing</li>
+                        <li>Subscription business models benefit from tier-based and behavioral personalization</li>
+                        <li>Complex routing scenarios require explicit criteria control rather than random or AI-optimized splitting</li>
+                        <li>Journey Builder supports comprehensive contact data evaluation for personalization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 32 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 32</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A global technology company wants to implement an Automation Studio workflow that processes customer support tickets, escalates urgent issues, and sends personalized responses across multiple time zones.
+                </div>
+                <div class="question-text">
+                    Which considerations are critical for this global, time-sensitive automation? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Time zone-aware scheduling and processing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Multi-language content localization</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Priority-based routing and escalation logic</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random distribution for load balancing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Social media integration</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Time zone-aware scheduling and processing:</strong> Global customer support automation requires sophisticated time zone management to ensure that urgent tickets are processed during appropriate business hours, escalation communications are sent at reasonable times for recipients, and automated responses respect local time preferences. This includes configuring automation schedules based on regional requirements and implementing time zone logic in SQL Query Activities.</li>
+                        <li><strong>Option B - Multi-language content localization:</strong> Global technology companies serve customers in multiple languages, requiring automated responses that are appropriately localized for customer language preferences and regional requirements. This involves dynamic content selection based on customer locale data and maintaining approved translations for all automated communications.</li>
+                        <li><strong>Option C - Priority-based routing and escalation logic:</strong> Customer support automation must implement sophisticated business rules for ticket prioritization (urgent, high, medium, low) and escalation procedures that route critical issues to appropriate teams based on severity, customer tier, product impact, and other business factors. This requires complex SQL Query logic and conditional processing.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Random distribution for load balancing doesn't consider ticket priority, customer importance, or agent expertise, which are crucial factors in effective customer support automation. Support routing should be intelligent, not random.</li>
+                        <li><strong>Option E:</strong> Social media integration, while potentially valuable, is not a critical consideration for the core automation workflow described, which focuses on processing support tickets and sending email responses.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Global automation requires comprehensive time zone and localization considerations</li>
+                        <li>Customer support automation demands sophisticated priority and routing logic</li>
+                        <li>Multi-language support is essential for global customer communications</li>
+                        <li>Automation Studio can handle complex global business requirements with proper configuration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 33 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 33</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A healthcare organization is implementing a Journey Builder automation for patient appointment reminders. They need to ensure that no reminders are sent to patients who have already rescheduled or canceled their appointments.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder feature provides the most effective solution for preventing communications to patients with canceled appointments?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Exit Criteria based on appointment status changes</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Decision Split before each reminder</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Manual contact removal</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Wait Activity timing adjustments</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Exit Criteria based on appointment status changes provides the most comprehensive and automated solution for preventing inappropriate communications to patients with canceled or rescheduled appointments. Exit Criteria can monitor appointment data in real-time and automatically remove contacts from the journey when their appointment status changes to "canceled," "rescheduled," or "completed." This ensures that patients never receive reminder communications for appointments that are no longer relevant. Exit Criteria operates continuously throughout the journey, regardless of which activity contacts are currently experiencing, providing comprehensive protection against inappropriate healthcare communications that could cause patient confusion or dissatisfaction.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Decision Split before each reminder can check appointment status at specific points but cannot continuously monitor for status changes that occur between decision points. If a patient cancels after passing a decision split but before reaching a reminder, they would still receive inappropriate communications.</li>
+                        <li><strong>Option C:</strong> Manual contact removal requires human intervention for each appointment change, which is not scalable, prone to errors, and introduces delays that could result in patients receiving reminders for canceled appointments before manual removal occurs.</li>
+                        <li><strong>Option D:</strong> Wait Activity timing adjustments control reminder scheduling but don't prevent communications based on appointment status changes. Timing adjustments cannot address the core issue of canceled appointment communications.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Exit Criteria provides continuous monitoring and automated contact management</li>
+                        <li>Healthcare automation requires precise control over communication relevance and timing</li>
+                        <li>Appointment-based communications benefit from real-time status monitoring</li>
+                        <li>Journey Builder's exit criteria prevent inappropriate healthcare communications</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 34 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 34</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A media company wants to create an Automation Studio workflow that analyzes subscriber engagement patterns, identifies content preferences, and generates personalized newsletter recommendations for different audience segments.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio capability would be most effective for analyzing complex engagement patterns and generating content recommendations?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Filter Activity with basic engagement criteria</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">SQL Query Activity with advanced analytics functions</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Import Activity for data ingestion</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Send Email Activity for recommendations</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> SQL Query Activity with advanced analytics functions provides the most sophisticated capability for analyzing complex engagement patterns and generating personalized content recommendations. SQL Query Activities can implement machine learning-like algorithms, statistical analysis, pattern recognition, and predictive modeling using advanced SQL functions including window functions, LAG/LEAD for trend analysis, statistical aggregations, and complex case logic. For media companies, this enables analyzing subscriber behavior across multiple content categories, identifying reading patterns, calculating content affinity scores, and generating personalized newsletter recommendations based on individual engagement history, similar subscriber preferences, and content performance metrics.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Filter Activity with basic engagement criteria can segment audiences based on simple conditions but lacks the analytical depth needed for complex pattern recognition, content affinity analysis, and sophisticated recommendation generation required for personalized newsletter creation.</li>
+                        <li><strong>Option C:</strong> Import Activity brings data into SFMC but doesn't perform analysis or generate recommendations. While essential for data ingestion, it cannot analyze engagement patterns or create personalized content recommendations.</li>
+                        <li><strong>Option D:</strong> Send Email Activity delivers recommendations but doesn't analyze data or generate the recommendations themselves. It's the delivery mechanism, not the analytical engine for content personalization.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>SQL Query Activities enable sophisticated analytics and recommendation engines within SFMC</li>
+                        <li>Media and content companies benefit from advanced engagement pattern analysis</li>
+                        <li>Personalized content recommendations require complex analytical processing</li>
+                        <li>SFMC's SQL capabilities support enterprise-grade marketing intelligence workflows</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 35 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 35</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An insurance company wants to implement a Journey Builder automation for policy renewal campaigns that personalizes content based on policy type, claim history, and customer lifetime value, while ensuring compliance with insurance regulations.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder features would be essential for this regulated, multi-criteria personalization scenario? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Decision Splits with complex multi-attribute criteria</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Content approval workflows and version control</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Comprehensive audit trail for compliance reporting</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random Split for A/B testing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Einstein content optimization</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Decision Splits with complex multi-attribute criteria:</strong> Insurance renewal campaigns require sophisticated routing based on multiple customer attributes simultaneously: policy type (auto, home, life), claim history (frequency, severity, recency), customer lifetime value, risk profiles, and regulatory requirements. Decision Splits can evaluate these complex combinations to deliver appropriate renewal offers and messaging.</li>
+                        <li><strong>Option B - Content approval workflows and version control:</strong> Insurance communications are heavily regulated and require legal/compliance approval before customer delivery. Content approval workflows ensure all renewal messaging meets regulatory standards, while version control maintains documentation of approved content changes for audit purposes.</li>
+                        <li><strong>Option C - Comprehensive audit trail for compliance reporting:</strong> Insurance regulations demand detailed records of all customer communications, including timing, content versions, recipient targeting criteria, and delivery confirmation. Audit trails provide the documentation necessary for regulatory compliance and examination requirements.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Random Split for A/B testing, while useful for optimization, is not essential for regulated insurance communications where consistency and approved messaging take precedence over testing variations.</li>
+                        <li><strong>Option E:</strong> Einstein content optimization, though valuable for engagement, is not a core requirement for insurance compliance, which prioritizes regulatory adherence and approved messaging over AI-driven optimization.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Insurance automation requires sophisticated multi-criteria routing and strict compliance controls</li>
+                        <li>Regulated industries prioritize approval workflows and audit capabilities</li>
+                        <li>Complex personalization scenarios need comprehensive decision-making capabilities</li>
+                        <li>Journey Builder supports enterprise-grade compliance and governance requirements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 36 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 36</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A software company has a Journey Builder automation that sends product update notifications. They want to dynamically adjust the wait time between notifications based on each user's engagement level and app usage patterns.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder feature enables dynamic wait timing based on individual customer behavior?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Fixed Wait Activities with standard duration</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Dynamic Wait Activities with attribute-based duration</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Decision Split before Wait Activities</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Einstein Send Time Optimization</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Dynamic Wait Activities with attribute-based duration provide the exact functionality needed to adjust wait timing based on individual customer behavior and data attributes. Dynamic Wait Activities can reference contact data fields, Data Extension attributes, or calculated values to determine wait duration for each individual contact. For software companies, this enables setting wait times based on user engagement scores (highly engaged users get more frequent updates), app usage frequency (active users receive faster cadence), feature adoption rates, or customer tier status. The wait duration can be calculated using AMPscript expressions that evaluate multiple behavioral factors to create personalized timing for each contact's journey experience.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Fixed Wait Activities with standard duration apply the same wait time to all contacts regardless of their individual behavior patterns, engagement levels, or usage history, eliminating the personalized timing benefits needed for this scenario.</li>
+                        <li><strong>Option C:</strong> Decision Split before Wait Activities can route contacts to different paths with different wait times, but this creates multiple journey branches rather than dynamically calculating personalized wait duration for individual contacts within a single activity.</li>
+                        <li><strong>Option D:</strong> Einstein Send Time Optimization optimizes the time of day emails are sent but doesn't adjust the interval duration between notifications in a journey sequence, which is the core requirement for this product update scenario.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Dynamic Wait Activities enable personalized timing based on individual customer attributes</li>
+                        <li>SaaS product communication benefits from engagement-based timing optimization</li>
+                        <li>Attribute-based wait durations create more sophisticated customer journey experiences</li>
+                        <li>Journey Builder supports complex timing logic through dynamic activity configuration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 37 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 37</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A luxury retail brand wants to create an Automation Studio workflow that identifies VIP customers based on purchase history and engagement patterns, then triggers personalized Journey Builder experiences for different VIP segments.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio activity enables automated injection of segmented VIP customers into specific Journey Builder experiences?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Send Email Activity</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Journey Activity</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Data Extract Activity</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Wait Activity</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Journey Activity in Automation Studio is specifically designed to inject contacts from Automation Studio workflows into Journey Builder experiences, creating seamless integration between batch data processing and real-time customer journey automation. This activity can take segmented VIP customers identified through SQL Query Activities and automatically inject them into appropriate Journey Builder experiences based on their VIP tier, preferences, and behavioral attributes. Journey Activities support multiple journey destinations, conditional injection based on segment criteria, and can pass additional data attributes to enhance journey personalization, making them perfect for luxury retail scenarios where VIP customers require immediate, personalized journey experiences.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Send Email Activity delivers email communications but cannot inject contacts into Journey Builder experiences. It's limited to one-time email sends within the Automation Studio workflow rather than triggering ongoing journey automation.</li>
+                        <li><strong>Option C:</strong> Data Extract Activity exports data from SFMC to external systems but cannot inject contacts into Journey Builder. It's designed for outbound data transfer, not for triggering internal journey automation.</li>
+                        <li><strong>Option D:</strong> Wait Activity introduces delays in the automation workflow but doesn't inject contacts into journeys or trigger external automation experiences. It's a timing control, not an integration mechanism.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Journey Activities enable seamless integration between Automation Studio and Journey Builder</li>
+                        <li>VIP customer experiences benefit from immediate journey injection after segmentation</li>
+                        <li>Luxury retail automation requires sophisticated customer tier-based journey routing</li>
+                        <li>SFMC's integrated platform allows complex automation orchestration across multiple tools</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 38 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 38</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A telecommunications company wants to implement a Journey Builder automation for customer retention that adapts messaging based on service usage patterns, billing history, and customer service interactions.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder capabilities would be most effective for this multi-dimensional retention automation? (Choose 4)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Decision Splits with complex usage and billing criteria</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Wait Activities with retention-specific timing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Update Contact Activity to track retention engagement</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Goal Activities to measure retention success</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random Split for unbiased targeting</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C, D</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Decision Splits with complex usage and billing criteria:</strong> Telecom retention requires sophisticated routing based on service usage patterns (high/low data usage, roaming behavior), billing history (payment delays, dispute patterns), customer service interactions (complaint frequency, resolution satisfaction), and churn risk indicators. Decision Splits can evaluate these multiple dimensions to deliver targeted retention messaging.</li>
+                        <li><strong>Option B - Wait Activities with retention-specific timing:</strong> Customer retention campaigns require strategic timing that aligns with billing cycles, contract renewal dates, usage pattern changes, and churn prediction models. Wait Activities can implement retention-optimized timing that maximizes intervention effectiveness at critical retention moments.</li>
+                        <li><strong>Option C - Update Contact Activity to track retention engagement:</strong> Retention automation requires comprehensive tracking of customer responses to retention offers, engagement with retention content, and behavioral changes following retention interventions. This data is crucial for measuring program effectiveness and refining retention strategies.</li>
+                        <li><strong>Option D - Goal Activities to measure retention success:</strong> Retention campaigns need clear success metrics including contract renewals, service upgrades, reduced churn indicators, and improved customer satisfaction scores. Goal Activities provide measurement framework for retention campaign effectiveness and ROI calculation.</li>
+                    </ul>
+                    
+                    <p><strong>Why option E is incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option E:</strong> Random Split for unbiased targeting doesn't align with retention automation goals, which require targeted, personalized interventions based on specific customer data and churn risk factors rather than random distribution.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Telecom retention automation requires multi-dimensional customer data analysis and routing</li>
+                        <li>Retention campaigns benefit from strategic timing and comprehensive engagement tracking</li>
+                        <li>Goal measurement is essential for retention program optimization and ROI demonstration</li>
+                        <li>Journey Builder supports sophisticated retention marketing automation with comprehensive analytics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 39 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 39</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A pharmaceutical company needs to create an Automation Studio workflow that processes clinical trial participant data while ensuring strict data privacy compliance, participant consent validation, and secure data handling throughout the automation process.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio consideration is most critical for maintaining data privacy compliance in pharmaceutical automation workflows?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Data encryption during processing and storage</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">High-speed data processing capabilities</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Multi-language content support</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Social media integration features</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Data encryption during processing and storage is the most critical consideration for pharmaceutical automation workflows handling clinical trial participant data. Pharmaceutical companies must comply with strict regulations including HIPAA, GDPR, FDA guidelines, and Good Clinical Practice (GCP) standards that mandate comprehensive data protection. SFMC's enterprise-grade encryption capabilities ensure that participant data is encrypted both at rest and in transit during all Automation Studio processing activities. This includes encryption during Import Activities, SQL Query processing, data transformations, and any data transfers or extracts. Additionally, encryption must be maintained throughout the entire data lifecycle, from initial ingestion through processing, storage, and eventual deletion or archival, ensuring that sensitive clinical trial data remains protected against unauthorized access or data breaches.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> High-speed data processing capabilities, while operationally valuable, are not the primary concern for pharmaceutical compliance. Data accuracy, security, and privacy protection take absolute precedence over processing speed in clinical trial environments.</li>
+                        <li><strong>Option C:</strong> Multi-language content support may be useful for global clinical trials but is not the most critical compliance consideration compared to fundamental data protection and privacy requirements mandated by pharmaceutical regulations.</li>
+                        <li><strong>Option D:</strong> Social media integration features are completely inappropriate for pharmaceutical clinical trial data processing, as social platforms cannot meet the security and privacy requirements for protected health information and clinical data.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Pharmaceutical automation requires enterprise-grade data encryption and security</li>
+                        <li>Clinical trial data processing must comply with multiple regulatory frameworks</li>
+                        <li>SFMC provides comprehensive data protection capabilities for regulated industries</li>
+                        <li>Data privacy compliance is the foundational requirement for healthcare automation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 40 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 40</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A nonprofit organization wants to create a Journey Builder automation for donor stewardship that sends personalized thank you messages, impact reports, and future giving opportunities based on donation history and engagement preferences.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder entry source would be most appropriate for initiating donor stewardship journeys immediately after donation processing?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Scheduled Data Extension updates</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">API Event triggered by donation completion</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Manual contact injection</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Weekly batch processing</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> API Event triggered by donation completion provides the most effective solution for immediate donor stewardship journey initiation. When donors complete transactions through online giving platforms or donation processing systems, an API event can be fired immediately to Journey Builder, triggering personalized stewardship communications while the donation experience is still fresh in the donor's mind. This real-time triggering enables immediate thank you messages, donation confirmations, and tax receipt delivery, demonstrating organizational responsiveness and appreciation. The API event can include donation details (amount, designation, payment method), donor information, and campaign context that enables highly personalized stewardship messaging and appropriate impact reporting based on the specific donation characteristics.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Scheduled Data Extension updates introduce delays between donation completion and stewardship communications, reducing the emotional connection and immediate appreciation that donors expect after making charitable contributions.</li>
+                        <li><strong>Option C:</strong> Manual contact injection requires human intervention for each donation, which is not scalable for active nonprofit organizations and introduces delays that can diminish donor satisfaction and engagement.</li>
+                        <li><strong>Option D:</strong> Weekly batch processing creates unacceptable delays in donor acknowledgment, violating nonprofit best practices for donor stewardship and potentially damaging donor relationships through delayed or impersonal communication timing.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Donor stewardship benefits significantly from immediate, real-time communication triggers</li>
+                        <li>API Events enable responsive nonprofit automation that enhances donor experience</li>
+                        <li>Timely donor acknowledgment is critical for relationship building and retention</li>
+                        <li>Journey Builder's API integration supports sophisticated nonprofit fundraising automation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 41 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 41</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A manufacturing company wants to implement an Automation Studio workflow that monitors equipment sensor data, predicts maintenance needs, and automatically schedules service appointments with customers.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio activities would be essential for this predictive maintenance workflow? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Import Activity to ingest IoT sensor data</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">SQL Query Activity with predictive algorithms</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Data Extract Activity to send scheduling data to CRM</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random Split Activity</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Wait Activity for processing delays</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Import Activity to ingest IoT sensor data:</strong> Manufacturing predictive maintenance requires continuous ingestion of IoT sensor data including temperature, vibration, pressure, operating hours, and performance metrics from industrial equipment. Import Activities can process large volumes of sensor data from various sources and formats, creating the data foundation for predictive analysis.</li>
+                        <li><strong>Option B - SQL Query Activity with predictive algorithms:</strong> Predictive maintenance requires sophisticated analytical processing to identify patterns, anomalies, and predictive indicators in sensor data. SQL Query Activities can implement machine learning algorithms, statistical models, trend analysis, and threshold-based rules to predict equipment failures, calculate maintenance schedules, and prioritize service interventions based on criticality and availability.</li>
+                        <li><strong>Option C - Data Extract Activity to send scheduling data to CRM:</strong> The automation workflow must integrate with customer relationship management and service scheduling systems to automatically create service appointments, notify customers of upcoming maintenance needs, and coordinate field service resources. Data Extract Activities enable seamless integration with external business systems.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Random Split Activity divides data randomly, which is inappropriate for predictive maintenance where equipment scheduling should be based on actual maintenance needs, sensor data analysis, and customer priority factors rather than random distribution.</li>
+                        <li><strong>Option E:</strong> Wait Activity introduces delays in processing, but predictive maintenance workflows benefit from immediate analysis and scheduling to prevent equipment failures and minimize downtime. Delays could result in missed maintenance windows and equipment failures.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Predictive maintenance automation requires sophisticated data ingestion, analysis, and integration capabilities</li>
+                        <li>IoT sensor data processing demands robust Import and analytical SQL capabilities</li>
+                        <li>Manufacturing automation benefits from immediate processing and external system integration</li>
+                        <li>SFMC can support complex industrial automation workflows beyond traditional marketing use cases</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 42 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 42</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A university wants to create a Journey Builder automation for student lifecycle management that sends different communications based on enrollment status, academic performance, and engagement with campus activities.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder feature would be most effective for routing students based on multiple academic and engagement criteria?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Engagement Split based on email opens</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Decision Split with academic and engagement criteria</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Random Split for fair distribution</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Einstein Decision Split</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Decision Split with academic and engagement criteria provides the most comprehensive solution for complex student lifecycle routing based on multiple institutional data points. Decision Splits can evaluate enrollment status (full-time, part-time, graduate, undergraduate), academic performance indicators (GPA, credit completion, degree progress), engagement metrics (campus event attendance, library usage, student organization participation), and demographic factors simultaneously. This enables universities to create sophisticated student communication paths such as "struggling students with low engagement," "high-performing students with leadership potential," or "at-risk students requiring intervention." The multi-criteria evaluation supports personalized student success initiatives, retention programs, and engagement campaigns tailored to individual student needs and circumstances.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Engagement Split based on email opens only considers email interaction behavior and cannot evaluate the comprehensive academic performance, enrollment status, and campus engagement factors necessary for effective student lifecycle management.</li>
+                        <li><strong>Option C:</strong> Random Split for fair distribution ignores individual student needs, academic standing, and engagement levels, which are crucial factors for personalized student communications and support interventions in higher education.</li>
+                        <li><strong>Option D:</strong> Einstein Decision Split uses AI optimization for engagement outcomes but doesn't provide the explicit academic criteria control needed for university-specific routing based on institutional student success metrics and academic requirements.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Higher education automation requires multi-dimensional student data evaluation</li>
+                        <li>Decision Splits enable comprehensive academic and engagement criteria routing</li>
+                        <li>Student lifecycle management benefits from personalized communication paths</li>
+                        <li>University automation requires sophisticated institutional data integration and routing logic</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 43 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 43</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A food delivery company wants to create an Automation Studio workflow that analyzes order patterns, identifies customer preferences, and generates personalized menu recommendations for different customer segments during peak ordering times.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio scheduling approach would be most effective for delivering personalized menu recommendations during peak ordering times?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Single daily automation at midnight</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Multiple scheduled automations aligned with meal times</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Weekly automation on Sundays</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Monthly automation for all recommendations</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Multiple scheduled automations aligned with meal times provide the most effective approach for delivering personalized menu recommendations during peak ordering periods. Food delivery companies have distinct ordering patterns throughout the day (breakfast 7-10 AM, lunch 11 AM-2 PM, dinner 5-8 PM, late night 9 PM-midnight) that require different menu focus, promotional strategies, and customer targeting. Multiple scheduled automations can analyze recent order data, weather conditions, day of the week patterns, and customer preferences to generate timely, relevant menu recommendations delivered just before peak ordering windows. This approach enables breakfast recommendations in the morning, lunch specials before midday, dinner suggestions in late afternoon, and weekend/late-night options at appropriate times, maximizing relevance and conversion rates.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Single daily automation at midnight misses the opportunity to deliver timely menu recommendations during actual peak ordering periods when customers are making dining decisions. Midnight timing is irrelevant for meal planning and ordering behavior.</li>
+                        <li><strong>Option C:</strong> Weekly automation on Sundays provides insufficient frequency for dynamic food delivery marketing, missing daily menu changes, seasonal offerings, weather-based recommendations, and real-time inventory considerations that drive food ordering decisions.</li>
+                        <li><strong>Option D:</strong> Monthly automation for all recommendations is completely inadequate for fast-moving food delivery business where menu items, availability, promotions, and customer preferences change frequently, requiring much more responsive recommendation timing.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Food service automation requires timing alignment with natural customer behavior patterns</li>
+                        <li>Peak ordering times demand timely, relevant menu personalization</li>
+                        <li>Multiple scheduled automations can optimize for different customer contexts throughout the day</li>
+                        <li>Automation Studio scheduling should reflect business and customer behavior patterns</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 44 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 44</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A real estate company wants to implement a Journey Builder automation for property interest campaigns that personalizes content based on property type preferences, budget range, location interests, and viewing behavior on their website.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder components would be most effective for this property interest personalization? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Decision Splits with property preference criteria</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">API Events triggered by website property viewing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">AMPscript personalization for property details</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random Split for property distribution</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Social Media Activities</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Decision Splits with property preference criteria:</strong> Real estate personalization requires sophisticated routing based on multiple customer preferences including property type (house, condo, townhome), budget range, location preferences, number of bedrooms/bathrooms, and lifestyle factors. Decision Splits can evaluate these complex combinations to deliver targeted property recommendations and relevant market information.</li>
+                        <li><strong>Option B - API Events triggered by website property viewing:</strong> Real estate interest is highly behavioral and time-sensitive. When prospects view specific properties online, API events can immediately trigger personalized follow-up journeys with similar properties, neighborhood information, market updates, and viewing appointment opportunities, capitalizing on demonstrated interest while it's fresh.</li>
+                        <li><strong>Option C - AMPscript personalization for property details:</strong> Property marketing requires dynamic content that adapts to individual interests, including personalized property recommendations, market pricing analysis, neighborhood details, and financing options. AMPscript can dynamically populate email content with relevant property details, comparable sales data, and personalized market insights based on customer preferences.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Random Split for property distribution contradicts real estate marketing principles where property recommendations should be highly targeted based on customer preferences, budget, and demonstrated interest rather than random assignment.</li>
+                        <li><strong>Option E:</strong> Social Media Activities, while potentially useful for broader real estate marketing, are not core Journey Builder activities and don't directly support the personalized property interest automation described in this scenario.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Real estate automation benefits significantly from behavioral triggers and preference-based routing</li>
+                        <li>Property marketing requires sophisticated personalization based on multiple customer criteria</li>
+                        <li>Website behavior integration enables timely, relevant property recommendations</li>
+                        <li>Journey Builder supports complex real estate customer journey automation with dynamic content</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 45 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 45</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A fitness company has a Journey Builder automation for membership renewals that includes multiple decision points and wait activities. They want to ensure that contacts who cancel their memberships during the journey don't continue receiving renewal communications.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder configuration provides the most comprehensive solution for preventing communications to canceled members throughout the entire journey?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Decision Splits before each email activity</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Exit Criteria monitoring membership status</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Manual contact removal procedures</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Wait Activity duration adjustments</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Exit Criteria monitoring membership status provides the most comprehensive and automated solution for preventing renewal communications to canceled members throughout the entire journey. Exit Criteria operates continuously throughout the journey, monitoring membership status data in real-time and immediately removing contacts from the journey when their status changes to "canceled," "expired," or "suspended." This ensures that members who cancel at any point during the renewal journey - whether they're in wait activities, decision splits, or any other journey stage - are immediately removed and stop receiving inappropriate renewal communications. Exit Criteria provides 24/7 monitoring without requiring manual intervention or complex journey redesign, offering complete protection against customer dissatisfaction from irrelevant communications.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Decision Splits before each email activity create multiple check points but cannot continuously monitor for membership changes that occur between decision points. If a member cancels after passing a decision split but before the next check, they would still receive renewal communications.</li>
+                        <li><strong>Option C:</strong> Manual contact removal procedures require human intervention for each cancellation, introducing delays, potential errors, and scalability issues that could result in canceled members receiving renewal communications before manual removal occurs.</li>
+                        <li><strong>Option D:</strong> Wait Activity duration adjustments control timing between journey activities but don't address the core issue of preventing communications to canceled members. Duration changes cannot solve the membership status monitoring requirement.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Exit Criteria provides continuous, automated contact management throughout entire journeys</li>
+                        <li>Fitness industry automation requires real-time membership status monitoring</li>
+                        <li>Comprehensive journey protection requires automated, not manual, contact management</li>
+                        <li>Journey Builder's exit criteria prevent inappropriate communications and improve customer experience</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 46 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 46</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A logistics company wants to create an Automation Studio workflow that processes shipping data, identifies delivery delays, and automatically sends proactive customer notifications with updated delivery estimates.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio trigger type would be most effective for real-time processing of shipping updates and delay notifications?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Schedule-based trigger running every hour</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">File Drop trigger activated by shipping system updates</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Manual trigger for each delay</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Weekly scheduled automation</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> File Drop trigger activated by shipping system updates provides the most effective real-time processing solution for shipping delay notifications. When logistics systems detect delivery delays, route changes, or tracking updates, they can automatically deposit updated shipping data files to SFMC's file drop location, immediately triggering the automation workflow. This approach enables near-instantaneous processing of shipping changes, allowing customers to receive proactive delay notifications as soon as logistics systems identify potential delivery issues. File Drop triggers respond immediately to data availability rather than waiting for scheduled intervals, ensuring that delay notifications reach customers with optimal timing for planning and customer satisfaction management.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Schedule-based trigger running every hour introduces delays of up to 60 minutes between delay detection and customer notification, which reduces the proactive value of delay communications and may result in customers discovering delays through other channels first.</li>
+                        <li><strong>Option C:</strong> Manual trigger for each delay requires human intervention for every shipping delay, which is not scalable for logistics companies processing thousands of shipments daily and introduces unacceptable delays in customer communications.</li>
+                        <li><strong>Option D:</strong> Weekly scheduled automation is completely inadequate for time-sensitive shipping delay notifications where customers need immediate updates to adjust their expectations and plans for delivery timing.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>File Drop triggers enable immediate response to external system data updates</li>
+                        <li>Shipping and logistics automation requires real-time processing for customer satisfaction</li>
+                        <li>Proactive delay notifications depend on immediate automation triggering</li>
+                        <li>Automation Studio's file drop capabilities support responsive customer communication workflows</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 47 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 47</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A gaming company wants to implement a Journey Builder automation for player engagement that sends different content based on game progress, achievement unlocks, spending behavior, and social interaction patterns.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder features would be most effective for this multi-dimensional gaming engagement automation? (Choose 4)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Decision Splits with complex gaming behavior criteria</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">API Events for real-time game achievement triggers</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Update Contact Activities to track engagement responses</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Goal Activities to measure engagement success</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Wait Activities for delayed responses only</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C, D</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Decision Splits with complex gaming behavior criteria:</strong> Gaming engagement requires sophisticated routing based on multiple player dimensions including game progress (level, completion percentage), achievement patterns (casual vs. completionist), spending behavior (free-to-play vs. premium purchaser), social interaction (guild participation, friend connections), and playing frequency. Decision Splits can evaluate these complex combinations to deliver highly targeted gaming content.</li>
+                        <li><strong>Option B - API Events for real-time game achievement triggers:</strong> Gaming engagement is most effective when triggered by actual in-game events such as level completions, achievement unlocks, purchase decisions, or social milestones. API Events can fire immediately when these gaming events occur, enabling congratulatory messages, next-level content, reward notifications, and social sharing prompts while player excitement is at its peak.</li>
+                        <li><strong>Option C - Update Contact Activities to track engagement responses:</strong> Gaming automation requires comprehensive tracking of player responses to engagement campaigns including email opens, in-game reward claims, social shares, purchase conversions, and gameplay resumption. This data is crucial for understanding campaign effectiveness and player behavior patterns.</li>
+                        <li><strong>Option D - Goal Activities to measure engagement success:</strong> Gaming companies need clear success metrics including player retention, session duration increases, in-app purchase conversion, social engagement, and achievement completion rates. Goal Activities provide measurement framework for engagement campaign effectiveness and player lifecycle value optimization.</li>
+                    </ul>
+                    
+                    <p><strong>Why option E is incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option E:</strong> Wait Activities for delayed responses only doesn't leverage the real-time, immediate engagement opportunities that drive gaming excitement and retention. Gaming automation benefits from immediate response to player actions rather than delayed communications.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Gaming automation requires real-time behavioral triggers and multi-dimensional player analysis</li>
+                        <li>Player engagement benefits from immediate response to in-game achievements and milestones</li>
+                        <li>Comprehensive engagement tracking enables gaming companies to optimize player lifecycle campaigns</li>
+                        <li>Journey Builder supports sophisticated gaming industry automation with real-time integration capabilities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 48 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 48</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A consulting company wants to create a Journey Builder automation for client project updates that sends different communications based on project phase, client engagement level, and project complexity. They need to ensure consistent branding and messaging across all communications.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder approach would best ensure consistent branding and messaging while supporting complex project-based personalization?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Separate journeys for each project type</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Content Builder templates with AMPscript personalization</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Manual email creation for each client</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Random content selection</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Content Builder templates with AMPscript personalization provide the optimal balance of consistent branding and sophisticated project-based personalization. Content Builder templates ensure that all communications maintain consistent visual branding, formatting, messaging tone, and corporate identity while AMPscript enables dynamic content adaptation based on project data including project phase (initiation, planning, execution, closure), client engagement metrics, project complexity levels, and stakeholder preferences. This approach allows consulting companies to maintain professional consistency while delivering highly relevant, personalized project communications that adapt content based on individual client and project characteristics, creating a scalable solution for complex B2B communication requirements.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Separate journeys for each project type create management complexity, brand inconsistency risks, and content duplication issues. This approach makes it difficult to maintain consistent messaging while requiring extensive journey maintenance for various project configurations.</li>
+                        <li><strong>Option C:</strong> Manual email creation for each client eliminates scalability, introduces brand consistency risks, and requires excessive human resources for content creation. This approach is not sustainable for consulting companies managing multiple client projects simultaneously.</li>
+                        <li><strong>Option D:</strong> Random content selection contradicts professional consulting communication requirements where content must be carefully tailored to project context, client needs, and business objectives rather than randomly distributed.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Content Builder templates enable consistent branding across complex automation workflows</li>
+                        <li>AMPscript provides sophisticated personalization while maintaining template consistency</li>
+                        <li>Professional services automation requires balancing consistency with personalization</li>
+                        <li>SFMC's Content Builder and AMPscript integration supports enterprise branding requirements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 49 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 49</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A retail bank wants to implement an Automation Studio workflow that processes daily transaction data, identifies unusual spending patterns, and generates fraud alerts for both customers and internal security teams.
+                </div>
+                <div class="question-text">
+                    Which Automation Studio activity would be most effective for detecting complex fraud patterns in transaction data?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Filter Activity with basic transaction limits</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">SQL Query Activity with advanced pattern recognition</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Import Activity for data ingestion</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Send Email Activity for alerts</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> SQL Query Activity with advanced pattern recognition provides the most sophisticated fraud detection capabilities within Automation Studio for banking transaction analysis. SQL Query Activities can implement complex algorithms including statistical analysis, anomaly detection, pattern matching, behavioral modeling, and machine learning-style logic to identify fraudulent transaction patterns. These activities can analyze transaction velocity (frequency spikes), geographic anomalies (unusual locations), spending pattern deviations (category changes), amount thresholds (unusually large or small transactions), and temporal patterns (time-of-day inconsistencies). Advanced SQL functions including window functions, statistical calculations, and complex conditional logic enable banks to detect sophisticated fraud schemes that simple rule-based systems would miss.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Filter Activity with basic transaction limits can identify simple threshold violations but lacks the sophisticated analytical capabilities needed for complex fraud pattern detection, behavioral analysis, and multi-dimensional anomaly identification required for modern banking security.</li>
+                        <li><strong>Option C:</strong> Import Activity brings transaction data into SFMC but doesn't analyze or detect fraud patterns. While essential for data ingestion, it cannot perform the analytical processing needed for fraud detection and alert generation.</li>
+                        <li><strong>Option D:</strong> Send Email Activity delivers fraud alerts but doesn't detect or analyze fraudulent patterns. It's the communication mechanism, not the analytical engine for fraud pattern recognition and detection logic.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Banking fraud detection requires sophisticated analytical processing and pattern recognition</li>
+                        <li>SQL Query Activities enable advanced algorithms and statistical analysis within SFMC</li>
+                        <li>Financial services automation demands enterprise-grade security and analysis capabilities</li>
+                        <li>Complex fraud patterns require multi-dimensional data analysis and behavioral modeling</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 50 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 50</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A streaming media company wants to create a Journey Builder automation for content recommendation campaigns that personalizes suggestions based on viewing history, genre preferences, device usage patterns, and social sharing behavior.
+                </div>
+                <div class="question-text">
+                    Which Journey Builder capabilities would be most effective for this comprehensive content personalization? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">AMPscript with dynamic content recommendation logic</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Decision Splits based on viewing behavior and preferences</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">API Events triggered by viewing activities</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random Split for content variety</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Social Media Activities</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - AMPscript with dynamic content recommendation logic:</strong> Streaming media personalization requires sophisticated content recommendation engines that can analyze viewing history, genre preferences, ratings, watch completion rates, and similar user behaviors to generate personalized content suggestions. AMPscript can implement recommendation algorithms, calculate content affinity scores, and dynamically populate email content with relevant show/movie suggestions tailored to individual viewer preferences.</li>
+                        <li><strong>Option B - Decision Splits based on viewing behavior and preferences:</strong> Content recommendation campaigns require intelligent routing based on multiple viewer characteristics including preferred genres (drama, comedy, documentary), viewing patterns (binge-watching vs. casual viewing), device preferences (mobile vs. TV), content rating preferences (family-friendly vs. mature), and engagement levels. Decision Splits can evaluate these complex combinations to deliver targeted content campaigns.</li>
+                        <li><strong>Option C - API Events triggered by viewing activities:</strong> Streaming media engagement is highly event-driven, with optimal recommendation timing occurring immediately after viewers complete episodes, rate content, add items to watchlists, or share content socially. API Events can trigger personalized recommendation journeys based on these real-time viewing behaviors, capitalizing on viewer interest and engagement momentum.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Random Split for content variety contradicts personalization principles where content recommendations should be highly targeted based on individual viewing preferences, behavior patterns, and demonstrated interest rather than random content distribution.</li>
+                        <li><strong>Option E:</strong> Social Media Activities, while potentially useful for broader content marketing, are not core Journey Builder activities and don't directly support the personalized content recommendation automation described in this streaming media scenario.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Media streaming automation benefits from sophisticated recommendation algorithms and behavioral triggers</li>
+                        <li>Content personalization requires multi-dimensional viewer behavior analysis and routing</li>
+                        <li>Real-time viewing events provide optimal triggers for personalized content recommendations</li>
+                        <li>Journey Builder supports complex media industry automation with advanced personalization capabilities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 51 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 51</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A global e-commerce company has implemented multiple Journey Builder automations across different product lines and regions. They need to monitor overall automation performance and identify optimization opportunities across their entire marketing automation portfolio.
+                </div>
+                <div class="question-text">
+                    Which SFMC capability provides comprehensive analytics and performance insights across multiple Journey Builder automations?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Individual Journey Performance Reports</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Analytics Builder cross-journey dashboards</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Email Studio engagement reports</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Manual performance tracking spreadsheets</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Analytics Builder cross-journey dashboards provide the most comprehensive solution for monitoring performance across multiple Journey Builder automations in a unified view. Analytics Builder enables marketers to create custom dashboards that aggregate performance data from multiple journeys, compare metrics across different product lines and regions, identify trends and patterns across the entire automation portfolio, and drill down into specific performance areas for detailed analysis. These dashboards can combine journey performance metrics with external data sources, create calculated metrics for business KPIs, and provide executive-level reporting that shows the overall impact of marketing automation efforts across the organization.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Individual Journey Performance Reports provide detailed insights for single journeys but cannot aggregate data across multiple automations or provide portfolio-level optimization insights. This approach requires manual compilation to understand overall performance.</li>
+                        <li><strong>Option C:</strong> Email Studio engagement reports focus on email-specific metrics and don't provide comprehensive journey performance analytics that include wait activities, decision splits, goal achievement, and other journey-specific elements beyond email engagement.</li>
+                        <li><strong>Option D:</strong> Manual performance tracking spreadsheets are inefficient, prone to errors, difficult to maintain, and cannot provide real-time insights or automated alerting for performance issues across multiple automations.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Analytics Builder enables comprehensive cross-journey performance monitoring</li>
+                        <li>Portfolio-level optimization requires aggregated analytics and dashboard capabilities</li>
+                        <li>Global organizations benefit from unified performance dashboards across regions and product lines</li>
+                        <li>SFMC's Analytics Builder supports sophisticated marketing automation intelligence and reporting</li>
+                    </ul>
+                </div>
+            </div>
             
             <!-- Question 52 (Final question) -->
             <div class="question-container">
@@ -1119,7 +3219,42 @@
             12: ['A'],
             13: ['A'],
             14: ['A', 'B', 'C'],
-            // Add remaining correct answers for questions 15-51...
+            15: ['A'],
+            16: ['A', 'B', 'C'],
+            17: ['C'],
+            18: ['B'],
+            19: ['A', 'B', 'C'],
+            20: ['A'],
+            21: ['A'],
+            22: ['A', 'B', 'C', 'D'],
+            23: ['B'],
+            24: ['D'],
+            25: ['A', 'B', 'C'],
+            26: ['A'],
+            27: ['C'],
+            28: ['A', 'B', 'C'],
+            29: ['A'],
+            30: ['B'],
+            31: ['A', 'B', 'C'],
+            32: ['A'],
+            33: ['B'],
+            34: ['A', 'B', 'C'],
+            35: ['B'],
+            36: ['B'],
+            37: ['A', 'B', 'C', 'D'],
+            38: ['A'],
+            39: ['B'],
+            40: ['A', 'B', 'C'],
+            41: ['B'],
+            42: ['B'],
+            43: ['A', 'B', 'C'],
+            44: ['B'],
+            45: ['B'],
+            46: ['A', 'B', 'C', 'D'],
+            47: ['B'],
+            48: ['B'],
+            49: ['A', 'B', 'C'],
+            50: ['B'],
             51: ['B']
         };
 

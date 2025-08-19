@@ -1053,6 +1053,1584 @@
                 </div>
             </div>
 
+            <!-- Question 13 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 13</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A B2B company's email deliverability has declined over the past month. Their IT team has implemented SPF and DKIM records, but emails are still landing in spam folders for major ISPs like Gmail and Outlook.
+                </div>
+                <div class="question-text">
+                    Which additional authentication protocol should be implemented to improve deliverability and domain protection?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">DMARC (Domain-based Message Authentication, Reporting & Conformance)</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">TLS (Transport Layer Security)</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">SSL Certificate</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">MX Record</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> DMARC (Domain-based Message Authentication, Reporting & Conformance) is the critical missing piece that ties SPF and DKIM together to provide complete email authentication. While SPF and DKIM provide the foundation, DMARC tells ISPs what to do when emails fail authentication checks and provides alignment between the "From" domain and either SPF or DKIM. Major ISPs like Gmail, Yahoo, and Outlook heavily weight DMARC policies in their spam filtering decisions. DMARC also provides valuable reporting that shows which emails are passing/failing authentication and helps identify potential spoofing attempts. A properly configured DMARC policy significantly improves inbox placement rates and protects against domain spoofing.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> TLS encrypts the connection between email servers but doesn't provide sender authentication or domain verification. While TLS is important for security, it doesn't directly impact spam filtering decisions or solve deliverability issues related to sender reputation.</li>
+                        <li><strong>Option C:</strong> SSL Certificates secure web connections but are not used for email authentication. They don't help with email deliverability or provide the sender verification that ISPs require for inbox placement.</li>
+                        <li><strong>Option D:</strong> MX Records route incoming email to the correct mail servers but don't provide any authentication or anti-spoofing protection. They're essential for receiving email but don't impact the deliverability of outbound campaigns.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>DMARC completes the email authentication trinity (SPF + DKIM + DMARC)</li>
+                        <li>Major ISPs require DMARC alignment for optimal deliverability</li>
+                        <li>DMARC provides both authentication and valuable reporting capabilities</li>
+                        <li>SFMC supports DMARC configuration and monitoring for enterprise email programs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 14</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A retail company wants to implement a comprehensive re-engagement campaign for subscribers who haven't opened any emails in the past 6 months. Their inactive segment includes 200,000 subscribers.
+                </div>
+                <div class="question-text">
+                    Which strategies should be included in an effective re-engagement campaign? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use compelling subject lines like "We miss you" or "Come back" with special offers</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Send multiple emails in quick succession to increase visibility</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Provide clear value proposition and remind them why they subscribed</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Include an easy opt-out mechanism with clear unsubscribe options</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use the same email templates as regular campaigns</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, C, D</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Compelling subject lines:</strong> Re-engagement campaigns require emotionally engaging subject lines that acknowledge the relationship gap and provide clear incentives to re-engage. Phrases like "We miss you" create personal connection, while special offers provide tangible value for returning. These subject lines perform significantly better than generic promotional language.</li>
+                        <li><strong>Option C - Clear value proposition:</strong> Inactive subscribers need to be reminded of the original value they signed up for. Re-engagement emails should clearly communicate what subscribers will receive, showcase popular content or products, and reinforce the brand's unique value. This helps subscribers remember why they subscribed initially.</li>
+                        <li><strong>Option D - Easy opt-out mechanism:</strong> Providing clear, accessible unsubscribe options is crucial for re-engagement campaigns. It's better to cleanly remove uninterested subscribers than risk spam complaints. Easy opt-out also builds trust and may encourage some subscribers to remain subscribed when they see the brand respects their preferences.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Sending multiple emails in quick succession to inactive subscribers is counterproductive and likely to trigger spam complaints or blocks. Re-engagement campaigns should be spaced appropriately (typically 1-2 weeks apart) to avoid overwhelming inactive recipients.</li>
+                        <li><strong>Option E:</strong> Regular campaign templates may not be optimal for re-engagement. These campaigns often benefit from special design elements, different messaging tone, and specific calls-to-action that acknowledge the relationship gap and focus on winning back attention.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Re-engagement campaigns require specialized messaging and strategy</li>
+                        <li>Clear value communication and incentives improve reactivation rates</li>
+                        <li>Easy unsubscribe options reduce spam complaints and improve sender reputation</li>
+                        <li>SFMC's segmentation tools can identify and target inactive subscribers effectively</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 15</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A subscription service wants to optimize their email frequency. They currently send daily promotional emails but notice declining engagement rates and increasing unsubscribes over the past 3 months.
+                </div>
+                <div class="question-text">
+                    What is the best approach to optimize email frequency and improve subscriber satisfaction?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Increase frequency to twice daily to improve visibility</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Implement frequency testing and subscriber preference controls</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Reduce to weekly emails for all subscribers</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Continue daily emails but change the send times</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Implementing frequency testing and subscriber preference controls provides a data-driven, subscriber-centric approach to frequency optimization. This strategy involves A/B testing different frequencies (daily vs. 3x/week vs. weekly) to measure impact on engagement and unsubscribes, while simultaneously giving subscribers control over their email experience through preference centers. Preference controls allow subscribers to choose their desired frequency, content types, and topics, significantly reducing unsubscribes and improving satisfaction. This approach recognizes that optimal frequency varies by subscriber segment, industry, and content type, making personalized frequency the most effective long-term solution.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Increasing frequency when engagement is already declining and unsubscribes are rising will almost certainly worsen both metrics. Higher frequency without improved value leads to subscriber fatigue and accelerated list churn. This approach ignores the clear signals of frequency fatigue.</li>
+                        <li><strong>Option C:</strong> Reducing to weekly emails for all subscribers applies a one-size-fits-all solution that may be too conservative for engaged subscribers who value daily updates. This blanket approach could reduce overall engagement and revenue from highly engaged segments.</li>
+                        <li><strong>Option D:</strong> Changing send times addresses timing optimization but doesn't solve the fundamental frequency fatigue issue. While send time optimization can improve results, it won't resolve subscriber dissatisfaction with email volume and frequency.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Email frequency optimization requires testing and data analysis, not assumptions</li>
+                        <li>Subscriber preference controls significantly improve satisfaction and reduce churn</li>
+                        <li>Declining engagement rates are often early indicators of frequency fatigue</li>
+                        <li>SFMC's preference centers and A/B testing tools support sophisticated frequency optimization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 16</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An e-commerce company wants to create a welcome email series for new subscribers. They want to introduce their brand, showcase popular products, and drive first-time purchases within the first two weeks.
+                </div>
+                <div class="question-text">
+                    What is the optimal structure for a converting welcome email series?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Email 1: Welcome + 50% discount, Email 2: Product catalog, Email 3: Customer reviews</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Email 1: Thank you + brand story, Email 2: Popular products + social proof, Email 3: Limited-time offer</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Email 1: Complete product inventory, Email 2: Shipping information, Email 3: Return policy</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Single email with all information combined</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> The progressive engagement approach in Option B follows welcome email series best practices by building relationships before pushing sales. Email 1 focuses on relationship-building through gratitude and brand storytelling, which helps subscribers understand the company's values and creates emotional connection. Email 2 provides social proof through popular products and customer testimonials, building trust and demonstrating value without being overly promotional. Email 3 introduces urgency with a limited-time offer after trust has been established. This sequence respects the subscriber's journey from awareness to consideration to purchase, resulting in higher conversion rates and lower unsubscribe rates than overly aggressive approaches.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Leading with a large discount in the first email can attract bargain hunters rather than loyal customers, devalue the brand, and set expectations for constant discounting. This approach may generate short-term sales but often results in lower customer lifetime value and higher churn rates.</li>
+                        <li><strong>Option C:</strong> Focusing on operational information (inventory, shipping, returns) in a welcome series misses the opportunity to build emotional connection and drive engagement. While this information is important, it should be easily accessible on the website rather than featured in relationship-building emails.</li>
+                        <li><strong>Option D:</strong> A single email with all information creates cognitive overload and dilutes the impact of each message. Welcome series work because they space out information and allow for multiple touchpoints, increasing the chances of engagement and conversion over time.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Welcome series should prioritize relationship-building over immediate sales</li>
+                        <li>Progressive engagement sequences achieve higher long-term conversion rates</li>
+                        <li>Social proof and brand storytelling are crucial elements in welcome campaigns</li>
+                        <li>SFMC's Journey Builder can automate sophisticated welcome series with behavioral triggers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 17</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A nonprofit organization needs to comply with GDPR requirements for their European subscribers while maintaining their fundraising email campaigns.
+                </div>
+                <div class="question-text">
+                    Which GDPR compliance measures should be implemented in their email marketing? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Obtain explicit consent with clear opt-in checkboxes</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Provide easy access to data deletion and portability</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Maintain detailed records of consent and processing activities</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use pre-checked opt-in boxes to increase signups</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Share subscriber data freely with partner organizations</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Explicit consent:</strong> GDPR requires clear, affirmative action for consent. This means using unchecked opt-in checkboxes with clear language about what subscribers are consenting to receive. Consent must be freely given, specific, informed, and unambiguous.</li>
+                        <li><strong>Option B - Data rights access:</strong> GDPR grants individuals the right to data portability (receiving their data in a machine-readable format) and the right to erasure ("right to be forgotten"). Organizations must provide easy mechanisms for subscribers to exercise these rights within required timeframes.</li>
+                        <li><strong>Option C - Consent records:</strong> GDPR requires organizations to maintain detailed documentation of how consent was obtained, when it was given, what information was provided to the individual, and how consent can be withdrawn. These records serve as proof of compliance during regulatory audits.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Pre-checked opt-in boxes violate GDPR's requirement for affirmative action. Consent must be given through a clear positive action, such as checking an unchecked box or clicking a button. Pre-checked boxes don't demonstrate explicit consent.</li>
+                        <li><strong>Option E:</strong> GDPR restricts data sharing and requires specific consent for each purpose. Sharing subscriber data with partner organizations without explicit consent for that specific sharing violates GDPR's data minimization and purpose limitation principles.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>GDPR requires explicit, documented consent for email marketing</li>
+                        <li>Individuals have specific rights regarding their personal data</li>
+                        <li>Compliance documentation is essential for regulatory protection</li>
+                        <li>SFMC provides GDPR compliance features including consent management and data subject rights</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 18</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A SaaS company notices that their transactional emails (password resets, account notifications) have excellent deliverability, but their marketing emails are experiencing inbox placement issues.
+                </div>
+                <div class="question-text">
+                    What is the most likely explanation for this deliverability discrepancy?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Transactional emails use different authentication settings</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">ISPs prioritize transactional emails and apply stricter filtering to marketing emails</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Transactional emails have smaller file sizes</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Marketing emails contain more images</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> ISPs differentiate between transactional and marketing emails in their filtering algorithms, applying much stricter scrutiny to marketing messages. Transactional emails (password resets, order confirmations, account notifications) are expected and requested by recipients, resulting in high engagement rates and low spam complaints. ISPs recognize this pattern and typically allow transactional emails to bypass many filtering mechanisms. Marketing emails, however, are subject to comprehensive spam filtering that evaluates sender reputation, content quality, engagement history, and subscriber behavior. This dual-standard approach helps ISPs balance user experience by ensuring important account-related emails reach recipients while protecting users from unwanted promotional content.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> While transactional emails may use different send classifications in SFMC, authentication settings (SPF, DKIM, DMARC) should be consistent across all email types from the same domain. Authentication alone doesn't explain the deliverability difference.</li>
+                        <li><strong>Option C:</strong> File size has minimal impact on deliverability compared to content type and engagement patterns. Many marketing emails are smaller than transactional emails that include order details or account information.</li>
+                        <li><strong>Option D:</strong> While image-heavy content can trigger some spam filters, modern ISPs focus more on engagement patterns and sender reputation than content composition. Many successful marketing emails include images without deliverability issues.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>ISPs apply different filtering standards to transactional vs. marketing emails</li>
+                        <li>Engagement patterns heavily influence marketing email deliverability</li>
+                        <li>Transactional emails benefit from expected, high-engagement nature</li>
+                        <li>SFMC's send classifications help distinguish email types for optimal deliverability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 19</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A travel company wants to create targeted email campaigns based on customer preferences, past booking history, and engagement behavior to improve personalization and conversion rates.
+                </div>
+                <div class="question-text">
+                    Which segmentation strategy would be most effective for creating highly targeted travel campaigns?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Geographic segmentation based on customer location only</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Multi-dimensional segmentation combining behavioral, demographic, and preference data</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Single segment for all subscribers</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Random segmentation for A/B testing</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Multi-dimensional segmentation leverages multiple data points to create highly targeted, relevant campaigns that drive superior engagement and conversion rates. For travel companies, this approach combines behavioral data (past booking patterns, email engagement, website browsing), demographic information (age, income, family status), and stated preferences (destination types, travel style, budget range) to create precise customer segments. This strategy enables highly personalized campaigns like "Luxury European Tours for Empty Nesters" or "Budget-Friendly Family Destinations" that resonate with specific customer needs and motivations. Multi-dimensional segmentation consistently outperforms single-variable approaches by 35-50% in travel industry benchmarks.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Geographic segmentation alone ignores crucial factors like travel preferences, budget, travel style, and past behavior. Customers in the same location can have vastly different travel interests and needs, making geography-only segmentation too broad for effective personalization.</li>
+                        <li><strong>Option C:</strong> Single segment approaches eliminate personalization benefits and result in generic messaging that fails to resonate with diverse customer needs. This approach typically yields lower engagement rates and missed revenue opportunities.</li>
+                        <li><strong>Option D:</strong> Random segmentation is useful for testing campaign variations but doesn't create meaningful audience targeting. It doesn't leverage customer data to improve relevance and personalization, missing the opportunity for strategic segmentation.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Multi-dimensional segmentation significantly improves campaign relevance and performance</li>
+                        <li>Travel marketing benefits from combining behavioral, demographic, and preference data</li>
+                        <li>Effective segmentation requires integration of multiple customer data sources</li>
+                        <li>SFMC's segmentation tools can combine multiple data sources for sophisticated targeting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 20</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A financial services company wants to improve their email accessibility to comply with ADA requirements and ensure their communications reach all customers effectively.
+                </div>
+                <div class="question-text">
+                    Which accessibility best practices should be implemented in their email design? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use sufficient color contrast ratios (minimum 4.5:1 for normal text)</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Rely exclusively on color to convey important information</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Include descriptive alt text for all images and graphics</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use semantic HTML structure with proper heading hierarchy</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use very small font sizes to fit more content</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, C, D</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Color contrast ratios:</strong> Adequate color contrast is essential for users with visual impairments, color blindness, or low vision conditions. The WCAG 2.1 AA standard requires minimum contrast ratios of 4.5:1 for normal text and 3:1 for large text. This ensures readability across different visual abilities and viewing conditions.</li>
+                        <li><strong>Option C - Descriptive alt text:</strong> Alternative text allows screen readers to describe images to visually impaired users, ensuring they understand visual content and calls-to-action. Alt text should be descriptive and meaningful, conveying the purpose and context of the image, not just decorative descriptions.</li>
+                        <li><strong>Option D - Semantic HTML structure:</strong> Proper HTML structure with heading hierarchy (H1, H2, H3) enables screen readers and assistive technologies to navigate content efficiently. This creates logical content flow and allows users to jump between sections easily.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Relying exclusively on color to convey information excludes color-blind users and those using screen readers. Important information should be communicated through text, icons, or other visual indicators in addition to color coding.</li>
+                        <li><strong>Option E:</strong> Very small font sizes create readability barriers for users with visual impairments and are generally poor for user experience. Recommended minimum font sizes are 14px for body text, with larger sizes being preferable for accessibility.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Email accessibility benefits all users, not just those with disabilities</li>
+                        <li>WCAG guidelines provide specific standards for digital accessibility compliance</li>
+                        <li>Accessible design often improves overall user experience and engagement</li>
+                        <li>SFMC email templates can be designed with accessibility best practices built-in</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Continue with Questions 21-39... -->
+
+            <!-- Question 21 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 21</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A healthcare organization needs to ensure their email marketing practices comply with HIPAA regulations while still being able to communicate with patients about wellness programs and health education.
+                </div>
+                <div class="question-text">
+                    Which approach best balances HIPAA compliance with effective email marketing?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Include detailed medical history in personalized emails</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use general health and wellness content without personal health information</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Share patient information with third-party marketing partners</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Send medical test results via email</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Using general health and wellness content without personal health information (PHI) allows healthcare organizations to provide valuable educational content while maintaining HIPAA compliance. This approach focuses on preventive care topics, health tips, wellness program announcements, and general medical education that benefits all subscribers without revealing any protected health information. The content can still be engaging and valuable – such as seasonal health advice, nutrition tips, exercise programs, and preventive care reminders – while avoiding any individual medical details. This strategy maintains patient trust, provides genuine value, and keeps the organization compliant with federal regulations.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Including detailed medical history in emails would be a clear HIPAA violation, as medical history constitutes protected health information (PHI) that cannot be transmitted via unsecured email. This could result in significant fines and legal penalties.</li>
+                        <li><strong>Option C:</strong> Sharing patient information with third-party marketing partners without specific patient authorization violates HIPAA's minimum necessary rule and privacy requirements. This practice could result in severe penalties and loss of patient trust.</li>
+                        <li><strong>Option D:</strong> Sending medical test results via email without proper encryption and patient consent violates HIPAA regulations regarding the transmission of PHI. Test results must be communicated through secure, HIPAA-compliant channels.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>HIPAA requires strict protection of personal health information in all communications</li>
+                        <li>General wellness content can be effective without violating privacy regulations</li>
+                        <li>Healthcare marketing must balance engagement with compliance requirements</li>
+                        <li>SFMC provides secure communication tools that can support HIPAA-compliant marketing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 22 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 22</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A clothing retailer wants to implement sender reputation monitoring to proactively identify and address deliverability issues before they significantly impact their email campaigns.
+                </div>
+                <div class="question-text">
+                    Which metric is the most critical early warning indicator of sender reputation problems?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Open rates</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Spam complaint rates</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Click-through rates</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Unsubscribe rates</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Spam complaint rates are the most critical early warning indicator of sender reputation problems because they directly and immediately impact how ISPs view your sending practices. ISPs weight spam complaints heavily in their filtering algorithms, with complaint rates above 0.1% triggering increased scrutiny and rates above 0.3% often resulting in blocking or bulk folder placement. Unlike other metrics, spam complaints represent explicit negative feedback from recipients and signal to ISPs that the sender may be engaging in poor practices. Complaint rates typically spike before other deliverability metrics decline, making them the earliest and most actionable warning sign. Monitoring complaint rates by ISP, campaign, and segment allows for rapid identification and resolution of reputation issues.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> While declining open rates can indicate deliverability issues, they're influenced by many factors including subject line performance, send time, and subscriber engagement. Open rates are a lagging indicator that may not show problems until reputation damage is already significant.</li>
+                        <li><strong>Option C:</strong> Click-through rates are influenced more by content relevance and email design than sender reputation. While low CTRs can indicate engagement problems, they're not direct indicators of reputation issues with ISPs.</li>
+                        <li><strong>Option D:</strong> Unsubscribe rates indicate subscriber dissatisfaction but don't directly impact ISP filtering decisions the way spam complaints do. While important for list health, they're not the most critical reputation indicator.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Spam complaint rates are the most direct indicator of ISP filtering behavior</li>
+                        <li>Complaint rate thresholds (0.1% warning, 0.3% critical) should trigger immediate action</li>
+                        <li>Early monitoring allows for proactive reputation management</li>
+                        <li>SFMC provides comprehensive reputation monitoring and complaint feedback loops</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 23 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 23</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A subscription box service wants to reduce their email unsubscribe rates by implementing better list management and subscriber experience practices.
+                </div>
+                <div class="question-text">
+                    Which strategies can effectively reduce unsubscribe rates? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Implement preference center for frequency and content control</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Send more emails to increase engagement</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Segment audiences for more relevant content</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Set clear expectations during the signup process</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Hide the unsubscribe link</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, C, D</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Preference center:</strong> Preference centers give subscribers control over their email experience, allowing them to adjust frequency, content types, and topics rather than unsubscribing entirely. Studies show preference centers can reduce unsubscribe rates by 20-40% by providing alternatives to complete opt-out.</li>
+                        <li><strong>Option C - Audience segmentation:</strong> Segmented, relevant content significantly reduces unsubscribes by ensuring subscribers receive information that matches their interests and needs. Irrelevant content is a primary driver of unsubscribes, making segmentation crucial for retention.</li>
+                        <li><strong>Option D - Clear expectations:</strong> Setting proper expectations during signup about email frequency, content types, and value reduces subscriber disappointment and unsubscribes. When subscribers know what to expect, they're less likely to be surprised or frustrated by email communications.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Sending more emails typically increases unsubscribe rates rather than reducing them, especially if the additional emails don't provide clear value. Frequency should be optimized based on subscriber preferences and engagement, not automatically increased.</li>
+                        <li><strong>Option E:</strong> Hiding the unsubscribe link violates CAN-SPAM regulations and increases spam complaints, which is worse for deliverability than unsubscribes. It's also unethical and erodes trust with subscribers.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Subscriber control and relevance are key factors in reducing unsubscribes</li>
+                        <li>Preference centers provide alternatives to complete opt-out</li>
+                        <li>Clear communication and expectation-setting prevent subscriber disappointment</li>
+                        <li>SFMC's preference center functionality supports sophisticated subscriber control options</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 24 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 24</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A technology company's email open rates have been steadily declining over 6 months, but their subject line A/B tests don't show significant improvements. They suspect iOS Mail Privacy Protection is affecting their metrics.
+                </div>
+                <div class="question-text">
+                    Which alternative engagement metric should be prioritized to better measure email performance?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Click-through rates and conversion tracking</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Bounce rates</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">List growth rates</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Unsubscribe rates</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Click-through rates and conversion tracking provide more accurate engagement measurement in the era of iOS Mail Privacy Protection and similar privacy features that artificially inflate open rates. CTRs represent genuine user engagement - subscribers actively clicking links demonstrate real interest in the content. Conversion tracking goes further by measuring actual business outcomes like purchases, downloads, or form completions. These metrics are unaffected by privacy protection features and provide clearer insights into email effectiveness. As open rates become less reliable due to automatic pre-loading by email clients, CTRs and conversions become the primary indicators of campaign success and subscriber engagement.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Bounce rates indicate list quality and deliverability but don't measure subscriber engagement or campaign effectiveness. They're important for sender reputation but don't replace engagement metrics affected by privacy protection.</li>
+                        <li><strong>Option C:</strong> List growth rates measure acquisition success but don't indicate how engaged existing subscribers are with email content. Growth without engagement leads to poor deliverability and low ROI.</li>
+                        <li><strong>Option D:</strong> Unsubscribe rates show subscriber dissatisfaction but are a negative indicator. They don't measure positive engagement or help optimize content strategy for better performance.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Privacy protection features make traditional open rate metrics less reliable</li>
+                        <li>Click-through rates represent genuine subscriber engagement and interest</li>
+                        <li>Conversion tracking provides the most accurate measure of email marketing ROI</li>
+                        <li>SFMC's analytics prioritize actionable engagement metrics over vanity metrics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 25 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 25</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A restaurant chain wants to create location-based email campaigns that comply with CAN-SPAM while providing personalized offers based on customer proximity to specific restaurants.
+                </div>
+                <div class="question-text">
+                    Which CAN-SPAM compliance elements must be included in these location-based campaigns? (Choose 2)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Physical mailing address of the business</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">One-click unsubscribe mechanism</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Customer's GPS coordinates</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Restaurant revenue data</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Social media links</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Physical mailing address:</strong> CAN-SPAM requires all commercial emails to include the sender's valid physical postal address. This can be the street address, post office box, or private mailbox registered with a commercial mail receiving agency. For restaurant chains, this is typically the corporate headquarters address.</li>
+                        <li><strong>Option B - One-click unsubscribe:</strong> CAN-SPAM mandates that commercial emails must include a clear and conspicuous way for recipients to opt out of future emails. The unsubscribe mechanism must be functional, easy to find, and process requests within 10 business days without requiring additional steps beyond clicking the unsubscribe link.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> Customer GPS coordinates are not required by CAN-SPAM and including them would raise privacy concerns. Location-based campaigns can use general location data (city, state) without requiring precise coordinates in the email content.</li>
+                        <li><strong>Option D:</strong> Restaurant revenue data is proprietary business information that has no relevance to CAN-SPAM compliance and shouldn't be included in marketing emails.</li>
+                        <li><strong>Option E:</strong> Social media links are optional marketing elements that can enhance engagement but are not required by CAN-SPAM regulations. They're commonly included but not legally mandated.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>CAN-SPAM compliance is required for all commercial emails regardless of personalization</li>
+                        <li>Physical address and unsubscribe mechanism are non-negotiable legal requirements</li>
+                        <li>Location-based personalization doesn't change core compliance obligations</li>
+                        <li>SFMC's send classifications automatically include required CAN-SPAM elements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 26 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 26</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A luxury brand wants to create exclusive email campaigns for their VIP customers. They're concerned about maintaining brand prestige while ensuring emails reach the primary inbox for this high-value segment.
+                </div>
+                <div class="question-text">
+                    Which approach best balances exclusivity with deliverability for VIP email campaigns?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Send from a special VIP-only domain to create exclusivity</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use the established, authenticated domain with premium content and personalization</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Send VIP emails more frequently to show special treatment</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use image-only emails to create visual impact</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Using the established, authenticated domain with premium content and personalization maximizes deliverability while creating exclusivity through content quality rather than technical separation. Established domains with strong sender reputation, proper authentication (SPF, DKIM, DMARC), and positive engagement history have the best inbox placement rates. Exclusivity is achieved through premium content, early access offers, personalized experiences, and sophisticated segmentation rather than separate domains. This approach ensures VIP customers receive emails reliably while maintaining the brand's prestigious positioning through superior content and personalized experiences that demonstrate their valued status.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> New or separate VIP domains lack sending history and reputation, leading to poor initial deliverability. ISPs treat new domains skeptically, and VIP emails might end up in spam folders, defeating the exclusivity purpose. Building reputation for a new domain takes months.</li>
+                        <li><strong>Option C:</strong> Higher frequency doesn't create positive exclusivity and can lead to email fatigue, even among VIP customers. Quality and relevance matter more than quantity for maintaining engagement with high-value segments.</li>
+                        <li><strong>Option D:</strong> Image-only emails often trigger spam filters, have poor accessibility, and don't display properly when images are blocked. This approach risks poor deliverability and user experience, especially problematic for VIP communications.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Sender reputation and domain authentication are more important than domain exclusivity</li>
+                        <li>Premium content and personalization create better exclusivity than technical separation</li>
+                        <li>Established domains with good reputation ensure optimal VIP email delivery</li>
+                        <li>SFMC's segmentation tools enable sophisticated VIP customer targeting and personalization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 27 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 27</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A software company's marketing emails are being blocked by their own corporate email security system when employees try to forward them internally for review, causing delays in campaign approval processes.
+                </div>
+                <div class="question-text">
+                    Which email design practice would most likely resolve this forwarding issue?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Remove all external links from emails</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Reduce promotional language and use professional tone</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Include more text and reduce image-to-text ratio</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use smaller email file sizes</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: C</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Including more text and reducing image-to-text ratio addresses the primary reason corporate email security systems block marketing emails - suspicious content patterns typically associated with spam. High image-to-text ratios are classic spam indicators that trigger enterprise security filters. By increasing meaningful text content and maintaining a balanced image-to-text ratio (ideally 60:40 or 70:30 text-to-images), emails appear more legitimate to security systems. This approach ensures emails pass through corporate firewalls and security scanners while maintaining visual appeal and marketing effectiveness. Well-balanced emails with substantial text content are less likely to trigger security policies that block image-heavy or promotional content.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Removing all external links would eliminate critical email functionality like calls-to-action, tracking, and user engagement opportunities. Links themselves aren't typically the issue with corporate security systems if they're from reputable domains.</li>
+                        <li><strong>Option B:</strong> While professional tone can help, the fundamental issue is likely technical content analysis rather than language style. Promotional language alone rarely triggers corporate security blocks if other elements are properly balanced.</li>
+                        <li><strong>Option D:</strong> File size is rarely the primary factor in corporate email blocking for internal forwards. Security systems focus more on content patterns, links, and structural elements than file size for internal communications.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Corporate email security systems scrutinize image-to-text ratios as spam indicators</li>
+                        <li>Balanced content structure improves deliverability through security filters</li>
+                        <li>Text-rich emails appear more legitimate to automated security scanning</li>
+                        <li>SFMC's email design templates can be optimized for corporate email security compatibility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 28 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 28</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A financial services company needs to create email marketing campaigns that maintain customer trust while promoting new products. They're in a highly regulated industry where compliance and transparency are critical.
+                </div>
+                <div class="question-text">
+                    Which trust-building practices should be implemented in their email marketing? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use clear, straightforward subject lines without deceptive tactics</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Include security and privacy policy information</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use high-pressure sales tactics to drive immediate action</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Provide clear disclosures and terms for all offers</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Hide fees and conditions in fine print</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, D</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Clear subject lines:</strong> Honest, descriptive subject lines build trust by setting accurate expectations about email content. Deceptive tactics may increase initial opens but damage long-term trust and brand reputation. Financial services companies especially need to maintain credibility through transparent communication.</li>
+                        <li><strong>Option B - Security and privacy information:</strong> Including links to security policies, privacy statements, and data protection information reassures customers about data handling practices. This transparency is crucial in financial services where customers entrust sensitive personal and financial information.</li>
+                        <li><strong>Option D - Clear disclosures and terms:</strong> Transparent disclosure of offer terms, conditions, fees, and requirements builds trust and ensures regulatory compliance. Financial products often have complex terms that must be clearly communicated to avoid customer confusion and regulatory issues.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> High-pressure sales tactics undermine trust and can appear manipulative, especially in financial services where customers need time to make informed decisions. These tactics can also violate industry regulations and best practices.</li>
+                        <li><strong>Option E:</strong> Hiding fees and conditions in fine print is deceptive and often violates financial services regulations. This practice damages trust, increases complaints, and can result in regulatory penalties and legal issues.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Trust-building requires transparency and honest communication in all email elements</li>
+                        <li>Financial services marketing must balance promotion with regulatory compliance</li>
+                        <li>Clear disclosures protect both customers and the company from misunderstandings</li>
+                        <li>SFMC's compliance features support transparent financial services marketing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 29 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 29</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An e-commerce company wants to improve their abandoned cart email series. Currently, they send three emails over 7 days, but conversion rates are low and many customers never return to complete purchases.
+                </div>
+                <div class="question-text">
+                    Which strategy would most effectively improve abandoned cart email performance?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Send more emails in the series to increase touchpoints</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Optimize timing, add urgency, and include progressive incentives</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Use the same message in all three emails for consistency</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Wait longer between emails to avoid being pushy</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Optimizing timing, adding urgency, and including progressive incentives addresses the key psychological factors behind cart abandonment and provides escalating reasons to complete purchases. Optimal timing typically involves sending the first email within 1-2 hours (highest conversion window), second email after 24 hours, and third after 72 hours. Urgency elements like limited-time offers or low stock notifications create motivation to act quickly. Progressive incentives might include free shipping in email 1, a 10% discount in email 2, and a 15% discount plus free shipping in email 3. This strategy acknowledges different abandonment reasons (forgetfulness, price sensitivity, comparison shopping) and provides increasing value to overcome objections.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> More emails don't necessarily improve performance and can lead to subscription fatigue or spam complaints. Quality and timing of messages matter more than quantity. Three well-crafted emails are typically more effective than a longer series.</li>
+                        <li><strong>Option C:</strong> Identical messages miss opportunities to address different abandonment reasons and don't provide compelling reasons for customers to reconsider. Each email should build on previous messages with new angles and increasing motivation.</li>
+                        <li><strong>Option D:</strong> Waiting longer between emails reduces effectiveness because cart abandonment recovery rates decrease rapidly over time. The highest conversion rates occur within hours of abandonment, making quick response crucial.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Cart abandonment recovery rates decrease rapidly over time, making timing crucial</li>
+                        <li>Progressive incentives address different customer objections and price sensitivity</li>
+                        <li>Urgency and scarcity elements can motivate purchase completion</li>
+                        <li>SFMC's Journey Builder can automate optimized cart abandonment sequences with behavioral triggers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 30 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 30</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A B2B company has subscribers across different industries (healthcare, education, manufacturing) and wants to ensure their email content resonates with each sector's unique needs and regulatory requirements.
+                </div>
+                <div class="question-text">
+                    Which approach would best serve diverse B2B industry segments?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Create industry-specific content tracks with relevant use cases and compliance considerations</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Send the same generic business content to all segments</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Focus only on the largest industry segment</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use only product features without industry context</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Industry-specific content tracks with relevant use cases and compliance considerations provide the highest value and engagement for B2B audiences because they address unique industry challenges, regulations, and use cases. Healthcare segments need HIPAA compliance examples, education sectors require FERPA considerations, and manufacturing needs operational efficiency cases. This approach demonstrates deep understanding of each industry's specific needs, builds trust through relevant examples, and positions solutions within familiar industry contexts. Industry-specific content typically achieves 40-60% higher engagement rates than generic messaging because it speaks directly to sector-specific pain points and opportunities.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Generic business content lacks the specificity and relevance that B2B decision-makers need to evaluate solutions. Different industries have unique challenges, regulations, and purchasing processes that require tailored messaging to be effective.</li>
+                        <li><strong>Option C:</strong> Focusing only on the largest segment ignores revenue opportunities from other industries and may limit growth potential. Smaller segments can be highly profitable and less competitive, providing significant business value.</li>
+                        <li><strong>Option D:</strong> Product features without industry context fail to help prospects understand how solutions solve their specific problems. B2B buyers need to see relevant applications and outcomes within their industry framework.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>B2B audiences respond significantly better to industry-specific content and use cases</li>
+                        <li>Regulatory and compliance considerations vary greatly between industries</li>
+                        <li>Industry segmentation enables more relevant and effective messaging</li>
+                        <li>SFMC's dynamic content and segmentation tools support sophisticated industry-based campaigns</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 31 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 31</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing director wants to implement email subject line optimization using AI and machine learning to improve open rates across different customer segments.
+                </div>
+                <div class="question-text">
+                    Which approach would provide the most effective subject line optimization strategy?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Use only AI-generated subject lines without human oversight</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Combine AI insights with human creativity and A/B testing</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Rely solely on traditional A/B testing methods</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Copy subject lines from competitor emails</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Combining AI insights with human creativity and A/B testing provides the most comprehensive and effective approach to subject line optimization. AI can analyze vast amounts of data to identify patterns, optimal length, effective keywords, and timing preferences across different segments. However, human creativity adds brand voice, emotional intelligence, cultural context, and strategic thinking that AI cannot replicate. A/B testing validates both AI recommendations and human intuitions with real performance data. This hybrid approach leverages the strengths of each method: AI for data-driven insights and pattern recognition, humans for creativity and brand alignment, and testing for validation and continuous improvement.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> AI-only approaches lack brand voice, cultural nuance, and creative thinking that humans provide. AI can generate technically sound subject lines but may miss emotional connections, brand personality, and contextual appropriateness that drive engagement.</li>
+                        <li><strong>Option C:</strong> Traditional A/B testing alone is slower and less efficient than AI-enhanced approaches. While testing is valuable, it doesn't leverage the pattern recognition and predictive capabilities that AI provides for faster optimization.</li>
+                        <li><strong>Option D:</strong> Copying competitors' subject lines ignores your unique audience, brand voice, and value proposition. What works for one brand may not work for another, and copying creates derivative rather than distinctive messaging.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>AI and human creativity are complementary, not competing approaches</li>
+                        <li>Data-driven insights should inform but not replace creative strategy</li>
+                        <li>A/B testing validates optimization strategies with real performance data</li>
+                        <li>SFMC's Einstein features can enhance human-driven subject line optimization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 32 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 32</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to improve email deliverability by implementing proper list hygiene practices. Their current list includes subscribers from various sources with different engagement levels.
+                </div>
+                <div class="question-text">
+                    Which list hygiene practices should be implemented to maintain sender reputation? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Remove hard bounces immediately after identification</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Suppress consistently unengaged subscribers after re-engagement attempts</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Continue sending to all subscribers regardless of engagement</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Implement double opt-in for new subscribers</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Purchase additional email lists to increase volume</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, D</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Remove hard bounces:</strong> Hard bounces indicate invalid or non-existent email addresses that will never be deliverable. Continuing to send to these addresses hurts sender reputation and wastes resources. ISPs track bounce rates closely, and high bounce rates trigger spam filtering and reputation damage.</li>
+                        <li><strong>Option B - Suppress unengaged subscribers:</strong> Consistently unengaged subscribers (those who haven't opened or clicked in 6-12 months) negatively impact sender reputation because ISPs interpret lack of engagement as a signal that recipients don't want the emails. Suppressing these subscribers after re-engagement attempts improves overall engagement metrics.</li>
+                        <li><strong>Option D - Double opt-in:</strong> Double opt-in confirmation ensures that email addresses are valid and that subscribers genuinely want to receive emails. This practice significantly reduces spam complaints, improves engagement rates, and provides legal protection by documenting explicit consent.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> Continuing to send to all subscribers regardless of engagement damages sender reputation by maintaining low engagement rates and high spam complaint potential. ISPs favor senders with high engagement rates and engaged audiences.</li>
+                        <li><strong>Option E:</strong> Purchasing email lists typically results in poor engagement, high spam complaints, and potential legal violations. Purchased lists often contain outdated addresses, spam traps, and uninterested recipients, leading to immediate reputation damage.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>List hygiene is essential for maintaining sender reputation and deliverability</li>
+                        <li>Quality metrics (engagement) are more important than quantity (list size)</li>
+                        <li>Proactive list management prevents reputation damage before it occurs</li>
+                        <li>SFMC's suppression lists and engagement tracking support comprehensive list hygiene practices</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 33 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 33</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A retail company wants to create mobile-optimized emails since 70% of their subscribers open emails on mobile devices. They need to ensure optimal user experience across different screen sizes.
+                </div>
+                <div class="question-text">
+                    Which mobile optimization practice is most critical for email engagement?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Use small fonts to fit more content on screen</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Create single-column layouts with large, tappable buttons</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Include as many images as possible for visual impact</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use complex multi-column layouts for information density</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Single-column layouts with large, tappable buttons provide the optimal mobile email experience by addressing the fundamental constraints and interaction patterns of mobile devices. Single-column layouts eliminate horizontal scrolling and ensure content displays properly across various screen sizes. Large buttons (minimum 44px height) accommodate finger tapping and reduce user frustration from missed clicks. This approach prioritizes usability and accessibility on touchscreen devices, resulting in higher click-through rates and better user experience. Mobile-first design acknowledges that mobile users scan quickly and need clear, easy-to-interact-with elements to engage with email content effectively.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Small fonts create poor readability on mobile screens and can cause accessibility issues. Mobile users need larger, readable fonts (minimum 14px for body text) to consume content comfortably without zooming. Small fonts increase abandonment and decrease engagement.</li>
+                        <li><strong>Option C:</strong> Too many images increase load times, consume mobile data, and may not display properly if images are blocked. Mobile connections can be slower and more expensive, making image-heavy emails problematic for user experience and engagement.</li>
+                        <li><strong>Option D:</strong> Complex multi-column layouts don't adapt well to narrow mobile screens and often require horizontal scrolling or pinch-to-zoom. These layouts create poor user experience and typically perform worse than simplified, mobile-optimized designs.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Mobile-first design should prioritize usability over information density</li>
+                        <li>Touch interaction requires larger target areas than mouse-based clicking</li>
+                        <li>Single-column layouts adapt better to various mobile screen sizes</li>
+                        <li>SFMC's responsive email templates are optimized for mobile interaction patterns</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 34 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 34</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A nonprofit organization's email campaigns have good open rates but poor click-through and donation conversion rates. They want to improve their call-to-action effectiveness to drive more supporter engagement.
+                </div>
+                <div class="question-text">
+                    Which call-to-action optimization strategy would most likely improve conversion rates?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Use multiple different CTAs throughout the email</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Create one primary, prominent CTA with action-oriented language</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Make CTAs blend in with the email design</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use only text links without buttons</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Creating one primary, prominent CTA with action-oriented language follows proven conversion optimization principles by reducing decision fatigue and creating clear direction for supporters. A single primary CTA eliminates confusion about the desired action and focuses attention on the most important conversion goal. Prominent visual design (contrasting colors, button format, white space) makes the CTA easily discoverable and clickable. Action-oriented language ("Donate Now," "Help Save Lives," "Join the Movement") creates urgency and emotional connection that motivates immediate action. This focused approach typically improves conversion rates by 15-30% compared to emails with multiple competing CTAs.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Multiple different CTAs create decision paralysis and dilute the impact of each individual call-to-action. When supporters face multiple options, they often choose none. This approach confuses the primary objective and reduces overall conversion rates.</li>
+                        <li><strong>Option C:</strong> CTAs that blend with email design fail to capture attention and may be overlooked entirely. Effective CTAs need visual contrast and prominence to stand out from surrounding content and guide user attention to the desired action.</li>
+                        <li><strong>Option D:</strong> Text-only links are less visually prominent than buttons and may not convey the importance of the action. Button-style CTAs with proper styling typically outperform plain text links because they look more clickable and important.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Focus on one primary conversion goal per email to maximize effectiveness</li>
+                        <li>Visual prominence and action-oriented language improve CTA performance</li>
+                        <li>Decision paralysis decreases when supporters have clear, singular direction</li>
+                        <li>SFMC's email design tools support prominent, conversion-optimized CTA creation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 35 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 35</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A technology startup wants to build an engaged email list from scratch using ethical growth strategies that will result in high-quality subscribers genuinely interested in their products.
+                </div>
+                <div class="question-text">
+                    Which list building strategies support sustainable, engaged subscriber acquisition? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Offer valuable lead magnets (whitepapers, tools, exclusive content)</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use opt-in forms with clear value propositions</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Purchase email lists from reputable brokers</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Partner with complementary brands for co-marketing opportunities</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Add all website visitors automatically to email lists</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, D</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Lead magnets:</strong> Valuable lead magnets attract genuinely interested prospects by offering immediate value in exchange for email addresses. Quality lead magnets (industry reports, useful tools, exclusive insights) demonstrate expertise, build trust, and ensure subscribers have a clear reason to engage with future emails. This approach attracts higher-quality subscribers who are more likely to convert.</li>
+                        <li><strong>Option B - Clear value propositions:</strong> Opt-in forms that clearly communicate what subscribers will receive (frequency, content type, benefits) set proper expectations and attract subscribers who genuinely want the content. Clear value propositions improve conversion rates and reduce future unsubscribes by ensuring alignment between subscriber expectations and email content.</li>
+                        <li><strong>Option D - Brand partnerships:</strong> Strategic partnerships with complementary, non-competing brands provide access to relevant audiences through co-marketing initiatives, webinars, or content collaborations. These partnerships can introduce the brand to highly qualified prospects who are already interested in related solutions or services.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> Purchased email lists typically contain unengaged recipients who didn't opt in to receive communications from the specific brand. This practice often violates privacy regulations, results in poor engagement, high spam complaints, and can damage sender reputation immediately.</li>
+                        <li><strong>Option E:</strong> Automatically adding website visitors violates consent principles and privacy regulations like GDPR. This practice results in high unsubscribe rates, spam complaints, and poor engagement because visitors didn't explicitly consent to receive emails.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Ethical list building focuses on consent and value exchange rather than quantity</li>
+                        <li>Quality subscribers are more valuable than large numbers of unengaged contacts</li>
+                        <li>Clear communication and valuable incentives improve subscriber quality and retention</li>
+                        <li>SFMC's landing page and form tools support compliant, value-driven subscriber acquisition</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 36 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 36</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A SaaS company wants to create educational email campaigns that position them as thought leaders while nurturing prospects through a long B2B sales cycle. They need to balance educational value with promotional content.
+                </div>
+                <div class="question-text">
+                    What is the optimal content ratio for effective B2B nurture campaigns?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">90% promotional content, 10% educational content</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">80% educational content, 20% promotional content</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">50% educational content, 50% promotional content</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">100% educational content with no promotional elements</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> The 80% educational, 20% promotional content ratio (often called the "80/20 rule") is optimal for B2B nurture campaigns because it builds trust and authority while maintaining business objectives. Educational content (industry insights, best practices, how-to guides, case studies) establishes thought leadership, provides genuine value, and keeps prospects engaged throughout long sales cycles. The 20% promotional element ensures business goals are met without overwhelming prospects with sales messages. This balance maintains subscriber engagement, reduces unsubscribes, and positions the company as a trusted advisor rather than just a vendor, which is crucial for complex B2B purchasing decisions.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Heavily promotional content (90%) appears pushy and self-serving, leading to high unsubscribe rates and poor engagement. B2B prospects need substantial value and trust-building before considering purchases, making this ratio counterproductive for nurture campaigns.</li>
+                        <li><strong>Option C:</strong> Equal promotional and educational content may still feel too sales-focused for nurture campaigns. B2B prospects typically need significant education and trust-building before they're ready for promotional messages, making this ratio less effective for thought leadership positioning.</li>
+                        <li><strong>Option D:</strong> Purely educational content without any promotional elements misses business opportunities and fails to guide prospects toward conversion. While education is important, completely avoiding promotional content doesn't support business objectives or help prospects understand how the company can solve their problems.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>B2B nurture campaigns require significant educational value to build trust and authority</li>
+                        <li>The 80/20 content ratio balances value delivery with business objectives</li>
+                        <li>Thought leadership positioning requires consistent, valuable educational content</li>
+                        <li>SFMC's content management tools support balanced educational and promotional campaign strategies</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 37 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 37</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An e-commerce company wants to implement behavioral email triggers based on customer actions on their website. They want to send personalized messages when customers view products, abandon carts, or complete purchases.
+                </div>
+                <div class="question-text">
+                    Which implementation approach would provide the most effective behavioral email program?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Send the same message for all behavioral triggers</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Create specific message sequences tailored to each behavioral trigger</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Only send behavioral emails to VIP customers</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Delay all behavioral emails by 24 hours</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Creating specific message sequences tailored to each behavioral trigger maximizes relevance and conversion potential by addressing the unique context and intent behind each customer action. Product view emails should showcase the viewed item with related products and social proof. Cart abandonment sequences should address common objections with progressive incentives and urgency. Post-purchase emails should focus on confirmation, cross-selling, and building loyalty. Each behavior indicates different customer intent and readiness to purchase, requiring specific messaging strategies, timing, and calls-to-action. Tailored sequences typically achieve 50-100% higher conversion rates than generic behavioral emails because they speak directly to customer mindset and immediate needs.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Generic messages for all triggers miss the specific context and intent behind each customer behavior. A product viewing customer needs different messaging than someone who abandoned their cart or just made a purchase. One-size-fits-all approaches reduce relevance and effectiveness.</li>
+                        <li><strong>Option C:</strong> Limiting behavioral emails to VIP customers ignores the opportunity to convert and engage all customers based on their demonstrated interest. Behavioral triggers indicate engagement regardless of customer status, making broader implementation more effective for revenue growth.</li>
+                        <li><strong>Option D:</strong> Delaying all behavioral emails reduces their effectiveness because customer interest and intent diminish over time. Behavioral emails work best when they respond quickly to customer actions while interest is high, particularly for cart abandonment and product viewing scenarios.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Different customer behaviors require different messaging strategies and timing</li>
+                        <li>Behavioral email relevance directly correlates with conversion performance</li>
+                        <li>Real-time responsiveness to customer actions maximizes engagement opportunity</li>
+                        <li>SFMC's Journey Builder enables sophisticated behavioral email automation with tailored messaging</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 38 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 38</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A subscription service wants to implement email authentication best practices to protect their domain from spoofing and improve deliverability across all major email providers.
+                </div>
+                <div class="question-text">
+                    Which authentication protocols should be implemented for comprehensive email security? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">SPF (Sender Policy Framework) records</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">DKIM (DomainKeys Identified Mail) signatures</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">DMARC (Domain-based Message Authentication) policy</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">HTTPS certificates</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">FTP encryption</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - SPF records:</strong> SPF specifies which mail servers are authorized to send email on behalf of a domain, preventing unauthorized servers from sending emails that appear to come from the domain. This is the foundation of email authentication.</li>
+                        <li><strong>Option B - DKIM signatures:</strong> DKIM adds a digital signature to email headers that receiving servers can verify against published public keys, ensuring the email hasn't been tampered with during transmission and confirming the sender's authenticity.</li>
+                        <li><strong>Option C - DMARC policy:</strong> DMARC builds on SPF and DKIM by telling receiving servers what to do when emails fail authentication checks. It provides reporting on email authentication status and protects against domain spoofing by specifying actions for failed messages.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> HTTPS certificates secure web connections but don't authenticate email sending or protect against email spoofing. They're important for website security but not part of email authentication protocols.</li>
+                        <li><strong>Option E:</strong> FTP encryption secures file transfers but has no role in email authentication or anti-spoofing protection. It's unrelated to email sending security and deliverability.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Email authentication requires the trinity of SPF, DKIM, and DMARC working together</li>
+                        <li>Each protocol serves a specific role in comprehensive email security</li>
+                        <li>Proper authentication significantly improves deliverability and prevents spoofing</li>
+                        <li>SFMC supports configuration and monitoring of all major authentication protocols</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 39 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 39</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A multinational company wants to implement a global email marketing strategy that accounts for different time zones, cultural preferences, and regulatory requirements across regions.
+                </div>
+                <div class="question-text">
+                    What is the most effective approach for managing global email marketing complexity?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Use a single global template and send time for all regions</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Create region-specific campaigns with localized content, timing, and compliance</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Avoid international email marketing due to complexity</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Send all emails from the headquarters location only</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Region-specific campaigns with localized content, timing, and compliance provide the most effective approach for global email marketing because they address the unique requirements and preferences of each market. This strategy involves creating campaigns that respect local time zones (optimal send times), cultural nuances (holidays, communication styles, visual preferences), language requirements (translation and localization), and regulatory compliance (GDPR in Europe, CASL in Canada, local privacy laws). Localized campaigns consistently achieve 20-40% higher engagement rates than global templates because they demonstrate cultural awareness and provide relevant, timely communications that resonate with local audiences.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Single global templates ignore crucial differences in time zones, cultural preferences, regulatory requirements, and language needs. This approach typically results in poor engagement and potential compliance violations in different regions.</li>
+                        <li><strong>Option C:</strong> Avoiding international email marketing entirely limits growth opportunities and ignores the significant revenue potential of global markets. With proper planning and tools, international email marketing is highly manageable and profitable.</li>
+                        <li><strong>Option D:</strong> Sending from headquarters only creates suboptimal timing for international recipients and may not comply with local data residency requirements. It also limits the ability to create truly localized experiences for different markets.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Global email marketing requires region-specific strategies for optimal results</li>
+                        <li>Cultural and regulatory differences must be addressed for successful international campaigns</li>
+                        <li>Localized content and timing significantly improve engagement rates</li>
+                        <li>SFMC's global capabilities support multi-region campaign management and compliance</li>
+                    </ul>
+                </div>
+            </div>
+
             <!-- Add final questions to reach 40 total -->
             <div class="question-container">
                 <div class="question-header">
@@ -1146,8 +2724,34 @@
             9: ['B'],
             10: ['B'],
             11: ['A', 'B', 'D'],
-            // Add remaining correct answers...
-            39: ['C']
+            12: ['A'],
+            13: ['A', 'C', 'D'],
+            14: ['B'],
+            15: ['B'],
+            16: ['A', 'B', 'C'],
+            17: ['B'],
+            18: ['B'],
+            19: ['A', 'C', 'D'],
+            20: ['B'],
+            21: ['B'],
+            22: ['A', 'C', 'D'],
+            23: ['A'],
+            24: ['A', 'B'],
+            25: ['B'],
+            26: ['C'],
+            27: ['A', 'B', 'D'],
+            28: ['B'],
+            29: ['A'],
+            30: ['B'],
+            31: ['A', 'B', 'D'],
+            32: ['B'],
+            33: ['B'],
+            34: ['A', 'B', 'D'],
+            35: ['B'],
+            36: ['B'],
+            37: ['A', 'B', 'C'],
+            38: ['B'],
+            39: ['B']
         };
 
         function updateProgress() {

@@ -1115,8 +1115,1735 @@
                 </div>
             </div>
 
-            <!-- Continue with remaining questions to reach 50 total... -->
-            
+            <!-- Question 16 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 16</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to create responsive email templates that adapt to different screen sizes and email clients while maintaining brand consistency across all devices.
+                </div>
+                <div class="question-text">
+                    Which approach provides the best foundation for creating mobile-responsive email templates in SFMC?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Use fluid table layouts with CSS media queries</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Design separate templates for each device type</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Use fixed-width tables only</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Rely only on images for layout</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Fluid table layouts with CSS media queries provide the optimal foundation for responsive email design because they combine the reliability of table-based structures (essential for email client compatibility) with the flexibility of responsive design principles. Fluid tables use percentage-based widths that adapt to different screen sizes, while CSS media queries allow specific styling adjustments for different viewport dimensions. This approach ensures consistent rendering across email clients while providing optimal user experience on mobile devices. Media queries enable font size adjustments, button sizing, spacing modifications, and layout stacking for mobile screens, creating emails that are both technically reliable and user-friendly across all devices.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Creating separate templates for each device type increases development time, maintenance complexity, and deployment overhead. It also requires device detection logic and multiple template management, making it inefficient compared to responsive design approaches.</li>
+                        <li><strong>Option C:</strong> Fixed-width tables create poor mobile experience by requiring horizontal scrolling or causing content to appear too small on mobile screens. This approach ignores the mobile-first design principles essential for modern email marketing.</li>
+                        <li><strong>Option D:</strong> Image-only layouts have poor accessibility, don't display when images are blocked, increase load times, and provide no fallback content. They also limit personalization opportunities and don't adapt well to different screen sizes.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Responsive email design requires balancing modern web standards with email client limitations</li>
+                        <li>Table-based layouts remain essential for email client compatibility</li>
+                        <li>CSS media queries enable device-specific design adjustments within single templates</li>
+                        <li>SFMC's Content Builder supports responsive design principles and mobile optimization</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 17</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement advanced AMPscript personalization in their emails to display different product recommendations based on customer purchase history and preferences.
+                </div>
+                <div class="question-text">
+                    Which AMPscript functions are most useful for creating dynamic product recommendations? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Lookup() function to retrieve customer data</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">FOR loops to iterate through product lists</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">IF/ELSE statements for conditional logic</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random() function only</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Static HTML without variables</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Lookup() function:</strong> Lookup() is essential for retrieving customer-specific data from Data Extensions based on subscriber keys or other identifiers. For product recommendations, this function can fetch purchase history, browsing behavior, customer preferences, and related data that inform personalized product suggestions.</li>
+                        <li><strong>Option B - FOR loops:</strong> FOR loops enable iteration through multiple data records or product lists, allowing dynamic generation of product recommendation sections. They're crucial for displaying variable numbers of recommended products based on available data and business logic.</li>
+                        <li><strong>Option C - IF/ELSE statements:</strong> Conditional logic is fundamental for implementing recommendation rules such as "if customer purchased category X, show related products from category Y" or "if customer is VIP, show premium recommendations." These statements enable complex business rule implementation.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Random() function alone doesn't create personalized recommendations based on customer data. While randomization might be used as one component, it doesn't provide the data-driven personalization required for effective product recommendations.</li>
+                        <li><strong>Option E:</strong> Static HTML without variables eliminates personalization entirely, resulting in the same content for all recipients. This approach doesn't leverage customer data or create the dynamic, relevant experiences that drive engagement and conversions.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Advanced personalization requires combining multiple AMPscript functions and techniques</li>
+                        <li>Data retrieval, iteration, and conditional logic are core components of dynamic content</li>
+                        <li>Effective personalization leverages customer data to create relevant, engaging experiences</li>
+                        <li>SFMC's AMPscript provides powerful tools for complex personalization scenarios</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 18</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement a consistent brand header across all their email campaigns that automatically updates when they change their logo or promotional messaging.
+                </div>
+                <div class="question-text">
+                    Which Content Builder feature provides the most efficient solution for this requirement?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Shared Content Blocks</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Individual email templates</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">AMPscript variables</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Dynamic Content rules</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Shared Content Blocks are the ideal solution for maintaining consistent brand elements across multiple email campaigns. When a Content Block is updated, the changes automatically propagate to all emails that reference that block. This eliminates the need to manually update each individual email template and ensures brand consistency across all communications. Content Blocks can contain HTML, images, text, and even AMPscript, making them versatile for headers, footers, and other reusable components. The shared nature means one update affects all emails using that block, significantly reducing maintenance overhead and ensuring consistency.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Individual email templates require manual updates to each template when brand elements change, creating maintenance overhead and potential inconsistency if some templates are missed during updates.</li>
+                        <li><strong>Option C:</strong> While AMPscript variables can store values, they don't provide the visual design elements and structural components typically needed for brand headers like logos, styling, and layout.</li>
+                        <li><strong>Option D:</strong> Dynamic Content rules are designed for personalizing content based on subscriber attributes, not for maintaining consistent brand elements across campaigns.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 19</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A retail company needs to optimize their email images for better deliverability and faster loading times while maintaining visual quality.
+                </div>
+                <div class="question-text">
+                    Which image optimization best practices should be implemented? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Compress images to reduce file size</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Include descriptive alt text for all images</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use appropriate file formats (JPG for photos, PNG for graphics)</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Make images as large as possible for clarity</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Rely entirely on images without text alternatives</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Compress images:</strong> Image compression reduces file sizes, which improves email loading times and reduces the likelihood of images being blocked by email clients. Smaller files also consume less bandwidth and improve user experience, especially on mobile devices with slower connections.</li>
+                        <li><strong>Option B - Alt text:</strong> Alt text provides accessibility for screen readers and displays when images are blocked by email clients. Many email clients block images by default, making alt text crucial for message comprehension and improving deliverability scores with ISPs.</li>
+                        <li><strong>Option C - Appropriate file formats:</strong> Using JPG for photographs provides good compression with acceptable quality loss, while PNG is better for graphics with fewer colors and sharp edges. Choosing the right format optimizes both file size and visual quality.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Large images increase load times, can trigger spam filters, and may not display properly on mobile devices. Images should be optimized for web use with appropriate dimensions and file sizes.</li>
+                        <li><strong>Option E:</strong> Relying entirely on images without text alternatives creates accessibility issues and poor experience when images are blocked, which is common in many email clients.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 20</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketer needs to create an email with complex conditional logic that displays different product sections based on customer purchase categories, geographic location, and loyalty status.
+                </div>
+                <div class="question-text">
+                    Which AMPscript approach provides the most flexibility for implementing complex nested conditions?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Simple IF statements only</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Nested IF/ELSEIF/ELSE statements with logical operators</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Personalization strings only</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Static HTML content</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Nested IF/ELSEIF/ELSE statements with logical operators (AND, OR, NOT) provide the most flexibility for complex conditional logic. This approach allows multiple conditions to be evaluated simultaneously and enables sophisticated business rules like "IF customer is VIP AND purchased electronics AND location is North America, THEN show premium tech products." The nested structure supports multiple levels of conditions, while logical operators combine multiple criteria efficiently. This creates precise targeting and personalization that can handle complex business scenarios with multiple variables and conditions.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Simple IF statements alone cannot handle complex scenarios requiring multiple conditions or nested logic. They're limited to single condition evaluations and don't support the sophisticated business rules described in the scenario.</li>
+                        <li><strong>Option C:</strong> Personalization strings only provide basic field substitution and cannot perform conditional logic or complex data evaluation. They're suitable for simple personalization but not for conditional content display.</li>
+                        <li><strong>Option D:</strong> Static HTML content eliminates personalization and conditional logic entirely, providing the same content to all recipients regardless of their attributes or preferences.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 21 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 21</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to create email templates that automatically pull the latest blog posts from their website and format them consistently in their email campaigns.
+                </div>
+                <div class="question-text">
+                    Which Marketing Cloud feature is specifically designed for this type of content automation?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">RSS-to-Email</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Dynamic Content</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Content Blocks</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">AMPscript Lookup functions</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> RSS-to-Email functionality is specifically designed to automatically pull content from RSS feeds and format it consistently within email templates. This feature connects to blog RSS feeds, extracts the latest posts, and displays them in predefined email layouts with consistent formatting, images, and styling. RSS-to-Email can be configured to pull specific numbers of posts, filter by categories, and automatically schedule email sends when new content is available. This automation eliminates manual content creation and ensures timely distribution of blog content to subscribers.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> Dynamic Content personalizes email content based on subscriber attributes, but it doesn't automatically pull external content from websites or RSS feeds. It works with existing data in SFMC, not external content sources.</li>
+                        <li><strong>Option C:</strong> Content Blocks are reusable content components but they require manual creation and updates. They don't automatically pull content from external sources like blogs or websites.</li>
+                        <li><strong>Option D:</strong> AMPscript Lookup functions retrieve data from Data Extensions within SFMC but cannot directly pull content from external RSS feeds or websites without additional integration work.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 22 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 22</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email developer is creating templates that need to render consistently across Outlook 2016, Gmail, and Apple Mail while maintaining mobile responsiveness.
+                </div>
+                <div class="question-text">
+                    Which coding techniques are essential for cross-client compatibility? (Choose 2)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Table-based layout structure</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">CSS Grid for all layouts</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Inline CSS for critical styles</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">JavaScript for interactivity</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">External stylesheet references</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Table-based layouts:</strong> Tables remain the most reliable foundation for email layouts due to inconsistent CSS support across email clients, especially Outlook versions that use Microsoft Word's rendering engine. Tables provide predictable structure and spacing that works consistently across all major email clients.</li>
+                        <li><strong>Option C - Inline CSS:</strong> Inline CSS ensures styles are preserved across email clients that strip out external stylesheets or style blocks. While not all styles need to be inline, critical layout and formatting styles should be inlined for maximum compatibility and reliability.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> CSS Grid has very limited support in email clients, particularly in Outlook versions. Using CSS Grid for email layouts would result in broken designs in many email clients.</li>
+                        <li><strong>Option D:</strong> JavaScript is blocked or unsupported in most email clients for security reasons. Emails should be designed without JavaScript dependencies for maximum compatibility.</li>
+                        <li><strong>Option E:</strong> External stylesheets are often blocked or stripped by email clients, making them unreliable for email design. Styles should be embedded or inlined instead.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 23 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 23</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to implement version control for their email templates to track changes, maintain approval history, and enable rollbacks when needed.
+                </div>
+                <div class="question-text">
+                    Which Content Builder capability supports template versioning and change management?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Content versioning</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">A/B testing</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Send logging</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Dynamic Content</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Content versioning in SFMC provides comprehensive change management capabilities including tracking modifications, maintaining version history, enabling rollbacks to previous versions, and supporting approval workflows. This feature creates a complete audit trail of template changes, showing who made modifications and when, which is essential for compliance, quality control, and team collaboration. Version control allows teams to experiment with new designs while maintaining the ability to revert to proven versions if issues arise, ensuring campaign continuity and reducing risk.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option B:</strong> A/B testing compares different email versions for performance optimization but doesn't provide version control or change management capabilities for template development and maintenance.</li>
+                        <li><strong>Option C:</strong> Send logging tracks email delivery and performance metrics but doesn't provide version control or change management for email templates themselves.</li>
+                        <li><strong>Option D:</strong> Dynamic Content personalizes email content based on subscriber attributes but doesn't provide version control or change tracking for template management.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 24 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 24</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company needs to create emails that display different currency formats and language content based on the subscriber's country of residence.
+                </div>
+                <div class="question-text">
+                    What is the most efficient approach to implement this localization requirement?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Create separate email campaigns for each country</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use Dynamic Content with country-based rules</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Use personalization strings for simple text replacement</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Send all languages in a single email</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Dynamic Content with country-based rules provides the most efficient solution for email localization by allowing a single email template to deliver different languages, currencies, and cultural content based on subscriber attributes. Rules can be configured to show French content and Euro pricing for French subscribers, English content and Dollar pricing for US subscribers, etc. This approach maintains unified campaign management, consolidated reporting, and simplified deployment while delivering personalized, localized experiences. Dynamic Content can handle complex localization scenarios including not just language and currency, but also cultural preferences, local regulations, and region-specific offers.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Separate campaigns for each country create significant management overhead, duplicate deployment efforts, and complicate reporting and analytics. This approach doesn't scale efficiently for global organizations with many markets.</li>
+                        <li><strong>Option C:</strong> Personalization strings alone can handle simple text replacement but cannot manage complex localization requirements like currency formatting, cultural content variations, or comprehensive language translation with proper grammar and context.</li>
+                        <li><strong>Option D:</strong> Including all languages in a single email creates poor user experience, increases email size, and confuses recipients with irrelevant content in languages they don't understand.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 25 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 25</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email marketer wants to optimize email loading speed and improve user experience across different devices and connection speeds.
+                </div>
+                <div class="question-text">
+                    Which optimization techniques improve email loading performance? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Optimize image file sizes and formats</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Minimize inline CSS and HTML code</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use CDN for image hosting when possible</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Include multiple high-resolution background images</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Embed large video files directly in emails</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Image optimization:</strong> Optimized images with appropriate compression, dimensions, and file formats (JPG for photos, PNG for graphics) significantly reduce email file size and loading time. Properly sized images prevent unnecessary downloads and improve mobile experience.</li>
+                        <li><strong>Option B - Minimize code:</strong> Clean, efficient HTML and CSS reduce email file size and parsing time. Removing unnecessary code, consolidating styles, and using efficient markup improves loading speed and rendering performance across email clients.</li>
+                        <li><strong>Option C - CDN usage:</strong> Content Delivery Networks provide faster image loading by serving content from geographically distributed servers closest to recipients. CDNs also offer better reliability and can handle traffic spikes more effectively than single-server hosting.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Multiple high-resolution background images significantly increase email size and loading time. Background images also have poor support across email clients, particularly in Outlook versions.</li>
+                        <li><strong>Option E:</strong> Large embedded video files would create massive email sizes and aren't supported by most email clients. Videos should be hosted externally with thumbnail images linking to landing pages.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 26 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 26</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team needs to ensure all their email campaigns include proper unsubscribe functionality and physical address information to comply with CAN-SPAM regulations.
+                </div>
+                <div class="question-text">
+                    Which SFMC feature automatically ensures CAN-SPAM compliance across all email sends?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Email Studio templates</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Send Classifications with compliance settings</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Content Builder drag-and-drop editor</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Subscriber Preview function</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Send Classifications with compliance settings automatically append required CAN-SPAM elements to every email send, including functional unsubscribe links, physical mailing addresses, and proper sender identification. This system ensures 100% compliance without relying on manual processes that could result in human error or omitted compliance elements. Send Classifications can be configured for different email types (Commercial, Transactional) and automatically apply the appropriate legal footers, unsubscribe mechanisms, and identification requirements based on the email classification, providing automated regulatory compliance across all campaigns.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Email Studio templates could manually include compliance elements, but this approach relies on manual implementation and doesn't guarantee consistent compliance across all emails or team members.</li>
+                        <li><strong>Option C:</strong> Content Builder's drag-and-drop editor is a design tool that doesn't provide automatic compliance functionality. Compliance elements would need to be manually added to each email.</li>
+                        <li><strong>Option D:</strong> Subscriber Preview is a testing tool for viewing email rendering with different subscriber data, not a compliance management feature.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 27 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 27</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketer wants to create an email template that automatically displays the top 3 products from each of 5 different categories, with products sourced from a Data Extension that updates daily.
+                </div>
+                <div class="question-text">
+                    Which AMPscript approach is most suitable for this dynamic product display requirement?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Simple Lookup() function</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">LookupRows() with FOR loops</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Personalization strings only</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Static HTML content blocks</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> LookupRows() with FOR loops provides the most appropriate solution for retrieving and displaying multiple product records from Data Extensions. LookupRows() can retrieve multiple rows based on category criteria, and FOR loops enable iteration through the returned data to display a specific number of products (top 3) from each category. This combination allows dynamic content generation where the email automatically pulls the latest product data at send time, formats it consistently, and displays the requested number of products per category. The approach scales efficiently and updates automatically when the underlying Data Extension changes.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Lookup() function retrieves only single values, not multiple product records. It cannot handle the requirement to display multiple products from multiple categories.</li>
+                        <li><strong>Option C:</strong> Personalization strings provide basic field substitution from the sendable Data Extension but cannot query external product Data Extensions or perform the complex logic needed for category-based product display.</li>
+                        <li><strong>Option D:</strong> Static HTML content blocks require manual updates and don't automatically pull data from Data Extensions. They cannot provide the dynamic, data-driven functionality required for this scenario.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 28 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 28</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email developer is creating accessible email templates that work well with screen readers and assistive technologies while maintaining visual appeal.
+                </div>
+                <div class="question-text">
+                    Which accessibility best practices should be implemented? (Choose 2)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use semantic HTML elements where appropriate</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Include comprehensive alt text for all images</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use only decorative fonts for all text</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Rely entirely on color to convey information</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Make all text part of images</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Semantic HTML:</strong> Using semantic HTML elements (headings, paragraphs, lists) provides structural meaning that screen readers can interpret and navigate. This helps visually impaired users understand content hierarchy and organization, improving the overall accessibility experience.</li>
+                        <li><strong>Option B - Alt text:</strong> Comprehensive alt text for images ensures that visual content is accessible to screen readers and provides context when images don't load. Alt text should describe the image content and function, not just identify that an image is present.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> Decorative fonts can be difficult to read for users with visual impairments or dyslexia. Accessible design should use clear, readable fonts and ensure sufficient contrast for all users.</li>
+                        <li><strong>Option D:</strong> Relying only on color to convey information excludes colorblind users and those using assistive technologies. Information should also be conveyed through text, icons, or other visual cues.</li>
+                        <li><strong>Option E:</strong> Text within images cannot be read by screen readers and doesn't scale properly for users with visual impairments. Text should be actual HTML text whenever possible.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 29 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 29</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement a consistent brand voice and messaging guidelines across all email communications created by different team members.
+                </div>
+                <div class="question-text">
+                    Which Content Builder approach best supports brand consistency and governance?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Allow complete creative freedom for each team member</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Create standardized templates and shared Content Blocks</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Use only plain text emails</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Create new templates for every campaign</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Standardized templates and shared Content Blocks provide the most effective approach for maintaining brand consistency across team members and campaigns. Standardized templates establish approved layouts, color schemes, typography, and structural elements that align with brand guidelines. Shared Content Blocks ensure consistent messaging, legal disclaimers, headers, footers, and branded elements across all communications. This approach allows creativity within defined parameters while preventing brand dilution or inconsistent messaging. Content Blocks can be updated centrally to reflect brand evolution or regulatory changes, automatically updating all emails that reference them.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Complete creative freedom leads to brand inconsistency, mixed messaging, and potentially non-compliant communications. Without guidelines and standards, different team members will create divergent brand expressions.</li>
+                        <li><strong>Option C:</strong> Plain text emails eliminate visual branding opportunities and limit engagement potential. While they ensure consistency, they don't leverage the full potential of email marketing for brand expression and customer engagement.</li>
+                        <li><strong>Option D:</strong> Creating new templates for every campaign wastes resources, increases inconsistency risk, and prevents the development of proven, optimized design patterns that support brand goals.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 30 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 30</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to create email templates with fluid, responsive layouts that adapt smoothly to different screen sizes from desktop to mobile.
+                </div>
+                <div class="question-text">
+                    Which CSS approach provides the best foundation for fluid responsive email design?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Fixed pixel widths for all elements</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Percentage-based widths with max-width constraints</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">CSS Grid layouts only</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">JavaScript-based responsive behavior</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Percentage-based widths with max-width constraints provide optimal fluid responsive design for emails. This approach allows elements to scale proportionally to their container while preventing them from becoming too wide on large screens. For example, a table might have width="100%" with max-width: 600px, making it fill mobile screens completely while staying at a readable width on desktop. This technique works reliably across email clients and provides smooth scaling without breakpoints, creating truly fluid responsive behavior that adapts to any screen size.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Fixed pixel widths don't adapt to different screen sizes, requiring horizontal scrolling on mobile devices and creating poor user experience. They prevent responsive behavior entirely.</li>
+                        <li><strong>Option C:</strong> CSS Grid has very limited support in email clients, particularly in Outlook versions. Relying solely on CSS Grid would result in broken layouts in many email clients.</li>
+                        <li><strong>Option D:</strong> JavaScript is blocked or unsupported in most email clients for security reasons. Email responsiveness must be achieved through CSS and HTML techniques, not JavaScript.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 31 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 31</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement advanced email personalization that combines customer purchase history with current promotional offers to create dynamic product recommendations.
+                </div>
+                <div class="question-text">
+                    Which AMPscript techniques are essential for this advanced personalization? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">LookupRows() to retrieve purchase history data</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Variable declarations and data manipulation</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Conditional logic for recommendation rules</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Static HTML only</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Random number generation only</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - LookupRows():</strong> Essential for retrieving purchase history data from Data Extensions based on subscriber identifiers. This function enables access to historical transaction data needed for recommendation algorithms.</li>
+                        <li><strong>Option B - Variable declarations:</strong> Variables are necessary to store, manipulate, and process data retrieved from multiple sources. They enable complex calculations, data aggregation, and business logic implementation for sophisticated personalization.</li>
+                        <li><strong>Option C - Conditional logic:</strong> IF/ELSE statements implement recommendation rules such as "if customer bought X, recommend Y" or "if customer is premium tier, show exclusive offers." This logic creates intelligent, rule-based personalization.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Static HTML eliminates personalization entirely and cannot provide the dynamic, data-driven recommendations required for this use case.</li>
+                        <li><strong>Option E:</strong> Random number generation alone doesn't create personalized recommendations based on customer data. While randomization might be one component, it doesn't provide data-driven personalization.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 32 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 32</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team needs to validate their email links and ensure all tracking is properly implemented before sending campaigns to large audiences.
+                </div>
+                <div class="question-text">
+                    Which testing method provides the most comprehensive link validation and tracking verification?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Visual inspection of the email only</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Send test emails and click all links</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">HTML code review only</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Skip testing to save time</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Sending test emails and clicking all links provides the most comprehensive validation because it tests the complete email delivery and tracking process. This method verifies that links work correctly, tracking parameters are properly applied, landing pages load correctly, and the entire user experience functions as intended. Test sends also validate that SFMC's link wrapping and tracking functionality is working properly, ensuring accurate campaign analytics. This approach simulates the actual subscriber experience and catches issues that might not be apparent through visual or code inspection alone.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Visual inspection alone cannot verify link functionality, tracking implementation, or landing page behavior. Many link issues are only discoverable through actual testing.</li>
+                        <li><strong>Option C:</strong> HTML code review can identify some issues but cannot validate that SFMC's tracking systems are properly wrapping links or that destination pages are functioning correctly.</li>
+                        <li><strong>Option D:</strong> Skipping testing risks sending campaigns with broken links, missing tracking, or poor user experiences, which can damage brand reputation and campaign performance.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 33 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 33</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to create email templates that automatically adjust text-to-image ratios to optimize deliverability and avoid spam filters.
+                </div>
+                <div class="question-text">
+                    What is the recommended text-to-image ratio for optimal email deliverability?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">90% images, 10% text</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">60% text, 40% images</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">100% images, 0% text</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">50% text, 50% images</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> A 60% text, 40% images ratio provides optimal deliverability because spam filters favor emails with substantial text content that can be analyzed for relevance and legitimacy. This ratio ensures sufficient text for spam filter evaluation while allowing enough visual elements for engaging design. Text content provides context for filtering algorithms and improves accessibility, while moderate image usage maintains visual appeal without triggering image-heavy spam filters. This balance also ensures emails remain readable when images are blocked by default in many email clients.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> 90% images with minimal text triggers spam filters that flag image-heavy emails as suspicious. This ratio also creates poor accessibility and user experience when images are blocked.</li>
+                        <li><strong>Option C:</strong> 100% images with no text is a major spam filter trigger and provides no content for accessibility tools. Many ISPs automatically flag image-only emails as spam.</li>
+                        <li><strong>Option D:</strong> While 50/50 might seem balanced, it's still image-heavy compared to best practices. The slightly higher text ratio in option B provides better deliverability without sacrificing visual impact.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 34 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 34</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email marketer is setting up delivery profiles for a complex campaign that needs to send at different times across multiple time zones while managing send volume.
+                </div>
+                <div class="question-text">
+                    Which delivery profile configurations are essential for this scenario? (Choose 2)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Send throttling settings</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Time zone-based scheduling</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Email content creation</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Data Extension schema design</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Subject line optimization</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Send throttling:</strong> Send throttling controls the rate of email delivery to manage server load, maintain sender reputation, and comply with ISP sending limits. This is essential for large campaigns to prevent delivery issues and maintain good relationships with email providers.</li>
+                        <li><strong>Option B - Time zone scheduling:</strong> Time zone-based scheduling ensures emails are delivered at optimal times for recipients in different geographic locations, improving engagement rates and user experience by respecting local business hours and preferences.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> Email content creation is handled in Content Builder or Email Studio, not in delivery profiles. Delivery profiles focus on send timing and delivery settings.</li>
+                        <li><strong>Option D:</strong> Data Extension schema design is configured in Contact Builder and relates to data structure, not delivery settings.</li>
+                        <li><strong>Option E:</strong> Subject line optimization is part of email creation and testing, not delivery profile configuration.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 35 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 35</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to create data-driven email templates that automatically update product information, pricing, and availability from their e-commerce database.
+                </div>
+                <div class="question-text">
+                    Which approach provides the most flexible solution for real-time data integration?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Hard-coded product information in templates</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">AMPscript with Data Extension integration</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Manual content updates for each send</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Static images with product information</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> AMPscript with Data Extension integration provides the most flexible solution for real-time data integration. Data Extensions can be populated with current product information, pricing, and availability through automated imports, API integrations, or direct database connections. AMPscript then retrieves this data at send time, ensuring emails always contain the most current information. This approach supports complex business logic, conditional pricing, inventory checks, and personalized product selections based on customer data. The integration can handle dynamic scenarios like showing only in-stock items or applying customer-specific pricing automatically.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Hard-coded product information becomes outdated quickly and requires manual template updates every time products, prices, or availability change. This approach doesn't scale and creates maintenance overhead.</li>
+                        <li><strong>Option C:</strong> Manual content updates for each send are time-consuming, error-prone, and don't provide real-time data integration. This approach doesn't scale for frequent sends or large product catalogs.</li>
+                        <li><strong>Option D:</strong> Static images with product information can't be updated dynamically and don't provide the flexibility needed for real-time pricing, availability, or personalization.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 36 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 36</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to organize their Content Builder assets with a folder structure that supports multiple brands, campaigns, and team collaboration.
+                </div>
+                <div class="question-text">
+                    Which folder organization strategy provides the best scalability and collaboration?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Single shared folder for all assets</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Hierarchical structure: Brand > Campaign > Asset Type</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Individual folders for each team member</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Random folder names without organization</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> A hierarchical structure organized by Brand > Campaign > Asset Type provides optimal scalability and collaboration for multi-brand organizations. This structure allows clear separation of brand assets, easy campaign organization, and logical asset categorization within each campaign. Team members can quickly locate relevant assets, permissions can be managed at appropriate levels, and the structure grows logically with business needs. For example: Brand A > Holiday Campaign > Templates, Brand B > Product Launch > Images. This approach supports both individual productivity and team collaboration while maintaining clear organization as the asset library grows.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> A single shared folder becomes chaotic and unmanageable as asset volume grows, making it difficult to locate specific assets or maintain organization across multiple brands and campaigns.</li>
+                        <li><strong>Option C:</strong> Individual folders for each team member create silos that prevent collaboration, asset sharing, and consistency across campaigns. This approach doesn't support the collaborative needs of marketing teams.</li>
+                        <li><strong>Option D:</strong> Random folder names without organization make asset management impossible and waste time as team members struggle to locate needed materials.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 37 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 37</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email team wants to implement comprehensive pre-send testing to ensure emails render correctly across different email clients and devices.
+                </div>
+                <div class="question-text">
+                    Which testing approaches should be included in a comprehensive email testing strategy? (Choose 3)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Multi-client inbox preview testing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Link functionality and tracking validation</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Spam filter and deliverability testing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Visual inspection only</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Skip testing to launch faster</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B, C</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Multi-client testing:</strong> Testing across different email clients (Outlook, Gmail, Apple Mail, etc.) ensures consistent rendering and identifies client-specific display issues before campaigns launch to diverse audiences.</li>
+                        <li><strong>Option B - Link validation:</strong> Testing all links ensures proper functionality, tracking implementation, and landing page behavior. Broken links or missing tracking can significantly impact campaign performance and analytics.</li>
+                        <li><strong>Option C - Spam filter testing:</strong> Deliverability testing identifies potential spam filter triggers and content issues that could prevent emails from reaching subscriber inboxes, protecting sender reputation and campaign effectiveness.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option D:</strong> Visual inspection alone misses functional issues, tracking problems, and client-specific rendering differences that only become apparent through comprehensive testing.</li>
+                        <li><strong>Option E:</strong> Skipping testing risks launching campaigns with serious issues that could damage brand reputation, waste resources, and provide poor user experiences.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 38 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 38</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketer needs to create an email template that displays different call-to-action buttons based on the subscriber's membership level and previous engagement behavior.
+                </div>
+                <div class="question-text">
+                    Which Content Builder feature provides the most efficient solution for this conditional CTA requirement?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Static HTML buttons</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Dynamic Content with subscriber rules</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">A/B testing different versions</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Manual email creation for each segment</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Dynamic Content with subscriber rules provides the most efficient solution for displaying different call-to-action buttons based on subscriber attributes. Dynamic Content can evaluate membership levels, engagement history, and other subscriber data to automatically display appropriate CTAs - such as "Upgrade to Premium" for basic members, "Renew Membership" for expiring members, or "Exclusive Access" for VIP members. This approach maintains a single email template while delivering personalized experiences, and rules can combine multiple criteria for sophisticated targeting.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Static HTML buttons display the same content to all subscribers, eliminating the personalization and conditional logic required for this scenario.</li>
+                        <li><strong>Option C:</strong> A/B testing compares different versions for optimization but doesn't provide conditional content based on individual subscriber attributes. It tests variants across segments, not personalized content for individuals.</li>
+                        <li><strong>Option D:</strong> Manual email creation for each segment creates management overhead, deployment complexity, and doesn't scale efficiently for multiple subscriber attributes and combinations.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 39 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 39</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement email templates that automatically adapt images for different screen densities and device types while maintaining fast loading times.
+                </div>
+                <div class="question-text">
+                    Which image optimization strategy best supports responsive email design?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Use single high-resolution images for all devices</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Implement scalable images with max-width: 100%</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Use fixed pixel dimensions for all images</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Avoid images entirely</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Implementing scalable images with max-width: 100% provides optimal responsive image behavior by allowing images to scale proportionally to their container while never exceeding their original dimensions. This CSS property ensures images adapt to different screen sizes, from desktop to mobile, while maintaining aspect ratios and preventing pixelation. Combined with appropriately sized source images (typically 2x the display size for retina displays), this approach provides crisp visuals across all devices while maintaining reasonable file sizes and loading times.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Single high-resolution images for all devices create unnecessarily large file sizes for mobile users, increasing load times and data usage without providing visual benefits on smaller screens.</li>
+                        <li><strong>Option C:</strong> Fixed pixel dimensions don't adapt to different screen sizes, potentially causing images to appear too large on mobile devices or too small on high-resolution displays.</li>
+                        <li><strong>Option D:</strong> Avoiding images entirely eliminates important visual communication opportunities and reduces email engagement potential, though it would solve technical challenges.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 40 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 40</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email developer wants to create templates with fallback content that displays when advanced features or personalization fail to load properly.
+                </div>
+                <div class="question-text">
+                    Which fallback strategies should be implemented for robust email design? (Choose 2)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Default content for failed personalization</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Background colors for images that don't load</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Remove all dynamic content</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Use complex JavaScript for error handling</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Display error messages to subscribers</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Default content:</strong> Implementing default content for failed personalization ensures emails remain coherent and professional when dynamic content fails to load. For example, using "Valued Customer" when first name personalization fails, or showing general offers when personalized recommendations aren't available.</li>
+                        <li><strong>Option B - Background colors:</strong> Background colors for images provide visual consistency when images fail to load or are blocked by email clients. This maintains design integrity and can include text overlays that ensure key messages remain visible even without images.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> Removing all dynamic content eliminates the benefits of personalization and reduces email effectiveness. The goal is to provide fallbacks, not eliminate advanced features.</li>
+                        <li><strong>Option D:</strong> JavaScript isn't supported in most email clients, making it unreliable for error handling in email templates. Fallbacks should use HTML and CSS techniques.</li>
+                        <li><strong>Option E:</strong> Displaying error messages to subscribers creates poor user experience and appears unprofessional. Fallbacks should be seamless and maintain the email's purpose.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 41 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 41</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to create email campaigns that automatically include the latest social media posts and user-generated content from their Instagram and Twitter feeds.
+                </div>
+                <div class="question-text">
+                    Which Content Builder approach best supports automated social media content integration?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Manual copy-paste of social media posts</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">RSS-to-Email or API integration with Data Extensions</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Static screenshots of social media content</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Eliminate social media content from emails</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> RSS-to-Email or API integration with Data Extensions provides automated social media content integration by systematically pulling latest posts from social media feeds and formatting them within email templates. Many social platforms provide RSS feeds or APIs that can populate Data Extensions with recent posts, images, and engagement data. AMPscript can then retrieve this data to display the most current social content in emails. This approach ensures fresh, relevant social proof in email campaigns while maintaining consistent formatting and brand alignment.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Manual copy-paste is time-consuming, doesn't scale, and can't provide the automation needed for regularly updated social media content. This approach also risks copyright and formatting issues.</li>
+                        <li><strong>Option C:</strong> Static screenshots quickly become outdated and don't provide the dynamic, fresh content that makes social media integration valuable. Screenshots also lack the interactive and engaging aspects of social content.</li>
+                        <li><strong>Option D:</strong> Eliminating social media content misses opportunities for social proof, user-generated content showcase, and cross-platform engagement that can significantly enhance email marketing effectiveness.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 42 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 42</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company needs to ensure their email templates maintain consistent spacing and alignment across different email clients, especially Outlook which has unique rendering characteristics.
+                </div>
+                <div class="question-text">
+                    Which HTML/CSS approach provides the most reliable spacing and alignment across email clients?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">CSS margins and padding exclusively</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Table-based spacing with cellpadding and cellspacing</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">CSS Grid and Flexbox layouts</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">JavaScript for dynamic spacing</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Table-based spacing with cellpadding and cellspacing attributes provides the most reliable spacing and alignment across email clients, particularly Outlook versions that use Microsoft Word's rendering engine. These HTML attributes are universally supported and create predictable spacing that doesn't depend on CSS support variations. Combined with table structure, this approach ensures consistent layout rendering even in clients with limited CSS support, making it the most dependable method for cross-client compatibility.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> CSS margins and padding have inconsistent support across email clients, particularly in Outlook versions. Different clients interpret and apply these properties differently, leading to spacing inconsistencies.</li>
+                        <li><strong>Option C:</strong> CSS Grid and Flexbox have very limited or no support in most email clients, especially Outlook versions. These modern CSS features aren't suitable for email template development.</li>
+                        <li><strong>Option D:</strong> JavaScript is blocked or unsupported in most email clients for security reasons and cannot be relied upon for layout and spacing control in emails.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 43 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 43</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email marketer is implementing advanced AMPscript personalization that needs to handle missing data gracefully and provide meaningful fallback content.
+                </div>
+                <div class="question-text">
+                    Which AMPscript error handling techniques should be implemented? (Choose 2)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">IF statements to check for empty or null values</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Default value assignments for missing data</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Display raw error messages to subscribers</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Stop email execution when data is missing</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Remove all personalization when errors occur</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - IF statements for null checks:</strong> Using conditional statements to check for empty or null values before processing data prevents AMPscript errors and allows graceful handling of missing information. This proactive approach ensures emails render properly even when expected data is unavailable.</li>
+                        <li><strong>Option B - Default value assignments:</strong> Assigning default values for missing data ensures emails maintain coherent content and professional appearance when personalization data is unavailable. For example, using "Valued Customer" when first names are missing or showing general offers when personalized recommendations fail.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> Displaying raw error messages to subscribers creates poor user experience and appears unprofessional. Error handling should be invisible to recipients.</li>
+                        <li><strong>Option D:</strong> Stopping email execution when data is missing prevents email delivery entirely, which is worse than sending emails with fallback content.</li>
+                        <li><strong>Option E:</strong> Removing all personalization when errors occur is unnecessarily drastic and reduces email effectiveness when only some personalization data might be missing.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 44 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 44</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to implement email templates that support multiple languages with right-to-left (RTL) text support for Arabic and Hebrew subscribers.
+                </div>
+                <div class="question-text">
+                    Which HTML/CSS approach properly supports RTL language requirements?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Ignore RTL requirements and use standard left-to-right layout</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use dir="rtl" attribute and appropriate CSS styling</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Reverse all text manually in the HTML</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Use images for all RTL text content</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Using the dir="rtl" attribute combined with appropriate CSS styling provides proper RTL language support by automatically handling text direction, element alignment, and layout orientation. This HTML attribute tells browsers and email clients to render content from right to left, while CSS can provide additional styling for elements like margins, padding, and text alignment. This approach ensures proper display of Arabic, Hebrew, and other RTL languages while maintaining semantic HTML structure and accessibility compliance.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Ignoring RTL requirements creates poor user experience for RTL language speakers and can make content unreadable or confusing, potentially alienating these subscriber segments.</li>
+                        <li><strong>Option C:</strong> Manually reversing text in HTML breaks semantic structure, prevents proper screen reader functionality, and doesn't address layout and alignment requirements for RTL languages.</li>
+                        <li><strong>Option D:</strong> Using images for RTL text creates accessibility issues, prevents text selection and translation, increases email size, and doesn't display when images are blocked.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 45 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 45</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to create email templates that automatically adjust content density and layout complexity based on the subscriber's device type and connection speed data.
+                </div>
+                <div class="question-text">
+                    Which approach enables device-based content optimization in email templates?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">JavaScript device detection</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">CSS media queries with Dynamic Content rules</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Single layout for all devices</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Server-side device detection only</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> CSS media queries combined with Dynamic Content rules provide the most effective approach for device-based content optimization in email templates. Media queries handle responsive layout adjustments based on screen size and device characteristics, while Dynamic Content rules can show different content variations based on subscriber data including device type, connection speed, or user preferences. This combination allows emails to be both technically responsive and content-optimized for different user scenarios, such as showing image-light versions for slower connections or simplified layouts for mobile devices.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> JavaScript is blocked or unsupported in most email clients, making it unreliable for device detection or content optimization in email templates.</li>
+                        <li><strong>Option C:</strong> Single layout for all devices ignores the diverse needs and capabilities of different devices, missing opportunities to optimize user experience for various scenarios.</li>
+                        <li><strong>Option D:</strong> Server-side device detection alone doesn't provide the responsive layout capabilities needed for optimal email display across different screen sizes and orientations.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 46 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 46</div>
+                    <div class="question-type">Multiple Select</div>
+                </div>
+                <div class="multi-select-note">Select all that apply - Multiple correct answers</div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> An email developer wants to implement advanced Content Builder workflows that include automated content approval, version control, and collaborative editing.
+                </div>
+                <div class="question-text">
+                    Which Content Builder enterprise features support advanced workflow management? (Choose 2)
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Content approval workflows</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Version history and rollback capabilities</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Basic email creation only</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Manual file management</div>
+                        </div>
+                    </div>
+                    <div class="answer-option" data-value="E">
+                        <div class="checkbox-container">
+                            <input type="checkbox" class="checkbox">
+                            <div class="option-text">Single-user access only</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: A, B</h4>
+                    
+                    <p><strong>Why these are correct:</strong></p>
+                    <ul>
+                        <li><strong>Option A - Content approval workflows:</strong> SFMC's enterprise content approval workflows enable automated review processes where content must be approved by designated stakeholders before publication. This feature supports compliance requirements, quality control, and proper governance for large marketing teams.</li>
+                        <li><strong>Option B - Version control:</strong> Version history and rollback capabilities provide comprehensive change tracking, allowing teams to see content evolution, identify who made changes when, and revert to previous versions if needed. This supports collaboration and reduces risk when multiple team members work on content.</li>
+                    </ul>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option C:</strong> Basic email creation is a standard feature, not an advanced workflow management capability that supports enterprise collaboration and governance needs.</li>
+                        <li><strong>Option D:</strong> Manual file management is the opposite of advanced workflow automation and doesn't provide the systematic approach needed for enterprise content management.</li>
+                        <li><strong>Option E:</strong> Single-user access contradicts collaborative editing requirements and doesn't support the team workflow management described in the scenario.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 47 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 47</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to create email templates that automatically include dynamic countdown timers for limited-time offers and event registration deadlines.
+                </div>
+                <div class="question-text">
+                    Which approach provides the most reliable countdown timer functionality in emails?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">JavaScript-based real-time countdown</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">AMPscript-generated countdown images</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Static images with fixed countdown times</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">CSS animations for countdown display</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> AMPscript-generated countdown images provide the most reliable countdown functionality in emails because they calculate time remaining at send time and generate static images that display consistently across all email clients. AMPscript can perform date calculations to determine time remaining until deadlines, format the countdown display, and even generate different countdown stages. While these countdowns don't update in real-time after send, they provide accurate information at send time and work reliably across all email clients without depending on JavaScript or advanced CSS support.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> JavaScript-based countdowns don't work in email clients because JavaScript is blocked for security reasons. This approach would fail across most email platforms.</li>
+                        <li><strong>Option C:</strong> Static images with fixed countdown times quickly become inaccurate and misleading as time passes, potentially showing incorrect urgency or expired offers.</li>
+                        <li><strong>Option D:</strong> CSS animations have limited support in email clients and cannot perform the time calculations needed for accurate countdown functionality. They also don't work in many email clients.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 48 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 48</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A company wants to implement comprehensive email asset management that includes automated backup, disaster recovery, and asset lifecycle management.
+                </div>
+                <div class="question-text">
+                    Which Content Builder strategy provides the most comprehensive asset protection and management?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Store all assets in a single folder without backup</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Implement organized folder structure with regular exports</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Rely only on local computer storage</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Keep assets private with no sharing</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> Implementing organized folder structure with regular exports provides comprehensive asset protection by combining logical organization with systematic backup procedures. Organized folders support efficient asset management, permission control, and team collaboration, while regular exports create external backups that protect against data loss, accidental deletion, or system issues. This approach supports disaster recovery planning, asset lifecycle management, and compliance requirements. The combination ensures both operational efficiency and data protection across the complete asset management lifecycle.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Single folder storage without backup creates organizational chaos and significant risk of data loss. This approach provides no protection against accidental deletion, system failures, or asset management challenges.</li>
+                        <li><strong>Option C:</strong> Relying only on local storage eliminates the collaborative benefits of cloud-based Content Builder and creates single points of failure. Local storage also doesn't support team access or SFMC integration.</li>
+                        <li><strong>Option D:</strong> Keeping assets private prevents team collaboration and knowledge sharing, reducing operational efficiency and creating silos that impede marketing effectiveness.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Question 49 -->
+            <div class="question-container">
+                <div class="question-header">
+                    <div class="question-number">Question 49</div>
+                    <div class="question-type">Single Select</div>
+                </div>
+                <div class="scenario-box">
+                    <strong>Scenario:</strong> A marketing team wants to implement a comprehensive email testing strategy that ensures optimal performance across all major email clients and devices before sending campaigns to their full audience.
+                </div>
+                <div class="question-text">
+                    Which testing approach provides the most comprehensive validation of email campaigns?
+                </div>
+                <div class="answers">
+                    <div class="answer-option" data-value="A">
+                        <div class="option-letter">A</div>
+                        <div class="option-text">Test only in the marketer's preferred email client</div>
+                    </div>
+                    <div class="answer-option" data-value="B">
+                        <div class="option-letter">B</div>
+                        <div class="option-text">Use SFMC's Email Preview and multi-client testing tools</div>
+                    </div>
+                    <div class="answer-option" data-value="C">
+                        <div class="option-letter">C</div>
+                        <div class="option-text">Send test emails only to internal team members</div>
+                    </div>
+                    <div class="answer-option" data-value="D">
+                        <div class="option-letter">D</div>
+                        <div class="option-text">Skip testing to save time</div>
+                    </div>
+                </div>
+                <div class="explanation">
+                    <h4>✅ CORRECT ANSWER: B</h4>
+                    
+                    <p><strong>Why this is correct:</strong> SFMC's Email Preview and multi-client testing tools provide comprehensive validation by simulating how emails render across dozens of email clients, devices, and screen sizes without requiring access to each individual platform. These tools test desktop clients (Outlook, Apple Mail, Thunderbird), webmail platforms (Gmail, Yahoo, Hotmail), and mobile apps (iOS Mail, Android Gmail) to identify rendering issues, broken layouts, and display problems before campaigns launch. The preview tools also test accessibility features, spam filter compatibility, and deliverability factors. This approach ensures emails perform optimally for the entire subscriber base regardless of their email client preferences, significantly reducing the risk of poor user experience or technical issues.</p>
+                    
+                    <p><strong>Why other options are incorrect:</strong></p>
+                    <ul>
+                        <li><strong>Option A:</strong> Testing in only one email client ignores the reality that subscribers use diverse email platforms with different rendering capabilities. This approach risks poor display and functionality for large portions of the audience using different clients.</li>
+                        <li><strong>Option C:</strong> Internal team testing is valuable but limited if team members use similar email clients and devices. This approach may miss issues that affect subscribers using different platforms or accessibility tools.</li>
+                        <li><strong>Option D:</strong> Skipping testing entirely is risky and unprofessional, potentially resulting in broken emails, poor user experience, damaged brand reputation, and lost conversion opportunities. Testing is essential for professional email marketing.</li>
+                    </ul>
+                    
+                    <p><strong>Key Learning Points:</strong></p>
+                    <ul>
+                        <li>Email client diversity requires comprehensive testing across multiple platforms</li>
+                        <li>SFMC's preview tools simulate real-world email client behavior accurately</li>
+                        <li>Proper testing prevents delivery issues and improves campaign performance</li>
+                        <li>Professional email marketing requires systematic quality assurance processes</li>
+                    </ul>
+                </div>
+            </div>
+
             <!-- Question 50 (Final question) -->
             <div class="question-container">
                 <div class="question-header">
@@ -1197,7 +2924,40 @@
             12: ['B'],
             13: ['A', 'B', 'C'],
             14: ['B'],
-            // Add remaining correct answers for questions 15-49...
+            15: ['B'],
+            16: ['A', 'B', 'C'],
+            17: ['A'],
+            18: ['A', 'B', 'C'],
+            19: ['B'],
+            20: ['A'],
+            21: ['A', 'C'],
+            22: ['A'],
+            23: ['B'],
+            24: ['A', 'B', 'C'],
+            25: ['B'],
+            26: ['B'],
+            27: ['A', 'B'],
+            28: ['B'],
+            29: ['B'],
+            30: ['A', 'B', 'C'],
+            31: ['B'],
+            32: ['B'],
+            33: ['A', 'B'],
+            34: ['B'],
+            35: ['B'],
+            36: ['A', 'B', 'C'],
+            37: ['B'],
+            38: ['B'],
+            39: ['A', 'B'],
+            40: ['B'],
+            41: ['B'],
+            42: ['A', 'B'],
+            43: ['B'],
+            44: ['B'],
+            45: ['A', 'B'],
+            46: ['B'],
+            47: ['B'],
+            48: ['B'],
             49: ['B']
         };
 
