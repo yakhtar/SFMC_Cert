@@ -266,7 +266,14 @@
                 <div class="form-group" id="answerGroup" style="display: none;">
                     <label for="studentQuery">Your SQL Query</label>
                     <textarea id="studentQuery" name="studentQuery" rows="4" 
-                             placeholder="SELECT column_name FROM table_name WHERE condition;"></textarea>
+                             placeholder="SELECT column_name FROM table_name WHERE condition;"
+                             style="font-family: 'Courier New', monospace;"></textarea>
+                    <small style="color: #6b7280;">Enter your SQL query here and get instant feedback from your AI tutor!</small>
+                </div>
+                
+                <div class="form-group" id="contextGroup" style="display: none;">
+                    <input type="hidden" id="expectedQuery" name="expectedQuery" value="">
+                    <input type="hidden" id="questionContext" name="questionContext" value="">
                 </div>
                 
                 <button type="submit" class="btn" id="submitBtn">
@@ -350,6 +357,8 @@
             const result = document.getElementById('result');
             const content = document.getElementById('resultContent');
             
+            console.log('Raw response:', data); // Debug log
+            
             if (data.error) {
                 displayError(data.message || 'Something went wrong');
                 return;
@@ -357,53 +366,167 @@
             
             let html = '';
             
-            if (data.question) {
-                const difficultyClass = `difficulty-${data.difficulty || 'beginner'}`;
+            // Handle different response formats from N8N
+            const responseData = Array.isArray(data) ? data[0] : data;
+            
+            if (responseData.question) {
+                const difficultyClass = `difficulty-${responseData.difficulty || 'beginner'}`;
                 html += `
                     <div class="question-section">
                         <h4>📝 SQL Question</h4>
-                        <div class="difficulty-badge ${difficultyClass}">${data.difficulty || 'beginner'}</div>
-                        <p><strong>Concept:</strong> ${data.concept || 'SQL Basics'}</p>
+                        <div class="difficulty-badge ${difficultyClass}">${responseData.difficulty || 'beginner'}</div>
+                        <p><strong>Concept:</strong> ${responseData.concept || 'SQL Basics'}</p>
                         <div style="margin: 15px 0; padding: 15px; background: white; border-radius: 8px; border-left: 3px solid #2563eb;">
-                            ${data.question}
+                            ${responseData.question}
                         </div>
-                        ${data.schema ? `<p><strong>Schema:</strong> ${data.schema}</p>` : ''}
+                        ${responseData.schema ? `<p><strong>Schema:</strong> ${responseData.schema}</p>` : ''}
+                        ${responseData.expectedQuery ? `
+                            <div style="margin: 15px 0;">
+                                <strong>Expected Query:</strong>
+                                <pre style="background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; font-size: 14px; color: #1f2937;">${responseData.expectedQuery}</pre>
+                            </div>
+                        ` : ''}
+                        ${responseData.explanation ? `
+                            <div style="margin: 15px 0;">
+                                <h5>💡 Explanation:</h5>
+                                <p style="line-height: 1.6;">${responseData.explanation}</p>
+                            </div>
+                        ` : ''}
+                        ${responseData.commonMistakes ? `
+                            <div style="margin: 15px 0;">
+                                <h5>⚠️ Common Mistakes:</h5>
+                                <p style="line-height: 1.6;">${responseData.commonMistakes}</p>
+                            </div>
+                        ` : ''}
+                        
+                        <div style="margin: 20px 0; text-align: center;">
+                            <button onclick="showAnswerForm('${responseData.expectedQuery || ''}', '${responseData.question || ''}')" 
+                                    style="background: #10b981; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                                💡 Try Your Answer
+                            </button>
+                            <button onclick="generateNewQuestion()" 
+                                    style="background: #6b7280; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; margin-left: 10px;">
+                                🔄 New Question
+                            </button>
+                        </div>
                     </div>
                 `;
+                
+                // Add sample data table if available
+                if (responseData.sampleData && responseData.sampleData.tables) {
+                    html += `
+                        <div class="question-section">
+                            <h4>📊 Sample Data</h4>
+                            ${generateTableHTML(responseData.sampleData.tables)}
+                        </div>
+                    `;
+                }
             }
             
-            if (data.feedback) {
-                const isCorrect = data.correct;
+            if (responseData.feedback) {
+                const isCorrect = responseData.correct;
                 const feedbackColor = isCorrect ? '#10b981' : '#f59e0b';
+                const emoji = isCorrect ? '🎉' : '💪';
+                const encouragement = isCorrect ? 'Great job!' : 'Keep learning!';
+                
                 html += `
                     <div class="question-section">
                         <h4 style="color: ${feedbackColor}">
-                            ${isCorrect ? '✅' : '⚠️'} Feedback
+                            ${isCorrect ? '✅' : '⚠️'} ${encouragement}
                         </h4>
                         <div style="margin: 10px 0;">
-                            <strong>Score: ${data.score || 0}/100</strong>
+                            <strong>Score: ${responseData.score || 0}/100</strong>
                         </div>
-                        <div style="margin: 15px 0; line-height: 1.6;">
-                            ${data.feedback}
+                        <div style="margin: 15px 0; line-height: 1.6; background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                            ${responseData.feedback}
                         </div>
-                        ${data.nextSuggestion ? `<p><strong>Next:</strong> ${data.nextSuggestion}</p>` : ''}
+                        ${responseData.nextSuggestion ? `
+                            <div style="margin: 15px 0; padding: 10px; background: #e0f2fe; border-radius: 8px; border-left: 3px solid #0288d1;">
+                                <strong>💡 Next Challenge:</strong> ${responseData.nextSuggestion}
+                            </div>
+                        ` : ''}
+                        
+                        <div style="margin: 20px 0; text-align: center;">
+                            <button onclick="generateNewQuestion()" 
+                                    style="background: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                                ${emoji} Try Another Question
+                            </button>
+                        </div>
                     </div>
                 `;
             }
             
-            if (data.tableStructure) {
+            if (responseData.tableStructure) {
                 html += `
                     <div class="question-section">
                         <h4>📊 Visual Example</h4>
-                        <div>${data.tableStructure}</div>
+                        <div>${responseData.tableStructure}</div>
                     </div>
                 `;
             }
             
-            content.innerHTML = html || '<p>Response received! Check the console for details.</p>';
+            // Fallback for any response that doesn't match expected format
+            if (!html && responseData) {
+                html += `
+                    <div class="question-section">
+                        <h4>🤖 AI Response</h4>
+                        <div style="margin: 15px 0; line-height: 1.6;">
+                            ${JSON.stringify(responseData, null, 2).replace(/\n/g, '<br>').replace(/ /g, '&nbsp;')}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            content.innerHTML = html || '<p>No data received. Check your N8N workflow and try again.</p>';
             result.className = 'result';
             result.style.display = 'block';
             result.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Generate HTML table from sample data
+        function generateTableHTML(tables) {
+            if (!tables || !tables.length) return '<p>No sample data available</p>';
+            
+            let html = '';
+            tables.forEach(table => {
+                html += `
+                    <div style="margin: 15px 0;">
+                        <h5>${table.name}</h5>
+                        <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px;">
+                            <thead>
+                                <tr style="background: #f8f9fa;">
+                `;
+                
+                if (table.columns) {
+                    table.columns.forEach(col => {
+                        html += `<th style="border: 1px solid #dee2e6; padding: 8px; text-align: left;">${col}</th>`;
+                    });
+                }
+                
+                html += `
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                if (table.data) {
+                    table.data.forEach(row => {
+                        html += '<tr>';
+                        row.forEach(cell => {
+                            html += `<td style="border: 1px solid #dee2e6; padding: 8px;">${cell}</td>`;
+                        });
+                        html += '</tr>';
+                    });
+                }
+                
+                html += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            });
+            
+            return html;
         }
         
         function displayError(message) {
@@ -447,6 +570,42 @@
                         console.log('ServiceWorker registration failed: ', err);
                     });
             });
+        }
+        
+        // Interactive functions
+        function showAnswerForm(expectedQuery, questionContext) {
+            // Switch to check answer mode
+            document.getElementById('action').value = 'check_answer';
+            document.getElementById('expectedQuery').value = expectedQuery.replace(/'/g, "\\'");
+            document.getElementById('questionContext').value = questionContext.replace(/'/g, "\\'");
+            
+            // Show answer input
+            document.getElementById('answerGroup').style.display = 'block';
+            document.getElementById('contextGroup').style.display = 'block';
+            
+            // Focus on answer textarea
+            document.getElementById('studentQuery').focus();
+            
+            // Update button text
+            document.getElementById('submitBtn').innerHTML = '✅ Check My Answer';
+            
+            // Scroll to form
+            document.getElementById('answerGroup').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function generateNewQuestion() {
+            // Reset form to generate new question
+            document.getElementById('action').value = 'generate_question';
+            document.getElementById('answerGroup').style.display = 'none';
+            document.getElementById('contextGroup').style.display = 'none';
+            document.getElementById('studentQuery').value = '';
+            document.getElementById('result').style.display = 'none';
+            
+            // Update button text
+            document.getElementById('submitBtn').innerHTML = '🚀 Get SQL Help';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
         // Auto-focus first input on load
