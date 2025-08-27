@@ -1,0 +1,284 @@
+{
+  "name": "AGENT.SQL.Tutor",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "agent-sql-tutor",
+        "responseMode": "lastNode"
+      },
+      "id": "Webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [160, 200]
+    },
+    {
+      "parameters": {
+        "workflowId": "UTIL.ValidateInput",
+        "options": { "responseDataPath": "data" },
+        "input": "={{ { schema: { required: ['action','level'], types: { action:'string', level:'string' } }, payload: $json } }}"
+      },
+      "id": "Validate",
+      "name": "Execute UTIL.ValidateInput",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [420, 200]
+    },
+    {
+      "parameters": {
+        "functionCode": "if (!$json.valid) { return [{json:{error:true,errors:$json.errors},pairedItem:{item:0}}]; }\nconst { action, prompt='', level='beginner', topic='' } = $json.payload;\nreturn [{ json: { action, prompt, level, topic } }];"
+      },
+      "id": "Guard",
+      "name": "Guard & Normalize",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.action}}",
+              "operation": "equals",
+              "value2": "quiz"
+            }
+          ]
+        }
+      },
+      "id": "IF_Quiz",
+      "name": "IF: Quiz?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [940, 160]
+    },
+    {
+      "parameters": {
+        "functionCode": "const q = `Create an interactive SQL learning response. Level: ${$json.level}. Topic: ${$json.topic}. Task: ${$json.prompt}. Include: 1) Short explanation, 2) Example schema (table + columns), 3) Sample rows (small), 4) SQL query, 5) Visual description of result (markdown table), 6) Common pitfalls, 7) Next practice question.`; return [{json:{system:'You are an expert SQL tutor.', prompt:q}}];"
+      },
+      "id": "Build_Prompt",
+      "name": "Build Prompt",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [940, 260]
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": {
+          "headerParameters": [
+            {
+              "name": "Authorization",
+              "value": "={{'Bearer ' + $env.OPENAI_API_KEY}}"
+            }
+          ]
+        },
+        "optionsUi": {
+          "bodyParametersJson": "={{ { model: 'gpt-4o-mini', messages: [ { role: 'system', content: $json.system }, { role: 'user', content: $json.prompt } ], temperature: 0.2 } }}"
+        }
+      },
+      "id": "LLM",
+      "name": "OpenAI Chat",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [1200, 260]
+    },
+    {
+      "parameters": {
+        "functionCode": "const c = $json.choices?.[0]?.message?.content || 'No content';\nreturn [{ json: { content: c } }];"
+      },
+      "id": "Extract",
+      "name": "Extract LLM",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1460, 260]
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200,
+          "responseData": "={{$json}}",
+          "responseHeaders": {
+            "Content-Type": "application/json"
+          }
+        }
+      },
+      "id": "Respond_JSON",
+      "name": "Respond JSON",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1720, 260]
+    },
+    {
+      "parameters": {
+        "functionCode": "const quizPrompt = `Generate a 5-question SQL quiz for ${$json.level} on ${$json.topic}. For each: question, 4 options, correct answer, explanation, a simple example table.`; return [{json:{system:'You are an SQL quiz generator.', prompt:quizPrompt}}];"
+      },
+      "id": "Build_Quiz_Prompt",
+      "name": "Build Quiz Prompt",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1200, 120]
+    },
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "method": "POST",
+        "jsonParameters": true,
+        "options": {
+          "headerParameters": [
+            {
+              "name": "Authorization",
+              "value": "={{'Bearer ' + $env.OPENAI_API_KEY}}"
+            }
+          ]
+        },
+        "optionsUi": {
+          "bodyParametersJson": "={{ { model: 'gpt-4o-mini', messages: [ { role: 'system', content: $json.system }, { role: 'user', content: $json.prompt } ], temperature: 0.2 } }}"
+        }
+      },
+      "id": "LLM_Quiz",
+      "name": "OpenAI Chat (Quiz)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [1460, 120]
+    },
+    {
+      "parameters": {
+        "functionCode": "const c = $json.choices?.[0]?.message?.content || 'No quiz';\nreturn [{ json: { quiz: c } }];"
+      },
+      "id": "Extract_Quiz",
+      "name": "Extract Quiz",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1720, 120]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Execute UTIL.ValidateInput",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute UTIL.ValidateInput": {
+      "main": [
+        [
+          {
+            "node": "Guard & Normalize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guard & Normalize": {
+      "main": [
+        [
+          {
+            "node": "IF: Quiz?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Build Prompt",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "IF: Quiz?": {
+      "main": [
+        [
+          {
+            "node": "Build Quiz Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Build Prompt": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Chat",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat": {
+      "main": [
+        [
+          {
+            "node": "Extract LLM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract LLM": {
+      "main": [
+        [
+          {
+            "node": "Respond JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Quiz Prompt": {
+      "main": [
+        [
+          {
+            "node": "OpenAI Chat (Quiz)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat (Quiz)": {
+      "main": [
+        [
+          {
+            "node": "Extract Quiz",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Quiz": {
+      "main": [
+        [
+          {
+            "node": "Respond JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveExecutionProgress": true,
+    "timezone": "UTC"
+  },
+  "active": false
+}

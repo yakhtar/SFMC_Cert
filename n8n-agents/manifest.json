@@ -1,0 +1,39 @@
+{
+  "name": "AI Agent Hub",
+  "short_name": "AI Agents",
+  "description": "Your intelligent assistants for SQL learning, A/B testing, and restaurant recommendations",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2563eb",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "categories": ["productivity", "education", "food"],
+  "icons": [
+    {
+      "src": "https://via.placeholder.com/192x192/2563eb/ffffff?text=AI",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://via.placeholder.com/512x512/2563eb/ffffff?text=AI",
+      "sizes": "512x512", 
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://via.placeholder.com/1280x720/667eea/ffffff?text=AI+Agent+Hub",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "https://via.placeholder.com/750x1334/667eea/ffffff?text=Mobile+View",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}

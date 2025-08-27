@@ -1,0 +1,324 @@
+{
+  "name": "SQL Learning Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sql-learning",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "action-type",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "generate_question",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "action-router",
+      "name": "Action Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "message",
+        "model": "gpt-4",
+        "messages": {
+          "messageValues": [
+            {
+              "role": "system",
+              "message": "You are an expert SQL instructor. Generate interactive SQL questions with detailed explanations and visual examples. Focus on practical scenarios that help learners understand database concepts.\n\nFor each question, provide:\n1. Question text\n2. Difficulty level (beginner/intermediate/advanced)\n3. SQL concept being taught\n4. Sample database schema\n5. Expected query\n6. Detailed explanation\n7. Visual representation ideas\n8. Common mistakes to avoid"
+            },
+            {
+              "role": "user", 
+              "message": "Generate a {{ $json.difficulty || 'beginner' }} level SQL question about {{ $json.topic || 'SELECT statements' }}. Include a practical scenario and sample data."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "id": "question-generator",
+      "name": "Question Generator",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse and structure the AI response\nconst aiResponse = $input.first().json.message.content;\n\ntry {\n  // Extract structured data from AI response\n  const questionData = {\n    id: Date.now(),\n    question: extractSection(aiResponse, 'Question:'),\n    difficulty: $('Webhook Trigger').first().json.body.difficulty || 'beginner',\n    concept: extractSection(aiResponse, 'Concept:'),\n    schema: extractSection(aiResponse, 'Schema:'),\n    expectedQuery: extractSection(aiResponse, 'Query:'),\n    explanation: extractSection(aiResponse, 'Explanation:'),\n    visualHints: extractSection(aiResponse, 'Visual:'),\n    commonMistakes: extractSection(aiResponse, 'Mistakes:'),\n    timestamp: new Date().toISOString()\n  };\n\n  // Generate visual example data\n  questionData.sampleData = generateSampleData(questionData.schema);\n  \n  return [questionData];\n} catch (error) {\n  return [{\n    error: true,\n    message: 'Failed to process question generation',\n    details: error.message\n  }];\n}\n\nfunction extractSection(text, marker) {\n  const lines = text.split('\\n');\n  const startIndex = lines.findIndex(line => line.includes(marker));\n  if (startIndex === -1) return '';\n  \n  const result = [];\n  for (let i = startIndex + 1; i < lines.length; i++) {\n    if (lines[i].match(/^\\d+\\.|^[A-Z][a-z]+:/)) break;\n    if (lines[i].trim()) result.push(lines[i]);\n  }\n  return result.join('\\n').trim();\n}\n\nfunction generateSampleData(schema) {\n  // Generate sample data based on schema description\n  return {\n    tables: [\n      {\n        name: 'employees',\n        columns: ['id', 'name', 'department', 'salary'],\n        data: [\n          [1, 'John Doe', 'Engineering', 75000],\n          [2, 'Jane Smith', 'Marketing', 65000],\n          [3, 'Mike Johnson', 'Engineering', 80000]\n        ]\n      }\n    ]\n  };\n}"
+      },
+      "id": "question-processor",
+      "name": "Question Processor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "action-check",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "check_answer",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "answer-checker-router",
+      "name": "Answer Checker Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 400]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "message", 
+        "model": "gpt-4",
+        "messages": {
+          "messageValues": [
+            {
+              "role": "system",
+              "message": "You are an SQL tutor providing feedback on student answers. Compare the student's SQL query with the expected solution and provide constructive feedback.\n\nAnalyze:\n1. Correctness of the query\n2. Efficiency considerations\n3. Best practices followed/missed\n4. Specific feedback on syntax\n5. Suggestions for improvement\n\nProvide encouragement and learning opportunities."
+            },
+            {
+              "role": "user",
+              "message": "Student Query: {{ $json.studentQuery }}\nExpected Query: {{ $json.expectedQuery }}\nQuestion Context: {{ $json.questionContext }}\n\nProvide detailed feedback on the student's SQL query."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "id": "answer-evaluator",
+      "name": "Answer Evaluator", 
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [900, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process answer evaluation and generate response\nconst evaluation = $input.first().json.message.content;\nconst originalData = $('Webhook Trigger').first().json.body;\n\nconst result = {\n  correct: evaluation.toLowerCase().includes('correct') || evaluation.toLowerCase().includes('good'),\n  feedback: evaluation,\n  score: calculateScore(evaluation),\n  nextSuggestion: generateNextSuggestion(originalData.difficulty),\n  timestamp: new Date().toISOString()\n};\n\nreturn [result];\n\nfunction calculateScore(feedback) {\n  // Simple scoring algorithm based on feedback keywords\n  let score = 50; // Base score\n  \n  if (feedback.toLowerCase().includes('correct')) score += 30;\n  if (feedback.toLowerCase().includes('excellent')) score += 20;\n  if (feedback.toLowerCase().includes('good')) score += 15;\n  if (feedback.toLowerCase().includes('syntax error')) score -= 20;\n  if (feedback.toLowerCase().includes('incorrect')) score -= 25;\n  \n  return Math.max(0, Math.min(100, score));\n}\n\nfunction generateNextSuggestion(currentDifficulty) {\n  const suggestions = {\n    beginner: ['Try an intermediate JOIN question', 'Practice GROUP BY clauses'],\n    intermediate: ['Explore subqueries', 'Advanced filtering with HAVING'],\n    advanced: ['Window functions', 'Complex CTEs and recursive queries']\n  };\n  \n  const options = suggestions[currentDifficulty] || suggestions.beginner;\n  return options[Math.floor(Math.random() * options.length)];\n}"
+      },
+      "id": "evaluation-processor",
+      "name": "Evaluation Processor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 400]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "visual-request",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "generate_visual",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "visual-generator-router",
+      "name": "Visual Generator Router", 
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 600]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generate visual representations for SQL concepts\nconst requestData = $('Webhook Trigger').first().json.body;\n\nconst visual = {\n  type: 'sql_visualization',\n  concept: requestData.concept,\n  tableStructure: generateTableHTML(requestData.sampleData),\n  queryFlow: generateQueryFlowDiagram(requestData.query),\n  resultPreview: generateResultHTML(requestData.expectedResult),\n  interactiveElements: generateInteractiveCode(requestData.query)\n};\n\nreturn [visual];\n\nfunction generateTableHTML(sampleData) {\n  if (!sampleData || !sampleData.tables) return '<p>No sample data available</p>';\n  \n  let html = '';\n  sampleData.tables.forEach(table => {\n    html += `<div class=\"table-container\">\n      <h3>${table.name}</h3>\n      <table class=\"sql-table\">\n        <thead><tr>`;\n    \n    table.columns.forEach(col => {\n      html += `<th>${col}</th>`;\n    });\n    \n    html += `</tr></thead><tbody>`;\n    \n    table.data.forEach(row => {\n      html += '<tr>';\n      row.forEach(cell => {\n        html += `<td>${cell}</td>`;\n      });\n      html += '</tr>';\n    });\n    \n    html += '</tbody></table></div>';\n  });\n  \n  return html;\n}\n\nfunction generateQueryFlowDiagram(query) {\n  // Create a simple flow diagram representation\n  return {\n    steps: [\n      { step: 1, action: 'FROM clause - Select source table(s)' },\n      { step: 2, action: 'WHERE clause - Filter rows' },\n      { step: 3, action: 'GROUP BY - Group similar rows' },\n      { step: 4, action: 'HAVING - Filter groups' },\n      { step: 5, action: 'SELECT - Choose columns' },\n      { step: 6, action: 'ORDER BY - Sort results' }\n    ]\n  };\n}\n\nfunction generateResultHTML(result) {\n  return '<div class=\"result-preview\"><p>Expected result will be displayed here</p></div>';\n}\n\nfunction generateInteractiveCode(query) {\n  return {\n    editable: true,\n    syntax_highlighting: true,\n    auto_complete: true,\n    query: query || 'SELECT * FROM table_name;'\n  };\n}"
+      },
+      "id": "visual-generator",
+      "name": "Visual Generator",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 600]
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "id": "response-formatter",
+      "name": "Response Formatter",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1340, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Action Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Router": {
+      "main": [
+        [
+          {
+            "node": "Question Generator",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Answer Checker Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Question Generator": {
+      "main": [
+        [
+          {
+            "node": "Question Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Question Processor": {
+      "main": [
+        [
+          {
+            "node": "Response Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Answer Checker Router": {
+      "main": [
+        [
+          {
+            "node": "Answer Evaluator",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Visual Generator Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Answer Evaluator": {
+      "main": [
+        [
+          {
+            "node": "Evaluation Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluation Processor": {
+      "main": [
+        [
+          {
+            "node": "Response Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Visual Generator Router": {
+      "main": [
+        [
+          {
+            "node": "Visual Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Visual Generator": {
+      "main": [
+        [
+          {
+            "node": "Response Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {},
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-15T12:00:00.000Z",
+  "versionId": "1"
+}

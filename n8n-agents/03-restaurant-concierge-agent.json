@@ -1,0 +1,368 @@
+{
+  "name": "Restaurant Concierge Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "restaurant-concierge",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "action-type",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "get_recommendations",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "action-router",
+      "name": "Action Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.yelp.com/v3/businesses/search",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "yelpApi",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "term",
+              "value": "={{ $json.cuisine || 'restaurant' }}"
+            },
+            {
+              "name": "location",
+              "value": "={{ $json.location || 'New York, NY' }}"
+            },
+            {
+              "name": "radius",
+              "value": "={{ $json.radius || '5000' }}"
+            },
+            {
+              "name": "price",
+              "value": "={{ $json.priceRange || '1,2,3,4' }}"
+            },
+            {
+              "name": "open_now",
+              "value": "={{ $json.openNow || false }}"
+            },
+            {
+              "name": "limit",
+              "value": "20"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "restaurant-search",
+      "name": "Restaurant Search",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process restaurant search results and filter based on dietary requirements\nconst searchResults = $input.first().json.businesses || [];\nconst userPrefs = $('Webhook Trigger').first().json.body;\n\nconst processedRestaurants = searchResults.map(restaurant => {\n  const processed = {\n    id: restaurant.id,\n    name: restaurant.name,\n    rating: restaurant.rating,\n    reviewCount: restaurant.review_count,\n    priceRange: restaurant.price,\n    cuisine: restaurant.categories?.map(cat => cat.title).join(', '),\n    address: formatAddress(restaurant.location),\n    phone: restaurant.phone,\n    imageUrl: restaurant.image_url,\n    url: restaurant.url,\n    distance: Math.round(restaurant.distance * 3.28084) + ' ft', // Convert meters to feet\n    isOpen: restaurant.is_closed === false,\n    coordinates: restaurant.coordinates\n  };\n  \n  // Add dietary compatibility score\n  processed.dietaryCompatibility = calculateDietaryScore(restaurant, userPrefs);\n  processed.partyCompatibility = calculatePartySizeScore(restaurant, userPrefs.partySize);\n  \n  return processed;\n});\n\n// Sort by compatibility scores and rating\nconst sortedRestaurants = processedRestaurants\n  .filter(r => r.dietaryCompatibility.score > 0.3) // Filter out incompatible restaurants\n  .sort((a, b) => {\n    const scoreA = (a.dietaryCompatibility.score * 0.4) + (a.partyCompatibility.score * 0.3) + (a.rating * 0.3);\n    const scoreB = (b.dietaryCompatibility.score * 0.4) + (b.partyCompatibility.score * 0.3) + (b.rating * 0.3);\n    return scoreB - scoreA;\n  })\n  .slice(0, 10); // Top 10 recommendations\n\nreturn [{\n  restaurants: sortedRestaurants,\n  searchCriteria: userPrefs,\n  totalFound: searchResults.length,\n  recommendations: generateRecommendationSummary(sortedRestaurants, userPrefs)\n}];\n\nfunction formatAddress(location) {\n  if (!location) return 'Address not available';\n  return `${location.address1 || ''} ${location.city || ''}, ${location.state || ''} ${location.zip_code || ''}`.trim();\n}\n\nfunction calculateDietaryScore(restaurant, prefs) {\n  const dietaryReqs = prefs.dietaryRequirements || [];\n  const cuisine = restaurant.categories?.map(cat => cat.title.toLowerCase()).join(' ') || '';\n  const name = restaurant.name.toLowerCase();\n  \n  let score = 1.0; // Start with full compatibility\n  let reasons = [];\n  \n  dietaryReqs.forEach(req => {\n    const requirement = req.toLowerCase();\n    \n    if (requirement === 'vegetarian') {\n      if (cuisine.includes('vegetarian') || cuisine.includes('vegan') || cuisine.includes('salad')) {\n        reasons.push('Vegetarian-friendly cuisine');\n      } else if (cuisine.includes('steakhouse') || cuisine.includes('bbq')) {\n        score -= 0.4;\n        reasons.push('Limited vegetarian options expected');\n      } else {\n        score -= 0.2;\n      }\n    }\n    \n    if (requirement === 'vegan') {\n      if (cuisine.includes('vegan') || name.includes('vegan')) {\n        reasons.push('Vegan-friendly restaurant');\n      } else if (cuisine.includes('vegetarian')) {\n        score -= 0.1;\n        reasons.push('Vegetarian restaurant - likely has vegan options');\n      } else {\n        score -= 0.3;\n        reasons.push('Vegan options may be limited');\n      }\n    }\n    \n    if (requirement === 'gluten-free') {\n      if (name.includes('gluten') || cuisine.includes('health')) {\n        reasons.push('Likely gluten-free options available');\n      } else {\n        score -= 0.1;\n        reasons.push('Gluten-free options may be available upon request');\n      }\n    }\n    \n    if (requirement === 'halal') {\n      if (cuisine.includes('halal') || cuisine.includes('middle eastern') || cuisine.includes('mediterranean')) {\n        reasons.push('Halal cuisine available');\n      } else {\n        score -= 0.2;\n      }\n    }\n  });\n  \n  return {\n    score: Math.max(0.1, score), // Minimum score of 0.1\n    reasons: reasons\n  };\n}\n\nfunction calculatePartySizeScore(restaurant, partySize) {\n  const size = parseInt(partySize) || 2;\n  let score = 1.0;\n  let reasons = [];\n  \n  if (size <= 2) {\n    score = 1.0;\n    reasons.push('Perfect for intimate dining');\n  } else if (size <= 4) {\n    score = 0.9;\n    reasons.push('Good for small groups');\n  } else if (size <= 8) {\n    score = 0.7;\n    reasons.push('May require reservation for larger group');\n  } else {\n    score = 0.5;\n    reasons.push('Large group - call ahead recommended');\n  }\n  \n  return {\n    score: score,\n    reasons: reasons\n  };\n}\n\nfunction generateRecommendationSummary(restaurants, prefs) {\n  if (restaurants.length === 0) {\n    return {\n      summary: 'No restaurants found matching your criteria. Try expanding your search radius or dietary requirements.',\n      tips: ['Consider broadening cuisine preferences', 'Check if location is correct', 'Try searching without dietary filters first']\n    };\n  }\n  \n  const topChoice = restaurants[0];\n  const avgRating = (restaurants.reduce((sum, r) => sum + r.rating, 0) / restaurants.length).toFixed(1);\n  \n  return {\n    summary: `Found ${restaurants.length} great options! Top recommendation: ${topChoice.name} (${topChoice.rating}⭐)`,\n    avgRating: avgRating,\n    priceRange: getMostCommonPriceRange(restaurants),\n    tips: generatePersonalizedTips(restaurants, prefs)\n  };\n}\n\nfunction getMostCommonPriceRange(restaurants) {\n  const priceCount = {};\n  restaurants.forEach(r => {\n    const price = r.priceRange || '$';\n    priceCount[price] = (priceCount[price] || 0) + 1;\n  });\n  \n  return Object.keys(priceCount).reduce((a, b) => priceCount[a] > priceCount[b] ? a : b);\n}\n\nfunction generatePersonalizedTips(restaurants, prefs) {\n  const tips = [];\n  \n  if (prefs.dietaryRequirements?.length > 0) {\n    tips.push('Call ahead to confirm dietary accommodations');\n  }\n  \n  if (parseInt(prefs.partySize) > 6) {\n    tips.push('Make reservations in advance for your group size');\n  }\n  \n  if (prefs.occasion) {\n    tips.push(`Perfect for ${prefs.occasion} - check dress code if applicable`);\n  }\n  \n  tips.push('Check recent reviews for current menu and service quality');\n  \n  return tips;\n}"
+      },
+      "id": "restaurant-processor",
+      "name": "Restaurant Processor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "menu-check",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "get_menu",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "menu-router",
+      "name": "Menu Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 400]
+    },
+    {
+      "parameters": {
+        "url": "https://api.yelp.com/v3/businesses/{{ $json.restaurantId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "yelpApi",
+        "options": {}
+      },
+      "id": "restaurant-details",
+      "name": "Restaurant Details",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [900, 350]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "message",
+        "model": "gpt-4",
+        "messages": {
+          "messageValues": [
+            {
+              "role": "system",
+              "message": "You are an expert restaurant concierge and menu consultant. Based on restaurant information and customer preferences, provide detailed menu recommendations and dietary guidance.\n\nFor each recommendation, provide:\n1. Specific dish recommendations with descriptions\n2. Dietary accommodation suggestions\n3. Price range expectations\n4. Portion size information\n5. Popular items and chef specialties\n6. Wine/beverage pairings\n7. Alternatives for dietary restrictions\n8. Ordering tips and etiquette"
+            },
+            {
+              "role": "user",
+              "message": "Restaurant: {{ $json.name }}\nCuisine Type: {{ $json.categories }}\nPrice Range: {{ $json.price }}\nDietary Requirements: {{ $('Webhook Trigger').first().json.body.dietaryRequirements }}\nParty Size: {{ $('Webhook Trigger').first().json.body.partySize }}\nOccasion: {{ $('Webhook Trigger').first().json.body.occasion }}\n\nProvide personalized menu recommendations and dining suggestions."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "id": "menu-recommendations",
+      "name": "Menu Recommendations",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [900, 450]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process menu recommendations and restaurant details\nconst menuAI = $('Menu Recommendations').first()?.json?.message?.content || '';\nconst restaurantDetails = $('Restaurant Details').first()?.json || {};\nconst userPrefs = $('Webhook Trigger').first().json.body;\n\nconst menuData = {\n  restaurantInfo: {\n    name: restaurantDetails.name,\n    rating: restaurantDetails.rating,\n    priceRange: restaurantDetails.price,\n    cuisine: restaurantDetails.categories?.map(cat => cat.title).join(', '),\n    hours: formatHours(restaurantDetails.hours),\n    phone: restaurantDetails.phone,\n    address: formatAddress(restaurantDetails.location),\n    photos: restaurantDetails.photos?.slice(0, 5) || [],\n    specialFeatures: extractSpecialFeatures(restaurantDetails)\n  },\n  recommendations: parseMenuRecommendations(menuAI),\n  dietaryAccommodations: parseDietaryInfo(menuAI, userPrefs.dietaryRequirements),\n  orderingSuggestions: parseOrderingSuggestions(menuAI),\n  reservationInfo: generateReservationInfo(restaurantDetails, userPrefs),\n  personalizedTips: generatePersonalizedDiningTips(restaurantDetails, userPrefs)\n};\n\nreturn [menuData];\n\nfunction formatHours(hours) {\n  if (!hours || !hours[0] || !hours[0].open) return 'Hours not available';\n  \n  const todayHours = hours[0].open[new Date().getDay()];\n  if (!todayHours) return 'Closed today';\n  \n  const openTime = formatTime(todayHours.start);\n  const closeTime = formatTime(todayHours.end);\n  \n  return `${openTime} - ${closeTime}`;\n}\n\nfunction formatTime(timeStr) {\n  const hour = parseInt(timeStr.slice(0, 2));\n  const minute = timeStr.slice(2, 4);\n  const ampm = hour >= 12 ? 'PM' : 'AM';\n  const displayHour = hour > 12 ? hour - 12 : (hour === 0 ? 12 : hour);\n  return `${displayHour}:${minute} ${ampm}`;\n}\n\nfunction formatAddress(location) {\n  if (!location) return 'Address not available';\n  return `${location.address1 || ''} ${location.city || ''}, ${location.state || ''} ${location.zip_code || ''}`.trim();\n}\n\nfunction extractSpecialFeatures(restaurant) {\n  const features = [];\n  const attributes = restaurant.attributes || {};\n  \n  if (attributes.has_tv) features.push('TV Available');\n  if (attributes.outdoor_seating) features.push('Outdoor Seating');\n  if (attributes.takes_reservations) features.push('Accepts Reservations');\n  if (attributes.delivery) features.push('Delivery Available');\n  if (attributes.wheelchair_accessible) features.push('Wheelchair Accessible');\n  if (attributes.good_for_groups) features.push('Great for Groups');\n  if (attributes.has_wifi) features.push('WiFi Available');\n  \n  return features;\n}\n\nfunction parseMenuRecommendations(aiResponse) {\n  const sections = aiResponse.split(/\\n(?=[A-Z][a-z]*:)|(?:Recommendations?:|Dishes?:)/i);\n  const recommendations = [];\n  \n  sections.forEach(section => {\n    const lines = section.split('\\n').filter(line => line.trim());\n    if (lines.length > 1) {\n      const category = lines[0].replace(':', '').trim();\n      const items = lines.slice(1).map(line => {\n        const cleanLine = line.replace(/^[-•*\\d.\\s]+/, '').trim();\n        return {\n          name: extractDishName(cleanLine),\n          description: cleanLine,\n          category: category\n        };\n      });\n      \n      recommendations.push({\n        category: category,\n        items: items.slice(0, 3) // Limit to 3 items per category\n      });\n    }\n  });\n  \n  return recommendations.slice(0, 4); // Limit to 4 categories\n}\n\nfunction extractDishName(description) {\n  // Extract dish name (usually first few words before a dash or description)\n  const match = description.match(/^([^-–,]+)/);\n  return match ? match[1].trim() : description.split(' ').slice(0, 3).join(' ');\n}\n\nfunction parseDietaryInfo(aiResponse, requirements) {\n  const dietaryInfo = {};\n  \n  (requirements || []).forEach(req => {\n    const reqLower = req.toLowerCase();\n    const pattern = new RegExp(`${reqLower}[^\\n]*(?:\\n[^\\n]*){0,2}`, 'gi');\n    const matches = aiResponse.match(pattern);\n    \n    if (matches) {\n      dietaryInfo[req] = matches.join(' ').slice(0, 200) + '...';\n    } else {\n      dietaryInfo[req] = `Ask your server about ${req} options - most restaurants can accommodate this dietary requirement.`;\n    }\n  });\n  \n  return dietaryInfo;\n}\n\nfunction parseOrderingSuggestions(aiResponse) {\n  const suggestions = [];\n  const orderingSection = aiResponse.match(/(?:ordering|tips|suggestions)[\\s\\S]*?(?=\\n\\n|$)/i);\n  \n  if (orderingSection) {\n    const lines = orderingSection[0].split('\\n');\n    lines.forEach(line => {\n      if (line.match(/^[-•*\\d.\\s]/)) {\n        suggestions.push(line.replace(/^[-•*\\d.\\s]+/, '').trim());\n      }\n    });\n  }\n  \n  // Default suggestions if none found\n  if (suggestions.length === 0) {\n    suggestions.push(\n      'Ask your server for daily specials and seasonal dishes',\n      'Consider sharing appetizers to try more variety',\n      'Don\\'t hesitate to ask about preparation methods for dietary needs'\n    );\n  }\n  \n  return suggestions.slice(0, 5);\n}\n\nfunction generateReservationInfo(restaurant, prefs) {\n  const partySize = parseInt(prefs.partySize) || 2;\n  const info = {\n    recommended: partySize > 4 || prefs.occasion === 'special',\n    phone: restaurant.phone,\n    onlineBooking: 'Check restaurant website or OpenTable',\n    timing: generateTimingAdvice(partySize, prefs.occasion)\n  };\n  \n  return info;\n}\n\nfunction generateTimingAdvice(partySize, occasion) {\n  let advice = 'Call ahead for availability';\n  \n  if (partySize > 6) {\n    advice = '24-48 hours advance notice recommended';\n  } else if (occasion === 'special' || occasion === 'date') {\n    advice = 'Book 1-2 days in advance for preferred timing';\n  } else if (partySize <= 2) {\n    advice = 'Same day reservations often available';\n  }\n  \n  return advice;\n}\n\nfunction generatePersonalizedDiningTips(restaurant, prefs) {\n  const tips = [];\n  \n  const rating = restaurant.rating || 4.0;\n  if (rating >= 4.5) {\n    tips.push('Highly rated - expect excellent service and food quality');\n  }\n  \n  const priceRange = restaurant.price;\n  if (priceRange === '$$$$') {\n    tips.push('Fine dining establishment - dress code may apply');\n  } else if (priceRange === '$') {\n    tips.push('Casual dining - great value for money');\n  }\n  \n  if (prefs.occasion === 'business') {\n    tips.push('Professional atmosphere suitable for business meetings');\n  } else if (prefs.occasion === 'date') {\n    tips.push('Romantic ambiance perfect for special occasions');\n  }\n  \n  if (parseInt(prefs.partySize) > 8) {\n    tips.push('Large group - consider family-style ordering for sharing');\n  }\n  \n  tips.push('Check their social media for latest menu updates and specials');\n  \n  return tips;\n}"
+      },
+      "id": "menu-processor",
+      "name": "Menu Processor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 400]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "reservation-check",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "make_reservation",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "reservation-router",
+      "name": "Reservation Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 600]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Generate reservation assistance and booking information\nconst userRequest = $('Webhook Trigger').first().json.body;\n\nconst reservationAssistance = {\n  restaurantName: userRequest.restaurantName,\n  requestDetails: {\n    partySize: userRequest.partySize,\n    preferredDate: userRequest.preferredDate,\n    preferredTime: userRequest.preferredTime,\n    specialRequests: userRequest.specialRequests || [],\n    dietaryRequirements: userRequest.dietaryRequirements || []\n  },\n  bookingOptions: [\n    {\n      method: 'Phone',\n      contact: userRequest.restaurantPhone,\n      description: 'Call directly for immediate confirmation',\n      pros: ['Immediate confirmation', 'Can discuss special requests', 'Personal service'],\n      cons: ['May need to call during business hours', 'Potential wait time']\n    },\n    {\n      method: 'OpenTable',\n      contact: 'https://www.opentable.com',\n      description: 'Online reservation platform',\n      pros: ['24/7 availability', 'Instant confirmation', 'Easy to modify'],\n      cons: ['Limited availability shown', 'May not handle special requests']\n    },\n    {\n      method: 'Restaurant Website',\n      contact: userRequest.restaurantWebsite,\n      description: 'Direct booking through restaurant site',\n      pros: ['Restaurant-specific options', 'Direct communication', 'Latest availability'],\n      cons: ['May redirect to third-party platforms']\n    }\n  ],\n  preparationChecklist: generatePreparationChecklist(userRequest),\n  followUpReminders: [\n    {\n      timing: '24 hours before',\n      action: 'Confirm reservation and review special requests'\n    },\n    {\n      timing: '2 hours before',\n      action: 'Check traffic and parking options'\n    },\n    {\n      timing: 'Day of',\n      action: 'Call if running more than 15 minutes late'\n    }\n  ]\n};\n\nreturn [reservationAssistance];\n\nfunction generatePreparationChecklist(request) {\n  const checklist = [];\n  \n  // Party size considerations\n  if (parseInt(request.partySize) > 6) {\n    checklist.push({\n      item: 'Confirm large party policies and potential gratuity charges',\n      category: 'Group Size'\n    });\n  }\n  \n  // Dietary requirements\n  if (request.dietaryRequirements?.length > 0) {\n    checklist.push({\n      item: `Inform restaurant about dietary requirements: ${request.dietaryRequirements.join(', ')}`,\n      category: 'Dietary Needs'\n    });\n  }\n  \n  // Special occasions\n  if (request.occasion) {\n    checklist.push({\n      item: `Mention special occasion (${request.occasion}) for potential complimentary touches`,\n      category: 'Special Requests'\n    });\n  }\n  \n  // General preparation\n  checklist.push(\n    {\n      item: 'Check dress code requirements',\n      category: 'Preparation'\n    },\n    {\n      item: 'Review menu online to save time',\n      category: 'Preparation'\n    },\n    {\n      item: 'Plan parking or transportation',\n      category: 'Logistics'\n    }\n  );\n  \n  return checklist;\n}"
+      },
+      "id": "reservation-assistant",
+      "name": "Reservation Assistant",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 600]
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "id": "response-formatter",
+      "name": "Response Formatter",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1340, 400]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Action Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Router": {
+      "main": [
+        [
+          {
+            "node": "Restaurant Search",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Menu Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restaurant Search": {
+      "main": [
+        [
+          {
+            "node": "Restaurant Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restaurant Processor": {
+      "main": [
+        [
+          {
+            "node": "Response Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Menu Router": {
+      "main": [
+        [
+          {
+            "node": "Restaurant Details",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Menu Recommendations",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Reservation Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Restaurant Details": {
+      "main": [
+        [
+          {
+            "node": "Menu Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Menu Recommendations": {
+      "main": [
+        [
+          {
+            "node": "Menu Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Menu Processor": {
+      "main": [
+        [
+          {
+            "node": "Response Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reservation Router": {
+      "main": [
+        [
+          {
+            "node": "Reservation Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reservation Assistant": {
+      "main": [
+        [
+          {
+            "node": "Response Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {},
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-15T12:00:00.000Z",
+  "versionId": "1"
+}

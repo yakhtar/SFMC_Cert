@@ -1,0 +1,323 @@
+{
+  "name": "A/B Test Ideas Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST", 
+        "path": "ab-test-ideas",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "action-type",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "generate_hypothesis",
+              "operator": {
+                "type": "string", 
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "action-router",
+      "name": "Action Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "message",
+        "model": "gpt-4",
+        "messages": {
+          "messageValues": [
+            {
+              "role": "system",
+              "message": "You are an expert conversion rate optimization (CRO) specialist. Generate comprehensive A/B test hypotheses with clear objectives and success metrics.\n\nFor each test idea, provide:\n1. Clear hypothesis statement (If...Then...Because format)\n2. Primary objective and key metrics\n3. Test type (A/B, A/B/C, multivariate)\n4. Target audience segments\n5. Expected impact and confidence level\n6. Potential risks and mitigation strategies\n7. Resource requirements\n8. Timeline recommendations\n\nFocus on data-driven insights and statistical rigor."
+            },
+            {
+              "role": "user",
+              "message": "Generate A/B test ideas for: {{ $json.industry || 'e-commerce' }}\nBusiness goal: {{ $json.goal || 'increase conversions' }}\nTarget page: {{ $json.page || 'product page' }}\nCurrent conversion rate: {{ $json.currentRate || '2.5%' }}\nTraffic per month: {{ $json.traffic || '10000' }}\n\nProvide 3 test ideas with different approaches and complexity levels."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.8
+        }
+      },
+      "id": "hypothesis-generator",
+      "name": "Hypothesis Generator",
+      "type": "n8n-nodes-base.openAi", 
+      "typeVersion": 1,
+      "position": [680, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process and structure A/B test hypotheses\nconst aiResponse = $input.first().json.message.content;\nconst inputData = $('Webhook Trigger').first().json.body;\n\ntry {\n  const testIdeas = parseTestIdeas(aiResponse);\n  \n  // Add statistical calculations for each test\n  const enrichedTests = testIdeas.map((test, index) => {\n    const stats = calculateTestRequirements(\n      parseFloat(inputData.currentRate) || 2.5,\n      parseFloat(inputData.traffic) || 10000,\n      test.expectedLift || 20\n    );\n    \n    return {\n      id: `test_${Date.now()}_${index}`,\n      ...test,\n      statistics: stats,\n      timestamp: new Date().toISOString()\n    };\n  });\n  \n  return [{\n    testIdeas: enrichedTests,\n    summary: {\n      totalTests: enrichedTests.length,\n      avgDuration: Math.round(enrichedTests.reduce((sum, t) => sum + t.statistics.duration95, 0) / enrichedTests.length),\n      industry: inputData.industry || 'e-commerce'\n    }\n  }];\n} catch (error) {\n  return [{\n    error: true,\n    message: 'Failed to process test ideas',\n    details: error.message\n  }];\n}\n\nfunction parseTestIdeas(response) {\n  // Parse AI response into structured test ideas\n  const sections = response.split(/Test\\s*\\d+:|Idea\\s*\\d+:/).slice(1);\n  \n  return sections.map(section => {\n    return {\n      hypothesis: extractField(section, 'Hypothesis:|If'),\n      objective: extractField(section, 'Objective:|Primary objective'),\n      testType: extractField(section, 'Test type:|Type'),\n      targetAudience: extractField(section, 'Target audience:|Audience'),\n      expectedLift: extractNumber(section, 'Expected impact:|Impact') || 20,\n      confidence: extractNumber(section, 'Confidence level:|Confidence') || 80,\n      risks: extractField(section, 'Risks:|Potential risks'),\n      resources: extractField(section, 'Resources:|Resource requirements'),\n      timeline: extractField(section, 'Timeline:|Timeline recommendations')\n    };\n  });\n}\n\nfunction extractField(text, pattern) {\n  const regex = new RegExp(pattern + '\\\\s*([^\\\\n]+(?:\\\\n(?!\\\\w+:)[^\\\\n]*)*)', 'i');\n  const match = text.match(regex);\n  return match ? match[1].trim() : '';\n}\n\nfunction extractNumber(text, pattern) {\n  const field = extractField(text, pattern);\n  const numberMatch = field.match(/\\d+(?:\\.\\d+)?/);\n  return numberMatch ? parseFloat(numberMatch[0]) : null;\n}\n\nfunction calculateTestRequirements(baselineRate, monthlyTraffic, expectedLift) {\n  const baseline = baselineRate / 100;\n  const treatment = baseline * (1 + expectedLift / 100);\n  const alpha = 0.05; // 95% confidence\n  const beta = 0.2;   // 80% power\n  \n  // Sample size calculation using normal approximation\n  const pooledRate = (baseline + treatment) / 2;\n  const effect = Math.abs(treatment - baseline);\n  \n  const z_alpha = 1.96; // 95% confidence\n  const z_beta = 0.84;  // 80% power\n  \n  const sampleSizePerVariation = Math.ceil(\n    (2 * pooledRate * (1 - pooledRate) * Math.pow(z_alpha + z_beta, 2)) / Math.pow(effect, 2)\n  );\n  \n  const totalSampleSize = sampleSizePerVariation * 2;\n  const durationDays90 = Math.ceil((totalSampleSize * 30) / monthlyTraffic);\n  const durationDays95 = Math.ceil(durationDays90 * 1.3); // More conservative for 95%\n  \n  return {\n    sampleSizePerVariation,\n    totalSampleSize,\n    duration90: durationDays90,\n    duration95: durationDays95,\n    baselineRate: baseline,\n    treatmentRate: treatment,\n    minimumDetectableEffect: effect,\n    expectedLiftPercent: expectedLift\n  };\n}"
+      },
+      "id": "hypothesis-processor",
+      "name": "Hypothesis Processor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "calc-check",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "calculate_stats",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "stats-calculator-router",
+      "name": "Stats Calculator Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 400]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Advanced statistical calculator for A/B tests\nconst input = $('Webhook Trigger').first().json.body;\n\nconst results = {\n  inputParams: {\n    baselineRate: parseFloat(input.baselineRate) || 2.5,\n    expectedLift: parseFloat(input.expectedLift) || 20,\n    monthlyTraffic: parseInt(input.monthlyTraffic) || 10000,\n    confidence: parseFloat(input.confidence) || 95,\n    power: parseFloat(input.power) || 80\n  }\n};\n\n// Calculate sample sizes for different confidence levels\nresults.calculations = {\n  confidence90: calculateSampleSize(results.inputParams, 90, 80),\n  confidence95: calculateSampleSize(results.inputParams, 95, 80),\n  confidence99: calculateSampleSize(results.inputParams, 99, 80)\n};\n\n// Risk analysis\nresults.riskAnalysis = {\n  type1Error: (100 - results.inputParams.confidence) / 100,\n  type2Error: (100 - results.inputParams.power) / 100,\n  recommendations: generateRecommendations(results.inputParams, results.calculations)\n};\n\n// Cost analysis\nresults.costAnalysis = calculateCostAnalysis(results.calculations, input.costPerVisitor || 0.5);\n\nreturn [results];\n\nfunction calculateSampleSize(params, confidence, power) {\n  const baseline = params.baselineRate / 100;\n  const treatment = baseline * (1 + params.expectedLift / 100);\n  const alpha = (100 - confidence) / 100;\n  const beta = (100 - power) / 100;\n  \n  // Z-scores for different confidence levels\n  const zScores = { 90: 1.645, 95: 1.96, 99: 2.576 };\n  const z_alpha = zScores[confidence] || 1.96;\n  const z_beta = 0.84; // 80% power\n  \n  const pooledRate = (baseline + treatment) / 2;\n  const effect = Math.abs(treatment - baseline);\n  \n  const sampleSize = Math.ceil(\n    (2 * pooledRate * (1 - pooledRate) * Math.pow(z_alpha + z_beta, 2)) / Math.pow(effect, 2)\n  );\n  \n  const duration = Math.ceil((sampleSize * 2 * 30) / params.monthlyTraffic);\n  \n  return {\n    sampleSizePerVariation: sampleSize,\n    totalSampleSize: sampleSize * 2,\n    durationDays: duration,\n    durationWeeks: Math.ceil(duration / 7),\n    confidenceLevel: confidence,\n    powerLevel: power,\n    minimumDetectableEffect: (effect * 100).toFixed(2) + '%'\n  };\n}\n\nfunction generateRecommendations(params, calculations) {\n  const recommendations = [];\n  \n  if (calculations.confidence95.durationDays > 60) {\n    recommendations.push('Consider increasing expected lift or traffic to reduce test duration');\n  }\n  \n  if (params.baselineRate < 1) {\n    recommendations.push('Low baseline rate detected - consider focusing on traffic quality first');\n  }\n  \n  if (calculations.confidence95.sampleSizePerVariation > params.monthlyTraffic) {\n    recommendations.push('Sample size exceeds monthly traffic - consider multi-month test or traffic increase');\n  }\n  \n  return recommendations;\n}\n\nfunction calculateCostAnalysis(calculations, costPerVisitor) {\n  const conf95 = calculations.confidence95;\n  return {\n    costPerVisitor,\n    totalTestCost: (conf95.totalSampleSize * costPerVisitor).toFixed(2),\n    costPerDay: ((conf95.totalSampleSize * costPerVisitor) / conf95.durationDays).toFixed(2),\n    estimatedROI: calculateROI(conf95.totalSampleSize, costPerVisitor)\n  };\n}\n\nfunction calculateROI(sampleSize, costPerVisitor) {\n  // Simplified ROI calculation\n  const testCost = sampleSize * costPerVisitor;\n  const estimatedLiftValue = sampleSize * 0.025 * 50; // Assume $50 avg order value\n  const roi = ((estimatedLiftValue - testCost) / testCost * 100).toFixed(1);\n  return roi + '%';\n}"
+      },
+      "id": "statistical-calculator",
+      "name": "Statistical Calculator",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 400]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,\n            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "wireframe-check",
+              "leftValue": "={{ $json.action }}",
+              "rightValue": "generate_wireframes",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "wireframe-router",
+      "name": "Wireframe Router",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [680, 600]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "message",
+        "model": "gpt-4",
+        "messages": {
+          "messageValues": [
+            {
+              "role": "system",
+              "message": "You are a UX/UI design expert specializing in A/B test variations. Create detailed wireframe descriptions and HTML/CSS mockups for test variations.\n\nFor each variation, provide:\n1. Visual hierarchy and layout changes\n2. Copy variations and messaging\n3. Color scheme and styling differences\n4. CTA button designs and placements\n5. Mobile responsiveness considerations\n6. Accessibility improvements\n7. Implementation notes for developers\n8. Expected user behavior impact"
+            },
+            {
+              "role": "user",
+              "message": "Create wireframe designs for A/B test:\nHypothesis: {{ $json.hypothesis }}\nTest Type: {{ $json.testType }}\nPage Type: {{ $json.pageType }}\nPrimary Goal: {{ $json.goal }}\nTarget Element: {{ $json.element }}\n\nProvide control and variation designs with HTML/CSS code snippets."
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7
+        }
+      },
+      "id": "wireframe-generator",
+      "name": "Wireframe Generator",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [900, 600]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Process wireframe designs and generate implementable code\nconst aiResponse = $input.first().json.message.content;\nconst inputData = $('Webhook Trigger').first().json.body;\n\nconst wireframes = {\n  testId: `wireframe_${Date.now()}`,\n  hypothesis: inputData.hypothesis,\n  variations: parseWireframes(aiResponse),\n  implementationGuide: {\n    setupInstructions: extractImplementationNotes(aiResponse),\n    trackingCode: generateTrackingCode(inputData.goal),\n    cssFramework: 'vanilla', // or detect from requirements\n    estimatedDevTime: '4-8 hours'\n  },\n  qualityChecklist: [\n    'Mobile responsive design verified',\n    'Accessibility standards (WCAG 2.1) compliance',\n    'Cross-browser compatibility tested',\n    'Loading performance optimized',\n    'Analytics tracking implemented',\n    'QA testing completed'\n  ]\n};\n\nreturn [wireframes];\n\nfunction parseWireframes(response) {\n  // Extract control and variation designs\n  const variations = [];\n  \n  // Look for Control and Variation sections\n  const controlMatch = response.match(/(?:Control|Original)([\\s\\S]*?)(?=Variation|$)/i);\n  const variationMatches = response.match(/Variation[\\s\\S]*?(?=Variation|Implementation|$)/gi);\n  \n  if (controlMatch) {\n    variations.push({\n      name: 'Control',\n      type: 'control',\n      description: extractDescription(controlMatch[1]),\n      htmlCode: extractCode(controlMatch[1], 'html'),\n      cssCode: extractCode(controlMatch[1], 'css'),\n      keyFeatures: extractFeatures(controlMatch[1])\n    });\n  }\n  \n  if (variationMatches) {\n    variationMatches.forEach((variation, index) => {\n      variations.push({\n        name: `Variation ${String.fromCharCode(65 + index)}`,\n        type: 'treatment',\n        description: extractDescription(variation),\n        htmlCode: extractCode(variation, 'html'),\n        cssCode: extractCode(variation, 'css'),\n        keyFeatures: extractFeatures(variation),\n        expectedImpact: extractExpectedImpact(variation)\n      });\n    });\n  }\n  \n  return variations;\n}\n\nfunction extractDescription(text) {\n  const lines = text.split('\\n').slice(0, 5);\n  return lines.join('\\n').trim();\n}\n\nfunction extractCode(text, type) {\n  const pattern = new RegExp(`\`\`\`${type}([\\s\\S]*?)\`\`\``, 'i');\n  const match = text.match(pattern);\n  return match ? match[1].trim() : '';\n}\n\nfunction extractFeatures(text) {\n  const features = [];\n  const lines = text.split('\\n');\n  \n  lines.forEach(line => {\n    if (line.match(/^[-•*]\\s/) || line.match(/^\\d+\\.\\s/)) {\n      features.push(line.replace(/^[-•*\\d.\\s]+/, '').trim());\n    }\n  });\n  \n  return features.slice(0, 5); // Limit to 5 key features\n}\n\nfunction extractExpectedImpact(text) {\n  const impactMatch = text.match(/(?:impact|expect|improve)[\\s:]*([^\\n]+)/i);\n  return impactMatch ? impactMatch[1].trim() : 'Improved user engagement';\n}\n\nfunction extractImplementationNotes(text) {\n  const notesMatch = text.match(/(?:implementation|notes|setup)([\\s\\S]*?)$/i);\n  return notesMatch ? notesMatch[1].trim() : 'Standard A/B test implementation';\n}\n\nfunction generateTrackingCode(goal) {\n  return `\n// A/B Test Tracking Code\n(function() {\n  // Track test exposure\n  gtag('event', 'ab_test_exposure', {\n    'test_name': '${goal.replace(/\\s+/g, '_').toLowerCase()}',\n    'variation': 'VARIATION_NAME',\n    'user_id': 'USER_ID'\n  });\n  \n  // Track conversion goal\n  function trackConversion() {\n    gtag('event', 'ab_test_conversion', {\n      'test_name': '${goal.replace(/\\s+/g, '_').toLowerCase()}',\n      'variation': 'VARIATION_NAME',\n      'value': 1\n    });\n  }\n  \n  // Attach to relevant elements\n  document.addEventListener('click', function(e) {\n    if (e.target.matches('.cta-button, .conversion-trigger')) {\n      trackConversion();\n    }\n  });\n})();\n`;\n}"
+      },
+      "id": "wireframe-processor",
+      "name": "Wireframe Processor",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 600]
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "id": "response-formatter",
+      "name": "Response Formatter", 
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1340, 400]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Action Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Action Router": {
+      "main": [
+        [
+          {
+            "node": "Hypothesis Generator",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Stats Calculator Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hypothesis Generator": {
+      "main": [
+        [
+          {
+            "node": "Hypothesis Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hypothesis Processor": {
+      "main": [
+        [
+          {
+            "node": "Response Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stats Calculator Router": {
+      "main": [
+        [
+          {
+            "node": "Statistical Calculator",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wireframe Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Statistical Calculator": {
+      "main": [
+        [
+          {
+            "node": "Response Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wireframe Router": {
+      "main": [
+        [
+          {
+            "node": "Wireframe Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wireframe Generator": {
+      "main": [
+        [
+          {
+            "node": "Wireframe Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wireframe Processor": {
+      "main": [
+        [
+          {
+            "node": "Response Formatter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {},
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-15T12:00:00.000Z",
+  "versionId": "1"
+}

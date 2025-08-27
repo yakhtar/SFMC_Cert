@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Learning Agent - Mobile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .form-group select,
+        .form-group textarea,
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px; /* Prevents zoom on iOS */
+            background: white;
+        }
+        
+        .form-group select:focus,
+        .form-group textarea:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #2563eb;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .result {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0f9ff;
+            border-radius: 10px;
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .result h3 {
+            color: #0c4a6e;
+            margin-bottom: 15px;
+        }
+        
+        .result-content {
+            line-height: 1.6;
+            color: #374151;
+        }
+        
+        .error {
+            background: #fef2f2;
+            border-left-color: #ef4444;
+            color: #991b1b;
+        }
+        
+        .question-section {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .question-section h4 {
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .difficulty-beginner { background: #d1fae5; color: #065f46; }
+        .difficulty-intermediate { background: #fed7aa; color: #9a3412; }
+        .difficulty-advanced { background: #fecaca; color: #991b1b; }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .quick-btn {
+            padding: 12px;
+            background: #f3f4f6;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-btn:hover, .quick-btn.active {
+            background: #dbeafe;
+            border-color: #2563eb;
+            color: #1d4ed8;
+        }
+        
+        /* PWA styles */
+        .install-banner {
+            background: #1f2937;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .install-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="install-banner" id="installBanner">
+            📱 Add to Home Screen for easier access!
+            <br><button class="install-btn" onclick="installApp()">Install App</button>
+        </div>
+        
+        <header class="header">
+            <h1>📚 SQL Learning</h1>
+            <p>Your AI-powered SQL tutor</p>
+        </header>
+        
+        <div class="card">
+            <div class="quick-actions">
+                <button class="quick-btn" onclick="setQuickMode('generate')">📝 New Question</button>
+                <button class="quick-btn" onclick="setQuickMode('check')">✅ Check Answer</button>
+            </div>
+            
+            <form id="sqlForm">
+                <div class="form-group">
+                    <label for="action">What would you like to do?</label>
+                    <select id="action" name="action" required>
+                        <option value="generate_question">Generate a new SQL question</option>
+                        <option value="check_answer">Check my SQL answer</option>
+                        <option value="generate_visual">Show visual examples</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="difficulty">Difficulty Level</label>
+                    <select id="difficulty" name="difficulty">
+                        <option value="beginner">🟢 Beginner</option>
+                        <option value="intermediate">🟡 Intermediate</option>
+                        <option value="advanced">🔴 Advanced</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="topic">SQL Topic</label>
+                    <select id="topic" name="topic">
+                        <option value="SELECT statements">SELECT Statements</option>
+                        <option value="JOINs">JOINs</option>
+                        <option value="GROUP BY">GROUP BY & Aggregations</option>
+                        <option value="Subqueries">Subqueries</option>
+                        <option value="Window functions">Window Functions</option>
+                        <option value="CTEs">Common Table Expressions</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="answerGroup" style="display: none;">
+                    <label for="studentQuery">Your SQL Query</label>
+                    <textarea id="studentQuery" name="studentQuery" rows="4" 
+                             placeholder="SELECT column_name FROM table_name WHERE condition;"></textarea>
+                </div>
+                
+                <button type="submit" class="btn" id="submitBtn">
+                    🚀 Get SQL Help
+                </button>
+            </form>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Your AI tutor is thinking...</p>
+            </div>
+            
+            <div class="result" id="result">
+                <div id="resultContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const WEBHOOK_URL = 'https://yakhtar.app.n8n.cloud/webhook/sql-learning';
+        
+        // Form handling
+        document.getElementById('sqlForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('submitBtn').disabled = true;
+            
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                displayResult(result);
+                
+            } catch (error) {
+                displayError('Failed to connect to SQL Learning Agent. Please check your connection and try again.');
+                console.error('Error:', error);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('submitBtn').disabled = false;
+            }
+        });
+        
+        // Show/hide answer field based on action
+        document.getElementById('action').addEventListener('change', function() {
+            const answerGroup = document.getElementById('answerGroup');
+            answerGroup.style.display = this.value === 'check_answer' ? 'block' : 'none';
+        });
+        
+        // Quick action buttons
+        function setQuickMode(mode) {
+            const actionSelect = document.getElementById('action');
+            const buttons = document.querySelectorAll('.quick-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (mode === 'generate') {
+                actionSelect.value = 'generate_question';
+            } else if (mode === 'check') {
+                actionSelect.value = 'check_answer';
+            }
+            
+            // Trigger change event
+            actionSelect.dispatchEvent(new Event('change'));
+        }
+        
+        // Display results
+        function displayResult(data) {
+            const result = document.getElementById('result');
+            const content = document.getElementById('resultContent');
+            
+            if (data.error) {
+                displayError(data.message || 'Something went wrong');
+                return;
+            }
+            
+            let html = '';
+            
+            if (data.question) {
+                const difficultyClass = `difficulty-${data.difficulty || 'beginner'}`;
+                html += `
+                    <div class="question-section">
+                        <h4>📝 SQL Question</h4>
+                        <div class="difficulty-badge ${difficultyClass}">${data.difficulty || 'beginner'}</div>
+                        <p><strong>Concept:</strong> ${data.concept || 'SQL Basics'}</p>
+                        <div style="margin: 15px 0; padding: 15px; background: white; border-radius: 8px; border-left: 3px solid #2563eb;">
+                            ${data.question}
+                        </div>
+                        ${data.schema ? `<p><strong>Schema:</strong> ${data.schema}</p>` : ''}
+                    </div>
+                `;
+            }
+            
+            if (data.feedback) {
+                const isCorrect = data.correct;
+                const feedbackColor = isCorrect ? '#10b981' : '#f59e0b';
+                html += `
+                    <div class="question-section">
+                        <h4 style="color: ${feedbackColor}">
+                            ${isCorrect ? '✅' : '⚠️'} Feedback
+                        </h4>
+                        <div style="margin: 10px 0;">
+                            <strong>Score: ${data.score || 0}/100</strong>
+                        </div>
+                        <div style="margin: 15px 0; line-height: 1.6;">
+                            ${data.feedback}
+                        </div>
+                        ${data.nextSuggestion ? `<p><strong>Next:</strong> ${data.nextSuggestion}</p>` : ''}
+                    </div>
+                `;
+            }
+            
+            if (data.tableStructure) {
+                html += `
+                    <div class="question-section">
+                        <h4>📊 Visual Example</h4>
+                        <div>${data.tableStructure}</div>
+                    </div>
+                `;
+            }
+            
+            content.innerHTML = html || '<p>Response received! Check the console for details.</p>';
+            result.className = 'result';
+            result.style.display = 'block';
+            result.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function displayError(message) {
+            const result = document.getElementById('result');
+            const content = document.getElementById('resultContent');
+            
+            content.innerHTML = `
+                <h3>❌ Error</h3>
+                <p>${message}</p>
+                <p>Make sure your N8N workflow is active and the webhook URL is correct.</p>
+            `;
+            result.className = 'result error';
+            result.style.display = 'block';
+        }
+        
+        // PWA Installation
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installBanner').style.display = 'block';
+        });
+        
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        document.getElementById('installBanner').style.display = 'none';
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+        
+        // Service Worker for PWA (basic)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('data:text/javascript,console.log("SW loaded");')
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+        
+        // Auto-focus first input on load
+        window.addEventListener('load', function() {
+            document.getElementById('action').focus();
+        });
+    </script>
+</body>
+</html>
