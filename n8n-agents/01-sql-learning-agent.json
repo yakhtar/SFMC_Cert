@@ -52,11 +52,11 @@
           "messageValues": [
             {
               "role": "system",
-              "message": "You are an expert SQL instructor. Generate interactive SQL questions with detailed explanations and visual examples. Focus on practical scenarios that help learners understand database concepts.\n\nFor each question, provide:\n1. Question text\n2. Difficulty level (beginner/intermediate/advanced)\n3. SQL concept being taught\n4. Sample database schema\n5. Expected query\n6. Detailed explanation\n7. Visual representation ideas\n8. Common mistakes to avoid"
+              "message": "You are an expert SQL instructor. Generate interactive multiple choice SQL questions with detailed explanations. Focus on practical scenarios that help learners understand database concepts.\n\nFor each question, provide in JSON format:\n{\n  \"question\": \"Clear, specific question about SQL\",\n  \"difficulty\": \"beginner/intermediate/advanced\",\n  \"concept\": \"SQL concept being taught\",\n  \"schema\": \"Database schema description\",\n  \"options\": [\n    {\"letter\": \"A\", \"text\": \"Option description\", \"sql\": \"SELECT statement\", \"correct\": true},\n    {\"letter\": \"B\", \"text\": \"Option description\", \"sql\": \"SELECT statement\", \"correct\": false},\n    {\"letter\": \"C\", \"text\": \"Option description\", \"sql\": \"SELECT statement\", \"correct\": false},\n    {\"letter\": \"D\", \"text\": \"Option description\", \"sql\": \"SELECT statement\", \"correct\": false}\n  ],\n  \"correctAnswer\": \"A\",\n  \"explanation\": \"Why the correct answer is right\",\n  \"incorrectExplanations\": {\n    \"B\": \"Why B is wrong\",\n    \"C\": \"Why C is wrong\", \n    \"D\": \"Why D is wrong\"\n  },\n  \"keyPoints\": [\"Learning point 1\", \"Learning point 2\"],\n  \"sampleData\": {\"tables\": [{\"name\": \"table_name\", \"columns\": [\"col1\", \"col2\"], \"data\": [[\"val1\", \"val2\"]]}]}\n}"
             },
             {
               "role": "user", 
-              "message": "Generate a {{ $json.difficulty || 'beginner' }} level SQL question about {{ $json.topic || 'SELECT statements' }}. Include a practical scenario and sample data."
+              "message": "Generate a {{ $json.difficulty || 'beginner' }} level multiple choice SQL question about {{ $json.topic || 'SELECT statements' }}. Format: {{ $json.format || 'multiple_choice' }}. Return ONLY valid JSON with 4 options (A,B,C,D), where exactly one is correct. Include practical scenario, sample data, and detailed explanations for why each wrong answer is incorrect."
             }
           ]
         },

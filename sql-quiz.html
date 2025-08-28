@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Learning Quiz - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-setup {
+            display: block;
+        }
+        
+        .quiz-question {
+            display: none;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            background: white;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .question-content {
+            margin-bottom: 25px;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #2563eb;
+            margin-bottom: 20px;
+        }
+        
+        .question-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .difficulty-badge, .concept-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .difficulty-beginner { background: #d1fae5; color: #065f46; }
+        .difficulty-intermediate { background: #fed7aa; color: #9a3412; }
+        .difficulty-advanced { background: #fecaca; color: #991b1b; }
+        
+        .concept-badge {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+        
+        .schema-info {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #bae6fd;
+        }
+        
+        .schema-info h4 {
+            color: #0c4a6e;
+            margin-bottom: 10px;
+        }
+        
+        .schema-info pre {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #374151;
+            overflow-x: auto;
+        }
+        
+        .answer-options {
+            margin-bottom: 25px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .option:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+        }
+        
+        .option.selected {
+            border-color: #2563eb;
+            background: #dbeafe;
+        }
+        
+        .option.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+        
+        .option.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+        
+        .option-letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: #e5e7eb;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            color: #374151;
+        }
+        
+        .option.selected .option-letter {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .option.correct .option-letter {
+            background: #10b981;
+            color: white;
+        }
+        
+        .option.incorrect .option-letter {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .option-text {
+            flex: 1;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        
+        .option-sql {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin-top: 8px;
+            color: #1f2937;
+        }
+        
+        .explanation {
+            display: none;
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h3 {
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+        
+        .explanation-section {
+            margin-bottom: 20px;
+        }
+        
+        .explanation-section h4 {
+            color: #374151;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .explanation-section h4.correct {
+            color: #059669;
+        }
+        
+        .explanation-section h4.incorrect {
+            color: #dc2626;
+        }
+        
+        .explanation-text {
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        
+        .next-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            flex: 1;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #2563eb;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .score-display {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f0f9ff;
+            border-radius: 10px;
+        }
+        
+        .score-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1d4ed8;
+        }
+        
+        .sample-data {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .sample-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        
+        .sample-table th,
+        .sample-table td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .sample-table th {
+            background: #e9ecef;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .next-actions {
+                flex-direction: column;
+            }
+            
+            .question-meta {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📚 SQL Learning Quiz</h1>
+            <p>Interactive Q&A with detailed explanations</p>
+        </header>
+        
+        <!-- Quiz Setup -->
+        <div class="card quiz-setup" id="quizSetup">
+            <h2>Start Your SQL Learning Journey</h2>
+            <p style="margin-bottom: 20px; color: #6b7280;">Choose your settings and get personalized SQL questions with detailed explanations.</p>
+            
+            <div class="form-group">
+                <label for="difficulty">Difficulty Level</label>
+                <select id="difficulty" name="difficulty">
+                    <option value="beginner">🟢 Beginner - Basic SELECT, WHERE</option>
+                    <option value="intermediate">🟡 Intermediate - JOINs, GROUP BY</option>
+                    <option value="advanced">🔴 Advanced - Subqueries, Window Functions</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="topic">SQL Topic Focus</label>
+                <select id="topic" name="topic">
+                    <option value="SELECT statements">SELECT Statements & Filtering</option>
+                    <option value="JOINs">Table JOINs & Relationships</option>
+                    <option value="GROUP BY">Aggregations & GROUP BY</option>
+                    <option value="Subqueries">Subqueries & Nested Queries</option>
+                    <option value="Window functions">Window Functions</option>
+                    <option value="CTEs">Common Table Expressions</option>
+                    <option value="Mixed">Mixed Topics (Random)</option>
+                </select>
+            </div>
+            
+            <button class="btn" onclick="startQuiz()">
+                🚀 Start Learning SQL
+            </button>
+        </div>
+        
+        <!-- Loading State -->
+        <div class="card loading" id="loading">
+            <div class="spinner"></div>
+            <p>Your AI tutor is preparing a personalized question...</p>
+        </div>
+        
+        <!-- Quiz Question -->
+        <div class="card quiz-question" id="quizQuestion">
+            <div id="questionContent">
+                <!-- Question content will be populated here -->
+            </div>
+            
+            <div class="answer-options" id="answerOptions">
+                <!-- Answer options will be populated here -->
+            </div>
+            
+            <button class="btn" id="submitAnswer" onclick="checkAnswer()" disabled>
+                ✅ Check My Answer
+            </button>
+            
+            <div class="explanation" id="explanation">
+                <!-- Explanation will be populated here -->
+            </div>
+            
+            <div class="next-actions" id="nextActions" style="display: none;">
+                <button class="btn btn-secondary" onclick="showSetup()">
+                    ⚙️ Change Settings
+                </button>
+                <button class="btn btn-primary" onclick="nextQuestion()">
+                    ➡️ Next Question
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const WEBHOOK_URL = 'https://yakhtar.app.n8n.cloud/webhook/sql-learning';
+        let currentQuestion = null;
+        let selectedAnswer = null;
+        let questionsAnswered = 0;
+        let correctAnswers = 0;
+        
+        function showSetup() {
+            document.getElementById('quizSetup').style.display = 'block';
+            document.getElementById('quizQuestion').style.display = 'none';
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        function showLoading() {
+            document.getElementById('quizSetup').style.display = 'none';
+            document.getElementById('quizQuestion').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+        }
+        
+        function showQuestion() {
+            document.getElementById('quizSetup').style.display = 'none';
+            document.getElementById('quizQuestion').style.display = 'block';
+            document.getElementById('loading').style.display = 'none';
+        }
+        
+        async function startQuiz() {
+            await generateQuestion();
+        }
+        
+        async function nextQuestion() {
+            await generateQuestion();
+        }
+        
+        async function generateQuestion() {
+            showLoading();
+            
+            const difficulty = document.getElementById('difficulty').value;
+            const topic = document.getElementById('topic').value;
+            
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'generate_question',
+                        difficulty: difficulty,
+                        topic: topic,
+                        format: 'multiple_choice'
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                displayQuestion(data);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showError('Failed to generate question. Please try again.');
+            }
+        }
+        
+        function displayQuestion(data) {
+            // Handle different response formats
+            const questionData = Array.isArray(data) ? data[0] : data;
+            currentQuestion = questionData;
+            
+            // Reset state
+            selectedAnswer = null;
+            document.getElementById('submitAnswer').disabled = true;
+            document.getElementById('explanation').classList.remove('show');
+            document.getElementById('nextActions').style.display = 'none';
+            
+            // Display question content
+            const questionContent = document.getElementById('questionContent');
+            questionContent.innerHTML = `
+                <div class="question-meta">
+                    <div class="difficulty-badge difficulty-${questionData.difficulty || 'beginner'}">
+                        ${questionData.difficulty || 'beginner'}
+                    </div>
+                    <div class="concept-badge">
+                        ${questionData.concept || 'SQL Basics'}
+                    </div>
+                </div>
+                
+                <div class="question-text">
+                    ${questionData.question || 'Sample SQL question will appear here'}
+                </div>
+                
+                ${questionData.schema ? `
+                    <div class="schema-info">
+                        <h4>📊 Database Schema</h4>
+                        <pre>${questionData.schema}</pre>
+                    </div>
+                ` : ''}
+                
+                ${questionData.sampleData ? generateSampleDataHTML(questionData.sampleData) : ''}
+            `;
+            
+            // Display answer options
+            displayAnswerOptions(questionData);
+            
+            showQuestion();
+        }
+        
+        function displayAnswerOptions(questionData) {
+            const optionsContainer = document.getElementById('answerOptions');
+            
+            // Try to parse JSON from OpenAI if it's a string
+            let parsedData = questionData;
+            if (typeof questionData === 'string') {
+                try {
+                    parsedData = JSON.parse(questionData);
+                } catch (e) {
+                    console.error('Failed to parse question data:', e);
+                }
+            }
+            
+            // Use API options if available, otherwise create sample options
+            const options = parsedData.options || [
+                {
+                    letter: 'A',
+                    text: 'SELECT * FROM customers;',
+                    sql: 'SELECT * FROM customers;'
+                },
+                {
+                    letter: 'B', 
+                    text: 'SELECT name FROM customers;',
+                    sql: 'SELECT name FROM customers;'
+                },
+                {
+                    letter: 'C',
+                    text: 'SELECT customers.name FROM customers;',
+                    sql: 'SELECT customers.name FROM customers;'
+                },
+                {
+                    letter: 'D',
+                    text: 'SELECT name, email FROM customers;',
+                    sql: 'SELECT name, email FROM customers;'
+                }
+            ];
+            
+            optionsContainer.innerHTML = options.map(option => `
+                <div class="option" onclick="selectOption('${option.letter}')">
+                    <div class="option-letter">${option.letter}</div>
+                    <div class="option-text">
+                        ${option.text}
+                        ${option.sql ? `<div class="option-sql">${option.sql}</div>` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function selectOption(letter) {
+            // Remove previous selection
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Select new option
+            const selectedOption = document.querySelector(`[onclick="selectOption('${letter}')"]`);
+            selectedOption.classList.add('selected');
+            
+            selectedAnswer = letter;
+            document.getElementById('submitAnswer').disabled = false;
+        }
+        
+        function checkAnswer() {
+            if (!selectedAnswer) return;
+            
+            questionsAnswered++;
+            
+            // Try to parse JSON from currentQuestion if it's a string
+            let parsedData = currentQuestion;
+            if (typeof currentQuestion === 'string') {
+                try {
+                    parsedData = JSON.parse(currentQuestion);
+                } catch (e) {
+                    console.error('Failed to parse current question:', e);
+                }
+            }
+            
+            // Get correct answer from API data or default to A
+            const correctAnswer = parsedData.correctAnswer || 'A';
+            const isCorrect = selectedAnswer === correctAnswer;
+            
+            if (isCorrect) {
+                correctAnswers++;
+            }
+            
+            // Update option styles
+            document.querySelectorAll('.option').forEach(opt => {
+                const letter = opt.querySelector('.option-letter').textContent;
+                if (letter === correctAnswer) {
+                    opt.classList.add('correct');
+                } else if (letter === selectedAnswer && !isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+            
+            // Show explanation
+            showExplanation(correctAnswer, selectedAnswer, parsedData);
+            
+            // Disable submit button and show next actions
+            document.getElementById('submitAnswer').style.display = 'none';
+            document.getElementById('nextActions').style.display = 'flex';
+        }
+        
+        function showExplanation(correctAnswer, selectedAnswer, questionData) {
+            const isCorrect = correctAnswer === selectedAnswer;
+            const explanation = document.getElementById('explanation');
+            
+            // Get explanations from API data or use defaults
+            const correctExplanation = questionData.explanation || 'This is the correct answer based on SQL best practices.';
+            const incorrectExplanations = questionData.incorrectExplanations || {};
+            const keyPoints = questionData.keyPoints || ['Review SQL syntax', 'Practice more questions'];
+            
+            let incorrectHTML = '';
+            ['A', 'B', 'C', 'D'].forEach(letter => {
+                if (letter !== correctAnswer) {
+                    const incorrectReason = incorrectExplanations[letter] || `Option ${letter} is incorrect.`;
+                    incorrectHTML += `<strong>Option ${letter}:</strong> ${incorrectReason}<br>`;
+                }
+            });
+            
+            explanation.innerHTML = `
+                <div class="score-display">
+                    <div class="score-number">${isCorrect ? '✅' : '❌'}</div>
+                    <div>${isCorrect ? 'Excellent!' : 'Good try!'}</div>
+                    <div style="font-size: 14px; color: #6b7280; margin-top: 5px;">
+                        Score: ${correctAnswers}/${questionsAnswered} (${Math.round((correctAnswers/questionsAnswered)*100)}%)
+                    </div>
+                </div>
+                
+                <h3>💡 Detailed Explanation</h3>
+                
+                <div class="explanation-section">
+                    <h4 class="correct">✅ Why ${correctAnswer} is correct:</h4>
+                    <div class="explanation-text">
+                        ${correctExplanation}
+                    </div>
+                </div>
+                
+                <div class="explanation-section">
+                    <h4 class="incorrect">❌ Why other answers are incorrect:</h4>
+                    <div class="explanation-text">
+                        ${incorrectHTML}
+                    </div>
+                </div>
+                
+                <div class="explanation-section">
+                    <h4>🎯 Key Learning Points:</h4>
+                    <div class="explanation-text">
+                        ${keyPoints.map(point => `• ${point}`).join('<br>')}
+                    </div>
+                </div>
+            `;
+            
+            explanation.classList.add('show');
+            explanation.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function generateSampleDataHTML(sampleData) {
+            if (!sampleData || !sampleData.tables) return '';
+            
+            let html = '<div class="sample-data"><h4>📊 Sample Data</h4>';
+            
+            sampleData.tables.forEach(table => {
+                html += `
+                    <div style="margin: 15px 0;">
+                        <h5>${table.name}</h5>
+                        <table class="sample-table">
+                            <thead>
+                                <tr>
+                `;
+                
+                if (table.columns) {
+                    table.columns.forEach(col => {
+                        html += `<th>${col}</th>`;
+                    });
+                }
+                
+                html += `
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                if (table.data) {
+                    table.data.forEach(row => {
+                        html += '<tr>';
+                        row.forEach(cell => {
+                            html += `<td>${cell}</td>`;
+                        });
+                        html += '</tr>';
+                    });
+                }
+                
+                html += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            return html;
+        }
+        
+        function showError(message) {
+            document.getElementById('loading').innerHTML = `
+                <div style="text-align: center; color: #ef4444;">
+                    <h3>❌ Error</h3>
+                    <p>${message}</p>
+                    <button class="btn" onclick="showSetup()" style="margin-top: 20px; max-width: 200px;">
+                        Try Again
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Initialize
+        window.addEventListener('load', function() {
+            showSetup();
+        });
+    </script>
+</body>
+</html>
