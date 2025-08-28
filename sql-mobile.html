@@ -212,6 +212,90 @@
             margin-top: 10px;
             cursor: pointer;
         }
+        
+        /* Progress tracking styles */
+        .progress-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e40af;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin: 5px;
+        }
+        
+        .level-beginner { background: #dcfce7; color: #166534; }
+        .level-intermediate { background: #fef3c7; color: #92400e; }
+        .level-advanced { background: #fde2e8; color: #9f1239; }
+        .level-locked { background: #f1f5f9; color: #64748b; cursor: not-allowed; }
+        
+        .achievement {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: 600;
+            animation: celebration 0.5s ease;
+        }
+        
+        @keyframes celebration {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -225,6 +309,43 @@
             <h1>📚 SQL Learning</h1>
             <p>Your AI-powered SQL tutor</p>
         </header>
+        
+        <!-- Progress Tracking Section -->
+        <div class="card progress-section" id="progressSection">
+            <h3>📊 Your Learning Progress</h3>
+            <div class="level-badge level-beginner" id="currentLevelBadge">Beginner</div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="questionsAnswered">0</div>
+                    <div class="stat-label">Questions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="correctAnswers">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="accuracyRate">0%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="currentStreak">0</div>
+                    <div class="stat-label">Streak</div>
+                </div>
+            </div>
+            
+            <div id="achievementAlert" class="achievement" style="display: none;"></div>
+            
+            <div style="text-align: center; margin-top: 15px;">
+                <div class="level-badge level-beginner" onclick="selectManualLevel('beginner')" id="beginnerLevel">🟢 Beginner</div>
+                <div class="level-badge level-locked" onclick="selectManualLevel('intermediate')" id="intermediateLevel">🟡 Intermediate</div>
+                <div class="level-badge level-locked" onclick="selectManualLevel('advanced')" id="advancedLevel">🔴 Advanced</div>
+            </div>
+        </div>
         
         <div class="card">
             <div class="quick-actions">
@@ -295,12 +416,230 @@
     <script>
         const WEBHOOK_URL = 'https://yakhtar.app.n8n.cloud/webhook/sql-learning';
         
+        // Progress tracking variables
+        let userProgress = {
+            currentLevel: 'beginner',
+            questionsAnswered: 0,
+            correctAnswers: 0,
+            streak: 0,
+            levelProgress: {
+                beginner: { answered: 0, correct: 0 },
+                intermediate: { answered: 0, correct: 0 },
+                advanced: { answered: 0, correct: 0 }
+            },
+            unlockedLevels: ['beginner'],
+            questionHistory: [], // Track asked questions to avoid repeats
+            currentSession: {
+                level: 'beginner',
+                answered: 0,
+                correct: 0
+            }
+        };
+        
+        // SQL topic pools for variety
+        const topicPools = {
+            beginner: [
+                'SELECT statements', 'WHERE clauses', 'Basic filtering', 'ORDER BY', 'LIMIT clauses',
+                'COUNT function', 'SUM and AVG', 'DISTINCT keyword', 'Basic comparisons', 'NULL handling'
+            ],
+            intermediate: [
+                'JOINs', 'GROUP BY', 'HAVING clauses', 'Subqueries', 'CASE statements',
+                'Date functions', 'String functions', 'Multiple table queries', 'Aggregate functions', 'UNION operations'
+            ],
+            advanced: [
+                'Window functions', 'CTEs', 'Recursive queries', 'Advanced subqueries', 'Performance optimization',
+                'Index strategies', 'Complex JOINs', 'Pivot tables', 'Stored procedures', 'Advanced window functions'
+            ]
+        };
+        
+        // Load saved progress
+        function loadProgress() {
+            const saved = localStorage.getItem('sqlLearningProgress');
+            if (saved) {
+                userProgress = { ...userProgress, ...JSON.parse(saved) };
+                updateProgressDisplay();
+            }
+        }
+        
+        // Save progress
+        function saveProgress() {
+            localStorage.setItem('sqlLearningProgress', JSON.stringify(userProgress));
+        }
+        
+        // Update progress display
+        function updateProgressDisplay() {
+            const current = userProgress.levelProgress[userProgress.currentLevel];
+            const accuracy = current.answered > 0 ? Math.round((current.correct / current.answered) * 100) : 0;
+            
+            document.getElementById('questionsAnswered').textContent = userProgress.questionsAnswered;
+            document.getElementById('correctAnswers').textContent = userProgress.correctAnswers;
+            document.getElementById('accuracyRate').textContent = accuracy + '%';
+            document.getElementById('currentStreak').textContent = userProgress.streak;
+            
+            // Update progress bar
+            const progressPercent = current.answered >= 25 ? 
+                Math.min(100, (current.correct / Math.max(25 * 0.8, 1)) * 100) : 
+                (current.answered / 25) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+            
+            // Update level badge
+            const levelBadge = document.getElementById('currentLevelBadge');
+            levelBadge.textContent = userProgress.currentLevel.charAt(0).toUpperCase() + userProgress.currentLevel.slice(1);
+            levelBadge.className = `level-badge level-${userProgress.currentLevel}`;
+            
+            // Update level buttons
+            updateLevelButtons();
+        }
+        
+        // Update level selection buttons
+        function updateLevelButtons() {
+            const levels = ['beginner', 'intermediate', 'advanced'];
+            levels.forEach(level => {
+                const button = document.getElementById(level + 'Level');
+                if (userProgress.unlockedLevels.includes(level)) {
+                    button.className = `level-badge level-${level}`;
+                    button.style.cursor = 'pointer';
+                    button.style.opacity = '1';
+                } else {
+                    button.className = 'level-badge level-locked';
+                    button.style.cursor = 'not-allowed';
+                    button.style.opacity = '0.6';
+                }
+                
+                if (level === userProgress.currentLevel) {
+                    button.style.boxShadow = '0 0 0 2px #2563eb';
+                } else {
+                    button.style.boxShadow = 'none';
+                }
+            });
+        }
+        
+        // Check for level progression
+        function checkLevelProgression() {
+            const current = userProgress.levelProgress[userProgress.currentLevel];
+            const accuracy = current.answered > 0 ? (current.correct / current.answered) : 0;
+            
+            // Check if user can advance to next level
+            if (current.answered >= 25 && accuracy >= 0.8) {
+                const nextLevel = getNextLevel(userProgress.currentLevel);
+                if (nextLevel && !userProgress.unlockedLevels.includes(nextLevel)) {
+                    userProgress.unlockedLevels.push(nextLevel);
+                    showAchievement(`🎉 Congratulations! ${nextLevel.charAt(0).toUpperCase() + nextLevel.slice(1)} level unlocked!`);
+                    
+                    // Auto-advance to next level
+                    setTimeout(() => {
+                        userProgress.currentLevel = nextLevel;
+                        userProgress.currentSession = { level: nextLevel, answered: 0, correct: 0 };
+                        document.getElementById('difficulty').value = nextLevel;
+                        updateProgressDisplay();
+                        saveProgress();
+                        showAchievement(`🚀 Welcome to ${nextLevel} level! Ready for more challenging questions?`);
+                    }, 3000);
+                }
+            }
+        }
+        
+        function getNextLevel(currentLevel) {
+            const levels = ['beginner', 'intermediate', 'advanced'];
+            const currentIndex = levels.indexOf(currentLevel);
+            return currentIndex < levels.length - 1 ? levels[currentIndex + 1] : null;
+        }
+        
+        function showAchievement(message) {
+            const alert = document.getElementById('achievementAlert');
+            alert.textContent = message;
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 4000);
+        }
+        
+        // Select manual difficulty level
+        function selectManualLevel(level) {
+            if (!userProgress.unlockedLevels.includes(level)) {
+                showAchievement(`🔒 Complete ${userProgress.currentLevel} level first to unlock ${level}!`);
+                return;
+            }
+            
+            userProgress.currentLevel = level;
+            userProgress.currentSession = { level: level, answered: 0, correct: 0 };
+            document.getElementById('difficulty').value = level;
+            updateProgressDisplay();
+            saveProgress();
+            showAchievement(`📚 Switched to ${level} level. Good luck!`);
+        }
+        
+        // Get random topic for current level
+        function getRandomTopic() {
+            const topics = topicPools[userProgress.currentLevel] || topicPools.beginner;
+            return topics[Math.floor(Math.random() * topics.length)];
+        }
+        
+        // Generate unique question parameters to avoid repeats
+        function generateQuestionParams() {
+            const topic = getRandomTopic();
+            const timestamp = Date.now();
+            const randomSeed = Math.floor(Math.random() * 1000);
+            
+            // Create unique question signature
+            const signature = `${userProgress.currentLevel}-${topic}-${randomSeed}`;
+            
+            // Avoid recent duplicates (last 10 questions)
+            if (userProgress.questionHistory.slice(-10).includes(signature)) {
+                return generateQuestionParams(); // Try again
+            }
+            
+            userProgress.questionHistory.push(signature);
+            if (userProgress.questionHistory.length > 50) {
+                userProgress.questionHistory = userProgress.questionHistory.slice(-25); // Keep last 25
+            }
+            
+            return {
+                topic: topic,
+                difficulty: userProgress.currentLevel,
+                seed: randomSeed,
+                timestamp: timestamp,
+                variety: getVarietyPrompt()
+            };
+        }
+        
+        // Add variety to question generation
+        function getVarietyPrompt() {
+            const varietyOptions = [
+                'Focus on practical business scenarios',
+                'Include edge cases and data validation',
+                'Emphasize performance considerations', 
+                'Create a real-world database example',
+                'Include data transformation challenges',
+                'Focus on common interview questions',
+                'Create multi-table relationship scenarios',
+                'Include data analysis use cases'
+            ];
+            return varietyOptions[Math.floor(Math.random() * varietyOptions.length)];
+        }
+        
         // Form handling
         document.getElementById('sqlForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
+            let data = Object.fromEntries(formData.entries());
+            
+            // Add dynamic question parameters for variety
+            if (data.action === 'generate_question') {
+                const questionParams = generateQuestionParams();
+                data = {
+                    ...data,
+                    topic: questionParams.topic,
+                    difficulty: questionParams.difficulty,
+                    seed: questionParams.seed,
+                    variety: questionParams.variety,
+                    sessionInfo: {
+                        questionsAnswered: userProgress.currentSession.answered,
+                        levelProgress: userProgress.levelProgress[userProgress.currentLevel]
+                    }
+                };
+            }
             
             // Show loading
             document.getElementById('loading').style.display = 'block';
@@ -428,6 +767,9 @@
                 const feedbackColor = isCorrect ? '#10b981' : '#f59e0b';
                 const emoji = isCorrect ? '🎉' : '💪';
                 const encouragement = isCorrect ? 'Great job!' : 'Keep learning!';
+                
+                // Update progress tracking
+                updateAnswerProgress(isCorrect);
                 
                 html += `
                     <div class="question-section">
@@ -593,6 +935,44 @@
             document.getElementById('answerGroup').scrollIntoView({ behavior: 'smooth' });
         }
         
+        // Update progress when answer is submitted
+        function updateAnswerProgress(isCorrect) {
+            userProgress.questionsAnswered++;
+            userProgress.currentSession.answered++;
+            userProgress.levelProgress[userProgress.currentLevel].answered++;
+            
+            if (isCorrect) {
+                userProgress.correctAnswers++;
+                userProgress.currentSession.correct++;
+                userProgress.levelProgress[userProgress.currentLevel].correct++;
+                userProgress.streak++;
+            } else {
+                userProgress.streak = 0;
+            }
+            
+            // Check for achievements
+            checkAchievements();
+            
+            // Check level progression
+            checkLevelProgression();
+            
+            // Update display and save
+            updateProgressDisplay();
+            saveProgress();
+        }
+        
+        function checkAchievements() {
+            if (userProgress.streak === 5) {
+                showAchievement('🔥 5 question streak! You\'re on fire!');
+            } else if (userProgress.streak === 10) {
+                showAchievement('⚡ 10 question streak! Unstoppable!');
+            } else if (userProgress.questionsAnswered === 50) {
+                showAchievement('📚 50 questions answered! Learning machine!');
+            } else if (userProgress.questionsAnswered === 100) {
+                showAchievement('🏆 Century club! 100 questions mastered!');
+            }
+        }
+        
         function generateNewQuestion() {
             // Reset form to generate new question
             document.getElementById('action').value = 'generate_question';
@@ -601,16 +981,30 @@
             document.getElementById('studentQuery').value = '';
             document.getElementById('result').style.display = 'none';
             
+            // Set current difficulty level
+            document.getElementById('difficulty').value = userProgress.currentLevel;
+            
             // Update button text
             document.getElementById('submitBtn').innerHTML = '🚀 Get SQL Help';
             
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Auto-generate if user wants continuous practice
+            if (userProgress.currentSession.answered > 0) {
+                setTimeout(() => {
+                    document.getElementById('sqlForm').dispatchEvent(new Event('submit'));
+                }, 1000);
+            }
         }
         
-        // Auto-focus first input on load
+        // Initialize on load
         window.addEventListener('load', function() {
+            loadProgress();
             document.getElementById('action').focus();
+            
+            // Set initial difficulty to user's current level
+            document.getElementById('difficulty').value = userProgress.currentLevel;
         });
     </script>
 </body>
