@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Learning Platform - Master Digital Marketing & Tech Skills</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, #f0f9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .subject-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+        }
+        
+        .subject-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .subject-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+        
+        .subject-description {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .subject-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .lessons-count {
+            color: #059669;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .difficulty-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .difficulty-beginner { background: #d1fae5; color: #065f46; }
+        .difficulty-intermediate { background: #fed7aa; color: #9a3412; }
+        .difficulty-advanced { background: #fecaca; color: #991b1b; }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            transition: width 0.5s ease;
+        }
+        
+        .learning-path {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .learning-path.active {
+            display: block;
+        }
+        
+        .path-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .back-btn {
+            background: #e5e7eb;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #d1d5db;
+        }
+        
+        .path-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        
+        .modules-list {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .module-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border-left: 4px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .module-item:hover {
+            background: #f1f5f9;
+            border-left-color: #2563eb;
+        }
+        
+        .module-item.completed {
+            border-left-color: #10b981;
+            background: #ecfdf5;
+        }
+        
+        .module-item.current {
+            border-left-color: #f59e0b;
+            background: #fffbeb;
+        }
+        
+        .module-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #e5e7eb;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 20px;
+            color: #374151;
+        }
+        
+        .module-item.completed .module-number {
+            background: #10b981;
+            color: white;
+        }
+        
+        .module-item.current .module-number {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .module-content {
+            flex: 1;
+        }
+        
+        .module-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #1f2937;
+        }
+        
+        .module-description {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .module-duration {
+            color: #9ca3af;
+            font-size: 12px;
+            margin-left: auto;
+        }
+        
+        .start-learning-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .start-learning-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .start-learning-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        @media (max-width: 768px) {
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🚀 Digital Learning Platform</h1>
+            <p>Master Digital Marketing & Technology Skills with Interactive Learning</p>
+        </header>
+        
+        <!-- Subject Selection Grid -->
+        <div id="subjectsView" class="subjects-grid">
+            <!-- A/B Testing & Conversion Optimization -->
+            <div class="subject-card" onclick="selectSubject('ab-testing')">
+                <span class="subject-icon">🧪</span>
+                <h3 class="subject-title">A/B Testing & CRO</h3>
+                <p class="subject-description">Master conversion rate optimization, statistical significance, and Adobe Target implementation</p>
+                <div class="subject-stats">
+                    <span class="lessons-count">8 Modules</span>
+                    <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%"></div>
+                </div>
+            </div>
+            
+            <!-- Social Media Marketing -->
+            <div class="subject-card" onclick="selectSubject('social-media')">
+                <span class="subject-icon">📱</span>
+                <h3 class="subject-title">Social Media Marketing</h3>
+                <p class="subject-description">Facebook Ads, LinkedIn campaigns, TikTok strategy, and social media automation</p>
+                <div class="subject-stats">
+                    <span class="lessons-count">10 Modules</span>
+                    <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- SEO & Content Strategy -->
+            <div class="subject-card" onclick="selectSubject('seo')">
+                <span class="subject-icon">🔍</span>
+                <h3 class="subject-title">SEO & Content Strategy</h3>
+                <p class="subject-description">Technical SEO, keyword research, content optimization, and SERP strategies</p>
+                <div class="subject-stats">
+                    <span class="lessons-count">12 Modules</span>
+                    <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 10%"></div>
+                </div>
+            </div>
+            
+            <!-- Tableau Analytics -->
+            <div class="subject-card" onclick="selectSubject('tableau')">
+                <span class="subject-icon">📊</span>
+                <h3 class="subject-title">Tableau Analytics</h3>
+                <p class="subject-description">Data visualization, dashboard creation, and advanced analytics for marketing insights</p>
+                <div class="subject-stats">
+                    <span class="lessons-count">9 Modules</span>
+                    <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- Claude Code Development -->
+            <div class="subject-card" onclick="selectSubject('claude-code')">
+                <span class="subject-icon">💻</span>
+                <h3 class="subject-title">Claude Code Development</h3>
+                <p class="subject-description">Build applications with Claude Code, MCP agents, and AI-powered development</p>
+                <div class="subject-stats">
+                    <span class="lessons-count">11 Modules</span>
+                    <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- SQL Database Management -->
+            <div class="subject-card" onclick="selectSubject('sql')">
+                <span class="subject-icon">🗃️</span>
+                <h3 class="subject-title">SQL Database Management</h3>
+                <p class="subject-description">Advanced queries, database design, optimization, and certification preparation</p>
+                <div class="subject-stats">
+                    <span class="lessons-count">15 Modules</span>
+                    <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 60%"></div>
+                </div>
+            </div>
+            
+            <!-- Salesforce Marketing Cloud -->
+            <div class="subject-card" onclick="selectSubject('sfmc')">
+                <span class="subject-icon">☁️</span>
+                <h3 class="subject-title">Salesforce Marketing Cloud</h3>
+                <p class="subject-description">Email Studio, Journey Builder, AMPscript, and SFMC certification preparation</p>
+                <div class="subject-stats">
+                    <span class="lessons-count">13 Modules</span>
+                    <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%"></div>
+                </div>
+            </div>
+            
+            <!-- Keyword Strategy & SEM -->
+            <div class="subject-card" onclick="selectSubject('sem')">
+                <span class="subject-icon">🎯</span>
+                <h3 class="subject-title">SEM & Keyword Strategy</h3>
+                <p class="subject-description">Google Ads, keyword research, bid management, and search engine marketing</p>
+                <div class="subject-stats">
+                    <span class="lessons-count">10 Modules</span>
+                    <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- AI Consulting -->
+            <div class="subject-card" onclick="selectSubject('ai-consulting')">
+                <span class="subject-icon">🤖</span>
+                <h3 class="subject-title">AI Consulting</h3>
+                <p class="subject-description">Become an AI consultant, client acquisition, service delivery, and business development</p>
+                <div class="subject-stats">
+                    <span class="lessons-count">12 Modules</span>
+                    <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+            
+            <!-- YouTube Content Creation -->
+            <div class="subject-card" onclick="selectSubject('youtube')">
+                <span class="subject-icon">🎥</span>
+                <h3 class="subject-title">YouTube Content Creation</h3>
+                <p class="subject-description">Video creation, channel optimization, monetization, and audience growth strategies</p>
+                <div class="subject-stats">
+                    <span class="lessons-count">9 Modules</span>
+                    <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Learning Path View (Hidden by default) -->
+        <div id="learningPathView" class="learning-path">
+            <div class="path-header">
+                <button class="back-btn" onclick="backToSubjects()">← Back</button>
+                <h2 class="path-title" id="pathTitle">Subject Learning Path</h2>
+            </div>
+            
+            <div class="modules-list" id="modulesList">
+                <!-- Modules will be dynamically populated -->
+            </div>
+            
+            <button class="start-learning-btn" id="startBtn" onclick="startModule()">
+                🚀 Start Learning
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Subject data with learning modules
+        const subjects = {
+            'ab-testing': {
+                title: 'A/B Testing & Conversion Rate Optimization',
+                icon: '🧪',
+                modules: [
+                    { id: 1, title: 'A/B Testing Fundamentals', description: 'Statistics, hypothesis testing, significance', duration: '45 min', status: 'completed' },
+                    { id: 2, title: 'Experimental Design', description: 'Designing effective tests, avoiding bias', duration: '60 min', status: 'current' },
+                    { id: 3, title: 'Adobe Target Implementation', description: 'Setting up tests in Adobe Target', duration: '90 min', status: 'pending' },
+                    { id: 4, title: 'Statistical Analysis', description: 'Interpreting results, confidence intervals', duration: '75 min', status: 'pending' },
+                    { id: 5, title: 'Multivariate Testing', description: 'Testing multiple elements simultaneously', duration: '60 min', status: 'pending' },
+                    { id: 6, title: 'Advanced Personalization', description: 'Dynamic content and targeting', duration: '80 min', status: 'pending' },
+                    { id: 7, title: 'Mobile A/B Testing', description: 'Mobile-specific considerations', duration: '50 min', status: 'pending' },
+                    { id: 8, title: 'CRO Strategy & Implementation', description: 'Building a comprehensive CRO program', duration: '90 min', status: 'pending' }
+                ]
+            },
+            'social-media': {
+                title: 'Social Media Marketing',
+                icon: '📱',
+                modules: [
+                    { id: 1, title: 'Social Media Strategy Foundation', description: 'Platform selection, audience research', duration: '60 min', status: 'pending' },
+                    { id: 2, title: 'Facebook Ads Mastery', description: 'Campaign setup, targeting, optimization', duration: '90 min', status: 'pending' },
+                    { id: 3, title: 'Instagram Marketing', description: 'Content creation, Stories, Reels strategy', duration: '75 min', status: 'pending' },
+                    { id: 4, title: 'LinkedIn B2B Marketing', description: 'Professional networking, lead generation', duration: '80 min', status: 'pending' },
+                    { id: 5, title: 'TikTok for Business', description: 'Short-form video strategy, trends', duration: '70 min', status: 'pending' },
+                    { id: 6, title: 'Social Media Analytics', description: 'Measuring ROI, engagement metrics', duration: '65 min', status: 'pending' },
+                    { id: 7, title: 'Influencer Marketing', description: 'Partnership strategies, campaign management', duration: '85 min', status: 'pending' },
+                    { id: 8, title: 'Social Commerce', description: 'Selling through social platforms', duration: '70 min', status: 'pending' },
+                    { id: 9, title: 'Crisis Management', description: 'Handling negative feedback, reputation', duration: '55 min', status: 'pending' },
+                    { id: 10, title: 'Automation & Tools', description: 'Scheduling, management platforms', duration: '60 min', status: 'pending' }
+                ]
+            },
+            'seo': {
+                title: 'SEO & Content Strategy',
+                icon: '🔍',
+                modules: [
+                    { id: 1, title: 'SEO Fundamentals', description: 'How search engines work, ranking factors', duration: '60 min', status: 'completed' },
+                    { id: 2, title: 'Keyword Research Mastery', description: 'Tools, intent, competitive analysis', duration: '75 min', status: 'pending' },
+                    { id: 3, title: 'On-Page Optimization', description: 'Title tags, meta descriptions, headers', duration: '80 min', status: 'pending' },
+                    { id: 4, title: 'Technical SEO', description: 'Site speed, crawlability, indexing', duration: '90 min', status: 'pending' },
+                    { id: 5, title: 'Content Strategy', description: 'Creating SEO-optimized content', duration: '85 min', status: 'pending' },
+                    { id: 6, title: 'Link Building', description: 'Authority building, outreach strategies', duration: '70 min', status: 'pending' },
+                    { id: 7, title: 'Local SEO', description: 'Google My Business, local rankings', duration: '65 min', status: 'pending' },
+                    { id: 8, title: 'E-commerce SEO', description: 'Product pages, category optimization', duration: '75 min', status: 'pending' },
+                    { id: 9, title: 'SEO Analytics', description: 'Google Analytics, Search Console', duration: '70 min', status: 'pending' },
+                    { id: 10, title: 'Algorithm Updates', description: 'Staying current with Google changes', duration: '50 min', status: 'pending' },
+                    { id: 11, title: 'International SEO', description: 'Multi-language, geo-targeting', duration: '80 min', status: 'pending' },
+                    { id: 12, title: 'SEO Audit & Strategy', description: 'Comprehensive site analysis', duration: '90 min', status: 'pending' }
+                ]
+            },
+            // Add more subjects here...
+        };
+        
+        let currentSubject = null;
+        let currentModule = null;
+        
+        function selectSubject(subjectKey) {
+            currentSubject = subjectKey;
+            const subject = subjects[subjectKey];
+            
+            // Hide subjects view, show learning path view
+            document.getElementById('subjectsView').style.display = 'none';
+            document.getElementById('learningPathView').style.display = 'block';
+            
+            // Update path title
+            document.getElementById('pathTitle').textContent = subject.title;
+            
+            // Populate modules
+            populateModules(subject.modules);
+        }
+        
+        function populateModules(modules) {
+            const modulesList = document.getElementById('modulesList');
+            modulesList.innerHTML = '';
+            
+            modules.forEach(module => {
+                const moduleDiv = document.createElement('div');
+                moduleDiv.className = `module-item ${module.status}`;
+                moduleDiv.onclick = () => selectModule(module);
+                
+                moduleDiv.innerHTML = `
+                    <div class="module-number">${module.status === 'completed' ? '✓' : module.id}</div>
+                    <div class="module-content">
+                        <div class="module-title">${module.title}</div>
+                        <div class="module-description">${module.description}</div>
+                    </div>
+                    <div class="module-duration">${module.duration}</div>
+                `;
+                
+                modulesList.appendChild(moduleDiv);
+            });
+        }
+        
+        function selectModule(module) {
+            currentModule = module;
+            
+            // Update start button
+            const startBtn = document.getElementById('startBtn');
+            startBtn.textContent = module.status === 'completed' ? '🔄 Review Module' : 
+                                   module.status === 'current' ? '▶️ Continue Learning' : 
+                                   '🚀 Start Module';
+            
+            startBtn.disabled = false;
+        }
+        
+        function startModule() {
+            if (!currentModule) return;
+            
+            // This will integrate with your existing quiz system
+            // For now, show alert - later will navigate to lesson/quiz
+            alert(`Starting: ${currentModule.title}\n\nThis will integrate with:\n• Interactive lesson content\n• Immediate Q&A testing\n• Progress tracking\n• Adaptive difficulty`);
+            
+            // TODO: Navigate to lesson interface
+            // window.location.href = `lesson.html?subject=${currentSubject}&module=${currentModule.id}`;
+        }
+        
+        function backToSubjects() {
+            document.getElementById('learningPathView').style.display = 'none';
+            document.getElementById('subjectsView').style.display = 'grid';
+            currentSubject = null;
+            currentModule = null;
+        }
+        
+        // Initialize the platform
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Digital Learning Platform Initialized');
+        });
+    </script>
+</body>
+</html>

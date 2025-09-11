@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 4: Email Studio & Content Creation - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #dc3545, #ff6b7a);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #dc3545;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .option:hover {
+            border-color: #dc3545;
+            background: #f0f7ff;
+        }
+        
+        .option.selected {
+            border-color: #dc3545;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #dc3545;
+            min-width: 25px;
+        }
+        
+        .explanation {
+            background: #e8f5e8;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #dc3545 0%, #b02a37 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .completion-screen.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .score-needs-improvement {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.0em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✉️ SFMC Email Specialist Certification</h1>
+            <p>Lesson 4: Email Studio & Content Creation</p>
+            <div style="font-size: 0.9em; margin-top: 10px; opacity: 0.8;">
+                🎯 SFMC Certification Exam Questions 🎯
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 40</div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+        
+        <div class="completion-screen" id="completionScreen">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the Email Studio & Content Creation certification quiz!</p>
+            <div class="score-circle" id="scoreCircle">
+                <span id="finalScore">0%</span>
+            </div>
+            <p id="scoreMessage"></p>
+            <div style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                💡 This quiz covers Email Studio and content creation essential for certification success
+            </div>
+            <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        // SFMC Email Specialist Certification Questions
+        // Lesson 4: Email Studio & Content Creation
+        const questions = [
+            {
+                question: "NTO is creating a responsive email template that must work across all major email clients. What is the most critical HTML/CSS approach to ensure consistent rendering and mobile optimization?",
+                options: [
+                    "Use only inline CSS with table-based layout, media queries for responsive design, and test across multiple email clients",
+                    "Rely on external CSS files for consistent styling",
+                    "Use div-based layout with modern CSS Grid",
+                    "Create separate templates for mobile and desktop"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Email clients have limited CSS support, requiring inline CSS and table-based layouts for reliability. Media queries enable responsive design, and cross-client testing ensures consistent rendering across Gmail, Outlook, Apple Mail, and other major email clients that handle CSS differently."
+            },
+
+            {
+                question: "For NTO's product recommendation emails, they need to personalize content based on customer purchase history and browsing behavior. What AMPscript approach best supports dynamic product display with fallback content?",
+                options: [
+                    "Use simple personalization strings for basic customization",
+                    "Implement AMPscript with data lookups from purchase history Data Extension, conditional logic for product recommendations, and fallback content for customers without purchase data",
+                    "Rely only on Contact Builder attributes for personalization",
+                    "Use external systems to generate personalized content"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Advanced personalization requires AMPscript data lookups from purchase history, conditional logic to determine relevant products, and fallback content for new customers. This approach ensures every subscriber receives relevant content while maintaining email deliverability and engagement rates."
+            },
+
+            {
+                question: "NTO wants to implement A/B testing for their promotional email campaigns to optimize subject lines, send times, and content variations. What Email Studio configuration provides the most reliable testing results?",
+                options: [
+                    "Manually send different versions to arbitrary subscriber segments",
+                    "Configure A/B testing with statistically significant sample sizes, random audience distribution, clear success metrics, and defined testing duration before winner deployment",
+                    "Test only subject lines since they have the most impact",
+                    "Use external tools for A/B testing instead of Email Studio"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Reliable A/B testing requires statistically significant sample sizes (typically 10-20% of audience per variant), random distribution to avoid bias, clear success metrics (open rate, click rate, conversion), and sufficient testing duration before deploying the winning variant to remaining audience."
+            },
+
+            {
+                question: "When creating Content Builder blocks for NTO's reusable email components (headers, footers, product showcases), what design strategy ensures maximum flexibility and maintainability?",
+                options: [
+                    "Create separate blocks for each specific use case",
+                    "Design modular Content Builder blocks with customizable attributes, consistent naming conventions, and template inheritance that enables easy updates across campaigns",
+                    "Use only pre-built Content Builder templates",
+                    "Avoid Content Builder blocks to maintain design control"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Modular Content Builder blocks with customizable attributes enable reuse across campaigns while maintaining consistency. Template inheritance allows global updates to propagate across all uses. Consistent naming conventions facilitate block discovery and management by multiple team members."
+            },
+
+            {
+                question: "NTO needs to create transactional emails (order confirmations, shipping notifications) that require real-time data from their e-commerce platform. What architecture ensures reliable delivery and data accuracy?",
+                options: [
+                    "Use batch imports to update customer data before sending",
+                    "Implement triggered send architecture with REST API integration, real-time data passing, error handling, and delivery confirmation tracking",
+                    "Send all transactional emails from the e-commerce platform directly",
+                    "Use Journey Builder for all transactional communications"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Transactional emails require triggered send architecture with REST API integration for real-time data passing. Error handling ensures delivery reliability, and delivery confirmation tracking provides visibility into customer communications. This approach maintains data accuracy and timing critical for customer experience."
+            },
+
+            {
+                question: "For NTO's multi-language email campaigns targeting global customers, what Email Studio approach best supports localization while maintaining operational efficiency?",
+                options: [
+                    "Create completely separate email templates for each language",
+                    "Implement dynamic content blocks with language-based rules, centralized content management, and locale-specific personalization using subscriber language preferences",
+                    "Send all emails in English with translation disclaimers",
+                    "Use external translation services for each send"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Dynamic content blocks with language-based rules enable single template management while delivering localized content. Centralized content management streamlines translation workflows. Subscriber language preferences drive automatic localization, ensuring relevant communication while minimizing template maintenance overhead."
+            },
+
+            {
+                question: "NTO wants to track email engagement beyond basic opens and clicks to measure customer journey progression. What Email Studio tracking configuration provides comprehensive engagement insights?",
+                options: [
+                    "Use only default tracking (opens and clicks) to avoid complexity",
+                    "Implement comprehensive tracking with custom conversion tracking, engagement scoring, heat map analysis, and cross-channel attribution integration",
+                    "Rely on Google Analytics for all email tracking",
+                    "Track only clicks since opens can be unreliable"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Comprehensive engagement tracking includes custom conversion events (purchases, form submissions), engagement scoring for lead qualification, heat map analysis for content optimization, and cross-channel attribution to understand email's role in customer journeys. This data drives campaign optimization and ROI measurement."
+            },
+
+            {
+                question: "When designing NTO's email templates for maximum deliverability, what technical and design considerations are most critical for inbox placement?",
+                options: [
+                    "Focus only on engaging visual design to increase opens",
+                    "Balance text-to-image ratio, implement proper authentication (SPF, DKIM), maintain consistent sending reputation, and follow CAN-SPAM compliance requirements",
+                    "Use minimal text to keep emails concise",
+                    "Include as many images as possible for visual appeal"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Deliverability requires balanced text-to-image ratio (too many images trigger spam filters), proper authentication protocols, consistent sending reputation through good list hygiene, and CAN-SPAM compliance including clear sender identification and easy unsubscribe options."
+            },
+
+            {
+                question: "NTO needs to create email templates that dynamically adjust product recommendations based on inventory levels and customer behavior. What AMPscript and data integration approach supports this requirement?",
+                options: [
+                    "Use static product recommendations to ensure consistency",
+                    "Implement real-time AMPscript lookups combining inventory data, purchase history, and behavioral data with conditional logic for product selection and availability validation",
+                    "Update templates manually when inventory changes",
+                    "Send product recommendations in separate emails"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Dynamic product recommendations require real-time AMPscript lookups across multiple data sources: inventory for availability, purchase history for preferences, and behavioral data for relevance. Conditional logic ensures only available, relevant products are recommended, improving customer experience and conversion rates."
+            },
+
+            {
+                question: "For NTO's lifecycle email series (welcome, nurture, re-engagement), what Content Builder and email structure optimizes both personalization and performance measurement?",
+                options: [
+                    "Create identical templates for all lifecycle stages",
+                    "Design stage-specific templates with shared components, progressive personalization increasing with customer data richness, and embedded tracking for lifecycle progression measurement",
+                    "Use plain text emails for better deliverability",
+                    "Send lifecycle emails manually for better control"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Lifecycle email optimization requires stage-specific templates reflecting customer maturity, shared components for consistency, progressive personalization that increases as more customer data becomes available, and embedded tracking to measure progression through lifecycle stages and content effectiveness."
+            },
+
+            {
+                question: "NTO wants to implement sophisticated email personalization including dynamic pricing, location-based offers, and behavioral triggers. What data architecture and AMPscript strategy ensures accurate, real-time personalization?",
+                options: [
+                    "Use only Contact Builder attributes for all personalization",
+                    "Implement multi-source data architecture with AMPscript functions accessing customer profiles, real-time pricing data, geolocation services, and behavioral triggers with error handling for data unavailability",
+                    "Limit personalization to name and basic demographics",
+                    "Use external systems for all dynamic content generation"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Sophisticated personalization requires multi-source data integration with AMPscript accessing customer profiles for preferences, real-time pricing systems for current offers, geolocation services for location relevance, and behavioral trigger data. Error handling ensures graceful degradation when data is unavailable."
+            },
+
+            {
+                question: "When creating NTO's email preference center integration, what Email Studio configuration ensures seamless preference management and compliance with privacy regulations?",
+                options: [
+                    "Use basic unsubscribe links without preference options",
+                    "Build comprehensive preference center with granular communication controls, profile update capabilities, consent management, and automated list maintenance integrated with Contact Builder",
+                    "Direct customers to external website for preferences",
+                    "Allow only complete unsubscribe without granular options"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Comprehensive preference centers provide granular communication controls (frequency, content types, channels), profile update capabilities for customer data maintenance, consent management for privacy compliance, and automated list maintenance to ensure accurate targeting based on customer preferences."
+            },
+
+            {
+                question: "NTO needs to optimize their email send times across different customer segments and time zones. What Email Studio approach provides the most effective send time optimization?",
+                options: [
+                    "Send all emails at the same time for operational simplicity",
+                    "Implement send time optimization using historical engagement data, time zone considerations, segment-specific analysis, and automated scheduling based on customer behavior patterns",
+                    "Always send emails at 10 AM local time",
+                    "Use random send times to test different options"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Send time optimization requires analysis of historical engagement data by segment, time zone considerations for global audiences, segment-specific patterns (B2B vs B2C timing differences), and automated scheduling that adapts to individual customer behavior patterns for maximum engagement."
+            },
+
+            {
+                question: "For NTO's email template governance across multiple teams and brands, what Content Builder organization and approval workflow ensures brand consistency while enabling team autonomy?",
+                options: [
+                    "Give all teams complete freedom in template creation",
+                    "Establish Content Builder folder structure with brand-specific templates, approval workflows for template changes, shared component libraries, and usage tracking for compliance monitoring",
+                    "Use only centrally-created templates without team customization",
+                    "Allow teams to create templates outside of Content Builder"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Template governance requires organized folder structures reflecting brand hierarchy, approval workflows for template modifications, shared component libraries ensuring consistency, and usage tracking to monitor compliance and identify template effectiveness across teams and campaigns."
+            },
+
+            {
+                question: "NTO wants to measure the business impact of their email campaigns beyond traditional metrics (opens, clicks). What Email Studio reporting and integration strategy provides comprehensive ROI analysis?",
+                options: [
+                    "Focus only on email-specific metrics like open and click rates",
+                    "Implement comprehensive analytics integration connecting email engagement to conversion events, revenue attribution, customer lifetime value impact, and cross-channel journey analysis",
+                    "Use manual reporting to track business results",
+                    "Measure only immediate post-click conversions"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Comprehensive ROI analysis requires integration connecting email engagement to actual business outcomes: conversion event tracking, revenue attribution models, customer lifetime value impact measurement, and cross-channel journey analysis to understand email's role in overall customer experience and business growth."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answersGiven = [];
+        let quizCompleted = false;
+        let shuffledQuestions = [];
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function prepareQuestion(questionData) {
+            // Create array of options with their original indices
+            const optionsWithIndex = questionData.options.map((option, index) => ({
+                text: option,
+                originalIndex: index,
+                isCorrect: index === questionData.correct
+            }));
+            
+            // Shuffle the options
+            const shuffled = shuffleArray(optionsWithIndex);
+            
+            // Find the new index of the correct answer
+            const newCorrectIndex = shuffled.findIndex(option => option.isCorrect);
+            
+            // Create mapping from original indices to new indices
+            const indexMapping = {};
+            shuffled.forEach((option, newIndex) => {
+                indexMapping[option.originalIndex] = newIndex;
+            });
+            
+            // Update explanation text to reflect new option positions
+            let updatedExplanation = questionData.explanation;
+            
+            // Replace letter references in explanation with updated letters
+            for (let originalIndex = 0; originalIndex < questionData.options.length; originalIndex++) {
+                const originalLetter = String.fromCharCode(65 + originalIndex);
+                const newLetter = String.fromCharCode(65 + indexMapping[originalIndex]);
+                
+                // Replace references like "(A)" or " A " with new letter
+                const regex = new RegExp(`\\(${originalLetter}\\)|\\b${originalLetter}\\b`, 'g');
+                updatedExplanation = updatedExplanation.replace(regex, (match) => {
+                    return match.includes('(') ? `(${newLetter})` : newLetter;
+                });
+            }
+            
+            return {
+                ...questionData,
+                options: shuffled.map(option => option.text),
+                correct: newCorrectIndex,
+                explanation: updatedExplanation
+            };
+        }
+
+        function loadQuestion() {
+            if (currentQuestion >= shuffledQuestions.length) {
+                showCompletionScreen();
+                return;
+            }
+
+            const question = shuffledQuestions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${shuffledQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <ul class="options">
+                        ${question.options.map((option, index) => 
+                            `<li class="option" onclick="selectOption(${index})">
+                                <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                                <span>${option}</span>
+                            </li>`
+                        ).join('')}
+                    </ul>
+                    <div class="explanation" id="explanation">
+                        <h4>✅ Correct Answer: ${String.fromCharCode(65 + question.correct)})</h4>
+                        <p>${question.explanation}</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <div class="score-display">
+                        <div style="background: linear-gradient(135deg, #4CAF50, #2196F3); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;">
+                            📊 Running Score: ${score}/${currentQuestion + (answersGiven[currentQuestion] !== undefined ? 1 : 0)} 
+                            ${(currentQuestion > 0 || answersGiven[currentQuestion] !== undefined) ? `(${Math.round((score/(currentQuestion + (answersGiven[currentQuestion] !== undefined ? 1 : 0)))*100)}%)` : '(0%)'}
+                        </div>
+                    </div>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        Next →
+                    </button>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = shuffledQuestions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Remove any previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark the selected option
+            options[selectedIndex].classList.add('selected');
+
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Update score - only if this is the first time answering this question
+            if (answersGiven[currentQuestion] === undefined) {
+                if (selectedIndex === question.correct) {
+                    score++;
+                }
+            }
+
+            // Record the answer
+            answersGiven[currentQuestion] = selectedIndex;
+
+            // Show explanation and enable next button
+            explanation.classList.add('show');
+            nextBtn.disabled = false;
+
+            // Update score display with enhanced styling
+            document.querySelector('.score-display').innerHTML = 
+                `<div style="background: linear-gradient(135deg, #4CAF50, #2196F3); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;">
+                    📊 Running Score: ${score}/${currentQuestion + 1} (${Math.round(score/(currentQuestion + 1)*100)}%)
+                </div>`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / shuffledQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${shuffledQuestions.length}`;
+        }
+
+        function showCompletionScreen() {
+            const container = document.getElementById('quizContainer');
+            const completionScreen = document.getElementById('completionScreen');
+            const finalScorePercent = Math.round((score / shuffledQuestions.length) * 100);
+            
+            container.style.display = 'none';
+            completionScreen.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = finalScorePercent + '%';
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (finalScorePercent >= 85) {
+                scoreCircle.className = 'score-circle score-excellent';
+                scoreMessage.textContent = '🌟 Outstanding! You demonstrate enterprise-level Email Studio expertise ready for certification success!';
+            } else if (finalScorePercent >= 75) {
+                scoreCircle.className = 'score-circle score-good';
+                scoreMessage.textContent = '👏 Great job! You have strong knowledge. Review missed concepts and you\'ll be ready for the certification.';
+            } else if (finalScorePercent >= 65) {
+                scoreCircle.className = 'score-circle score-needs-improvement';
+                scoreMessage.textContent = '📚 Good progress! Focus on understanding the email creation scenarios and technical details for certification success.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                scoreMessage.textContent = '💪 Keep studying! These advanced questions require deep Email Studio knowledge. Review the concepts and try again.';
+            }
+
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quiz Complete!';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            quizCompleted = false;
+            
+            // Reshuffle questions and answers
+            initializeQuiz();
+            
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('completionScreen').classList.remove('show');
+            
+            loadQuestion();
+        }
+
+        function initializeQuiz() {
+            // Shuffle the questions and prepare each one with shuffled answers
+            shuffledQuestions = shuffleArray(questions).map(prepareQuestion);
+        }
+
+        // Initialize the quiz
+        initializeQuiz();
+        loadQuestion();
+    </script>
+</body>
+</html>

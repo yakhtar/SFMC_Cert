@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "certification-research": {
+      "command": "node",
+      "args": ["C:\\Users\\akhta\\my_projects\\sfmc_cert\\mcp-servers\\certification-research-mcp.js"],
+      "env": {
+        "NODE_PATH": "C:\\Users\\akhta\\my_projects\\sfmc_cert\\mcp-servers\\node_modules"
+      }
+    },
+    "question-generator": {
+      "command": "node", 
+      "args": ["C:\\Users\\akhta\\my_projects\\sfmc_cert\\mcp-servers\\question-generator-mcp.js"],
+      "env": {
+        "NODE_PATH": "C:\\Users\\akhta\\my_projects\\sfmc_cert\\mcp-servers\\node_modules"
+      }
+    },
+    "quiz-engine": {
+      "command": "node",
+      "args": ["C:\\Users\\akhta\\my_projects\\sfmc_cert\\mcp-servers\\quiz-engine-mcp.js"],
+      "env": {
+        "NODE_PATH": "C:\\Users\\akhta\\my_projects\\sfmc_cert\\mcp-servers\\node_modules"
+      }
+    }
+  }
+}

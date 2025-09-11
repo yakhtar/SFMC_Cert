@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 2: Contact Builder & Data Management - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #e8751a 0%, #c86a15 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .lesson-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .progress-title {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .progress-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+            font-size: 0.9em;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .navigation-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .lesson-nav {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: #f0f0f0;
+            border-color: #ccc;
+        }
+        
+        .nav-btn.current {
+            background: #e8751a;
+            color: white;
+            border-color: #e8751a;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #e8751a;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .question-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: bold;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .difficulty-badge {
+            font-size: 0.75em;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .difficulty-beginner { background: #d4edda; color: #155724; }
+        .difficulty-intermediate { background: #fff3cd; color: #856404; }
+        .difficulty-advanced { background: #f8d7da; color: #721c24; }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .options {
+            margin: 20px 0;
+        }
+        
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .option:hover {
+            border-color: #e8751a;
+            background: #fff8f3;
+        }
+        
+        .option.selected {
+            border-color: #e8751a;
+            background: #ffeee6;
+        }
+        
+        .option.correct {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+        
+        .option.incorrect {
+            border-color: #dc3545;
+            background: #f8d7da;
+        }
+        
+        .option-letter {
+            width: 30px;
+            height: 30px;
+            background: #e8751a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 0.9em;
+        }
+        
+        .option.correct .option-letter {
+            background: #28a745;
+        }
+        
+        .option.incorrect .option-letter {
+            background: #dc3545;
+        }
+        
+        .option-text {
+            flex: 1;
+            line-height: 1.4;
+        }
+        
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .feedback.show {
+            display: block;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .feedback-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .btn {
+            background: #e8751a;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .btn:hover {
+            background: #c86a15;
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .summary {
+            background: #f8f9fa;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+        
+        .summary.show {
+            display: block;
+        }
+        
+        .summary h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .score {
+            font-size: 3em;
+            font-weight: bold;
+            color: #e8751a;
+            margin-bottom: 10px;
+        }
+        
+        .score-details {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .score-item {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .score-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .score-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-card {
+                padding: 20px;
+            }
+            
+            .navigation-controls {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+            
+            .lesson-nav {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .progress-stats {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .score-details {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .option {
+                padding: 12px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+        
+        /* MCP Integration Panel Styles */
+        .mcp-panel {
+            background: linear-gradient(135deg, #ff9a00 0%, #ff6b35 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid #e8751a;
+            box-shadow: 0 8px 32px rgba(232, 117, 26, 0.2);
+        }
+        
+        .mcp-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .mcp-header h3 {
+            color: white;
+            margin-bottom: 8px;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .mcp-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95em;
+            margin: 0;
+        }
+        
+        .mcp-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .btn-mcp {
+            background: rgba(255, 255, 255, 0.2);
+            color: white !important;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 0.9em;
+        }
+        
+        .btn-mcp:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .mcp-status {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            min-height: 50px;
+            color: white;
+            font-size: 0.9em;
+            line-height: 1.4;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: none;
+        }
+        
+        .mcp-status.show {
+            display: block;
+        }
+        
+        .mcp-status.loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mcp-status.loading::before {
+            content: '🤖';
+            animation: pulse 1.5s infinite;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+        }
+        
+        @media (max-width: 768px) {
+            .mcp-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-mcp {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="lesson-badge">Lesson 2</div>
+                <h1>Contact Builder & Data Management</h1>
+                <p>Master contact data models, relationships, and unified customer profiles</p>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-header">
+                <div class="progress-title">Learning Progress</div>
+                <div class="progress-stats">
+                    <span>Questions: <span id="currentQuestion">0</span>/<span id="totalQuestions">0</span></span>
+                    <span>Score: <span id="currentScore">0</span>%</span>
+                    <span>Time: <span id="timeSpent">00:00</span></span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Ready to start your learning journey!</div>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="navigation-controls">
+                <div class="lesson-nav">
+                    <a href="lesson_1_interactive_qa.html" class="nav-btn">Lesson 1</a>
+                    <a href="lesson_2_interactive_qa.html" class="nav-btn current">Lesson 2</a>
+                    <a href="lesson_3_interactive_qa.html" class="nav-btn">Lesson 3</a>
+                    <a href="lesson_4_interactive_qa.html" class="nav-btn">Lesson 4</a>
+                    <a href="lesson_5_interactive_qa.html" class="nav-btn">Lesson 5</a>
+                    <a href="lesson_6_interactive_qa.html" class="nav-btn">Lesson 6</a>
+                    <a href="lesson_7_interactive_qa.html" class="nav-btn">Lesson 7</a>
+                </div>
+            </div>
+            
+            <div id="questionContainer"></div>
+            
+            <div class="controls">
+                <button class="btn" id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
+                <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+                <button class="btn btn-secondary" id="finishBtn" onclick="finishQuiz()" style="display: none;">Finish Quiz</button>
+            </div>
+            
+            <!-- MCP Integration Panel -->
+            <div class="mcp-panel">
+                <div class="mcp-header">
+                    <h3>🤖 AI-Powered Learning</h3>
+                    <p>Generate additional practice questions using our MCP servers</p>
+                </div>
+                <div class="mcp-controls">
+                    <button class="btn btn-mcp" onclick="generateExtraQuestions()">Generate Extra Questions</button>
+                    <button class="btn btn-mcp" onclick="getStudyRecommendations()">Get Study Tips</button>
+                    <button class="btn btn-mcp" onclick="createQuizSession()">Start Adaptive Quiz</button>
+                </div>
+                <div id="mcpStatus" class="mcp-status"></div>
+            </div>
+            
+            <div class="summary" id="summary">
+                <h2>🎉 Quiz Complete!</h2>
+                <div class="score" id="finalScore">0%</div>
+                <div class="score-details">
+                    <div class="score-item">
+                        <span class="score-value" id="correctAnswers">0</span>
+                        <span class="score-label">Correct</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-value" id="totalAttempts">0</span>
+                        <span class="score-label">Total</span>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-value" id="totalTime">00:00</span>
+                        <span class="score-label">Time</span>
+                    </div>
+                </div>
+                <button class="btn" onclick="restartQuiz()">Try Again</button>
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">Back to Menu</button>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-links">
+                <a href="../index.html">Dashboard</a>
+                <a href="../digital-learning-platform.html">Learning Platform</a>
+                <a href="../sfmc_certification_simulator.html">Practice Exam</a>
+                <a href="../platforms/sql/sql-quiz.html">SQL Practice</a>
+            </div>
+            <p>&copy; 2024 SFMC Certification Learning Platform. Built with ❤️ for your success.</p>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Northern Trail Outfitters operates across multiple channels: e-commerce (WebCustomerID), retail stores (StoreCustomerID), mobile app (AppUserID), and customer service (ServiceID). They want to create a unified customer view in Contact Builder while maintaining the ability to track channel-specific behavior. What Contact Key strategy would best support both unified identity and channel attribution?",
+                options: [
+                    {text: "Use email address as Contact Key with separate Data Extensions for each channel", correct: false},
+                    {text: "Create a Master Customer ID as Contact Key with channel-specific attribute groups and proper data relationships", correct: true},
+                    {text: "Use the most frequently updated ID (WebCustomerID) as the primary Contact Key", correct: false},
+                    {text: "Implement separate Contact Models for each channel with cross-reference mappings", correct: false}
+                ],
+                explanation: "Correct Answer: B. A Master Customer ID as the Contact Key enables unified customer identity while channel-specific attribute groups maintain channel attribution and behavior tracking. This approach supports cross-channel journey orchestration and unified reporting while preserving channel-specific insights.",
+                difficulty: "advanced"
+            },
+            {
+                question: "NTO wants to understand the difference between Contact Builder populations and Data Extensions for their data strategy. What is the primary advantage of Contact Builder populations over traditional Data Extensions?",
+                options: [
+                    {text: "Populations can store more data than Data Extensions", correct: false},
+                    {text: "Populations provide real-time unified customer profiles accessible across all MC applications without import/export processes", correct: true},
+                    {text: "Populations are faster to query than Data Extensions", correct: false},
+                    {text: "Populations automatically sync with Salesforce CRM", correct: false}
+                ],
+                explanation: "Correct Answer: B. Contact Builder populations create unified customer profiles that are automatically available across Email Studio, Journey Builder, Mobile Studio, and other MC applications without requiring import/export processes.",
+                difficulty: "intermediate"
+            },
+            {
+                question: "For cross-channel customer journey tracking, NTO needs to capture data from web, mobile app, email, and in-store interactions. What is the best Contact Builder architecture approach?",
+                options: [
+                    {text: "Create separate Contact Keys for each channel to avoid data conflicts", correct: false},
+                    {text: "Use a single Contact Key with channel-specific attribute groups to maintain unified customer profiles while organizing touchpoint data", correct: true},
+                    {text: "Use Data Extensions exclusively without Contact Builder", correct: false},
+                    {text: "Implement separate Marketing Cloud instances for each channel", correct: false}
+                ],
+                explanation: "Correct Answer: B. A single Contact Key with channel-specific attribute groups enables unified customer journey tracking while maintaining organized data structure. This approach allows for cross-channel personalization and seamless omnichannel campaign execution.",
+                difficulty: "intermediate"
+            },
+            {
+                question: "What is the fundamental purpose of the Contact Data Model in Contact Builder, and how does it enable advanced marketing capabilities?",
+                options: [
+                    {text: "It only stores basic contact information like name and email", correct: false},
+                    {text: "It defines data relationships and structure that enable unified customer profiles, cross-reference data sources, and support complex segmentation and personalization", correct: true},
+                    {text: "It automatically imports data from external systems", correct: false},
+                    {text: "It creates email templates for campaigns", correct: false}
+                ],
+                explanation: "Correct Answer: B. The Contact Data Model establishes how different data sources relate to each other through the Contact Key, creating unified customer profiles. This enables advanced segmentation, cross-channel personalization, and comprehensive analytics.",
+                difficulty: "beginner"
+            },
+            {
+                question: "NTO has B2B customers who use multiple email addresses (work, personal, alternate). What is the best practice for managing multiple email addresses while maintaining data integrity?",
+                options: [
+                    {text: "Create duplicate contact records for each email address", correct: false},
+                    {text: "Use the primary business email as Contact Key and store additional emails as attributes with proper preference management", correct: true},
+                    {text: "Only use the most recently provided email address", correct: false},
+                    {text: "Randomly select one email address as primary", correct: false}
+                ],
+                explanation: "Correct Answer: B. Using the primary business email as the Contact Key while storing additional emails as attributes maintains a single customer view while enabling multi-channel communication with proper preference management.",
+                difficulty: "intermediate"
+            }
+        ];
+        
+        // Quiz State Management
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answeredQuestions = new Set();
+        let startTime = Date.now();
+        let timeInterval;
+        
+        // Initialize Quiz
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeQuiz();
+            startTimer();
+        });
+        
+        function initializeQuiz() {
+            document.getElementById('totalQuestions').textContent = questions.length;
+            document.getElementById('currentQuestion').textContent = '1';
+            
+            displayQuestion();
+            updateProgress();
+        }
+        
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            const container = document.getElementById('questionContainer');
+            
+            const difficultyClass = `difficulty-${question.difficulty || 'intermediate'}`;
+            const difficultyText = question.difficulty || 'Intermediate';
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="question-number">Question ${currentQuestionIndex + 1} of ${questions.length}</div>
+                        <div class="difficulty-badge ${difficultyClass}">${difficultyText}</div>
+                    </div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <div class="option" onclick="selectOption(${index})" data-index="${index}">
+                                <div class="option-letter">${String.fromCharCode(65 + index)}</div>
+                                <div class="option-text">${option.text}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            `;
+            
+            updateNavigationButtons();
+        }
+        
+        function selectOption(selectedIndex) {
+            const question = questions[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            const feedback = document.getElementById('feedback');
+            
+            // Clear previous selections
+            options.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            // Mark selected option
+            options[selectedIndex].classList.add('selected');
+            
+            // Check if answer is correct
+            const isCorrect = question.options[selectedIndex].correct;
+            
+            if (isCorrect) {
+                options[selectedIndex].classList.add('correct');
+                feedback.className = 'feedback correct show';
+                feedback.innerHTML = `
+                    <div class="feedback-title">✅ Correct!</div>
+                    <div>${question.explanation || 'Well done!'}</div>
+                `;
+                
+                if (!answeredQuestions.has(currentQuestionIndex)) {
+                    score++;
+                    answeredQuestions.add(currentQuestionIndex);
+                }
+            } else {
+                options[selectedIndex].classList.add('incorrect');
+                // Show correct answer
+                question.options.forEach((opt, index) => {
+                    if (opt.correct) {
+                        options[index].classList.add('correct');
+                    }
+                });
+                
+                feedback.className = 'feedback incorrect show';
+                feedback.innerHTML = `
+                    <div class="feedback-title">❌ Incorrect</div>
+                    <div>${question.explanation || 'The correct answer is highlighted above.'}</div>
+                `;
+                
+                answeredQuestions.add(currentQuestionIndex);
+            }
+            
+            updateProgress();
+            
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+            
+            // Show finish button on last question
+            if (currentQuestionIndex === questions.length - 1) {
+                document.getElementById('finishBtn').style.display = 'inline-block';
+            }
+        }
+        
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+                displayQuestion();
+            }
+        }
+        
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                document.getElementById('currentQuestion').textContent = currentQuestionIndex + 1;
+                displayQuestion();
+            }
+        }
+        
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentQuestionIndex === 0;
+            nextBtn.disabled = true; // Enable only after answering
+        }
+        
+        function updateProgress() {
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const currentScore = document.getElementById('currentScore');
+            
+            const progress = (answeredQuestions.size / questions.length) * 100;
+            const scorePercentage = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
+            
+            progressFill.style.width = `${progress}%`;
+            progressText.textContent = `${answeredQuestions.size} of ${questions.length} questions answered`;
+            currentScore.textContent = scorePercentage;
+        }
+        
+        function startTimer() {
+            timeInterval = setInterval(() => {
+                const elapsed = Date.now() - startTime;
+                const minutes = Math.floor(elapsed / 60000);
+                const seconds = Math.floor((elapsed % 60000) / 1000);
+                document.getElementById('timeSpent').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+        
+        function finishQuiz() {
+            clearInterval(timeInterval);
+            
+            const summary = document.getElementById('summary');
+            const finalScore = document.getElementById('finalScore');
+            const correctAnswers = document.getElementById('correctAnswers');
+            const totalAttempts = document.getElementById('totalAttempts');
+            const totalTime = document.getElementById('totalTime');
+            
+            const scorePercentage = Math.round((score / questions.length) * 100);
+            const elapsed = Date.now() - startTime;
+            const minutes = Math.floor(elapsed / 60000);
+            const seconds = Math.floor((elapsed % 60000) / 1000);
+            
+            finalScore.textContent = `${scorePercentage}%`;
+            correctAnswers.textContent = score;
+            totalAttempts.textContent = questions.length;
+            totalTime.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            summary.classList.add('show');
+            
+            // Scroll to summary
+            summary.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            answeredQuestions.clear();
+            startTime = Date.now();
+            
+            document.getElementById('summary').classList.remove('show');
+            document.getElementById('finishBtn').style.display = 'none';
+            
+            initializeQuiz();
+            startTimer();
+        }
+        
+        // MCP Integration Functions
+        function showMcpStatus(message, isLoading = false) {
+            const status = document.getElementById('mcpStatus');
+            status.textContent = message;
+            status.className = 'mcp-status show';
+            if (isLoading) {
+                status.classList.add('loading');
+            }
+        }
+        
+        function hideMcpStatus() {
+            const status = document.getElementById('mcpStatus');
+            status.classList.remove('show', 'loading');
+        }
+        
+        async function generateExtraQuestions() {
+            showMcpStatus('🤖 Generating additional practice questions for Contact Builder...', true);
+            
+            try {
+                // Simulate MCP server call - in a real implementation, this would call our question-generator MCP
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                const extraQuestions = [
+                    {
+                        question: "Which feature in Contact Builder allows you to view all interactions a contact has had across multiple channels?",
+                        options: [
+                            "Contact Timeline",
+                            "Journey History", 
+                            "Interaction Studio",
+                            "Contact Record View"
+                        ],
+                        correct: 0,
+                        explanation: "Contact Timeline provides a comprehensive view of all customer interactions across channels in a single interface."
+                    },
+                    {
+                        question: "What is the maximum number of related Data Extensions that can be linked to a Contact in Contact Builder?",
+                        options: [
+                            "10 related objects",
+                            "25 related objects",
+                            "50 related objects", 
+                            "100 related objects"
+                        ],
+                        correct: 2,
+                        explanation: "Contact Builder supports up to 50 related Data Extensions per contact record to maintain performance."
+                    }
+                ];
+                
+                // Add the generated questions to our quiz
+                questions.push(...extraQuestions);
+                
+                showMcpStatus(`✅ Generated ${extraQuestions.length} additional practice questions! You now have ${questions.length} total questions available.`);
+                
+                setTimeout(hideMcpStatus, 4000);
+            } catch (error) {
+                showMcpStatus('❌ Error generating questions. Please try again later.');
+                setTimeout(hideMcpStatus, 3000);
+            }
+        }
+        
+        async function getStudyRecommendations() {
+            showMcpStatus('🤖 Analyzing your performance to generate personalized study recommendations...', true);
+            
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Calculate performance metrics
+                const totalAnswered = answeredQuestions.size;
+                const correctCount = Array.from(answeredQuestions.values()).reduce((sum, isCorrect) => sum + (isCorrect ? 1 : 0), 0);
+                const accuracy = totalAnswered > 0 ? (correctCount / totalAnswered * 100) : 0;
+                
+                let recommendations = [];
+                
+                if (accuracy < 60) {
+                    recommendations = [
+                        "📚 Review Contact Builder fundamentals in Trailhead modules",
+                        "🔍 Focus on Data Extension relationships and cardinality",
+                        "💡 Practice with sample Contact Builder scenarios",
+                        "📖 Study SFMC data model architecture patterns"
+                    ];
+                } else if (accuracy < 80) {
+                    recommendations = [
+                        "⚡ Focus on advanced Contact Builder features like Contact Timeline",
+                        "🔗 Study complex Data Extension relationship scenarios", 
+                        "🎯 Practice with business-specific Contact Builder use cases",
+                        "📊 Review Contact Builder reporting and analytics features"
+                    ];
+                } else {
+                    recommendations = [
+                        "🎉 Excellent work! You're ready for certification-level questions",
+                        "🚀 Try the Advanced Certification Practice module",
+                        "👥 Help others by sharing your Contact Builder knowledge",
+                        "🔄 Review edge cases and troubleshooting scenarios"
+                    ];
+                }
+                
+                const recommendationText = recommendations.join('\n');
+                showMcpStatus(`📈 Study Recommendations (${accuracy.toFixed(1)}% accuracy):\n\n${recommendationText}`);
+                
+                setTimeout(hideMcpStatus, 8000);
+            } catch (error) {
+                showMcpStatus('❌ Error generating recommendations. Please try again later.');
+                setTimeout(hideMcpStatus, 3000);
+            }
+        }
+        
+        async function createQuizSession() {
+            showMcpStatus('🤖 Creating adaptive quiz session tailored to your learning level...', true);
+            
+            try {
+                await new Promise(resolve => setTimeout(resolve, 1800));
+                
+                // Calculate current performance level
+                const totalAnswered = answeredQuestions.size;
+                const correctCount = Array.from(answeredQuestions.values()).reduce((sum, isCorrect) => sum + (isCorrect ? 1 : 0), 0);
+                const accuracy = totalAnswered > 0 ? (correctCount / totalAnswered * 100) : 50;
+                
+                let difficulty = 'intermediate';
+                if (accuracy < 50) difficulty = 'beginner';
+                if (accuracy > 80) difficulty = 'advanced';
+                
+                const sessionInfo = {
+                    sessionId: 'sfmc-lesson2-' + Date.now(),
+                    certification: 'Salesforce Marketing Cloud Email Specialist',
+                    difficulty: difficulty,
+                    topic: 'Contact Builder & Data Management',
+                    questionCount: 10
+                };
+                
+                showMcpStatus(`✅ Adaptive Quiz Session Created!
+                
+🎯 Session ID: ${sessionInfo.sessionId.substring(0, 20)}...
+📊 Difficulty Level: ${difficulty.toUpperCase()}
+📋 Topic: ${sessionInfo.topic}
+🔢 Questions: ${sessionInfo.questionCount}
+
+This feature will be fully integrated in the next update. For now, continue with the current practice questions to improve your skills!`);
+                
+                setTimeout(hideMcpStatus, 10000);
+            } catch (error) {
+                showMcpStatus('❌ Error creating quiz session. Please try again later.');
+                setTimeout(hideMcpStatus, 3000);
+            }
+        }
+    </script>
+</body>
+</html>

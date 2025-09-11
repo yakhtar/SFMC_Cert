@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Learning - SFMC Module 1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .breadcrumb {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .lesson-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+        
+        .lesson-meta {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .meta-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .difficulty-advanced { background: #fecaca; color: #991b1b; }
+        .duration-badge { background: #e0e7ff; color: #3730a3; }
+        
+        .lesson-content {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .lesson-section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dynamic-content {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border: 2px solid #0ea5e9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .dynamic-content::before {
+            content: "🤖 MCP Agent Generated";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #0ea5e9;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .scenario-box {
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .code-block {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f4f6;
+            border-radius: 50%;
+            border-top-color: #2563eb;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+        }
+        
+        .quiz-section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .quiz-intro h3 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+        
+        .dynamic-quiz-content {
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Lesson Header -->
+        <div class="header">
+            <div class="breadcrumb">
+                Salesforce Marketing Cloud > Module 1 > Email Studio Fundamentals
+            </div>
+            <h1 class="lesson-title">🎯 Email Studio Setup & Configuration</h1>
+            <div class="lesson-meta">
+                <span class="meta-badge difficulty-advanced">Advanced</span>
+                <span class="meta-badge duration-badge">90 minutes</span>
+                <span class="meta-badge duration-badge">MCP Powered</span>
+            </div>
+        </div>
+        
+        <!-- Lesson Content -->
+        <div class="lesson-content">
+            <!-- Introduction -->
+            <div class="lesson-section">
+                <h2 class="section-title">📚 Learning Objectives</h2>
+                <ul style="line-height: 1.8; padding-left: 20px;">
+                    <li>Configure Email Studio with proper sender authentication</li>
+                    <li>Set up data extensions for subscriber management</li>
+                    <li>Create dynamic email templates using AMPscript</li>
+                    <li>Implement proper deliverability best practices</li>
+                </ul>
+            </div>
+            
+            <!-- Dynamic MCP Content -->
+            <div class="lesson-section">
+                <h2 class="section-title">🤖 Real-World Scenario</h2>
+                <div class="dynamic-content" id="dynamicScenario">
+                    <div class="loading-spinner"></div>
+                    <span style="margin-left: 10px;">Generating personalized business scenario using SFMC Agent...</span>
+                </div>
+            </div>
+            
+            <!-- Interactive Elements -->
+            <div class="lesson-section">
+                <h2 class="section-title">⚡ Hands-On Practice</h2>
+                <div class="scenario-box">
+                    <strong>Challenge:</strong> Based on the scenario above, you'll need to configure Email Studio settings and write AMPscript code.
+                </div>
+                
+                <button class="btn" onclick="generateScenario()">🔄 Generate New Scenario</button>
+                <button class="btn btn-secondary" onclick="showHint()">💡 Show Hint</button>
+            </div>
+            
+            <!-- Code Practice Area -->
+            <div class="lesson-section">
+                <h2 class="section-title">💻 AMPscript Practice</h2>
+                <div id="codeChallenge">
+                    <p>Complete the scenario above first to unlock the coding challenge...</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dynamic Quiz Section -->
+        <div class="quiz-section">
+            <div class="quiz-intro">
+                <h3>🎯 Knowledge Check</h3>
+                <p>Test your understanding with AI-generated questions based on your learning</p>
+            </div>
+            
+            <div class="dynamic-quiz-content" id="quizContent">
+                <div>
+                    <div class="loading-spinner"></div>
+                    <span style="margin-left: 10px;">Preparing adaptive quiz questions...</span>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn btn-secondary" onclick="goBack()">← Previous Module</button>
+                <button class="btn" onclick="startQuiz()">🚀 Start Dynamic Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Track lesson progress
+        let scenarioGenerated = false;
+        let currentScenario = null;
+        
+        // Simulate MCP Agent call for dynamic scenario
+        async function generateScenario() {
+            const dynamicContent = document.getElementById('dynamicScenario');
+            
+            // Show loading
+            dynamicContent.innerHTML = `
+                <div class="loading-spinner"></div>
+                <span style="margin-left: 10px;">Generating personalized business scenario using SFMC Agent...</span>
+            `;
+            
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // This would normally call the MCP SFMC agent
+            // For demo, showing what the agent would generate
+            const scenarios = [
+                {
+                    company: "HealthTech Solutions",
+                    industry: "Healthcare Technology",
+                    challenge: "Need to send personalized appointment reminders to 50,000+ patients across 12 different medical specialties",
+                    requirements: [
+                        "Dynamic content based on appointment type",
+                        "Personalized doctor information",
+                        "HIPAA compliant data handling",
+                        "Multi-language support (English/Spanish)",
+                        "Integration with Epic EMR system"
+                    ],
+                    dataExtensions: [
+                        "Patient_Master (PatientID, FirstName, LastName, PreferredLanguage)",
+                        "Appointments (AppointmentID, PatientID, DoctorID, DateTime, Specialty)",
+                        "Doctors (DoctorID, Name, Title, Specialty, Office_Phone)"
+                    ]
+                },
+                {
+                    company: "EcoCommerce Inc",
+                    industry: "Sustainable E-commerce",
+                    challenge: "Launch abandoned cart recovery campaign with environmental impact messaging",
+                    requirements: [
+                        "Show carbon footprint saved by completing purchase",
+                        "Dynamic product recommendations",
+                        "Progressive discount strategy (5%, 10%, 15%)",
+                        "A/B test subject lines",
+                        "Integration with Shopify data"
+                    ],
+                    dataExtensions: [
+                        "Customers (CustomerID, Email, FirstName, EcoScore)",
+                        "Cart_Abandonment (CartID, CustomerID, ProductIDs, TotalValue, DateTime)",
+                        "Products (ProductID, Name, Price, CarbonImpact, Category)"
+                    ]
+                }
+            ];
+            
+            const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+            currentScenario = scenario;
+            
+            dynamicContent.innerHTML = `
+                <h4>🏢 ${scenario.company}</h4>
+                <p><strong>Industry:</strong> ${scenario.industry}</p>
+                <p><strong>Business Challenge:</strong> ${scenario.challenge}</p>
+                
+                <h5 style="margin-top: 20px;">📋 Requirements:</h5>
+                <ul style="margin: 10px 0; padding-left: 20px;">
+                    ${scenario.requirements.map(req => `<li>${req}</li>`).join('')}
+                </ul>
+                
+                <h5 style="margin-top: 20px;">🗃️ Available Data Extensions:</h5>
+                <div class="code-block" style="margin-top: 10px;">
+${scenario.dataExtensions.map(de => `// ${de}`).join('\n')}
+                </div>
+            `;
+            
+            scenarioGenerated = true;
+            updateCodeChallenge();
+        }
+        
+        function updateCodeChallenge() {
+            const codeChallenge = document.getElementById('codeChallenge');
+            
+            if (!scenarioGenerated || !currentScenario) return;
+            
+            codeChallenge.innerHTML = `
+                <p><strong>AMPscript Challenge:</strong> Write the code to personalize the email based on the scenario above.</p>
+                <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <strong>Task:</strong> Create AMPscript that:
+                    <ul style="margin: 10px 0; padding-left: 20px;">
+                        <li>Retrieves customer data from the appropriate Data Extension</li>
+                        <li>Personalizes content based on ${currentScenario.industry.toLowerCase()} requirements</li>
+                        <li>Implements conditional logic for dynamic content</li>
+                    </ul>
+                </div>
+                
+                <textarea 
+                    placeholder="Write your AMPscript here..."
+                    style="width: 100%; height: 200px; padding: 15px; border: 2px solid #e5e7eb; border-radius: 8px; font-family: monospace;"
+                    id="codeInput"
+                ></textarea>
+                
+                <div style="margin-top: 15px;">
+                    <button class="btn" onclick="validateCode()">✅ Validate Code</button>
+                    <button class="btn btn-secondary" onclick="showSolution()">🔍 Show Solution</button>
+                </div>
+            `;
+        }
+        
+        async function startQuiz() {
+            const quizContent = document.getElementById('quizContent');
+            
+            if (!scenarioGenerated) {
+                alert('Please complete the scenario exercise first!');
+                return;
+            }
+            
+            // Show loading
+            quizContent.innerHTML = `
+                <div>
+                    <div class="loading-spinner"></div>
+                    <span style="margin-left: 10px;">MCP Agent generating adaptive questions based on your scenario...</span>
+                </div>
+            `;
+            
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // This would integrate with your existing MCP quiz engine
+            // For demo, showing the integration point
+            quizContent.innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <h4>🎯 Dynamic Quiz Ready</h4>
+                    <p>Questions generated based on ${currentScenario.company} scenario</p>
+                    <p style="margin: 20px 0; color: #6b7280;">
+                        In the full implementation, this would connect to your MCP quiz engine 
+                        with context-aware questions about:
+                    </p>
+                    <ul style="text-align: left; display: inline-block;">
+                        <li>Data Extension configuration for ${currentScenario.industry}</li>
+                        <li>AMPscript best practices</li>
+                        <li>SFMC setup requirements</li>
+                        <li>Industry-specific compliance (${currentScenario.company})</li>
+                    </ul>
+                    <div style="margin-top: 25px;">
+                        <button class="btn" onclick="launchActualQuiz()">🚀 Launch Adaptive Quiz</button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function launchActualQuiz() {
+            // This would integrate with your existing quiz system
+            alert(`Integration Point: This would launch your MCP-powered quiz engine with:\n\n• Context from ${currentScenario.company} scenario\n• Adaptive difficulty based on performance\n• Real-time question generation\n• Cross-domain integration capabilities`);
+        }
+        
+        function validateCode() {
+            const code = document.getElementById('codeInput').value;
+            if (!code.trim()) {
+                alert('Please write some AMPscript code first!');
+                return;
+            }
+            
+            // This would use MCP agent to validate code
+            alert('MCP Agent would analyze your code for:\n\n✅ Syntax correctness\n✅ Best practices\n✅ Security considerations\n✅ Performance optimization\n✅ Scenario-specific requirements');
+        }
+        
+        function showSolution() {
+            // This would be generated by MCP agent based on scenario
+            alert('MCP Agent would provide a customized solution based on the specific scenario requirements and industry best practices.');
+        }
+        
+        function showHint() {
+            if (!currentScenario) {
+                alert('Generate a scenario first to get contextual hints!');
+                return;
+            }
+            alert(`💡 Hint for ${currentScenario.company}:\n\nFocus on the ${currentScenario.industry} requirements. Consider data privacy, personalization depth, and integration points with their existing systems.`);
+        }
+        
+        function goBack() {
+            window.history.back();
+        }
+        
+        // Auto-generate initial scenario when page loads
+        window.addEventListener('load', function() {
+            setTimeout(generateScenario, 1000);
+        });
+    </script>
+</body>
+</html>

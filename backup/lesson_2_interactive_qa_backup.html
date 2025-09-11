@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 2: Contact Builder & Data Management - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #e8751a 0%, #c86a15 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e8751a, #f39c12);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #e8751a;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .option:hover {
+            border-color: #e8751a;
+            background: #f0f7ff;
+        }
+        
+        .option.selected {
+            border-color: #e8751a;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #e8751a;
+            min-width: 25px;
+        }
+        
+        .explanation {
+            background: #e8f5e8;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #e8751a 0%, #c86a15 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(232, 117, 26, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .completion-screen.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .score-needs-improvement {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.0em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 SFMC Email Specialist Certification</h1>
+            <p>Lesson 2: Contact Builder & Data Management (26-29% of Exam)</p>
+            <div style="font-size: 0.9em; margin-top: 10px; opacity: 0.8;">
+                🎯 SFMC Certification Exam Questions 🎯
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 40</div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+        
+        <div class="completion-screen" id="completionScreen">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the Contact Builder & Data Management certification quiz!</p>
+            <div class="score-circle" id="scoreCircle">
+                <span id="finalScore">0%</span>
+            </div>
+            <p id="scoreMessage"></p>
+            <div style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                💡 This quiz covers essential Contact Builder and data management concepts for certification success
+            </div>
+            <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        // SFMC Email Specialist Certification Questions
+        // Lesson 2: Contact Builder & Data Management (26-29% of Exam)
+        const questions = [
+            {
+                question: "Northern Trail Outfitters operates across multiple channels: e-commerce (WebCustomerID), retail stores (StoreCustomerID), mobile app (AppUserID), and customer service (ServiceID). They want to create a unified customer view in Contact Builder while maintaining the ability to track channel-specific behavior. What Contact Key strategy would best support both unified identity and channel attribution?",
+                options: [
+                    "Use email address as Contact Key with separate Data Extensions for each channel",
+                    "Create a Master Customer ID as Contact Key with channel-specific attribute groups and proper data relationships",
+                    "Use the most frequently updated ID (WebCustomerID) as the primary Contact Key",
+                    "Implement separate Contact Models for each channel with cross-reference mappings"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. A Master Customer ID as the Contact Key enables unified customer identity while channel-specific attribute groups maintain channel attribution and behavior tracking. This approach supports cross-channel journey orchestration and unified reporting while preserving channel-specific insights. Email addresses (A) can change and aren't always available. Most frequent ID (C) excludes other channel interactions. Separate Contact Models (D) prevent unified customer views needed for cross-channel experiences."
+            },
+
+            {
+                question: "NTO wants to understand the difference between Contact Builder populations and Data Extensions for their data strategy. What is the primary advantage of Contact Builder populations over traditional Data Extensions?",
+                options: [
+                    "Populations can store more data than Data Extensions",
+                    "Populations provide real-time unified customer profiles accessible across all MC applications without import/export processes",
+                    "Populations are faster to query than Data Extensions",
+                    "Populations automatically sync with Salesforce CRM"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Contact Builder populations create unified customer profiles that are automatically available across Email Studio, Journey Builder, Mobile Studio, and other MC applications without requiring import/export processes. This eliminates data silos and ensures consistent customer data across all touchpoints."
+            },
+
+            {
+                question: "For cross-channel customer journey tracking, NTO needs to capture data from web, mobile app, email, and in-store interactions. What is the best Contact Builder architecture approach?",
+                options: [
+                    "Create separate Contact Keys for each channel to avoid data conflicts",
+                    "Use a single Contact Key with channel-specific attribute groups to maintain unified customer profiles while organizing touchpoint data",
+                    "Use Data Extensions exclusively without Contact Builder",
+                    "Implement separate Marketing Cloud instances for each channel"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. A single Contact Key with channel-specific attribute groups enables unified customer journey tracking while maintaining organized data structure. This approach allows for cross-channel personalization, comprehensive customer insights, and seamless omnichannel campaign execution."
+            },
+
+            {
+                question: "What is the fundamental purpose of the Contact Data Model in Contact Builder, and how does it enable advanced marketing capabilities?",
+                options: [
+                    "It only stores basic contact information like name and email",
+                    "It defines data relationships and structure that enable unified customer profiles, cross-reference data sources, and support complex segmentation and personalization",
+                    "It automatically imports data from external systems",
+                    "It creates email templates for campaigns"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. The Contact Data Model establishes how different data sources relate to each other through the Contact Key, creating unified customer profiles. This enables advanced segmentation, cross-channel personalization, customer journey mapping, and comprehensive analytics across all Marketing Cloud applications."
+            },
+
+            {
+                question: "NTO has B2B customers who use multiple email addresses (work, personal, alternate). What is the best practice for managing multiple email addresses while maintaining data integrity?",
+                options: [
+                    "Create duplicate contact records for each email address",
+                    "Use the primary business email as Contact Key and store additional emails as attributes with proper preference management",
+                    "Only use the most recently provided email address",
+                    "Randomly select one email address as primary"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Using the primary business email as the Contact Key while storing additional emails as attributes maintains a single customer view while enabling multi-channel communication. This approach requires preference management to ensure customers can control which email receives what type of communication."
+            },
+
+            {
+                question: "When integrating external data sources (CRM, e-commerce, loyalty program) with Contact Builder, what is the most critical consideration for maintaining data quality and performance?",
+                options: [
+                    "Import all available data fields to ensure completeness",
+                    "Establish consistent Contact Key mapping, implement data validation, set up proper data governance, and maintain referential integrity across sources",
+                    "Only import data during off-peak hours",
+                    "Use different Contact Keys for each data source"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Successful data integration requires consistent Contact Key mapping to maintain customer identity, data validation to ensure quality, proper governance to control access and updates, and referential integrity to preserve relationships. These practices are essential for reliable customer data and campaign performance."
+            },
+
+            {
+                question: "NTO wants to implement granular communication preferences (email frequency, content types, promotional vs transactional). What Contact Builder approach best supports sophisticated preference management?",
+                options: [
+                    "Use separate populations for each preference combination",
+                    "Create structured attribute groups for preference categories with individual preference fields that can be updated through preference centers and campaigns",
+                    "Store all preferences in a single concatenated text field",
+                    "Handle preferences outside of Marketing Cloud"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Structured attribute groups for preference categories (communication frequency, content types, channels) with individual boolean or categorical fields enable granular preference management. This supports sophisticated preference centers, regulatory compliance, and targeted campaign execution based on customer preferences."
+            },
+
+            {
+                question: "What is the optimal relationship between Contact Builder populations and Data Extensions in a mature Marketing Cloud implementation?",
+                options: [
+                    "Use only populations and eliminate Data Extensions entirely",
+                    "Populations serve as the customer master with demographic and preference data, while Data Extensions store transactional, behavioral, and campaign-specific data that extends the customer profile",
+                    "Use only Data Extensions for better performance",
+                    "Populations and Data Extensions should never be used together"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. In mature implementations, populations provide the stable customer foundation (demographics, preferences, core attributes) while Data Extensions store dynamic, transactional, and campaign-specific data. This hybrid approach optimizes performance, maintains data integrity, and supports both broad population-based and precise behavioral targeting."
+            },
+
+            {
+                question: "For GDPR compliance in Contact Builder, NTO must implement comprehensive consent management. What features and structures are required for full compliance?",
+                options: [
+                    "Only track email opt-in status",
+                    "Implement granular consent tracking for each processing purpose, data source timestamping, preference management with audit trails, and data retention policies with automated purging",
+                    "Create separate instances for European customers",
+                    "Rely only on CRM system for consent management"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. GDPR compliance requires granular consent tracking for each data processing purpose, timestamped audit trails for consent changes, preference management that gives customers control, and data retention policies with automated data purging. All these elements must be integrated into the Contact Builder structure."
+            },
+
+            {
+                question: "NTO operates multiple brands with some shared customers. What Contact Builder architecture best supports multi-brand operations while maintaining customer privacy and brand separation?",
+                options: [
+                    "Create completely separate Marketing Cloud instances",
+                    "Use unified Contact Keys with brand-specific attribute groups, population segments, and permission-based data access controls",
+                    "Mix all brand data without any organization",
+                    "Only track the primary brand relationship"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Unified Contact Keys with brand-specific attribute groups enable cross-brand customer insights while maintaining operational separation. Population segments and permission-based access controls ensure brand teams see only relevant data while preserving the ability to identify cross-brand customers for strategic initiatives."
+            },
+
+            {
+                question: "NTO wants to implement automated lifecycle stage progression (prospect → customer → advocate → at-risk) based on behavioral data. How should Contact Builder be structured to support this?",
+                options: [
+                    "Create separate populations for each lifecycle stage and manually move contacts",
+                    "Implement a lifecycle stage attribute with automated update rules based on behavioral triggers, purchase history, and engagement metrics",
+                    "Use external systems exclusively for lifecycle management",
+                    "Only track current customer status without progression"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. A lifecycle stage attribute that can be automatically updated based on behavioral triggers, purchase history, and engagement metrics enables dynamic customer progression tracking. This supports automated lifecycle marketing campaigns, targeted messaging, and comprehensive customer value analysis."
+            },
+
+            {
+                question: "For advanced email personalization using customer data from multiple sources, what Contact Builder relationship structure is most effective?",
+                options: [
+                    "Store all data in a single flat structure",
+                    "Create hierarchical relationships linking demographic data, purchase history, behavioral data, and preference data through consistent Contact Keys enabling complex personalization logic",
+                    "Use only basic demographic data for personalization",
+                    "Rely on external systems for personalization data"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Hierarchical relationships linking different data types through consistent Contact Keys enable sophisticated personalization combining demographics, purchase history, behavior, and preferences. This structure supports dynamic content blocks, product recommendations, and contextual messaging across all campaigns."
+            },
+
+            {
+                question: "NTO is experiencing slow Contact Builder performance with large data volumes. What optimization strategies should be implemented to improve query and audience building performance?",
+                options: [
+                    "Reduce the total number of contacts in the system",
+                    "Optimize data model structure, implement strategic indexing, archive historical data, eliminate redundant relationships, and use population-based segmentation for frequently accessed audiences",
+                    "Import less data to improve performance",
+                    "Use only basic contact fields"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Performance optimization requires data model optimization (removing unnecessary complexity), strategic indexing for common queries, historical data archiving, eliminating redundant relationships, and using population-based segmentation for frequently used audiences. These strategies maintain functionality while improving performance."
+            },
+
+            {
+                question: "When planning a major data migration to Contact Builder from legacy systems, what is the most critical phase to ensure success and avoid data corruption?",
+                options: [
+                    "Complete the migration as quickly as possible to minimize disruption",
+                    "Conduct comprehensive data auditing, establish Contact Key mapping strategies, perform incremental testing with data validation, and implement rollback procedures before full migration",
+                    "Migrate only recent data to reduce complexity",
+                    "Use automated tools without manual review"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Successful data migration requires comprehensive planning including data auditing for quality issues, Contact Key mapping strategies to maintain relationships, incremental testing with validation to identify problems early, and rollback procedures for risk mitigation. This systematic approach prevents data loss and system issues."
+            },
+
+            {
+                question: "NTO wants to implement progressive profiling to enhance customer data over time without overwhelming subscribers. What Contact Builder structure best supports this strategy while maintaining data quality?",
+                options: [
+                    "Require complete profiles before allowing contact creation",
+                    "Design flexible attribute architecture with optional enrichment fields, implement progressive data collection through forms and interactions, and establish data validation rules for incremental updates",
+                    "Collect only email addresses initially",
+                    "Use third-party services for all progressive profiling"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Progressive profiling requires flexible attribute architecture with optional fields that can be populated over time through various touchpoints (forms, preference centers, campaign interactions, behavioral tracking). Data validation rules ensure quality while the incremental approach improves customer experience and gradually builds richer profiles for enhanced personalization."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answersGiven = [];
+        let quizCompleted = false;
+        let shuffledQuestions = [];
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function prepareQuestion(questionData) {
+            // Create array of options with their original indices
+            const optionsWithIndex = questionData.options.map((option, index) => ({
+                text: option,
+                originalIndex: index,
+                isCorrect: index === questionData.correct
+            }));
+            
+            // Shuffle the options
+            const shuffled = shuffleArray(optionsWithIndex);
+            
+            // Find the new index of the correct answer
+            const newCorrectIndex = shuffled.findIndex(option => option.isCorrect);
+            
+            // Create mapping from original indices to new indices
+            const indexMapping = {};
+            shuffled.forEach((option, newIndex) => {
+                indexMapping[option.originalIndex] = newIndex;
+            });
+            
+            // Update explanation text to reflect new option positions
+            let updatedExplanation = questionData.explanation;
+            
+            // Replace letter references in explanation with updated letters
+            for (let originalIndex = 0; originalIndex < questionData.options.length; originalIndex++) {
+                const originalLetter = String.fromCharCode(65 + originalIndex);
+                const newLetter = String.fromCharCode(65 + indexMapping[originalIndex]);
+                
+                // Replace references like "(A)" or " A " with new letter
+                const regex = new RegExp(`\\(${originalLetter}\\)|\\b${originalLetter}\\b`, 'g');
+                updatedExplanation = updatedExplanation.replace(regex, (match) => {
+                    return match.includes('(') ? `(${newLetter})` : newLetter;
+                });
+            }
+            
+            return {
+                ...questionData,
+                options: shuffled.map(option => option.text),
+                correct: newCorrectIndex,
+                explanation: updatedExplanation
+            };
+        }
+
+        function loadQuestion() {
+            if (currentQuestion >= shuffledQuestions.length) {
+                showCompletionScreen();
+                return;
+            }
+
+            const question = shuffledQuestions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${shuffledQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <ul class="options">
+                        ${question.options.map((option, index) => 
+                            `<li class="option" onclick="selectOption(${index})">
+                                <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                                <span>${option}</span>
+                            </li>`
+                        ).join('')}
+                    </ul>
+                    <div class="explanation" id="explanation">
+                        <h4>✅ Correct Answer: ${String.fromCharCode(65 + question.correct)})</h4>
+                        <p>${question.explanation}</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <div class="score-display">
+                        <div style="background: linear-gradient(135deg, #4CAF50, #2196F3); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;">
+                            📊 Running Score: ${score}/${currentQuestion + (answersGiven[currentQuestion] !== undefined ? 1 : 0)} 
+                            ${(currentQuestion > 0 || answersGiven[currentQuestion] !== undefined) ? `(${Math.round((score/(currentQuestion + (answersGiven[currentQuestion] !== undefined ? 1 : 0)))*100)}%)` : '(0%)'}
+                        </div>
+                    </div>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        Next →
+                    </button>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = shuffledQuestions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Remove any previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark the selected option
+            options[selectedIndex].classList.add('selected');
+
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Update score - only if this is the first time answering this question
+            if (answersGiven[currentQuestion] === undefined) {
+                if (selectedIndex === question.correct) {
+                    score++;
+                }
+            }
+
+            // Record the answer
+            answersGiven[currentQuestion] = selectedIndex;
+
+            // Show explanation and enable next button
+            explanation.classList.add('show');
+            nextBtn.disabled = false;
+
+            // Update score display with enhanced styling
+            document.querySelector('.score-display').innerHTML = 
+                `<div style="background: linear-gradient(135deg, #4CAF50, #2196F3); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;">
+                    📊 Running Score: ${score}/${currentQuestion + 1} (${Math.round(score/(currentQuestion + 1)*100)}%)
+                </div>`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / shuffledQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${shuffledQuestions.length}`;
+        }
+
+        function showCompletionScreen() {
+            const container = document.getElementById('quizContainer');
+            const completionScreen = document.getElementById('completionScreen');
+            const finalScorePercent = Math.round((score / shuffledQuestions.length) * 100);
+            
+            container.style.display = 'none';
+            completionScreen.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = finalScorePercent + '%';
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (finalScorePercent >= 85) {
+                scoreCircle.className = 'score-circle score-excellent';
+                scoreMessage.textContent = '🌟 Outstanding! You have mastered Contact Builder and data management concepts!';
+            } else if (finalScorePercent >= 75) {
+                scoreCircle.className = 'score-circle score-good';
+                scoreMessage.textContent = '👏 Great job! You have strong Contact Builder knowledge. Review missed concepts for certification success.';
+            } else if (finalScorePercent >= 65) {
+                scoreCircle.className = 'score-circle score-needs-improvement';
+                scoreMessage.textContent = '📚 Good progress! Focus on Contact Builder fundamentals and data relationships for better results.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                scoreMessage.textContent = '💪 Keep studying! Contact Builder is fundamental to SFMC success. Review the concepts and try again.';
+            }
+
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quiz Complete!';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            quizCompleted = false;
+            
+            // Reshuffle questions and answers
+            initializeQuiz();
+            
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('completionScreen').classList.remove('show');
+            
+            loadQuestion();
+        }
+
+        function initializeQuiz() {
+            // Shuffle the questions and prepare each one with shuffled answers
+            shuffledQuestions = shuffleArray(questions).map(prepareQuestion);
+        }
+
+        // Initialize the quiz
+        initializeQuiz();
+        loadQuestion();
+    </script>
+</body>
+</html>

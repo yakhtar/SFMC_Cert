@@ -1,0 +1,213 @@
+{
+  "certification": "Salesforce Marketing Cloud Email Specialist",
+  "domain": "cloud",
+  "difficulty": "intermediate",
+  "generatedAt": "2025-09-11T06:50:53.434Z",
+  "questions": [
+    {
+      "question": "CareFirst Hospital faces a architecture_design challenge in their healthcare operations. What is the best approach to solve this?",
+      "concept": "Architecture Design",
+      "schema": "Generic healthcare scenario requiring architecture_design knowledge",
+      "sampleData": "Sample data for healthcare industry architecture_design scenario",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Implement best practice solution",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Use outdated approach",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Ignore the problem",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Apply incorrect methodology",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Best practice solutions are designed for optimal results in professional scenarios.",
+      "incorrectExplanations": {
+        "B": "Outdated approaches may not be efficient or secure.",
+        "C": "Ignoring problems leads to larger issues later.",
+        "D": "Incorrect methodologies produce unreliable results."
+      },
+      "keyPoints": [
+        "Follow industry best practices",
+        "Stay current with modern approaches",
+        "Address issues proactively",
+        "Use proven methodologies"
+      ]
+    },
+    {
+      "question": "CyberSolutions faces a cost_optimization challenge in their ecommerce operations. What is the best approach to solve this?",
+      "concept": "Cost Optimization",
+      "schema": "Generic ecommerce scenario requiring cost_optimization knowledge",
+      "sampleData": "Sample data for ecommerce industry cost_optimization scenario",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Implement best practice solution",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Use outdated approach",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Ignore the problem",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Apply incorrect methodology",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Best practice solutions are designed for optimal results in professional scenarios.",
+      "incorrectExplanations": {
+        "B": "Outdated approaches may not be efficient or secure.",
+        "C": "Ignoring problems leads to larger issues later.",
+        "D": "Incorrect methodologies produce unreliable results."
+      },
+      "keyPoints": [
+        "Follow industry best practices",
+        "Stay current with modern approaches",
+        "Address issues proactively",
+        "Use proven methodologies"
+      ]
+    },
+    {
+      "question": "FinTech Solutions faces a monitoring challenge in their finance operations. What is the best approach to solve this?",
+      "concept": "Monitoring",
+      "schema": "Generic finance scenario requiring monitoring knowledge",
+      "sampleData": "Sample data for finance industry monitoring scenario",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Implement best practice solution",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Use outdated approach",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Ignore the problem",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Apply incorrect methodology",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Best practice solutions are designed for optimal results in professional scenarios.",
+      "incorrectExplanations": {
+        "B": "Outdated approaches may not be efficient or secure.",
+        "C": "Ignoring problems leads to larger issues later.",
+        "D": "Incorrect methodologies produce unreliable results."
+      },
+      "keyPoints": [
+        "Follow industry best practices",
+        "Stay current with modern approaches",
+        "Address issues proactively",
+        "Use proven methodologies"
+      ]
+    },
+    {
+      "question": "MedicalData Corp faces a automation challenge in their healthcare operations. What is the best approach to solve this?",
+      "concept": "Automation",
+      "schema": "Generic healthcare scenario requiring automation knowledge",
+      "sampleData": "Sample data for healthcare industry automation scenario",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Implement best practice solution",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Use outdated approach",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Ignore the problem",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Apply incorrect methodology",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Best practice solutions are designed for optimal results in professional scenarios.",
+      "incorrectExplanations": {
+        "B": "Outdated approaches may not be efficient or secure.",
+        "C": "Ignoring problems leads to larger issues later.",
+        "D": "Incorrect methodologies produce unreliable results."
+      },
+      "keyPoints": [
+        "Follow industry best practices",
+        "Stay current with modern approaches",
+        "Address issues proactively",
+        "Use proven methodologies"
+      ]
+    },
+    {
+      "question": "TechUniverse faces a architecture_design challenge in their ecommerce operations. What is the best approach to solve this?",
+      "concept": "Architecture Design",
+      "schema": "Generic ecommerce scenario requiring architecture_design knowledge",
+      "sampleData": "Sample data for ecommerce industry architecture_design scenario",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Implement best practice solution",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Use outdated approach",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Ignore the problem",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Apply incorrect methodology",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "Best practice solutions are designed for optimal results in professional scenarios.",
+      "incorrectExplanations": {
+        "B": "Outdated approaches may not be efficient or secure.",
+        "C": "Ignoring problems leads to larger issues later.",
+        "D": "Incorrect methodologies produce unreliable results."
+      },
+      "keyPoints": [
+        "Follow industry best practices",
+        "Stay current with modern approaches",
+        "Address issues proactively",
+        "Use proven methodologies"
+      ]
+    }
+  ]
+}

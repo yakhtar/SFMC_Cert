@@ -1,0 +1,430 @@
+{
+  "sessionId": "26b2a41c-66f8-44fc-9bd5-ed15ce580e17",
+  "userId": "test-user-001",
+  "certificationName": "Salesforce Marketing Cloud Email Specialist",
+  "difficulty": "adaptive",
+  "questionCount": 10,
+  "topics": [
+    "Email Studio",
+    "Journey Builder",
+    "Contact Builder",
+    "Data Extensions"
+  ],
+  "createdAt": "2025-09-11T06:51:48.999Z",
+  "status": "active",
+  "currentQuestionIndex": 0,
+  "questionsAnswered": 0,
+  "correctAnswers": 0,
+  "totalTimeSpent": 0,
+  "questions": [
+    {
+      "id": "q_1",
+      "question": "Sample intermediate level question about Email Studio",
+      "concept": "Email Studio",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_2",
+      "question": "Sample intermediate level question about Journey Builder",
+      "concept": "Journey Builder",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_3",
+      "question": "Sample intermediate level question about Contact Builder",
+      "concept": "Contact Builder",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_4",
+      "question": "Sample intermediate level question about Data Extensions",
+      "concept": "Data Extensions",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_5",
+      "question": "Sample intermediate level question about Email Studio",
+      "concept": "Email Studio",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_6",
+      "question": "Sample intermediate level question about Journey Builder",
+      "concept": "Journey Builder",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_7",
+      "question": "Sample intermediate level question about Contact Builder",
+      "concept": "Contact Builder",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_8",
+      "question": "Sample intermediate level question about Data Extensions",
+      "concept": "Data Extensions",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_9",
+      "question": "Sample intermediate level question about Email Studio",
+      "concept": "Email Studio",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_10",
+      "question": "Sample intermediate level question about Journey Builder",
+      "concept": "Journey Builder",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    }
+  ],
+  "answers": [],
+  "adaptiveLevel": "intermediate",
+  "performanceMetrics": {
+    "accuracy": 0,
+    "averageTimePerQuestion": 0,
+    "strongTopics": [],
+    "weakTopics": [],
+    "difficultyProgression": []
+  }
+}

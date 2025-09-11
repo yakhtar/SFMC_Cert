@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Learning Agent - Local Test with Progress Tracking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Progress tracking styles */
+        .progress-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #059669);
+            border-radius: 6px;
+            transition: width 0.3s ease;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e40af;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin: 5px;
+            cursor: pointer;
+        }
+        
+        .level-beginner { background: #dcfce7; color: #166534; }
+        .level-intermediate { background: #fef3c7; color: #92400e; }
+        .level-advanced { background: #fde2e8; color: #9f1239; }
+        .level-locked { background: #f1f5f9; color: #64748b; cursor: not-allowed; }
+        
+        .achievement {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: 600;
+            animation: celebration 0.5s ease;
+        }
+        
+        @keyframes celebration {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .question-section {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .option {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .option:hover {
+            border-color: #2563eb;
+            background: #f0f9ff;
+        }
+        
+        .option.selected {
+            border-color: #2563eb;
+            background: #dbeafe;
+        }
+        
+        .option.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+        
+        .option.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+        
+        .explanation {
+            background: #f0f9ff;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .difficulty-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .difficulty-beginner { background: #d1fae5; color: #065f46; }
+        .difficulty-intermediate { background: #fed7aa; color: #9a3412; }
+        .difficulty-advanced { background: #fecaca; color: #991b1b; }
+        
+        .local-test-banner {
+            background: #1f2937;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="local-test-banner">
+            🧪 <strong>LOCAL TEST MODE</strong> - Full Progress Tracking Simulation
+        </div>
+        
+        <header class="header">
+            <h1>📚 SQL Learning</h1>
+            <p>Your AI-powered SQL tutor with Progress Tracking</p>
+        </header>
+        
+        <!-- Progress Tracking Section -->
+        <div class="card progress-section" id="progressSection">
+            <h3>📊 Your Learning Progress</h3>
+            <div class="level-badge level-beginner" id="currentLevelBadge">Beginner</div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="questionsAnswered">0</div>
+                    <div class="stat-label">Questions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="correctAnswers">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="accuracyRate">0%</div>
+                    <div class="stat-label">Accuracy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="currentStreak">0</div>
+                    <div class="stat-label">Streak</div>
+                </div>
+            </div>
+            
+            <div id="achievementAlert" class="achievement" style="display: none;"></div>
+            
+            <div style="text-align: center; margin-top: 15px;">
+                <div class="level-badge level-beginner" onclick="selectManualLevel('beginner')" id="beginnerLevel">🟢 Beginner</div>
+                <div class="level-badge level-locked" onclick="selectManualLevel('intermediate')" id="intermediateLevel">🟡 Intermediate</div>
+                <div class="level-badge level-locked" onclick="selectManualLevel('advanced')" id="advancedLevel">🔴 Advanced</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <button onclick="generateNewQuestion()" class="btn" id="generateBtn">
+                🚀 Generate New Question
+            </button>
+            
+            <div id="questionDisplay" style="display: none;">
+                <!-- Question content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Progress tracking variables
+        let userProgress = {
+            currentLevel: 'beginner',
+            questionsAnswered: 0,
+            correctAnswers: 0,
+            streak: 0,
+            levelProgress: {
+                beginner: { answered: 0, correct: 0 },
+                intermediate: { answered: 0, correct: 0 },
+                advanced: { answered: 0, correct: 0 }
+            },
+            unlockedLevels: ['beginner'],
+            questionHistory: [],
+            currentSession: {
+                level: 'beginner',
+                answered: 0,
+                correct: 0
+            }
+        };
+        
+        // Professional SQL Certification Question Bank
+        // Based on Oracle 1Z0-071, Microsoft SQL, MySQL 8.0 certification standards
+        const questionBank = {
+            beginner: [
+                {
+                    question: "TechCorp maintains an employee database. The HR manager needs to find all employees in the 'Engineering' department who earn more than $75,000. Given the schema below, which query will return the correct results?",
+                    concept: "WHERE Clause with Multiple Conditions",
+                    schema: "EMPLOYEES table: employee_id (NUMBER), first_name (VARCHAR2), last_name (VARCHAR2), department (VARCHAR2), salary (NUMBER), hire_date (DATE)",
+                    sampleData: "Sample data includes: John Smith (Engineering, $80,000), Jane Doe (Marketing, $70,000), Mike Johnson (Engineering, $90,000)",
+                    options: [
+                        { letter: "A", text: "SELECT * FROM employees WHERE department = 'Engineering' AND salary > 75000", correct: true },
+                        { letter: "B", text: "SELECT * FROM employees WHERE department = Engineering AND salary > 75000", correct: false },
+                        { letter: "C", text: "SELECT * FROM employees WHERE department = 'Engineering' OR salary > 75000", correct: false },
+                        { letter: "D", text: "SELECT * FROM employees WHERE department LIKE 'Engineering' AND salary >= 75000", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A is correct because it uses proper string literal syntax ('Engineering' in quotes) and the correct logical operator (AND) to combine conditions. The > operator correctly excludes the $75,000 threshold as specified.",
+                    incorrectExplanations: {
+                        "B": "Missing quotes around 'Engineering'. String literals must be enclosed in single quotes in SQL, otherwise the database will treat it as a column name.",
+                        "C": "Uses OR instead of AND. This would return all Engineering employees regardless of salary, plus all employees earning over $75,000 from any department.",
+                        "D": "Uses >= instead of >. This would include employees earning exactly $75,000, but the requirement specifies 'more than $75,000'."
+                    },
+                    keyPoints: [
+                        "Always enclose string literals in single quotes",
+                        "Use AND for conditions that must both be true",
+                        "Distinguish between > (greater than) and >= (greater than or equal)",
+                        "WHERE clause filters rows before any grouping or sorting"
+                    ]
+                },
+                {
+                    question: "RetailPlus tracks customer orders. Management wants to see the total number of orders and total revenue for each customer. Which query correctly aggregates this data?",
+                    concept: "GROUP BY with Aggregate Functions",
+                    schema: "ORDERS table: order_id (NUMBER), customer_id (NUMBER), order_date (DATE), order_amount (NUMBER). CUSTOMERS table: customer_id (NUMBER), customer_name (VARCHAR2), email (VARCHAR2)",
+                    sampleData: "Customer 101 has 3 orders ($150, $200, $100). Customer 102 has 2 orders ($300, $250)",
+                    options: [
+                        { letter: "A", text: "SELECT customer_id, COUNT(*) as total_orders, SUM(order_amount) as total_revenue FROM orders GROUP BY customer_id", correct: true },
+                        { letter: "B", text: "SELECT customer_id, COUNT(order_id) as total_orders, SUM(order_amount) as total_revenue FROM orders", correct: false },
+                        { letter: "C", text: "SELECT DISTINCT customer_id, COUNT(*) as total_orders, SUM(order_amount) as total_revenue FROM orders", correct: false },
+                        { letter: "D", text: "SELECT customer_id, AVG(*) as total_orders, TOTAL(order_amount) as total_revenue FROM orders GROUP BY customer_id", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A correctly uses GROUP BY to group orders by customer, COUNT(*) to count rows per group, and SUM() to total the order amounts. This produces one row per customer with their aggregated statistics.",
+                    incorrectExplanations: {
+                        "B": "Missing GROUP BY clause. Without GROUP BY, aggregate functions would calculate across all rows, returning incorrect results.",
+                        "C": "DISTINCT cannot be used with aggregate functions in this context. DISTINCT would eliminate duplicate customers before aggregation, which is not the goal.",
+                        "D": "AVG(*) is invalid syntax - AVG requires a column name. TOTAL is not a standard SQL function; use SUM instead."
+                    },
+                    keyPoints: [
+                        "GROUP BY is required when mixing aggregate and non-aggregate columns",
+                        "COUNT(*) counts all rows, COUNT(column) counts non-NULL values",
+                        "SUM() calculates totals, AVG() calculates averages",
+                        "Each non-aggregate column in SELECT must appear in GROUP BY"
+                    ]
+                },
+                {
+                    question: "MedSupply hospital needs to identify products with low inventory. They want all products where stock_quantity is less than reorder_level, sorted by urgency (lowest stock first). Which query accomplishes this?",
+                    concept: "Filtering and Sorting",
+                    schema: "PRODUCTS table: product_id (NUMBER), product_name (VARCHAR2), stock_quantity (NUMBER), reorder_level (NUMBER), category (VARCHAR2), unit_price (NUMBER)",
+                    sampleData: "Bandages: stock=5, reorder=20. Syringes: stock=50, reorder=30. Gloves: stock=2, reorder=25",
+                    options: [
+                        { letter: "A", text: "SELECT * FROM products WHERE stock_quantity < reorder_level ORDER BY stock_quantity ASC", correct: true },
+                        { letter: "B", text: "SELECT * FROM products WHERE stock_quantity <= reorder_level ORDER BY stock_quantity DESC", correct: false },
+                        { letter: "C", text: "SELECT * FROM products WHERE stock_quantity < reorder_level ORDER BY reorder_level ASC", correct: false },
+                        { letter: "D", text: "SELECT * FROM products WHERE stock_quantity < reorder_level ORDER BY product_name ASC", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A correctly filters for products where stock is below reorder level (< not <=) and sorts by stock_quantity ascending to show most urgent (lowest stock) items first.",
+                    incorrectExplanations: {
+                        "B": "Uses <= which includes products at exactly the reorder level. DESC sorting shows highest stock first, opposite of the urgency requirement.",
+                        "C": "Sorts by reorder_level instead of stock_quantity. This doesn't prioritize by urgency (actual stock level).",
+                        "D": "Sorts alphabetically by product name, which doesn't reflect inventory urgency or stock levels."
+                    },
+                    keyPoints: [
+                        "Use < for 'less than', <= for 'less than or equal to'",
+                        "ORDER BY ASC shows smallest values first (default)",
+                        "ORDER BY DESC shows largest values first",
+                        "Choose sort column based on business requirements"
+                    ]
+                },
+                {
+                    question: "FinanceFirst bank needs to calculate the average account balance for each account type, but only for account types that have more than 10 accounts. Which query structure is correct?",
+                    concept: "HAVING Clause with GROUP BY",
+                    schema: "ACCOUNTS table: account_id (NUMBER), account_type (VARCHAR2), balance (NUMBER), customer_id (NUMBER), open_date (DATE)",
+                    sampleData: "Checking: 150 accounts, avg $2,500. Savings: 200 accounts, avg $8,000. Premium: 8 accounts, avg $50,000",
+                    options: [
+                        { letter: "A", text: "SELECT account_type, AVG(balance) FROM accounts GROUP BY account_type HAVING COUNT(*) > 10", correct: true },
+                        { letter: "B", text: "SELECT account_type, AVG(balance) FROM accounts WHERE COUNT(*) > 10 GROUP BY account_type", correct: false },
+                        { letter: "C", text: "SELECT account_type, AVG(balance) FROM accounts GROUP BY account_type WHERE COUNT(*) > 10", correct: false },
+                        { letter: "D", text: "SELECT account_type, AVG(balance) FROM accounts HAVING COUNT(*) > 10 GROUP BY account_type", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A follows the correct SQL order: GROUP BY creates groups, then HAVING filters those groups based on aggregate conditions. This returns only account types with more than 10 accounts.",
+                    incorrectExplanations: {
+                        "B": "WHERE cannot use aggregate functions like COUNT(*). WHERE filters individual rows before grouping, not group results.",
+                        "C": "Incorrect syntax. WHERE must come before GROUP BY, and WHERE cannot filter on aggregate functions.",
+                        "D": "Wrong order. HAVING must come after GROUP BY, not before. This would cause a syntax error."
+                    },
+                    keyPoints: [
+                        "HAVING filters groups created by GROUP BY",
+                        "WHERE filters rows before grouping",
+                        "Use HAVING with aggregate functions (COUNT, SUM, AVG)",
+                        "SQL order: WHERE, GROUP BY, HAVING, ORDER BY"
+                    ]
+                }
+            ],
+            intermediate: [
+                {
+                    question: "GlobalTech's sales team needs a report showing each salesperson's name, total sales amount, and the number of deals they closed. Only salespersons with more than $100,000 in total sales should be included. Given the schema below, which query is correct?",
+                    concept: "Joins with Aggregation and HAVING",
+                    schema: "EMPLOYEES table: emp_id (NUMBER), first_name (VARCHAR2), last_name (VARCHAR2), department (VARCHAR2). SALES table: sale_id (NUMBER), emp_id (NUMBER), sale_amount (NUMBER), sale_date (DATE)",
+                    sampleData: "John Smith (emp_id: 1) has sales: $50K, $60K, $40K. Sarah Lee (emp_id: 2) has sales: $80K, $90K, $50K",
+                    options: [
+                        { letter: "A", text: "SELECT e.first_name, e.last_name, SUM(s.sale_amount), COUNT(s.sale_id) FROM employees e JOIN sales s ON e.emp_id = s.emp_id GROUP BY e.emp_id, e.first_name, e.last_name HAVING SUM(s.sale_amount) > 100000", correct: true },
+                        { letter: "B", text: "SELECT e.first_name, e.last_name, SUM(s.sale_amount), COUNT(s.sale_id) FROM employees e JOIN sales s ON e.emp_id = s.emp_id WHERE SUM(s.sale_amount) > 100000 GROUP BY e.emp_id", correct: false },
+                        { letter: "C", text: "SELECT e.first_name, e.last_name, SUM(s.sale_amount), COUNT(s.sale_id) FROM employees e LEFT JOIN sales s ON e.emp_id = s.emp_id GROUP BY e.first_name, e.last_name HAVING SUM(s.sale_amount) > 100000", correct: false },
+                        { letter: "D", text: "SELECT DISTINCT e.first_name, e.last_name, SUM(s.sale_amount), COUNT(s.sale_id) FROM employees e JOIN sales s ON e.emp_id = s.emp_id HAVING SUM(s.sale_amount) > 100000", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A correctly joins employees with sales, groups by all non-aggregate columns (emp_id, first_name, last_name), and uses HAVING to filter groups based on total sales amount exceeding $100,000.",
+                    incorrectExplanations: {
+                        "B": "WHERE cannot be used with aggregate functions like SUM(). Use HAVING to filter groups. Also missing required columns in GROUP BY.",
+                        "C": "LEFT JOIN would include employees with no sales (NULL values), potentially causing issues with SUM(). Missing emp_id in GROUP BY could cause ambiguous results.",
+                        "D": "Missing GROUP BY clause entirely. DISTINCT cannot replace proper grouping when using aggregate functions. This would cause a syntax error."
+                    },
+                    keyPoints: [
+                        "Use INNER JOIN when you only want records that exist in both tables",
+                        "All non-aggregate SELECT columns must appear in GROUP BY",
+                        "HAVING filters groups after aggregation, WHERE filters rows before",
+                        "Include primary key in GROUP BY to avoid ambiguity"
+                    ]
+                },
+                {
+                    question: "DataCorp needs to identify customers who haven't placed any orders in 2024. They want customer names and email addresses for a retention campaign. Which query correctly identifies these inactive customers?",
+                    concept: "Left Join with NULL Check",
+                    schema: "CUSTOMERS table: customer_id (NUMBER), customer_name (VARCHAR2), email (VARCHAR2), registration_date (DATE). ORDERS table: order_id (NUMBER), customer_id (NUMBER), order_date (DATE), order_amount (NUMBER)",
+                    sampleData: "Customer A: registered 2023, orders in Jan 2024. Customer B: registered 2023, last order Dec 2023. Customer C: registered 2024, no orders",
+                    options: [
+                        { letter: "A", text: "SELECT c.customer_name, c.email FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id AND YEAR(o.order_date) = 2024 WHERE o.customer_id IS NULL", correct: true },
+                        { letter: "B", text: "SELECT c.customer_name, c.email FROM customers c WHERE c.customer_id NOT IN (SELECT customer_id FROM orders WHERE YEAR(order_date) = 2024)", correct: false },
+                        { letter: "C", text: "SELECT c.customer_name, c.email FROM customers c INNER JOIN orders o ON c.customer_id = o.customer_id WHERE YEAR(o.order_date) <> 2024", correct: false },
+                        { letter: "D", text: "SELECT c.customer_name, c.email FROM customers c WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.customer_id AND YEAR(o.order_date) = 2024)", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A uses LEFT JOIN with the year condition in the ON clause, then filters for NULL matches. This correctly identifies customers with no 2024 orders while handling the year filter properly.",
+                    incorrectExplanations: {
+                        "B": "NOT IN can return unexpected results if the subquery contains NULL values. This approach is less reliable and may miss some customers.",
+                        "C": "INNER JOIN only returns customers who have orders, then filters for non-2024 orders. This excludes customers with no orders at all.",
+                        "D": "While logically correct, NOT EXISTS is less efficient than LEFT JOIN for this scenario and doesn't handle the year condition as cleanly."
+                    },
+                    keyPoints: [
+                        "LEFT JOIN returns all rows from the left table, even without matches",
+                        "Use IS NULL to identify missing relationships",
+                        "Place filtering conditions appropriately in ON vs WHERE clauses",
+                        "Consider performance implications of different approaches"
+                    ]
+                },
+                {
+                    question: "E-CommerceHub wants to rank products by sales volume within each category. They need product name, category, total quantity sold, and rank within category. Which window function approach is correct?",
+                    concept: "Window Functions and Ranking",
+                    schema: "PRODUCTS table: product_id (NUMBER), product_name (VARCHAR2), category (VARCHAR2), unit_price (NUMBER). SALES table: sale_id (NUMBER), product_id (NUMBER), quantity_sold (NUMBER), sale_date (DATE)",
+                    sampleData: "Electronics: Laptop (500 units), Phone (800 units), Tablet (300 units). Books: Novel A (200 units), Textbook B (150 units)",
+                    options: [
+                        { letter: "A", text: "SELECT p.product_name, p.category, SUM(s.quantity_sold) as total_qty, RANK() OVER (PARTITION BY p.category ORDER BY SUM(s.quantity_sold) DESC) as category_rank FROM products p JOIN sales s ON p.product_id = s.product_id GROUP BY p.product_id, p.product_name, p.category", correct: true },
+                        { letter: "B", text: "SELECT p.product_name, p.category, SUM(s.quantity_sold) as total_qty, ROW_NUMBER() OVER (ORDER BY SUM(s.quantity_sold) DESC) as category_rank FROM products p JOIN sales s ON p.product_id = s.product_id GROUP BY p.product_name, p.category", correct: false },
+                        { letter: "C", text: "SELECT p.product_name, p.category, SUM(s.quantity_sold) as total_qty, DENSE_RANK() OVER (PARTITION BY p.category ORDER BY p.product_name) as category_rank FROM products p JOIN sales s ON p.product_id = s.product_id GROUP BY p.product_id, p.product_name, p.category", correct: false },
+                        { letter: "D", text: "SELECT p.product_name, p.category, SUM(s.quantity_sold) as total_qty, RANK() OVER (ORDER BY SUM(s.quantity_sold) DESC) as category_rank FROM products p JOIN sales s ON p.product_id = s.product_id GROUP BY p.product_name", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A correctly uses RANK() with PARTITION BY category to rank within each category, orders by total quantity sold descending, and includes all necessary columns in GROUP BY.",
+                    incorrectExplanations: {
+                        "B": "ROW_NUMBER() doesn't partition by category, so it ranks across all products globally instead of within each category. Missing product_id in GROUP BY.",
+                        "C": "Orders by product_name instead of quantity sold, which doesn't rank by sales volume as requested.",
+                        "D": "Missing PARTITION BY category, so it ranks globally. Incomplete GROUP BY clause missing required columns."
+                    },
+                    keyPoints: [
+                        "PARTITION BY creates separate ranking groups",
+                        "RANK() allows tied ranks, ROW_NUMBER() assigns unique numbers",
+                        "ORDER BY in window function determines ranking criteria",
+                        "Include all non-aggregate columns in GROUP BY"
+                    ]
+                },
+                // Adding more comprehensive beginner questions (expanding to 25 total)
+                {
+                    question: "ManufacturingCorp tracks product defects. QA manager needs to find products with defect rates above 2% in the last quarter. Given defect count and total production, which query calculates defect rate correctly?",
+                    concept: "Calculated Fields and Percentage Calculations",
+                    schema: "PRODUCTION table: product_id (NUMBER), production_date (DATE), quantity_produced (NUMBER), defects_found (NUMBER), batch_id (VARCHAR2)",
+                    sampleData: "Product A: 1000 produced, 25 defects (2.5%). Product B: 500 produced, 8 defects (1.6%)",
+                    options: [
+                        { letter: "A", text: "SELECT product_id, (defects_found * 100.0 / quantity_produced) as defect_rate FROM production WHERE production_date >= ADD_MONTHS(SYSDATE, -3) AND (defects_found * 100.0 / quantity_produced) > 2", correct: true },
+                        { letter: "B", text: "SELECT product_id, (defects_found / quantity_produced) as defect_rate FROM production WHERE production_date >= SYSDATE - 90 AND defect_rate > 2", correct: false },
+                        { letter: "C", text: "SELECT product_id, ROUND(defects_found / quantity_produced * 100, 2) as defect_rate FROM production WHERE MONTHS_BETWEEN(SYSDATE, production_date) <= 3 AND defects_found > quantity_produced * 0.02", correct: false },
+                        { letter: "D", text: "SELECT product_id, defects_found / quantity_produced as defect_rate FROM production WHERE production_date BETWEEN SYSDATE - INTERVAL '3' MONTH AND SYSDATE AND defects_found > 2", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A correctly calculates percentage by multiplying by 100.0, uses proper date function ADD_MONTHS for quarter calculation, and filters based on calculated defect rate.",
+                    incorrectExplanations: {
+                        "B": "Cannot reference column alias 'defect_rate' in WHERE clause. Also, calculation gives decimal (0.025) not percentage (2.5%).",
+                        "C": "Logic error: defects_found > quantity_produced * 0.02 is not equivalent to percentage > 2%. This checks absolute defect count, not rate.",
+                        "D": "Defects_found > 2 checks absolute count, not percentage. Also, date interval syntax may not work in all databases."
+                    },
+                    keyPoints: [
+                        "Multiply by 100.0 to convert decimal to percentage",
+                        "Cannot reference column aliases in WHERE clause",
+                        "Use ADD_MONTHS for reliable date arithmetic", 
+                        "Distinguish between absolute values and calculated rates"
+                    ]
+                }
+                // ... Continue expanding to reach 25 beginner, 35 intermediate, 40 advanced questions
+            ],
+            advanced: [
+                {
+                    question: "TechUniverse operates globally with complex pricing. They need a query that shows each product's revenue by region, the running total of revenue within each region (ordered by product name), and what percentage each product contributes to its region's total revenue. Which advanced SQL solution is correct?",
+                    concept: "Advanced Window Functions with Multiple Calculations",
+                    schema: "PRODUCTS table: product_id (NUMBER), product_name (VARCHAR2), category (VARCHAR2). SALES table: sale_id (NUMBER), product_id (NUMBER), region (VARCHAR2), revenue (NUMBER), sale_date (DATE)",
+                    sampleData: "US Region: Product A ($10K), Product B ($15K), Product C ($5K). EU Region: Product A ($8K), Product D ($12K)",
+                    options: [
+                        { letter: "A", text: "SELECT p.product_name, s.region, SUM(s.revenue) as product_revenue, SUM(SUM(s.revenue)) OVER (PARTITION BY s.region ORDER BY p.product_name ROWS UNBOUNDED PRECEDING) as running_total, ROUND(SUM(s.revenue) * 100.0 / SUM(SUM(s.revenue)) OVER (PARTITION BY s.region), 2) as region_percentage FROM products p JOIN sales s ON p.product_id = s.product_id GROUP BY p.product_name, s.region ORDER BY s.region, p.product_name", correct: true },
+                        { letter: "B", text: "SELECT p.product_name, s.region, SUM(s.revenue) as product_revenue, SUM(s.revenue) OVER (PARTITION BY s.region ORDER BY p.product_name) as running_total, SUM(s.revenue) / SUM(s.revenue) OVER (PARTITION BY s.region) * 100 as region_percentage FROM products p JOIN sales s ON p.product_id = s.product_id GROUP BY p.product_name, s.region", correct: false },
+                        { letter: "C", text: "SELECT p.product_name, s.region, revenue as product_revenue, SUM(revenue) OVER (PARTITION BY region ORDER BY product_name ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) as running_total, revenue / SUM(revenue) OVER (PARTITION BY region) * 100 as region_percentage FROM products p JOIN sales s ON p.product_id = s.product_id", correct: false },
+                        { letter: "D", text: "SELECT p.product_name, s.region, SUM(s.revenue), LAG(SUM(s.revenue)) OVER (PARTITION BY s.region ORDER BY p.product_name) as running_total, PERCENT_RANK() OVER (PARTITION BY s.region ORDER BY SUM(s.revenue)) as region_percentage FROM products p JOIN sales s ON p.product_id = s.product_id GROUP BY p.product_name, s.region", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A correctly combines GROUP BY for aggregation with nested window functions. It uses SUM(SUM(revenue)) OVER() for running totals of grouped data, and calculates percentage using the total revenue per region as the denominator.",
+                    incorrectExplanations: {
+                        "B": "Cannot use SUM(s.revenue) directly in window function after GROUP BY - need nested aggregation. The percentage calculation is also incorrect.",
+                        "C": "Uses individual revenue instead of aggregated product revenue. Missing GROUP BY means it shows individual sales records, not product totals.",
+                        "D": "LAG() returns previous value, not running total. PERCENT_RANK() returns rank percentage, not revenue percentage contribution."
+                    },
+                    keyPoints: [
+                        "Nest aggregate functions in window functions: SUM(SUM(column)) OVER()",
+                        "Use ROWS UNBOUNDED PRECEDING for running totals",
+                        "Calculate percentages using appropriate denominators",
+                        "Combine GROUP BY with window functions for complex analytics"
+                    ]
+                },
+                {
+                    question: "MegaRetail's data warehouse contains 50 million transaction records. The finance team needs monthly revenue trends with year-over-year comparisons, but the query is timing out. Which optimization strategy provides the best performance improvement?",
+                    concept: "Query Performance Optimization",
+                    schema: "TRANSACTIONS table: transaction_id (NUMBER), transaction_date (DATE), amount (NUMBER), store_id (NUMBER), customer_id (NUMBER). Indexes: tx_date_idx ON transaction_date, tx_store_date_idx ON (store_id, transaction_date)",
+                    sampleData: "50M records spanning 2020-2024, daily transactions across 500 stores, average query time: 45 seconds, timeout at 60 seconds",
+                    options: [
+                        { letter: "A", text: "CREATE MATERIALIZED VIEW monthly_revenue AS SELECT YEAR(transaction_date) as year, MONTH(transaction_date) as month, SUM(amount) as revenue FROM transactions GROUP BY YEAR(transaction_date), MONTH(transaction_date); Then query the materialized view with LAG() for year-over-year comparisons", correct: true },
+                        { letter: "B", text: "Add HINT /*+ USE_INDEX(tx_date_idx) */ to force index usage and add WHERE transaction_date BETWEEN '2020-01-01' AND '2024-12-31' to limit the date range", correct: false },
+                        { letter: "C", text: "Partition the transactions table by transaction_date using monthly partitions and create local indexes on each partition", correct: false },
+                        { letter: "D", text: "Use PARALLEL hint with degree 8: SELECT /*+ PARALLEL(8) */ YEAR(transaction_date), MONTH(transaction_date), SUM(amount) FROM transactions GROUP BY YEAR(transaction_date), MONTH(transaction_date)", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A creates a pre-aggregated materialized view that dramatically reduces data volume from 50M rows to ~60 monthly summary rows. This provides the best performance for recurring analytical queries with minimal maintenance overhead.",
+                    incorrectExplanations: {
+                        "B": "Index hints and date filters help but don't address the core issue of aggregating 50M rows repeatedly. The date range is already implicit in the business requirement.",
+                        "C": "Partitioning helps with large table management but doesn't reduce the aggregation workload significantly for this cross-partition query pattern.",
+                        "D": "Parallel processing speeds up single query execution but doesn't solve the fundamental problem of repeated full-table aggregation for recurring reports."
+                    },
+                    keyPoints: [
+                        "Pre-aggregate frequently queried data using materialized views",
+                        "Materialized views are ideal for time-based analytical queries",
+                        "Consider data volume reduction as primary optimization strategy",
+                        "Balance query performance against data freshness requirements"
+                    ]
+                },
+                {
+                    question: "HealthCorp tracks patient treatments across multiple facilities. They need a recursive query to find all patients treated by doctors who previously treated a specific patient (patient_id = 12345), including indirect relationships (doctors who treated patients of those doctors). Which CTE approach correctly implements this recursive logic?",
+                    concept: "Recursive Common Table Expressions",
+                    schema: "TREATMENTS table: treatment_id (NUMBER), patient_id (NUMBER), doctor_id (NUMBER), treatment_date (DATE). PATIENTS table: patient_id (NUMBER), patient_name (VARCHAR2). DOCTORS table: doctor_id (NUMBER), doctor_name (VARCHAR2)",
+                    sampleData: "Patient 12345 treated by Dr. A. Dr. A also treated Patient 200. Dr. B treated Patient 200. Dr. B treated Patient 300. Goal: Find chain 12345→Dr.A→200→Dr.B→300",
+                    options: [
+                        { letter: "A", text: "WITH RECURSIVE patient_network (patient_id, doctor_id, level_num) AS (SELECT patient_id, doctor_id, 1 FROM treatments WHERE patient_id = 12345 UNION ALL SELECT t.patient_id, t.doctor_id, pn.level_num + 1 FROM treatments t JOIN patient_network pn ON t.doctor_id IN (SELECT doctor_id FROM treatments WHERE patient_id = pn.patient_id) WHERE pn.level_num < 5) SELECT DISTINCT patient_id FROM patient_network WHERE patient_id != 12345", correct: true },
+                        { letter: "B", text: "WITH patient_chain AS (SELECT patient_id, doctor_id FROM treatments WHERE patient_id = 12345 UNION SELECT t.patient_id, t.doctor_id FROM treatments t, patient_chain pc WHERE t.doctor_id = pc.doctor_id) SELECT patient_id FROM patient_chain", correct: false },
+                        { letter: "C", text: "WITH RECURSIVE doctor_patients AS (SELECT DISTINCT doctor_id FROM treatments WHERE patient_id = 12345 UNION ALL SELECT DISTINCT t.doctor_id FROM treatments t JOIN doctor_patients dp ON t.patient_id IN (SELECT patient_id FROM treatments WHERE doctor_id = dp.doctor_id)) SELECT DISTINCT patient_id FROM treatments WHERE doctor_id IN (SELECT doctor_id FROM doctor_patients)", correct: false },
+                        { letter: "D", text: "SELECT CONNECT_BY_ROOT patient_id, patient_id FROM treatments START WITH patient_id = 12345 CONNECT BY PRIOR doctor_id = doctor_id AND LEVEL <= 5", correct: false }
+                    ],
+                    correctAnswer: "A",
+                    explanation: "Option A correctly implements a recursive CTE with proper termination condition (level < 5) and finds the chain of patient-doctor relationships. The anchor starts with patient 12345, and the recursive part follows doctor connections to new patients.",
+                    incorrectExplanations: {
+                        "B": "Missing RECURSIVE keyword and proper termination condition. This would cause infinite recursion and syntax errors in most databases.",
+                        "C": "Logic is convoluted and doesn't properly track the patient-doctor-patient chain. The final SELECT doesn't maintain the relationship sequence.",
+                        "D": "Uses Oracle-specific CONNECT BY syntax instead of standard SQL recursive CTE. Also, the connection logic is incorrect for this use case."
+                    },
+                    keyPoints: [
+                        "Recursive CTEs require RECURSIVE keyword and UNION ALL",
+                        "Always include termination conditions to prevent infinite loops",
+                        "Anchor query establishes starting point, recursive part extends the result",
+                        "Track relationship chains carefully in healthcare data"
+                    ]
+                }
+            ]
+        };
+        
+        let currentQuestion = null;
+        let selectedAnswer = null;
+        
+        // Certification difficulty settings
+        const certificationLevels = {
+            beginner: {
+                name: "SQL Fundamentals",
+                description: "Basic SQL concepts (0-2 years experience)",
+                passingScore: 75,
+                questionsRequired: 15
+            },
+            intermediate: {
+                name: "SQL Professional", 
+                description: "Complex queries and joins (3-5 years experience)",
+                passingScore: 80,
+                questionsRequired: 20
+            },
+            advanced: {
+                name: "SQL Expert",
+                description: "Advanced optimization and analysis (5+ years experience)", 
+                passingScore: 85,
+                questionsRequired: 25
+            }
+        };
+        
+        // Load saved progress
+        function loadProgress() {
+            const saved = localStorage.getItem('sqlLearningProgressLocal');
+            if (saved) {
+                userProgress = { ...userProgress, ...JSON.parse(saved) };
+                updateProgressDisplay();
+            }
+        }
+        
+        // Save progress
+        function saveProgress() {
+            localStorage.setItem('sqlLearningProgressLocal', JSON.stringify(userProgress));
+        }
+        
+        // Update progress display
+        function updateProgressDisplay() {
+            const current = userProgress.levelProgress[userProgress.currentLevel];
+            const accuracy = current.answered > 0 ? Math.round((current.correct / current.answered) * 100) : 0;
+            
+            document.getElementById('questionsAnswered').textContent = userProgress.questionsAnswered;
+            document.getElementById('correctAnswers').textContent = userProgress.correctAnswers;
+            document.getElementById('accuracyRate').textContent = accuracy + '%';
+            document.getElementById('currentStreak').textContent = userProgress.streak;
+            
+            // Update progress bar
+            const progressPercent = current.answered >= 25 ? 
+                Math.min(100, (current.correct / Math.max(25 * 0.8, 1)) * 100) : 
+                (current.answered / 25) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+            
+            // Update level badge
+            const levelBadge = document.getElementById('currentLevelBadge');
+            levelBadge.textContent = userProgress.currentLevel.charAt(0).toUpperCase() + userProgress.currentLevel.slice(1);
+            levelBadge.className = `level-badge level-${userProgress.currentLevel}`;
+            
+            // Update level buttons
+            updateLevelButtons();
+        }
+        
+        // Update level selection buttons
+        function updateLevelButtons() {
+            const levels = ['beginner', 'intermediate', 'advanced'];
+            levels.forEach(level => {
+                const button = document.getElementById(level + 'Level');
+                if (userProgress.unlockedLevels.includes(level)) {
+                    button.className = `level-badge level-${level}`;
+                    button.style.cursor = 'pointer';
+                    button.style.opacity = '1';
+                } else {
+                    button.className = 'level-badge level-locked';
+                    button.style.cursor = 'not-allowed';
+                    button.style.opacity = '0.6';
+                }
+                
+                if (level === userProgress.currentLevel) {
+                    button.style.boxShadow = '0 0 0 2px #2563eb';
+                } else {
+                    button.style.boxShadow = 'none';
+                }
+            });
+        }
+        
+        // Check for level progression
+        function checkLevelProgression() {
+            const current = userProgress.levelProgress[userProgress.currentLevel];
+            const accuracy = current.answered > 0 ? (current.correct / current.answered) : 0;
+            
+            // Check if user can advance to next level
+            if (current.answered >= 25 && accuracy >= 0.8) {
+                const nextLevel = getNextLevel(userProgress.currentLevel);
+                if (nextLevel && !userProgress.unlockedLevels.includes(nextLevel)) {
+                    userProgress.unlockedLevels.push(nextLevel);
+                    showAchievement(`🎉 Congratulations! ${nextLevel.charAt(0).toUpperCase() + nextLevel.slice(1)} level unlocked!`);
+                    
+                    // Auto-advance to next level
+                    setTimeout(() => {
+                        userProgress.currentLevel = nextLevel;
+                        userProgress.currentSession = { level: nextLevel, answered: 0, correct: 0 };
+                        updateProgressDisplay();
+                        saveProgress();
+                        showAchievement(`🚀 Welcome to ${nextLevel} level! Ready for more challenging questions?`);
+                    }, 3000);
+                }
+            }
+        }
+        
+        function getNextLevel(currentLevel) {
+            const levels = ['beginner', 'intermediate', 'advanced'];
+            const currentIndex = levels.indexOf(currentLevel);
+            return currentIndex < levels.length - 1 ? levels[currentIndex + 1] : null;
+        }
+        
+        function showAchievement(message) {
+            const alert = document.getElementById('achievementAlert');
+            alert.textContent = message;
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 4000);
+        }
+        
+        // Select manual difficulty level
+        function selectManualLevel(level) {
+            if (!userProgress.unlockedLevels.includes(level)) {
+                showAchievement(`🔒 Complete ${userProgress.currentLevel} level first to unlock ${level}!`);
+                return;
+            }
+            
+            userProgress.currentLevel = level;
+            userProgress.currentSession = { level: level, answered: 0, correct: 0 };
+            updateProgressDisplay();
+            saveProgress();
+            showAchievement(`📚 Switched to ${level} level. Good luck!`);
+            
+            // Hide current question to force new generation
+            document.getElementById('questionDisplay').style.display = 'none';
+            currentQuestion = null;
+        }
+        
+        // Generate new question
+        function generateNewQuestion() {
+            const questions = questionBank[userProgress.currentLevel] || questionBank.beginner;
+            
+            // Reset current question and selection
+            currentQuestion = null;
+            selectedAnswer = null;
+            
+            // If we haven't asked many questions yet, or if history is getting too long, reset it
+            if (userProgress.questionHistory.length >= questions.length || userProgress.questionHistory.length > 20) {
+                userProgress.questionHistory = [];
+            }
+            
+            // Find questions we haven't asked recently
+            const availableQuestions = questions.map((q, index) => index)
+                .filter(index => !userProgress.questionHistory.includes(index));
+            
+            let questionIndex;
+            if (availableQuestions.length > 0) {
+                // Pick from unasked questions
+                questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+            } else {
+                // If all questions have been asked, pick any question
+                questionIndex = Math.floor(Math.random() * questions.length);
+                userProgress.questionHistory = []; // Reset history
+            }
+            
+            // Track question to avoid immediate repeats
+            userProgress.questionHistory.push(questionIndex);
+            
+            currentQuestion = { ...questions[questionIndex], index: questionIndex };
+            
+            displayQuestion(currentQuestion);
+        }
+        
+        // Display question
+        function displayQuestion(question) {
+            const display = document.getElementById('questionDisplay');
+            
+            const html = `
+                <div class="question-section">
+                    <div class="difficulty-badge difficulty-${userProgress.currentLevel}">
+                        ${userProgress.currentLevel}
+                    </div>
+                    <h3>${question.question}</h3>
+                    <p><strong>Concept:</strong> ${question.concept}</p>
+                    <p><strong>Schema:</strong> ${question.schema}</p>
+                    
+                    <div style="margin: 20px 0;">
+                        ${question.options.map(option => `
+                            <div class="option" onclick="selectAnswer('${option.letter}')" id="option${option.letter}">
+                                <strong>${option.letter}.</strong> ${option.text}
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <button onclick="submitAnswer()" class="btn" id="submitAnswer" style="display: none;">
+                        ✅ Submit Answer
+                    </button>
+                    
+                    <div id="explanation" style="display: none;"></div>
+                    
+                    <button onclick="generateNewQuestion()" class="btn" id="nextQuestion" style="display: none;">
+                        ➡️ Next Question
+                    </button>
+                </div>
+            `;
+            
+            display.innerHTML = html;
+            display.style.display = 'block';
+            
+            // Hide generate button
+            document.getElementById('generateBtn').style.display = 'none';
+        }
+        
+        // Select answer
+        function selectAnswer(letter) {
+            if (selectedAnswer) return; // Already answered
+            
+            // Clear previous selections
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Mark selected
+            document.getElementById('option' + letter).classList.add('selected');
+            selectedAnswer = letter;
+            
+            // Show submit button
+            document.getElementById('submitAnswer').style.display = 'block';
+        }
+        
+        // Submit answer
+        function submitAnswer() {
+            if (!selectedAnswer || !currentQuestion) return;
+            
+            const isCorrect = selectedAnswer === currentQuestion.correctAnswer;
+            
+            // Update progress
+            updateAnswerProgress(isCorrect);
+            
+            // Show results
+            showAnswerResults(isCorrect);
+            
+            // Hide submit button
+            document.getElementById('submitAnswer').style.display = 'none';
+            
+            // Show next question button
+            document.getElementById('nextQuestion').style.display = 'block';
+        }
+        
+        // Show answer results with detailed explanations
+        function showAnswerResults(isCorrect) {
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(option => {
+                const letter = option.id.replace('option', '');
+                const isThisCorrect = letter === currentQuestion.correctAnswer;
+                const isThisSelected = letter === selectedAnswer;
+                
+                if (isThisCorrect) {
+                    option.classList.add('correct');
+                } else if (isThisSelected) {
+                    option.classList.add('incorrect');
+                }
+                
+                option.style.cursor = 'default';
+                option.onclick = null;
+            });
+            
+            // Show detailed explanation
+            const explanationDiv = document.getElementById('explanation');
+            const currentStats = userProgress.levelProgress[userProgress.currentLevel];
+            const accuracy = currentStats.answered > 0 ? Math.round((currentStats.correct / currentStats.answered) * 100) : 0;
+            
+            let explanationHtml = `
+                <div class="explanation">
+                    <!-- Score Display -->
+                    <div class="score-display ${isCorrect ? 'score-correct' : 'score-incorrect'}">
+                        ${isCorrect ? '✅' : '❌'}
+                        <div style="margin-top: 5px;">
+                            ${isCorrect ? 'Excellent! Great job!' : 'Good try! Let\'s learn from this.'}
+                        </div>
+                        <div style="font-size: 0.9rem; margin-top: 5px; opacity: 0.8;">
+                            Score: ${currentStats.correct}/${currentStats.answered} (${accuracy}%)
+                        </div>
+                    </div>
+                    
+                    <!-- Detailed Explanation Header -->
+                    <div class="explanation-header">
+                        <span class="icon">💡</span>
+                        Detailed Explanation
+                    </div>
+                    
+                    <!-- Why Correct Answer is Right -->
+                    <div class="correct-explanation">
+                        <h4>Why ${currentQuestion.correctAnswer} is correct:</h4>
+                        <p>${currentQuestion.explanation}</p>
+                    </div>
+                    
+                    <!-- Why Other Answers are Wrong -->
+                    <div class="incorrect-explanations">
+                        <h4>Why other answers are incorrect:</h4>
+            `;
+            
+            // Add explanations for all incorrect options
+            currentQuestion.options.forEach(option => {
+                if (option.letter !== currentQuestion.correctAnswer && currentQuestion.incorrectExplanations[option.letter]) {
+                    explanationHtml += `
+                        <div class="option-explanation">
+                            <strong>Option ${option.letter}:</strong> ${currentQuestion.incorrectExplanations[option.letter]}
+                        </div>
+                    `;
+                }
+            });
+            
+            // Add key learning points if available
+            if (currentQuestion.keyPoints && currentQuestion.keyPoints.length > 0) {
+                explanationHtml += `
+                    </div>
+                    
+                    <!-- Key Learning Points -->
+                    <div class="key-points">
+                        <h4>Key Learning Points:</h4>
+                        <ul>
+                `;
+                
+                currentQuestion.keyPoints.forEach(point => {
+                    explanationHtml += `<li>${point}</li>`;
+                });
+                
+                explanationHtml += `
+                        </ul>
+                    </div>
+                `;
+            } else {
+                explanationHtml += '</div>';
+            }
+            
+            // Add action buttons
+            explanationHtml += `
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="secondary-btn" onclick="generateNewQuestion()">
+                            🔄 Try Another Question
+                        </button>
+                        <button class="primary-btn" onclick="testLiveVersion()">
+                            🚀 Test Live Version
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            explanationDiv.innerHTML = explanationHtml;
+            explanationDiv.style.display = 'block';
+        }
+        
+        // Test live version function
+        function testLiveVersion() {
+            window.open('https://yakhtar.github.io/SFMC_Cert/sql-mobile.html', '_blank');
+        }
+        
+        // Update progress when answer is submitted
+        function updateAnswerProgress(isCorrect) {
+            userProgress.questionsAnswered++;
+            userProgress.currentSession.answered++;
+            userProgress.levelProgress[userProgress.currentLevel].answered++;
+            
+            if (isCorrect) {
+                userProgress.correctAnswers++;
+                userProgress.currentSession.correct++;
+                userProgress.levelProgress[userProgress.currentLevel].correct++;
+                userProgress.streak++;
+            } else {
+                userProgress.streak = 0;
+            }
+            
+            // Check for achievements
+            checkAchievements();
+            
+            // Check level progression
+            checkLevelProgression();
+            
+            // Update display and save
+            updateProgressDisplay();
+            saveProgress();
+        }
+        
+        function checkAchievements() {
+            if (userProgress.streak === 5) {
+                showAchievement('🔥 5 question streak! You\'re on fire!');
+            } else if (userProgress.streak === 10) {
+                showAchievement('⚡ 10 question streak! Unstoppable!');
+            } else if (userProgress.questionsAnswered === 50) {
+                showAchievement('📚 50 questions answered! Learning machine!');
+            } else if (userProgress.questionsAnswered === 100) {
+                showAchievement('🏆 Century club! 100 questions mastered!');
+            }
+        }
+        
+        // Reset progress (for testing)
+        function resetProgress() {
+            if (confirm('Reset all progress? This cannot be undone.')) {
+                localStorage.removeItem('sqlLearningProgressLocal');
+                location.reload();
+            }
+        }
+        
+        // Initialize on load
+        window.addEventListener('load', function() {
+            loadProgress();
+            
+            // Add reset button for testing
+            const resetBtn = document.createElement('button');
+            resetBtn.innerHTML = '🔄 Reset Progress (Test)';
+            resetBtn.style.cssText = 'position: fixed; bottom: 20px; right: 20px; background: #ef4444; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; z-index: 1000;';
+            resetBtn.onclick = resetProgress;
+            document.body.appendChild(resetBtn);
+        });
+    </script>
+</body>
+</html>

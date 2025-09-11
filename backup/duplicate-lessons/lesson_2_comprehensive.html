@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Lesson 2: Contact Builder & Data Management - Interactive Q&A</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #e8751a 0%, #c86a15 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .progress-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e8751a, #f39c12);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .quiz-container {
+            padding: 30px;
+        }
+        
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #e8751a;
+        }
+        
+        .question-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .option:hover {
+            border-color: #e8751a;
+            background: #f0f7ff;
+        }
+        
+        .option.selected {
+            border-color: #e8751a;
+            background: #e3f2fd;
+        }
+        
+        .option.correct {
+            border-color: #4CAF50;
+            background: #e8f5e8;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .option-label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #e8751a;
+            min-width: 25px;
+        }
+        
+        .explanation {
+            background: #e8f5e8;
+            border-left: 5px solid #4CAF50;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #e8751a 0%, #c86a15 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(232, 117, 26, 0.3);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.1em;
+            color: #333;
+        }
+        
+        .completion-screen {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .completion-screen.show {
+            display: block;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .score-good {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .score-needs-improvement {
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+        }
+        
+        .score-poor {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .quiz-container {
+                padding: 20px;
+            }
+            
+            .question-text {
+                font-size: 1.0em;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 SFMC Email Specialist Certification</h1>
+            <p>Lesson 2: Contact Builder & Data Management (26-29% of Exam)</p>
+            <div style="font-size: 0.9em; margin-top: 10px; opacity: 0.8;">
+                🎯 Comprehensive 40-Question Certification Preparation 🎯
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 40</div>
+        </div>
+        
+        <div class="quiz-container" id="quizContainer">
+            <!-- Questions will be dynamically loaded here -->
+        </div>
+        
+        <div class="completion-screen" id="completionScreen">
+            <h2>🎉 Congratulations!</h2>
+            <p>You've completed the comprehensive Contact Builder & Data Management certification quiz!</p>
+            <div class="score-circle" id="scoreCircle">
+                <span id="finalScore">0%</span>
+            </div>
+            <p id="scoreMessage"></p>
+            <div style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                💡 This comprehensive 40-question quiz covers Contact Builder and data management essential for certification success
+            </div>
+            <button class="btn" onclick="restartQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        // SFMC Email Specialist Certification Questions
+        // Lesson 2: Contact Builder & Data Management - Comprehensive 40-Question Set
+        const questions = [
+            {
+                question: "Northern Trail Outfitters operates across multiple channels: e-commerce (WebCustomerID), retail stores (StoreCustomerID), mobile app (AppUserID), and customer service (ServiceID). They want to create a unified customer view in Contact Builder while maintaining the ability to track channel-specific behavior. What Contact Key strategy would best support both unified identity and channel attribution?",
+                options: [
+                    "Use email address as Contact Key with separate Data Extensions for each channel",
+                    "Create a Master Customer ID as Contact Key with channel-specific attribute groups and proper data relationships",
+                    "Use the most frequently updated ID (WebCustomerID) as the primary Contact Key",
+                    "Implement separate Contact Models for each channel with cross-reference mappings"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. A Master Customer ID as the Contact Key enables unified customer identity while channel-specific attribute groups maintain channel attribution and behavior tracking. This approach supports cross-channel journey orchestration and unified reporting while preserving channel-specific insights. Email addresses (A) can change and aren't always available. Most frequent ID (C) excludes other channel interactions. Separate Contact Models (D) prevent unified customer views needed for cross-channel experiences."
+            },
+            {
+                question: "NTO's Contact Builder contains 3.5 million contacts with complex population overlap: 1.8M Customers, 900K Prospects, 650K Mobile Users, 400K Loyalty Members, and 150K VIP customers. Journey Builder performance is degrading with timeout errors during audience building. What architectural optimization would most effectively resolve performance issues while maintaining segmentation capabilities?",
+                options: [
+                    "Reduce populations by consolidating similar segments",
+                    "Implement a master 'All Contacts' population with filtered sub-populations and strategic indexing",
+                    "Split Contact Model into high-value and standard customer instances",
+                    "Remove population overlaps by creating mutually exclusive categories"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. A master population with filtered sub-populations reduces database fragmentation and query complexity while maintaining segmentation flexibility. Strategic indexing on frequently queried fields improves performance significantly. Consolidation (A) loses valuable targeting precision. Splitting instances (C) prevents unified customer journeys. Removing overlaps (D) artificially constrains natural customer progression and reduces personalization opportunities."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answersGiven = [];
+        let quizCompleted = false;
+        let shuffledQuestions = [];
+
+        function shuffleArray(array) {
+            const shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        function prepareQuestion(questionData) {
+            // Create array of options with their original indices
+            const optionsWithIndex = questionData.options.map((option, index) => ({
+                text: option,
+                originalIndex: index,
+                isCorrect: index === questionData.correct
+            }));
+            
+            // Shuffle the options
+            const shuffled = shuffleArray(optionsWithIndex);
+            
+            // Find the new index of the correct answer
+            const newCorrectIndex = shuffled.findIndex(option => option.isCorrect);
+            
+            // Create mapping from original indices to new indices
+            const indexMapping = {};
+            shuffled.forEach((option, newIndex) => {
+                indexMapping[option.originalIndex] = newIndex;
+            });
+            
+            // Update explanation text to reflect new option positions
+            let updatedExplanation = questionData.explanation;
+            
+            // Replace letter references in explanation with updated letters
+            for (let originalIndex = 0; originalIndex < questionData.options.length; originalIndex++) {
+                const originalLetter = String.fromCharCode(65 + originalIndex);
+                const newLetter = String.fromCharCode(65 + indexMapping[originalIndex]);
+                
+                // Replace references like "(A)" or " A " with new letter
+                const regex = new RegExp(`\\(${originalLetter}\\)|\\b${originalLetter}\\b`, 'g');
+                updatedExplanation = updatedExplanation.replace(regex, (match) => {
+                    return match.includes('(') ? `(${newLetter})` : newLetter;
+                });
+            }
+            
+            return {
+                ...questionData,
+                options: shuffled.map(option => option.text),
+                correct: newCorrectIndex,
+                explanation: updatedExplanation
+            };
+        }
+
+        function loadQuestion() {
+            if (currentQuestion >= shuffledQuestions.length) {
+                showCompletionScreen();
+                return;
+            }
+
+            const question = shuffledQuestions[currentQuestion];
+            const container = document.getElementById('quizContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestion + 1} of ${shuffledQuestions.length}</div>
+                    <div class="question-text">${question.question}</div>
+                    <ul class="options">
+                        ${question.options.map((option, index) => 
+                            `<li class="option" onclick="selectOption(${index})">
+                                <span class="option-label">${String.fromCharCode(65 + index)})</span>
+                                <span>${option}</span>
+                            </li>`
+                        ).join('')}
+                    </ul>
+                    <div class="explanation" id="explanation">
+                        <h4>✅ Correct Answer: ${String.fromCharCode(65 + question.correct)})</h4>
+                        <p>${question.explanation}</p>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" ${currentQuestion === 0 ? 'disabled' : ''}>
+                        ← Previous
+                    </button>
+                    <div class="score-display">
+                        <div style="background: linear-gradient(135deg, #4CAF50, #2196F3); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;">
+                            📊 Running Score: ${score}/${currentQuestion + (answersGiven[currentQuestion] !== undefined ? 1 : 0)} 
+                            ${(currentQuestion > 0 || answersGiven[currentQuestion] !== undefined) ? `(${Math.round((score/(currentQuestion + (answersGiven[currentQuestion] !== undefined ? 1 : 0)))*100)}%)` : '(0%)'}
+                        </div>
+                    </div>
+                    <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>
+                        Next →
+                    </button>
+                </div>
+            `;
+
+            updateProgress();
+        }
+
+        function selectOption(selectedIndex) {
+            const options = document.querySelectorAll('.option');
+            const question = shuffledQuestions[currentQuestion];
+            const explanation = document.getElementById('explanation');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Remove any previous selections
+            options.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+
+            // Mark the selected option
+            options[selectedIndex].classList.add('selected');
+
+            // Show correct/incorrect styling
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+
+            // Update score - only if this is the first time answering this question
+            if (answersGiven[currentQuestion] === undefined) {
+                if (selectedIndex === question.correct) {
+                    score++;
+                }
+            }
+
+            // Record the answer
+            answersGiven[currentQuestion] = selectedIndex;
+
+            // Show explanation and enable next button
+            explanation.classList.add('show');
+            nextBtn.disabled = false;
+
+            // Update score display with enhanced styling
+            document.querySelector('.score-display').innerHTML = 
+                `<div style="background: linear-gradient(135deg, #4CAF50, #2196F3); color: white; padding: 8px 16px; border-radius: 20px; font-weight: bold;">
+                    📊 Running Score: ${score}/${currentQuestion + 1} (${Math.round(score/(currentQuestion + 1)*100)}%)
+                </div>`;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                loadQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / shuffledQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestion + 1} of ${shuffledQuestions.length}`;
+        }
+
+        function showCompletionScreen() {
+            const container = document.getElementById('quizContainer');
+            const completionScreen = document.getElementById('completionScreen');
+            const finalScorePercent = Math.round((score / shuffledQuestions.length) * 100);
+            
+            container.style.display = 'none';
+            completionScreen.classList.add('show');
+            
+            document.getElementById('finalScore').textContent = finalScorePercent + '%';
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreMessage = document.getElementById('scoreMessage');
+            
+            if (finalScorePercent >= 85) {
+                scoreCircle.className = 'score-circle score-excellent';
+                scoreMessage.textContent = '🌟 Outstanding! You demonstrate enterprise-level Contact Builder expertise ready for certification success!';
+            } else if (finalScorePercent >= 75) {
+                scoreCircle.className = 'score-circle score-good';
+                scoreMessage.textContent = '👏 Great job! You have strong knowledge. Review missed concepts and you\'ll be ready for the certification.';
+            } else if (finalScorePercent >= 65) {
+                scoreCircle.className = 'score-circle score-needs-improvement';
+                scoreMessage.textContent = '📚 Good progress! Focus on understanding the data management scenarios and technical details for certification success.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                scoreMessage.textContent = '💪 Keep studying! These advanced questions require deep Contact Builder knowledge. Review the concepts and try again.';
+            }
+
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Quiz Complete!';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            answersGiven = [];
+            quizCompleted = false;
+            
+            // Reshuffle questions and answers
+            initializeQuiz();
+            
+            document.getElementById('quizContainer').style.display = 'block';
+            document.getElementById('completionScreen').classList.remove('show');
+            
+            loadQuestion();
+        }
+
+        function initializeQuiz() {
+            // Shuffle the questions and prepare each one with shuffled answers
+            shuffledQuestions = shuffleArray(questions).map(prepareQuestion);
+        }
+
+        // Initialize the quiz
+        initializeQuiz();
+        loadQuestion();
+    </script>
+</body>
+</html>

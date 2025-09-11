@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Email Studio Business Scenario: GreenLeaf Wellness Company</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c5530 0%, #4a7c59 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+            padding: 25px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            border-left: 5px solid #4a7c59;
+        }
+        
+        .section h2 {
+            color: #2c5530;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+        }
+        
+        .section h3 {
+            color: #4a7c59;
+            margin: 20px 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .section h4 {
+            color: #2c5530;
+            margin: 15px 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .highlight-box {
+            background: #e8f5e8;
+            border: 2px solid #4a7c59;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+        
+        .code-comment {
+            color: #68d391;
+        }
+        
+        .code-function {
+            color: #63b3ed;
+        }
+        
+        .code-string {
+            color: #fbb6ce;
+        }
+        
+        .code-keyword {
+            color: #f6ad55;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .data-table th, .data-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .data-table th {
+            background: #4a7c59;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .objective-list {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .objective-list h4 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .objective-list ol {
+            padding-left: 25px;
+        }
+        
+        .objective-list li {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .technical-requirements {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .deliverability-section {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .company-profile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .company-profile {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌿 SFMC Email Studio Business Scenario</h1>
+            <p>Advanced Hands-On Learning: GreenLeaf Wellness Company Email Marketing Challenge</p>
+        </div>
+        
+        <div class="content">
+            <!-- Company Overview -->
+            <div class="section">
+                <h2>📊 Company Profile: GreenLeaf Wellness</h2>
+                
+                <div class="company-profile">
+                    <div class="highlight-box">
+                        <h4>Company Details</h4>
+                        <ul>
+                            <li><strong>Industry:</strong> Health & Wellness E-commerce</li>
+                            <li><strong>Founded:</strong> 2019</li>
+                            <li><strong>Size:</strong> 75 employees</li>
+                            <li><strong>Annual Revenue:</strong> $12M</li>
+                            <li><strong>Email List:</strong> 85,000 active subscribers</li>
+                            <li><strong>Geographic Reach:</strong> US, Canada, UK</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h4>Product Portfolio</h4>
+                        <ul>
+                            <li><strong>Supplements:</strong> Vitamins, minerals, probiotics</li>
+                            <li><strong>Organic Foods:</strong> Protein powders, superfood blends</li>
+                            <li><strong>Wellness Accessories:</strong> Water bottles, yoga mats</li>
+                            <li><strong>Digital Products:</strong> Meal plans, workout guides</li>
+                            <li><strong>Subscription Boxes:</strong> Monthly wellness packages</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>Current Challenge:</strong> GreenLeaf has been using a basic email platform but needs to implement sophisticated lifecycle marketing, personalization, and automated nurturing sequences to compete with larger wellness brands. Their current platform lacks advanced segmentation and personalization capabilities.
+                </div>
+            </div>
+            
+            <!-- Business Challenge -->
+            <div class="section">
+                <h2>🎯 Real Business Challenge</h2>
+                
+                <h3>The Situation</h3>
+                <p>GreenLeaf Wellness has experienced rapid growth but faces several critical email marketing challenges:</p>
+                
+                <div class="highlight-box">
+                    <h4>Primary Challenges</h4>
+                    <ol>
+                        <li><strong>Low Customer Lifetime Value (CLV):</strong> Average customer makes only 1.3 purchases</li>
+                        <li><strong>High Cart Abandonment:</strong> 78% cart abandonment rate with no recovery system</li>
+                        <li><strong>Poor Segmentation:</strong> Currently sends same message to all 85,000 subscribers</li>
+                        <li><strong>Inconsistent Branding:</strong> Email templates don't match website design</li>
+                        <li><strong>Compliance Issues:</strong> Struggling with international email regulations (GDPR, CASL)</li>
+                        <li><strong>Limited Analytics:</strong> Cannot track customer journey across touchpoints</li>
+                    </ol>
+                </div>
+                
+                <h3>Business Goals</h3>
+                <ul>
+                    <li>Increase email-driven revenue by 250% within 12 months</li>
+                    <li>Improve customer retention rate from 15% to 35%</li>
+                    <li>Reduce cart abandonment by 40%</li>
+                    <li>Achieve 98% email deliverability rate</li>
+                    <li>Implement compliant data collection and management</li>
+                </ul>
+                
+                <h3>Target Customer Segments</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Segment</th>
+                            <th>Size</th>
+                            <th>Characteristics</th>
+                            <th>Email Behavior</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Wellness Enthusiasts</strong></td>
+                            <td>25,000</td>
+                            <td>Ages 25-40, health-conscious, active lifestyle</td>
+                            <td>High engagement, prefers morning sends</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Busy Professionals</strong></td>
+                            <td>35,000</td>
+                            <td>Ages 30-50, time-constrained, convenience-focused</td>
+                            <td>Mobile-first, prefers concise content</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Senior Health Seekers</strong></td>
+                            <td>15,000</td>
+                            <td>Ages 50+, managing health conditions</td>
+                            <td>Desktop users, detailed content preferred</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fitness Athletes</strong></td>
+                            <td>10,000</td>
+                            <td>Ages 20-35, performance-focused, supplement-heavy</td>
+                            <td>Highly engaged, responds to urgency</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Technical Requirements -->
+            <div class="section">
+                <h2>⚙️ Technical Requirements</h2>
+                
+                <div class="technical-requirements">
+                    <h3>Data Extensions Architecture</h3>
+                    <h4>1. Customer Master Data Extension</h4>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Field Name</th>
+                                <th>Data Type</th>
+                                <th>Purpose</th>
+                                <th>Source</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CustomerID</td>
+                                <td>Number (Primary Key)</td>
+                                <td>Unique customer identifier</td>
+                                <td>E-commerce platform</td>
+                            </tr>
+                            <tr>
+                                <td>EmailAddress</td>
+                                <td>Email Address</td>
+                                <td>Primary communication method</td>
+                                <td>Website registration</td>
+                            </tr>
+                            <tr>
+                                <td>FirstName</td>
+                                <td>Text (50)</td>
+                                <td>Personalization</td>
+                                <td>Registration form</td>
+                            </tr>
+                            <tr>
+                                <td>WellnessProfile</td>
+                                <td>Text (20)</td>
+                                <td>Segment classification</td>
+                                <td>Quiz/preference center</td>
+                            </tr>
+                            <tr>
+                                <td>PreferredSendTime</td>
+                                <td>Number</td>
+                                <td>Send time optimization</td>
+                                <td>Engagement tracking</td>
+                            </tr>
+                            <tr>
+                                <td>SubscriptionTier</td>
+                                <td>Text (20)</td>
+                                <td>Product recommendations</td>
+                                <td>Purchase history</td>
+                            </tr>
+                            <tr>
+                                <td>LastPurchaseDate</td>
+                                <td>Date</td>
+                                <td>Lifecycle automation</td>
+                                <td>Order system</td>
+                            </tr>
+                            <tr>
+                                <td>TotalLifetimeValue</td>
+                                <td>Decimal</td>
+                                <td>High-value targeting</td>
+                                <td>Calculated field</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4>2. Purchase History Data Extension</h4>
+                    <ul>
+                        <li><strong>OrderID</strong> (Primary Key): Unique order identifier</li>
+                        <li><strong>CustomerID</strong> (Foreign Key): Links to customer master</li>
+                        <li><strong>ProductCategory</strong>: Supplements, Foods, Accessories, etc.</li>
+                        <li><strong>PurchaseAmount</strong>: Order value for RFM analysis</li>
+                        <li><strong>PurchaseDate</strong>: For recency calculations</li>
+                    </ul>
+                    
+                    <h4>3. Engagement Scoring Data Extension</h4>
+                    <ul>
+                        <li><strong>CustomerID</strong> (Primary Key)</li>
+                        <li><strong>EmailEngagementScore</strong>: 0-100 based on opens/clicks</li>
+                        <li><strong>WebsiteEngagementScore</strong>: Based on browsing behavior</li>
+                        <li><strong>LastEngagementDate</strong>: Most recent interaction</li>
+                        <li><strong>PreferredContentType</strong>: Educational, Promotional, Product Focus</li>
+                    </ul>
+                </div>
+                
+                <div class="technical-requirements">
+                    <h3>AMPscript Requirements</h3>
+                    <h4>Dynamic Content Needs</h4>
+                    <ul>
+                        <li><strong>Personalized Product Recommendations</strong>: Based on purchase history and wellness profile</li>
+                        <li><strong>Dynamic Discount Calculation</strong>: Tier-based pricing and loyalty discounts</li>
+                        <li><strong>Geographically-Aware Content</strong>: Different regulations and shipping for US/Canada/UK</li>
+                        <li><strong>Send Time Optimization</strong>: Individual optimal send times based on engagement data</li>
+                        <li><strong>Subscription Box Customization</strong>: Personalized monthly recommendations</li>
+                        <li><strong>Cart Recovery Logic</strong>: Different messaging based on cart age and value</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Deliverability Considerations -->
+            <div class="section">
+                <h2>📧 Deliverability Considerations</h2>
+                
+                <div class="deliverability-section">
+                    <h3>Critical Deliverability Challenges</h3>
+                    
+                    <h4>1. Authentication Setup</h4>
+                    <ul>
+                        <li><strong>SPF Record:</strong> Must include SFMC sending IPs</li>
+                        <li><strong>DKIM:</strong> Branded sending domain (email.greenleafwellness.com)</li>
+                        <li><strong>DMARC:</strong> Policy for brand protection</li>
+                        <li><strong>Subdomain Strategy:</strong> Separate marketing vs transactional</li>
+                    </ul>
+                    
+                    <h4>2. List Hygiene Requirements</h4>
+                    <ul>
+                        <li><strong>Suppression Lists:</strong> Hard bounces, spam complaints, unsubscribes</li>
+                        <li><strong>Re-engagement Campaign:</strong> Win-back inactive subscribers (6+ months)</li>
+                        <li><strong>Sunset Policy:</strong> Remove non-engaged subscribers after 12 months</li>
+                        <li><strong>Double Opt-in:</strong> For GDPR/CASL compliance</li>
+                    </ul>
+                    
+                    <h4>3. Content Filtering Considerations</h4>
+                    <ul>
+                        <li><strong>Health Claims:</strong> Avoid FDA-triggering language in supplements</li>
+                        <li><strong>Image-to-Text Ratio:</strong> Maintain 80/20 text-to-image ratio</li>
+                        <li><strong>Link Management:</strong> Avoid excessive links, use branded domains</li>
+                        <li><strong>Testing Requirements:</strong> Spam filter testing before each send</li>
+                    </ul>
+                    
+                    <h4>4. Reputation Management</h4>
+                    <ul>
+                        <li><strong>IP Warming:</strong> Gradual volume increase on dedicated IP</li>
+                        <li><strong>Feedback Loops:</strong> Monitor complaints across ISPs</li>
+                        <li><strong>Blacklist Monitoring:</strong> Regular checking of IP/domain reputation</li>
+                        <li><strong>Engagement Metrics:</strong> Maintain >25% open rate, <0.5% complaint rate</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Sample AMPscript Code -->
+            <div class="section">
+                <h2>💻 Sample AMPscript Implementation</h2>
+                
+                <h3>1. Personalized Product Recommendation Engine</h3>
+                <div class="code-block">
+<span class="code-comment">%%[
+/* Personalized Product Recommendations for GreenLeaf Wellness
+   Based on customer wellness profile and purchase history */</span>
+
+<span class="code-comment">/* Retrieve customer data from master data extension */</span>
+<span class="code-keyword">VAR</span> <span class="code-function">@customerID</span>, <span class="code-function">@wellnessProfile</span>, <span class="code-function">@subscriptionTier</span>, <span class="code-function">@lastPurchase</span>
+<span class="code-keyword">VAR</span> <span class="code-function">@productRecommendations</span>, <span class="code-function">@discountPercentage</span>, <span class="code-function">@personalizedGreeting</span>
+
+<span class="code-keyword">SET</span> <span class="code-function">@customerID</span> = <span class="code-function">AttributeValue</span>(<span class="code-string">"CustomerID"</span>)
+<span class="code-keyword">SET</span> <span class="code-function">@wellnessProfile</span> = <span class="code-function">Lookup</span>(<span class="code-string">"CustomerMaster"</span>, <span class="code-string">"WellnessProfile"</span>, <span class="code-string">"CustomerID"</span>, <span class="code-function">@customerID</span>)
+<span class="code-keyword">SET</span> <span class="code-function">@subscriptionTier</span> = <span class="code-function">Lookup</span>(<span class="code-string">"CustomerMaster"</span>, <span class="code-string">"SubscriptionTier"</span>, <span class="code-string">"CustomerID"</span>, <span class="code-function">@customerID</span>)
+<span class="code-keyword">SET</span> <span class="code-function">@lastPurchase</span> = <span class="code-function">Lookup</span>(<span class="code-string">"CustomerMaster"</span>, <span class="code-string">"LastPurchaseDate"</span>, <span class="code-string">"CustomerID"</span>, <span class="code-function">@customerID</span>)
+
+<span class="code-comment">/* Determine personalized greeting based on engagement */</span>
+<span class="code-keyword">IF</span> <span class="code-function">DateDiff</span>(<span class="code-function">@lastPurchase</span>, <span class="code-function">Now()</span>, <span class="code-string">"D"</span>) > 90 <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@personalizedGreeting</span> = <span class="code-string">"We miss you! Here's something special..."</span>
+<span class="code-keyword">ELSEIF</span> <span class="code-function">@subscriptionTier</span> == <span class="code-string">"VIP"</span> <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@personalizedGreeting</span> = <span class="code-string">"Exclusive VIP recommendations just for you"</span>
+<span class="code-keyword">ELSE</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@personalizedGreeting</span> = <span class="code-string">"Curated wellness picks for your journey"</span>
+<span class="code-keyword">ENDIF</span>
+
+<span class="code-comment">/* Dynamic product recommendations based on wellness profile */</span>
+<span class="code-keyword">IF</span> <span class="code-function">@wellnessProfile</span> == <span class="code-string">"Wellness Enthusiast"</span> <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@productRecommendations</span> = <span class="code-string">"Organic Superfood Blend, Probiotic Complex, Yoga Essentials Kit"</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@discountPercentage</span> = 15
+
+<span class="code-keyword">ELSEIF</span> <span class="code-function">@wellnessProfile</span> == <span class="code-string">"Busy Professional"</span> <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@productRecommendations</span> = <span class="code-string">"Convenient Protein Bars, Daily Vitamin Pack, Stress-Relief Formula"</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@discountPercentage</span> = 20
+
+<span class="code-keyword">ELSEIF</span> <span class="code-function">@wellnessProfile</span> == <span class="code-string">"Senior Health Seeker"</span> <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@productRecommendations</span> = <span class="code-string">"Joint Support Formula, Heart Health Omega-3, Bone Strength Complex"</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@discountPercentage</span> = 25
+
+<span class="code-keyword">ELSEIF</span> <span class="code-function">@wellnessProfile</span> == <span class="code-string">"Fitness Athlete"</span> <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@productRecommendations</span> = <span class="code-string">"Pre-Workout Energizer, Post-Workout Recovery, Creatine Monohydrate"</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@discountPercentage</span> = 18
+
+<span class="code-keyword">ELSE</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@productRecommendations</span> = <span class="code-string">"Multi-Vitamin Formula, Wellness Starter Kit, Health Assessment Guide"</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@discountPercentage</span> = 10
+<span class="code-keyword">ENDIF</span>
+
+<span class="code-comment">/* Loyalty tier bonus discount */</span>
+<span class="code-keyword">IF</span> <span class="code-function">@subscriptionTier</span> == <span class="code-string">"VIP"</span> <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@discountPercentage</span> = <span class="code-function">Add</span>(<span class="code-function">@discountPercentage</span>, 10)
+<span class="code-keyword">ELSEIF</span> <span class="code-function">@subscriptionTier</span> == <span class="code-string">"Premium"</span> <span class="code-keyword">THEN</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@discountPercentage</span> = <span class="code-function">Add</span>(<span class="code-function">@discountPercentage</span>, 5)
+<span class="code-keyword">ENDIF</span>
+<span class="code-comment">]%%</span>
+                </div>
+                
+                <h3>2. Cart Abandonment Recovery Logic</h3>
+                <div class="code-block">
+<span class="code-comment">%%[
+/* Intelligent Cart Recovery based on cart age and customer value */</span>
+
+<span class="code-keyword">VAR</span> <span class="code-function">@cartAge</span>, <span class="code-function">@cartValue</span>, <span class="code-function">@customerLTV</span>, <span class="code-function">@recoveryMessage</span>
+<span class="code-keyword">VAR</span> <span class="code-function">@incentiveOffer</span>, <span class="code-function">@urgencyMessage</span>
+
+<span class="code-keyword">SET</span> <span class="code-function">@cartAge</span> = <span class="code-function">AttributeValue</span>(<span class="code-string">"CartAgeHours"</span>)
+<span class="code-keyword">SET</span> <span class="code-function">@cartValue</span> = <span class="code-function">AttributeValue</span>(<span class="code-string">"CartValue"</span>)
+<span class="code-keyword">SET</span> <span class="code-function">@customerLTV</span> = <span class="code-function">Lookup</span>(<span class="code-string">"CustomerMaster"</span>, <span class="code-string">"TotalLifetimeValue"</span>, <span class="code-string">"CustomerID"</span>, <span class="code-function">@customerID</span>)
+
+<span class="code-comment">/* Escalating recovery strategy based on cart age */</span>
+<span class="code-keyword">IF</span> <span class="code-function">@cartAge</span> <= 2 <span class="code-keyword">THEN</span>
+    <span class="code-comment">/* First reminder - gentle nudge */</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@recoveryMessage</span> = <span class="code-string">"Your wellness items are waiting for you!"</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@incentiveOffer</span> = <span class="code-string">"Free shipping on your order"</span>
+    
+<span class="code-keyword">ELSEIF</span> <span class="code-function">@cartAge</span> <= 24 <span class="code-keyword">THEN</span>
+    <span class="code-comment">/* Second reminder - value proposition */</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@recoveryMessage</span> = <span class="code-string">"Don't let your wellness goals wait!"</span>
+    <span class="code-keyword">IF</span> <span class="code-function">@customerLTV</span> > 500 <span class="code-keyword">THEN</span>
+        <span class="code-keyword">SET</span> <span class="code-function">@incentiveOffer</span> = <span class="code-string">"15% off + free priority shipping"</span>
+    <span class="code-keyword">ELSE</span>
+        <span class="code-keyword">SET</span> <span class="code-function">@incentiveOffer</span> = <span class="code-string">"10% off your cart"</span>
+    <span class="code-keyword">ENDIF</span>
+    
+<span class="code-keyword">ELSEIF</span> <span class="code-function">@cartAge</span> <= 72 <span class="code-keyword">THEN</span>
+    <span class="code-comment">/* Final reminder - urgency + strong incentive */</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@recoveryMessage</span> = <span class="code-string">"Last chance! Your cart expires soon"</span>
+    <span class="code-keyword">SET</span> <span class="code-function">@urgencyMessage</span> = <span class="code-string">"Items in your cart are selling fast!"</span>
+    <span class="code-keyword">IF</span> <span class="code-function">@cartValue</span> > 150 <span class="code-keyword">THEN</span>
+        <span class="code-keyword">SET</span> <span class="code-function">@incentiveOffer</span> = <span class="code-string">"20% off + FREE wellness consultation"</span>
+    <span class="code-keyword">ELSE</span>
+        <span class="code-keyword">SET</span> <span class="code-function">@incentiveOffer</span> = <span class="code-string">"15% off + free shipping"</span>
+    <span class="code-keyword">ENDIF</span>
+<span class="code-keyword">ENDIF</span>
+<span class="code-comment">]%%</span>
+                </div>
+            </div>
+            
+            <!-- Learning Objectives -->
+            <div class="section">
+                <h2>🎯 Learning Objectives</h2>
+                
+                <div class="objective-list">
+                    <h4>By completing this GreenLeaf Wellness Email Studio scenario, students will master:</h4>
+                    <ol>
+                        <li><strong>Advanced Data Extension Architecture:</strong>
+                            <ul>
+                                <li>Design normalized data structures for complex customer data</li>
+                                <li>Implement proper primary/foreign key relationships</li>
+                                <li>Create calculated fields for dynamic segmentation</li>
+                                <li>Establish data retention and privacy compliance policies</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Professional AMPscript Development:</strong>
+                            <ul>
+                                <li>Build sophisticated personalization logic with multiple data sources</li>
+                                <li>Implement complex conditional statements for dynamic content</li>
+                                <li>Create reusable code blocks for consistent branding</li>
+                                <li>Develop error handling and fallback content strategies</li>
+                                <li>Optimize AMPscript performance for large data sets</li>
+                            </ul>
+                        </li>
+                        
+                        <li><strong>Enterprise Deliverability Management:</strong>
+                            <ul>
+                                <li>Configure complete email authentication (SPF, DKIM, DMARC)</li>
+                                <li>Implement subdomain strategy for different email types</li>
+                                <li>Design and execute IP warming strategies</li>
+                                <li>Create automated list hygiene and suppression workflows</li>
+                                <li>Establish reputation monitoring and recovery procedures</li>
+                                <li>Navigate industry-specific compliance (health/wellness regulations)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="highlight-box">
+                    <h4>Advanced Skills Demonstrated</h4>
+                    <ul>
+                        <li><strong>Multi-channel Data Integration:</strong> Combining website, purchase, and email engagement data</li>
+                        <li><strong>Behavioral Triggering:</strong> Cart abandonment, browse abandonment, and lifecycle messaging</li>
+                        <li><strong>Dynamic Segmentation:</strong> Real-time customer classification based on behavior</li>
+                        <li><strong>International Compliance:</strong> Managing GDPR, CASL, and CAN-SPAM requirements</li>
+                        <li><strong>Performance Optimization:</strong> A/B testing, send time optimization, and engagement scoring</li>
+                        <li><strong>Revenue Attribution:</strong> Tracking email performance impact on business metrics</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Implementation Timeline -->
+            <div class="section">
+                <h2>📅 Implementation Timeline & Milestones</h2>
+                
+                <div class="technical-requirements">
+                    <h3>Phase 1: Foundation Setup (Weeks 1-2)</h3>
+                    <ul>
+                        <li>Configure SFMC account and business units</li>
+                        <li>Set up data extensions and import customer data</li>
+                        <li>Implement email authentication (SPF, DKIM, DMARC)</li>
+                        <li>Create branded email templates</li>
+                        <li>Configure suppression lists and preference center</li>
+                    </ul>
+                    
+                    <h3>Phase 2: Content & Personalization (Weeks 3-4)</h3>
+                    <ul>
+                        <li>Develop AMPscript for dynamic content blocks</li>
+                        <li>Create product recommendation engine</li>
+                        <li>Build customer segmentation logic</li>
+                        <li>Implement preference center integration</li>
+                        <li>Set up A/B testing framework</li>
+                    </ul>
+                    
+                    <h3>Phase 3: Automation & Journey Building (Weeks 5-6)</h3>
+                    <ul>
+                        <li>Create welcome series automation</li>
+                        <li>Implement cart abandonment recovery</li>
+                        <li>Build post-purchase nurture sequences</li>
+                        <li>Set up win-back campaigns</li>
+                        <li>Configure advanced reporting and analytics</li>
+                    </ul>
+                    
+                    <h3>Phase 4: Optimization & Scale (Weeks 7-8)</h3>
+                    <ul>
+                        <li>Launch comprehensive A/B testing program</li>
+                        <li>Implement send time optimization</li>
+                        <li>Optimize deliverability and engagement metrics</li>
+                        <li>Scale successful campaigns to full audience</li>
+                        <li>Establish ongoing performance monitoring</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Success Metrics -->
+            <div class="section">
+                <h2>📊 Expected Success Metrics</h2>
+                
+                <div class="highlight-box">
+                    <h4>Key Performance Indicators (KPIs)</h4>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Metric</th>
+                                <th>Current Baseline</th>
+                                <th>Target After Implementation</th>
+                                <th>Measurement Method</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Email Open Rate</td>
+                                <td>18%</td>
+                                <td>28%</td>
+                                <td>SFMC Email Studio Analytics</td>
+                            </tr>
+                            <tr>
+                                <td>Click-Through Rate</td>
+                                <td>2.1%</td>
+                                <td>4.5%</td>
+                                <td>Journey Analytics</td>
+                            </tr>
+                            <tr>
+                                <td>Email-Driven Revenue</td>
+                                <td>$45K/month</td>
+                                <td>$157K/month</td>
+                                <td>Google Analytics + SFMC Tracking</td>
+                            </tr>
+                            <tr>
+                                <td>Cart Recovery Rate</td>
+                                <td>8%</td>
+                                <td>32%</td>
+                                <td>Journey Builder Analytics</td>
+                            </tr>
+                            <tr>
+                                <td>Customer Lifetime Value</td>
+                                <td>$87</td>
+                                <td>$195</td>
+                                <td>Customer Master Data Extension</td>
+                            </tr>
+                            <tr>
+                                <td>Email Deliverability</td>
+                                <td>87%</td>
+                                <td>98%</td>
+                                <td>Email Studio Delivery Reports</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="warning-box">
+                    <strong>Success Criteria:</strong> This scenario is considered successfully completed when students can independently implement all technical requirements, demonstrate measurable improvement in at least 4 of the 6 KPIs, and show proficiency in troubleshooting common SFMC Email Studio challenges encountered in real agency environments.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

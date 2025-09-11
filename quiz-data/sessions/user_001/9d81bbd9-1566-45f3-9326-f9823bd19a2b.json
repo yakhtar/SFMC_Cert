@@ -1,0 +1,839 @@
+{
+  "sessionId": "9d81bbd9-1566-45f3-9326-f9823bd19a2b",
+  "userId": "user_001",
+  "certificationName": "SFMC Email Specialist",
+  "difficulty": "adaptive",
+  "questionCount": 20,
+  "topics": [],
+  "createdAt": "2025-08-29T08:50:27.635Z",
+  "status": "active",
+  "currentQuestionIndex": 0,
+  "questionsAnswered": 1,
+  "correctAnswers": 1,
+  "totalTimeSpent": 30,
+  "questions": [
+    {
+      "id": "q_1",
+      "question": "Sample intermediate level question about SQL Basics",
+      "concept": "SQL Basics",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_2",
+      "question": "Sample intermediate level question about Database Design",
+      "concept": "Database Design",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_3",
+      "question": "Sample intermediate level question about Query Optimization",
+      "concept": "Query Optimization",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_4",
+      "question": "Sample intermediate level question about SQL Basics",
+      "concept": "SQL Basics",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_5",
+      "question": "Sample intermediate level question about Database Design",
+      "concept": "Database Design",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_6",
+      "question": "Sample intermediate level question about Query Optimization",
+      "concept": "Query Optimization",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_7",
+      "question": "Sample intermediate level question about SQL Basics",
+      "concept": "SQL Basics",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_8",
+      "question": "Sample intermediate level question about Database Design",
+      "concept": "Database Design",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_9",
+      "question": "Sample intermediate level question about Query Optimization",
+      "concept": "Query Optimization",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_10",
+      "question": "Sample intermediate level question about SQL Basics",
+      "concept": "SQL Basics",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_11",
+      "question": "Sample intermediate level question about Database Design",
+      "concept": "Database Design",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_12",
+      "question": "Sample intermediate level question about Query Optimization",
+      "concept": "Query Optimization",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_13",
+      "question": "Sample intermediate level question about SQL Basics",
+      "concept": "SQL Basics",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_14",
+      "question": "Sample intermediate level question about Database Design",
+      "concept": "Database Design",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_15",
+      "question": "Sample intermediate level question about Query Optimization",
+      "concept": "Query Optimization",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_16",
+      "question": "Sample intermediate level question about SQL Basics",
+      "concept": "SQL Basics",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_17",
+      "question": "Sample intermediate level question about Database Design",
+      "concept": "Database Design",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_18",
+      "question": "Sample intermediate level question about Query Optimization",
+      "concept": "Query Optimization",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_19",
+      "question": "Sample intermediate level question about SQL Basics",
+      "concept": "SQL Basics",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    },
+    {
+      "id": "q_20",
+      "question": "Sample intermediate level question about Database Design",
+      "concept": "Database Design",
+      "difficulty": "intermediate",
+      "options": [
+        {
+          "letter": "A",
+          "text": "Correct answer",
+          "correct": true
+        },
+        {
+          "letter": "B",
+          "text": "Incorrect option 1",
+          "correct": false
+        },
+        {
+          "letter": "C",
+          "text": "Incorrect option 2",
+          "correct": false
+        },
+        {
+          "letter": "D",
+          "text": "Incorrect option 3",
+          "correct": false
+        }
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the correct answer because...",
+      "incorrectExplanations": {
+        "B": "This is wrong because...",
+        "C": "This is incorrect due to...",
+        "D": "This option fails because..."
+      },
+      "keyPoints": [
+        "Key point 1",
+        "Key point 2",
+        "Key point 3"
+      ]
+    }
+  ],
+  "answers": [
+    {
+      "questionId": "q_1",
+      "question": "Sample intermediate level question about SQL Basics",
+      "selectedAnswer": "A",
+      "correctAnswer": "A",
+      "isCorrect": true,
+      "timeSpent": 30,
+      "timestamp": "2025-08-29T08:52:18.371Z",
+      "difficulty": "intermediate",
+      "topic": "SQL Basics"
+    }
+  ],
+  "adaptiveLevel": "intermediate",
+  "performanceMetrics": {
+    "accuracy": 100,
+    "averageTimePerQuestion": 30,
+    "strongTopics": [
+      "SQL Basics"
+    ],
+    "weakTopics": [],
+    "difficultyProgression": []
+  }
+}

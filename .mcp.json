@@ -1,0 +1,50 @@
+{
+  "mcpServers": {
+    "certification-research": {
+      "command": "node",
+      "args": ["mcp-servers/certification-research-mcp.js"],
+      "env": {
+        "NODE_PATH": "mcp-servers/node_modules"
+      }
+    },
+    "question-generator": {
+      "command": "node", 
+      "args": ["mcp-servers/question-generator-mcp.js"],
+      "env": {
+        "NODE_PATH": "mcp-servers/node_modules"
+      }
+    },
+    "quiz-engine": {
+      "command": "node",
+      "args": ["mcp-servers/quiz-engine-mcp.js"],
+      "env": {
+        "NODE_PATH": "mcp-servers/node_modules"
+      }
+    },
+    "seo-content-marketing": {
+      "command": "node",
+      "args": ["mcp-servers/seo-content-marketing-mcp.js"],
+      "env": {
+        "NODE_PATH": "mcp-servers/node_modules"
+      }
+    },
+    "social-media-marketing": {
+      "command": "node",
+      "args": ["mcp-servers/social-media-marketing-mcp.js"],
+      "env": {
+        "NODE_PATH": "mcp-servers/node_modules"
+      }
+    },
+    "ai-consulting": {
+      "command": "node",
+      "args": ["mcp-servers/ai-consulting-mcp.js"],
+      "env": {
+        "NODE_PATH": "mcp-servers/node_modules"
+      }
+    },
+    "context7": {
+      "transport": "http",
+      "url": "https://mcp.context7.com/mcp"
+    }
+  }
+}

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Learning Quiz - Local Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .question-content {
+            margin-bottom: 25px;
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #2563eb;
+            margin-bottom: 20px;
+        }
+        
+        .question-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .difficulty-badge, .concept-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .difficulty-beginner { background: #d1fae5; color: #065f46; }
+        .difficulty-intermediate { background: #fed7aa; color: #9a3412; }
+        .difficulty-advanced { background: #fecaca; color: #991b1b; }
+        
+        .concept-badge {
+            background: #e0e7ff;
+            color: #3730a3;
+        }
+        
+        .schema-info {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #bae6fd;
+        }
+        
+        .schema-info h4 {
+            color: #0c4a6e;
+            margin-bottom: 10px;
+        }
+        
+        .schema-info pre {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #374151;
+            overflow-x: auto;
+        }
+        
+        .answer-options {
+            margin-bottom: 25px;
+        }
+        
+        .option {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            margin-bottom: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .option:hover {
+            border-color: #2563eb;
+            background: #f8fafc;
+        }
+        
+        .option.selected {
+            border-color: #2563eb;
+            background: #dbeafe;
+        }
+        
+        .option.correct {
+            border-color: #10b981;
+            background: #d1fae5;
+        }
+        
+        .option.incorrect {
+            border-color: #ef4444;
+            background: #fee2e2;
+        }
+        
+        .option-letter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: #e5e7eb;
+            border-radius: 50%;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            color: #374151;
+        }
+        
+        .option.selected .option-letter {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .option.correct .option-letter {
+            background: #10b981;
+            color: white;
+        }
+        
+        .option.incorrect .option-letter {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .option-text {
+            flex: 1;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        
+        .option-sql {
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin-top: 8px;
+            color: #1f2937;
+        }
+        
+        .explanation {
+            display: none;
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+        
+        .explanation h3 {
+            color: #1f2937;
+            margin-bottom: 15px;
+        }
+        
+        .explanation-section {
+            margin-bottom: 20px;
+        }
+        
+        .explanation-section h4 {
+            color: #374151;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .explanation-section h4.correct {
+            color: #059669;
+        }
+        
+        .explanation-section h4.incorrect {
+            color: #dc2626;
+        }
+        
+        .explanation-text {
+            line-height: 1.6;
+            color: #4b5563;
+        }
+        
+        .next-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            flex: 1;
+        }
+        
+        .score-display {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f0f9ff;
+            border-radius: 10px;
+        }
+        
+        .score-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1d4ed8;
+        }
+        
+        .sample-data {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .sample-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        
+        .sample-table th,
+        .sample-table td {
+            border: 1px solid #dee2e6;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .sample-table th {
+            background: #e9ecef;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .next-actions {
+                flex-direction: column;
+            }
+            
+            .question-meta {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📚 SQL Learning Quiz - Local Test</h1>
+            <p>Testing the interface with sample data</p>
+        </header>
+        
+        <div class="card">
+            <button class="btn" onclick="loadSampleQuestion()">
+                🧪 Load Sample Question
+            </button>
+            
+            <div id="questionContainer" style="display: none;">
+                <div id="questionContent"></div>
+                
+                <div class="answer-options" id="answerOptions"></div>
+                
+                <button class="btn" id="submitAnswer" onclick="checkAnswer()" disabled>
+                    ✅ Check My Answer
+                </button>
+                
+                <div class="explanation" id="explanation"></div>
+                
+                <div class="next-actions" id="nextActions" style="display: none;">
+                    <button class="btn btn-secondary" onclick="loadSampleQuestion()">
+                        🔄 Try Another Question
+                    </button>
+                    <button class="btn btn-primary" onclick="goLive()">
+                        🚀 Test Live Version
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = null;
+        let selectedAnswer = null;
+        let questionsAnswered = 0;
+        let correctAnswers = 0;
+        
+        // Sample question data to test the interface
+        const sampleQuestionData = {
+            question: "You have an 'employees' table with columns: id, name, department, salary. You need to get a list of all employee names for a company directory. Which SQL statement should you use?",
+            difficulty: "beginner",
+            concept: "Basic SELECT statements",
+            schema: "employees(id, name, department, salary)",
+            options: [
+                {
+                    "letter": "A",
+                    "text": "Get only employee names",
+                    "sql": "SELECT name FROM employees;",
+                    "correct": true
+                },
+                {
+                    "letter": "B",
+                    "text": "Get all employee data",
+                    "sql": "SELECT * FROM employees;",
+                    "correct": false
+                },
+                {
+                    "letter": "C",
+                    "text": "Get names with table prefix",
+                    "sql": "SELECT employees.name FROM employees;",
+                    "correct": false
+                },
+                {
+                    "letter": "D",
+                    "text": "Get names and salaries",
+                    "sql": "SELECT name, salary FROM employees;",
+                    "correct": false
+                }
+            ],
+            correctAnswer: "A",
+            explanation: "Option A is correct because it selects only the 'name' column as requested for the company directory. This is more efficient than selecting all columns and gives you exactly what you need.",
+            incorrectExplanations: {
+                "B": "This selects all columns (*) which includes unnecessary data like salary and department. This is inefficient and may expose sensitive information.",
+                "C": "While technically correct, the table prefix 'employees.name' is unnecessary in single-table queries and adds complexity.",
+                "D": "This includes the salary column which wasn't requested and might be confidential information not needed for a company directory."
+            },
+            keyPoints: [
+                "Always select only the columns you actually need",
+                "Use simple syntax for single-table queries",
+                "Consider data privacy - don't select sensitive columns unless necessary"
+            ],
+            sampleData: {
+                tables: [
+                    {
+                        name: "employees",
+                        columns: ["id", "name", "department", "salary"],
+                        data: [
+                            [1, "Alice Johnson", "Engineering", 75000],
+                            [2, "Bob Smith", "Marketing", 65000],
+                            [3, "Carol Davis", "Engineering", 80000],
+                            [4, "David Wilson", "HR", 60000]
+                        ]
+                    }
+                ]
+            }
+        };
+        
+        function loadSampleQuestion() {
+            currentQuestion = sampleQuestionData;
+            displayQuestion(currentQuestion);
+            document.getElementById('questionContainer').style.display = 'block';
+            
+            // Reset state
+            selectedAnswer = null;
+            document.getElementById('submitAnswer').disabled = true;
+            document.getElementById('submitAnswer').style.display = 'block';
+            document.getElementById('explanation').classList.remove('show');
+            document.getElementById('nextActions').style.display = 'none';
+        }
+        
+        function displayQuestion(questionData) {
+            // Display question content
+            const questionContent = document.getElementById('questionContent');
+            questionContent.innerHTML = `
+                <div class="question-meta">
+                    <div class="difficulty-badge difficulty-${questionData.difficulty}">
+                        ${questionData.difficulty}
+                    </div>
+                    <div class="concept-badge">
+                        ${questionData.concept}
+                    </div>
+                </div>
+                
+                <div class="question-text">
+                    ${questionData.question}
+                </div>
+                
+                <div class="schema-info">
+                    <h4>📊 Database Schema</h4>
+                    <pre>${questionData.schema}</pre>
+                </div>
+                
+                ${generateSampleDataHTML(questionData.sampleData)}
+            `;
+            
+            // Display answer options
+            displayAnswerOptions(questionData);
+        }
+        
+        function displayAnswerOptions(questionData) {
+            const optionsContainer = document.getElementById('answerOptions');
+            
+            optionsContainer.innerHTML = questionData.options.map(option => `
+                <div class="option" onclick="selectOption('${option.letter}')">
+                    <div class="option-letter">${option.letter}</div>
+                    <div class="option-text">
+                        ${option.text}
+                        <div class="option-sql">${option.sql}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function selectOption(letter) {
+            // Remove previous selection
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Select new option
+            const selectedOption = document.querySelector(`[onclick="selectOption('${letter}')"]`);
+            selectedOption.classList.add('selected');
+            
+            selectedAnswer = letter;
+            document.getElementById('submitAnswer').disabled = false;
+        }
+        
+        function checkAnswer() {
+            if (!selectedAnswer) return;
+            
+            questionsAnswered++;
+            
+            const correctAnswer = currentQuestion.correctAnswer;
+            const isCorrect = selectedAnswer === correctAnswer;
+            
+            if (isCorrect) {
+                correctAnswers++;
+            }
+            
+            // Update option styles
+            document.querySelectorAll('.option').forEach(opt => {
+                const letter = opt.querySelector('.option-letter').textContent;
+                if (letter === correctAnswer) {
+                    opt.classList.add('correct');
+                } else if (letter === selectedAnswer && !isCorrect) {
+                    opt.classList.add('incorrect');
+                }
+            });
+            
+            // Show explanation
+            showExplanation(correctAnswer, selectedAnswer, currentQuestion);
+            
+            // Disable submit button and show next actions
+            document.getElementById('submitAnswer').style.display = 'none';
+            document.getElementById('nextActions').style.display = 'flex';
+        }
+        
+        function showExplanation(correctAnswer, selectedAnswer, questionData) {
+            const isCorrect = correctAnswer === selectedAnswer;
+            const explanation = document.getElementById('explanation');
+            
+            const correctExplanation = questionData.explanation;
+            const incorrectExplanations = questionData.incorrectExplanations;
+            const keyPoints = questionData.keyPoints;
+            
+            let incorrectHTML = '';
+            ['A', 'B', 'C', 'D'].forEach(letter => {
+                if (letter !== correctAnswer) {
+                    const incorrectReason = incorrectExplanations[letter] || `Option ${letter} is incorrect.`;
+                    incorrectHTML += `<strong>Option ${letter}:</strong> ${incorrectReason}<br><br>`;
+                }
+            });
+            
+            explanation.innerHTML = `
+                <div class="score-display">
+                    <div class="score-number">${isCorrect ? '✅' : '❌'}</div>
+                    <div>${isCorrect ? 'Excellent! You got it right!' : 'Good try! Let\'s learn from this.'}</div>
+                    <div style="font-size: 14px; color: #6b7280; margin-top: 5px;">
+                        Score: ${correctAnswers}/${questionsAnswered} (${Math.round((correctAnswers/questionsAnswered)*100)}%)
+                    </div>
+                </div>
+                
+                <h3>💡 Detailed Explanation</h3>
+                
+                <div class="explanation-section">
+                    <h4 class="correct">✅ Why ${correctAnswer} is correct:</h4>
+                    <div class="explanation-text">
+                        ${correctExplanation}
+                    </div>
+                </div>
+                
+                <div class="explanation-section">
+                    <h4 class="incorrect">❌ Why other answers are incorrect:</h4>
+                    <div class="explanation-text">
+                        ${incorrectHTML}
+                    </div>
+                </div>
+                
+                <div class="explanation-section">
+                    <h4>🎯 Key Learning Points:</h4>
+                    <div class="explanation-text">
+                        ${keyPoints.map(point => `• ${point}`).join('<br>')}
+                    </div>
+                </div>
+            `;
+            
+            explanation.classList.add('show');
+            explanation.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function generateSampleDataHTML(sampleData) {
+            if (!sampleData || !sampleData.tables) return '';
+            
+            let html = '<div class="sample-data"><h4>📊 Sample Data</h4>';
+            
+            sampleData.tables.forEach(table => {
+                html += `
+                    <div style="margin: 15px 0;">
+                        <h5>${table.name}</h5>
+                        <table class="sample-table">
+                            <thead>
+                                <tr>
+                `;
+                
+                if (table.columns) {
+                    table.columns.forEach(col => {
+                        html += `<th>${col}</th>`;
+                    });
+                }
+                
+                html += `
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+                
+                if (table.data) {
+                    table.data.forEach(row => {
+                        html += '<tr>';
+                        row.forEach(cell => {
+                            html += `<td>${cell}</td>`;
+                        });
+                        html += '</tr>';
+                    });
+                }
+                
+                html += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            return html;
+        }
+        
+        function goLive() {
+            window.open('https://yakhtar.github.io/SFMC_Cert/sql-quiz.html', '_blank');
+        }
+    </script>
+</body>
+</html>
