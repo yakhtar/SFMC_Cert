@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFMC Interactive Study Platform - Amroha Outfitters Training</title>
+    <meta name="description" content="Interactive SFMC Email Specialist certification study platform with adaptive learning and real-time progress tracking.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <style>
+        .question-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+        }
+        .option-button {
+            transition: all 0.2s ease;
+        }
+        .option-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .correct-answer {
+            background: linear-gradient(135deg, #10b981, #059669);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        .incorrect-answer {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            transform: translateY(-2px);
+        }
+        .progress-fill {
+            transition: width 0.5s ease;
+        }
+        .pulse-success {
+            animation: pulse-green 1s ease-in-out;
+        }
+        @keyframes pulse-green {
+            0%, 100% { background-color: #10b981; }
+            50% { background-color: #059669; }
+        }
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-cyan-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="sfmc_certification_hub.html" class="text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-arrow-left text-blue-600 mr-2"></i>
+                        Back to Hub
+                    </a>
+                </div>
+
+                <div class="flex items-center">
+                    <img src="img/SFMCLogo.jpg" alt="SFMC Logo" class="w-8 h-8 rounded-lg mr-3 shadow-sm">
+                    <h1 class="text-lg font-bold text-gray-900">
+                        Interactive Study Platform
+                    </h1>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <div class="text-sm text-gray-600">
+                        <span id="current-score" class="font-semibold text-blue-600">0%</span> Accuracy
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-20 min-h-screen">
+        <!-- Study Dashboard -->
+        <div id="study-dashboard" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Progress Overview -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900">
+                        <i class="fas fa-chart-line text-blue-600 mr-3"></i>
+                        Your Study Progress
+                    </h2>
+                    <button id="reset-progress" class="text-sm text-red-600 hover:text-red-700 transition-colors">
+                        <i class="fas fa-redo mr-1"></i>Reset Progress
+                    </button>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                    <div class="text-center">
+                        <div id="questions-answered" class="text-3xl font-bold text-blue-600 mb-2">0</div>
+                        <div class="text-sm text-gray-600">Questions Answered</div>
+                    </div>
+                    <div class="text-center">
+                        <div id="accuracy-percentage" class="text-3xl font-bold text-green-600 mb-2">0%</div>
+                        <div class="text-sm text-gray-600">Accuracy</div>
+                    </div>
+                    <div class="text-center">
+                        <div id="study-streak" class="text-3xl font-bold text-purple-600 mb-2">0</div>
+                        <div class="text-sm text-gray-600">Study Streak</div>
+                    </div>
+                    <div class="text-center">
+                        <div id="time-studied" class="text-3xl font-bold text-orange-600 mb-2">0m</div>
+                        <div class="text-sm text-gray-600">Time Studied</div>
+                    </div>
+                </div>
+
+                <!-- Overall Progress Bar -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-700">Overall Progress</span>
+                        <span id="progress-percentage" class="text-sm font-medium text-blue-600">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3">
+                        <div id="progress-bar" class="bg-gradient-to-r from-blue-500 to-cyan-500 h-3 rounded-full progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Topic Breakdown -->
+                <div id="topic-breakdown" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Topic progress bars will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Study Options -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Quick Practice -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="bg-blue-500 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-bolt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Quick Practice</h3>
+                    <p class="text-gray-600 mb-4">5 random questions from your weak areas</p>
+                    <button id="start-quick-practice" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
+                        Start Quick Practice
+                    </button>
+                </div>
+
+                <!-- Focused Study -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="bg-green-500 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-target text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Focused Study</h3>
+                    <p class="text-gray-600 mb-4">Choose specific topics to practice</p>
+                    <button id="start-focused-study" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold">
+                        Choose Topics
+                    </button>
+                </div>
+
+                <!-- Practice Exam -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <div class="bg-purple-500 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-clipboard-check text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Practice Exam</h3>
+                    <p class="text-gray-600 mb-4">60 questions, 90 minutes</p>
+                    <button id="start-practice-exam" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition-colors font-semibold">
+                        Start Exam
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question Interface -->
+        <div id="question-interface" class="hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Question Header -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-4">
+                        <button id="back-to-dashboard" class="text-gray-600 hover:text-gray-800 transition-colors">
+                            <i class="fas fa-arrow-left text-lg"></i>
+                        </button>
+                        <h2 class="text-xl font-bold text-gray-900">Question <span id="question-number">1</span> of <span id="total-questions">5</span></h2>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div id="timer" class="hidden text-lg font-semibold text-orange-600">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span id="time-remaining">90:00</span>
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            Topic: <span id="current-topic" class="font-semibold text-blue-600">Contact Builder</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div id="question-progress" class="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div id="question-card" class="question-card bg-white rounded-2xl shadow-lg p-8 mb-6 slide-in">
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4" id="question-text">
+                        <!-- Question text will be inserted here -->
+                    </h3>
+                </div>
+
+                <!-- Answer Options -->
+                <div id="answer-options" class="space-y-3">
+                    <!-- Options will be inserted here -->
+                </div>
+
+                <!-- Explanation -->
+                <div id="explanation-section" class="hidden mt-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-semibold text-gray-900 mb-2">
+                        <i class="fas fa-lightbulb text-blue-600 mr-2"></i>
+                        Explanation
+                    </h4>
+                    <p id="explanation-text" class="text-gray-700"></p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex justify-between items-center mt-6">
+                    <button id="prev-question" class="hidden px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                        <i class="fas fa-chevron-left mr-2"></i>Previous
+                    </button>
+                    <div class="flex space-x-3 ml-auto">
+                        <button id="skip-question" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                            Skip
+                        </button>
+                        <button id="next-question" class="hidden px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            Next Question <i class="fas fa-chevron-right ml-2"></i>
+                        </button>
+                        <button id="finish-session" class="hidden px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                            Finish Session
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Modal -->
+        <div id="results-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-2xl w-full mx-4">
+                <div class="text-center">
+                    <div id="results-icon" class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center">
+                        <!-- Icon will be inserted based on performance -->
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Session Complete!</h2>
+                    <div id="results-stats" class="grid grid-cols-2 gap-6 mb-8">
+                        <!-- Results stats will be inserted here -->
+                    </div>
+                    <div id="ai-recommendation" class="bg-blue-50 rounded-lg p-4 mb-6">
+                        <h3 class="font-semibold text-blue-900 mb-2">
+                            <i class="fas fa-robot mr-2"></i>AI Recommendation
+                        </h3>
+                        <p id="recommendation-text" class="text-blue-800"></p>
+                    </div>
+                    <div class="flex space-x-4 justify-center">
+                        <button id="continue-studying" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            Continue Studying
+                        </button>
+                        <button id="back-to-dashboard-modal" class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors">
+                            Back to Dashboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full 275-question certification bank (was previously never loaded -
+         the app ran on a 12-question placeholder even though this content
+         existed on disk). Must load before question-engine.js. -->
+    <script src="question-banks/advanced/advanced_lesson_1_certification_questions.js"></script>
+    <script src="question-banks/advanced/lesson_2_advanced_certification_questions.js"></script>
+    <script src="question-banks/advanced/lesson_3_advanced_certification_questions.js"></script>
+    <script src="question-banks/advanced/lesson_4_advanced_certification_questions.js"></script>
+    <script src="question-banks/advanced/lesson_5_advanced_certification_questions.js"></script>
+    <script src="question-banks/advanced/lesson_6_advanced_certification_questions.js"></script>
+    <script src="question-banks/advanced/lesson_7_advanced_certification_questions.js"></script>
+    <script src="question-banks/intermediate/lesson_5_comprehensive_certification_questions.js"></script>
+
+    <!-- Core JavaScript -->
+    <script src="js/question-engine.js"></script>
+    <script src="js/progress-tracker.js"></script>
+    <script src="js/ai-assistant.js"></script>
+    <script src="js/main-app.js"></script>
+</body>
+</html>

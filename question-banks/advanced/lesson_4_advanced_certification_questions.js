@@ -13,7 +13,7 @@ const advancedLesson4Questions = [
     {
         id: 1,
         topic: "Responsive Email Templates & HTML/CSS",
-        question: "Northern Trail Outfitters needs to create a responsive email template that displays a 3-column product layout on desktop, 2-column on tablet, and single-column on mobile devices. They're experiencing rendering issues in Outlook and Gmail mobile apps. What HTML/CSS approach would ensure consistent responsive behavior across all major email clients?",
+        question: "Amroha Outfitters needs to create a responsive email template that displays a 3-column product layout on desktop, 2-column on tablet, and single-column on mobile devices. They're experiencing rendering issues in Outlook and Gmail mobile apps. What HTML/CSS approach would ensure consistent responsive behavior across all major email clients?",
         options: [
             "Use CSS flexbox with media queries for responsive layout control",
             "Implement table-based responsive design with media queries and conditional MSO styling for Outlook compatibility",
@@ -27,7 +27,7 @@ const advancedLesson4Questions = [
     {
         id: 2,
         topic: "Responsive Email Templates & HTML/CSS",
-        question: "NTO's email templates need to support dark mode in iOS Mail, Gmail, and Outlook mobile while maintaining brand color consistency. They're using custom brand colors that don't adapt well to dark backgrounds. What CSS strategy would best handle dark mode compatibility while preserving brand identity?",
+        question: "AO's email templates need to support dark mode in iOS Mail, Gmail, and Outlook mobile while maintaining brand color consistency. They're using custom brand colors that don't adapt well to dark backgrounds. What CSS strategy would best handle dark mode compatibility while preserving brand identity?",
         options: [
             "Use only web-safe colors to ensure consistency across light and dark modes",
             "Implement CSS media queries with prefers-color-scheme and custom CSS properties for adaptive brand colors",
@@ -41,7 +41,7 @@ const advancedLesson4Questions = [
     {
         id: 3,
         topic: "Responsive Email Templates & HTML/CSS",
-        question: "A complex NTO promotional email contains interactive elements including image carousels, expandable content sections, and hover effects for desktop users. These elements need to degrade gracefully for email clients that don't support CSS animations. What development approach ensures functionality across all email clients?",
+        question: "A complex AO promotional email contains interactive elements including image carousels, expandable content sections, and hover effects for desktop users. These elements need to degrade gracefully for email clients that don't support CSS animations. What development approach ensures functionality across all email clients?",
         options: [
             "Use progressive enhancement with fallback static content for all interactive elements",
             "Implement JavaScript-based interactions for full functionality",
@@ -55,7 +55,7 @@ const advancedLesson4Questions = [
     {
         id: 4,
         topic: "Responsive Email Templates & HTML/CSS",
-        question: "NTO needs to implement consistent typography across their email campaigns that renders properly in Outlook 2016/2019, Gmail, Apple Mail, and mobile clients. They want to use their brand font (custom web font) when available but ensure readable fallbacks. What font strategy provides the best brand consistency with universal compatibility?",
+        question: "AO needs to implement consistent typography across their email campaigns that renders properly in Outlook 2016/2019, Gmail, Apple Mail, and mobile clients. They want to use their brand font (custom web font) when available but ensure readable fallbacks. What font strategy provides the best brand consistency with universal compatibility?",
         options: [
             "Use web fonts with @import CSS for all email clients",
             "Implement web font stacks with proper fallbacks using @font-face with VML fallbacks for Outlook",
@@ -69,7 +69,7 @@ const advancedLesson4Questions = [
     {
         id: 5,
         topic: "Responsive Email Templates & HTML/CSS",
-        question: "An NTO email template includes product images that need to display at different sizes across devices: full width on mobile, 50% width on tablet, and fixed 200px width on desktop. The images also need alt text and should be optimized for high-DPI screens. What image implementation strategy provides optimal display across all scenarios?",
+        question: "An AO email template includes product images that need to display at different sizes across devices: full width on mobile, 50% width on tablet, and fixed 200px width on desktop. The images also need alt text and should be optimized for high-DPI screens. What image implementation strategy provides optimal display across all scenarios?",
         options: [
             "Use CSS background images with media queries for responsive sizing",
             "Implement responsive img tags with srcset, sizes attributes, and CSS media queries for device-specific styling",
@@ -83,7 +83,7 @@ const advancedLesson4Questions = [
     {
         id: 6,
         topic: "Responsive Email Templates & HTML/CSS",
-        question: "NTO wants to implement email template testing across 15+ email clients including Outlook 2007-2019, Gmail (web and mobile), Apple Mail, and various mobile clients. They need automated testing that catches rendering issues before campaigns go live. What testing strategy provides comprehensive email client coverage with efficient workflow?",
+        question: "AO wants to implement email template testing across 15+ email clients including Outlook 2007-2019, Gmail (web and mobile), Apple Mail, and various mobile clients. They need automated testing that catches rendering issues before campaigns go live. What testing strategy provides comprehensive email client coverage with efficient workflow?",
         options: [
             "Manual testing on available devices and email clients in-house",
             "Use email testing services with automated screenshot testing across multiple clients and devices",
@@ -97,7 +97,7 @@ const advancedLesson4Questions = [
     {
         id: 7,
         topic: "Responsive Email Templates & HTML/CSS",
-        question: "A complex NTO email campaign includes conditional content blocks that show different layouts based on subscriber data (VIP status, geographic location, purchase history). The template needs to maintain responsive behavior while dynamically adjusting content structure. What architecture approach handles both dynamic content and responsive design effectively?",
+        question: "A complex AO email campaign includes conditional content blocks that show different layouts based on subscriber data (VIP status, geographic location, purchase history). The template needs to maintain responsive behavior while dynamically adjusting content structure. What architecture approach handles both dynamic content and responsive design effectively?",
         options: [
             "Create separate email templates for each content variation",
             "Use AMPscript with responsive table structures and conditional CSS classes",
@@ -112,7 +112,7 @@ const advancedLesson4Questions = [
     {
         id: 8,
         topic: "AMPscript & Dynamic Personalization",
-        question: "NTO needs to display personalized product recommendations based on a subscriber's purchase history stored in a separate Data Extension. The recommendation logic needs to exclude out-of-stock items, consider seasonal availability, and display up to 4 products with fallback content if insufficient products are available. What AMPscript approach provides this complex recommendation logic?",
+        question: "AO needs to display personalized product recommendations based on a subscriber's purchase history stored in a separate Data Extension. The recommendation logic needs to exclude out-of-stock items, consider seasonal availability, and display up to 4 products with fallback content if insufficient products are available. What AMPscript approach provides this complex recommendation logic?",
         options: [
             "Use simple Lookup functions to retrieve the first available products",
             "Implement LookupRows with conditional logic, loops, and fallback content management using AMPscript variables and functions",
@@ -126,7 +126,7 @@ const advancedLesson4Questions = [
     {
         id: 9,
         topic: "AMPscript & Dynamic Personalization",
-        question: "An NTO abandoned cart email needs to dynamically calculate cart total, apply personalized discount codes based on customer tier, show time-sensitive urgency messaging, and handle currency formatting for international customers. The cart data is stored across multiple Data Extensions with complex relationships. What AMPscript architecture handles this multi-layered personalization?",
+        question: "An AO abandoned cart email needs to dynamically calculate cart total, apply personalized discount codes based on customer tier, show time-sensitive urgency messaging, and handle currency formatting for international customers. The cart data is stored across multiple Data Extensions with complex relationships. What AMPscript architecture handles this multi-layered personalization?",
         options: [
             "Use static content blocks with basic personalization strings",
             "Implement nested LookupRows with mathematical functions, conditional discounting logic, date arithmetic, and currency formatting functions",
@@ -140,7 +140,7 @@ const advancedLesson4Questions = [
     {
         id: 10,
         topic: "AMPscript & Dynamic Personalization",
-        question: "NTO wants to implement advanced email personalization using machine learning insights stored in Einstein Analytics data. The personalization includes predicted next purchase category, likelihood scores, and recommended engagement timing. The data updates daily and needs error handling for missing predictions. What AMPscript strategy integrates ML insights with robust error handling?",
+        question: "AO wants to implement advanced email personalization using machine learning insights stored in Einstein Analytics data. The personalization includes predicted next purchase category, likelihood scores, and recommended engagement timing. The data updates daily and needs error handling for missing predictions. What AMPscript strategy integrates ML insights with robust error handling?",
         options: [
             "Use simple AMPscript Lookup with basic error handling",
             "Implement comprehensive data validation, conditional content blocks based on prediction confidence, and graceful degradation with fallback personalization",
@@ -154,7 +154,7 @@ const advancedLesson4Questions = [
     {
         id: 11,
         topic: "AMPscript & Dynamic Personalization",
-        question: "A complex NTO loyalty program email needs to display member tier status, points balances, tier progress bars, upcoming expiration dates, and personalized tier benefits. The loyalty data spans multiple Data Extensions and includes complex tier calculation rules. What AMPscript approach manages this multi-faceted loyalty personalization?",
+        question: "A complex AO loyalty program email needs to display member tier status, points balances, tier progress bars, upcoming expiration dates, and personalized tier benefits. The loyalty data spans multiple Data Extensions and includes complex tier calculation rules. What AMPscript approach manages this multi-faceted loyalty personalization?",
         options: [
             "Use separate email templates for each loyalty tier",
             "Create pre-calculated loyalty summaries in Data Extensions and use simple personalization",
@@ -168,7 +168,7 @@ const advancedLesson4Questions = [
     {
         id: 12,
         topic: "AMPscript & Dynamic Personalization",
-        question: "NTO needs to implement conditional content that shows different promotional offers based on subscriber's geographic location, weather conditions, and local inventory levels. The logic needs to handle multiple decision trees and provide fallback offers when specific conditions aren't met. What AMPscript structure provides this complex conditional logic?",
+        question: "AO needs to implement conditional content that shows different promotional offers based on subscriber's geographic location, weather conditions, and local inventory levels. The logic needs to handle multiple decision trees and provide fallback offers when specific conditions aren't met. What AMPscript structure provides this complex conditional logic?",
         options: [
             "Use simple IF statements for basic conditional content",
             "Create nested conditional statements with multiple lookup functions, geographic data integration, and sophisticated fallback logic using AMPscript variables and functions",
@@ -182,7 +182,7 @@ const advancedLesson4Questions = [
     {
         id: 13,
         topic: "AMPscript & Dynamic Personalization",
-        question: "An NTO email template needs to handle data formatting inconsistencies from multiple source systems: dates in different formats, phone numbers with various formatting, and names with inconsistent capitalization. The template must standardize these formats for professional presentation. What AMPscript functions provide comprehensive data standardization?",
+        question: "An AO email template needs to handle data formatting inconsistencies from multiple source systems: dates in different formats, phone numbers with various formatting, and names with inconsistent capitalization. The template must standardize these formats for professional presentation. What AMPscript functions provide comprehensive data standardization?",
         options: [
             "Use data as-is from source systems without modification",
             "Implement string manipulation functions (ProperCase, Replace, RegexMatch), date formatting functions (FormatDate), and standardization logic for consistent data presentation",
@@ -196,7 +196,7 @@ const advancedLesson4Questions = [
     {
         id: 14,
         topic: "AMPscript & Dynamic Personalization",
-        question: "NTO wants to implement advanced error handling in their AMPscript to manage scenarios where Data Extensions are temporarily unavailable, lookup failures occur, or data corruption is detected. The emails must still send with appropriate fallback content. What comprehensive error handling strategy ensures reliable email delivery?",
+        question: "AO wants to implement advanced error handling in their AMPscript to manage scenarios where Data Extensions are temporarily unavailable, lookup failures occur, or data corruption is detected. The emails must still send with appropriate fallback content. What comprehensive error handling strategy ensures reliable email delivery?",
         options: [
             "Use try-catch blocks to handle all potential errors",
             "Implement error detection with conditional logic, variable validation, data existence checks, and multi-level fallback content strategies",
@@ -211,7 +211,7 @@ const advancedLesson4Questions = [
     {
         id: 15,
         topic: "A/B Testing & Optimization",
-        question: "NTO wants to test multiple email elements simultaneously: subject line variations (3 options), sender name variations (2 options), and call-to-action button colors (2 options). They have 120,000 subscribers and need statistical significance with 95% confidence. What multivariate testing approach would provide the most actionable insights?",
+        question: "AO wants to test multiple email elements simultaneously: subject line variations (3 options), sender name variations (2 options), and call-to-action button colors (2 options). They have 120,000 subscribers and need statistical significance with 95% confidence. What multivariate testing approach would provide the most actionable insights?",
         options: [
             "Test all combinations simultaneously (3x2x2 = 12 variations) with equal distribution",
             "Run sequential A/B tests for each element to isolate variables and ensure statistical significance per test",
@@ -225,7 +225,7 @@ const advancedLesson4Questions = [
     {
         id: 16,
         topic: "A/B Testing & Optimization",
-        question: "An NTO email campaign needs to test send time optimization across different subscriber segments (B2B vs B2C customers) with varying time zones and engagement patterns. They want to identify optimal send times for each segment while maintaining campaign coherence. What testing architecture provides segment-specific timing insights?",
+        question: "An AO email campaign needs to test send time optimization across different subscriber segments (B2B vs B2C customers) with varying time zones and engagement patterns. They want to identify optimal send times for each segment while maintaining campaign coherence. What testing architecture provides segment-specific timing insights?",
         options: [
             "Send all emails at the same time regardless of segment or time zone",
             "Implement segment-specific A/B testing with time zone normalization and engagement pattern analysis",
@@ -239,7 +239,7 @@ const advancedLesson4Questions = [
     {
         id: 17,
         topic: "A/B Testing & Optimization",
-        question: "NTO needs to test email content length and format: short vs. long-form content, text-heavy vs. image-rich layouts, and single vs. multiple CTAs. The test needs to measure not just opens and clicks, but also downstream conversions and revenue attribution. What comprehensive testing strategy provides business-impact insights?",
+        question: "AO needs to test email content length and format: short vs. long-form content, text-heavy vs. image-rich layouts, and single vs. multiple CTAs. The test needs to measure not just opens and clicks, but also downstream conversions and revenue attribution. What comprehensive testing strategy provides business-impact insights?",
         options: [
             "Test only email engagement metrics (opens, clicks) for faster results",
             "Implement full-funnel A/B testing with conversion tracking, revenue attribution, and customer lifetime value analysis",
@@ -253,7 +253,7 @@ const advancedLesson4Questions = [
     {
         id: 18,
         topic: "A/B Testing & Optimization",
-        question: "A seasonal NTO campaign needs rapid A/B testing with quick statistical significance determination due to limited campaign window. They have 200,000 subscribers and need results within 24-48 hours. What testing methodology provides reliable results within tight timeframes?",
+        question: "A seasonal AO campaign needs rapid A/B testing with quick statistical significance determination due to limited campaign window. They have 200,000 subscribers and need results within 24-48 hours. What testing methodology provides reliable results within tight timeframes?",
         options: [
             "Use small sample sizes to get faster results",
             "Implement sequential probability ratio testing (SPRT) with early stopping rules for rapid significance detection",
@@ -267,7 +267,7 @@ const advancedLesson4Questions = [
     {
         id: 19,
         topic: "A/B Testing & Optimization",
-        question: "NTO wants to test personalization effectiveness across different customer segments: new customers, repeat buyers, and VIP members. Each segment may respond differently to personalization levels (basic name, purchase history, predictive recommendations). What testing approach captures segment-specific personalization impact?",
+        question: "AO wants to test personalization effectiveness across different customer segments: new customers, repeat buyers, and VIP members. Each segment may respond differently to personalization levels (basic name, purchase history, predictive recommendations). What testing approach captures segment-specific personalization impact?",
         options: [
             "Test personalization with all segments combined for overall results",
             "Implement segment-stratified A/B testing with personalization levels tailored to segment characteristics and engagement patterns",
@@ -281,7 +281,7 @@ const advancedLesson4Questions = [
     {
         id: 20,
         topic: "A/B Testing & Optimization",
-        question: "An NTO loyalty program email campaign needs to test reward presentation formats: points balance displays, tier progress visualization, and benefit highlight methods. The tests must account for different loyalty levels and measure both immediate engagement and long-term program participation. What testing framework addresses these complex loyalty dynamics?",
+        question: "An AO loyalty program email campaign needs to test reward presentation formats: points balance displays, tier progress visualization, and benefit highlight methods. The tests must account for different loyalty levels and measure both immediate engagement and long-term program participation. What testing framework addresses these complex loyalty dynamics?",
         options: [
             "Focus testing on visual elements only without considering loyalty levels",
             "Design loyalty-aware A/B testing with tier-specific content variations and longitudinal engagement tracking",
@@ -296,7 +296,7 @@ const advancedLesson4Questions = [
     {
         id: 21,
         topic: "Content Builder & Modular Design",
-        question: "NTO needs to create a modular email system supporting 50+ email types across 5 brands with shared components (headers, footers, product blocks) while maintaining brand-specific styling and content governance. What Content Builder architecture provides maximum reusability with brand control?",
+        question: "AO needs to create a modular email system supporting 50+ email types across 5 brands with shared components (headers, footers, product blocks) while maintaining brand-specific styling and content governance. What Content Builder architecture provides maximum reusability with brand control?",
         options: [
             "Create separate templates for each brand and email type combination",
             "Implement a component library system with shared base templates, brand-specific style blocks, and modular content components",
@@ -310,7 +310,7 @@ const advancedLesson4Questions = [
     {
         id: 22,
         topic: "Content Builder & Modular Design",
-        question: "An NTO content team needs approval workflows for different content types: promotional emails requiring legal review, transactional emails needing technical validation, and newsletter content requiring editorial approval. What Content Builder governance strategy manages these varied approval requirements?",
+        question: "An AO content team needs approval workflows for different content types: promotional emails requiring legal review, transactional emails needing technical validation, and newsletter content requiring editorial approval. What Content Builder governance strategy manages these varied approval requirements?",
         options: [
             "Use a single approval process for all email content",
             "Implement content-type-specific approval workflows with role-based permissions and automated routing based on content classification",
@@ -324,7 +324,7 @@ const advancedLesson4Questions = [
     {
         id: 23,
         topic: "Content Builder & Modular Design",
-        question: "NTO wants to implement dynamic content blocks that automatically populate with current promotions, inventory levels, and personalized recommendations while maintaining template structure across campaigns. What Content Builder approach provides dynamic content with template consistency?",
+        question: "AO wants to implement dynamic content blocks that automatically populate with current promotions, inventory levels, and personalized recommendations while maintaining template structure across campaigns. What Content Builder approach provides dynamic content with template consistency?",
         options: [
             "Hard-code all content directly into email templates",
             "Create data-driven content blocks using AMPscript with template inheritance and modular architecture",
@@ -338,7 +338,7 @@ const advancedLesson4Questions = [
     {
         id: 24,
         topic: "Content Builder & Modular Design",
-        question: "A complex NTO email program requires content versioning for international markets with different languages, currencies, regulatory requirements, and cultural preferences. The system needs to maintain template structure while adapting content appropriately. What Content Builder strategy handles international content variation efficiently?",
+        question: "A complex AO email program requires content versioning for international markets with different languages, currencies, regulatory requirements, and cultural preferences. The system needs to maintain template structure while adapting content appropriately. What Content Builder strategy handles international content variation efficiently?",
         options: [
             "Create completely separate templates for each international market",
             "Implement template inheritance with localization-aware content blocks and cultural adaptation logic",
@@ -352,7 +352,7 @@ const advancedLesson4Questions = [
     {
         id: 25,
         topic: "Content Builder & Modular Design",
-        question: "NTO needs to implement content block libraries that multiple team members can access and modify while preventing version conflicts and maintaining content quality. They need change tracking and rollback capabilities for content governance. What Content Builder architecture provides collaborative content management with version control?",
+        question: "AO needs to implement content block libraries that multiple team members can access and modify while preventing version conflicts and maintaining content quality. They need change tracking and rollback capabilities for content governance. What Content Builder architecture provides collaborative content management with version control?",
         options: [
             "Allow unrestricted access to all content blocks for maximum flexibility",
             "Implement structured content libraries with check-out/check-in processes, change tracking, and role-based modification permissions",
@@ -366,7 +366,7 @@ const advancedLesson4Questions = [
     {
         id: 26,
         topic: "Content Builder & Modular Design",
-        question: "An NTO campaign optimization initiative needs to track content block performance across different email campaigns to identify high-performing elements and optimize template libraries. What Content Builder strategy provides content performance insights for optimization?",
+        question: "An AO campaign optimization initiative needs to track content block performance across different email campaigns to identify high-performing elements and optimize template libraries. What Content Builder strategy provides content performance insights for optimization?",
         options: [
             "Track email-level metrics only without content block granularity",
             "Implement content block tracking with performance attribution, A/B testing integration, and optimization recommendations",
@@ -381,7 +381,7 @@ const advancedLesson4Questions = [
     {
         id: 27,
         topic: "Transactional Email Architecture",
-        question: "NTO needs to implement transactional email triggers for order confirmations, shipping notifications, and delivery confirmations that must fire within seconds of triggering events. The system needs to handle 15,000 daily transactions with guaranteed delivery and real-time personalization. What architecture ensures real-time transactional email delivery?",
+        question: "AO needs to implement transactional email triggers for order confirmations, shipping notifications, and delivery confirmations that must fire within seconds of triggering events. The system needs to handle 15,000 daily transactions with guaranteed delivery and real-time personalization. What architecture ensures real-time transactional email delivery?",
         options: [
             "Use scheduled batch processing to send all transactional emails hourly",
             "Implement API-triggered sends with real-time data integration and priority queue processing",
@@ -395,7 +395,7 @@ const advancedLesson4Questions = [
     {
         id: 28,
         topic: "Transactional Email Architecture",
-        question: "An NTO e-commerce platform needs transactional emails that pull real-time inventory levels, calculate personalized pricing with current promotions, and include dynamic shipping information based on customer location and selected delivery methods. What transactional architecture handles complex real-time data integration?",
+        question: "An AO e-commerce platform needs transactional emails that pull real-time inventory levels, calculate personalized pricing with current promotions, and include dynamic shipping information based on customer location and selected delivery methods. What transactional architecture handles complex real-time data integration?",
         options: [
             "Use static transactional templates with basic order information",
             "Implement API-driven transactional sends with real-time data calls and dynamic content generation",
@@ -409,7 +409,7 @@ const advancedLesson4Questions = [
     {
         id: 29,
         topic: "Transactional Email Architecture",
-        question: "NTO's transactional email system needs to handle failure scenarios: API timeouts, data source unavailability, and delivery failures, while ensuring customers receive critical transaction information. What fault tolerance strategy ensures reliable transactional communication?",
+        question: "AO's transactional email system needs to handle failure scenarios: API timeouts, data source unavailability, and delivery failures, while ensuring customers receive critical transaction information. What fault tolerance strategy ensures reliable transactional communication?",
         options: [
             "Accept that some transactional emails may fail during system issues",
             "Implement comprehensive failure handling with retry logic, fallback content, alternative delivery methods, and monitoring alerts",
@@ -423,7 +423,7 @@ const advancedLesson4Questions = [
     {
         id: 30,
         topic: "Transactional Email Architecture",
-        question: "A complex NTO subscription service needs transactional emails for account changes, billing events, service updates, and usage notifications with different urgency levels and delivery requirements. What transactional classification system manages varied communication priorities?",
+        question: "A complex AO subscription service needs transactional emails for account changes, billing events, service updates, and usage notifications with different urgency levels and delivery requirements. What transactional classification system manages varied communication priorities?",
         options: [
             "Treat all transactional emails with identical priority and delivery methods",
             "Implement priority classification with urgency-based routing, delivery method selection, and appropriate retry policies",
@@ -437,7 +437,7 @@ const advancedLesson4Questions = [
     {
         id: 31,
         topic: "Transactional Email Architecture",
-        question: "NTO needs to implement transactional email compliance with regulations requiring delivery confirmation, content archiving, and audit trails for financial communications while maintaining performance for high-volume transactions. What compliance architecture balances regulatory requirements with performance?",
+        question: "AO needs to implement transactional email compliance with regulations requiring delivery confirmation, content archiving, and audit trails for financial communications while maintaining performance for high-volume transactions. What compliance architecture balances regulatory requirements with performance?",
         options: [
             "Add compliance features only to marketing emails to maintain transactional performance",
             "Implement regulatory-compliant transactional architecture with delivery tracking, automated archiving, and audit logging",
@@ -452,7 +452,7 @@ const advancedLesson4Questions = [
     {
         id: 32,
         topic: "Multi-language & Localization",
-        question: "NTO operates in 15 countries with different languages, currencies, date formats, and cultural preferences. Their email templates need to automatically adapt content, formatting, and imagery based on subscriber locale while maintaining brand consistency. What localization architecture provides comprehensive cultural adaptation?",
+        question: "AO operates in 15 countries with different languages, currencies, date formats, and cultural preferences. Their email templates need to automatically adapt content, formatting, and imagery based on subscriber locale while maintaining brand consistency. What localization architecture provides comprehensive cultural adaptation?",
         options: [
             "Use automatic translation services for all content without cultural consideration",
             "Implement locale-aware template system with cultural content libraries, format adaptation, and regional imagery",
@@ -466,7 +466,7 @@ const advancedLesson4Questions = [
     {
         id: 33,
         topic: "Multi-language & Localization",
-        question: "An NTO global campaign needs dynamic language selection based on subscriber preferences, geographic location, and browsing behavior, with fallback logic when preferred languages aren't available. What language selection strategy provides optimal user experience with reliable fallbacks?",
+        question: "An AO global campaign needs dynamic language selection based on subscriber preferences, geographic location, and browsing behavior, with fallback logic when preferred languages aren't available. What language selection strategy provides optimal user experience with reliable fallbacks?",
         options: [
             "Use subscriber's country to determine language automatically",
             "Implement preference-based language selection with intelligent fallback hierarchy using multiple data points",
@@ -480,7 +480,7 @@ const advancedLesson4Questions = [
     {
         id: 34,
         topic: "Multi-language & Localization",
-        question: "NTO's multilingual email templates need to handle text expansion challenges where translated content requires 30-50% more space than English, affecting layout and responsive design. What design strategy accommodates text expansion while maintaining visual consistency?",
+        question: "AO's multilingual email templates need to handle text expansion challenges where translated content requires 30-50% more space than English, affecting layout and responsive design. What design strategy accommodates text expansion while maintaining visual consistency?",
         options: [
             "Use fixed layout designs and accept text overflow in some languages",
             "Implement flexible template architecture with expandable content areas and responsive text handling",
@@ -494,7 +494,7 @@ const advancedLesson4Questions = [
     {
         id: 35,
         topic: "Multi-language & Localization",
-        question: "A complex NTO loyalty program spans multiple countries with different point systems, redemption options, and regulatory requirements. The localization system needs to adapt not just language but entire program logic and offerings. What localization approach handles complex program variations?",
+        question: "A complex AO loyalty program spans multiple countries with different point systems, redemption options, and regulatory requirements. The localization system needs to adapt not just language but entire program logic and offerings. What localization approach handles complex program variations?",
         options: [
             "Use a single global loyalty program structure with basic language translation",
             "Implement country-specific program logic with localized content, offers, and compliance frameworks",
@@ -509,7 +509,7 @@ const advancedLesson4Questions = [
     {
         id: 36,
         topic: "Email Tracking & Analytics",
-        question: "NTO needs comprehensive email performance tracking that measures not just opens and clicks, but conversion paths, revenue attribution, customer lifetime value impact, and cross-channel engagement influenced by email campaigns. What analytics architecture provides complete email impact measurement?",
+        question: "AO needs comprehensive email performance tracking that measures not just opens and clicks, but conversion paths, revenue attribution, customer lifetime value impact, and cross-channel engagement influenced by email campaigns. What analytics architecture provides complete email impact measurement?",
         options: [
             "Use standard SFMC reporting for opens, clicks, and unsubscribes only",
             "Implement comprehensive analytics with conversion tracking, revenue attribution, CLV analysis, and cross-channel impact measurement",
@@ -523,7 +523,7 @@ const advancedLesson4Questions = [
     {
         id: 37,
         topic: "Email Tracking & Analytics",
-        question: "An NTO email program needs advanced attribution modeling to understand email's role in multi-touch customer journeys including website visits, store visits, social media interactions, and phone inquiries before purchase. What attribution strategy captures email's true contribution to conversions?",
+        question: "An AO email program needs advanced attribution modeling to understand email's role in multi-touch customer journeys including website visits, store visits, social media interactions, and phone inquiries before purchase. What attribution strategy captures email's true contribution to conversions?",
         options: [
             "Use last-click attribution to give email full credit for direct conversions",
             "Implement multi-touch attribution modeling with weighted contribution analysis across all customer touchpoints",
@@ -537,7 +537,7 @@ const advancedLesson4Questions = [
     {
         id: 38,
         topic: "Email Tracking & Analytics",
-        question: "NTO wants to implement predictive email analytics that forecast campaign performance, identify optimal send timing, predict subscriber churn risk, and recommend content optimization based on historical performance patterns. What analytics approach provides predictive insights for email optimization?",
+        question: "AO wants to implement predictive email analytics that forecast campaign performance, identify optimal send timing, predict subscriber churn risk, and recommend content optimization based on historical performance patterns. What analytics approach provides predictive insights for email optimization?",
         options: [
             "Use historical averages to predict future performance",
             "Implement machine learning-powered predictive analytics with pattern recognition and optimization recommendations",
@@ -551,7 +551,7 @@ const advancedLesson4Questions = [
     {
         id: 39,
         topic: "Email Tracking & Analytics",
-        question: "A complex NTO email program needs real-time performance monitoring with automated alerts for deliverability issues, engagement anomalies, and conversion drops. The monitoring system needs to differentiate between normal variations and actionable problems. What monitoring architecture provides intelligent performance oversight?",
+        question: "A complex AO email program needs real-time performance monitoring with automated alerts for deliverability issues, engagement anomalies, and conversion drops. The monitoring system needs to differentiate between normal variations and actionable problems. What monitoring architecture provides intelligent performance oversight?",
         options: [
             "Review email performance manually on a weekly basis",
             "Implement intelligent monitoring with anomaly detection, threshold-based alerts, and automated issue classification",
@@ -566,7 +566,7 @@ const advancedLesson4Questions = [
     {
         id: 40,
         topic: "Advanced Email Features & Optimization",
-        question: "NTO needs to implement a comprehensive email optimization program that includes send time optimization, content personalization, subject line testing, frequency optimization, and deliverability monitoring across their entire email portfolio of 50+ campaign types. What systematic optimization approach provides continuous improvement across all email programs?",
+        question: "AO needs to implement a comprehensive email optimization program that includes send time optimization, content personalization, subject line testing, frequency optimization, and deliverability monitoring across their entire email portfolio of 50+ campaign types. What systematic optimization approach provides continuous improvement across all email programs?",
         options: [
             "Focus optimization efforts on the highest-volume campaigns only",
             "Implement systematic optimization framework with automated testing, performance monitoring, continuous improvement processes, and cross-campaign learning",
@@ -587,8 +587,11 @@ if (typeof module !== 'undefined' && module.exports) {
 
 /**
  * Utility functions for question management
+ * (Named per-lesson to avoid clashing with the identical helper block in
+ * lesson_2_advanced_certification_questions.js when both files are loaded
+ * on the same page as plain <script> globals.)
  */
-const QuestionUtils = {
+const Lesson4QuestionUtils = {
     /**
      * Get questions by topic
      */
@@ -626,7 +629,7 @@ const QuestionUtils = {
 };
 
 // Topic distribution validation
-const topicDistribution = {
+const lesson4TopicDistribution = {
     "Responsive Email Templates & HTML/CSS": 7,
     "AMPscript & Dynamic Personalization": 7,
     "A/B Testing & Optimization": 6,
@@ -637,16 +640,14 @@ const topicDistribution = {
     "Advanced Email Features & Optimization": 1
 };
 
-const actualDistribution = {};
+const lesson4ActualDistribution = {};
 advancedLesson4Questions.forEach(q => {
-    if (!actualDistribution[q.topic]) {
-        actualDistribution[q.topic] = 0;
+    if (!lesson4ActualDistribution[q.topic]) {
+        lesson4ActualDistribution[q.topic] = 0;
     }
-    actualDistribution[q.topic]++;
+    lesson4ActualDistribution[q.topic]++;
 });
 
 console.log(`✅ Lesson 4: Email Studio & Content Creation - Comprehensive Certification Questions loaded successfully!`);
 console.log(`📊 Total Questions: ${advancedLesson4Questions.length}`);
-console.log(`🎯 Topics Covered: ${QuestionUtils.getTopics().length}`);
-console.log(`📈 Topic Distribution:`, actualDistribution);
-console.log(`🏆 Ready for SFMC Email Specialist Certification Practice - Email Studio & Content Creation (23-28% of Exam)!`);
+console.log(`🎯 Topi
