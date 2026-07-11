@@ -650,4 +650,6 @@ advancedLesson4Questions.forEach(q => {
 
 console.log(`✅ Lesson 4: Email Studio & Content Creation - Comprehensive Certification Questions loaded successfully!`);
 console.log(`📊 Total Questions: ${advancedLesson4Questions.length}`);
-console.log(`🎯 Topi
+console.log(`🎯 Topics Covered: ${Lesson4QuestionUtils.getTopics().length}`);
+console.log(`📈 Topic Distribution:`, lesson4ActualDistribution);
+console.log(`🏆 Ready for SFMC Email Specialist Certification Practice - Email Studio & Content Creation (23-28% of Exam)!`);
